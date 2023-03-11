@@ -434,6 +434,7 @@ function comment_fix(el, find) {
     $fix_container.html("");
     $fix_container.append(co_clone);
     $fix_container.find("article").css("margin-left", 0);
+    $fix_container.find(".bo_vl_opt").remove();
     $fix_el.find(".desc").show();
 }
 </script>
