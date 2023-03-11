@@ -283,8 +283,10 @@ box-shadow:1px 1px 5px 0px hsl(232, 36%, 96%)}
 .bo_vc_act:after {content:"";position:absolute;top:-6px;right:5px;width:0;height:0;border-style:solid;border-width:0 6px 8px 6px;border-color:transparent transparent #fff transparent}
 .bo_vc_act li {border-bottom:1px solid #f0f0f0}
 .bo_vc_act li:last-child {border-bottom:0}
-.bo_vc_act li a {display:inline-block;padding:10px 15px}
-.bo_vc_act li a:hover {color:#3a8afd}
+.bo_vc_act li a, .bo_vc_act li button {display:inline-block;margin:0;padding:10px 15px;border:0;background:none}
+.bo_vc_act li a:hover, .bo_vc_act li button:hover {color:#3a8afd}
+
+#bo_vc_fix .desc {margin:0 0 -10px;padding:10px 0 0;font-weight:bold}
 
 .bo_vc_w {position:relative;margin:10px 0;display:block}
 .bo_vc_w:after {display:block;visibility:hidden;clear:both;content:""}

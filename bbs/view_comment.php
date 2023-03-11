@@ -65,6 +65,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     if (!$is_admin)
         $list[$i]['ip'] = preg_replace("/([0-9]+).([0-9]+).([0-9]+).([0-9]+)/", G5_IP_DISPLAY, $row['wr_ip']);
 
+    $list[$i]['is_fix'] = false;
     $list[$i]['is_reply'] = false;
     $list[$i]['is_edit'] = false;
     $list[$i]['is_del']  = false;
@@ -92,6 +93,10 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
 
         if (strlen($row['wr_comment_reply']) < 5)
             $list[$i]['is_reply'] = true;
+    }
+
+    if ($member['mb_id'] === $view['mb_id'] || $is_admin) {
+        $list[$i]['is_fix'] = true;
     }
 
     // 05.05.22

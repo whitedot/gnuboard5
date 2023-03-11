@@ -11,6 +11,10 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 <!-- 댓글 시작 { -->
 <section id="bo_vc">
     <h2>댓글목록</h2>
+    <div id="bo_vc_fix">
+        <div class="desc" style="display:none"><i class="fa fa-map-pin"></i> 작성자가 고정한 댓글</div>
+        <div class="container"></div>
+    </div>
     <?php
     $cmt_amt = count($list);
     for ($i=0; $i<$cmt_amt; $i++) {
@@ -24,12 +28,12 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
         */
         $comment = preg_replace("/\[\<a\s.*href\=\"(http|https|ftp|mms)\:\/\/([^[:space:]]+)\.(mp3|wma|wmv|asf|asx|mpg|mpeg)\".*\<\/a\>\]/i", "<script>doc_write(obj_movie('$1://$2.$3'));</script>", $comment);
         $cmt_sv = $cmt_amt - $i + 1; // 댓글 헤더 z-index 재설정 ie8 이하 사이드뷰 겹침 문제 해결
-		$c_reply_href = $comment_common_url.'&amp;c_id='.$comment_id.'&amp;w=c#bo_vc_w';
+        $c_reply_href = $comment_common_url.'&amp;c_id='.$comment_id.'&amp;w=c#bo_vc_w';
 		$c_edit_href = $comment_common_url.'&amp;c_id='.$comment_id.'&amp;w=cu#bo_vc_w';
-        $is_comment_reply_edit = ($list[$i]['is_reply'] || $list[$i]['is_edit'] || $list[$i]['is_del']) ? 1 : 0;
+        $is_comment_reply_edit = ($list[$i]['is_fix'] || $list[$i]['is_reply'] || $list[$i]['is_edit'] || $list[$i]['is_del']) ? 1 : 0;
 	?>
 
-	<article id="c_<?php echo $comment_id ?>" <?php if ($cmt_depth) { ?>style="margin-left:<?php echo $cmt_depth ?>px;border-top-color:#e0e0e0"<?php } ?>>
+	<article id="c_<?php echo $comment_id ?>" <?php if ($list[$i]['wr_1']) { ?>class="fix"<?php } ?> <?php if ($cmt_depth) { ?>style="margin-left:<?php echo $cmt_depth ?>px;border-top-color:#e0e0e0"<?php } ?>>
         <div class="pf_img"><?php echo get_member_profile_img($list[$i]['mb_id']); ?></div>
         
         <div class="cm_wrap">
@@ -78,6 +82,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 		<div class="bo_vl_opt">
             <button type="button" class="btn_cm_opt btn_b01 btn"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">댓글 옵션</span></button>
         	<ul class="bo_vc_act">
+                <?php if ($list[$i]['is_fix']) { ?><li><button type="button" class="btn_cm_fix" data-wrid="<?php echo $comment_id; ?>">상단고정</button></li><?php } ?>
                 <?php if ($list[$i]['is_reply']) { ?><li><a href="<?php echo $c_reply_href; ?>" onclick="comment_box('<?php echo $comment_id ?>', 'c'); return false;">답변</a></li><?php } ?>
                 <?php if ($list[$i]['is_edit']) { ?><li><a href="<?php echo $c_edit_href; ?>" onclick="comment_box('<?php echo $comment_id ?>', 'cu'); return false;">수정</a></li><?php } ?>
                 <?php if ($list[$i]['is_del']) { ?><li><a href="<?php echo $list[$i]['del_link']; ?>" onclick="return comment_delete();">삭제</a></li><?php } ?>
@@ -351,5 +356,85 @@ jQuery(function($) {
         $(this).toggleClass("cmt_btn_op");
         $("#bo_vc").toggle();
     });
+
+    $(".btn_cm_fix").click(function(){
+
+        if (confirm("이 댓글을 고정하시겠습니까?")) {
+
+            var
+                $this = $(this),
+                co_id = $this.data('wrid'),
+                co_parent_id = <?php echo $view['wr_parent']; ?>;
+
+            $.ajax({
+
+                type: "POST",
+                dataType: "json",
+                url: "<?php echo G5_BBS_URL; ?>/ajax.commentfix.php",
+                data: {
+                    bo_table: "<?php echo $bo_table; ?>",
+                    comment_id : co_id,
+                    comment_parent_id: co_parent_id
+                },
+                success: function(response) {
+
+                    if (response.type === "done") {
+
+                        comment_fix($this, 1);
+                        $(".bo_vc_act").hide();
+
+                    } else if (response.type === "err") {
+
+                        alert(response.error);
+
+                    }
+
+                },
+
+                error: function() {
+                    return false;
+                }
+
+            });
+
+
+        } else {
+
+            return false;
+
+        }
+
+    });
+
 });
+
+$(document).ready(function(){
+
+    var
+        $fixed_cmt = $("article.fix"),
+        fixed_cnt = $fixed_cmt.length;
+
+    if (fixed_cnt) {
+        comment_fix($fixed_cmt, 0);
+    }
+
+});
+
+function comment_fix(el, find) {
+    var
+        $el = el,
+        $fix_el = $("#bo_vc_fix"),
+        $fix_container = $fix_el.find(".container");
+
+    if (find)
+        var co_clone = $el.closest("article").clone();
+    else
+        var co_clone = $el.clone();
+
+    $fix_container.html("");
+    $fix_container.append(co_clone);
+    $fix_container.find("article").css("margin-left", 0);
+    $fix_el.find(".desc").show();
+}
 </script>
+
