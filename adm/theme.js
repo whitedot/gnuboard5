@@ -2,6 +2,7 @@ $(function() {
     $(".theme_active").on("click", function() {
         var theme = $(this).data("theme");
         var name  = $(this).data("name");
+        var themetype  = $(this).data("type");
 
         if(!confirm(name+" 테마를 적용하시겠습니까?"))
             return false;
@@ -17,6 +18,7 @@ $(function() {
             url: "./theme_update.php",
             data: {
                 "theme": theme,
+                "themetype" : themetype,
                 "set_default_skin": set_default_skin
             },
             cache: false,
@@ -35,6 +37,7 @@ $(function() {
     $(".theme_deactive").on("click", function() {
         var theme = $(this).data("theme");
         var name  = $(this).data("name");
+        var themetype  = $(this).data("type");
 
         if(!confirm(name+" 테마 사용설정을 해제하시겠습니까?\n\n테마 설정을 해제하셔도 게시판 등의 스킨은 변경되지 않으므로 개별 변경작업이 필요합니다."))
             return false;
@@ -44,6 +47,7 @@ $(function() {
             url: "./theme_update.php",
             data: {
                 "theme": theme,
+                "themetype" : themetype,
                 "type": "reset"
             },
             cache: false,

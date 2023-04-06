@@ -8,13 +8,30 @@ if ($is_admin != 'super')
 admin_referer_check();
 
 $theme = isset($_POST['theme']) ? trim($_POST['theme']) : '';
+$themetype = $_POST['themetype'];
 $post_type = isset($_POST['type']) ? clean_xss_tags($_POST['type'], 1, 1) : '';
 $post_set_default_skin = isset($_POST['set_default_skin']) ? clean_xss_tags($_POST['set_default_skin'], 1, 1) : '';
 
 $theme_dir = get_theme_dir();
 
+switch($themetype) {
+    case 1:
+        $sql_theme = " cf_theme = '{$theme}' ";
+        $sql_rest_theme = " cf_theme = '' ";
+        break;
+    case 2:
+        $sql_theme = " cf_shop_theme = '{$theme}' ";
+        $sql_reset_theme = " cf_shop_theme = '' ";
+        break;
+    case 3:
+        $sql_theme = " cf_theme = '{$theme}', cf_shop_theme = '{$theme}' ";
+        $sql_reset_theme = " cf_theme = '', cf_shop_theme = '' ";
+        break;
+
+}
+
 if($post_type == 'reset') {
-    $sql = " update {$g5['config_table']} set cf_theme = '' ";
+    $sql = " update {$g5['config_table']} set {$sql_reset_theme} ";
     sql_query($sql);
     die('');
 }
@@ -23,7 +40,7 @@ if(!in_array($theme, $theme_dir))
     die('선택하신 테마가 설치되어 있지 않습니다.');
 
 // 테마적용
-$sql = " update {$g5['config_table']} set cf_theme = '$theme' ";
+$sql = " update {$g5['config_table']} set {$sql_theme} ";
 sql_query($sql);
 
 // 테마 설정 스킨 적용

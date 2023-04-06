@@ -667,14 +667,20 @@ if ($is_admin != 'super') {
 
 
 // 테마경로
-if(defined('_THEME_PREVIEW_') && _THEME_PREVIEW_ === true)
+if(defined('_THEME_PREVIEW_') && _THEME_PREVIEW_ === true) {
     $config['cf_theme'] = isset($_GET['theme']) ? trim($_GET['theme']) : '';
+    $config['cf_shop_theme'] = isset($_GET['theme']) ? trim($_GET['theme']) : '';
+}
 
-if(isset($config['cf_theme']) && trim($config['cf_theme'])) {
-    $theme_path = G5_PATH.'/'.G5_THEME_DIR.'/'.$config['cf_theme'];
+
+if((isset($config['cf_theme']) && trim($config['cf_theme'])) && (isset($config['cf_shop_theme']) && trim($config['cf_shop_theme']))) {
+    if (defined('_SHOP_')) $config_theme = $config['cf_shop_theme'];
+    else $config_theme = $config['cf_theme'];
+
+    $theme_path = G5_PATH.'/'.G5_THEME_DIR.'/'.$config_theme;
     if(is_dir($theme_path)) {
         define('G5_THEME_PATH',        $theme_path);
-        define('G5_THEME_URL',         G5_URL.'/'.G5_THEME_DIR.'/'.$config['cf_theme']);
+        define('G5_THEME_URL',         G5_URL.'/'.G5_THEME_DIR.'/'.$config_theme);
         define('G5_THEME_MOBILE_PATH', $theme_path.'/'.G5_MOBILE_DIR);
         define('G5_THEME_LIB_PATH',    $theme_path.'/'.G5_LIB_DIR);
         define('G5_THEME_CSS_URL',     G5_THEME_URL.'/'.G5_CSS_DIR);

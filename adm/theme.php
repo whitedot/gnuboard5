@@ -43,8 +43,15 @@ include_once('./admin.head.php');
         else
             $screenshot = '<img src="'.G5_ADMIN_URL.'/img/theme_img.jpg" alt="">';
 
-        if($config['cf_theme'] == $theme[$i]) {
-            $btn_active = '<span class="theme_sl theme_sl_use">사용중</span><button type="button" class="theme_sl theme_deactive" data-theme="'.$theme[$i].'" '.'data-name="'.$name.'">사용안함</button>';
+        if (($config['cf_theme'] == $theme[$i] && $config['cf_shop_theme'] == $theme[$i]) && $config['cf_theme'] == $config['cf_shop_theme']) {
+            $btn_active = '<span class="theme_sl theme_sl_use"><i class="fa fa-check"></i><span class="sound_only">사용중</span></span><button type="button" class="theme_sl theme_deactive" data-theme="'.$theme[$i].'" '.'data-name="'.$name.'" data-type="3">모두해제</button>';
+        } else if($config['cf_theme'] == $theme[$i]) {
+            $btn_active = '<span class="theme_sl theme_sl_use"><i class="fa fa-check"></i><span class="sound_only">사용중</span></span>';
+            $btn_active .= '<button type="button" class="theme_sl theme_deactive" data-theme="'.$theme[$i].'" '.'data-name="'.$name.'" data-type="1">커뮤해제</button>';
+            $btn_active .= '<button type="button" class="theme_sl theme_active" style="margin-left:4px;" data-theme="'.$theme[$i].'" '.'data-name="'.$name.'" data-type="2" data-set_default_skin="'.$set_default_skin.'">모두적용</button>';
+        } else if($config['cf_shop_theme'] == $theme[$i]) {
+            $btn_active = '<span class="theme_sl theme_sl_use"><i class="fa fa-check"></i><span class="sound_only">사용중</span></span><button type="button" class="theme_sl theme_deactive" data-theme="'.$theme[$i].'" '.'data-name="'.$name.'" data-type="2">쇼핑해제</button>';
+            $btn_active .= '<button type="button" class="theme_sl theme_active" style="margin-left:4px;" data-theme="'.$theme[$i].'" '.'data-name="'.$name.'" data-type="1" data-set_default_skin="'.$set_default_skin.'">모두적용</button>';
         } else {
             $tconfig = get_theme_config_value($theme[$i], 'set_default_skin');
             if($tconfig['set_default_skin'])
@@ -52,7 +59,9 @@ include_once('./admin.head.php');
             else
                 $set_default_skin = 'false';
 
-            $btn_active = '<button type="button" class="theme_sl theme_active" data-theme="'.$theme[$i].'" '.'data-name="'.$name.'" data-set_default_skin="'.$set_default_skin.'">테마적용</button>';
+            $btn_active = '<button type="button" class="theme_sl theme_active" data-theme="'.$theme[$i].'" '.'data-name="'.$name.'" data-type="1" data-set_default_skin="'.$set_default_skin.'">커뮤적용</button>'.PHP_EOL;
+            $btn_active .= '<button type="button" class="theme_sl theme_active" style="margin-left:4px;" data-theme="'.$theme[$i].'" '.'data-name="'.$name.'" data-type="2" data-set_default_skin="'.$set_default_skin.'">쇼핑적용</button>';
+            $btn_active .= '<button type="button" class="theme_sl theme_active" style="margin-left:4px;" data-theme="'.$theme[$i].'" '.'data-name="'.$name.'" data-type="3" data-set_default_skin="'.$set_default_skin.'">모두적용</button>';
         }
     ?>
     <li>
@@ -64,7 +73,7 @@ include_once('./admin.head.php');
         </div>
         <?php echo $btn_active; ?>
         <a href="./theme_preview.php?theme=<?php echo $theme[$i]; ?>" class="theme_pr" target="theme_preview">미리보기</a>
-        <button type="button" class="tmli_dt theme_preview" data-theme="<?php echo $theme[$i]; ?>">상세보기</button>
+        <button type="button" class="tmli_dt theme_preview" data-theme="<?php echo $theme[$i]; ?>">상세</button>
     </li>
     <?php
     }
