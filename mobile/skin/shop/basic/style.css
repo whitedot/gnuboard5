@@ -408,6 +408,11 @@ box-shadow:0 0 6px rgba(0,0,0,0.2)}
 #sit_tot_price {text-align:right}
 #sit_tot_price span {float:left}
 #sit_tot_price strong {font-size:1.25em;color:#000}
+.sit_coupon_max {margin:10px 0;line-height:20px;text-align:right;font-weight:bold}
+.sit_coupon_max:after {display:block;visibility:hidden;clear:both;content:""}
+.sit_coupon_max .coupon_label {float:left;color:#444}
+.sit_coupon_max .coupon_price {display:inline-block;margin-left:15px;font-size:1.25em;font-weight:700;color:#d81921}
+.sit_coupon_max .coupon_discount {display:block;margin-top:4px;font-size:0.85em;font-weight:normal;color:#757575;line-height:1.6}
 
 /* 상품 상세보기 - 상품정보 */
 #sit_inf_basic {margin:0 0 20px}

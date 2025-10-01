@@ -598,6 +598,11 @@ background:url('img/select_arrow.png') no-repeat 96% 50%/* 화살표 아이콘 �
 #sit_tot_price:after {display:block;visibility:hidden;clear:both;content:""}
 #sit_tot_price span {float:left}
 #sit_tot_price strong {font-size:1.5em;margin-left:15px}
+.sit_coupon_max {margin-top:8px;font-size:1.167em;line-height:45px;font-weight:bold;text-align:right}
+.sit_coupon_max:after {display:block;visibility:hidden;clear:both;content:""}
+.sit_coupon_max .coupon_label {float:left;margin-right:0;color:#444}
+.sit_coupon_max .coupon_price {display:inline-block;margin-left:15px;font-size:1.5em;font-weight:700;color:#d81921}
+.sit_coupon_max .coupon_discount {display:block;margin-top:4px;font-size:0.9em;font-weight:normal;color:#757575;line-height:1.6;text-align:right}
 
 #sit_ov_soldout {padding:20px 0;margin:10px 0;color:#ff3061;background:#fff6f6;font-weight:bold;text-align:center}
 

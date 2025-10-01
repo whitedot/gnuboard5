@@ -139,7 +139,16 @@ var kakao_javascript_apikey = "<?php echo $config['cf_kakao_js_apikey']; ?>";
                     <td>전화문의</td>
                 </tr>
                 <?php } else { // 전화문의가 아닐 경우?>
-                <?php if ($it['it_cust_price']) { // 1.00.03?>
+<?php
+$it_price = get_price($it);
+$item_coupon_info = null;
+if($is_member && is_numeric($it_price) && $it_price > 0) {
+    $item_coupon_info = get_member_max_coupon_discount_for_item($member['mb_id'], $it, $it_price);
+    if(empty($item_coupon_info['discount']))
+        $item_coupon_info = null;
+}
+?>
+<?php if ($it['it_cust_price']) { // 1.00.03?>
                 <tr>
                     <th scope="row">시중가격</th>
                     <td><?php echo display_price($it['it_cust_price']); ?></td>
@@ -148,8 +157,8 @@ var kakao_javascript_apikey = "<?php echo $config['cf_kakao_js_apikey']; ?>";
                 <tr>
                     <th scope="row">판매가격</th>
                     <td>
-                        <?php echo display_price(get_price($it)); ?>
-                        <input type="hidden" id="it_price" value="<?php echo get_price($it); ?>">
+                        <?php echo display_price($it_price); ?>
+                        <input type="hidden" id="it_price" value="<?php echo $it_price; ?>">
                     </td>
                 </tr>
                 <?php } ?>
@@ -309,6 +318,27 @@ var kakao_javascript_apikey = "<?php echo $config['cf_kakao_js_apikey']; ?>";
         </div>
 
         <div id="sit_tot_price"></div>
+        <?php
+        if($item_coupon_info) {
+            $coupon_subject_text = $item_coupon_info['subject'] ? get_text($item_coupon_info['subject']) : '';
+            $coupon_data = array(
+                'subject' => $coupon_subject_text,
+                'cp_type' => isset($item_coupon_info['coupon']['cp_type']) ? (int)$item_coupon_info['coupon']['cp_type'] : 0,
+                'cp_price' => isset($item_coupon_info['coupon']['cp_price']) ? (float)$item_coupon_info['coupon']['cp_price'] : 0,
+                'cp_trunc' => isset($item_coupon_info['coupon']['cp_trunc']) ? (int)$item_coupon_info['coupon']['cp_trunc'] : 0,
+                'cp_minimum' => isset($item_coupon_info['coupon']['cp_minimum']) ? (float)$item_coupon_info['coupon']['cp_minimum'] : 0,
+                'cp_maximum' => isset($item_coupon_info['coupon']['cp_maximum']) ? (float)$item_coupon_info['coupon']['cp_maximum'] : 0
+            );
+            $coupon_json_option = defined('JSON_UNESCAPED_UNICODE') ? JSON_UNESCAPED_UNICODE : 0;
+            $coupon_data_attr = htmlspecialchars(json_encode($coupon_data, $coupon_json_option), ENT_QUOTES, 'UTF-8');
+        ?>
+        <div class="sit_coupon_max" data-coupon="<?php echo $coupon_data_attr; ?>">
+            <span class="coupon_label">최대할인가</span>
+            <strong class="coupon_price"><?php echo display_price($item_coupon_info['discounted_price']); ?></strong>
+            <span class="coupon_discount">(<?php echo number_format($item_coupon_info['discount']).'원 할인'.($coupon_subject_text ? ' - '.$coupon_subject_text : ''); ?>)</span>
+        </div>
+        <?php }
+        ?>
         <?php } ?>
     
         <?php if($is_soldout) { ?>
@@ -339,6 +369,88 @@ $(function (){
     $("#btn_option .btn_close").click(function(){
         $("#btn_option").hide();
     });
+
+    <?php if($item_coupon_info) { ?>
+    (function() {
+        var $couponBox = $(".sit_coupon_max");
+
+        if(!$couponBox.length)
+            return;
+
+        var couponRaw = $couponBox.attr("data-coupon");
+        if(!couponRaw)
+            return;
+
+        var couponData;
+        try {
+            couponData = JSON.parse(couponRaw);
+        } catch (err) {
+            return;
+        }
+
+        function formatPrice(amount) {
+            return number_format(String(amount)) + '원';
+        }
+
+        function getSubjectText() {
+            return couponData.subject ? ' - ' + couponData.subject : '';
+        }
+
+        function updateCouponPrice(total) {
+            var price = parseInt(total, 10);
+
+            if(isNaN(price) || price <= 0) {
+                $couponBox.find('.coupon_price').text(formatPrice(0));
+                $couponBox.find('.coupon_discount').text('(0원 할인' + getSubjectText() + ')');
+                return;
+            }
+
+            var discount = 0;
+            var minimum = parseFloat(couponData.cp_minimum || 0);
+
+            if(price >= minimum) {
+                var couponType = parseInt(couponData.cp_type, 10) || 0;
+                var couponValue = parseFloat(couponData.cp_price || 0);
+
+                if(couponType) {
+                    if(couponValue > 0) {
+                        var trunc = parseInt(couponData.cp_trunc, 10);
+                        if(isNaN(trunc) || trunc < 1)
+                            trunc = 1;
+
+                        discount = Math.floor(((price * couponValue) / 100) / trunc) * trunc;
+                    }
+                } else {
+                    discount = couponValue;
+                }
+
+                var maximum = parseFloat(couponData.cp_maximum || 0);
+                if(maximum > 0 && discount > maximum)
+                    discount = maximum;
+
+                if(discount > price)
+                    discount = price;
+            }
+
+            discount = Math.floor(discount);
+
+            if(discount < 0)
+                discount = 0;
+
+            var discountedPrice = price - discount;
+
+            if(discountedPrice < 0)
+                discountedPrice = 0;
+
+            $couponBox.find('.coupon_price').text(formatPrice(discountedPrice));
+            $couponBox.find('.coupon_discount').text('(' + number_format(String(discount)) + '원 할인' + getSubjectText() + ')');
+        }
+
+        $(document).on('price_calculate', '#sit_tot_price', function(e, total) {
+            updateCouponPrice(total);
+        });
+    })();
+    <?php } ?>
 });
 </script>
 

@@ -1573,6 +1573,138 @@ function get_coupon_id()
 }
 
 
+// 쿠폰 할인금액 계산
+function get_coupon_discount_amount($coupon, $apply_amount, $qualify_amount = null)
+{
+    if(!is_array($coupon) || empty($coupon))
+        return 0;
+
+    $apply_amount = (float)$apply_amount;
+
+    if($apply_amount <= 0)
+        return 0;
+
+    if(is_null($qualify_amount))
+        $qualify_amount = $apply_amount;
+
+    $qualify_amount = (float)$qualify_amount;
+
+    $minimum = isset($coupon['cp_minimum']) ? (float)$coupon['cp_minimum'] : 0;
+
+    if($minimum > 0 && $qualify_amount < $minimum)
+        return 0;
+
+    $discount = 0;
+    $coupon_type = isset($coupon['cp_type']) ? (int)$coupon['cp_type'] : 0;
+    $coupon_price = isset($coupon['cp_price']) ? (float)$coupon['cp_price'] : 0;
+
+    if($coupon_type) {
+        if($coupon_price <= 0)
+            return 0;
+
+        $trunc = isset($coupon['cp_trunc']) ? (int)$coupon['cp_trunc'] : 0;
+
+        if($trunc < 1)
+            $trunc = 1;
+
+        $discount = floor((($apply_amount * $coupon_price) / 100) / $trunc) * $trunc;
+    } else {
+        $discount = $coupon_price;
+    }
+
+    if($discount <= 0)
+        return 0;
+
+    $maximum = isset($coupon['cp_maximum']) ? (float)$coupon['cp_maximum'] : 0;
+
+    if($maximum > 0 && $discount > $maximum)
+        $discount = $maximum;
+
+    if($discount > $apply_amount)
+        $discount = $apply_amount;
+
+    if($discount < 0)
+        $discount = 0;
+
+    return (int)floor($discount);
+}
+
+
+// 회원이 보유한 쿠폰 중 상품에 적용 가능한 최대 할인 정보 반환
+function get_member_max_coupon_discount_for_item($mb_id, $it, $price = null)
+{
+    global $g5;
+
+    $info = array(
+        'discount' => 0,
+        'discounted_price' => null,
+        'subject' => '',
+        'coupon_id' => '',
+        'coupon' => null,
+    );
+
+    if(!$mb_id || !is_array($it) || !isset($it['it_id']) || !$it['it_id'])
+        return $info;
+
+    if(is_null($price))
+        $price = get_price($it);
+
+    $price = (float)$price;
+
+    if($price <= 0)
+        return $info;
+
+    $mb_id = sql_escape_string($mb_id);
+    $it_id = sql_escape_string($it['it_id']);
+    $ca_id = isset($it['ca_id']) ? sql_escape_string($it['ca_id']) : '';
+    $ca_id2 = isset($it['ca_id2']) ? sql_escape_string($it['ca_id2']) : '';
+    $ca_id3 = isset($it['ca_id3']) ? sql_escape_string($it['ca_id3']) : '';
+
+    $sql = " select cp_id, cp_subject, cp_type, cp_price, cp_trunc, cp_minimum, cp_maximum
+                from {$g5['g5_shop_coupon_table']}
+                where mb_id IN ( '{$mb_id}', '전체회원' )
+                  and cp_start <= '".G5_TIME_YMD."'
+                  and cp_end >= '".G5_TIME_YMD."'
+                  and cp_minimum <= '{$price}'
+                  and (
+                        ( cp_method = '0' and cp_target = '{$it_id}' )
+                        OR
+                        ( cp_method = '1' and cp_target IN ( '{$ca_id}', '{$ca_id2}', '{$ca_id3}' ) )
+                      ) ";
+
+    $result = sql_query($sql);
+
+    if(!$result)
+        return $info;
+
+    while($row = sql_fetch_array($result)) {
+        if(is_used_coupon($mb_id, $row['cp_id']))
+            continue;
+
+        $discount = get_coupon_discount_amount($row, $price);
+
+        if($discount <= 0)
+            continue;
+
+        if($discount > $info['discount']) {
+            $info['discount'] = (int)$discount;
+            $info['subject'] = $row['cp_subject'];
+            $info['coupon_id'] = $row['cp_id'];
+            $info['coupon'] = $row;
+        }
+    }
+
+    sql_free_result($result);
+
+    if($info['discount'] > 0)
+        $info['discounted_price'] = (int)max(0, $price - $info['discount']);
+    else
+        $info['discounted_price'] = (int)$price;
+
+    return $info;
+}
+
+
 // 주문의 금액, 배송비 과세금액 등의 정보를 가져옴
 function get_order_info($od_id)
 {

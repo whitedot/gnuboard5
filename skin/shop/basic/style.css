@@ -158,6 +158,11 @@
 .sct_noitem {padding:100px 0;text-align:center}
 .sct img {position:relative} /* 리스트뷰 갤러리뷰 변경 시 ie6,7 에서 이미지 사라지는 문제 해결하기 위해 */
 .shop_icon {display:inline-block;color:#fff;line-height:20px;padding:0 5px;font-size:0.92em;margin:1px;border-radius:2px}
+.sit_coupon_max {margin-top:8px;font-size:1.167em;line-height:45px;font-weight:bold;text-align:right}
+.sit_coupon_max:after {display:block;visibility:hidden;clear:both;content:""}
+.sit_coupon_max .coupon_label {float:left;margin-right:0;color:#444}
+.sit_coupon_max .coupon_price {display:inline-block;margin-left:15px;font-size:1.5em;font-weight:700;color:#d81921}
+.sit_coupon_max .coupon_discount {display:block;margin-top:4px;font-size:0.9em;font-weight:normal;color:#757575;line-height:1.6;text-align:right}
 .shop_icon_1 {background:#3ec1d3}
 .shop_icon_2 {background:#ffb722}
 .shop_icon_3 {background:#2dd49f}
