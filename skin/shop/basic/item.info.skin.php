@@ -132,7 +132,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 	});
 	</script>
 	<div id="sit_buy" class="fix">
-		<div class="sit_buy_inner">
+		<div class="buy_top">
 	        <?php if($option_item) {    // 선택옵션이 있다면 ?>
 	        <!-- 선택옵션 시작 { -->
 	        <section class="sit_side_option">
@@ -177,18 +177,23 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
                 </ul>
 	        </section>
 	        <!-- } 선택된 옵션 끝 -->
-
-			<div class="sum_section">        
-		        <div class="sit_tot_price"></div>
-				
-				<div class="sit_order_btn">
-					<button type="submit" onclick="document.pressed=this.value;" value="장바구니" class="sit_btn_cart">장바구니</button>
-		            <button type="submit" onclick="document.pressed=this.value;" value="바로구매" class="sit_btn_buy">바로구매</button> 
-		       </div>
-			</div>
             <?php } ?>
-			
-	    </div>   
+
+        </div>
+
+        <?php if ($is_orderable) { ?>
+        <div class="buy_bottom">
+            <div class="sum_section">
+                <div class="sit_tot_price"></div>
+                
+                <div class="sit_order_btn">
+                    <button type="submit" onclick="document.pressed=this.value;" value="장바구니" class="sit_btn_cart">장바구니</button>
+                    <button type="submit" onclick="document.pressed=this.value;" value="바로구매" class="sit_btn_buy">바로구매</button> 
+                </div>
+            </div>
+	    </div>
+        <?php } ?>
+
 	</div>
 </section>
 
