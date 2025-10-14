@@ -183,7 +183,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 
         <?php if ($is_orderable) { ?>
         <div class="buy_bottom">
-            <div class="sum_section">
+            <div class="sticky sum_section">
                 <div class="sit_tot_price"></div>
                 
                 <div class="sit_order_btn">
@@ -196,6 +196,72 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 
 	</div>
 </section>
+
+<script>
+  const container = document.getElementById('sit_buy');
+
+  const GRID_OFFSET_PX = 180;
+
+  // 현재 보이는 높이에서 GRID_OFFSET_PX를 뺀 값을 grid-template-rows로 적용
+  function updateGridRows() {
+    const rect = container.getBoundingClientRect();
+    const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+    const adjustedHeight = Math.max(0, visibleHeight - GRID_OFFSET_PX);
+
+    container.style.gridTemplateRows = `${adjustedHeight}px 1fr`;
+  }
+
+  const DEFAULT_ROWS = 'auto 1fr';
+  let listenersAttached = false;
+  let gridActivated = false;
+
+  function resetGrid() {
+    if (!gridActivated) return;
+    container.style.gridTemplateRows = DEFAULT_ROWS;
+    gridActivated = false;
+  }
+
+  function handleScrollOrResize() {
+    const rect = container.getBoundingClientRect();
+    const containerHeight = container.offsetHeight;
+
+    if (!containerHeight) {
+      resetGrid();
+      return;
+    }
+
+    const scrolledFromStart = Math.min(containerHeight, Math.max(0, -rect.top));
+    const shouldActivate = scrolledFromStart >= containerHeight * 0.3 && rect.bottom > 0;
+
+    if (shouldActivate) {
+      gridActivated = true;
+      updateGridRows();
+    } else {
+      resetGrid();
+    }
+  }
+
+  // IntersectionObserver로 container 진입/이탈 감시 후 스크롤 진행 비율 계산
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (!listenersAttached) {
+          window.addEventListener('scroll', handleScrollOrResize, { passive: true });
+          window.addEventListener('resize', handleScrollOrResize);
+          listenersAttached = true;
+        }
+        handleScrollOrResize();
+      } else if (listenersAttached) {
+        window.removeEventListener('scroll', handleScrollOrResize);
+        window.removeEventListener('resize', handleScrollOrResize);
+        listenersAttached = false;
+        resetGrid();
+      }
+    });
+  });
+
+  observer.observe(container);
+</script>
 
 <script>
 jQuery(function($){
