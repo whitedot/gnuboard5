@@ -46,7 +46,7 @@
 - **관리자 폼 분할**: `member_form.php`, `config_form.php` 등 수천 줄에 달하는 파일들을 `*_parts` 디렉토리 내의 작은 파일들로 분리하여 관리 용이성을 높였습니다.
 - **탭 내비게이션 도입**: 정보량이 많은 페이지에 탭 방식을 도입하여 스크롤 압박을 줄이고 정보 접근성을 개선했습니다.
 
-## 6. 개발 환경 및 크레딧 (Development Environment & Credits)
+## 4. 개발 환경 및 크레딧 (Development Environment & Credits)
 
 - **기획 및 리서치 (Planning Environment)**: Google Gemini Deep Research
 - **개발 환경 (Development Environment)**: Google AntiGravity (AI-Native IDE)
