@@ -12,6 +12,8 @@ if (!defined('_GNUBOARD_')) exit;
  * @param string $value
  * @return string
  */
+include_once(G5_LIB_PATH.'/pbkdf2.compat.php');
+
 function sql_password($value)
 {
     // mysql 4.0x 이하 버전에서는 password() 함수의 결과가 16bytes

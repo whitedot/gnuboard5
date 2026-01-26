@@ -294,6 +294,49 @@ function time_select($time, $name="")
     return $s;
 }
 
+// 회원 레이어
+function get_sideview($mb_id, $name, $email='', $homepage='', $bo_table='')
+{
+    global $g5;
+
+    $email = base64_encode($email);
+    $homepage = set_http(clean_xss_tags($homepage));
+
+    $name = clean_xss_tags($name);
+    if (!$mb_id) {
+        return $name;
+    }
+
+    $tmp_name = "";
+    if ($mb_id) {
+        $tmp_name = "<span class=\"sv_wrap\">
+            <a href=\"".G5_BBS_URL."/profile.php?mb_id=".$mb_id."\" class=\"sv_member\" title=\"$name 자기소개\" target=\"_blank\" onclick=\"return false;\">$name</a>
+            <span class=\"sv\">
+                <a href=\"".G5_BBS_URL."/memo_form.php?me_recv_mb_id=".$mb_id."\" onclick=\"win_memo(this.href); return false;\">쪽지보내기</a>";
+
+        if ($email)
+            $tmp_name .= "<a href=\"".G5_BBS_URL."/formmail.php?mb_id=".$mb_id."&name=".urlencode($name)."&email=".$email."\" onclick=\"win_email(this.href); return false;\">메일보내기</a>";
+        if ($homepage)
+            $tmp_name .= "<a href=\"$homepage\" target=\"_blank\">홈페이지</a>";
+        if ($mb_id)
+            $tmp_name .= "<a href=\"".G5_BBS_URL."/profile.php?mb_id=".$mb_id."\" onclick=\"win_profile(this.href); return false;\">자기소개</a>";
+        if ($bo_table) {
+            $tmp_name .= "<a href=\"".G5_BBS_URL."/board.php?bo_table=".$bo_table."&sca=&sfl=mb_id,1&stx=".$mb_id."\">전체게시물</a>";
+        }
+
+        if (is_admin($mb_id)) {
+            $tmp_name .= "<a href=\"".G5_ADMIN_URL."/member_form.php?w=u&mb_id=".$mb_id."\" target=\"_blank\">회원정보변경</a>";
+            $tmp_name .= "<a href=\"".G5_ADMIN_URL."/point_list.php?sfl=mb_id&stx=".$mb_id."\" target=\"_blank\">포인트내역</a>";
+        }
+
+        $tmp_name .= "</span></span>";
+    } else {
+        $tmp_name = $name;
+    }
+
+    return $tmp_name;
+}
+
 // 스킨 style sheet 파일 얻기
 function get_skin_stylesheet($skin_path, $dir='')
 {
