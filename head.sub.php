@@ -52,7 +52,9 @@ if($config['cf_add_meta'])
 ?>
 <title><?php echo $g5_head_title; ?></title>
 <?php
-echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_CSS_URL.'/common.css?'.G5_CSS_VER, G5_THEME_URL).'">'.PHP_EOL;
+$common_css_path = G5_CSS_PATH.'/common.css';
+$common_css_ver = is_file($common_css_path) ? filemtime($common_css_path) : G5_CSS_VER;
+echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_CSS_URL.'/common.css?ver='.$common_css_ver, G5_THEME_URL).'">'.PHP_EOL;
 ?>
 <!--[if lte IE 8]>
 <script src="<?php echo G5_JS_URL ?>/html5.js"></script>

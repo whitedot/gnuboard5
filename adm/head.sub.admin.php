@@ -46,8 +46,11 @@ if($config['cf_add_meta'])
 ?>
 <title><?php echo $g5_head_title; ?></title>
 <?php
-if(!defined('_THEME_PREVIEW_'))
-    echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_ADMIN_URL.'/css/admin.css?ver='.G5_CSS_VER, G5_URL).'">'.PHP_EOL;
+if(!defined('_THEME_PREVIEW_')) {
+    $admin_css_path = G5_ADMIN_PATH.'/css/admin.css';
+    $admin_css_ver = is_file($admin_css_path) ? filemtime($admin_css_path) : G5_CSS_VER;
+    echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_ADMIN_URL.'/css/admin.css?ver='.$admin_css_ver, G5_URL).'">'.PHP_EOL;
+}
 ?>
 <!--[if lte IE 8]>
 <script src="<?php echo G5_JS_URL ?>/html5.js"></script>
