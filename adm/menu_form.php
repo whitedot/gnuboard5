@@ -7,7 +7,7 @@ if ($is_admin != 'super') {
 }
 
 $g5['title'] = '메뉴 추가';
-require_once G5_PATH . '/head.sub.php';
+require_once G5_ADMIN_PATH . '/head.sub.admin.php';
 
 $new    = isset($_GET['new']) ? clean_xss_tags($_GET['new'], 1, 1) : '';
 $code   = isset($_GET['code']) ? (string)preg_replace('/[^0-9a-zA-Z]/', '', $_GET['code']) : '';

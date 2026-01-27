@@ -151,7 +151,7 @@ if($sms_count > 0) {
 }
 
 $g5['title'] = '엑셀 배송일괄처리 결과';
-include_once(G5_PATH.'/head.sub.php');
+include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 ?>
 
 <div class="new_win">

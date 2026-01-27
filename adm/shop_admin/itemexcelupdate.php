@@ -166,7 +166,7 @@ if($is_upload_file) {
 }
 
 $g5['title'] = '상품 엑셀일괄등록 결과';
-include_once(G5_PATH.'/head.sub.php');
+include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 ?>
 
 <div class="new_win">

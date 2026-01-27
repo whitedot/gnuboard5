@@ -8,7 +8,7 @@ $sql = " select ev_subject from {$g5['g5_shop_event_table']} where ev_id = '$ev_
 $ev = sql_fetch($sql);
 
 $g5['title'] = $ev['ev_subject'].' 이벤트상품';
-include_once(G5_PATH.'/head.sub.php');
+include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 ?>
 
 <div class="new_win">

@@ -5,7 +5,7 @@ require_once "./_common.php";
 auth_check_menu($auth, $sub_menu, 'w');
 
 $g5['title'] = '게시판 복사';
-require_once G5_PATH . '/head.sub.php';
+require_once G5_ADMIN_PATH . '/head.sub.admin.php';
 
 if (empty($bo_table)) {
     alert_close("정상적인 방법으로 이용해주세요.");

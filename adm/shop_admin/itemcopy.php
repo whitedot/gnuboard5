@@ -8,7 +8,7 @@ $it_id = isset($_REQUEST['it_id']) ? safe_replace_regex($_REQUEST['it_id'], 'it_
 auth_check_menu($auth, $sub_menu, "r");
 
 $g5['title'] = '상품 복사';
-include_once(G5_PATH.'/head.sub.php');
+include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 ?>
 
 <div class="new_win">

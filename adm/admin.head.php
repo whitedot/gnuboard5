@@ -21,7 +21,7 @@ if (is_array($files)) {
     }
 }
 
-require_once G5_PATH . '/head.sub.php';
+require_once G5_ADMIN_PATH . '/head.sub.admin.php';
 
 function print_menu1($key, $no = '')
 {

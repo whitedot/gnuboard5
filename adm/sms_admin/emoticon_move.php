@@ -9,7 +9,7 @@ if ($sw != 'move'){
 auth_check_menu($auth, $sub_menu, "r");
 
 $g5['title'] = '이모티콘그룹 이동';
-include_once(G5_PATH.'/head.sub.php');
+include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 
 $list = array();    //배열 변수 초기화
 $fo_no_list = isset($_POST['fo_no']) ? clean_xss_tags(strip_tags(implode(',', $_POST['fo_no']))) : '';

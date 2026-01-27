@@ -28,7 +28,7 @@ else
 $wrp_tag_st = '';
 $wrp_tag_end = '';
 if($popup == 'yes') { // 팝업창일 때
-    include_once(G5_PATH.'/head.sub.php');
+    include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
     $pp['od_id'] = $od_id;
     $sql = " select od_id, od_name, od_misu
                 from {$g5['g5_shop_order_table']}

@@ -38,7 +38,7 @@ if($free_mny && $free_mny > $od_misu)
 // PG사별 부분취소 실행
 include_once(G5_SHOP_PATH.'/'.strtolower($od['od_pg']).'/orderpartcancel.inc.php');
 
-include_once(G5_PATH.'/head.sub.php');
+include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 ?>
 
 <script>

@@ -22,7 +22,7 @@ if($_GET['sch_target'] == 1) {
 }
 
 $g5['title'] = $html_title.'검색';
-include_once(G5_PATH.'/head.sub.php');
+include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 
 if($sch_target == 1) {
     $sql_common = " from {$g5['g5_shop_category_table']} ";

@@ -5,7 +5,7 @@ include_once('./_common.php');
 auth_check_menu($auth, $sub_menu, 'w');
 
 $g5['title'] = '개인결제 복사';
-include_once(G5_PATH.'/head.sub.php');
+include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 
 $sql = " select * from {$g5['g5_shop_personalpay_table']} where pp_id = '$pp_id' ";
 $row = sql_fetch($sql);

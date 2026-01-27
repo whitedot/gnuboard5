@@ -257,7 +257,7 @@ function get_order($od_id)
 }
 
 $g5['title'] = "주문내역";
-include_once(G5_PATH.'/head.sub.php');
+include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 
 if ($case == 1)
 {

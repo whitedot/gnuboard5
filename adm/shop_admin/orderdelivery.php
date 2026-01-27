@@ -5,7 +5,7 @@ include_once('./_common.php');
 auth_check_menu($auth, $sub_menu, "w");
 
 $g5['title'] = '엑셀 배송일괄처리';
-include_once(G5_PATH.'/head.sub.php');
+include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 ?>
 
 <div class="new_win">

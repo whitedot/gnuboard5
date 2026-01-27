@@ -5,7 +5,7 @@ include_once('./_common.php');
 auth_check_menu($auth, $sub_menu, "w");
 
 $g5['title'] = '엑셀파일로 상품 일괄 등록';
-include_once(G5_PATH.'/head.sub.php');
+include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 ?>
 
 <div class="new_win">

@@ -40,7 +40,7 @@ $sql = " insert into {$g5['g5_shop_personalpay_table']}
 sql_query($sql);
 
 $g5['title'] = '개인결제 복사';
-include_once(G5_PATH.'/head.sub.php');
+include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 ?>
 
 <script>

@@ -141,7 +141,7 @@ if($conf['cf_theme'] != $theme) {
 }
 
 $g5['title'] = get_text($info['theme_name']).' 테마 미리보기';
-require_once(G5_PATH.'/head.sub.php');
+require_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 ?>
 
 <link rel="stylesheet" href="<?php echo G5_ADMIN_URL; ?>/css/theme.css">

@@ -14,7 +14,7 @@ if ($sw == 'move'){
 auth_check_menu($auth, $sub_menu, "r");
 
 $g5['title'] = '번호그룹 ' . $act;
-include_once(G5_PATH.'/head.sub.php');
+include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 
 $bk_no_list = isset($_POST['bk_no']) ? implode(',', $_POST['bk_no']) : '';
 

@@ -22,7 +22,7 @@ if($od['od_receipt_price'] - $od['od_refund_price'] <= 0)
     alert_close('부분취소 처리할 금액이 없습니다.');
 
 $g5['title'] = $od['od_settle_case'].' 부분취소';
-include_once(G5_PATH.'/head.sub.php');
+include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 
 // 취소가능금액
 $od_misu = abs($od['od_misu']);
