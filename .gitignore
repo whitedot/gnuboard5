@@ -2,7 +2,6 @@
 /.htaccess
 data/
 test/
-sirgle/
 test.php
 *.key
 *.sh
@@ -18,3 +17,9 @@ initests01/
 SIRsoft000/
 config.php
 pma/
+
+# Node.js / npm
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

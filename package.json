@@ -1,0 +1,31 @@
+{
+  "name": "g5aif",
+  "version": "1.0.0",
+  "description": "이 프로젝트는 그누보드 5(G5) 및 영카트 기반 시스템의 리팩토링 프로젝트입니다.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "npm run build:root && npm run build:theme",
+    "build:root": "tailwindcss -i ./tailwind4/common.css -o ./css/common.css --minify",
+    "build:theme": "tailwindcss -i ./tailwind4/common.css -o ./theme/basic/css/common.css --minify",
+    "watch": "tailwindcss -i ./tailwind4/common.css -o ./css/common.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whitedot/gnuboard5.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/whitedot/gnuboard5/issues"
+  },
+  "homepage": "https://github.com/whitedot/gnuboard5#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  }
+}

@@ -60,9 +60,7 @@ if (defined('G5_IS_ADMIN')) {
     if(!defined('_THEME_PREVIEW_'))
         echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_ADMIN_URL.'/css/admin.css?ver='.G5_CSS_VER, G5_URL).'">'.PHP_EOL;
 } else {
-    $shop_css = '';
-    if (defined('_SHOP_')) $shop_css = '_shop';
-    echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_CSS_URL.'/'.(G5_IS_MOBILE?'mobile':'default').$shop_css.'.css?ver='.G5_CSS_VER, G5_URL).'">'.PHP_EOL;
+    echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_CSS_URL.'/common.css?'.G5_CSS_VER, G5_THEME_URL).'">'.PHP_EOL;
 }
 ?>
 <!--[if lte IE 8]>
