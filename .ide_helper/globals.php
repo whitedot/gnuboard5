@@ -15,20 +15,14 @@ $member = [];
 /** @var G5ConfigShape $config 사이트 설정 정보 */
 $config = [];
 
-/** * 그누보드 전역 상수 및 테이블 정보 배열
- * @var array{
- * member_table: string,
- * board_table: string,
- * group_table: string,
- * write_prefix: string,
- * time_ymd: string,
- * time_his: string
- * } $g5 
- */
+/** @var G5SystemShape $g5 그누보드 전역 상수 및 테이블 정보 배열 */
 $g5 = [];
 
 /** @var G5BoardShape $board 현재 접속한 게시판 설정 */
 $board = [];
+
+/** @var G5GroupShape $group 현재 접속한 게시판 그룹 설정 */
+$group = [];
 
 /** @var G5WriteShape $write 현재 조회 중인 게시물/댓글 정보 */
 $write = [];
@@ -42,22 +36,23 @@ $wr_id = 0;
 
 // --- 영카트(쇼핑몰) 핵심 전역 변수 ---
 
-/** @var YCDefaultShape $default 쇼핑몰 설정 정보 */
+/** @var G5ShopDefaultShape $default 쇼핑몰 설정 정보 */
 $default = [];
 
-/** @var YCItemShape $it 상품 정보 (루프 내에서 주로 사용됨) */
+/** @var G5ShopItemShape $it 상품 정보 (루프 내에서 주로 사용됨) */
 $it = [];
 
-/** @var YCOrderShape $od 주문 정보 */
+/** @var G5ShopOrderShape $od 주문 정보 */
 $od = [];
 
-/** @var YCCartShape $ct 장바구니 정보 (루프 내에서 주로 사용됨) */
+/** @var G5ShopCartShape $ct 장바구니 정보 (루프 내에서 주로 사용됨) */
 $ct = [];
 
-/** * 카테고리 정보
- * @var array{ca_id: string, ca_name: string, ca_use: int} $ca 
- */
+/** @var G5ShopCategoryShape $ca 카테고리 정보 */
 $ca = [];
+
+/** @var G5QaConfigShape $qaconfig 1:1문의 설정 정보 */
+$qaconfig = [];
 
 
 // --- 기타 공통 전역 변수 ---

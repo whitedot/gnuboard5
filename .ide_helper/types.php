@@ -1,80 +1,11 @@
 <?php
 /**
- * IDE와 AI를 위한 가상 타입 정의
- * 이 파일은 실행되지 않으며, 오직 타입 힌팅을 위해 존재합니다.
+ * IDE와 AI를 위한 전역 변수들의 구조체(Shape) 정의 파일
+ *
+ * 이 파일은 데이터베이스 스키마와 1:1로 매핑되는 배열 구조를
+ * PHPDoc의 @typedef 문법을 사용하여 정의합니다.
+ *
  * @package Gnuboard5 & YoungCart5
- */
-
-// ==========================
-// 그누보드5 (Community)
-// ==========================
-
-/**
- * @typedef array{
- * od_id: int,                 // 주문번호
- * mb_id: string,              // 회원 아이디
- * od_name: string,            // 주문자명
- * od_email: string,           // 주문자 이메일
- * od_tel: string,             // 주문자 전화번호
- * od_hp: string,              // 주문자 휴대폰
- * od_zip1: string,            // 주문자 우편번호 1
- * od_zip2: string,            // 주문자 우편번호 2
- * od_addr1: string,           // 주문자 주소 1
- * od_addr2: string,           // 주문자 주소 2
- * od_addr3: string,           // 주문자 주소 3
- * od_addr_jibeon: string,     // 주문자 지번주소
- * od_deposit_name: string,    // 입금자명
- * od_b_name: string,          // 받는분 이름
- * od_b_tel: string,           // 받는분 전화번호
- * od_b_hp: string,            // 받는분 휴대폰
- * od_b_zip1: string,          // 받는분 우편번호 1
- * od_b_zip2: string,          // 받는분 우편번호 2
- * od_b_addr1: string,         // 받는분 주소 1
- * od_b_addr2: string,         // 받는분 주소 2
- * od_b_addr3: string,         // 받는분 주소 3
- * od_b_addr_jibeon: string,   // 받는분 지번주소
- * od_memo: string,            // 주문 메모
- * od_cart_count: int,         // 장바구니 상품 수
- * od_cart_price: int,         // 장바구니 총 금액
- * od_cart_coupon: int,        // 장바구니 쿠폰 금액
- * od_send_cost: int,          // 배송비
- * od_send_cost2: int,         // 추가 배송비
- * od_send_coupon: int,        // 배송비 쿠폰
- * od_receipt_price: int,      // 입금금액
- * od_cancel_price: int,       // 취소금액
- * od_receipt_point: int,      // 입금 포인트
- * od_refund_price: int,       // 환불금액
- * od_bank_account: string,    // 입금계좌
- * od_receipt_time: string,    // 입금일시
- * od_coupon: int,             // 쿠폰 금액
- * od_misu: int,               // 미수금
- * od_shop_memo: string,       // 상점 메모
- * od_mod_history: string,     // 수정 히스토리
- * od_status: string,          // 주문상태
- * od_hope_date: string,       // 희망배송일
- * od_settle_case: string,     // 결제수단
- * od_other_pay_type: string,  // 기타 결제수단
- * od_test: int,               // 테스트 주문
- * od_mobile: int,             // 모바일 주문
- * od_pg: string,              // PG사
- * od_tno: string,             // 거래고유번호
- * od_app_no: string,          // 승인번호
- * od_escrow: int,             // 에스크로 사용
- * od_casseqno: string,        // 현금영수증 일련번호
- * od_tax_flag: int,           // 과세/비과세
- * od_tax_mny: int,            // 과세 금액
- * od_vat_mny: int,            // 부가세
- * od_free_mny: int,           // 면세 금액
- * od_delivery_company: string,// 배송업체
- * od_invoice: string,         // 운송장번호
- * od_invoice_time: string,    // 운송장 입력일시
- * od_cash: int,               // 현금영수증
- * od_cash_no: string,         // 현금영수증 번호
- * od_cash_info: string,       // 현금영수증 정보
- * od_time: string,            // 주문일시
- * od_pwd: string,             // 비회원 비밀번호
- * od_ip: string               // IP
- * } G5ShopOrderShape
  */
 
 /**
@@ -505,6 +436,37 @@
 
 /**
  * @typedef array{
+ * gr_id: string,              // 그룹 아이디
+ * gr_subject: string,         // 그룹 제목
+ * gr_device: string,          // 접속기기 (both, pc, mobile)
+ * gr_admin: string,           // 그룹 관리자
+ * gr_use_access: int,         // 접근회원 사용 여부
+ * gr_order: int,              // 출력 순서
+ * gr_1_subj: string,          // 여분필드 제목 1
+ * gr_2_subj: string,          // 여분필드 제목 2
+ * gr_3_subj: string,          // 여분필드 제목 3
+ * gr_4_subj: string,          // 여분필드 제목 4
+ * gr_5_subj: string,          // 여분필드 제목 5
+ * gr_6_subj: string,          // 여분필드 제목 6
+ * gr_7_subj: string,          // 여분필드 제목 7
+ * gr_8_subj: string,          // 여분필드 제목 8
+ * gr_9_subj: string,          // 여분필드 제목 9
+ * gr_10_subj: string,         // 여분필드 제목 10
+ * gr_1: string,               // 여분필드 1
+ * gr_2: string,               // 여분필드 2
+ * gr_3: string,               // 여분필드 3
+ * gr_4: string,               // 여분필드 4
+ * gr_5: string,               // 여분필드 5
+ * gr_6: string,               // 여분필드 6
+ * gr_7: string,               // 여분필드 7
+ * gr_8: string,               // 여분필드 8
+ * gr_9: string,               // 여분필드 9
+ * gr_10: string               // 여분필드 10
+ * } G5GroupShape
+ */
+
+/**
+ * @typedef array{
  * wr_id: int,                 // 게시물 아이디
  * wr_num: int,                // 게시물 정렬 순서
  * wr_reply: string,           // 답변 단계
@@ -514,6 +476,7 @@
  * wr_comment_reply: string,   // 댓글 답변 단계
  * wr_subject: string,         // 제목
  * wr_content: string,         // 내용
+ * wr_seo_title: string,       // SEO 제목
  * wr_link1: string,           // 링크 1
  * wr_link2: string,           // 링크 2
  * wr_link1_hit: int,          // 링크 1 조회수
@@ -545,134 +508,449 @@
  * } G5WriteShape
  */
 
-// ==========================
-// 영카트5 (Shopping Mall)
-// ==========================
-
 /**
- * it_type2: int,
- * it_type3: int,
- * it_type4: int,
- * it_type5: int,
- * it_basic: string,
- * it_explan: string,
- * it_mobile_explan: string,
- * it_cust_price: int,
- * it_price: int,
- * it_point: int,
- * it_point_type: int,
- * it_stock_qty: int,
- * it_noti_qty: int,
- * it_buy_min_qty: int,
- * it_buy_max_qty: int,
- * it_head_html: string,
- * it_tail_html: string,
- * it_mobile_head_html: string,
- * it_mobile_tail_html: string,
- * it_hit: int,
- * it_time: string,
- * it_ip: string,
- * it_order: int,
- * it_tel_inq: int,
- * it_info_value: string,
- * it_use: int,
- * it_nocoupon: int,
- * it_soldout: int,
- * it_img1: string,
- * it_img2: string
- * } YCItemShape
+ * @typedef array{
+ * ca_id: string,              // 카테고리 코드
+ * ca_name: string,            // 카테고리명
+ * ca_order: int,              // 출력 순서
+ * ca_skin_dir: string,        // 스킨 디렉토리
+ * ca_mobile_skin_dir: string, // 모바일 스킨 디렉토리
+ * ca_skin: string,            // 스킨 파일
+ * ca_mobile_skin: string,     // 모바일 스킨 파일
+ * ca_img_width: int,          // 이미지 폭
+ * ca_img_height: int,         // 이미지 높이
+ * ca_mobile_img_width: int,   // 모바일 이미지 폭
+ * ca_mobile_img_height: int,  // 모바일 이미지 높이
+ * ca_sell_email: string,      // 판매자 이메일
+ * ca_use: int,                // 사용 여부
+ * ca_stock_qty: int,          // 재고 수량
+ * ca_explan_html: int,        // 상단/하단 내용 사용
+ * ca_head_html: string,       // 상단 HTML
+ * ca_tail_html: string,       // 하단 HTML
+ * ca_mobile_head_html: string,// 모바일 상단 HTML
+ * ca_mobile_tail_html: string,// 모바일 하단 HTML
+ * ca_list_mod: int,           // 1줄당 이미지 수
+ * ca_list_row: int,           // 줄 수
+ * ca_mobile_list_mod: int,    // 모바일 1줄당 이미지 수
+ * ca_mobile_list_row: int,    // 모바일 줄 수
+ * ca_include_head: string,    // 상단 파일
+ * ca_include_tail: string,    // 하단 파일
+ * ca_mb_id: string,           // 본인확인 회원
+ * ca_cert_use: int,           // 본인확인 사용
+ * ca_adult_use: int,          // 성인인증 사용
+ * ca_nocoupon: int,           // 쿠폰 적용 안함
+ * ca_1_subj: string,          // 여분필드 제목 1
+ * ca_2_subj: string,          // 여분필드 제목 2
+ * ca_3_subj: string,          // 여분필드 제목 3
+ * ca_4_subj: string,          // 여분필드 제목 4
+ * ca_5_subj: string,          // 여분필드 제목 5
+ * ca_6_subj: string,          // 여분필드 제목 6
+ * ca_7_subj: string,          // 여분필드 제목 7
+ * ca_8_subj: string,          // 여분필드 제목 8
+ * ca_9_subj: string,          // 여분필드 제목 9
+ * ca_10_subj: string,         // 여분필드 제목 10
+ * ca_1: string,               // 여분필드 1
+ * ca_2: string,               // 여분필드 2
+ * ca_3: string,               // 여분필드 3
+ * ca_4: string,               // 여분필드 4
+ * ca_5: string,               // 여분필드 5
+ * ca_6: string,               // 여분필드 6
+ * ca_7: string,               // 여분필드 7
+ * ca_8: string,               // 여분필드 8
+ * ca_9: string,               // 여분필드 9
+ * ca_10: string               // 여분필드 10
+ * } G5ShopCategoryShape
  */
 
 /**
- * 장바구니 정보
  * @typedef array{
- * ct_id: int,
- * od_id: string,
- * mb_id: string,
- * it_id: string,
- * it_name: string,
- * ct_status: string,
- * ct_history: string,
- * ct_price: int,
- * ct_point: int,
- * ct_point_use: int,
- * ct_stock_use: int,
- * ct_option: string,
- * ct_qty: int,
- * ct_notax: int,
- * io_id: string,
- * io_type: int,
- * io_price: int,
- * ct_time: string,
- * ct_ip: string,
- * ct_send_cost: int,
- * ct_direct: int,
- * ct_select: int
- * } YCCartShape
+ * qa_id: int,                 // QA 설정 ID
+ * qa_title: string,           // QA 제목
+ * qa_category: string,        // 분류
+ * qa_skin: string,            // 스킨
+ * qa_mobile_skin: string,     // 모바일 스킨
+ * qa_use_email: int,          // 이메일 사용
+ * qa_req_email: int,          // 이메일 필수
+ * qa_use_hp: int,             // 휴대폰 사용
+ * qa_req_hp: int,             // 휴대폰 필수
+ * qa_use_sms: int,            // SMS 사용
+ * qa_send_number: string,     // SMS 발신번호
+ * qa_admin_hp: string,        // 관리자 휴대폰
+ * qa_admin_email: string,     // 관리자 이메일
+ * qa_use_editor: int,         // 에디터 사용
+ * qa_subject_len: int,        // 제목 길이
+ * qa_mobile_subject_len: int, // 모바일 제목 길이
+ * qa_page_rows: int,          // 페이지당 목록 수
+ * qa_mobile_page_rows: int,   // 모바일 페이지당 목록 수
+ * qa_image_width: int,        // 이미지 폭
+ * qa_upload_size: int,        // 업로드 크기
+ * qa_insert_content: string,  // 글쓰기 기본 내용
+ * qa_include_head: string,    // 상단 파일
+ * qa_include_tail: string,    // 하단 파일
+ * qa_content_head: string,    // 상단 내용
+ * qa_content_tail: string,    // 하단 내용
+ * qa_mobile_content_head: string, // 모바일 상단 내용
+ * qa_mobile_content_tail: string, // 모바일 하단 내용
+ * qa_1_subj: string,          // 여분필드 제목 1
+ * qa_2_subj: string,          // 여분필드 제목 2
+ * qa_3_subj: string,          // 여분필드 제목 3
+ * qa_4_subj: string,          // 여분필드 제목 4
+ * qa_5_subj: string,          // 여분필드 제목 5
+ * qa_1: string,               // 여분필드 1
+ * qa_2: string,               // 여분필드 2
+ * qa_3: string,               // 여분필드 3
+ * qa_4: string,               // 여분필드 4
+ * qa_5: string               // 여분필드 4
+ * } G5QaConfigShape
  */
 
 /**
- * 주문 정보
  * @typedef array{
- * od_id: string,
- * mb_id: string,
- * od_name: string,
- * od_email: string,
- * od_tel: string,
- * od_hp: string,
- * od_zip1: string,
- * od_zip2: string,
- * od_addr1: string,
- * od_addr2: string,
- * od_addr3: string,
- * od_addr_jibeon: string,
- * od_deposit_name: string,
- * od_b_name: string,
- * od_b_tel: string,
- * od_b_hp: string,
- * od_b_zip1: string,
- * od_b_zip2: string,
- * od_b_addr1: string,
- * od_b_addr2: string,
- * od_b_addr3: string,
- * od_b_addr_jibeon: string,
- * od_memo: string,
- * od_cart_count: int,
- * od_cart_price: int,
- * od_cart_coupon: int,
- * od_send_cost: int,
- * od_send_coupon: int,
- * od_receipt_price: int,
- * od_cancel_price: int,
- * od_receipt_point: int,
- * od_refund_price: int,
- * od_bank_account: string,
- * od_receipt_time: string,
- * od_coupon: int,
- * od_misu: int,
- * od_shop_memo: string,
- * od_mod_history: string,
- * od_status: string,
- * od_hope_date: string,
- * od_settle_case: string,
- * od_other_pay_type: string,
- * od_test: int,
- * od_mobile: int,
- * od_pg: string,
- * od_tno: string,
- * od_app_no: string,
- * od_escrow: int,
- * od_tax_flag: int,
- * od_tax_mny: int,
- * od_vat_mny: int,
- * od_free_mny: int,
- * od_delivery_company: string,
- * od_invoice: string,
- * od_invoice_time: string,
- * od_cash: int,
- * od_cash_no: string,
- * od_cash_info: string,
- * od_time: string,
- * od_ip: string
- * } YCOrderShape
+ * de_id: int,                      // 설정 아이디
+ * de_admin_company_owner: string,  // 회사 대표자명
+ * de_admin_company_name: string,   // 회사명
+ * de_admin_company_saupja_no: string, // 사업자등록번호
+ * de_admin_company_tel: string,    // 회사 전화번호
+ * de_admin_company_fax: string,    // 회사 팩스
+ * de_admin_tongsin_no: string,     // 통신판매업 신고번호
+ * de_admin_company_zip: string,    // 회사 우편번호
+ * de_admin_company_addr: string,   // 회사 주소
+ * de_admin_info_name: string,      // 정보관리책임자명
+ * de_admin_info_email: string,     // 정보관리책임자 이메일
+ * de_shop_skin: string,            // 쇼핑몰 스킨
+ * de_shop_mobile_skin: string,     // 쇼핑몰 모바일 스킨
+ * de_type1_list_use: int,          // 유형1 목록 사용 여부
+ * de_type1_list_skin: string,      // 유형1 목록 스킨
+ * de_type1_list_mod: int,          // 유형1 목록 1줄당 이미지 수
+ * de_type1_list_row: int,          // 유형1 목록 줄 수
+ * de_type1_img_width: int,         // 유형1 이미지 폭
+ * de_type1_img_height: int,        // 유형1 이미지 높이
+ * de_type2_list_use: int,          // 유형2 목록 사용 여부
+ * de_type2_list_skin: string,      // 유형2 목록 스킨
+ * de_type2_list_mod: int,          // 유형2 목록 1줄당 이미지 수
+ * de_type2_list_row: int,          // 유형2 목록 줄 수
+ * de_type2_img_width: int,         // 유형2 이미지 폭
+ * de_type2_img_height: int,        // 유형2 이미지 높이
+ * de_type3_list_use: int,          // 유형3 목록 사용 여부
+ * de_type3_list_skin: string,      // 유형3 목록 스킨
+ * de_type3_list_mod: int,          // 유형3 목록 1줄당 이미지 수
+ * de_type3_list_row: int,          // 유형3 목록 줄 수
+ * de_type3_img_width: int,         // 유형3 이미지 폭
+ * de_type3_img_height: int,        // 유형3 이미지 높이
+ * de_type4_list_use: int,          // 유형4 목록 사용 여부
+ * de_type4_list_skin: string,      // 유형4 목록 스킨
+ * de_type4_list_mod: int,          // 유형4 목록 1줄당 이미지 수
+ * de_type4_list_row: int,          // 유형4 목록 줄 수
+ * de_type4_img_width: int,         // 유형4 이미지 폭
+ * de_type4_img_height: int,        // 유형4 이미지 높이
+ * de_type5_list_use: int,          // 유형5 목록 사용 여부
+ * de_type5_list_skin: string,      // 유형5 목록 스킨
+ * de_type5_list_mod: int,          // 유형5 목록 1줄당 이미지 수
+ * de_type5_list_row: int,          // 유형5 목록 줄 수
+ * de_type5_img_width: int,         // 유형5 이미지 폭
+ * de_type5_img_height: int,        // 유형5 이미지 높이
+ * de_mobile_type1_list_use: int,   // 모바일 유형1 목록 사용 여부
+ * de_mobile_type1_list_skin: string, // 모바일 유형1 목록 스킨
+ * de_mobile_type1_list_mod: int,   // 모바일 유형1 목록 1줄당 이미지 수
+ * de_mobile_type1_list_row: int,   // 모바일 유형1 목록 줄 수
+ * de_mobile_type1_img_width: int,  // 모바일 유형1 이미지 폭
+ * de_mobile_type1_img_height: int, // 모바일 유형1 이미지 높이
+ * de_mobile_type2_list_use: int,   // 모바일 유형2 목록 사용 여부
+ * de_mobile_type2_list_skin: string, // 모바일 유형2 목록 스킨
+ * de_mobile_type2_list_mod: int,   // 모바일 유형2 목록 1줄당 이미지 수
+ * de_mobile_type2_list_row: int,   // 모바일 유형2 목록 줄 수
+ * de_mobile_type2_img_width: int,  // 모바일 유형2 이미지 폭
+ * de_mobile_type2_img_height: int, // 모바일 유형2 이미지 높이
+ * de_mobile_type3_list_use: int,   // 모바일 유형3 목록 사용 여부
+ * de_mobile_type3_list_skin: string, // 모바일 유형3 목록 스킨
+ * de_mobile_type3_list_mod: int,   // 모바일 유형3 목록 1줄당 이미지 수
+ * de_mobile_type3_list_row: int,   // 모바일 유형3 목록 줄 수
+ * de_mobile_type3_img_width: int,  // 모바일 유형3 이미지 폭
+ * de_mobile_type3_img_height: int, // 모바일 유형3 이미지 높이
+ * de_mobile_type4_list_use: int,   // 모바일 유형4 목록 사용 여부
+ * de_mobile_type4_list_skin: string, // 모바일 유형4 목록 스킨
+ * de_mobile_type4_list_mod: int,   // 모바일 유형4 목록 1줄당 이미지 수
+ * de_mobile_type4_list_row: int,   // 모바일 유형4 목록 줄 수
+ * de_mobile_type4_img_width: int,  // 모바일 유형4 이미지 폭
+ * de_mobile_type4_img_height: int, // 모바일 유형4 이미지 높이
+ * de_mobile_type5_list_use: int,   // 모바일 유형5 목록 사용 여부
+ * de_mobile_type5_list_skin: string, // 모바일 유형5 목록 스킨
+ * de_mobile_type5_list_mod: int,   // 모바일 유형5 목록 1줄당 이미지 수
+ * de_mobile_type5_list_row: int,   // 모바일 유형5 목록 줄 수
+ * de_mobile_type5_img_width: int,  // 모바일 유형5 이미지 폭
+ * de_mobile_type5_img_height: int, // 모바일 유형5 이미지 높이
+ * de_rel_list_use: int,            // 관련상품 목록 사용 여부
+ * de_rel_list_skin: string,        // 관련상품 목록 스킨
+ * de_rel_list_mod: int,            // 관련상품 목록 1줄당 이미지 수
+ * de_rel_img_width: int,           // 관련상품 이미지 폭
+ * de_rel_img_height: int,          // 관련상품 이미지 높이
+ * de_mobile_rel_list_use: int,     // 모바일 관련상품 목록 사용 여부
+ * de_mobile_rel_list_skin: string, // 모바일 관련상품 목록 스킨
+ * de_mobile_rel_list_mod: int,     // 모바일 관련상품 목록 1줄당 이미지 수
+ * de_mobile_rel_img_width: int,    // 모바일 관련상품 이미지 폭
+ * de_mobile_rel_img_height: int,   // 모바일 관련상품 이미지 높이
+ * de_search_list_skin: string,     // 검색 목록 스킨
+ * de_search_list_mod: int,         // 검색 목록 1줄당 이미지 수
+ * de_search_list_row: int,         // 검색 목록 줄 수
+ * de_search_img_width: int,        // 검색 이미지 폭
+ * de_search_img_height: int,       // 검색 이미지 높이
+ * de_mobile_search_list_skin: string, // 모바일 검색 목록 스킨
+ * de_mobile_search_list_mod: int,  // 모바일 검색 목록 1줄당 이미지 수
+ * de_mobile_search_list_row: int,  // 모바일 검색 목록 줄 수
+ * de_mobile_search_img_width: int, // 모바일 검색 이미지 폭
+ * de_mobile_search_img_height: int, // 모바일 검색 이미지 높이
+ * de_listtype_list_skin: string,   // 상품유형 목록 스킨
+ * de_listtype_list_mod: int,       // 상품유형 목록 1줄당 이미지 수
+ * de_listtype_list_row: int,       // 상품유형 목록 줄 수
+ * de_listtype_img_width: int,      // 상품유형 이미지 폭
+ * de_listtype_img_height: int,     // 상품유형 이미지 높이
+ * de_mobile_listtype_list_skin: string, // 모바일 상품유형 목록 스킨
+ * de_mobile_listtype_list_mod: int, // 모바일 상품유형 목록 1줄당 이미지 수
+ * de_mobile_listtype_list_row: int, // 모바일 상품유형 목록 줄 수
+ * de_mobile_listtype_img_width: int, // 모바일 상품유형 이미지 폭
+ * de_mobile_listtype_img_height: int, // 모바일 상품유형 이미지 높이
+ * de_bank_use: int,                // 무통장입금 사용 여부
+ * de_bank_account: string,         // 무통장입금 계좌
+ * de_card_test: int,               // 신용카드 결제 테스트
+ * de_card_use: int,                // 신용카드 결제 사용 여부
+ * de_card_noint_use: int,          // 신용카드 무이자 사용
+ * de_card_point: int,              // 신용카드 포인트 적립
+ * de_settle_min_point: int,        // 결제 최소 포인트
+ * de_settle_max_point: int,        // 결제 최대 포인트
+ * de_settle_point_unit: int,       // 결제 포인트 단위
+ * de_level_sell: int,              // 판매 가능 레벨
+ * de_delivery_company: string,     // 배송업체
+ * de_send_cost_case: string,       // 배송비 유형
+ * de_send_cost_limit: string,      // 배송비 무료 조건
+ * de_send_cost_list: string,       // 배송비
+ * de_hope_date_use: int,           // 희망배송일 사용 여부
+ * de_hope_date_after: int,         // 희망배송일 지정일
+ * de_baesong_content: string,      // 배송 안내
+ * de_change_content: string,       // 교환/반품 안내
+ * de_point_days: int,              // 포인트 유효 기간
+ * de_simg_width: int,              // 소 이미지 폭
+ * de_simg_height: int,             // 소 이미지 높이
+ * de_mimg_width: int,              // 중 이미지 폭
+ * de_mimg_height: int,             // 중 이미지 높이
+ * de_sms_cont1: string,            // SMS 내용 1
+ * de_sms_cont2: string,            // SMS 내용 2
+ * de_sms_cont3: string,            // SMS 내용 3
+ * de_sms_cont4: string,            // SMS 내용 4
+ * de_sms_cont5: string,            // SMS 내용 5
+ * de_sms_use1: int,                // SMS 사용 1
+ * de_sms_use2: int,                // SMS 사용 2
+ * de_sms_use3: int,                // SMS 사용 3
+ * de_sms_use4: int,                // SMS 사용 4
+ * de_sms_use5: int,                // SMS 사용 5
+ * de_sms_hp: string,               // SMS 발송 번호
+ * de_pg_service: string,           // 결제 서비스
+ * de_kcp_mid: string,              // KCP 상점아이디
+ * de_kcp_site_key: string,         // KCP 사이트키
+ * de_inicis_mid: string,           // 이니시스 상점아이디
+ * de_inicis_iniapi_key: string,    // 이니시스 API 키
+ * de_inicis_iniapi_iv: string,     // 이니시스 API IV
+ * de_inicis_sign_key: string,      // 이니시스 사인키
+ * de_iche_use: int,                // 계좌이체 사용 여부
+ * de_easy_pay_use: int,            // 간편결제 사용 여부
+ * de_easy_pay_services: string,    // 간편결제 서비스
+ * de_samsung_pay_use: int,         // 삼성페이 사용 여부
+ * de_inicis_lpay_use: int,         // LPAY 사용 여부
+ * de_inicis_kakaopay_use: int,     // 카카오페이 사용 여부
+ * de_inicis_cartpoint_use: int,    // 카드포인트 사용 여부
+ * de_nicepay_mid: string,          // 나이스페이 상점아이디
+ * de_nicepay_key: string,          // 나이스페이 키
+ * de_item_use_use: int,            // 상품후기 사용 여부
+ * de_item_use_write: int,          // 상품후기 작성 권한
+ * de_code_dup_use: int,            // 코드 중복 사용
+ * de_cart_keep_term: int,          // 장바구니 보관 기간
+ * de_guest_cart_use: int,          // 비회원 장바구니 사용
+ * de_admin_buga_no: string,        // 관리자 사업자번호
+ * de_vbank_use: string,            // 가상계좌 사용 여부
+ * de_taxsave_use: int,             // 현금영수증 사용 여부
+ * de_taxsave_types: string,        // 현금영수증 발급 유형
+ * de_guest_privacy: string,        // 비회원 개인정보취급방침
+ * de_hp_use: int,                  // 휴대폰 결제 사용 여부
+ * de_escrow_use: int,              // 에스크로 사용 여부
+ * de_tax_flag_use: int,            // 과세/비과세 사용 여부
+ * de_kakaopay_mid: string,         // 카카오페이 상점아이디
+ * de_kakaopay_key: string,         // 카카오페이 키
+ * de_kakaopay_enckey: string,      // 카카오페이 암호화키
+ * de_kakaopay_hashkey: string,     // 카카오페이 해시키
+ * de_kakaopay_cancelpwd: string,   // 카카오페이 취소비밀번호
+ * de_naverpay_mid: string,         // 네이버페이 상점아이디
+ * de_naverpay_cert_key: string,    // 네이버페이 인증키
+ * de_naverpay_button_key: string,  // 네이버페이 버튼키
+ * de_naverpay_test: int,           // 네이버페이 테스트
+ * de_naverpay_mb_id: string,       // 네이버페이 회원아이디
+ * de_naverpay_sendcost: string,    // 네이버페이 배송비
+ * de_member_reg_coupon_use: int,   // 회원가입 쿠폰 사용 여부
+ * de_member_reg_coupon_term: int,  // 회원가입 쿠폰 유효기간
+ * de_member_reg_coupon_price: int, // 회원가입 쿠폰 금액
+ * de_member_reg_coupon_minimum: int // 회원가입 쿠폰 최소 주문금액
+ * } G5ShopDefaultShape
+ */
+
+/**
+ * @typedef array{
+ * ct_id: int,                 // 장바구니 ID
+ * od_id: int,                 // 주문번호
+ * mb_id: string,              // 회원 아이디
+ * it_id: string,              // 상품 코드
+ * it_name: string,            // 상품명
+ * it_sc_type: int,            // 배송비 유형
+ * it_sc_method: int,          // 배송비 결제
+ * it_sc_price: int,           // 배송비
+ * it_sc_minimum: int,         // 배송비 최소
+ * it_sc_qty: int,             // 배송비 수량
+ * ct_status: string,          // 상태
+ * ct_history: string,         // 히스토리
+ * ct_price: int,              // 가격
+ * ct_point: int,              // 포인트
+ * cp_price: int,              // 쿠폰 가격
+ * ct_point_use: int,          // 포인트 사용 여부
+ * ct_stock_use: int,          // 재고 사용 여부
+ * ct_option: string,          // 옵션
+ * ct_qty: int,                // 수량
+ * ct_notax: int,              // 과세여부
+ * io_id: string,              // 옵션 ID
+ * io_type: int,               // 옵션 유형 (0:선택, 1:추가)
+ * io_price: int,              // 옵션 가격
+ * ct_time: string,            // 입력일시
+ * ct_ip: string,              // IP
+ * ct_send_cost: int,          // 배송비
+ * ct_direct: int,             // 바로구매
+ * ct_select: int,             // 선택
+ * ct_select_time: string      // 선택일시
+ * } G5ShopCartShape
+ */
+
+/**
+ * @typedef array{
+ * od_id: int,                 // 주문번호
+ * mb_id: string,              // 회원 아이디
+ * od_name: string,            // 주문자명
+ * od_email: string,           // 주문자 이메일
+ * od_tel: string,             // 주문자 전화번호
+ * od_hp: string,              // 주문자 휴대폰
+ * od_zip1: string,            // 주문자 우편번호 1
+ * od_zip2: string,            // 주문자 우편번호 2
+ * od_addr1: string,           // 주문자 주소 1
+ * od_addr2: string,           // 주문자 주소 2
+ * od_addr3: string,           // 주문자 주소 3
+ * od_addr_jibeon: string,     // 주문자 지번주소
+ * od_deposit_name: string,    // 입금자명
+ * od_b_name: string,          // 받는분 이름
+ * od_b_tel: string,           // 받는분 전화번호
+ * od_b_hp: string,            // 받는분 휴대폰
+ * od_b_zip1: string,          // 받는분 우편번호 1
+ * od_b_zip2: string,          // 받는분 우편번호 2
+ * od_b_addr1: string,         // 받는분 주소 1
+ * od_b_addr2: string,         // 받는분 주소 2
+ * od_b_addr3: string,         // 받는분 주소 3
+ * od_b_addr_jibeon: string,   // 받는분 지번주소
+ * od_memo: string,            // 주문 메모
+ * od_cart_count: int,         // 장바구니 상품 수
+ * od_cart_price: int,         // 장바구니 총 금액
+ * od_cart_coupon: int,        // 장바구니 쿠폰 금액
+ * od_send_cost: int,          // 배송비
+ * od_send_cost2: int,         // 추가 배송비
+ * od_send_coupon: int,        // 배송비 쿠폰
+ * od_receipt_price: int,      // 입금금액
+ * od_cancel_price: int,       // 취소금액
+ * od_receipt_point: int,      // 입금 포인트
+ * od_refund_price: int,       // 환불금액
+ * od_bank_account: string,    // 입금계좌
+ * od_receipt_time: string,    // 입금일시
+ * od_coupon: int,             // 쿠폰 금액
+ * od_misu: int,               // 미수금
+ * od_shop_memo: string,       // 상점 메모
+ * od_mod_history: string,     // 수정 히스토리
+ * od_status: string,          // 주문상태
+ * od_hope_date: string,       // 희망배송일
+ * od_settle_case: string,     // 결제수단
+ * od_other_pay_type: string,  // 기타 결제수단
+ * od_test: int,               // 테스트 주문
+ * od_mobile: int,             // 모바일 주문
+ * od_pg: string,              // PG사
+ * od_tno: string,             // 거래고유번호
+ * od_app_no: string,          // 승인번호
+ * od_escrow: int,             // 에스크로 사용
+ * od_casseqno: string,        // 현금영수증 일련번호
+ * od_tax_flag: int,           // 과세/비과세
+ * od_tax_mny: int,            // 과세 금액
+ * od_vat_mny: int,            // 부가세
+ * od_free_mny: int,           // 면세 금액
+ * od_delivery_company: string,// 배송업체
+ * od_invoice: string,         // 운송장번호
+ * od_invoice_time: string,    // 운송장 입력일시
+ * od_cash: int,               // 현금영수증
+ * od_cash_no: string,         // 현금영수증 번호
+ * od_cash_info: string,       // 현금영수증 정보
+ * od_time: string,            // 주문일시
+ * od_pwd: string,             // 비회원 비밀번호
+ * od_ip: string               // IP
+ * } G5ShopOrderShape
+ */
+
+/**
+ * @typedef array{
+ * title: string,              // 페이지 타이틀
+ * connect_db: resource|object,// DB 연결 객체
+ * write_prefix: string,       // 게시판 테이블 접두사
+ * auth_table: string,         // 관리권한 설정 테이블
+ * config_table: string,       // 기본환경 설정 테이블
+ * group_table: string,        // 게시판 그룹 테이블
+ * group_member_table: string, // 게시판 그룹+회원 테이블
+ * board_table: string,        // 게시판 설정 테이블
+ * board_file_table: string,   // 게시판 첨부파일 테이블
+ * board_good_table: string,   // 게시물 추천,비추천 테이블
+ * board_new_table: string,    // 게시판 새글 테이블
+ * login_table: string,        // 로그인 테이블
+ * mail_table: string,         // 회원메일 테이블
+ * member_table: string,       // 회원 테이블
+ * memo_table: string,         // 메모 테이블
+ * poll_table: string,         // 투표 테이블
+ * poll_etc_table: string,     // 투표 기타의견 테이블
+ * point_table: string,        // 포인트 테이블
+ * popular_table: string,      // 인기검색어 테이블
+ * scrap_table: string,        // 게시글 스크랩 테이블
+ * visit_table: string,        // 방문자 테이블
+ * visit_sum_table: string,    // 방문자 합계 테이블
+ * uniqid_table: string,       // 유니크한 값을 만드는 테이블
+ * autosave_table: string,     // 자동저장 테이블
+ * cert_history_table: string, // 인증내역 테이블
+ * qa_config_table: string,    // 1:1문의 설정테이블
+ * qa_content_table: string,   // 1:1문의 테이블
+ * content_table: string,      // 내용(컨텐츠)정보 테이블
+ * faq_table: string,          // 자주하시는 질문 테이블
+ * faq_master_table: string,   // 자주하시는 질문 마스터 테이블
+ * new_win_table: string,      // 새창 테이블
+ * menu_table: string,         // 메뉴관리 테이블
+ * social_profile_table: string, // 소셜 로그인 테이블
+ * member_cert_history_table: string, // 본인인증 변경내역 테이블
+ * g5_shop_default_table: string, // 쇼핑몰설정 테이블
+ * g5_shop_banner_table: string, // 배너 테이블
+ * g5_shop_cart_table: string, // 장바구니 테이블
+ * g5_shop_category_table: string, // 상품분류 테이블
+ * g5_shop_event_table: string, // 이벤트 테이블
+ * g5_shop_event_item_table: string, // 상품, 이벤트 연결 테이블
+ * g5_shop_item_table: string, // 상품 테이블
+ * g5_shop_item_option_table: string, // 상품옵션 테이블
+ * g5_shop_item_use_table: string, // 상품 사용후기 테이블
+ * g5_shop_item_qa_table: string, // 상품 질문답변 테이블
+ * g5_shop_item_relation_table: string, // 관련 상품 테이블
+ * g5_shop_order_table: string, // 주문서 테이블
+ * g5_shop_order_delete_table: string, // 주문서 삭제 테이블
+ * g5_shop_wish_table: string, // 보관함(위시리스트) 테이블
+ * g5_shop_coupon_table: string, // 쿠폰정보 테이블
+ * g5_shop_coupon_zone_table: string, // 쿠폰존 테이블
+ * g5_shop_coupon_log_table: string, // 쿠폰사용정보 테이블
+ * g5_shop_sendcost_table: string, // 추가배송비 테이블
+ * g5_shop_personalpay_table: string, // 개인결제 정보 테이블
+ * g5_shop_order_address_table: string, // 배송지이력 정보 테이블
+ * g5_shop_item_stocksms_table: string, // 재입고SMS 알림 정보 테이블
+ * g5_shop_post_log_table: string, // 주문요청 로그 테이블
+ * g5_shop_order_data_table: string, // 모바일 결제정보 임시저장 테이블
+ * g5_shop_inicis_log_table: string // 이니시스 모바일 계좌이체 로그 테이블
+ * } G5SystemShape
  */
