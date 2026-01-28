@@ -7,10 +7,6 @@ error_reporting( E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_ERROR | E_W
 // 보안설정이나 프레임이 달라도 쿠키가 통하도록 설정
 header('P3P: CP="ALL CURa ADMa DEVa TAIa OUR BUS IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC OTC"');
 
-/**
- * @ai-context $member : 현재 로그인한 회원 정보 배열
- */
-
 if (!defined('G5_SET_TIME_LIMIT')) define('G5_SET_TIME_LIMIT', 0);
 @set_time_limit(G5_SET_TIME_LIMIT);
 
@@ -136,25 +132,6 @@ $_REQUEST = array_map_deep(G5_ESCAPE_FUNCTION,  $_REQUEST);
 
 // 완두콩님이 알려주신 보안관련 오류 수정
 // $member 에 값을 직접 넘길 수 있음
-/**
- * @ai-context
- *   @var array $config 환경설정 배열 (g5_config 테이블)
- *   @var array $member 회원정보 배열 (g5_member 테이블)
- *   @var array $board 게시판 설정 배열 (g5_board 테이블)
- *   @var array $group 게시판 그룹 설정 배열 (g5_group 테이블)
- *   @var array $g5 그누보드 전역 배열
- *   @var array $qaconfig 1:1문의 설정 배열
- *   @var array $g5_debug 디버그 정보 배열
- *   @var string $qstr: 전체 쿼리 스트링 조합.
- *   @var int $page: 현재 페이지 번호.
- *   @var string $sca: 카테고리 (분류).
- *   @var string $sfl: 검색 필드 (Search Field).
- *   @var string $stx: 검색어 (Search Text).
- *   @var string $sst: 정렬 필드 (Sort).
- *   @var string $sod: 정렬 순서 (Order).
- *   @var int $spt: 검색 파트.
- *   @var string $sop: 검색 연산자 (AND/OR).
- */
 $config = array();
 $member = array('mb_id'=>'', 'mb_level'=> 1, 'mb_name'=> '', 'mb_point'=> 0, 'mb_certify'=>'', 'mb_email'=>'', 'mb_open'=>'', 'mb_homepage'=>'', 'mb_tel'=>'', 'mb_hp'=>'', 'mb_zip1'=>'', 'mb_zip2'=>'', 'mb_addr1'=>'', 'mb_addr2'=>'', 'mb_addr3'=>'', 'mb_addr_jibeon'=>'', 'mb_signature'=>'', 'mb_profile'=>'');
 $board  = array('bo_table'=>'', 'bo_skin'=>'', 'bo_mobile_skin'=>'', 'bo_upload_count' => 0, 'bo_use_dhtml_editor'=>'', 'bo_subject'=>'', 'bo_image_width'=>0);
@@ -691,12 +668,6 @@ if ($config['cf_editor']) {
 }
 
 // 회원, 비회원 구분
-/**
- * @ai-context
- *    @var bool $is_member 회원 여부
- *    @var bool $is_guest 비회원 여부
- *    @var string $is_admin 관리자 여부 ('super', 'group', 'board', '')
- */
 $is_member = $is_guest = false;
 $is_admin = '';
 if (isset($member['mb_id']) && $member['mb_id']) {
