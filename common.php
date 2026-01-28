@@ -687,8 +687,11 @@ if(isset($config['cf_theme']) && trim($config['cf_theme'])) {
         define('G5_THEME_MOBILE_PATH', $theme_path.'/'.G5_MOBILE_DIR);
         define('G5_THEME_LIB_PATH',    $theme_path.'/'.G5_LIB_DIR);
         define('G5_THEME_CSS_URL',     G5_THEME_URL.'/'.G5_CSS_DIR);
+        define('G5_THEME_CSS_PATH',    G5_THEME_PATH.'/'.G5_CSS_DIR);
         define('G5_THEME_IMG_URL',     G5_THEME_URL.'/'.G5_IMG_DIR);
+        define('G5_THEME_IMG_PATH',    G5_THEME_PATH.'/'.G5_IMG_DIR);
         define('G5_THEME_JS_URL',      G5_THEME_URL.'/'.G5_JS_DIR);
+        define('G5_THEME_JS_PATH',     G5_THEME_PATH.'/'.G5_JS_DIR);
     }
     unset($theme_path);
 }
