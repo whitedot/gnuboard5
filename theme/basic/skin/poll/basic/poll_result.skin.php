@@ -10,7 +10,7 @@ if ((int) $total_po_cnt > 0){
 }
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="'.$poll_skin_url.'/style.css">', 0);
+
 ?>
 
 <!-- 설문조사 결과 시작 { -->

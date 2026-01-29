@@ -33,9 +33,6 @@ $get_path_url = parse_url(G5_URL);
 $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="' . G5_JS_URL . '/remodal/remodal.css">', 11);
-add_stylesheet('<link rel="stylesheet" href="' . G5_JS_URL . '/remodal/remodal-default-theme.css">', 12);
-add_javascript('<script src="' . G5_JS_URL . '/remodal/remodal.js"></script>', 10);
 ?>
 <section id="anc_cf_url">
     <h2 class="h2_frm">짧은 주소 설정</h2>

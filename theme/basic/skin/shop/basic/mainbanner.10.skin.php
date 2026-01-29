@@ -2,9 +2,8 @@
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_SKIN_URL.'/style.css">', 0);
-add_javascript('<script src="'.G5_JS_URL.'/owlcarousel/owl.carousel.min.js"></script>', 10);
-add_stylesheet('<link rel="stylesheet" href="'.G5_JS_URL.'/owlcarousel/owl.carousel.min.css">', 10);
+
+
 
 $max_width = $max_height = 0;
 $bn_first_class = ' class="bn_first"';
@@ -79,65 +78,6 @@ if ($i > 0) {
     echo '</div>'.PHP_EOL;
 ?>
 
-<script>
-jQuery(function($){
 
-    function owl_show_page(event){
-
-        if (event.item) {
-            var count = event.item.count,
-                item_index = event.item.index,
-                index = 1;
-
-            if( is_loop ){
-                index = ( 1 + ( event.property.value - Math.ceil( event.item.count / 2 ) ) % event.item.count || 0 ) || 1;
-            } else {
-                index = event.item.index ? event.item.index + 1 : 1;
-            }
-            
-            $(event.target).next(".btn_wr").find(".slide-index").text(index);
-        }
-    }
-
-    var is_loop = true,
-        item_totals = $('.main_banner_owl .item').length;
-
-    if( item_totals ){
-        $('#slide-counter').prepend('<strong class="slide-index current-index"></strong> / ')
-        .append('<span class="total-slides">'+item_totals+'</span>');
-    }
-
-    var owl = $('.main_banner_owl').owlCarousel({
-        items:1,
-        loop:is_loop,
-        margin:0,
-        nav:false,
-        autoHeight:true,
-        autoplay:true,
-        autoplayTimeout:5000,   // 5000은 5초
-        autoplayHoverPause:true,
-        dotsContainer: '.carousel-custom-dots',
-        onChanged:function(event){
-            owl_show_page(event);
-        },
-    });
-
-    // Custom Navigation Events
-    $(document).on("click", ".carousel-custom-dots a", function(e){
-        e.preventDefault();
-        owl.trigger('to.owl.carousel', [$(this).parent().index(), 300]);
-    });
-
-    $(document).on("click", ".btn_wr .pager-next", function(e){
-        e.preventDefault();
-        owl.trigger('next.owl.carousel');
-    });
-
-    $(document).on("click", ".btn_wr .pager-prev", function(e){
-        e.preventDefault();
-        owl.trigger('prev.owl.carousel');
-    });
-});
-</script>
 <?php
 }

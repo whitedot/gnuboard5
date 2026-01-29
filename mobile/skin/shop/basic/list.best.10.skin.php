@@ -2,7 +2,7 @@
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="'.G5_MSHOP_SKIN_URL.'/style.css">', 0);
+
 ?>
 
 <?php
@@ -16,7 +16,7 @@ if($this->total_count > 0) {
         $is_soldout = is_soldout($row['it_id'], true);   // 품절인지 체크
 
         if($i == 0) {
-            echo '<script src="'.G5_JS_URL.'/swipe.js"></script>'.PHP_EOL;
+
             echo '<section id="best_item">'.PHP_EOL;
             echo '<h2>베스트상품</h2>'.PHP_EOL;
             echo '<div id="sbest_list" class="swipe">'.PHP_EOL;

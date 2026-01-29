@@ -2,10 +2,10 @@
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="'.G5_MSHOP_SKIN_URL.'/style.css">', 0);
+
 ?>
 
-<script src="<?php echo G5_JS_URL ?>/jquery.fancylist.js"></script>
+
 <?php if($config['cf_kakao_js_apikey']) { ?>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js" async></script>
 <script>
@@ -79,14 +79,5 @@ if($i == 0) echo "<p class=\"sct_noitem\">등록된 관련상품이 없습니다
 ?>
 <!-- } 상품진열 10 끝 -->
 
-<script>
-$('.srl_10').bxSlider({
-    slideWidth: 200,
-    minSlides: 2,
-    maxSlides: 8,
-    slideMargin: 5,
-    controls: false,
-    infiniteLoop: false
-});
-</script>
+
 

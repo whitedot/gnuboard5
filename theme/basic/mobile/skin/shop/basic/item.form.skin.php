@@ -2,8 +2,8 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0);
-add_javascript('<script src="'.G5_JS_URL.'/jquery.bxslider.js"></script>', 10);
+
+
 ?>
 
 <?php if($config['cf_kakao_js_apikey']) { ?>
@@ -478,31 +478,11 @@ $(function(){
     //이미지
     $('#slide-counter').prepend('<strong class="slide-index current-index"></strong> / ');
      
-    var slider = $('#sit_pvi_slide').bxSlider({
-        auto: true,
-        pager:false,
-        controls: false,
-        onSliderLoad: function (currentIndex){
-            $('#slide-counter .current-index').text(currentIndex + 1);
-        },
-        onSlideBefore: function ($slideElement, oldIndex, newIndex){
-            $('#slide-counter .current-index').text(newIndex + 1);
-        }
-    });
-   
-    try {
-        $('#slide-counter').append('<span class="total-slides">'+slider.getSlideCount()+'</span>');
-    } catch (error) {
-    }
 
-    $('a.pager-prev').click(function () {
-        var current = slider.getCurrentSlide();
-        slider.goToPrevSlide(current) - 1;
-    });
-    $('a.pager-next').click(function () {
-        var current = slider.getCurrentSlide();
-        slider.goToNextSlide(current) + 1;
-    });     
+   
+
+
+
 
     // 상품이미지 크게보기
     $(".popup_item_image").click(function() {

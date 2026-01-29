@@ -7,8 +7,8 @@ $hresult = sql_query($hsql);
 
 if(sql_num_rows($hresult)) {
     // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-    add_stylesheet('<link rel="stylesheet" href="'.G5_MSHOP_SKIN_URL.'/style.css">', 0);
-    add_javascript('<script src="'.G5_JS_URL.'/jquery.bxslider.js"></script>', 10);
+    
+
 ?>
 <div id="sev">
     <h2>이벤트</h2>
@@ -68,13 +68,6 @@ if(sql_num_rows($hresult)) {
     </ul>
 </div>
 
-<script>
-$('.sev_slide').bxSlider({
-    minSlides: 1,
-    maxSlides: 1,
-    slideMargin:10,
-    controls: false
-});
-</script>
+
 <?php
 }
