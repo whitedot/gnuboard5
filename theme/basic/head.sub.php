@@ -23,13 +23,6 @@ if (!$g5['lo_location'])
     $g5['lo_location'] = addslashes(clean_xss_tags($_SERVER['REQUEST_URI']));
 $g5['lo_url'] = addslashes(clean_xss_tags($_SERVER['REQUEST_URI']));
 if (strstr($g5['lo_url'], '/'.G5_ADMIN_DIR.'/') || $is_admin == 'super') $g5['lo_url'] = '';
-
-/*
-// 만료된 페이지로 사용하시는 경우
-header("Cache-Control: no-cache"); // HTTP/1.1
-header("Expires: 0"); // rfc2616 - Section 14.21
-header("Pragma: no-cache"); // HTTP/1.0
-*/
 ?>
 <!doctype html>
 <html lang="ko">
@@ -50,9 +43,6 @@ $common_css_path = G5_THEME_CSS_PATH.'/common.css';
 $common_css_ver = is_file($common_css_path) ? filemtime($common_css_path) : G5_CSS_VER;
 echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_THEME_CSS_URL.'/common.css?ver='.$common_css_ver, G5_THEME_URL).'">'.PHP_EOL;
 ?>
-<!--[if lte IE 8]>
-<script src="<?php echo G5_JS_URL ?>/html5.js"></script>
-<![endif]-->
 <script>
 // 자바스크립트에서 사용하는 전역변수 선언
 var g5_url       = "<?php echo G5_URL ?>";
@@ -64,32 +54,15 @@ var g5_bo_table  = "<?php echo isset($bo_table)?$bo_table:''; ?>";
 var g5_sca       = "<?php echo isset($sca)?$sca:''; ?>";
 var g5_editor    = "<?php echo ($config['cf_editor'] && $board['bo_use_dhtml_editor'])?$config['cf_editor']:''; ?>";
 var g5_cookie_domain = "<?php echo G5_COOKIE_DOMAIN ?>";
-<?php if (defined('G5_USE_SHOP') && G5_USE_SHOP) { ?>
 var g5_theme_shop_url = "<?php echo G5_THEME_SHOP_URL; ?>";
 var g5_shop_url = "<?php echo G5_SHOP_URL; ?>";
-<?php } ?>
-<?php if(defined('G5_IS_ADMIN')) { ?>
-var g5_admin_url = "<?php echo G5_ADMIN_URL; ?>";
-<?php } ?>
 </script>
 <?php
 add_javascript('<script src="'.G5_JS_URL.'/jquery-1.12.4.min.js"></script>', 0);
 add_javascript('<script src="'.G5_JS_URL.'/jquery-migrate-1.4.1.min.js"></script>', 0);
-if (defined('_SHOP_')) {
-    if(!G5_IS_MOBILE) {
-        add_javascript('<script src="'.G5_JS_URL.'/jquery.shop.menu.js?ver='.G5_JS_VER.'"></script>', 0);
-    }
-} else {
-    add_javascript('<script src="'.G5_JS_URL.'/jquery.menu.js?ver='.G5_JS_VER.'"></script>', 0);
-}
 add_javascript('<script src="'.G5_JS_URL.'/common.js?ver='.G5_JS_VER.'"></script>', 0);
 add_javascript('<script src="'.G5_JS_URL.'/wrest.js?ver='.G5_JS_VER.'"></script>', 0);
-add_javascript('<script src="'.G5_JS_URL.'/placeholders.min.js"></script>', 0);
-add_stylesheet('<link rel="stylesheet" href="'.G5_JS_URL.'/font-awesome/css/font-awesome.min.css">', 0);
 
-if(G5_IS_MOBILE) {
-    add_javascript('<script src="'.G5_JS_URL.'/modernizr.custom.70111.js"></script>', 1); // overflow scroll 감지
-}
 if(!defined('G5_IS_ADMIN'))
     echo $config['cf_add_script'];
 ?>
