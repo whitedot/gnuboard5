@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/common.css">
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                <div class="container-fluid">
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-base">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">플레이스홀더 (Placeholders)</h4>
+                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
+                                    data-action="card-toggle">
+                                    <i class="iconify tabler--chevron-up text-base"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="text-default-400 mb-4">아래 예제는 일반적인 카드 구성 요소를 가져와 플레이스홀더를 적용하여 "로딩 카드"를 재현한 것입니다. 크기와 비율은 두 카드 간에 동일합니다.</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-base xl:grid-cols-12">
+                                    <div class="xl:col-span-5">
+                                        <div class="card border-default-300 border">
+                                            <img src="/images/stock/small-1.jpg" alt="..." />
+
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-2.5">카드 제목</h5>
+                                                <p class="mb-4">카드 제목을 기반으로 내용을 구성하고 카드 콘텐츠의 대부분을 차지하는 간단한 예시 텍스트입니다.</p>
+                                                <a href="#"
+                                                    class="btn btn-sm bg-primary hover:bg-primary-hover text-white">어딘가로 이동</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="xl:col-span-5">
+                                        <div class="card border-default-300 border">
+                                            <svg width="100%" style="aspect-ratio: 16 / 10"
+                                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
+                                                preserveAspectRatio="xMidYMid slice" viewBox="0 0 16 10">
+                                                <title>플레이스홀더</title>
+                                                <rect width="16" height="10" fill="#20c997"></rect>
+                                            </svg>
+
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-2.5 grid grid-cols-2">
+                                                    <span
+                                                        class="bg-default-300 block h-5.5 animate-pulse cursor-wait">&nbsp;</span>
+                                                </h5>
+
+                                                <p class="card-text mb-4 grid grid-cols-12 gap-3">
+                                                    <span
+                                                        class="bg-default-300 col-span-7 block h-3.25 animate-pulse cursor-wait"></span>
+                                                    <span
+                                                        class="bg-default-300 col-span-4 block h-3.25 animate-pulse cursor-wait"></span>
+                                                    <span
+                                                        class="bg-default-300 col-span-4 block h-3.25 animate-pulse cursor-wait"></span>
+                                                    <span
+                                                        class="bg-default-300 col-span-6 block h-3.25 animate-pulse cursor-wait"></span>
+                                                    <span
+                                                        class="bg-default-300 col-span-3 block h-3.25 animate-pulse cursor-wait"></span>
+                                                </p>
+
+                                                <div class="grid grid-cols-2">
+                                                    <a class="btn bg-primary disabled col-span-1" aria-disabled="true">
+                                                        <span class="invisible">읽기 전용</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card-body-->
+                        </div>
+                        <!-- end card-->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">색상 (Color)</h4>
+                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
+                                    data-action="card-toggle">
+                                    <i class="iconify tabler--chevron-up text-base"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="text-default-400 mb-4">기본적으로 플레이스홀더는 색상을 사용합니다. 커스텀 색상이나 유틸리티 클래스로 이를 재정의할 수 있습니다.</p>
+                                <div class="flex flex-col gap-2">
+                                    <span class="bg-default-400 block h-3.5 cursor-wait"></span>
+                                    <span class="bg-primary/60 block h-3.5 cursor-wait"></span>
+                                    <span class="bg-secondary/60 block h-3.5 cursor-wait"></span>
+                                    <span class="bg-success/60 block h-3.5 cursor-wait"></span>
+                                    <span class="bg-danger/60 block h-3.5 cursor-wait"></span>
+                                    <span class="bg-warning/60 block h-3.5 cursor-wait"></span>
+                                    <span class="bg-info/60 block h-3.5 cursor-wait"></span>
+                                    <span class="bg-light/60 block h-3.5 cursor-wait"></span>
+                                    <span class="bg-dark/60 block h-3.5 cursor-wait"></span>
+                                </div>
+                            </div>
+                            <!-- end card-body-->
+                        </div>
+                        <!-- end card-->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">너비 (Width)</h4>
+                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
+                                    data-action="card-toggle">
+                                    <i class="iconify tabler--chevron-up text-base"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="text-default-400 mb-4">그리드 컬럼 클래스, 너비 유틸리티 또는 인라인 스타일을 통해 너비를 변경할 수 있습니다.</p>
+
+                                <div class="grid grid-cols-12 gap-2">
+                                    <div class="col-span-6">
+                                        <span class="bg-default-400 block h-3.5 cursor-wait"></span>
+                                    </div>
+
+                                    <div class="col-span-9">
+                                        <span class="bg-default-400 block h-3.5 cursor-wait"></span>
+                                    </div>
+
+                                    <div class="col-span-4">
+                                        <span class="bg-default-400 block h-3.5 cursor-wait"></span>
+                                    </div>
+
+                                    <div class="col-span-1">
+                                        <span class="bg-default-400 block h-3.5 cursor-wait"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card-body-->
+                        </div>
+                        <!-- end card-->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">크기 조절 (Sizing)</h4>
+                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
+                                    data-action="card-toggle">
+                                    <i class="iconify tabler--chevron-up text-base"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="text-default-400 mb-4">.placeholders의 크기는 상위 요소의 타이포그래피 스타일을 기반으로 합니다. .placeholder-lg, .placeholder-sm, .placeholder-xs와 같은 크기 수정자로 이를 사용자 정의하세요.</p>
+
+                                <div class="flex flex-col gap-2">
+                                    <span class="bg-default-400 block h-4 cursor-wait"></span>
+                                    <span class="bg-default-400 block h-3.5 cursor-wait"></span>
+                                    <span class="bg-default-400 block h-2.75 cursor-wait"></span>
+                                    <span class="bg-default-400 block h-2 cursor-wait"></span>
+                                </div>
+                            </div>
+                            <!-- end card-body-->
+                        </div>
+                        <!-- end card-->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">작동 방식 (How it works)</h4>
+                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
+                                    data-action="card-toggle">
+                                    <i class="iconify tabler--chevron-up text-base"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="text-default-400 mb-4">.placeholder 클래스와 그리드 컬럼 클래스를 사용하여 플레이스홀더를 만들어 너비를 설정합니다. 요소 내부의 텍스트를 대체하거나 기존 구성 요소에 수정자 클래스로 추가할 수 있습니다.</p>
+
+                                <div class="mb-4 grid grid-cols-2">
+                                    <div class="col-span-1">
+                                        <span class="bg-default-400 block h-3.5 cursor-wait"></span>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-3">
+                                    <div class="col-span-1">
+                                        <a href="#" class="btn bg-primary disabled w-full" aria-hidden="true"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card-body-->
+                        </div>
+                        <!-- end card-->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">애니메이션 (Animation)</h4>
+                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
+                                    data-action="card-toggle">
+                                    <i class="iconify tabler--chevron-up text-base"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="text-default-400 mb-4">
+                                    플레이스홀더에 <code>.animate-pulse</code> 또는 <code>.animate-ping</code> 애니메이션을 적용하여 무언가가 <em>활발히</em> 로드되고 있다는 느낌을 더 잘 전달할 수 있습니다.
+                                </p>
+                                <!-- Glow animation -->
+                                <p class="mb-4">
+                                    <span class="bg-default-400 block h-3.5 w-full animate-pulse"></span>
+                                </p>
+
+                                <p class="relative overflow-hidden">
+                                    <span class="bg-default-400 relative block h-3.5 w-full overflow-hidden">
+                                        <span
+                                            class="from-default-400 via-default-300 animate-ping to-default-300 absolute inset-0 bg-linear-to-r"></span>
+                                    </span>
+                                </p>
+                            </div>
+                            <!-- end card-body-->
+                        </div>
+                        <!-- end card-->
+                    </div>
+                </div>
+            </main>
+
+        </div>
+        <!-- End Page content -->
+    </div>
+
+</body>
+
+</html>

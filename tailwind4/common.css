@@ -1,21 +1,775 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
-
 @import "tailwindcss";
 
 @theme {
-    --font-body: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    /* === Typography === */
+    --font-body: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    --font-secondary: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+
+    --text-2xs: 11px;
+    --text-md: 15px;
     --text-body: 1rem;
+
+    --text-2xs--line-height: 1.5;
+    --text-xs--line-height: 1.5;
+    --text-md--line-height: 1.5;
+    --text-sm--line-height: 1.5;
+    --text-base--line-height: 1.5;
+    --text-lg--line-height: 1.5;
+    --text-xl--line-height: 1.5;
+    --text-2xl--line-height: 1.5;
+    --text-3xl--line-height: 1.5;
+    --text-4xl--line-height: 1.5;
+    --text-5xl--line-height: 1.5;
+
+    /* === Colors === */
+    --color-body-bg: #f2f6fb;
+    --color-body-color: #4c4c5c;
+    --color-card: #fff;
+
+    /* Palette */
+    --color-primary: #0a74ff;
+    --color-primary-hover: #0857bf;
+    --color-secondary: #7b5af7;
+    --color-secondary-hover: #5c44b9;
+    --color-success: #6fcd1f;
+    --color-success-hover: #539a17;
+    --color-info: #1aa0e8;
+    --color-info-hover: #1478ae;
+    --color-warning: #ff8f1f;
+    --color-warning-hover: #bf6b17;
+    --color-danger: #f43f5e;
+    --color-danger-hover: #b72f47;
+    --color-purple: #7b70ef;
+    --color-purple-hover: #695fcb;
+    --color-light: #eef2f7;
+    --color-light-hover: #8a969c;
+    --color-dark: #313a46;
+    --color-dark-hover: #343a40;
+
+    /* Semantic Defaults */
+    --color-default-50: var(--color-slate-50);
+    --color-default-100: #f6f7fb;
+    --color-default-200: #eef2f7;
+    --color-default-300: #edf2f9;
+    --color-default-400: #9ba6b7;
+    --color-default-500: #a1a9b1;
+    --color-default-600: #8a969c;
+    --color-default-700: #6c757d;
+    --color-default-800: #343a40;
+    --color-default-900: #313a46;
+    --color-default-950: var(--color-slate-950);
+
+    /* === Layout & Shapes === */
+    --spacing-base: 20px;
+    --radius: 4px;
+
+    /* === Shadows === */
+    --tw-shadow: var(--shadow);
+    --shadow: 0 1px 2px rgba(57, 62, 80, 0.15);
+    --shadow-lg: 0 0.25rem 1rem rgba(76, 76, 92, 0.2);
+    --shadow-sm: 0 0.0625rem 0.125rem rgba(76, 76, 92, 0.15);
+    --inset-shadow: inset 0 1px 2px rgba(76, 76, 92, 0.075);
+
+    /* === Components === */
+    --font-weight-medium: 500;
+    --font-weight-semibold: 500;
+    --font-weight-bold: 600;
+}
+
+:root {
+    color-scheme: light;
 }
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant hs-dropdown-open (:where(.hs-dropdown.hs-dropdown-open, .hs-dropdown.open) &);
+@custom-variant hs-overlay-open (:where(.hs-overlay.hs-overlay-open, .hs-overlay.open) &);
 
-[data-theme="dark"] {}
+/* === Dark Theme Overrides === */
+[data-theme="dark"] {
+    color-scheme: dark;
 
-html {
-    overflow-y: scroll;
+    --color-body-bg: #17181e;
+    --color-body-color: #aab8c5;
+    --color-card: #1e1f27;
+
+    --color-light: #252630;
+    --color-light-hover: #8a969c;
+    --color-dark: #4b4d5c;
+    --color-dark-hover: #343a40;
+
+    --color-chart-border-color: #242c31;
+    --color-chart-gray: #40424f;
+
+    --shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+
+    --color-default-50: #22232c;
+    --color-default-100: #272832;
+    --color-default-200: var(--color-zinc-800);
+    --color-default-300: #293036;
+    --color-default-400: #8391a2;
+    --color-default-500: #a1a9b1;
+    --color-default-600: var(--color-zinc-400);
+    --color-default-700: var(--color-zinc-300);
+    --color-default-800: var(--color-zinc-200);
+    --color-default-900: var(--color-zinc-100);
+    --color-default-950: var(--color-zinc-50);
+
+    .text-dark {
+        color: #dce0fb !important;
+    }
 }
 
-body {
-    font-family: var(--font-body);
-    font-size: var(--text-body);
+/* === Base Layer === */
+@layer base {
+    html {
+        @apply relative scroll-smooth;
+    }
+
+    body {
+        overflow-x: hidden;
+        -webkit-tap-highlight-color: transparent;
+        @apply font-body text-body bg-body-bg text-body-color size-full leading-normal font-normal antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        line-height: 1.5 !important;
+        @apply font-secondary font-medium;
+    }
+
+    b,
+    strong,
+    label {
+        @apply font-semibold;
+    }
+
+    label {
+        @apply block;
+    }
+
+    small {
+        font-size: 0.85em;
+    }
+
+    button:not(:disabled),
+    [role="button"]:not(:disabled) {
+        cursor: pointer;
+    }
+
+    code {
+        @apply text-rose-400;
+    }
+
+    svg.lucide {
+        width: 1em;
+        height: 1em;
+    }
+}
+
+/* === Components Layer === */
+@layer components {
+
+    /* --- Badges --- */
+    .badge {
+        @apply inline-flex items-center justify-center align-middle gap-1 rounded px-[0.4em] py-[0.25em] text-[0.75em] leading-none font-bold;
+    }
+
+    .badge-label {
+        @apply rounded-none px-[0.8em] py-[0.375em];
+    }
+
+    /* --- Buttons --- */
+    .btn {
+        @apply relative z-10 inline-flex cursor-pointer items-center justify-center gap-x-2 rounded;
+        @apply border border-transparent px-4 py-1.75 text-center text-sm font-medium transition-all;
+
+        &.btn-lg {
+            @apply px-5 py-2.25 text-lg rounded;
+        }
+
+        &.btn-sm {
+            @apply px-3 py-1.25 text-xs;
+
+            &.btn-icon {
+                @apply size-7.5 p-0;
+            }
+        }
+
+        &.btn-icon {
+            @apply size-9.25 p-0;
+        }
+    }
+
+    .btn[class*="size-"] {
+        padding: 0 !important;
+    }
+
+    button:disabled {
+        @apply cursor-not-allowed opacity-50;
+    }
+
+    /* --- Cards --- */
+    .card {
+        @apply bg-card relative flex h-fit flex-col rounded bg-clip-border break-words shadow;
+
+        .card-header {
+            @apply border-default-300 flex flex-wrap items-center justify-between gap-3 border-b border-dashed px-5 py-3.75;
+        }
+
+        .card-body {
+            @apply p-5 flex-auto transition-all duration-300;
+
+            &.collapsing {
+                height: 0 !important;
+                @apply -my-5 opacity-0;
+            }
+        }
+
+        .card-footer {
+            @apply border-t border-light flex flex-wrap items-center justify-between gap-3 px-5 py-3.75;
+        }
+    }
+
+    .card-collapse .card-header {
+        border-bottom: 0;
+    }
+
+    .card-title {
+        @apply text-md text-body-color leading-normal font-medium;
+    }
+
+    /* --- Card Radio --- */
+    .card-radio {
+        @apply relative;
+
+        label {
+            @apply cursor-pointer;
+        }
+
+        /* Checkmark icon styles inserted via dark/light theme blocks above */
+    }
+
+    /* --- Containers --- */
+    .container {
+        @apply mx-auto max-w-330 px-3;
+    }
+
+    .container-fluid {
+        @apply w-full max-w-full mx-auto;
+    }
+
+    /* --- Dropdowns --- */
+    .hs-dropdown-menu {
+        @apply bg-card border border-solid border-default-300 hs-dropdown-open:opacity-100 z-30 mt-2;
+        @apply hidden min-w-44 rounded text-wrap p-1 opacity-0 shadow transition-all;
+        transition-property: opacity, margin;
+    }
+
+    .dropdown-item {
+        @apply text-body-color hover:bg-default-100 flex w-full cursor-pointer items-center gap-3 rounded-[calc(var(--radius)*0.5)] px-3.75 py-1.5 transition-all;
+
+        &.active {
+            @apply bg-default-100;
+        }
+    }
+
+    .dropdown-divider {
+        @apply border-transparent overflow-hidden border-t border-t-default-300 -mx-1 !my-1;
+    }
+
+    .\[--trigger\:hover\] .hs-dropdown-menu {
+        @apply before:absolute before:start-0 before:-top-4 before:h-4 before:w-full after:absolute after:start-0 after:-bottom-4 after:h-4 after:w-full;
+    }
+
+    /* --- Forms --- */
+    .form-label {
+        @apply text-body-color font-semibold block mb-2;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+        @apply disabled:bg-default-100 disabled:cursor-not-allowed disabled:opacity-70;
+        @apply [[readonly]]:text-body-color [[readonly]]:cursor-not-allowed;
+        @apply aria-invalid:border-danger/60 aria-invalid:ring-danger/10;
+
+        &:not([class*="bg-"]) {
+            @apply bg-card;
+        }
+
+        &:not([class*="border-"]) {
+            @apply border-default-300;
+        }
+    }
+
+    .form-input {
+        @apply text-body-color placeholder:text-default-400 block h-9.25 w-full rounded border py-0 text-sm outline-0 transition-all;
+        @apply hover:!border-default-500 focus:!border-default-500 focus-visible:border-default-500 focus:outline-0 focus-visible:ring-0 focus-visible:outline-none;
+        transition-property: color, box-shadow;
+
+        &[type="file"] {
+            @apply p-0 text-sm cursor-pointer;
+            @apply file:h-full file:px-3 file:me-3 file:border-0 file:border-e file:border-default-300 file:bg-default-100 file:text-default-700 file:font-medium file:cursor-pointer;
+            @apply focus:ring-0 hover:border-default-500 focus:border-default-500 focus-visible:border-default-500 focus:outline-0 focus-visible:ring-0 focus-visible:outline-none hover:file:border-default-300;
+        }
+    }
+
+    .form-textarea {
+        @apply px-3 py-2 text-body-color placeholder:text-default-400 block w-full rounded border text-sm outline-0 transition-all;
+        @apply hover:border-default-500 focus:border-default-500 focus-visible:border-default-500 focus:outline-0 focus-visible:ring-0 focus-visible:outline-none;
+        transition-property: color, box-shadow;
+    }
+
+    .form-select {
+        @apply bg-card border-default-300 text-body-color placeholder:text-body-color block h-9.25 w-full rounded border py-0 text-sm outline-0 transition-all;
+        @apply hover:border-default-500 focus:border-default-500 focus-visible:border-default-500 focus:outline-0 focus-visible:ring-0 focus-visible:outline-none;
+        @apply !pe-[2.31rem];
+        transition-property: color, box-shadow;
+
+        &[multiple] {
+            @apply !h-auto py-2;
+            padding-inline-end: 0 !important;
+            background-image: none;
+
+            option {
+                padding: 8px 10px;
+            }
+        }
+    }
+
+    .form-input-sm,
+    .form-select-sm {
+        @apply !h-7.5 !text-xs;
+    }
+
+    .form-input-lg,
+    .form-select-lg {
+        @apply !h-11.75 !text-base;
+    }
+
+    .form-radio,
+    .form-checkbox {
+        @apply size-4.5 rounded appearance-none bg-center bg-no-repeat;
+        @apply shrink-0 border border-default-300 bg-transparent ring-offset-white focus-visible:outline-none;
+        @apply focus-visible:ring-2 focus-visible:ring-inherit focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-90;
+        @apply aria-invalid:border-danger/60 aria-invalid:ring-danger/10;
+        @apply cursor-pointer checked:border-inherit focus:ring-0 focus:ring-offset-0;
+        @apply checked:bg-primary checked:border-transparent;
+
+        &:not([class*="size-"]) {
+            @apply text-lg;
+        }
+    }
+
+    .form-checkbox {
+        @apply rounded-sm;
+
+        &.form-checkbox-light {
+            @apply bg-light/90 border-light/90;
+            box-shadow: inset 0 1px 2px rgba(var(--color-dark), 0.05);
+        }
+
+        &[class*="rounded-full"] {
+            @apply rounded-full;
+        }
+    }
+
+    .form-checkbox-sm,
+    .form-radio-sm {
+        @apply text-lg;
+    }
+
+    .form-radio-lg {
+        @apply size-5.5;
+    }
+
+    .form-switch {
+        @apply bg-default-200 relative inline-flex shrink-0 cursor-pointer appearance-none checked:bg-none;
+        @apply focus-visible:ring-default-300 focus-visible:ring-offset-card focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden;
+        @apply disabled:cursor-not-allowed disabled:opacity-50;
+        @apply aria-invalid:border-danger/60 aria-invalid:ring-danger/10 aria-invalid:border;
+        @apply cursor-pointer border-0 focus:ring-0 focus:ring-offset-0;
+        @apply h-5 w-7.5 rounded-full;
+
+        &:before {
+            @apply pointer-events-none absolute start-0 top-1/2 block translate-x-1 -translate-y-1/2 rounded-full bg-white shadow-xs ring-0 transition-transform content-[""];
+            @apply size-3;
+        }
+
+        &:checked,
+        &[aria-checked="true"] {
+            @apply bg-primary;
+
+            &:before {
+                @apply translate-x-3.5;
+            }
+        }
+
+
+    }
+
+    .form-switch-sm {
+        @apply h-4.5 w-6.5;
+
+        &:before {
+            @apply size-2.5;
+        }
+
+        &:checked:before,
+        &[aria-checked="true"]:before {
+            @apply translate-x-3;
+        }
+
+
+    }
+
+    .form-switch-lg {
+        @apply h-5.5 w-8.5;
+
+        &:before {
+            @apply size-3.5;
+        }
+
+        &:checked:before,
+        &[aria-checked="true"]:before {
+            @apply translate-x-4;
+        }
+
+
+    }
+
+    .form-range {
+        @apply w-full cursor-pointer appearance-none bg-transparent focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 [&::-webkit-slider-thumb]:w-2.5;
+        @apply [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:-mt-0.5 [&::-webkit-slider-thumb]:h-2.5 [&::-webkit-slider-thumb]:appearance-none;
+        @apply [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-[0_0_0_4px_var(--color-primary)] [&::-webkit-slider-thumb]:transition-all;
+        @apply [&::-moz-range-thumb]:h-2.5 [&::-moz-range-thumb]:w-2.5 [&::-webkit-slider-thumb]:duration-150 [&::-webkit-slider-thumb]:ease-in-out;
+        @apply [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-primary [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:border-8;
+        @apply [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:transition-all [&::-moz-range-thumb]:duration-150 [&::-moz-range-thumb]:ease-in-out;
+        @apply [&::-webkit-slider-runnable-track]:bg-default-100 [&::-webkit-slider-runnable-track]:h-2 [&::-webkit-slider-runnable-track]:w-full;
+        @apply [&::-moz-range-track]:bg-default-100 [&::-moz-range-track]:h-2 [&::-moz-range-track]:w-full [&::-moz-range-track]:rounded-full [&::-webkit-slider-runnable-track]:rounded-full;
+    }
+
+    /* Input Groups */
+    .input-group {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+
+        >.form-input,
+        >.form-select,
+        >.form-textarea {
+            position: relative;
+            flex: 1 1 auto;
+            width: 1%;
+            min-width: 0;
+        }
+
+        .input-group-text {
+            @apply rounded bg-default-100 text-default-600 border border-default-300 px-3 flex items-center;
+        }
+
+        > :not(:last-child) {
+            @apply rounded-e-none border border-default-300;
+        }
+
+        > :not(:first-child) {
+            @apply rounded-s-none -ms-px;
+        }
+
+        >.btn {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hs-dropdown {
+            border-width: 0;
+        }
+
+        &[data-touchspin] {
+            @apply inline-flex items-center p-1 bg-card rounded border border-default-300 gap-2.5;
+
+            >.btn {
+                @apply w-7 h-7 p-0 border-0 rounded inline-flex items-center justify-center cursor-pointer leading-none;
+
+                &:focus {
+                    @apply outline-none shadow-none;
+                }
+            }
+
+            >.form-input {
+                @apply h-auto border-0 p-0 m-0 text-center text-sm bg-transparent shadow-none;
+
+                &:focus {
+                    @apply outline-none shadow-none;
+                }
+            }
+
+            [data-icon] {
+                @apply inline-flex items-center justify-center text-xs;
+            }
+
+            &:has(.form-input:disabled) {
+                @apply pointer-events-none bg-light/15;
+            }
+
+            &:has(.form-input[readonly]) {
+                @apply pointer-events-none;
+            }
+        }
+    }
+
+    .input-icon-group {
+        @apply relative flex items-center;
+
+        >.form-input,
+        >.form-select {
+            @apply w-full;
+        }
+
+        >.input-icon:first-child {
+            @apply pointer-events-none absolute start-3 top-1/2 -translate-y-1/2 text-lg text-default-400;
+        }
+
+        >.input-icon:first-child+.form-input,
+        >.input-icon:first-child+.form-select {
+            @apply !ps-10;
+        }
+
+        >.input-icon:last-child {
+            @apply pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 text-lg text-default-400;
+        }
+
+        >.form-input:not(:last-child),
+        >.form-select:not(:last-child) {
+            @apply pe-10;
+        }
+
+        >.form-select:not(:last-child) {
+            background-size: 4rem 1.5rem;
+        }
+    }
+
+    /* --- Modals --- */
+    .hs-overlay-animation-target {
+        @apply hs-overlay-open:scale-100 hs-overlay-open:opacity-100 scale-95 opacity-0 ease-in-out transition-all duration-200 sm:mx-auto;
+    }
+
+    .hs-overlay-backdrop {
+        @apply !bg-default-900/50;
+    }
+
+    .close-icon {
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M18 6L6 18M6 6l12 12'/%3E%3C/svg%3E");
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        background-color: currentColor;
+        mask-repeat: no-repeat;
+        mask-size: 100% 100%;
+    }
+
+    /* --- Navs --- */
+    .nav-tabs {
+        @apply -my-3.75 -me-3 flex h-full flex-wrap items-center gap-x-2;
+
+        .nav-link {
+            @apply px-5 py-3.75 text-body-color font-medium -mb-1 border-b border-transparent;
+        }
+    }
+
+    /* --- Pagination --- */
+    .pagination {
+        @apply inline-flex items-center space-x-1.5;
+
+        >.btn {
+            @apply border border-default-300 size-7.5 px-0;
+        }
+    }
+
+    .page-item {
+        .page-link {
+            @apply bg-transparent size-7.5 rounded border border-default-300 flex justify-center items-center;
+        }
+
+        &.active .page-link {
+            @apply bg-primary text-white border-primary;
+        }
+
+        &.disabled .page-link {
+            @apply opacity-60 pointer-events-none;
+        }
+    }
+
+    /* --- Tables --- */
+    .table-wrapper {
+        @apply relative w-full overflow-auto;
+        @apply overflow-x-auto;
+    }
+
+    .table {
+        @apply text-body-color w-full border-collapse align-bottom;
+        caption-side: bottom;
+
+        tr {
+            @apply border-light border-b;
+        }
+
+        caption {
+            @apply text-default-400 mt-4 text-sm;
+        }
+
+        thead {
+            @apply [&_tr]:border-b;
+
+            th {
+                @apply text-start text-body-color px-2.5 py-3 align-middle font-bold;
+            }
+        }
+
+        tbody {
+            @apply [&_tr:last-child]:border-0;
+
+            td {
+                @apply px-2.5 py-3 align-middle;
+            }
+        }
+
+        tfoot {
+            @apply bg-default-400/50 border-t font-medium last:[&>tr]:border-b-0;
+
+            th {
+                @apply text-default-700 h-10 px-2.5 align-middle;
+            }
+        }
+
+        th,
+        td {
+            &:first-child {
+                @apply ps-4.5;
+            }
+
+            &:last-child {
+                @apply pe-4.5;
+            }
+        }
+
+        &.table-bordered {
+            @apply border-light border;
+
+            & td,
+            & th {
+                @apply border-light border-e;
+
+                &:last-child {
+                    @apply border-e-0;
+                }
+            }
+        }
+
+        &.table-borderless tr {
+            @apply border-none;
+        }
+
+        &.table-striped tbody tr:where(:nth-child(odd)) {
+            @apply !bg-light/45;
+        }
+
+        &.table-hover tbody tr:hover {
+            @apply !bg-light/45;
+        }
+
+        &.table-sm {
+
+            thead th,
+            tbody td {
+                @apply p-2;
+            }
+        }
+
+        /* Table select interaction */
+        &:has(.form-checkbox:checked) tr:has(.form-checkbox:checked) {
+            @apply bg-warning/10;
+        }
+    }
+}
+
+/* === Utilities === */
+@utility shadow {
+    box-shadow: var(--shadow);
+}
+
+@utility shadow-sm {
+    box-shadow: var(--shadow-sm);
+}
+
+/* === Helpers === */
+.animate-grow {
+    opacity: 0;
+    animation: 0.75s linear infinite spinner-grow;
+}
+
+@keyframes spinner-grow {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.animate-strip {
+    animation: strip 1s linear infinite;
+}
+
+@keyframes strip {
+    0% {
+        background-position-x: 1rem;
+    }
+}
+
+.progress-striped {
+    background-image: linear-gradient(45deg, hsla(0, 0%, 100%, 0.15) 25%, transparent 0, transparent 50%, hsla(0, 0%, 100%, 0.15) 0, hsla(0, 0%, 100%, 0.15) 75%, transparent 0, transparent);
+    background-size: 1rem 1rem;
+}
+
+.animate-progress-stripes {
+    animation: progress-stripes 1s linear infinite;
+}
+
+@keyframes progress-stripes {
+    0% {
+        background-position: 1rem 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+/* === Print === */
+@media print {
+
+    aside.app-menu,
+    .app-header,
+    .footer {
+        @apply !hidden w-0;
+    }
+
+    .page-content,
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .card {
+        box-shadow: none;
+    }
 }
