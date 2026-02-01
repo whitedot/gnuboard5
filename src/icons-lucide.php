@@ -1,0 +1,369 @@
+<?php include 'layout/header.php'; ?>
+<?php include 'layout/sidebar.php'; ?>
+
+<div class="container-fluid">
+                    <div class="card">
+                        <div class="card-header block">
+                            <h4 class="card-title mb-1.25">개요 (Overview)</h4>
+                            <p class="text-default-400">Lucide는 웹 및 앱 개발을 위한 깨끗하고 확장 가능한 SVG 아이콘의 오픈 소스 라이브러리로, 쉬운 통합과
+                                맞춤 설정을 제공합니다.</p>
+                        </div>
+                        <!-- end card-header-->
+
+                        <div class="card-body">
+                            <h4 class="mb-2 text-sm">사용법 (Usage)</h4>
+                            <code>&lt;i class="iconify lucide--xxx"&gt;&lt;/i&gt;</code>
+
+                            <div class="mt-3 flex items-center gap-3">
+                                <i data-icon="lucide:camera" class="iconify lucide--camera text-2xl"></i>
+                                <i data-icon="lucide:heart" class="iconify lucide--heart text-2xl"></i>
+                                <i data-icon="lucide:star" class="iconify lucide--star text-2xl"></i>
+                                <i data-icon="lucide:check" class="iconify lucide--check text-2xl"></i>
+                                <i data-icon="lucide:bell" class="iconify lucide--bell text-2xl"></i>
+                                <i data-icon="lucide:cloud" class="iconify lucide--cloud text-2xl"></i>
+                                <i data-icon="lucide:user" class="iconify lucide--user text-2xl"></i>
+                            </div>
+                        </div>
+                        <!-- end card-body-->
+                        <div class="card-body border-default-300 border-t border-dashed">
+                            <h4 class="mb-2 text-sm">색상 (Colors)</h4>
+                            <code>&lt;i class="iconify lucide--xxx text-xx"&gt;&lt;/i&gt;</code>
+
+                            <div class="mt-3 flex items-center gap-3">
+                                <i data-icon="lucide:house" class="iconify lucide--house text-primary text-2xl"></i>
+                                <i data-icon="lucide:settings" class="iconify lucide--settings text-secondary text-2xl"></i>
+                                <i data-icon="lucide:calendar" class="iconify lucide--calendar text-success text-2xl"></i>
+                                <i data-icon="lucide:message-circle" class="iconify lucide--message-circle text-info text-2xl"></i>
+                                <i data-icon="lucide:flag" class="iconify lucide--flag text-warning text-2xl"></i>
+                                <i data-icon="lucide:folder" class="iconify lucide--folder text-danger text-2xl"></i>
+                                <i data-icon="lucide:globe" class="iconify lucide--globe text-light text-2xl"></i>
+                                <i data-icon="lucide:key" class="iconify lucide--key text-dark text-2xl"></i>
+                                <i data-icon="lucide:layers" class="iconify lucide--layers text-purple text-2xl"></i>
+                            </div>
+                        </div>
+
+                        <div class="card-body border-default-300 border-t border-dashed">
+                            <h4 class="mb-2 text-sm">채우기 색상 (Fill Colors)</h4>
+                            <code>&lt;i data-lucide="xxx" class="text-xx fill-xx"&gt;&lt;/i&gt;</code>
+                            <div class="mt-3 flex items-center gap-3">
+                                <i data-lucide="star" class="text-primary fill-primary/15 text-2xl"></i>
+                                <i data-lucide="user" class="text-secondary fill-secondary/15 text-2xl"></i>
+                                <i data-lucide="check-circle" class="text-success fill-success/15 text-2xl"></i>
+                                <i data-lucide="bell" class="text-info fill-info/15 text-2xl"></i>
+                                <i data-lucide="alert-triangle" class="text-warning fill-warning/15 text-2xl"></i>
+                                <i data-lucide="file-text" class="text-danger fill-danger/15 text-2xl"></i>
+                                <i data-lucide="airplay" class="text-light fill-light/15 text-2xl"></i>
+                                <i data-lucide="lock" class="text-dark fill-dark/15 text-2xl"></i>
+                                <i data-lucide="database" class="text-purple fill-purple/15 text-2xl"></i>
+                            </div>
+                        </div>
+
+                        <div class="card-body border-default-300 border-t border-dashed">
+                            <h4 class="mb-2 text-sm">크기 (Sizes)</h4>
+                            <code>&lt;i class="iconify lucide--xxxx text-xx"&gt;&lt;/i&gt;</code>
+
+                            <div class="mt-3 flex items-center gap-3">
+                                <i data-icon="lucide:phone" class="iconify lucide--phone size-8.75"></i>
+                                <i data-icon="lucide:badge-dollar-sign" class="iconify lucide--badge-dollar-sign size-7.5"></i>
+                                <i data-icon="lucide:monitor" class="iconify lucide--monitor size-6"></i>
+                                <i data-icon="lucide:tablet" class="iconify lucide--tablet size-4.25"></i>
+                                <i data-icon="lucide:gamepad-2" class="iconify lucide--gamepad-2 size-3.5"></i>
+                                <i data-icon="lucide:watch" class="iconify lucide--watch size-2.75"></i>
+                            </div>
+
+                            <div class="mt-3 flex items-center gap-3">
+                                <i data-icon="lucide:watch" class="iconify lucide--watch size-3"></i>
+                                <i data-icon="lucide:watch" class="iconify lucide--watch size-3.25"></i>
+                                <i data-icon="lucide:watch" class="iconify lucide--watch size-4"></i>
+                                <i data-icon="lucide:watch" class="iconify lucide--watch size-4.5"></i>
+                                <i data-icon="lucide:watch" class="iconify lucide--watch size-5"></i>
+                                <i data-icon="lucide:watch" class="iconify lucide--watch size-6"></i>
+                                <i data-icon="lucide:watch" class="iconify lucide--watch size-8"></i>
+                                <i data-icon="lucide:watch" class="iconify lucide--watch size-9"></i>
+                                <i data-icon="lucide:watch" class="iconify lucide--watch size-10.5"></i>
+                                <i data-icon="lucide:watch" class="iconify lucide--watch size-15"></i>
+                            </div>
+                        </div>
+                        <!-- end card-body-->
+
+                        <div class="card-body border-default-300 border-t border-dashed">
+                            <h4 class="mt-0 mb-3">아이콘 (Icons)</h4>
+
+                            <div class="items-center flex flex-wrap gap-3 text-center">
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:phone" class="iconify lucide--phone text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">전화 (Phone)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:badge-percent" class="iconify lucide--badge-percent text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">광고 2 (Ad 2)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:headphones" class="iconify lucide--headphones text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">헤드폰
+                                        (Headphones)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:camera" class="iconify lucide--camera text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">카메라 (Camera)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:watch" class="iconify lucide--watch text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">시계 (Watch)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:mic" class="iconify lucide--mic text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">마이크
+                                        (Microphone)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:headset" class="iconify lucide--headset text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">헤드셋 (Headset)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:tablet" class="iconify lucide--tablet text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">태블릿 (Tablet)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:gamepad-2" class="iconify lucide--gamepad-2 text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">게임패드 (Gamepad)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:printer" class="iconify lucide--printer text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">프린터 (Printer)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:speaker" class="iconify lucide--speaker text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">스피커 (Speaker)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:database" class="iconify lucide--database text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">데이터베이스
+                                        (Database)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:cloud" class="iconify lucide--cloud text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">클라우드 (Cloud)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:wifi" class="iconify lucide--wifi text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">와이파이 (Wi-Fi)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:bluetooth" class="iconify lucide--bluetooth text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">블루투스
+                                        (Bluetooth)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:usb" class="iconify lucide--usb text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">USB</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:folder" class="iconify lucide--folder text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">폴더 (Folder)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:lock" class="iconify lucide--lock text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">잠금 (Lock)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:key" class="iconify lucide--key text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">열쇠 (Key)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:shield" class="iconify lucide--shield text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">방패 (Shield)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:paperclip" class="iconify lucide--paperclip text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">클립 (Paperclip)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:bell" class="iconify lucide--bell text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">종 (Bell)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:search" class="iconify lucide--search text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">검색 (Search)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:briefcase" class="iconify lucide--briefcase text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">서류가방
+                                        (Briefcase)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:shopping-cart" class="iconify lucide--shopping-cart text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">장바구니 (Cart)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:file" class="iconify lucide--file text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">파일 (File)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:book" class="iconify lucide--book text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">책 (Book)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:mail" class="iconify lucide--mail text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">메일 (Mail)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:user" class="iconify lucide--user text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">사용자 (User)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:circle-user" class="iconify lucide--circle-user text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">사용자 원형 (User
+                                        Circle)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:phone" class="iconify lucide--phone text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">전화 걸기 (Phone
+                                        Call)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:music" class="iconify lucide--music text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">음악 (Music)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:film" class="iconify lucide--film text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">영화 (Movie)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:upload" class="iconify lucide--upload text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">업로드 (Upload)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:cloud-upload" class="iconify lucide--cloud-upload text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">클라우드 업로드 (Cloud
+                                        Upload)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:share" class="iconify lucide--share text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">상단 공유 (Share)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:arrow-right" class="iconify lucide--arrow-right text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">오른쪽 화살표 (Arrow
+                                        Right)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:arrow-left" class="iconify lucide--arrow-left text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">왼쪽 화살표 (Arrow
+                                        Left)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:arrow-up" class="iconify lucide--arrow-up text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">위쪽 화살표 (Arrow
+                                        Up)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:arrow-down" class="iconify lucide--arrow-down text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">아래쪽 화살표 (Arrow
+                                        Down)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:search" class="iconify lucide--search text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">검색 (Search)</span>
+                                </div>
+
+                                <div
+                                    class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i data-icon="lucide:refresh-ccw" class="iconify lucide--refresh-ccw text-xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">새로고침 (Refresh)</span>
+                                </div>
+                            </div>
+                            <!-- end display-->
+
+                            <div class="mt-3 text-center">
+                                <a href="https://tabler.io/icons" target="_blank"
+                                    class="btn bg-danger text-white hover:bg-danger-hover">모든 아이콘 보기</a>
+                            </div>
+                        </div>
+                        <!-- end card-body-->
+                    </div>
+                    <!-- end card-->
+                </div>
+
+<?php include 'layout/footer.php'; ?>

@@ -1,0 +1,536 @@
+<?php include 'layout/header.php'; ?>
+<?php include 'layout/sidebar.php'; ?>
+
+<div class="container-fluid">
+                    <div class="grid grid-cols-1 gap-base">
+                        <div class="card">
+                            <div class="card-header block">
+                                <h4 class="card-title mb-1.25">Choices.Js</h4>
+                                <p class="text-default-400">Choices.js는 가볍고 설정 가능한 셀렉트 박스/텍스트 입력 플러그인입니다. Select2 및
+                                    Selectize와 유사하지만 jQuery 의존성이 없습니다.
+                                </p>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-base">
+                                    <div>
+                                        <h5 class="mb-2 text-sm">단일 선택 입력: 기본 (Single Select Input: Default)</h5>
+                                        <p class="text-default-400">
+                                            기본 단일 선택을 설정하려면
+                                            <code>data-choices</code>
+                                            속성을 설정하세요.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <select class="form-input" data-choices name="choices-single-default"
+                                            id="choices-single-default">
+                                            <option value="">이곳은 플레이스홀더입니다</option>
+                                            <option value="Choice 1">옵션 1</option>
+                                            <option value="Choice 2">옵션 2</option>
+                                            <option value="Choice 3">옵션 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <hr class="border-default-300 my-7.5 border-dashed" />
+
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-base">
+                                    <div>
+                                        <h5 class="mb-2 text-sm">단일 선택 입력: 옵션 그룹 (Single Select Input: Option Groups)
+                                        </h5>
+                                        <p class="text-default-400">
+                                            옵션 그룹을 설정하려면
+                                            <code>data-choices data-choices-groups</code>
+                                            속성을 설정하세요.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <select class="form-input" id="choices-single-groups" data-choices
+                                            data-choices-groups data-placeholder="도시 선택" name="choices-single-groups">
+                                            <option value="">도시를 선택하세요</option>
+                                            <optgroup label="영국 (UK)">
+                                                <option value="London">런던 (London)</option>
+                                                <option value="Manchester">맨체스터 (Manchester)</option>
+                                                <option value="Liverpool">리버풀 (Liverpool)</option>
+                                            </optgroup>
+                                            <optgroup label="프랑스 (FR)">
+                                                <option value="Paris">파리 (Paris)</option>
+                                                <option value="Lyon">리옹 (Lyon)</option>
+                                                <option value="Marseille">마르세유 (Marseille)</option>
+                                            </optgroup>
+                                            <optgroup label="독일 (DE)" disabled>
+                                                <option value="Hamburg">함부르크 (Hamburg)</option>
+                                                <option value="Munich">뮌헨 (Munich)</option>
+                                                <option value="Berlin">베를린 (Berlin)</option>
+                                            </optgroup>
+                                            <optgroup label="미국 (US)">
+                                                <option value="New York">뉴욕 (New York)</option>
+                                                <option value="Washington" disabled>워싱턴 (Washington)</option>
+                                                <option value="Michigan">미시간 (Michigan)</option>
+                                            </optgroup>
+                                            <optgroup label="스페인 (SP)">
+                                                <option value="Madrid">마드리드 (Madrid)</option>
+                                                <option value="Barcelona">바르셀로나 (Barcelona)</option>
+                                                <option value="Malaga">말라가 (Malaga)</option>
+                                            </optgroup>
+                                            <optgroup label="캐나다 (CA)">
+                                                <option value="Montreal">몬트리올 (Montreal)</option>
+                                                <option value="Toronto">토론토 (Toronto)</option>
+                                                <option value="Vancouver">밴쿠버 (Vancouver)</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <hr class="border-default-300 my-7.5 border-dashed" />
+
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-base">
+                                    <div>
+                                        <h5 class="mb-2 text-sm">단일 선택 입력: 검색 없음 (Single Select Input: No Search)</h5>
+                                        <p class="text-default-400">
+                                            검색 기능을 비활성화하려면
+                                            <code>data-choices data-choices-search-false data-choices-removeItem</code>
+                                            속성을 설정하세요.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <select class="form-input" id="choices-single-no-search"
+                                            name="choices-single-no-search" data-choices data-choices-search-false
+                                            data-choices-removeItem>
+                                            <option value="Zero">0 (Zero)</option>
+                                            <option value="One">1 (One)</option>
+                                            <option value="Two">2 (Two)</option>
+                                            <option value="Three">3 (Three)</option>
+                                            <option value="Four">4 (Four)</option>
+                                            <option value="Five">5 (Five)</option>
+                                            <option value="Six">6 (Six)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <hr class="border-default-300 my-7.5 border-dashed" />
+
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-base">
+                                    <div>
+                                        <h5 class="mb-2 text-sm">단일 선택 입력: 정렬 없음 (Single Select Input: No Sorting)</h5>
+                                        <p class="text-default-400">
+                                            정렬 기능을 비활성화하려면
+                                            <code>data-choices data-choices-sorting-false</code>
+                                            속성을 설정하세요.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <select class="form-input" id="choices-single-no-sorting"
+                                            name="choices-single-no-sorting" data-choices data-choices-sorting-false>
+                                            <option value="Madrid">마드리드 (Madrid)</option>
+                                            <option value="Toronto">토론토 (Toronto)</option>
+                                            <option value="Vancouver">밴쿠버 (Vancouver)</option>
+                                            <option value="London">런던 (London)</option>
+                                            <option value="Manchester">맨체스터 (Manchester)</option>
+                                            <option value="Liverpool">리버풀 (Liverpool)</option>
+                                            <option value="Paris">파리 (Paris)</option>
+                                            <option value="Malaga">말라가 (Malaga)</option>
+                                            <option value="Washington" disabled>워싱턴 (Washington)</option>
+                                            <option value="Lyon">리옹 (Lyon)</option>
+                                            <option value="Marseille">마르세유 (Marseille)</option>
+                                            <option value="Hamburg">함부르크 (Hamburg)</option>
+                                            <option value="Munich">뮌헨 (Munich)</option>
+                                            <option value="Barcelona">바르셀로나 (Barcelona)</option>
+                                            <option value="Berlin">베를린 (Berlin)</option>
+                                            <option value="Montreal">몬트리올 (Montreal)</option>
+                                            <option value="New York">뉴욕 (New York)</option>
+                                            <option value="Michigan">미시간 (Michigan)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <hr class="border-default-300 my-7.5 border-dashed" />
+
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-base">
+                                    <div>
+                                        <h5 class="mb-2 text-sm">다중 선택 입력: 기본 (Multiple Select Input: Default)</h5>
+                                        <p class="text-default-400">
+                                            다중 선택을 활성화하려면
+                                            <code>data-choices multiple</code>
+                                            속성을 설정하세요.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <select class="form-input" id="choices-multiple-default" data-choices
+                                            name="choices-multiple-default" multiple>
+                                            <option value="Choice 1" selected>옵션 1</option>
+                                            <option value="Choice 2">옵션 2</option>
+                                            <option value="Choice 3">옵션 3</option>
+                                            <option value="Choice 4" disabled>옵션 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <hr class="border-default-300 my-7.5 border-dashed" />
+
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-base">
+                                    <div>
+                                        <h5 class="mb-2 text-sm">다중 선택 입력: 삭제 버튼 포함 (Multiple Select Input: With Remove
+                                            Button)</h5>
+                                        <p class="text-default-400">
+                                            삭제 버튼을 포함하려면
+                                            <code>data-choices data-choices-removeItem multiple</code>
+                                            속성을 설정하세요.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <select class="form-input" id="choices-multiple-remove-button" data-choices
+                                            data-choices-removeItem name="choices-multiple-remove-button" multiple>
+                                            <option value="Choice 1" selected>옵션 1</option>
+                                            <option value="Choice 2">옵션 2</option>
+                                            <option value="Choice 3">옵션 3</option>
+                                            <option value="Choice 4">옵션 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <hr class="border-default-300 my-7.5 border-dashed" />
+
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-base">
+                                    <div>
+                                        <h5 class="mb-2 text-sm">다중 선택 입력: 옵션 그룹 (Multiple Select Input: Option Groups)
+                                        </h5>
+                                        <p class="text-default-400">
+                                            옵션 그룹이 포함된 다중 선택을 설정하려면
+                                            <code>data-choices data-choices-multiple-groups="true" multiple</code>
+                                            속성을 설정하세요.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <select class="form-input" id="choices-multiple-groups"
+                                            name="choices-multiple-groups" data-choices
+                                            data-choices-multiple-groups="true" multiple>
+                                            <option value="">도시를 선택하세요</option>
+                                            <optgroup label="영국 (UK)">
+                                                <option value="London">런던 (London)</option>
+                                                <option value="Manchester">맨체스터 (Manchester)</option>
+                                                <option value="Liverpool">리버풀 (Liverpool)</option>
+                                            </optgroup>
+                                            <optgroup label="프랑스 (FR)">
+                                                <option value="Paris">파리 (Paris)</option>
+                                                <option value="Lyon">리옹 (Lyon)</option>
+                                                <option value="Marseille">마르세유 (Marseille)</option>
+                                            </optgroup>
+                                            <optgroup label="독일 (DE)" disabled>
+                                                <option value="Hamburg">함부르크 (Hamburg)</option>
+                                                <option value="Munich">뮌헨 (Munich)</option>
+                                                <option value="Berlin">베를린 (Berlin)</option>
+                                            </optgroup>
+                                            <optgroup label="미국 (US)">
+                                                <option value="New York">뉴욕 (New York)</option>
+                                                <option value="Washington" disabled>워싱턴 (Washington)</option>
+                                                <option value="Michigan">미시간 (Michigan)</option>
+                                            </optgroup>
+                                            <optgroup label="스페인 (SP)">
+                                                <option value="Madrid">마드리드 (Madrid)</option>
+                                                <option value="Barcelona">바르셀로나 (Barcelona)</option>
+                                                <option value="Malaga">말라가 (Malaga)</option>
+                                            </optgroup>
+                                            <optgroup label="캐나다 (CA)">
+                                                <option value="Montreal">몬트리올 (Montreal)</option>
+                                                <option value="Toronto">토론토 (Toronto)</option>
+                                                <option value="Vancouver">밴쿠버 (Vancouver)</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <hr class="border-default-300 my-7.5 border-dashed" />
+
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-base">
+                                    <div>
+                                        <h5 class="mb-2 text-sm">텍스트 입력: 삭제 버튼과 함께 값 제한 (Text Input: Limit Values with
+                                            Remove Button)</h5>
+                                        <p class="text-default-400">
+                                            입력 값의 개수를 제한하려면
+                                            <code>data-choices data-choices-limit="3" data-choices-removeItem</code> 속성을
+                                            설정하세요.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <input class="form-input" id="choices-text-remove-button" data-choices
+                                            data-choices-limit="3" data-choices-removeItem type="text" value="작업-1" />
+                                    </div>
+                                </div>
+
+                                <hr class="border-default-300 my-7.5 border-dashed" />
+
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-base">
+                                    <div>
+                                        <h5 class="mb-2 text-sm">텍스트 입력: 고유 값만 허용 (Text Input: Unique Values Only)</h5>
+                                        <p class="text-default-400">
+                                            중복되지 않는 고유 값만 허용하려면
+                                            <code>data-choices data-choices-text-unique-true</code>
+                                            속성을 설정하세요.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <input class="form-input" id="choices-text-unique-values" data-choices
+                                            data-choices-text-unique-true type="text" value="프로젝트-A, 프로젝트-B" />
+                                    </div>
+                                </div>
+
+                                <hr class="border-default-300 my-7.5 border-dashed" />
+
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-base">
+                                    <div>
+                                        <h5 class="mb-2 text-sm">텍스트 입력: 비활성화 (Text Input: Disabled)</h5>
+                                        <p class="text-default-400">
+                                            입력을 비활성화하려면
+                                            <code>data-choices data-choices-text-disabled-true</code>
+                                            속성을 설정하세요.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <input class="form-input" id="choices-text-disabled" data-choices
+                                            data-choices-text-disabled-true type="text"
+                                            value="josh@joshuajohnson.co.uk, joe@bloggs.co.uk" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card-body-->
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header block">
+                                <h4 class="card-title mb-1.5">Select2</h4>
+                                <p class="text-default-400 mb-4">Select2는 표준 셀렉트 박스를 대체하는 고급 플러그인입니다. 검색, 원격 데이터 소스 및
+                                    결과의 무한 스크롤을 지원합니다.</p>
+
+                                <div class="bg-warning/15 text-warning rounded px-4 py-3" role="alert">
+                                    <strong>참고:</strong>
+                                    이것은 jQuery 기반 플러그인이므로 작동하려면 jQuery를 포함해야 합니다.
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-base">
+                                    <div>
+                                        <h5 class="mb-2 block text-sm font-semibold">버튼이 있는 단일 선택 입력 (Single Select
+                                            Input with Button)
+                                        </h5>
+                                        <p class="text-default-500">Tailwind + Preline을 사용하여 버튼이 추가된 선택 드롭다운 예제입니다.</p>
+                                    </div>
+                                    <div>
+                                        <div class="flex gap-2">
+                                            <select id="select2BasicExample" class="form-select select2"
+                                                data-toggle="select2">
+                                                <option value="AK">알래스카 (Alaska)</option>
+                                                <option value="HI">하와이 (Hawaii)</option>
+                                                <option value="CA">캘리포니아 (California)</option>
+                                                <option value="NV">네바다 (Nevada)</option>
+                                                <option value="OR">오레곤 (Oregon)</option>
+                                                <option value="WA">워싱턴 (Washington)</option>
+                                                <option value="AZ">애리조나 (Arizona)</option>
+                                                <option value="CO">콜로라도 (Colorado)</option>
+                                                <option value="ID">아이다호 (Idaho)</option>
+                                                <option value="MT">몬태나 (Montana)</option>
+                                                <option value="NE">네브래스카 (Nebraska)</option>
+                                                <option value="NM">뉴멕시코 (New Mexico)</option>
+                                                <option value="ND">노스다코타 (North Dakota)</option>
+                                                <option value="UT">유타 (Utah)</option>
+                                                <option value="WY">와이오밍 (Wyoming)</option>
+                                                <option value="AL">알라바마 (Alabama)</option>
+                                                <option value="AR">아칸소 (Arkansas)</option>
+                                                <option value="IL">일리노이 (Illinois)</option>
+                                                <option value="IA">아이오와 (Iowa)</option>
+                                                <option value="KS">캔자스 (Kansas)</option>
+                                                <option value="KY">켄터키 (Kentucky)</option>
+                                                <option value="LA">루이지애나 (Louisiana)</option>
+                                                <option value="MN">미네소타 (Minnesota)</option>
+                                                <option value="MS">미시시피 (Mississippi)</option>
+                                                <option value="MO">미주리 (Missouri)</option>
+                                                <option value="OK">오클라호마 (Oklahoma)</option>
+                                                <option value="SD">사우스다코타 (South Dakota)</option>
+                                                <option value="TX">텍사스 (Texas)</option>
+                                                <option value="TN">테네시 (Tennessee)</option>
+                                                <option value="WI">위스콘신 (Wisconsin)</option>
+                                                <option value="CT">커네티컷 (Connecticut)</option>
+                                                <option value="DE">델라웨어 (Delaware)</option>
+                                                <option value="FL">플로리다 (Florida)</option>
+                                                <option value="GA">조지아 (Georgia)</option>
+                                                <option value="IN">인디애나 (Indiana)</option>
+                                                <option value="ME">메인 (Maine)</option>
+                                                <option value="MD">메릴랜드 (Maryland)</option>
+                                                <option value="MA">매사추세츠 (Massachusetts)</option>
+                                                <option value="MI">미시간 (Michigan)</option>
+                                                <option value="NH">뉴햄프셔 (New Hampshire)</option>
+                                                <option value="NJ">뉴저지 (New Jersey)</option>
+                                                <option value="NY">뉴욕 (New York)</option>
+                                                <option value="NC">노스캐롤라이나 (North Carolina)</option>
+                                                <option value="OH">오하이오 (Ohio)</option>
+                                                <option value="PA">펜실베이니아 (Pennsylvania)</option>
+                                                <option value="RI">로드아일랜드 (Rhode Island)</option>
+                                                <option value="SC">사우스캐롤라이나 (South Carolina)</option>
+                                                <option value="VT">버몬트 (Vermont)</option>
+                                                <option value="VA">버지니아 (Virginia)</option>
+                                                <option value="WV">웨스트버지니아 (West Virginia)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr class="border-default-300 my-7.5 border-dashed" />
+
+                                <!-- Single Select Input with Groups -->
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-base">
+                                    <div>
+                                        <h5 class="mb-2 block text-sm font-semibold">그룹이 있는 단일 선택 입력 (Single Select
+                                            Input with Groups)
+                                        </h5>
+                                        <p class="text-default-500">Select2는 더 나은 구성을 위해 optgroup을 지원하는 일반 셀렉트 박스를 사용할 수
+                                            있습니다.</p>
+                                    </div>
+                                    <div>
+                                        <select class="form-select select2" data-toggle="select2">
+                                            <option>선택하세요</option>
+                                            <optgroup label="알래스카/하와이 시간대 (Alaskan/Hawaiian Time Zone)">
+                                                <option value="AK">알래스카 (Alaska)</option>
+                                                <option value="HI">하와이 (Hawaii)</option>
+                                            </optgroup>
+                                            <optgroup label="태평양 표준시 (Pacific Time Zone)">
+                                                <option value="CA">캘리포니아 (California)</option>
+                                                <option value="NV">네바다 (Nevada)</option>
+                                                <option value="OR">오레곤 (Oregon)</option>
+                                                <option value="WA">워싱턴 (Washington)</option>
+                                            </optgroup>
+                                            <optgroup label="산악 표준시 (Mountain Time Zone)">
+                                                <option value="AZ">애리조나 (Arizona)</option>
+                                                <option value="CO">콜로라도 (Colorado)</option>
+                                                <option value="ID">아이다호 (Idaho)</option>
+                                                <option value="MT">몬태나 (Montana)</option>
+                                                <option value="NE">네브래스카 (Nebraska)</option>
+                                                <option value="NM">뉴멕시코 (New Mexico)</option>
+                                                <option value="ND">노스다코타 (North Dakota)</option>
+                                                <option value="UT">유타 (Utah)</option>
+                                                <option value="WY">와이오밍 (Wyoming)</option>
+                                            </optgroup>
+                                            <optgroup label="중부 표준시 (Central Time Zone)">
+                                                <option value="AL">알라바마 (Alabama)</option>
+                                                <option value="AR">아칸소 (Arkansas)</option>
+                                                <option value="IL">일리노이 (Illinois)</option>
+                                                <option value="IA">아이오와 (Iowa)</option>
+                                                <option value="KS">캔자스 (Kansas)</option>
+                                                <option value="KY">켄터키 (Kentucky)</option>
+                                                <option value="LA">루이지애나 (Louisiana)</option>
+                                                <option value="MN">미네소타 (Minnesota)</option>
+                                                <option value="MS">미시시피 (Mississippi)</option>
+                                                <option value="MO">미주리 (Missouri)</option>
+                                                <option value="OK">오클라호마 (Oklahoma)</option>
+                                                <option value="SD">사우스다코타 (South Dakota)</option>
+                                                <option value="TX">텍사스 (Texas)</option>
+                                                <option value="TN">테네시 (Tennessee)</option>
+                                                <option value="WI">위스콘신 (Wisconsin)</option>
+                                            </optgroup>
+                                            <optgroup label="동부 표준시 (Eastern Time Zone)">
+                                                <option value="CT">커네티컷 (Connecticut)</option>
+                                                <option value="DE">델라웨어 (Delaware)</option>
+                                                <option value="FL">플로리다 (Florida)</option>
+                                                <option value="GA">조지아 (Georgia)</option>
+                                                <option value="IN">인디애나 (Indiana)</option>
+                                                <option value="ME">메인 (Maine)</option>
+                                                <option value="MD">메릴랜드 (Maryland)</option>
+                                                <option value="MA">매사추세츠 (Massachusetts)</option>
+                                                <option value="MI">미시간 (Michigan)</option>
+                                                <option value="NH">뉴햄프셔 (New Hampshire)</option>
+                                                <option value="NJ">뉴저지 (New Jersey)</option>
+                                                <option value="NY">뉴욕 (New York)</option>
+                                                <option value="NC">노스캐롤라이나 (North Carolina)</option>
+                                                <option value="OH">오하이오 (Ohio)</option>
+                                                <option value="PA">펜실베이니아 (Pennsylvania)</option>
+                                                <option value="RI">로드아일랜드 (Rhode Island)</option>
+                                                <option value="SC">사우스캐롤라이나 (South Carolina)</option>
+                                                <option value="VT">버몬트 (Vermont)</option>
+                                                <option value="VA">버지니아 (Virginia)</option>
+                                                <option value="WV">웨스트버지니아 (West Virginia)</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <hr class="border-default-300 my-7.5 border-t border-dashed" />
+
+                                <!-- Multiple Select Input -->
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-base">
+                                    <div>
+                                        <h5 class="mb-2 block text-sm font-semibold">다중 선택 입력 (Multiple Select Input)
+                                        </h5>
+                                        <p class="text-default-500">그룹화된 옵션과 플레이스홀더를 지원하는 Preline 다중 선택 예제입니다.</p>
+                                    </div>
+                                    <div>
+                                        <select class="select2 form-select select2-multiple" data-toggle="select2"
+                                            multiple="multiple" data-placeholder="선택하세요 ...">
+                                            <optgroup label="알래스카/하와이 시간대 (Alaskan/Hawaiian Time Zone)">
+                                                <option value="AK">알래스카 (Alaska)</option>
+                                                <option value="HI">하와이 (Hawaii)</option>
+                                            </optgroup>
+                                            <optgroup label="태평양 표준시 (Pacific Time Zone)">
+                                                <option value="CA">캘리포니아 (California)</option>
+                                                <option value="NV">네바다 (Nevada)</option>
+                                                <option value="OR">오레곤 (Oregon)</option>
+                                                <option value="WA">워싱턴 (Washington)</option>
+                                            </optgroup>
+                                            <optgroup label="산악 표준시 (Mountain Time Zone)">
+                                                <option value="AZ">애리조나 (Arizona)</option>
+                                                <option value="CO">콜로라도 (Colorado)</option>
+                                                <option value="ID">아이다호 (Idaho)</option>
+                                                <option value="MT">몬태나 (Montana)</option>
+                                                <option value="NE">네브래스카 (Nebraska)</option>
+                                                <option value="NM">뉴멕시코 (New Mexico)</option>
+                                                <option value="ND">노스다코타 (North Dakota)</option>
+                                                <option value="UT">유타 (Utah)</option>
+                                                <option value="WY">와이오밍 (Wyoming)</option>
+                                            </optgroup>
+                                            <optgroup label="중부 표준시 (Central Time Zone)">
+                                                <option value="AL">알라바마 (Alabama)</option>
+                                                <option value="AR">아칸소 (Arkansas)</option>
+                                                <option value="IL">일리노이 (Illinois)</option>
+                                                <option value="IA">아이오와 (Iowa)</option>
+                                                <option value="KS">캔자스 (Kansas)</option>
+                                                <option value="KY">켄터키 (Kentucky)</option>
+                                                <option value="LA">루이지애나 (Louisiana)</option>
+                                                <option value="MN">미네소타 (Minnesota)</option>
+                                                <option value="MS">미시시피 (Mississippi)</option>
+                                                <option value="MO">미주리 (Missouri)</option>
+                                                <option value="OK">오클라호마 (Oklahoma)</option>
+                                                <option value="SD">사우스다코타 (South Dakota)</option>
+                                                <option value="TX">텍사스 (Texas)</option>
+                                                <option value="TN">테네시 (Tennessee)</option>
+                                                <option value="WI">위스콘신 (Wisconsin)</option>
+                                            </optgroup>
+                                            <optgroup label="동부 표준시 (Eastern Time Zone)">
+                                                <option value="CT">커네티컷 (Connecticut)</option>
+                                                <option value="DE">델라웨어 (Delaware)</option>
+                                                <option value="FL">플로리다 (Florida)</option>
+                                                <option value="GA">조지아 (Georgia)</option>
+                                                <option value="IN">인디애나 (Indiana)</option>
+                                                <option value="ME">메인 (Maine)</option>
+                                                <option value="MD">메릴랜드 (Maryland)</option>
+                                                <option value="MA">매사추세츠 (Massachusetts)</option>
+                                                <option value="MI">미시간 (Michigan)</option>
+                                                <option value="NH">뉴햄프셔 (New Hampshire)</option>
+                                                <option value="NJ">뉴저지 (New Jersey)</option>
+                                                <option value="NY">뉴욕 (New York)</option>
+                                                <option value="NC">노스캐롤라이나 (North Carolina)</option>
+                                                <option value="OH">오하이오 (Ohio)</option>
+                                                <option value="PA">펜실베이니아 (Pennsylvania)</option>
+                                                <option value="RI">로드아일랜드 (Rhode Island)</option>
+                                                <option value="SC">사우스캐롤라이나 (South Carolina)</option>
+                                                <option value="VT">버몬트 (Vermont)</option>
+                                                <option value="VA">버지니아 (Virginia)</option>
+                                                <option value="WV">웨스트버지니아 (West Virginia)</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<?php include 'layout/footer.php'; ?>

@@ -1,0 +1,117 @@
+<?php include 'layout/header.php'; ?>
+<?php include 'layout/sidebar.php'; ?>
+
+<div class="container-fluid">
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-base">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">기본</h4>
+                            </div>
+
+                            <div class="card-body">
+                                <nav class="py-2.5">
+                                    <ol class="flex items-center whitespace-nowrap">
+                                        <li class="text-default-400 inline-flex items-center truncate font-medium"
+                                            aria-current="page">홈</li>
+                                    </ol>
+                                </nav>
+
+                                <nav class="py-2.5">
+                                    <ol class="flex items-center whitespace-nowrap">
+                                        <li class="inline-flex items-center">
+                                            <a class="text-default-600 hover:text-primary flex items-center font-medium"
+                                                href="#">홈</a>
+                                            <i
+                                                class="iconify tabler--chevron-right text-default-400 m-0.75 text-base pe-1"></i>
+                                        </li>
+
+                                        <li class="text-default-400 inline-flex items-center truncate font-medium"
+                                            aria-current="page">라이브러리</li>
+                                    </ol>
+                                </nav>
+
+                                <nav class="py-2.5">
+                                    <ol class="flex items-center whitespace-nowrap">
+                                        <li class="inline-flex items-center">
+                                            <a class="text-default-600 hover:text-primary flex items-center font-medium"
+                                                href="#">홈</a>
+                                            <i
+                                                class="iconify tabler--chevron-right text-default-400 m-0.75 text-base pe-1"></i>
+                                        </li>
+
+                                        <li class="inline-flex items-center">
+                                            <a class="text-default-600 hover:text-primary flex items-center font-medium"
+                                                href="#">라이브러리</a>
+                                            <i
+                                                class="iconify tabler--chevron-right text-default-400 m-0.75 text-base pe-1"></i>
+                                        </li>
+
+                                        <li class="text-default-400 inline-flex items-center truncate font-medium"
+                                            aria-current="page">데이터</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                            <!-- end card-body-->
+                        </div>
+                        <!-- end card-->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">아이콘 포함</h4>
+                            </div>
+
+                            <div class="card-body">
+                                <nav class="bg-light/50 p-2.5 mb-2.5">
+                                    <ol class="flex items-center whitespace-nowrap">
+                                        <li class="text-default-400 inline-flex items-center truncate font-medium"
+                                            aria-current="page">
+                                            <i data-icon="tabler:smart-home" class="iconify tabler--smart-home me-2 text-sm"></i>
+                                            홈
+                                        </li>
+                                    </ol>
+                                </nav>
+
+                                <nav class="bg-light/50 p-2.5 mb-2.5">
+                                    <ol class="flex items-center whitespace-nowrap">
+                                        <li class="inline-flex items-center">
+                                            <a class="hover:text-primary flex items-center font-medium" href="#"> <i
+                                                    class="iconify tabler--smart-home me-1.25"></i> 홈 </a>
+                                            <i
+                                                class="iconify tabler--chevron-right text-default-400 m-0.75 text-base pe-1"></i>
+                                        </li>
+
+                                        <li class="text-default-400 inline-flex items-center truncate font-medium"
+                                            aria-current="page">라이브러리</li>
+                                    </ol>
+                                </nav>
+
+                                <nav class="bg-light/50 p-2.5">
+                                    <ol class="flex items-center whitespace-nowrap">
+                                        <li class="inline-flex items-center">
+                                            <a class="hover:text-primary flex items-center font-medium" href="#">
+                                                <i data-icon="tabler:smart-home" class="iconify tabler--smart-home me-1 text-sm"></i>
+                                                홈
+                                            </a>
+                                            <i
+                                                class="iconify tabler--chevron-right text-default-400 m-0.75 text-base pe-1"></i>
+                                        </li>
+
+                                        <li class="inline-flex items-center">
+                                            <a class="hover:text-primary flex items-center font-medium"
+                                                href="#">라이브러리</a>
+                                            <i
+                                                class="iconify tabler--chevron-right text-default-400 m-0.75 text-base pe-1"></i>
+                                        </li>
+
+                                        <li class="text-default-400 inline-flex items-center truncate font-medium"
+                                            aria-current="page">데이터</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                            <!-- end card-body-->
+                        </div>
+                        <!-- end card-->
+                    </div>
+                </div>
+
+<?php include 'layout/footer.php'; ?>

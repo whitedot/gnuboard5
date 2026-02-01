@@ -1,0 +1,72 @@
+<?php include 'layout/header.php'; ?>
+<?php include 'layout/sidebar.php'; ?>
+
+<div class="container-fluid">
+                    <div class="grid xl:grid-cols-2 gap-base">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">콜랩스 (Collapse)</h4>
+                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
+                                    data-action="card-toggle">
+                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="mb-4 flex flex-wrap items-center gap-2">
+                                    <button
+                                        class="hs-collapse-toggle btn bg-primary hover:bg-primary-hover text-white open"
+                                        data-hs-collapse="#collapseExample">콜랩스 버튼</button>
+                                </div>
+
+                                <div id="collapseExample"
+                                    class="hs-collapse open w-full overflow-hidden shadow transition-[height] duration-300"
+                                    aria-labelledby="collapseLink">
+                                    <div class="card border border-dashed border-light card-body">
+                                        이것은 콜랩스 구성 요소의 예제 텍스트입니다. 버튼을 클릭하면 이 영역이 숨겨지거나 나타납니다. 유연한 레이아웃과 부드러운 전환 효과를
+                                        제공합니다.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">더 보기/접기 (Show/Hide Collapse)</h4>
+                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
+                                    data-action="card-toggle">
+                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="text-default-500">본 관리자 UI 키트는 유틸리티 중심의 Tailwind CSS 프레임워크를 기반으로 구축된 즉시 사용 가능한
+                                    대시보드 및 인터페이스 구성 요소 모음을 제공합니다.</p>
+
+                                <div id="show-hide-collapse-heading"
+                                    class="hs-collapse hidden w-full overflow-hidden transition-[height] duration-300"
+                                    aria-labelledby="show-hide-collapse">
+                                    <p class="text-default-500 mt-2">
+                                        이러한 구성 요소는 관리자 패널, 대시보드 및 내부 도구를 위해 특별히 설계되었습니다. 콜랩스 콘텐츠는 부드러운 전환을 지원하며, 인터페이스를
+                                        어지럽히지 않고 고급 설정이나 추가 정보를 구성하는 데 사용할 수 있습니다.
+                                    </p>
+                                </div>
+
+                                <p class="mt-2">
+                                    <button type="button"
+                                        class="hs-collapse-toggle inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-primary decoration-2 hover:primary-hover hover:underline focus:outline-hidden focus:underline focus:primary-hover"
+                                        id="show-hide-collapse" aria-expanded="false"
+                                        aria-controls="show-hide-collapse-heading"
+                                        data-hs-collapse="#show-hide-collapse-heading">
+                                        <span class="hs-collapse-open:hidden">더 보기</span>
+                                        <span class="hs-collapse-open:block hidden">접기</span>
+                                        <i
+                                            class="iconify tabler--chevron-up hs-collapse-open:rotate-180 shrink-0 text-base"></i>
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<?php include 'layout/footer.php'; ?>

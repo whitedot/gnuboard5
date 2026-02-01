@@ -1,0 +1,460 @@
+<?php include 'layout/header.php'; ?>
+<?php include 'layout/sidebar.php'; ?>
+
+<div class="container-fluid">
+                    <div class="grid grid-cols-1 gap-base mb-5">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">모양 (Shapes)</h4>
+                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
+                                    data-action="card-toggle">
+                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="text-default-400 mb-4">다양한 크기와 모양의 아바타입니다.</p>
+
+                                <div class="grid grid-cols-1 md:grid-cols-6 gap-base">
+                                    <div>
+                                        <img src="/images/stock/small-1.jpg" alt="image" />
+                                    </div>
+
+                                    <div>
+                                        <img src="/images/stock/small-2.jpg" alt="image" class="rounded" />
+                                    </div>
+
+                                    <div>
+                                        <img src="/images/users/user-2.jpg" alt="image" class="mx-auto rounded"
+                                            width="120" />
+                                    </div>
+
+                                    <div>
+                                        <img src="/images/users/user-5.jpg" alt="image" class="mx-auto rounded-full"
+                                            width="120" />
+                                    </div>
+
+                                    <div>
+                                        <img src="/images/stock/small-5.jpg" alt="image"
+                                            class="bg-default-100 border-default-300 rounded border p-1" />
+                                    </div>
+
+                                    <div>
+                                        <img src="/images/users/user-8.jpg" alt="image"
+                                            class="bg-default-100 border-default-300 mx-auto rounded-full border p-1"
+                                            width="120" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card-body-->
+                        </div>
+                        <!-- end card-->
+                    </div>
+                    <!-- end row-->
+
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-base mb-5">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">아바타 크기 (Avatar Sizes)</h4>
+                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
+                                    data-action="card-toggle">
+                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="grid grid-cols-3 gap-base">
+                                    <div>
+                                        <img src="/images/users/user-2.jpg" alt="image"
+                                            class="mx-auto size-6 rounded" />
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-6</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary mx-auto flex size-6 items-center justify-center rounded font-medium text-white">
+                                            xs</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-6</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary/15 text-primary mx-auto flex size-6 items-center justify-center rounded font-medium">
+                                            xs</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-6</code>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 grid grid-cols-3 gap-base">
+                                    <div>
+                                        <img src="/images/users/user-3.jpg" alt="image"
+                                            class="mx-auto size-8 rounded" />
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-8</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary mx-auto flex size-8 items-center justify-center rounded font-medium text-white">
+                                            sm</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-8</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary/15 text-primary mx-auto flex size-8 items-center justify-center rounded font-medium">
+                                            sm</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-8</code>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 grid grid-cols-3 gap-base">
+                                    <div>
+                                        <img src="/images/users/user-4.jpg" alt="image"
+                                            class="mx-auto size-9 rounded" />
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-9</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary mx-auto flex size-9 items-center justify-center rounded font-medium text-white">
+                                            md</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-9</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary/15 text-primary mx-auto flex size-9 items-center justify-center rounded font-medium">
+                                            md</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-9</code>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 grid grid-cols-3 gap-base">
+                                    <div>
+                                        <img src="/images/users/user-5.jpg" alt="image"
+                                            class="mx-auto size-11 rounded" />
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-11</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary mx-auto flex size-11 items-center justify-center rounded font-medium text-white">
+                                            LG</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-11</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary/15 text-primary mx-auto flex size-11 items-center justify-center rounded font-medium">
+                                            LG</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-11</code>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 grid grid-cols-3 gap-base">
+                                    <div>
+                                        <img src="/images/users/user-6.jpg" alt="image"
+                                            class="mx-auto size-12 rounded" />
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-12</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary mx-auto flex size-12 items-center justify-center rounded font-medium text-white">
+                                            XL</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-12</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary/15 text-primary mx-auto flex size-12 items-center justify-center rounded font-medium">
+                                            XL</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-12</code>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card-body-->
+                        </div>
+                        <!-- end card-->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">둥근 형태의 아바타 크기 (Avatar Sizes with Rounded)</h4>
+                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
+                                    data-action="card-toggle">
+                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="grid grid-cols-3 gap-base">
+                                    <div>
+                                        <img src="/images/users/user-7.jpg" alt="image"
+                                            class="mx-auto size-6 rounded-full" />
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-6</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary mx-auto flex size-6 items-center justify-center rounded-full font-medium text-white">
+                                            xs</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-6</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary/15 text-primary mx-auto flex size-6 items-center justify-center rounded-full font-medium">
+                                            xs</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-6</code>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 grid grid-cols-3 gap-base">
+                                    <div>
+                                        <img src="/images/users/user-8.jpg" alt="image"
+                                            class="mx-auto size-8 rounded-full" />
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-8</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary mx-auto flex size-8 items-center justify-center rounded-full font-medium text-white">
+                                            sm</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-8</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary/15 text-primary mx-auto flex size-8 items-center justify-center rounded-full font-medium">
+                                            sm</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-8</code>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 grid grid-cols-3 gap-base">
+                                    <div>
+                                        <img src="/images/users/user-9.jpg" alt="image"
+                                            class="mx-auto size-9 rounded-full" />
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-9</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary mx-auto flex size-9 items-center justify-center rounded-full font-medium text-white">
+                                            md</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-9</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary/15 text-primary mx-auto flex size-9 items-center justify-center rounded-full font-medium">
+                                            md</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-9</code>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 grid grid-cols-3 gap-base">
+                                    <div>
+                                        <img src="/images/users/user-10.jpg" alt="image"
+                                            class="mx-auto size-11 rounded-full" />
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-11</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary mx-auto flex size-11 items-center justify-center rounded-full font-medium text-white">
+                                            LG</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-11</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary/15 text-primary mx-auto flex size-11 items-center justify-center rounded-full font-medium">
+                                            LG</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-11</code>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 grid grid-cols-3 gap-base">
+                                    <div>
+                                        <img src="/images/users/user-1.jpg" alt="image"
+                                            class="mx-auto size-12 rounded-full" />
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-12</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary mx-auto flex size-12 items-center justify-center rounded-full font-medium text-white">
+                                            XL</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-12</code>
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div
+                                            class="bg-primary/15 text-primary mx-auto flex size-12 items-center justify-center rounded-full font-medium">
+                                            XL</div>
+                                        <p class="mt-2.5 mb-4 text-center">
+                                            <code>.size-12</code>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card-body-->
+                        </div>
+                        <!-- end card-->
+                    </div>
+
+                    <div class="grid grid-cols-1">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">아바타 그룹 (Avatar Groups)</h4>
+                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
+                                    data-action="card-toggle">
+                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="grid grid-cols-1 xl:grid-cols-4 lg:gap-base">
+                                    <div class="flex -space-x-3">
+                                        <img src="/images/users/user-4.jpg" alt=""
+                                            class="size-8 transform rounded-full duration-300 hover:-translate-y-0.5" />
+                                        <img src="/images/users/user-5.jpg" alt=""
+                                            class="size-8 transform rounded-full duration-300 hover:-translate-y-0.5" />
+                                        <img src="/images/users/user-3.jpg" alt=""
+                                            class="size-8 transform rounded-full duration-300 hover:-translate-y-0.5" />
+                                        <img src="/images/users/user-8.jpg" alt=""
+                                            class="size-8 transform rounded-full duration-300 hover:-translate-y-0.5" />
+                                        <img src="/images/users/user-2.jpg" alt=""
+                                            class="size-8 transform rounded-full duration-300 hover:-translate-y-0.5" />
+                                    </div>
+
+                                    <div class="flex -space-x-3">
+                                        <div
+                                            class="bg-danger flex size-9 transform items-center justify-center rounded-full font-medium text-white duration-300 hover:-translate-y-0.5">
+                                            D</div>
+
+                                        <div
+                                            class="bg-primary flex size-9 transform items-center justify-center rounded-full font-medium text-white duration-300 hover:-translate-y-0.5">
+                                            K</div>
+
+                                        <div
+                                            class="bg-secondary flex size-9 transform items-center justify-center rounded-full font-medium text-white duration-300 hover:-translate-y-0.5">
+                                            H</div>
+
+                                        <div
+                                            class="bg-warning flex size-9 transform items-center justify-center rounded-full font-medium text-white duration-300 hover:-translate-y-0.5">
+                                            L</div>
+
+                                        <div
+                                            class="bg-info flex size-9 transform items-center justify-center rounded-full font-medium text-white duration-300 hover:-translate-y-0.5">
+                                            G</div>
+                                    </div>
+
+                                    <div class="flex -space-x-3">
+                                        <div
+                                            class="bg-danger/15 text-danger relative flex size-11 transform items-center justify-center rounded-full font-semibold backdrop-blur-sm duration-300 hover:z-10 hover:-translate-y-0.5">
+                                            D</div>
+
+                                        <div
+                                            class="bg-primary/15 text-primary relative flex size-11 transform items-center justify-center rounded-full font-semibold backdrop-blur-sm duration-300 hover:z-10 hover:-translate-y-0.5">
+                                            K</div>
+
+                                        <div
+                                            class="bg-secondary/15 text-secondary relative flex size-11 transform items-center justify-center rounded-full font-semibold backdrop-blur-sm duration-300 hover:z-10 hover:-translate-y-0.5">
+                                            H</div>
+
+                                        <div
+                                            class="bg-warning/15 text-warning relative flex size-11 transform items-center justify-center rounded-full font-semibold backdrop-blur-sm duration-300 hover:z-10 hover:-translate-y-0.5">
+                                            L</div>
+
+                                        <div
+                                            class="bg-info/15 text-info relative flex size-11 transform items-center justify-center rounded-full font-semibold backdrop-blur-sm duration-300 hover:z-10 hover:-translate-y-0.5">
+                                            G</div>
+                                    </div>
+
+                                    <div class="flex -space-x-3">
+                                        <img src="/images/users/user-10.jpg" alt=""
+                                            class="size-12 transform rounded-full duration-300 hover:-translate-y-0.5" />
+
+                                        <div
+                                            class="bg-info flex size-12 transform items-center justify-center rounded-full font-medium text-white duration-300 hover:-translate-y-0.5">
+                                            D</div>
+
+                                        <img src="/images/users/user-7.jpg" alt=""
+                                            class="size-12 transform rounded-full duration-300 hover:-translate-y-0.5" />
+
+                                        <img src="/images/users/user-1.jpg" alt=""
+                                            class="size-12 transform rounded-full duration-300 hover:-translate-y-0.5" />
+
+                                        <div
+                                            class="bg-danger flex size-12 transform items-center justify-center rounded-full text-lg font-medium text-white duration-300 hover:-translate-y-0.5">
+                                            9+</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card-body-->
+                        </div>
+                        <!-- end card-->
+                    </div>
+                </div>
+
+<?php include 'layout/footer.php'; ?>

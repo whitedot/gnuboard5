@@ -1,0 +1,111 @@
+/* UI 가이드 전용 스타일시트 */
+
+:root {
+    --side-nav-width: 260px;
+    --side-nav-bg: #f8f9fa;
+    --side-nav-active-bg: #ffffff;
+    --side-nav-active-color: #4f46e5;
+    --top-nav-height: 64px;
+}
+
+body {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+.layout-wrapper {
+    display: flex;
+    min-h-screen;
+}
+
+/* 사이드바 스타일 */
+.sidebar {
+    width: var(--side-nav-width);
+    background-color: var(--side-nav-bg);
+    border-right: 1px solid #e5e7eb;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.sidebar-logo {
+    height: var(--top-nav-height);
+    display: flex;
+    items-center;
+    px-6;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.nav-section-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #6b7280;
+    padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    color: #4b5563;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.nav-link:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+.nav-link.active {
+    background-color: var(--side-nav-active-bg);
+    color: var(--side-nav-active-color);
+    border-left-color: var(--side-nav-active-color);
+}
+
+.nav-icon {
+    font-size: 1.25rem;
+    margin-right: 0.75rem;
+}
+
+/* 메인 콘텐츠 영역 */
+.main-content {
+    margin-left: var(--side-nav-width);
+    flex: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-navbar {
+    height: var(--top-nav-height);
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.content-body {
+    padding: 2rem;
+    flex: 1;
+    background-color: #f9fafb;
+}
+
+/* 카드 및 컴포넌트 커스텀 */
+.card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
