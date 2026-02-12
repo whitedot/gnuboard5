@@ -6,10 +6,7 @@ if(defined('G5_THEME_PATH')) {
     return;
 }
 
-if (G5_IS_MOBILE) {
-    include_once(G5_MOBILE_PATH.'/tail.php');
-    return;
-}
+
 ?>
 
     </div>
