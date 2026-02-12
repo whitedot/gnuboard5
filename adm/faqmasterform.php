@@ -137,18 +137,6 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                         <?php echo editor_html('fm_tail_html', get_text(html_purifier($fm['fm_tail_html']), 0)); ?>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">모바일상단 내용</th>
-                    <td>
-                        <?php echo editor_html('fm_mobile_head_html', get_text(html_purifier($fm['fm_mobile_head_html']), 0)); ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">모바일하단 내용</th>
-                    <td>
-                        <?php echo editor_html('fm_mobile_tail_html', get_text(html_purifier($fm['fm_mobile_tail_html']), 0)); ?>
-                    </td>
-                </tr>
             </tbody>
         </table>
     </div>

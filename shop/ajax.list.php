@@ -15,23 +15,19 @@ $ca = sql_fetch($sql);
 if (!$ca['ca_id'])
     die(json_encode($data['error'] = '등록된 분류가 없습니다.'));
 
-// 스킨경로
-$skin_dir = G5_MSHOP_SKIN_PATH;
+// 스킨경로 (반응형: PC 스킨 사용)
+$skin_dir = G5_SHOP_SKIN_PATH;
 
-if($ca['ca_mobile_skin_dir']) {
-    $skin_dir = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/shop/'.$ca['ca_mobile_skin_dir'];
-
-    if(is_dir($skin_dir)) {
-        $skin_file = $skin_dir.'/'.$ca['ca_mobile_skin'];
-
-        if(!is_file($skin_file))
-            $skin_dir = G5_MSHOP_SKIN_PATH;
-    } else {
-        $skin_dir = G5_MSHOP_SKIN_PATH;
+if($ca['ca_skin_dir']) {
+    $custom_skin_dir = get_skin_path('shop', $ca['ca_skin_dir']);
+    if(is_dir($custom_skin_dir)) {
+        $skin_file = $custom_skin_dir.'/'.$ca['ca_skin'];
+        if(is_file($skin_file))
+            $skin_dir = $custom_skin_dir;
     }
 }
 
-$skin_file = $skin_dir.'/'.$ca['ca_mobile_skin'];
+$skin_file = $skin_dir.'/'.$ca['ca_skin'];
 
 // 상품 출력순서가 있다면
 if ($sort != "")
@@ -40,7 +36,7 @@ else
     $order_by = 'it_order, it_id desc';
 
 // 총몇개
-$items = $ca['ca_mobile_list_mod'] * $ca['ca_mobile_list_row'];
+$items = $ca['ca_list_mod'] * $ca['ca_list_row'];
 // 페이지가 없으면 첫 페이지 (1 페이지)
 if ($page < 1) $page = 1;
 
@@ -51,7 +47,7 @@ $from_record = ($page - 1) * $items;
 
 ob_start();
 
-$list = new item_list($skin_file, $ca['ca_mobile_list_mod'], $ca['ca_mobile_list_row'], $ca['ca_mobile_img_width'], $ca['ca_mobile_img_height']);
+$list = new item_list($skin_file, $ca['ca_list_mod'], $ca['ca_list_row'], $ca['ca_img_width'], $ca['ca_img_height']);
 $list->set_category($ca['ca_id'], 1);
 $list->set_category($ca['ca_id'], 2);
 $list->set_category($ca['ca_id'], 3);

@@ -23,18 +23,6 @@
                 <label for="chk_all_skin">전체적용</label>
             </td>
         </tr>
-        <tr>
-            <th scope="row"><label for="bo_mobile_skin">모바일<br>스킨 디렉토리<strong class="sound_only">필수</strong></label></th>
-            <td>
-                <?php echo get_mobile_skin_select('board', 'bo_mobile_skin', 'bo_mobile_skin', $board['bo_mobile_skin'], 'required'); ?>
-            </td>
-            <td class="td_grpset">
-                <input type="checkbox" name="chk_grp_mobile_skin" value="1" id="chk_grp_mobile_skin">
-                <label for="chk_grp_mobile_skin">그룹적용</label>
-                <input type="checkbox" name="chk_all_mobile_skin" value="1" id="chk_all_mobile_skin">
-                <label for="chk_all_mobile_skin">전체적용</label>
-            </td>
-        </tr>
         <?php if ($is_admin === 'super') {   // 슈퍼관리자인 경우에만 수정 가능 ?>
         <tr>
             <th scope="row"><label for="bo_include_head">상단 파일 경로</label></th>
@@ -98,30 +86,6 @@
                 <label for="chk_grp_content_tail">그룹적용</label>
                 <input type="checkbox" name="chk_all_content_tail" value="1" id="chk_all_content_tail">
                 <label for="chk_all_content_tail">전체적용</label>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="bo_mobile_content_head">모바일 상단 내용</label></th>
-            <td>
-                <?php echo editor_html("bo_mobile_content_head", get_text(html_purifier($board['bo_mobile_content_head']), 0)); ?>
-            </td>
-            <td class="td_grpset">
-                <input type="checkbox" name="chk_grp_mobile_content_head" value="1" id="chk_grp_mobile_content_head">
-                <label for="chk_grp_mobile_content_head">그룹적용</label>
-                <input type="checkbox" name="chk_all_mobile_content_head" value="1" id="chk_all_mobile_content_head">
-                <label for="chk_all_mobile_content_head">전체적용</label>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="bo_mobile_content_tail">모바일 하단 내용</label></th>
-            <td>
-                <?php echo editor_html("bo_mobile_content_tail", get_text(html_purifier($board['bo_mobile_content_tail']), 0)); ?>
-            </td>
-            <td class="td_grpset">
-                <input type="checkbox" name="chk_grp_mobile_content_tail" value="1" id="chk_grp_mobile_content_tail">
-                <label for="chk_grp_mobile_content_tail">그룹적용</label>
-                <input type="checkbox" name="chk_all_mobile_content_tail" value="1" id="chk_all_mobile_content_tail">
-                <label for="chk_all_mobile_content_tail">전체적용</label>
             </td>
         </tr>
         <?php }     //end if $is_admin === 'super' ?>

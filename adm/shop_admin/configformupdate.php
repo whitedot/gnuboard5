@@ -28,10 +28,9 @@ if ($_FILES['mobile_logo_img2']['name']) upload_file($_FILES['mobile_logo_img2']
 $de_kcp_mid = isset($_POST['de_kcp_mid']) ? substr($_POST['de_kcp_mid'], 0, 3) : '';
 $cf_icode_server_port = isset($cf_icode_server_port) ? preg_replace('/[^0-9]/', '', $cf_icode_server_port) : '7295';
 
-$de_shop_skin = isset($_POST['de_shop_skin']) ? preg_replace(array('#\.+(\/|\\\)#', '#[\'\"]#'), array('', ''), $_POST['de_shop_skin']) : 'basic';
-$de_shop_mobile_skin = isset($_POST['de_shop_mobile_skin']) ? preg_replace(array('#\.+(\/|\\\)#', '#[\'\"]#'), array('', ''), $_POST['de_shop_mobile_skin']) : 'basic';
+$de_shop_skin = isset($_POST['de_shop_skin']) ? preg_replace(array('#\.+(\/|\\\)#', '#[\'\"]#'), array('', ''), $_POST['de_shop_skin']) : 'theme/basic';
 
-$skins = get_skin_dir('shop');
+$skins = array();
 
 if(defined('G5_THEME_PATH') && $config['cf_theme']) {
     $dirs = get_skin_dir('shop', G5_THEME_PATH.'/'.G5_SKIN_DIR);
@@ -42,21 +41,9 @@ if(defined('G5_THEME_PATH') && $config['cf_theme']) {
     }
 }
 
-$mobile_skins = get_skin_dir('shop', G5_MOBILE_PATH.'/'.G5_SKIN_DIR);
+$de_shop_skin = in_array($de_shop_skin, $skins) ? $de_shop_skin : 'theme/basic';
 
-if(defined('G5_THEME_PATH') && $config['cf_theme']) {
-    $dirs = get_skin_dir('shop', G5_THEME_MOBILE_PATH.'/'.G5_SKIN_DIR);
-    if(!empty($dirs)) {
-        foreach($dirs as $dir) {
-            $mobile_skins[] = 'theme/'.$dir;
-        }
-    }
-}
-
-$de_shop_skin = in_array($de_shop_skin, $skins) ? $de_shop_skin : 'basic';
-$de_shop_mobile_skin = in_array($de_shop_mobile_skin, $mobile_skins) ? $de_shop_mobile_skin : 'basic';
-
-$check_skin_keys = array('de_type1_list_skin', 'de_type2_list_skin', 'de_type3_list_skin', 'de_type4_list_skin', 'de_type5_list_skin', 'de_mobile_type1_list_skin', 'de_mobile_type2_list_skin', 'de_mobile_type3_list_skin', 'de_mobile_type4_list_skin', 'de_mobile_type5_list_skin', 'de_rel_list_skin', 'de_mobile_rel_list_skin', 'de_search_list_skin', 'de_mobile_search_list_skin', 'de_listtype_list_skin', 'de_mobile_listtype_list_skin');
+$check_skin_keys = array('de_type1_list_skin', 'de_type2_list_skin', 'de_type3_list_skin', 'de_type4_list_skin', 'de_type5_list_skin', 'de_rel_list_skin', 'de_search_list_skin', 'de_listtype_list_skin');
 
 foreach($check_skin_keys as $key){
     $$key = $_POST[$key] = isset($_POST[$key]) ? preg_replace(array('#\.+(\/|\\\)#', '#[\'\"]#'), array('', ''), strip_tags($_POST[$key])) : '';

@@ -91,26 +91,14 @@ for ($i=0; $row2=sql_fetch_array($result); $i++) {
     $list3[$i]['subject'] = cut_str($row2['po_subject'],60,"…");
 }
 
+// 반응형: theme/skin/poll/ 경로 사용
 if(preg_match('#^theme/(.+)$#', $skin_dir, $match)) {
-    if (G5_IS_MOBILE) {
-        $poll_skin_path = G5_THEME_MOBILE_PATH.'/'.G5_SKIN_DIR.'/poll/'.$match[1];
-        if(!is_dir($poll_skin_path))
-            $poll_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/poll/'.$match[1];
-        $poll_skin_url = str_replace(G5_PATH, G5_URL, $poll_skin_path);
-    } else {
-        $poll_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/poll/'.$match[1];
-        $poll_skin_url = str_replace(G5_PATH, G5_URL, $poll_skin_path);
-    }
-    //$skin_dir = $match[1];
+    $poll_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/poll/'.$match[1];
 } else {
-    if (G5_IS_MOBILE) {
-        $poll_skin_path = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/poll/'.$skin_dir;
-        $poll_skin_url  = G5_MOBILE_URL.'/'.G5_SKIN_DIR.'/poll/'.$skin_dir;
-    } else {
-        $poll_skin_path = G5_SKIN_PATH.'/poll/'.$skin_dir;
-        $poll_skin_url  = G5_SKIN_URL.'/poll/'.$skin_dir;
-    }
+    // 레거시 호환
+    $poll_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/poll/'.$skin_dir;
 }
+$poll_skin_url = str_replace(G5_PATH, G5_URL, $poll_skin_path);
 
 include_once(G5_PATH.'/head.sub.php');
 

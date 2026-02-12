@@ -20,30 +20,15 @@ function popular($skin_dir='basic', $pop_cnt=7, $date_cnt=3)
         //$list[$i]['pp_word'] = get_text($list[$i]['pp_word']);
     }
 
+    // 반응형: theme/skin/popular/ 경로 사용
     if(preg_match('#^theme/(.+)$#', $skin_dir, $match)) {
-/*
-        if (G5_IS_MOBILE) {
-            $popular_skin_path = G5_THEME_MOBILE_PATH.'/'.G5_SKIN_DIR.'/popular/'.$match[1];
-            if(!is_dir($popular_skin_path))
-                $popular_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/popular/'.$match[1];
-            $popular_skin_url = str_replace(G5_PATH, G5_URL, $popular_skin_path);
-        } else {
-*/
-            $popular_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/popular/'.$match[1];
-            $popular_skin_url = str_replace(G5_PATH, G5_URL,$popular_skin_path);
-//        }
+        $popular_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/popular/'.$match[1];
         $skin_dir = $match[1];
     } else {
-/*
-        if(G5_IS_MOBILE) {
-            $popular_skin_path = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/popular/'.$skin_dir;
-            $popular_skin_url = G5_MOBILE_URL.'/'.G5_SKIN_DIR.'/popular/'.$skin_dir;
-        } else {
-*/
-            $popular_skin_path = G5_SKIN_PATH.'/popular/'.$skin_dir;
-            $popular_skin_url = G5_SKIN_URL.'/popular/'.$skin_dir;
-//        }
+        // 레거시 호환
+        $popular_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/popular/'.$skin_dir;
     }
+    $popular_skin_url = str_replace(G5_PATH, G5_URL, $popular_skin_path);
 
     ob_start();
     include_once ($popular_skin_path.'/popular.skin.php');

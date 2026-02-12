@@ -74,7 +74,7 @@ $str = preg_replace($src, $dst, $str);
 
 // 스킨경로
 if(trim($co['co_skin']) == '')
-    $co['co_skin'] = 'basic';
+    $co['co_skin'] = 'theme/basic';
 
 $content_skin_path = get_skin_path('content', $co['co_skin']);
 $content_skin_url  = get_skin_url('content', $co['co_skin']);

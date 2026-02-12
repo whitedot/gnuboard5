@@ -16,7 +16,6 @@ if (!sql_query(" DESCRIBE `{$g5['qa_config_table']}` ", false)) {
                   `qa_title` varchar(255) NOT NULL DEFAULT'',
                   `qa_category` varchar(255) NOT NULL DEFAULT'',
                   `qa_skin` varchar(255) NOT NULL DEFAULT '',
-                  `qa_mobile_skin` varchar(255) NOT NULL DEFAULT '',
                   `qa_use_email` tinyint(4) NOT NULL DEFAULT '0',
                   `qa_req_email` tinyint(4) NOT NULL DEFAULT '0',
                   `qa_use_hp` tinyint(4) NOT NULL DEFAULT '0',
@@ -36,18 +35,6 @@ if (!sql_query(" DESCRIBE `{$g5['qa_config_table']}` ", false)) {
                   `qa_include_tail` varchar(255) NOT NULL DEFAULT '',
                   `qa_content_head` text NOT NULL,
                   `qa_content_tail` text NOT NULL,
-                  `qa_mobile_content_head` text NOT NULL,
-                  `qa_mobile_content_tail` text NOT NULL,
-                  `qa_1_subj` varchar(255) NOT NULL DEFAULT '',
-                  `qa_2_subj` varchar(255) NOT NULL DEFAULT '',
-                  `qa_3_subj` varchar(255) NOT NULL DEFAULT '',
-                  `qa_4_subj` varchar(255) NOT NULL DEFAULT '',
-                  `qa_5_subj` varchar(255) NOT NULL DEFAULT '',
-                  `qa_1` varchar(255) NOT NULL DEFAULT '',
-                  `qa_2` varchar(255) NOT NULL DEFAULT '',
-                  `qa_3` varchar(255) NOT NULL DEFAULT '',
-                  `qa_4` varchar(255) NOT NULL DEFAULT '',
-                  `qa_5` varchar(255) NOT NULL DEFAULT '',
                   PRIMARY KEY (`qa_id`)
                 )",
         true
@@ -76,11 +63,6 @@ if (!sql_query(" DESCRIBE `{$g5['qa_config_table']}` ", false)) {
                   `qa_source2` varchar(255) NOT NULL DEFAULT '',
                   `qa_ip` varchar(255) NOT NULL DEFAULT '',
                   `qa_datetime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-                  `qa_1` varchar(255) NOT NULL DEFAULT '',
-                  `qa_2` varchar(255) NOT NULL DEFAULT '',
-                  `qa_3` varchar(255) NOT NULL DEFAULT '',
-                  `qa_4` varchar(255) NOT NULL DEFAULT '',
-                  `qa_5` varchar(255) NOT NULL DEFAULT '',
                   PRIMARY KEY (`qa_id`),
                   KEY `qa_num_parent` (`qa_num`,`qa_parent`)
                 )",
@@ -98,9 +80,9 @@ $qaconfig = get_qa_config();
 
 if (empty($qaconfig)) {
     $sql = " insert into `{$g5['qa_config_table']}`
-                ( qa_title, qa_category, qa_skin, qa_mobile_skin, qa_use_email, qa_req_email, qa_use_hp, qa_req_hp, qa_use_editor, qa_subject_len, qa_mobile_subject_len, qa_page_rows, qa_mobile_page_rows, qa_image_width, qa_upload_size, qa_insert_content )
+                ( qa_title, qa_category, qa_skin, qa_use_email, qa_req_email, qa_use_hp, qa_req_hp, qa_use_editor, qa_subject_len, qa_mobile_subject_len, qa_page_rows, qa_mobile_page_rows, qa_image_width, qa_upload_size, qa_insert_content )
               values
-                ( '1:1문의', '회원|포인트', 'basic', 'basic', '1', '0', '1', '0', '1', '60', '30', '15', '15', '600', '1048576', '' ) ";
+                ( '1:1문의', '회원|포인트', 'theme/basic', '1', '0', '1', '0', '1', '60', '30', '15', '15', '600', '1048576', '' ) ";
     sql_query($sql);
 
     $qaconfig = get_qa_config();
@@ -122,9 +104,7 @@ if (!isset($qaconfig['qa_include_head'])) {
                     ADD `qa_include_head` varchar(255) NOT NULL DEFAULT '' AFTER `qa_insert_content`,
                     ADD `qa_include_tail` varchar(255) NOT NULL DEFAULT '' AFTER `qa_include_head`,
                     ADD `qa_content_head` text NOT NULL AFTER `qa_include_tail`,
-                    ADD `qa_content_tail` text NOT NULL AFTER `qa_content_head`,
-                    ADD `qa_mobile_content_head` text NOT NULL AFTER `qa_content_tail`,
-                    ADD `qa_mobile_content_tail` text NOT NULL AFTER `qa_mobile_content_head` ",
+                    ADD `qa_content_tail` text NOT NULL AFTER `qa_content_head` ",
         true
     );
 }
@@ -162,12 +142,6 @@ if (!isset($qaconfig['qa_include_head'])) {
                         <th scope="row"><label for="qa_skin">스킨 디렉토리<strong class="sound_only">필수</strong></label></th>
                         <td>
                             <?php echo get_skin_select('qa', 'qa_skin', 'qa_skin', $qaconfig['qa_skin'], 'required'); ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><label for="qa_mobile_skin">모바일 스킨 디렉토리<strong class="sound_only">필수</strong></label></th>
-                        <td>
-                            <?php echo get_mobile_skin_select('qa', 'qa_mobile_skin', 'qa_mobile_skin', $qaconfig['qa_mobile_skin'], 'required'); ?>
                         </td>
                     </tr>
                     <tr>
@@ -306,34 +280,11 @@ if (!isset($qaconfig['qa_include_head'])) {
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row"><label for="qa_mobile_content_head">모바일 상단 내용</label></th>
-                        <td>
-                            <?php echo editor_html("qa_mobile_content_head", get_text(html_purifier($qaconfig['qa_mobile_content_head']), 0)); ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><label for="qa_mobile_content_tail">모바일 하단 내용</label></th>
-                        <td>
-                            <?php echo editor_html("qa_mobile_content_tail", get_text(html_purifier($qaconfig['qa_mobile_content_tail']), 0)); ?>
-                        </td>
-                    </tr>
-                    <tr>
                         <th scope="row"><label for="qa_insert_content">글쓰기 기본 내용</label></th>
                         <td>
                             <textarea id="qa_insert_content" name="qa_insert_content" rows="5"><?php echo html_purifier($qaconfig['qa_insert_content']); ?></textarea>
                         </td>
                     </tr>
-                    <?php for ($i = 1; $i <= 5; $i++) { ?>
-                        <tr>
-                            <th scope="row">여분필드<?php echo $i ?></th>
-                            <td class="td_extra">
-                                <label for="qa_<?php echo $i ?>_subj">여분필드 <?php echo $i ?> 제목</label>
-                                <input type="text" name="qa_<?php echo $i ?>_subj" id="qa_<?php echo $i ?>_subj" value="<?php echo get_text($qaconfig['qa_' . $i . '_subj']) ?>" class="frm_input">
-                                <label for="qa_<?php echo $i ?>">여분필드 <?php echo $i ?> 값</label>
-                                <input type="text" name="qa_<?php echo $i ?>" value="<?php echo get_text($qaconfig['qa_' . $i]) ?>" id="qa_<?php echo $i ?>" class="frm_input">
-                            </td>
-                        </tr>
-                    <?php } ?>
                 </tbody>
             </table>
         </div>
@@ -396,8 +347,6 @@ if (!isset($qaconfig['qa_include_head'])) {
     function fqaconfigform_submit(f) {
         <?php echo get_editor_js("qa_content_head"); ?>
         <?php echo get_editor_js("qa_content_tail"); ?>
-        <?php echo get_editor_js("qa_mobile_content_head"); ?>
-        <?php echo get_editor_js("qa_mobile_content_tail"); ?>
 
         if (captcha_chk) {
             <?php echo isset($captcha_js) ? $captcha_js : ''; // 캡챠 사용시 자바스크립트에서 입력된 캡챠를 검사함 ?>

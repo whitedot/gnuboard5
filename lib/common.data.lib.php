@@ -463,28 +463,20 @@ function board_notice($bo_notice, $wr_id, $insert=false)
     return implode(",", $notice_array);
 }
 
-// 스킨 path
+// 스킨 path (단일 반응형 - 테마 스킨만 사용)
 function get_skin_path($dir, $skin)
 {
     global $config;
 
-    if(preg_match('#^theme/(.+)$#', $skin, $match)) { // 테마에 포함된 스킨이라면
-        $theme_path = '';
-        $cf_theme = trim($config['cf_theme']);
+    $cf_theme = trim($config['cf_theme']) ?: 'basic';
+    $theme_path = G5_PATH.'/'.G5_THEME_DIR.'/'.$cf_theme;
 
-        $theme_path = G5_PATH.'/'.G5_THEME_DIR.'/'.$cf_theme;
-        if(G5_IS_MOBILE) {
-            $skin_path = $theme_path.'/'.G5_MOBILE_DIR.'/'.G5_SKIN_DIR.'/'.$dir.'/'.$match[1];
-            if(!is_dir($skin_path))
-                $skin_path = $theme_path.'/'.G5_SKIN_DIR.'/'.$dir.'/'.$match[1];
-        } else {
-            $skin_path = $theme_path.'/'.G5_SKIN_DIR.'/'.$dir.'/'.$match[1];
-        }
+    if(preg_match('#^theme/(.+)$#', $skin, $match)) { // 테마에 포함된 스킨이라면
+        $skin_path = $theme_path.'/'.G5_SKIN_DIR.'/'.$dir.'/'.$match[1];
     } else {
-        if(G5_IS_MOBILE)
-            $skin_path = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/'.$dir.'/'.$skin;
-        else
-            $skin_path = G5_SKIN_PATH.'/'.$dir.'/'.$skin;
+        // 레거시 호환: 'basic' -> theme/basic/skin/ 경로로 변환
+        $skin_name = $skin ?: 'basic';
+        $skin_path = $theme_path.'/'.G5_SKIN_DIR.'/'.$dir.'/'.$skin_name;
     }
 
     return $skin_path;

@@ -27,16 +27,6 @@ $mb = array(
     'mb_profile' => null,
     'mb_memo' => null,
     'mb_leave_date' => null,
-    'mb_1' => null,
-    'mb_2' => null,
-    'mb_3' => null,
-    'mb_4' => null,
-    'mb_5' => null,
-    'mb_6' => null,
-    'mb_7' => null,
-    'mb_8' => null,
-    'mb_9' => null,
-    'mb_10' => null,
 );
 
 $sound_only = '';
@@ -84,16 +74,6 @@ if ($w == '') {
     $mb['mb_signature'] = get_text($mb['mb_signature']);
     $mb['mb_recommend'] = get_text($mb['mb_recommend']);
     $mb['mb_profile'] = get_text($mb['mb_profile']);
-    $mb['mb_1'] = get_text($mb['mb_1']);
-    $mb['mb_2'] = get_text($mb['mb_2']);
-    $mb['mb_3'] = get_text($mb['mb_3']);
-    $mb['mb_4'] = get_text($mb['mb_4']);
-    $mb['mb_5'] = get_text($mb['mb_5']);
-    $mb['mb_6'] = get_text($mb['mb_6']);
-    $mb['mb_7'] = get_text($mb['mb_7']);
-    $mb['mb_8'] = get_text($mb['mb_8']);
-    $mb['mb_9'] = get_text($mb['mb_9']);
-    $mb['mb_10'] = get_text($mb['mb_10']);
 } else {
     alert('제대로 된 값이 넘어오지 않았습니다.');
 }
@@ -207,9 +187,6 @@ $pg_anchor = '<ul class="anchor">
 
     // 인증 및 활동 내역
     include_once G5_ADMIN_PATH.'/member_form_parts/history.php';
-
-    // 여분 필드
-    include_once G5_ADMIN_PATH.'/member_form_parts/extra.php';
     ?>
 
     <div class="btn_fixed_top">

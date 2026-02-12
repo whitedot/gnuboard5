@@ -192,7 +192,6 @@ include_once(G5_ADMIN_PATH.'/shop_admin/item_form_parts/image.php'); // 상품�
 include_once(G5_ADMIN_PATH.'/shop_admin/item_form_parts/relation.php'); // 관련상품
 include_once(G5_ADMIN_PATH.'/shop_admin/item_form_parts/event.php'); // 관련이벤트
 include_once(G5_ADMIN_PATH.'/shop_admin/item_form_parts/details.php'); // 상세설명설정
-include_once(G5_ADMIN_PATH.'/shop_admin/item_form_parts/extra.php'); // 여분필드
 ?>
 
 <div class="btn_fixed_top">

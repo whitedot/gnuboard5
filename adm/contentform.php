@@ -41,7 +41,7 @@ if (!sql_query(" select co_skin from {$g5['content_table']} limit 1 ", false)) {
                     ADD `co_mobile_skin` varchar(255) NOT NULL DEFAULT '' AFTER `co_skin` ",
         true
     );
-    sql_query(" update {$g5['content_table']} set co_skin = 'basic', co_mobile_skin = 'basic' ");
+    sql_query(" update {$g5['content_table']} set co_skin = 'theme/basic' ");
 }
 
 $html_title = "내용";
@@ -71,8 +71,7 @@ if ($w == "u") {
         'co_include_tail' => '',
         'co_tag_filter_use' => 1,
         'co_html' => 2,
-        'co_skin' => 'basic',
-        'co_mobile_skin' => 'basic'
+        'co_skin' => 'theme/basic'
     );
 }
 
@@ -116,12 +115,6 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                     <th scope="row"><label for="co_skin">스킨 디렉토리<strong class="sound_only">필수</strong></label></th>
                     <td>
                         <?php echo get_skin_select('content', 'co_skin', 'co_skin', $co['co_skin'], 'required'); ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="co_mobile_skin">모바일스킨 디렉토리<strong class="sound_only">필수</strong></label></th>
-                    <td>
-                        <?php echo get_mobile_skin_select('content', 'co_mobile_skin', 'co_mobile_skin', $co['co_mobile_skin'], 'required'); ?>
                     </td>
                 </tr>
                 <!--

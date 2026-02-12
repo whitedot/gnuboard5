@@ -113,16 +113,6 @@ if ($w == "") {
     $member['mb_signature']   = get_text($member['mb_signature']);
     $member['mb_recommend']   = get_text($member['mb_recommend']);
     $member['mb_profile']     = get_text($member['mb_profile']);
-    $member['mb_1']           = get_text($member['mb_1']);
-    $member['mb_2']           = get_text($member['mb_2']);
-    $member['mb_3']           = get_text($member['mb_3']);
-    $member['mb_4']           = get_text($member['mb_4']);
-    $member['mb_5']           = get_text($member['mb_5']);
-    $member['mb_6']           = get_text($member['mb_6']);
-    $member['mb_7']           = get_text($member['mb_7']);
-    $member['mb_8']           = get_text($member['mb_8']);
-    $member['mb_9']           = get_text($member['mb_9']);
-    $member['mb_10']          = get_text($member['mb_10']);
 } else {
     alert('w 값이 제대로 넘어오지 않았습니다.');
 }

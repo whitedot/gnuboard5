@@ -154,11 +154,8 @@ $bo_comment_point = isset($_POST['bo_comment_point']) ? (int) $_POST['bo_comment
 $bo_download_point = isset($_POST['bo_download_point']) ? (int) $_POST['bo_download_point'] : 0;
 $bo_select_editor = isset($_POST['bo_select_editor']) ? clean_xss_tags($_POST['bo_select_editor'], 1, 1) : '';
 $bo_skin = isset($_POST['bo_skin']) ? clean_xss_tags($_POST['bo_skin'], 1, 1) : '';
-$bo_mobile_skin = isset($_POST['bo_mobile_skin']) ? clean_xss_tags($_POST['bo_mobile_skin'], 1, 1) : '';
 $bo_content_head = isset($_POST['bo_content_head']) ? $_POST['bo_content_head'] : '';
 $bo_content_tail = isset($_POST['bo_content_tail']) ? $_POST['bo_content_tail'] : '';
-$bo_mobile_content_head = isset($_POST['bo_mobile_content_head']) ? $_POST['bo_mobile_content_head'] : '';
-$bo_mobile_content_tail = isset($_POST['bo_mobile_content_tail']) ? $_POST['bo_mobile_content_tail'] : '';
 $bo_insert_content = isset($_POST['bo_insert_content']) ? $_POST['bo_insert_content'] : '';
 $bo_gallery_cols = isset($_POST['bo_gallery_cols']) ? (int) $_POST['bo_gallery_cols'] : 0;
 $bo_gallery_width = isset($_POST['bo_gallery_width']) ? (int) $_POST['bo_gallery_width'] : 0;
@@ -175,7 +172,7 @@ $bo_comment_min = isset($_POST['bo_comment_min']) ? (int) $_POST['bo_comment_min
 $bo_comment_max = isset($_POST['bo_comment_max']) ? (int) $_POST['bo_comment_max'] : 0;
 $bo_sort_field = isset($_POST['bo_sort_field']) ? clean_xss_tags($_POST['bo_sort_field'], 1, 1) : '';
 
-if (strpbrk($bo_skin.$bo_mobile_skin, "?%*:|\"<>") !== false) {
+if (strpbrk($bo_skin, "?%*:|\"<>") !== false) {
     alert('스킨 디렉토리명 오류!');
 }
 
@@ -235,7 +232,6 @@ $sql_common = " gr_id               = '{$gr_id}',
                 bo_hot              = '{$bo_hot}',
                 bo_image_width      = '{$bo_image_width}',
                 bo_skin             = '{$bo_skin}',
-                bo_mobile_skin      = '{$bo_mobile_skin}',
                 ";
 
 // 최고 관리자인 경우에만 수정가능
@@ -244,8 +240,6 @@ if ($is_admin === 'super') {
                 bo_include_tail     = '" . $bo_include_tail . "',
                 bo_content_head     = '{$bo_content_head}',
                 bo_content_tail     = '{$bo_content_tail}',
-                bo_mobile_content_head     = '{$bo_mobile_content_head}',
-                bo_mobile_content_tail     = '{$bo_mobile_content_tail}',
                 ";
 }
 
@@ -411,7 +405,6 @@ if (is_checked('chk_grp_use_cert'))             $grp_fields .= " , bo_use_cert =
 if (is_checked('chk_grp_use_sns'))              $grp_fields .= " , bo_use_sns = '{$bo_use_sns}' ";
 if (is_checked('chk_grp_use_captcha'))          $grp_fields .= " , bo_use_captcha = '{$bo_use_captcha}' ";
 if (is_checked('chk_grp_skin'))                 $grp_fields .= " , bo_skin = '{$bo_skin}' ";
-if (is_checked('chk_grp_mobile_skin'))          $grp_fields .= " , bo_mobile_skin = '{$bo_mobile_skin}' ";
 if (is_checked('chk_grp_gallery_cols'))         $grp_fields .= " , bo_gallery_cols = '{$bo_gallery_cols}' ";
 if (is_checked('chk_grp_gallery_width'))        $grp_fields .= " , bo_gallery_width = '{$bo_gallery_width}' ";
 if (is_checked('chk_grp_gallery_height'))       $grp_fields .= " , bo_gallery_height = '{$bo_gallery_height}' ";
@@ -440,8 +433,6 @@ if ($is_admin === 'super') {
     if (is_checked('chk_grp_include_tail'))         $grp_fields .= " , bo_include_tail = '{$bo_include_tail}' ";
     if (is_checked('chk_grp_content_head'))         $grp_fields .= " , bo_content_head = '{$bo_content_head}' ";
     if (is_checked('chk_grp_content_tail'))         $grp_fields .= " , bo_content_tail = '{$bo_content_tail}' ";
-    if (is_checked('chk_grp_mobile_content_head'))         $grp_fields .= " , bo_mobile_content_head = '{$bo_mobile_content_head}' ";
-    if (is_checked('chk_grp_mobile_content_tail'))         $grp_fields .= " , bo_mobile_content_tail = '{$bo_mobile_content_tail}' ";
 }
 
 if (is_checked('chk_grp_insert_content'))       $grp_fields .= " , bo_insert_content = '{$bo_insert_content}' ";
@@ -501,7 +492,6 @@ if (is_checked('chk_all_use_cert'))             $all_fields .= " , bo_use_cert =
 if (is_checked('chk_all_use_sns'))              $all_fields .= " , bo_use_sns = '{$bo_use_sns}' ";
 if (is_checked('chk_all_use_captcha'))          $all_fields .= " , bo_use_captcha = '{$bo_use_captcha}' ";
 if (is_checked('chk_all_skin'))                 $all_fields .= " , bo_skin = '{$bo_skin}' ";
-if (is_checked('chk_all_mobile_skin'))          $all_fields .= " , bo_mobile_skin = '{$bo_mobile_skin}' ";
 if (is_checked('chk_all_gallery_cols'))         $all_fields .= " , bo_gallery_cols = '{$bo_gallery_cols}' ";
 if (is_checked('chk_all_gallery_width'))        $all_fields .= " , bo_gallery_width = '{$bo_gallery_width}' ";
 if (is_checked('chk_all_gallery_height'))       $all_fields .= " , bo_gallery_height = '{$bo_gallery_height}' ";
@@ -530,8 +520,6 @@ if ($is_admin === 'super') {
     if (is_checked('chk_all_include_tail'))         $all_fields .= " , bo_include_tail = '{$bo_include_tail}' ";
     if (is_checked('chk_all_content_head'))         $all_fields .= " , bo_content_head = '{$bo_content_head}' ";
     if (is_checked('chk_all_content_tail'))         $all_fields .= " , bo_content_tail = '{$bo_content_tail}' ";
-    if (is_checked('chk_all_mobile_content_head'))         $all_fields .= " , bo_mobile_content_head = '{$bo_mobile_content_head}' ";
-    if (is_checked('chk_all_mobile_content_tail'))         $all_fields .= " , bo_mobile_content_tail = '{$bo_mobile_content_tail}' ";
 }
 
 if (is_checked('chk_all_insert_content'))       $all_fields .= " , bo_insert_content = '{$bo_insert_content}' ";

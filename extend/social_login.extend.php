@@ -21,13 +21,9 @@ define('G5_SOCIAL_LOGIN_URL', G5_PLUGIN_URL.'/'.G5_SOCIAL_LOGIN_DIR);
 // 소셜로그인 SOCIAL_LOGIN_BASE_URL 기본값은 G5_SOCIAL_LOGIN_URL.'/'
 define('G5_SOCIAL_LOGIN_BASE_URL', G5_SOCIAL_LOGIN_URL.'/');
 
-if(G5_IS_MOBILE) {
-    define('G5_SOCIAL_SKIN_PATH', G5_PATH.'/'.G5_MOBILE_DIR.'/'.G5_SKIN_DIR.'/'.G5_SOCIAL_LOGIN_DIR);
-    define('G5_SOCIAL_SKIN_URL', G5_URL.'/'.G5_MOBILE_DIR.'/'.G5_SKIN_DIR.'/'.G5_SOCIAL_LOGIN_DIR);
-} else {
-    define('G5_SOCIAL_SKIN_PATH', G5_SKIN_PATH.'/'.G5_SOCIAL_LOGIN_DIR);
-    define('G5_SOCIAL_SKIN_URL', G5_SKIN_URL.'/'.G5_SOCIAL_LOGIN_DIR);
-}
+// 반응형: theme/skin/ 경로 사용
+define('G5_SOCIAL_SKIN_PATH', G5_THEME_PATH.'/'.G5_SKIN_DIR.'/'.G5_SOCIAL_LOGIN_DIR);
+define('G5_SOCIAL_SKIN_URL', str_replace(G5_PATH, G5_URL, G5_SOCIAL_SKIN_PATH));
 
 //소셜 로그인 팝업을 사용하면 true
 define('G5_SOCIAL_USE_POPUP', ! is_mobile() );  // 모바일에서는 팝업사용 안함

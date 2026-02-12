@@ -115,17 +115,7 @@ $sql_common = "  mb_name = '{$posts['mb_name']}',
                  mb_profile = '{$posts['mb_profile']}',
                  mb_level = '{$posts['mb_level']}',
                  mb_marketing_agree = '{$mb_marketing_agree}',
-                 mb_thirdparty_agree = '{$mb_thirdparty_agree}',
-                 mb_1 = '{$posts['mb_1']}',
-                 mb_2 = '{$posts['mb_2']}',
-                 mb_3 = '{$posts['mb_3']}',
-                 mb_4 = '{$posts['mb_4']}',
-                 mb_5 = '{$posts['mb_5']}',
-                 mb_6 = '{$posts['mb_6']}',
-                 mb_7 = '{$posts['mb_7']}',
-                 mb_8 = '{$posts['mb_8']}',
-                 mb_9 = '{$posts['mb_9']}',
-                 mb_10 = '{$posts['mb_10']}' ";
+                 mb_thirdparty_agree = '{$mb_thirdparty_agree}' ";
 
 if ($w == '') {
     $mb = get_member($mb_id);

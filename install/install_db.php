@@ -165,10 +165,10 @@ if ($g5_install || $is_install === false) {
                     cf_memo_send_point = '500',
                     cf_cut_name = '15',
                     cf_nick_modify = '60',
-                    cf_new_skin = 'basic',
+                    cf_new_skin = 'theme/basic',
                     cf_new_rows = '15',
-                    cf_search_skin = 'basic',
-                    cf_connect_skin = 'basic',
+                    cf_search_skin = 'theme/basic',
+                    cf_connect_skin = 'theme/basic',
                     cf_read_point = '$read_point',
                     cf_write_point = '$write_point',
                     cf_comment_point = '$comment_point',
@@ -180,13 +180,8 @@ if ($g5_install || $is_install === false) {
                     cf_filter = '18아,18놈,18새끼,18뇬,18노,18것,18넘,개년,개놈,개뇬,개새,개색끼,개세끼,개세이,개쉐이,개쉑,개쉽,개시키,개자식,개좆,게색기,게색끼,광뇬,뇬,눈깔,뉘미럴,니귀미,니기미,니미,도촬,되질래,뒈져라,뒈진다,디져라,디진다,디질래,병쉰,병신,뻐큐,뻑큐,뽁큐,삐리넷,새꺄,쉬발,쉬밸,쉬팔,쉽알,스패킹,스팽,시벌,시부랄,시부럴,시부리,시불,시브랄,시팍,시팔,시펄,실밸,십8,십쌔,십창,싶알,쌉년,썅놈,쌔끼,쌩쑈,썅,써벌,썩을년,쎄꺄,쎄엑,쓰바,쓰발,쓰벌,쓰팔,씨8,씨댕,씨바,씨발,씨뱅,씨봉알,씨부랄,씨부럴,씨부렁,씨부리,씨불,씨브랄,씨빠,씨빨,씨뽀랄,씨팍,씨팔,씨펄,씹,아가리,아갈이,엄창,접년,잡놈,재랄,저주글,조까,조빠,조쟁이,조지냐,조진다,조질래,존나,존니,좀물,좁년,좃,좆,좇,쥐랄,쥐롤,쥬디,지랄,지럴,지롤,지미랄,쫍빱,凸,퍽큐,뻑큐,빠큐,ㅅㅂㄹㅁ',
                     cf_possible_ip = '',
                     cf_intercept_ip = '',
-                    cf_member_skin = 'basic',
-                    cf_mobile_new_skin = 'basic',
-                    cf_mobile_search_skin = 'basic',
-                    cf_mobile_connect_skin = 'basic',
-                    cf_mobile_member_skin = 'basic',
-                    cf_faq_skin = 'basic',
-                    cf_mobile_faq_skin = 'basic',
+                    cf_member_skin = 'theme/basic',
+                    cf_faq_skin = 'theme/basic',
                     cf_editor = 'smarteditor2',
                     cf_captcha_mp3 = 'basic',
                     cf_register_level = '2',
@@ -223,9 +218,9 @@ if ($g5_install || $is_install === false) {
 
     // 1:1문의 설정
     $sql = " insert into `{$table_prefix}qa_config`
-                ( qa_title, qa_category, qa_skin, qa_mobile_skin, qa_use_email, qa_req_email, qa_use_hp, qa_req_hp, qa_use_editor, qa_subject_len, qa_mobile_subject_len, qa_page_rows, qa_mobile_page_rows, qa_image_width, qa_upload_size, qa_insert_content )
+                ( qa_title, qa_category, qa_skin, qa_use_email, qa_req_email, qa_use_hp, qa_req_hp, qa_use_editor, qa_subject_len, qa_mobile_subject_len, qa_page_rows, qa_mobile_page_rows, qa_image_width, qa_upload_size, qa_insert_content )
               values
-                ( '1:1문의', '회원|포인트', 'basic', 'basic', '1', '0', '1', '0', '1', '60', '30', '15', '15', '600', '1048576', '' ) ";
+                ( '1:1문의', '회원|포인트', 'theme/basic', '1', '0', '1', '0', '1', '60', '30', '15', '15', '600', '1048576', '' ) ";
     sql_query($sql, true, $dblink);
 
     // 관리자 회원가입
@@ -246,9 +241,9 @@ if ($g5_install || $is_install === false) {
     sql_query($sql, true, $dblink);
 
     // 내용관리 생성
-    sql_query(" insert into `{$table_prefix}content` set co_id = 'company', co_html = '1', co_subject = '회사소개', co_content= '<p align=center><b>회사소개에 대한 내용을 입력하십시오.</b></p>', co_skin = 'basic', co_mobile_skin = 'basic' ", true, $dblink);
-    sql_query(" insert into `{$table_prefix}content` set co_id = 'privacy', co_html = '1', co_subject = '개인정보 처리방침', co_content= '<p align=center><b>개인정보 처리방침에 대한 내용을 입력하십시오.</b></p>', co_skin = 'basic', co_mobile_skin = 'basic' ", true, $dblink);
-    sql_query(" insert into `{$table_prefix}content` set co_id = 'provision', co_html = '1', co_subject = '서비스 이용약관', co_content= '<p align=center><b>서비스 이용약관에 대한 내용을 입력하십시오.</b></p>', co_skin = 'basic', co_mobile_skin = 'basic' ", true, $dblink);
+    sql_query(" insert into `{$table_prefix}content` set co_id = 'company', co_html = '1', co_subject = '회사소개', co_content= '<p align=center><b>회사소개에 대한 내용을 입력하십시오.</b></p>', co_skin = 'theme/basic' ", true, $dblink);
+    sql_query(" insert into `{$table_prefix}content` set co_id = 'privacy', co_html = '1', co_subject = '개인정보 처리방침', co_content= '<p align=center><b>개인정보 처리방침에 대한 내용을 입력하십시오.</b></p>', co_skin = 'theme/basic' ", true, $dblink);
+    sql_query(" insert into `{$table_prefix}content` set co_id = 'provision', co_html = '1', co_subject = '서비스 이용약관', co_content= '<p align=center><b>서비스 이용약관에 대한 내용을 입력하십시오.</b></p>', co_skin = 'theme/basic' ", true, $dblink);
 
     // FAQ Master
     sql_query(" insert into `{$table_prefix}faq_master` set fm_id = '1', fm_subject = '자주하시는 질문' ", true, $dblink);
@@ -267,7 +262,7 @@ if ($g5_install || $is_install === false) {
     for ($i=0; $i<count($tmp_bo_table); $i++)
     {
 
-        $bo_skin = ($tmp_bo_table[$i] === 'gallery') ? 'gallery' : 'basic';
+        $bo_skin = ($tmp_bo_table[$i] === 'gallery') ? 'theme/gallery' : 'theme/basic';
 
         if (in_array($tmp_bo_table[$i], array('gallery', 'qa'))) {
             $read_bo_point = -1;
@@ -326,13 +321,10 @@ if ($g5_install || $is_install === false) {
                         bo_hot              = '100',
                         bo_image_width      = '835',
                         bo_skin             = '$bo_skin',
-                        bo_mobile_skin      = '$bo_skin',
                         bo_include_head     = '_head.php',
                         bo_include_tail     = '_tail.php',
                         bo_content_head     = '',
                         bo_content_tail     = '',
-                        bo_mobile_content_head     = '',
-                        bo_mobile_content_tail     = '',
                         bo_insert_content   = '',
                         bo_gallery_cols     = '4',
                         bo_gallery_width    = '202',
@@ -390,8 +382,7 @@ if($g5_shop_install) {
                     de_admin_company_addr = 'OO도 OO시 OO구 OO동 123-45',
                     de_admin_info_name = '정보책임자명',
                     de_admin_info_email = '정보책임자 E-mail',
-                    de_shop_skin = 'basic',
-                    de_shop_mobile_skin = 'basic',
+                    de_shop_skin = 'theme/basic',
                     de_type1_list_use = '1',
                     de_type1_list_skin = 'main.10.skin.php',
                     de_type1_list_mod = '5',
@@ -422,36 +413,6 @@ if($g5_shop_install) {
                     de_type5_list_row = '1',
                     de_type5_img_width = '$simg_width',
                     de_type5_img_height = '$simg_height',
-                    de_mobile_type1_list_use = '1',
-                    de_mobile_type1_list_skin = 'main.30.skin.php',
-                    de_mobile_type1_list_mod = '2',
-                    de_mobile_type1_list_row = '4',
-                    de_mobile_type1_img_width = '$mimg_width',
-                    de_mobile_type1_img_height = '$mimg_height',
-                    de_mobile_type2_list_use = '1',
-                    de_mobile_type2_list_skin = 'main.10.skin.php',
-                    de_mobile_type2_list_mod = '2',
-                    de_mobile_type2_list_row = '2',
-                    de_mobile_type2_img_width = '$mimg_width',
-                    de_mobile_type2_img_height = '$mimg_height',
-                    de_mobile_type3_list_use = '1',
-                    de_mobile_type3_list_skin = 'main.10.skin.php',
-                    de_mobile_type3_list_mod = '2',
-                    de_mobile_type3_list_row = '4',
-                    de_mobile_type3_img_width = '$mmimg_width',
-                    de_mobile_type3_img_height = '$mmimg_height',
-                    de_mobile_type4_list_use = '1',
-                    de_mobile_type4_list_skin = 'main.20.skin.php',
-                    de_mobile_type4_list_mod = '2',
-                    de_mobile_type4_list_row = '2',
-                    de_mobile_type4_img_width = '$msimg_width',
-                    de_mobile_type4_img_height = '$msimg_height',
-                    de_mobile_type5_list_use = '1',
-                    de_mobile_type5_list_skin = 'main.10.skin.php',
-                    de_mobile_type5_list_mod = '2',
-                    de_mobile_type5_list_row = '2',
-                    de_mobile_type5_img_width = '$mimg_width',
-                    de_mobile_type5_img_height = '$mimg_height',
                     de_bank_use = '1',
                     de_bank_account = 'OO은행 12345-67-89012 예금주명',
                     de_vbank_use = '0',
@@ -477,31 +438,16 @@ if($g5_shop_install) {
                     de_rel_list_mod = '5',
                     de_rel_img_width = '$simg_width',
                     de_rel_img_height = '$simg_height',
-                    de_mobile_rel_list_use = '1',
-                    de_mobile_rel_list_skin = 'relation.10.skin.php',
-                    de_mobile_rel_list_mod = '3',
-                    de_mobile_rel_img_width = '$mimg_width',
-                    de_mobile_rel_img_height = '$mimg_height',
                     de_search_list_skin = 'list.10.skin.php',
                     de_search_img_width = '$list_img_width',
                     de_search_img_height = '$list_img_height',
                     de_search_list_mod = '5',
                     de_search_list_row = '5',
-                    de_mobile_search_list_skin = 'list.10.skin.php',
-                    de_mobile_search_img_width = '$mimg_width',
-                    de_mobile_search_img_height = '$mimg_height',
-                    de_mobile_search_list_mod = '2',
-                    de_mobile_search_list_row = '5',
                     de_listtype_list_skin = 'list.10.skin.php',
                     de_listtype_img_width = '$list_img_width',
                     de_listtype_img_height = '$list_img_height',
                     de_listtype_list_mod = '5',
                     de_listtype_list_row = '5',
-                    de_mobile_listtype_list_skin = 'list.10.skin.php',
-                    de_mobile_listtype_img_width = '$mimg_width',
-                    de_mobile_listtype_img_height = '$mimg_height',
-                    de_mobile_listtype_list_mod = '2',
-                    de_mobile_listtype_list_row = '5',
                     de_simg_width = '$mimg_width',
                     de_simg_height = '$mimg_height',
                     de_mimg_width = '$mmimg_width',

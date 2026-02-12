@@ -89,14 +89,6 @@ $qa_status = 0;
 $qa_html = (isset($_POST['qa_html']) && $_POST['qa_html']) ? (int) $_POST['qa_html'] : 0;
 $answer_id = null;
 
-for ($i=1; $i<=5; $i++) {
-    $var = "qa_$i";
-    $$var = "";
-    if (isset($_POST['qa_'.$i]) && $_POST['qa_'.$i]) {
-        $$var = trim($_POST['qa_'.$i]);
-    }
-}
-
 if($w == 'u' || $w == 'a' || $w == 'r') {
     if($w == 'a' && !$is_admin)
         alert('답변은 관리자만 등록할 수 있습니다.');
@@ -278,12 +270,7 @@ if($w == '' || $w == 'a' || $w == 'r') {
                     qa_file2        = '{$insert_qa_file2}',
                     qa_source2      = '{$insert_qa_source2}',
                     qa_ip           = '{$_SERVER['REMOTE_ADDR']}',
-                    qa_datetime     = '".G5_TIME_YMDHIS."',
-                    qa_1            = '$qa_1',
-                    qa_2            = '$qa_2',
-                    qa_3            = '$qa_3',
-                    qa_4            = '$qa_4',
-                    qa_5            = '$qa_5' ";
+                    qa_datetime     = '".G5_TIME_YMDHIS."' ";
     sql_query($sql);
 
     if($w == '' || $w == 'r') {
@@ -330,12 +317,7 @@ if($w == '' || $w == 'a' || $w == 'r') {
                     qa_file1    = '{$upload[1]['file']}',
                     qa_source1  = '{$upload[1]['source']}',
                     qa_file2    = '{$upload[2]['file']}',
-                    qa_source2  = '{$upload[2]['source']}',
-                    qa_1        = '$qa_1',
-                    qa_2        = '$qa_2',
-                    qa_3        = '$qa_3',
-                    qa_4        = '$qa_4',
-                    qa_5        = '$qa_5' ";
+                    qa_source2  = '{$upload[2]['source']}' ";
     if($qa_sms_recv)
         $sql .= ", qa_sms_recv = '$qa_sms_recv' ";
     $sql .= " where qa_id = '$qa_id' ";

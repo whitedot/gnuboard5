@@ -102,8 +102,7 @@ if ($w == '') {
     $board['bo_upload_size'] = 1048576;
     $board['bo_reply_order'] = 1;
     $board['bo_use_search'] = 1;
-    $board['bo_skin'] = 'basic';
-    $board['bo_mobile_skin'] = 'basic';
+    $board['bo_skin'] = 'theme/basic';
     $board['gr_id'] = $gr_id;
     $board['bo_use_secret'] = 0;
     $board['bo_include_head'] = '_head.php';
@@ -167,9 +166,6 @@ include_once G5_ADMIN_PATH.'/board_form_parts/design.php';
 
 // 포인트 설정
 include_once G5_ADMIN_PATH.'/board_form_parts/point.php';
-
-// 여분필드 설정
-include_once G5_ADMIN_PATH.'/board_form_parts/extra.php';
 ?>
 
 <div class="btn_fixed_top">

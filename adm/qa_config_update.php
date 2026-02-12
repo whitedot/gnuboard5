@@ -93,19 +93,7 @@ $sql = " update {$g5['qa_config_table']}
                 qa_include_head         = '{$qa_include_head}',
                 qa_include_tail         = '{$qa_include_tail}',
                 qa_content_head         = '{$_POST['qa_content_head']}',
-                qa_content_tail         = '{$_POST['qa_content_tail']}',
-                qa_mobile_content_head  = '{$_POST['qa_mobile_content_head']}',
-                qa_mobile_content_tail  = '{$_POST['qa_mobile_content_tail']}',
-                qa_1_subj               = '{$_POST['qa_1_subj']}',
-                qa_2_subj               = '{$_POST['qa_2_subj']}',
-                qa_3_subj               = '{$_POST['qa_3_subj']}',
-                qa_4_subj               = '{$_POST['qa_4_subj']}',
-                qa_5_subj               = '{$_POST['qa_5_subj']}',
-                qa_1                    = '{$_POST['qa_1']}',
-                qa_2                    = '{$_POST['qa_2']}',
-                qa_3                    = '{$_POST['qa_3']}',
-                qa_4                    = '{$_POST['qa_4']}',
-                qa_5                    = '{$_POST['qa_5']}' ";
+                qa_content_tail         = '{$_POST['qa_content_tail']}' ";
 sql_query($sql);
 
 run_event('admin_qa_config_updated');

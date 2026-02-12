@@ -145,37 +145,25 @@ class item_list
     }
 
     // 리스트 스킨을 바꾸고자 하는 경우에 사용합니다.
-    // 리스트 스킨의 위치는 skin/shop/쇼핑몰설정스킨/type??.skin.php 입니다.
+    // 리스트 스킨의 위치는 theme/skin/shop/스킨/type??.skin.php 입니다.
     // 특별히 설정하지 않는 경우 상품유형을 사용하는 경우는 쇼핑몰설정 값을 그대로 따릅니다.
     function set_list_skin($list_skin) {
         global $default;
-        if ($this->is_mobile) {
-            $this->list_skin = $list_skin ? $list_skin : G5_MSHOP_SKIN_PATH.'/'.preg_replace('/[^A-Za-z0-9 _ .-]/', '', $default['de_mobile_type'.$this->type.'_list_skin']);
-        } else {
-            $this->list_skin = $list_skin ? $list_skin : G5_SHOP_SKIN_PATH.'/'.preg_replace('/[^A-Za-z0-9 _ .-]/', '', $default['de_type'.$this->type.'_list_skin']);
-        }
+        $this->list_skin = $list_skin ? $list_skin : G5_SHOP_SKIN_PATH.'/'.preg_replace('/[^A-Za-z0-9 _ .-]/', '', $default['de_type'.$this->type.'_list_skin']);
     }
 
     // 1줄에 몇개를 노출할지를 사용한다.
     // 특별히 설정하지 않는 경우 상품유형을 사용하는 경우는 쇼핑몰설정 값을 그대로 따릅니다.
     function set_list_mod($list_mod) {
         global $default;
-        if ($this->is_mobile) {
-            $this->list_mod = $list_mod ? $list_mod : $default['de_mobile_type'.$this->type.'_list_mod'];
-        } else {
-            $this->list_mod = $list_mod ? $list_mod : $default['de_type'.$this->type.'_list_mod'];
-        }
+        $this->list_mod = $list_mod ? $list_mod : $default['de_type'.$this->type.'_list_mod'];
     }
 
     // 몇줄을 노출할지를 사용한다.
     // 특별히 설정하지 않는 경우 상품유형을 사용하는 경우는 쇼핑몰설정 값을 그대로 따릅니다.
     function set_list_row($list_row) {
         global $default;
-        if ($this->is_mobile) {
-            $this->list_row = $list_row ? $list_row : $default['de_mobile_type'.$this->type.'_list_row'];
-        } else {
-            $this->list_row = $list_row ? $list_row : $default['de_type'.$this->type.'_list_row'];
-        }
+        $this->list_row = $list_row ? $list_row : $default['de_type'.$this->type.'_list_row'];
         if (!$this->list_row)
             $this->list_row = 1;
     }
@@ -184,13 +172,8 @@ class item_list
     // 특별히 설정하지 않는 경우 상품유형을 사용하는 경우는 쇼핑몰설정 값을 그대로 따릅니다.
     function set_img_size($img_width, $img_height=0) {
         global $default;
-        if ($this->is_mobile) {
-            $this->img_width = $img_width ? $img_width : $default['de_mobile_type'.$this->type.'_img_width'];
-            $this->img_height = $img_height ? $img_height : $default['de_mobile_type'.$this->type.'_img_height'];
-        } else {
-            $this->img_width = $img_width ? $img_width : $default['de_type'.$this->type.'_img_width'];
-            $this->img_height = $img_height ? $img_height : $default['de_type'.$this->type.'_img_height'];
-        }
+        $this->img_width = $img_width ? $img_width : $default['de_type'.$this->type.'_img_width'];
+        $this->img_height = $img_height ? $img_height : $default['de_type'.$this->type.'_img_height'];
     }
 
     // 특정 필드만 select 하는 경우에는 필드명을 , 로 구분하여 "field1, field2, field3, ... fieldn" 으로 인수를 넘겨줍니다.

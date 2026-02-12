@@ -93,7 +93,6 @@ $colspan = 15;
                     <th scope="col"><?php echo subject_sort_link('a.gr_id') ?>그룹</a></th>
                     <th scope="col"><?php echo subject_sort_link('bo_table') ?>TABLE</a></th>
                     <th scope="col"><?php echo subject_sort_link('bo_skin', '', 'desc') ?>스킨</a></th>
-                    <th scope="col"><?php echo subject_sort_link('bo_mobile_skin', '', 'desc') ?>모바일<br>스킨</a></th>
                     <th scope="col"><?php echo subject_sort_link('bo_subject') ?>제목</a></th>
                     <th scope="col">읽기P<span class="sound_only">포인트</span></th>
                     <th scope="col">쓰기P<span class="sound_only">포인트</span></th>
@@ -134,10 +133,6 @@ $colspan = 15;
                         <td>
                             <label for="bo_skin_<?php echo $i; ?>" class="sound_only">스킨</label>
                             <?php echo get_skin_select('board', 'bo_skin_' . $i, "bo_skin[$i]", $row['bo_skin']); ?>
-                        </td>
-                        <td>
-                            <label for="bo_mobile_skin_<?php echo $i; ?>" class="sound_only">모바일 스킨</label>
-                            <?php echo get_mobile_skin_select('board', 'bo_mobile_skin_' . $i, "bo_mobile_skin[$i]", $row['bo_mobile_skin']); ?>
                         </td>
                         <td>
                             <label for="bo_subject_<?php echo $i; ?>" class="sound_only">게시판 제목<strong class="sound_only"> 필수</strong></label>

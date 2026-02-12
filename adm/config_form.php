@@ -82,9 +82,6 @@ if ($config['cf_sms_use'] && $config['cf_icode_id'] && $config['cf_icode_pw']) {
 
     // SMS 설정
     include_once G5_ADMIN_PATH.'/config_form_parts/sms.php';
-
-    // 여분필드 기본 설정
-    include_once G5_ADMIN_PATH.'/config_form_parts/extra.php';
     ?>
     
     <div id="config_captcha_wrap" style="display:none">

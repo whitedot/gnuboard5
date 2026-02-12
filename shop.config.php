@@ -43,36 +43,25 @@ if(!defined('_THEME_PREVIEW_')) {
     if(defined('G5_THEME_PATH')) {
         define('G5_THEME_SHOP_PATH',   G5_THEME_PATH.'/'.G5_SHOP_DIR);
         define('G5_THEME_SHOP_URL',    G5_THEME_URL.'/'.G5_SHOP_DIR);
-        define('G5_THEME_MSHOP_PATH',  G5_THEME_PATH.'/'.G5_MOBILE_DIR.'/'.G5_SHOP_DIR);
-        define('G5_THEME_MSHOP_URL',   G5_THEME_URL.'/'.G5_MOBILE_DIR.'/'.G5_SHOP_DIR);
     }
 
-    // 스킨 경로 설정
-    if(preg_match('#^theme/(.+)$#', $default['de_shop_skin'], $match)) {
-		if(defined('G5_THEME_PATH')) {
-			define('G5_SHOP_SKIN_PATH',  G5_THEME_PATH.'/'.G5_SKIN_DIR.'/shop/'.$match[1]);
-			define('G5_SHOP_SKIN_URL',   G5_THEME_URL .'/'.G5_SKIN_DIR.'/shop/'.$match[1]);
-		} else {
-			define('G5_SHOP_SKIN_PATH',  G5_PATH.'/'.G5_SKIN_DIR.'/shop/'.$match[1]);
-			define('G5_SHOP_SKIN_URL',   G5_URL .'/'.G5_SKIN_DIR.'/shop/'.$match[1]);
-		}
+    // 스킨 경로 설정 (theme/skin/shop/ 경로만 사용)
+    $shop_skin = $default['de_shop_skin'];
+    // 레거시 호환: 'basic' -> 'theme/basic' 변환
+    if(!preg_match('#^theme/(.+)$#', $shop_skin, $match)) {
+        $match[1] = $shop_skin ?: 'basic';
+    }
+    if(defined('G5_THEME_PATH')) {
+        define('G5_SHOP_SKIN_PATH',  G5_THEME_PATH.'/'.G5_SKIN_DIR.'/shop/'.$match[1]);
+        define('G5_SHOP_SKIN_URL',   G5_THEME_URL .'/'.G5_SKIN_DIR.'/shop/'.$match[1]);
     } else {
-        define('G5_SHOP_SKIN_PATH',  G5_PATH.'/'.G5_SKIN_DIR.'/shop/'.$default['de_shop_skin']);
-        define('G5_SHOP_SKIN_URL',   G5_URL .'/'.G5_SKIN_DIR.'/shop/'.$default['de_shop_skin']);
+        define('G5_SHOP_SKIN_PATH',  G5_PATH.'/'.G5_THEME_DIR.'/basic/'.G5_SKIN_DIR.'/shop/'.$match[1]);
+        define('G5_SHOP_SKIN_URL',   G5_URL .'/'.G5_THEME_DIR.'/basic/'.G5_SKIN_DIR.'/shop/'.$match[1]);
     }
 
-    if(preg_match('#^theme/(.+)$#', $default['de_shop_mobile_skin'], $match)) {
-		if(defined('G5_THEME_PATH')) {
-			define('G5_MSHOP_SKIN_PATH', G5_THEME_MOBILE_PATH.'/'.G5_SKIN_DIR.'/shop/'.$match[1]);
-			define('G5_MSHOP_SKIN_URL',  G5_THEME_URL .'/'.G5_MOBILE_DIR.'/'.G5_SKIN_DIR.'/shop/'.$match[1]);
-		} else {
-			define('G5_MSHOP_SKIN_PATH', G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/shop/'.$match[1]);
-			define('G5_MSHOP_SKIN_URL',  G5_MOBILE_URL .'/'.G5_SKIN_DIR.'/shop/'.$match[1]);
-		}
-    } else {
-        define('G5_MSHOP_SKIN_PATH', G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/shop/'.$default['de_shop_mobile_skin']);
-        define('G5_MSHOP_SKIN_URL',  G5_MOBILE_URL .'/'.G5_SKIN_DIR.'/shop/'.$default['de_shop_mobile_skin']);
-    }
+    // 반응형: PC 스킨과 동일 경로 사용
+    define('G5_MSHOP_SKIN_PATH', G5_SHOP_SKIN_PATH);
+    define('G5_MSHOP_SKIN_URL',  G5_SHOP_SKIN_URL);
 }
 
 if( !isset($g5['g5_shop_post_log_table']) || !$g5['g5_shop_post_log_table'] ){
