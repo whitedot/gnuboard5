@@ -1,3 +1,19 @@
+// jQuery가 없는 환경에서 오류 방지
+if (typeof jQuery === 'undefined') {
+    var $ = function(selector) {
+        var noop = function() { return this; };
+        return {
+            ready: noop, click: noop, on: noop, off: noop,
+            mouseover: noop, mouseout: noop, hover: noop,
+            focusin: noop, focusout: noop,
+            addClass: noop, removeClass: noop, toggleClass: noop,
+            attr: noop, val: noop, find: noop, closest: noop, siblings: noop,
+            prepend: noop, append: noop
+        };
+    };
+    $.fn = {};
+}
+
 // 전역 변수
 var errmsg = "";
 var errfld = null;
@@ -249,10 +265,13 @@ var win_password_lost = function (href) {
     window.open(href, "win_password_lost", "left=50, top=50, width=617, height=330, scrollbars=1");
 }
 
-$(document).ready(function () {
-    $("#login_password_lost, #ol_password_lost").click(function () {
-        win_password_lost(this.href);
-        return false;
+document.addEventListener('DOMContentLoaded', function () {
+    var passwordLostLinks = document.querySelectorAll('#login_password_lost, #ol_password_lost');
+    passwordLostLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            win_password_lost(this.href);
+        });
     });
 });
 
