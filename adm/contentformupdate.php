@@ -34,9 +34,7 @@ $co_himg_del = (isset($_POST['co_himg_del']) && $_POST['co_himg_del']) ? 1 : 0;
 $co_timg_del = (isset($_POST['co_timg_del']) && $_POST['co_timg_del']) ? 1 : 0;
 $co_html = isset($_POST['co_html']) ? (int) $_POST['co_html'] : 0;
 $co_content = isset($_POST['co_content']) ? $_POST['co_content'] : '';
-$co_mobile_content = isset($_POST['co_mobile_content']) ? $_POST['co_mobile_content'] : '';
 $co_skin = isset($_POST['co_skin']) ? clean_xss_tags($_POST['co_skin'], 1, 1) : '';
-$co_mobile_skin = isset($_POST['co_mobile_skin']) ? clean_xss_tags($_POST['co_mobile_skin'], 1, 1) : '';
 
 // 관리자가 자동등록방지를 사용해야 할 경우
 if (((isset($co_row['co_include_head']) && $co_row['co_include_head'] !== $co_include_head) || (isset($co_row['co_include_tail']) && $co_row['co_include_tail'] !== $co_include_tail)) && function_exists('get_admin_captcha_by') && get_admin_captcha_by()) {
@@ -98,10 +96,8 @@ $sql_common = " co_include_head     = '$co_include_head',
                 co_tag_filter_use   = '$co_tag_filter_use',
                 co_subject          = '$co_subject',
                 co_content          = '$co_content',
-                co_mobile_content   = '$co_mobile_content',
                 co_seo_title        = '$co_seo_title',
-                co_skin             = '$co_skin',
-                co_mobile_skin      = '$co_mobile_skin' ";
+                co_skin             = '$co_skin' ";
 
 if ($w == "") {
     $row = $co_row;

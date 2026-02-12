@@ -28,19 +28,9 @@ for ($i=0; $i<$post_ca_id_count; $i++)
         $check_files[] = $_POST['ca_skin'][$i];
     }
 
-    if( !empty($_POST['ca_mobile_skin'][$i]) ){
-        $check_files[] = $_POST['ca_mobile_skin'][$i];
-    }
-
     if( !empty($_POST['ca_skin_dir'][$i]) ){
         if( preg_match('#\.+(\/|\\\)#', $_POST['ca_skin_dir'][$i]) ){
-            alert('PC 스킨폴더명에 포함될수 없는 문자가 들어있습니다.');
-        }
-    }
-
-    if( !empty($_POST['ca_mobile_skin_dir'][$i]) ){
-        if( preg_match('#\.+(\/|\\\)#', $_POST['ca_mobile_skin_dir'][$i]) ){
-            alert('모바일 스킨폴더명에 포함될수 없는 문자가 들어있습니다.');
+            alert('스킨폴더명에 포함될수 없는 문자가 들어있습니다.');
         }
     }
 
@@ -66,7 +56,7 @@ for ($i=0; $i<$post_ca_id_count; $i++)
     
     $posts = array();
 
-    $check_keys = array('ca_mb_id', 'ca_id', 'ca_use', 'ca_list_mod', 'ca_cert_use', 'ca_adult_use', 'ca_skin', 'ca_mobile_skin', 'ca_skin_dir', 'ca_mobile_skin_dir', 'ca_img_width', 'ca_img_height', 'ca_list_row', 'ca_mobile_list_mod', 'ca_mobile_list_row');
+    $check_keys = array('ca_mb_id', 'ca_id', 'ca_use', 'ca_list_mod', 'ca_cert_use', 'ca_adult_use', 'ca_skin', 'ca_skin_dir', 'ca_img_width', 'ca_img_height', 'ca_list_row');
 
     foreach($check_keys as $key){
         $posts[$key] = (isset($_POST[$key]) && isset($_POST[$key][$i])) ? $_POST[$key][$i] : '';
@@ -80,14 +70,10 @@ for ($i=0; $i<$post_ca_id_count; $i++)
                     ca_cert_use         = '".sql_real_escape_string(strip_tags($posts['ca_cert_use']))."',
                     ca_adult_use        = '".sql_real_escape_string(strip_tags($posts['ca_adult_use']))."',
                     ca_skin             = '".sql_real_escape_string(strip_tags($posts['ca_skin']))."',
-                    ca_mobile_skin      = '".sql_real_escape_string(strip_tags($posts['ca_mobile_skin']))."',
                     ca_skin_dir         = '".sql_real_escape_string(strip_tags($posts['ca_skin_dir']))."',
-                    ca_mobile_skin_dir  = '".sql_real_escape_string(strip_tags($posts['ca_mobile_skin_dir']))."',
                     ca_img_width        = '".sql_real_escape_string(strip_tags($posts['ca_img_width']))."',
                     ca_img_height       = '".sql_real_escape_string(strip_tags($posts['ca_img_height']))."',
-                    ca_list_row         = '".sql_real_escape_string(strip_tags($posts['ca_list_row']))."',
-                    ca_mobile_list_mod  = '".sql_real_escape_string(strip_tags($posts['ca_mobile_list_mod']))."',
-                    ca_mobile_list_row  = '".sql_real_escape_string(strip_tags($posts['ca_mobile_list_row']))."'
+                    ca_list_row         = '".sql_real_escape_string(strip_tags($posts['ca_list_row']))."'
               where ca_id = '".sql_real_escape_string($posts['ca_id'])."' ";
 
     sql_query($sql);

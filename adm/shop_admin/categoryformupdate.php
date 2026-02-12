@@ -48,15 +48,9 @@ $check_str_keys = array(
 'ca_name'=>'str',
 'ca_mb_id'=>'str',
 'ca_nocoupon'=>'str',
-'ca_mobile_skin_dir'=>'str',
 'ca_skin'=>'str',
-'ca_mobile_skin'=>'str',
 'ca_list_mod'=>'int',
 'ca_list_row'=>'int',
-'ca_mobile_img_width'=>'int',
-'ca_mobile_img_height'=>'int',
-'ca_mobile_list_mod'=>'int',
-'ca_mobile_list_row'=>'int',
 'ca_sell_email'=>'str',
 'ca_use'=>'int',
 'ca_stock_qty'=>'int',
@@ -82,8 +76,6 @@ foreach( $check_str_keys as $key=>$val ){
 
 $ca_head_html = isset($_POST['ca_head_html']) ? $_POST['ca_head_html'] : '';
 $ca_tail_html = isset($_POST['ca_tail_html']) ? $_POST['ca_tail_html'] : '';
-$ca_mobile_head_html = isset($_POST['ca_mobile_head_html']) ? $_POST['ca_mobile_head_html'] : '';
-$ca_mobile_tail_html = isset($_POST['ca_mobile_tail_html']) ? $_POST['ca_mobile_tail_html'] : '';
 
 if(!is_include_path_check($ca_include_head, 1)) {
     alert('상단 파일 경로에 포함시킬수 없는 문자열이 있습니다.');
@@ -93,7 +85,7 @@ if(!is_include_path_check($ca_include_tail, 1)) {
     alert('하단 파일 경로에 포함시킬수 없는 문자열이 있습니다.');
 }
 
-$check_keys = array('ca_skin_dir', 'ca_mobile_skin_dir', 'ca_skin', 'ca_mobile_skin'); 
+$check_keys = array('ca_skin_dir', 'ca_skin'); 
 
 foreach( $check_keys as $key ){
     if( isset($$key) && preg_match('#\.+(\/|\\\)#', $$key) ){
@@ -133,25 +125,17 @@ if( $ca_skin && ! is_include_path_check($ca_skin) ){
 
 $sql_common = " ca_order                = '$ca_order',
                 ca_skin_dir             = '$ca_skin_dir',
-                ca_mobile_skin_dir      = '$ca_mobile_skin_dir',
                 ca_skin                 = '$ca_skin',
-                ca_mobile_skin          = '$ca_mobile_skin',
                 ca_img_width            = '$ca_img_width',
                 ca_img_height           = '$ca_img_height',
 				ca_list_mod             = '$ca_list_mod',
 				ca_list_row             = '$ca_list_row',
-                ca_mobile_img_width     = '$ca_mobile_img_width',
-                ca_mobile_img_height    = '$ca_mobile_img_height',
-				ca_mobile_list_mod      = '$ca_mobile_list_mod',
-                ca_mobile_list_row      = '$ca_mobile_list_row',
                 ca_sell_email           = '$ca_sell_email',
                 ca_use                  = '$ca_use',
                 ca_stock_qty            = '$ca_stock_qty',
                 ca_explan_html          = '$ca_explan_html',
                 ca_head_html            = '$ca_head_html',
                 ca_tail_html            = '$ca_tail_html',
-                ca_mobile_head_html     = '$ca_mobile_head_html',
-                ca_mobile_tail_html     = '$ca_mobile_tail_html',
                 ca_include_head         = '$ca_include_head',
                 ca_include_tail         = '$ca_include_tail',
                 ca_mb_id                = '$ca_mb_id',

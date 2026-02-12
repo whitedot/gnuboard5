@@ -20,16 +20,11 @@ $ev_himg_del = isset($_POST['ev_himg_del']) ? (int) $_POST['ev_himg_del'] : 0;
 $ev_timg_del = isset($_POST['ev_timg_del']) ? (int) $_POST['ev_timg_del'] : 0;
 
 $ev_skin = isset($_POST['ev_skin']) ? clean_xss_tags($_POST['ev_skin'], 1, 1) : '';
-$ev_mobile_skin = isset($_POST['ev_mobile_skin']) ? clean_xss_tags($_POST['ev_mobile_skin'], 1, 1) : '';
 
 $ev_img_width = isset($_POST['ev_img_width']) ? (int) $_POST['ev_img_width'] : 0;
 $ev_img_height = isset($_POST['ev_img_height']) ? (int) $_POST['ev_img_height'] : 0;
 $ev_list_mod = isset($_POST['ev_list_mod']) ? (int) $_POST['ev_list_mod'] : 0;
 $ev_list_row = isset($_POST['ev_list_row']) ? (int) $_POST['ev_list_row'] : 0;
-$ev_mobile_img_width = isset($_POST['ev_mobile_img_width']) ? (int) $_POST['ev_mobile_img_width'] : 0;
-$ev_mobile_img_height = isset($_POST['ev_mobile_img_height']) ? (int) $_POST['ev_mobile_img_height'] : 0;
-$ev_mobile_list_mod = isset($_POST['ev_mobile_list_mod']) ? (int) $_POST['ev_mobile_list_mod'] : 0;
-$ev_mobile_list_row = isset($_POST['ev_mobile_list_row']) ? (int) $_POST['ev_mobile_list_row'] : 0;
 $ev_use = isset($_POST['ev_use']) ? (int) $_POST['ev_use'] : 0;
 $ev_subject_strong = isset($_POST['ev_subject_strong']) ? (int) $_POST['ev_subject_strong'] : 0;
 
@@ -42,24 +37,17 @@ if ($ev_himg_del)  @unlink(G5_DATA_PATH."/event/{$ev_id}_h");
 if ($ev_timg_del)  @unlink(G5_DATA_PATH."/event/{$ev_id}_t");
 
 $ev_skin = preg_replace(array('#\.+(\/|\\\)#', '#[\'\"]#'), array('', ''), $ev_skin);
-$ev_mobile_skin = preg_replace(array('#\.+(\/|\\\)#', '#[\'\"]#'), array('', ''), $ev_mobile_skin);
 
 $skin_regex_patten = "^list.[0-9]+\.skin\.php";
 
 $ev_skin = (preg_match("/$skin_regex_patten/", $ev_skin) && file_exists(G5_SHOP_SKIN_PATH.'/'.$ev_skin)) ? $ev_skin : ''; 
-$ev_mobile_skin = (preg_match("/$skin_regex_patten/", $ev_mobile_skin) && file_exists(G5_MSHOP_SKIN_PATH.'/'.$ev_mobile_skin)) ? $ev_mobile_skin : ''; 
 $ev_subject = strip_tags($ev_subject);
 
 $sql_common = " set ev_skin             = '$ev_skin',
-                    ev_mobile_skin      = '$ev_mobile_skin',
                     ev_img_width        = '$ev_img_width',
                     ev_img_height       = '$ev_img_height',
                     ev_list_mod         = '$ev_list_mod',
                     ev_list_row         = '$ev_list_row',
-                    ev_mobile_img_width = '$ev_mobile_img_width',
-                    ev_mobile_img_height= '$ev_mobile_img_height',
-                    ev_mobile_list_mod  = '$ev_mobile_list_mod',
-                    ev_mobile_list_row  = '$ev_mobile_list_row',
                     ev_subject          = '$ev_subject',
                     ev_head_html        = '$ev_head_html',
                     ev_tail_html        = '$ev_tail_html',

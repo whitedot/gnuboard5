@@ -12,7 +12,7 @@ $error_msg = '';
 
 $qaconfig = get_qa_config();
 
-$check_keys = array('qa_title', 'qa_category', 'qa_skin', 'qa_mobile_skin', 'qa_use_email', 'qa_req_email', 'qa_use_hp', 'qa_req_hp', 'qa_use_sms', 'qa_send_number', 'qa_admin_hp', 'qa_admin_email', 'qa_subject_len', 'qa_mobile_subject_len', 'qa_page_rows', 'qa_mobile_page_rows', 'qa_image_width', 'qa_upload_size');
+$check_keys = array('qa_title', 'qa_category', 'qa_skin', 'qa_use_email', 'qa_req_email', 'qa_use_hp', 'qa_req_hp', 'qa_use_sms', 'qa_send_number', 'qa_admin_hp', 'qa_admin_email', 'qa_subject_len', 'qa_mobile_subject_len', 'qa_page_rows', 'qa_mobile_page_rows', 'qa_image_width', 'qa_upload_size');
 
 foreach ($check_keys as $key) {
     $$key = $_POST[$key] = isset($_POST[$key]) ? strip_tags(clean_xss_attributes($_POST[$key])) : '';
@@ -73,7 +73,6 @@ $sql = " update {$g5['qa_config_table']}
             set qa_title                = '{$_POST['qa_title']}',
                 qa_category             = '{$qa_category}',
                 qa_skin                 = '{$_POST['qa_skin']}',
-                qa_mobile_skin          = '{$_POST['qa_mobile_skin']}',
                 qa_use_email            = '{$_POST['qa_use_email']}',
                 qa_req_email            = '{$_POST['qa_req_email']}',
                 qa_use_hp               = '{$_POST['qa_use_hp']}',

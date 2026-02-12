@@ -25,7 +25,6 @@ if ($act_button === "선택수정") {
         $post_gr_id = isset($_POST['gr_id'][$k]) ? clean_xss_tags($_POST['gr_id'][$k], 1, 1) : '';
         $post_bo_device = isset($_POST['bo_device'][$k]) ? clean_xss_tags($_POST['bo_device'][$k], 1, 1) : '';
         $post_bo_skin = isset($_POST['bo_skin'][$k]) ? clean_xss_tags($_POST['bo_skin'][$k], 1, 1) : '';
-        $post_bo_mobile_skin = isset($_POST['bo_mobile_skin'][$k]) ? clean_xss_tags($_POST['bo_mobile_skin'][$k], 1, 1) : '';
         $post_bo_read_point = isset($_POST['bo_read_point'][$k]) ? clean_xss_tags($_POST['bo_read_point'][$k], 1, 1) : '';
         $post_bo_write_point = isset($_POST['bo_write_point'][$k]) ? clean_xss_tags($_POST['bo_write_point'][$k], 1, 1) : '';
         $post_bo_comment_point = isset($_POST['bo_comment_point'][$k]) ? clean_xss_tags($_POST['bo_comment_point'][$k], 1, 1) : '';
@@ -53,7 +52,6 @@ if ($act_button === "선택수정") {
                         bo_subject          = '" . $p_bo_subject . "',
                         bo_device           = '" . sql_real_escape_string($post_bo_device) . "',
                         bo_skin             = '" . sql_real_escape_string($post_bo_skin) . "',
-                        bo_mobile_skin      = '" . sql_real_escape_string($post_bo_mobile_skin) . "',
                         bo_read_point       = '" . sql_real_escape_string($post_bo_read_point) . "',
                         bo_write_point      = '" . sql_real_escape_string($post_bo_write_point) . "',
                         bo_comment_point    = '" . sql_real_escape_string($post_bo_comment_point) . "',

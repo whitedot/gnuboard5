@@ -28,7 +28,7 @@ sql_query($sql);
 
 // 테마 설정 스킨 적용
 if($post_set_default_skin == 1) {
-    $keys = 'set_default_skin, cf_member_skin, cf_mobile_member_skin, cf_new_skin, cf_mobile_new_skin, cf_search_skin, cf_mobile_search_skin, cf_connect_skin, cf_mobile_connect_skin, cf_faq_skin, cf_mobile_faq_skin, qa_skin, qa_mobile_skin, de_shop_skin, de_shop_mobile_skin';
+    $keys = 'set_default_skin, cf_member_skin, cf_new_skin, cf_search_skin, cf_connect_skin, cf_faq_skin, qa_skin, de_shop_skin';
 
     $tconfig = get_theme_config_value($theme, $keys);
 

@@ -34,7 +34,6 @@ if ($post_act_button == "선택수정") {
         $p_it_price = (isset($_POST['it_price']) && is_array($_POST['it_price'])) ? strip_tags($_POST['it_price'][$k]) : '';
         $p_it_stock_qty = (isset($_POST['it_stock_qty']) && is_array($_POST['it_stock_qty'])) ? strip_tags($_POST['it_stock_qty'][$k]) : '';
         $p_it_skin = (isset($_POST['it_skin']) && is_array($_POST['it_skin'])) ? strip_tags($_POST['it_skin'][$k]) : '';
-        $p_it_mobile_skin = (isset($_POST['it_mobile_skin']) && is_array($_POST['it_mobile_skin'])) ? strip_tags($_POST['it_mobile_skin'][$k]) : '';
         $p_it_use       = isset($_POST['it_use'][$k])       ? clean_xss_tags($_POST['it_use'][$k], 1, 1)        : 0;
         $p_it_soldout   = isset($_POST['it_soldout'][$k])   ? clean_xss_tags($_POST['it_soldout'][$k], 1, 1)    : 0;
         $p_it_order = (isset($_POST['it_order']) && is_array($_POST['it_order'])) ? strip_tags($_POST['it_order'][$k]) : '';
@@ -58,7 +57,6 @@ if ($post_act_button == "선택수정") {
                        it_price       = '".sql_real_escape_string($p_it_price)."',
                        it_stock_qty   = '".sql_real_escape_string($p_it_stock_qty)."',
                        it_skin        = '".sql_real_escape_string($p_it_skin)."',
-                       it_mobile_skin = '".sql_real_escape_string($p_it_mobile_skin)."',
                        it_use         = '".sql_real_escape_string($p_it_use)."',
                        it_soldout     = '".sql_real_escape_string($p_it_soldout)."',
                        it_order       = '".sql_real_escape_string($p_it_order)."',
