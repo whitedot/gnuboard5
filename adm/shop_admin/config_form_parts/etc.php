@@ -29,24 +29,6 @@
             </td>
         </tr>
         <tr>
-            <th scope="row">모바일 관련상품출력</th>
-            <td>
-                <?php echo help("관련상품의 경우 등록된 상품은 모두 출력하므로 '출력할 줄 수'는 설정하지 않습니다. 이미지높이를 0으로 설정하면 상품이미지를 이미지폭에 비례하여 생성합니다."); ?>
-                <label for="de_mobile_rel_list_skin">스킨</label>
-                <select name="de_mobile_rel_list_skin" id="de_mobile_rel_list_skin">
-                    <?php echo get_list_skin_options("^relation.[0-9]+\.skin\.php", G5_MSHOP_SKIN_PATH, $default['de_mobile_rel_list_skin']); ?>
-                </select>
-                <label for="de_mobile_rel_img_width">이미지폭</label>
-                <input type="text" name="de_mobile_rel_img_width" value="<?php echo get_sanitize_input($default['de_mobile_rel_img_width']); ?>" id="de_mobile_rel_img_width" class="frm_input" size="3">
-                <label for="de_mobile_rel_img_height">이미지높이</label>
-                <input type="text" name="de_mobile_rel_img_height" value="<?php echo get_sanitize_input($default['de_mobile_rel_img_height']); ?>" id="de_mobile_rel_img_height" class="frm_input" size="3">
-                <label for="de_mobile_rel_list_mod">1줄당 이미지 수</label>
-                <input type="text" name="de_mobile_rel_list_mod" value="<?php echo get_sanitize_input($default['de_mobile_rel_list_mod']); ?>" id="de_mobile_rel_list_mod" class="frm_input" size="3">
-                <label for="de_mobile_rel_list_use">출력</label>
-                <input type="checkbox" name="de_mobile_rel_list_use" value="1" id="de_mobile_rel_list_use" <?php echo $default['de_mobile_rel_list_use']?"checked":""; ?>>
-            </td>
-        </tr>
-        <tr>
             <th scope="row">검색상품출력</th>
             <td>
                 <label for="de_search_list_skin">스킨</label>
@@ -64,23 +46,6 @@
             </td>
         </tr>
         <tr>
-            <th scope="row">모바일 검색상품출력</th>
-            <td>
-                <label for="de_mobile_search_list_skin">스킨</label>
-                <select name="de_mobile_search_list_skin" id="de_mobile_search_list_skin">
-                    <?php echo get_list_skin_options("^list.[0-9]+\.skin\.php", G5_MSHOP_SKIN_PATH, $default['de_mobile_search_list_skin']); ?>
-                </select>
-                <label for="de_mobile_search_img_width">이미지폭</label>
-                <input type="text" name="de_mobile_search_img_width" value="<?php echo get_sanitize_input($default['de_mobile_search_img_width']); ?>" id="de_mobile_search_img_width" class="frm_input" size="3">
-                <label for="de_mobile_search_img_height">이미지높이</label>
-                <input type="text" name="de_mobile_search_img_height" value="<?php echo get_sanitize_input($default['de_mobile_search_img_height']); ?>" id="de_mobile_search_img_height" class="frm_input" size="3">
-                <label for="de_mobile_search_list_mod">1줄당 이미지 수</label>
-                <input type="text" name="de_mobile_search_list_mod" value="<?php echo get_sanitize_input($default['de_mobile_search_list_mod']); ?>" id="de_mobile_search_list_mod" class="frm_input" size="3">
-                <label for="de_mobile_search_list_row">출력할 줄 수</label>
-                <input type="text" name="de_mobile_search_list_row" value="<?php echo get_sanitize_input($default['de_mobile_search_list_row']); ?>" id="de_mobile_search_list_row" class="frm_input" size="3">
-            </td>
-        </tr>
-        <tr>
             <th scope="row">유형별 상품리스트</th>
             <td>
                 <label for="de_listtype_list_skin">스킨</label>
@@ -95,23 +60,6 @@
                 <input type="text" name="de_listtype_list_mod" value="<?php echo get_sanitize_input($default['de_listtype_list_mod']); ?>" id="de_listtype_list_mod" class="frm_input" size="3">
                 <label for="de_listtype_list_row">출력할 줄 수</label>
                 <input type="text" name="de_listtype_list_row" value="<?php echo get_sanitize_input($default['de_listtype_list_row']); ?>" id="de_listtype_list_row" class="frm_input" size="3">
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">모바일 유형별 상품리스트</th>
-            <td>
-                <label for="de_mobile_listtype_list_skin">스킨</label>
-                <select name="de_mobile_listtype_list_skin" id="de_mobile_listtype_list_skin">
-                    <?php echo get_list_skin_options("^list.[0-9]+\.skin\.php", G5_MSHOP_SKIN_PATH, $default['de_mobile_listtype_list_skin']); ?>
-                </select>
-                <label for="de_mobile_listtype_img_width">이미지폭</label>
-                <input type="text" name="de_mobile_listtype_img_width" value="<?php echo get_sanitize_input($default['de_mobile_listtype_img_width']); ?>" id="de_mobile_listtype_img_width" class="frm_input" size="3">
-                <label for="de_mobile_listtype_img_height">이미지높이</label>
-                <input type="text" name="de_mobile_listtype_img_height" value="<?php echo get_sanitize_input($default['de_mobile_listtype_img_height']); ?>" id="de_mobile_listtype_img_height" class="frm_input" size="3">
-                <label for="de_mobile_listtype_list_mod">1줄당 이미지 수</label>
-                <input type="text" name="de_mobile_listtype_list_mod" value="<?php echo get_sanitize_input($default['de_mobile_listtype_list_mod']); ?>" id="de_mobile_listtype_list_mod" class="frm_input" size="3">
-                <label for="de_mobile_listtype_list_row">출력할 줄 수</label>
-                <input type="text" name="de_mobile_listtype_list_row" value="<?php echo get_sanitize_input($default['de_mobile_listtype_list_row']); ?>" id="de_mobile_listtype_list_row" class="frm_input" size="3">
             </td>
         </tr>
         <tr>

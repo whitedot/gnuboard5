@@ -7,43 +7,6 @@ auth_check_menu($auth, $sub_menu, "w");
 
 $co_id = isset($_REQUEST['co_id']) ? preg_replace('/[^a-z0-9_]/i', '', $_REQUEST['co_id']) : '';
 
-// 상단, 하단 파일경로 필드 추가
-if (!sql_query(" select co_include_head from {$g5['content_table']} limit 1 ", false)) {
-    $sql = " ALTER TABLE `{$g5['content_table']}`  ADD `co_include_head` VARCHAR( 255 ) NOT NULL ,
-                                                    ADD `co_include_tail` VARCHAR( 255 ) NOT NULL ";
-    sql_query($sql, false);
-}
-
-// html purifier 사용여부 필드
-if (!sql_query(" select co_tag_filter_use from {$g5['content_table']} limit 1 ", false)) {
-    sql_query(
-        " ALTER TABLE `{$g5['content_table']}`
-                    ADD `co_tag_filter_use` tinyint(4) NOT NULL DEFAULT '0' AFTER `co_content` ",
-        true
-    );
-    sql_query(" update {$g5['content_table']} set co_tag_filter_use = '1' ");
-}
-
-// 모바일 내용 추가
-if (!sql_query(" select co_mobile_content from {$g5['content_table']} limit 1", false)) {
-    sql_query(
-        " ALTER TABLE `{$g5['content_table']}`
-                    ADD `co_mobile_content` longtext NOT NULL AFTER `co_content` ",
-        true
-    );
-}
-
-// 스킨 설정 추가
-if (!sql_query(" select co_skin from {$g5['content_table']} limit 1 ", false)) {
-    sql_query(
-        " ALTER TABLE `{$g5['content_table']}`
-                    ADD `co_skin` varchar(255) NOT NULL DEFAULT '' AFTER `co_mobile_content`,
-                    ADD `co_mobile_skin` varchar(255) NOT NULL DEFAULT '' AFTER `co_skin` ",
-        true
-    );
-    sql_query(" update {$g5['content_table']} set co_skin = 'theme/basic' ");
-}
-
 $html_title = "내용";
 $g5['title'] = $html_title . ' 관리';
 $readonly = '';
@@ -66,7 +29,6 @@ if ($w == "u") {
         'co_id' => '',
         'co_subject' => '',
         'co_content' => '',
-        'co_mobile_content' => '',
         'co_include_head' => '',
         'co_include_tail' => '',
         'co_tag_filter_use' => 1,
@@ -106,10 +68,6 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                 <tr>
                     <th scope="row">내용</th>
                     <td><?php echo editor_html('co_content', get_text(html_purifier($co['co_content']), 0)); ?></td>
-                </tr>
-                <tr>
-                    <th scope="row">모바일 내용</th>
-                    <td><?php echo editor_html('co_mobile_content', get_text(html_purifier($co['co_mobile_content']), 0)); ?></td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="co_skin">스킨 디렉토리<strong class="sound_only">필수</strong></label></th>
@@ -279,7 +237,6 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
 
         <?php echo get_editor_js('co_content'); ?>
         <?php echo chk_editor_js('co_content'); ?>
-        <?php echo get_editor_js('co_mobile_content'); ?>
 
         check_field(f.co_id, "ID를 입력하세요.");
         check_field(f.co_subject, "제목을 입력하세요.");

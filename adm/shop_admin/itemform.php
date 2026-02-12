@@ -11,7 +11,6 @@ $html_title = "상품 ";
 $it = array(
 'it_id'=>'',
 'it_skin'=>'',
-'it_mobile_skin'=>'',
 'it_name'=>'',
 'it_basic'=>'',
 'it_order'=>0,
