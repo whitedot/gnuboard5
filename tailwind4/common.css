@@ -215,7 +215,7 @@
 
     /* --- Cards --- */
     .card {
-        @apply bg-card relative flex h-fit flex-col rounded bg-clip-border break-words shadow;
+        @apply bg-card relative flex h-fit flex-col rounded-[var(--radius)] bg-clip-border break-words shadow;
 
         .card-header {
             @apply border-default-300 flex flex-wrap items-center justify-between gap-3 border-b border-dashed px-5 py-3.75;
