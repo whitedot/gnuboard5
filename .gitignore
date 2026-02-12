@@ -17,6 +17,7 @@ initests01/
 SIRsoft000/
 config.php
 pma/
+.claude/
 
 # Node.js / npm
 node_modules/
