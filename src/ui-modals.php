@@ -243,7 +243,7 @@
                             </div>
                         </div>
                         <!-- end card-body-->
-                    </div>
+
                     <!-- end card-->
 
                     <div class="card">
@@ -852,54 +852,53 @@
                         </div>
                     </div>
                     <!-- end card-body-->
-                </div>
-                <!-- end card-->
 
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">고정 배경 (Static Backdrop)</h4>
-                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">고정 배경 (Static Backdrop)</h4>
+                        </div>
 
-                    <div class="card-body">
-                        <p class="text-default-400 mb-4">백드롭이 정적(static)으로 설정되면 모달 외부를 클릭해도 모달이 닫히지 않습니다. 아래 버튼을 눌러 확인해
-                            보세요.</p>
-                        <div class="flex flex-wrap gap-2.5">
-                            <!-- Static Backdrop modal -->
-                            <div>
-                                <button type="button" class="btn bg-info hover:bg-info-hover rounded text-white"
-                                    aria-haspopup="dialog" aria-expanded="false" aria-controls="staticBackdrop"
-                                    data-hs-overlay="#staticBackdrop">고정 배경 모달</button>
+                        <div class="card-body">
+                            <p class="text-default-400 mb-4">백드롭이 정적(static)으로 설정되면 모달 외부를 클릭해도 모달이 닫히지 않습니다. 아래 버튼을 눌러 확인해
+                                보세요.</p>
+                            <div class="flex flex-wrap gap-2.5">
+                                <!-- Static Backdrop modal -->
+                                <div>
+                                    <button type="button" class="btn bg-info hover:bg-info-hover rounded text-white"
+                                        aria-haspopup="dialog" aria-expanded="false" aria-controls="staticBackdrop"
+                                        data-hs-overlay="#staticBackdrop">고정 배경 모달</button>
 
-                                <div id="staticBackdrop"
-                                    class="hs-overlay [--overlay-backdrop:static] hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
-                                    role="dialog" tabindex="-1" aria-labelledby="staticBackdrop-label">
-                                    <div class="hs-overlay-animation-target m-3 sm:mx-auto sm:w-full sm:max-w-lg">
-                                        <div
-                                            class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                    <div id="staticBackdrop"
+                                        class="hs-overlay [--overlay-backdrop:static] hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
+                                        role="dialog" tabindex="-1" aria-labelledby="staticBackdrop-label">
+                                        <div class="hs-overlay-animation-target m-3 sm:mx-auto sm:w-full sm:max-w-lg">
                                             <div
-                                                class="border-default-300 flex items-center justify-between border-b p-6">
-                                                <h3 id="staticBackdrop-label" class="text-base font-semibold">
-                                                    모달 제목</h3>
+                                                class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                                <div
+                                                    class="border-default-300 flex items-center justify-between border-b p-6">
+                                                    <h3 id="staticBackdrop-label" class="text-base font-semibold">
+                                                        모달 제목</h3>
 
-                                                <button type="button" aria-label=" Close"
-                                                    data-hs-overlay="#staticBackdrop">
-                                                    <span class="sr-only">닫기</span>
-                                                    <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
-                                                </button>
-                                            </div>
+                                                    <button type="button" aria-label=" Close"
+                                                        data-hs-overlay="#staticBackdrop">
+                                                        <span class="sr-only">닫기</span>
+                                                        <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
+                                                    </button>
+                                                </div>
 
-                                            <div class="overflow-y-auto card-body">
-                                                <p>모달 외부를 클릭해도 닫히지 않습니다. ESC 키를 눌러도 닫히지 않도록 설정할 수 있습니다.</p>
-                                            </div>
+                                                <div class="overflow-y-auto card-body">
+                                                    <p>모달 외부를 클릭해도 닫히지 않습니다. ESC 키를 눌러도 닫히지 않도록 설정할 수 있습니다.</p>
+                                                </div>
 
-                                            <div class="border-default-300 flex items-center justify-end border-t p-4">
-                                                <button type="button"
-                                                    class="btn bg-secondary hover:bg-secondary-hover m-1 rounded text-white"
-                                                    data-hs-overlay="#staticBackdrop">닫기</button>
+                                                <div class="border-default-300 flex items-center justify-end border-t p-4">
+                                                    <button type="button"
+                                                        class="btn bg-secondary hover:bg-secondary-hover m-1 rounded text-white"
+                                                        data-hs-overlay="#staticBackdrop">닫기</button>
 
-                                                <button type="button"
-                                                    class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
-                                                    저장</button>
+                                                    <button type="button"
+                                                        class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
+                                                        저장</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -907,10 +906,13 @@
                             </div>
                         </div>
                     </div>
+                    <!-- end card-body-->
                 </div>
-                <!-- end card-body-->
+                <!-- end card-->
+
         </div>
         <!-- end card-->
+        </div>
     </div>
     </div>
 

@@ -3,7 +3,7 @@
 
 <div class="container-fluid">
                     <div class="grid grid-cols-1 xl:grid-cols-2 gap-base">
-                        <div class="card">
+                        <div class="card xl:col-span-2">
                             <div class="card-header">
                                 <h4 class="card-title">기본 버튼</h4>
                                 <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <!-- end card-body-->
-                    </div>
+
                     <!-- end card-->
 
                     <div class="card">
@@ -306,25 +306,25 @@
 
                             <div class="flex flex-wrap gap-2.5">
                                 <button type="button"
-                                    class="btn border-0 bg-linear-to-br from-purple-600 to-blue-500 text-white hover:bg-linear-to-bl">보라색에서
+                                    class="btn border-0 bg-linear-to-br from-purple-600 to-blue-500 text-white transition-all duration-300 hover:from-blue-500 hover:to-purple-600">보라색에서
                                     파란색으로</button>
                                 <button type="button"
-                                    class="btn border-0 bg-linear-to-r from-cyan-500 to-blue-500 text-white hover:bg-linear-to-bl">청록색에서
+                                    class="btn border-0 bg-linear-to-r from-cyan-500 to-blue-500 text-white transition-all duration-300 hover:from-blue-500 hover:to-cyan-500">청록색에서
                                     파란색으로</button>
                                 <button type="button"
-                                    class="btn border-0 bg-linear-to-br from-green-400 to-blue-600 text-white hover:bg-linear-to-bl">녹색에서
+                                    class="btn border-0 bg-linear-to-br from-green-400 to-blue-600 text-white transition-all duration-300 hover:from-blue-600 hover:to-green-400">녹색에서
                                     파란색으로</button>
                                 <button type="button"
-                                    class="btn border-0 bg-linear-to-r from-purple-500 to-pink-500 text-white hover:bg-linear-to-l">보라색에서
+                                    class="btn border-0 bg-linear-to-r from-purple-500 to-pink-500 text-white transition-all duration-300 hover:from-pink-500 hover:to-purple-500">보라색에서
                                     분홍색으로</button>
                                 <button type="button"
-                                    class="btn border-0 bg-linear-to-br from-pink-500 to-orange-400 text-white hover:bg-linear-to-bl">분홍색에서
+                                    class="btn border-0 bg-linear-to-br from-pink-500 to-orange-400 text-white transition-all duration-300 hover:from-orange-400 hover:to-pink-500">분홍색에서
                                     주황색으로</button>
                                 <button type="button"
-                                    class="btn border-0 bg-linear-to-r from-teal-200 to-lime-200 text-gray-900 hover:bg-linear-to-l">청록색에서
+                                    class="btn border-0 bg-linear-to-r from-teal-200 to-lime-200 text-gray-900 transition-all duration-300 hover:from-lime-200 hover:to-teal-200">청록색에서
                                     라임색으로</button>
                                 <button type="button"
-                                    class="btn border-0 bg-linear-to-r from-red-200 via-red-300 to-yellow-200 text-gray-900 hover:bg-linear-to-bl">빨간색에서
+                                    class="btn border-0 bg-linear-to-r from-red-200 via-red-300 to-yellow-200 text-gray-900 transition-all duration-300 hover:from-yellow-200 hover:via-red-300 hover:to-red-200">빨간색에서
                                     노란색으로</button>
                             </div>
                         </div>
@@ -332,8 +332,7 @@
                     </div>
                     <!-- end card-->
 
-                    <div class="col-span-1">
-                        <div class="card">
+                    <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">둥근 그라데이션 버튼</h4>
                                 <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
@@ -349,36 +348,33 @@
 
                                 <div class="flex flex-wrap gap-2.5">
                                     <button type="button"
-                                        class="btn rounded-full border-0 bg-linear-to-br from-purple-600 to-blue-500 text-white hover:bg-linear-to-bl">보라색에서
+                                        class="btn rounded-full border-0 bg-linear-to-br from-purple-600 to-blue-500 text-white transition-all duration-300 hover:from-blue-500 hover:to-purple-600">보라색에서
                                         파란색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full border-0 bg-linear-to-r from-cyan-500 to-blue-500 text-white hover:bg-linear-to-bl">청록색에서
+                                        class="btn rounded-full border-0 bg-linear-to-r from-cyan-500 to-blue-500 text-white transition-all duration-300 hover:from-blue-500 hover:to-cyan-500">청록색에서
                                         파란색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full border-0 bg-linear-to-br from-green-400 to-blue-600 text-white hover:bg-linear-to-bl">녹색에서
+                                        class="btn rounded-full border-0 bg-linear-to-br from-green-400 to-blue-600 text-white transition-all duration-300 hover:from-blue-600 hover:to-green-400">녹색에서
                                         파란색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full border-0 bg-linear-to-r from-purple-500 to-pink-500 text-white hover:bg-linear-to-l">보라색에서
+                                        class="btn rounded-full border-0 bg-linear-to-r from-purple-500 to-pink-500 text-white transition-all duration-300 hover:from-pink-500 hover:to-purple-500">보라색에서
                                         분홍색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full border-0 bg-linear-to-br from-pink-500 to-orange-400 text-white hover:bg-linear-to-bl">분홍색에서
+                                        class="btn rounded-full border-0 bg-linear-to-br from-pink-500 to-orange-400 text-white transition-all duration-300 hover:from-orange-400 hover:to-pink-500">분홍색에서
                                         주황색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full border-0 bg-linear-to-r from-teal-200 to-lime-200 text-gray-900 hover:bg-linear-to-l">청록색에서
+                                        class="btn rounded-full border-0 bg-linear-to-r from-teal-200 to-lime-200 text-gray-900 transition-all duration-300 hover:from-lime-200 hover:to-teal-200">청록색에서
                                         라임색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full border-0 bg-linear-to-r from-red-200 via-red-300 to-yellow-200 text-gray-900 hover:bg-linear-to-bl">빨간색에서
+                                        class="btn rounded-full border-0 bg-linear-to-r from-red-200 via-red-300 to-yellow-200 text-gray-900 transition-all duration-300 hover:from-yellow-200 hover:via-red-300 hover:to-red-200">빨간색에서
                                         노란색으로</button>
                                 </div>
                             </div>
                             <!-- end card-body-->
-                        </div>
-                        <!-- end card-->
                     </div>
-                    <!-- end col-->
+                    <!-- end card-->
 
-                    <div class="col-span-1">
-                        <div class="card">
+                    <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">버튼 크기</h4>
                                 <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
@@ -401,10 +397,8 @@
                                 </div>
                             </div>
                             <!-- end card-body-->
-                        </div>
-                        <!-- end card-->
                     </div>
-                    <!-- end col-->
+                    <!-- end card-->
 
                     <div class="card">
                         <div class="card-header">
@@ -434,35 +428,32 @@
                     </div>
                     <!-- end card-->
 
-                    <div class="col-span-1">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">블록 버튼</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
-                            </div>
-
-                            <div class="card-body">
-                                <p class="text-default-400 mb-4">
-                                    <code>.w-full</code> 클래스를 추가하여 버튼이 컨테이너의 전체 너비를 차지하게 합니다.
-                                </p>
-
-                                <div class="space-y-3">
-                                    <button type="button"
-                                        class="btn bg-primary hover:bg-primary-hover w-full text-white">Block
-                                        버튼</button>
-                                    <button type="button"
-                                        class="btn btn-lg bg-success hover:bg-success-hover w-full text-white">Block
-                                        버튼</button>
-                                </div>
-                            </div>
-                            <!-- end card-body-->
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">블록 버튼</h4>
+                            <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
+                                data-action="card-toggle">
+                                <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
+                            </button>
                         </div>
-                        <!-- end card-->
+
+                        <div class="card-body">
+                            <p class="text-default-400 mb-4">
+                                <code>.w-full</code> 클래스를 추가하여 버튼이 컨테이너의 전체 너비를 차지하게 합니다.
+                            </p>
+
+                            <div class="space-y-3">
+                                <button type="button"
+                                    class="btn bg-primary hover:bg-primary-hover w-full text-white">Block
+                                    버튼</button>
+                                <button type="button"
+                                    class="btn btn-lg bg-success hover:bg-success-hover w-full text-white">Block
+                                    버튼</button>
+                            </div>
+                        </div>
+                        <!-- end card-body-->
                     </div>
-                    <!-- end col-->
+                    <!-- end card-->
 
                     <div class="card">
                         <div class="card-header">
@@ -609,10 +600,9 @@
                     </div>
                     <!-- end card-->
 
-                    <div class="col-span-1">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">버튼 그룹</h4>
+                    <div class="card xl:col-span-2">
+                        <div class="card-header">
+                            <h4 class="card-title">버튼 그룹</h4>
                                 <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
                                     data-action="card-toggle">
                                     <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
@@ -720,12 +710,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- end card-body-->
                         </div>
-                        <!-- end card-->
+                        <!-- end card-body-->
                     </div>
-                    <!-- end col-->
+                    <!-- end card-->
+                    </div>
                 </div>
         </div>
 
