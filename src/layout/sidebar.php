@@ -11,7 +11,7 @@ function is_active($pages) {
 ?>
 <aside class="ui-sidebar">
     <div class="ui-sidebar-logo">
-        <span class="text-2xl font-bold text-indigo-600">Shopall</span>
+        <span class="text-2xl font-bold text-indigo-600">G5AI</span>
     </div>
     
     <nav class="mt-4">
