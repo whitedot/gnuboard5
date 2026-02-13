@@ -6,10 +6,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">모양 (Shapes)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -56,10 +52,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">아바타 크기 (Avatar Sizes)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -210,10 +202,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">둥근 형태의 아바타 크기 (Avatar Sizes with Rounded)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -366,10 +354,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">아바타 그룹 (Avatar Groups)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">

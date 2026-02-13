@@ -7,10 +7,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">기본 예제 (Basic Example)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -36,10 +32,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">활성 항목 (Active Items)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -64,10 +56,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">비활성 항목 (Disabled Items)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -95,10 +83,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">링크 및 버튼 (Links and Buttons)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -132,10 +116,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">플러시 (Flush)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -160,10 +140,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">수평 레이아웃 (Horizontal)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -201,10 +177,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">컨텍스트 클래스 (Contextual Classes)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -247,10 +219,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">링크가 포함된 컨텍스트 클래스 (Contextual Classes with Link)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -296,10 +264,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">사용자 정의 콘텐츠 (Custom Content)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -351,10 +315,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">배지 포함 (With Badges)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -398,10 +358,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">체크박스 및 라디오 (Checkboxes and Radios)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -445,10 +401,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">번호 매기기 (Numbered)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">

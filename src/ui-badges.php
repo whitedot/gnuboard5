@@ -6,10 +6,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">기본 배지 (Default Badges)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -36,10 +32,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">알약 형태 배지 (Pill Badges)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -66,10 +58,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">아웃라인 배지 (Outline Badges)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -94,10 +82,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">아웃라인 알약 형태 배지 (Outline Pill Badges)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -122,10 +106,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">밝은 색상 배지 (Light Color Badges)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -150,10 +130,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">밝은 색상 알약 형태 배지 (Light Color Pill Badges)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -178,10 +154,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">라벨 배지 (Label Badges)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -208,10 +180,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">사각형 배지 (Square Badges)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -238,10 +206,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">원형 배지 (Rounded Badges)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -270,10 +234,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">위치 지정 배지 (Position Badges)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">

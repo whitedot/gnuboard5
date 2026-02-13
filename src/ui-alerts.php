@@ -6,10 +6,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">기본 알림</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -39,10 +35,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">단색 배경의 제거 가능한 알림</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -72,10 +64,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">링크 색상</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -136,10 +124,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">추가 콘텐츠</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -181,10 +165,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">커스텀 알림</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -262,10 +242,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">알림 닫기</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">

@@ -7,10 +7,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">기본 페이지네이션 (Default Pagination)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -42,10 +38,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">정렬 (Alignment)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -99,10 +91,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">사용자 정의 색상 페이지네이션 (Custom Color Pagination)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -163,10 +151,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">비활성 및 활성 상태 (Disabled and active states)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -199,10 +183,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">사용자 정의 아이콘 페이지네이션 (Custom Icon Pagination)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -265,10 +245,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">크기 조절 (Sizing)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -323,10 +299,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">박스형 페이지네이션 (Boxed Pagination)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -411,10 +383,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">둥근 형태 페이지네이션 (Rounded Pagination)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -451,10 +419,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">부드러운 스타일 페이지네이션 (Soft Pagination)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">

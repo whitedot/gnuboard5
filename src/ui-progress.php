@@ -7,10 +7,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">예제 (Examples)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -56,10 +52,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">높이 (Height)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -111,10 +103,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">다중 바 (Multiple Bars)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -142,10 +130,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">애니메이션 줄무늬 (Animated Stripes)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -170,10 +154,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">레이블 (Labels)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -202,10 +182,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">배경 (Backgrounds)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -256,10 +232,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">줄무늬 (Striped)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -303,10 +275,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">단계 (Steps)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">

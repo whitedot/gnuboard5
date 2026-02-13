@@ -6,10 +6,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">플레이스홀더 (Placeholders)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -73,10 +69,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">색상 (Color)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -100,10 +92,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">너비 (Width)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -134,10 +122,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">크기 조절 (Sizing)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -157,10 +141,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">작동 방식 (How it works)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -185,10 +165,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">애니메이션 (Animation)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">

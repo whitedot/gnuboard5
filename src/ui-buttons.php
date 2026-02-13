@@ -6,10 +6,6 @@
                         <div class="card xl:col-span-2">
                             <div class="card-header">
                                 <h4 class="card-title">기본 버튼</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -44,10 +40,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">둥근 버튼</h4>
-                            <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                data-action="card-toggle">
-                                <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                            </button>
                         </div>
 
                         <div class="card-body">
@@ -82,10 +74,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">아웃라인 버튼</h4>
-                            <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                data-action="card-toggle">
-                                <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                            </button>
                         </div>
 
                         <div class="card-body">
@@ -119,10 +107,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">둥근 아웃라인 버튼</h4>
-                            <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                data-action="card-toggle">
-                                <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                            </button>
                         </div>
 
                         <div class="card-body">
@@ -156,10 +140,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">소프트 버튼</h4>
-                            <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                data-action="card-toggle">
-                                <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                            </button>
                         </div>
 
                         <div class="card-body">
@@ -191,10 +171,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">둥근 소프트 버튼</h4>
-                            <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                data-action="card-toggle">
-                                <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                            </button>
                         </div>
 
                         <div class="card-body">
@@ -226,10 +202,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">고스트 버튼</h4>
-                            <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                data-action="card-toggle">
-                                <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                            </button>
                         </div>
 
                         <div class="card-body">
@@ -259,10 +231,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">둥근 고스트 버튼</h4>
-                            <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                data-action="card-toggle">
-                                <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                            </button>
                         </div>
 
                         <div class="card-body">
@@ -294,10 +262,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">그라데이션 버튼</h4>
-                            <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                data-action="card-toggle">
-                                <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                            </button>
                         </div>
 
                         <div class="card-body">
@@ -335,10 +299,6 @@
                     <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">둥근 그라데이션 버튼</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -377,10 +337,6 @@
                     <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">버튼 크기</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -403,10 +359,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">비활성화된 버튼</h4>
-                            <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                data-action="card-toggle">
-                                <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                            </button>
                         </div>
 
                         <div class="card-body">
@@ -431,10 +383,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">블록 버튼</h4>
-                            <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                data-action="card-toggle">
-                                <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                            </button>
                         </div>
 
                         <div class="card-body">
@@ -458,10 +406,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">아이콘 버튼</h4>
-                            <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                data-action="card-toggle">
-                                <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                            </button>
                         </div>
 
                         <div class="card-body">
@@ -572,10 +516,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">버튼 태그</h4>
-                            <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                data-action="card-toggle">
-                                <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                            </button>
                         </div>
 
                         <div class="card-body">
@@ -603,10 +543,6 @@
                     <div class="card xl:col-span-2">
                         <div class="card-header">
                             <h4 class="card-title">버튼 그룹</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">

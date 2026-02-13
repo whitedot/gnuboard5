@@ -7,10 +7,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">테두리 스피너 (Border Spinner)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -25,10 +21,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">색상 (Colors)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -85,10 +77,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">정렬 (Alignment)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -114,10 +102,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">버튼 내 스피너 (Buttons Spinner)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -184,10 +168,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">확장형 스피너 (Growing Spinner)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -203,10 +183,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">유색 확장형 스피너 (Color Growing Spinner)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">
@@ -259,10 +235,6 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">크기 (Size)</h4>
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
                                 </div>
 
                                 <div class="card-body">

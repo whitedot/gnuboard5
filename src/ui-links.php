@@ -6,10 +6,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">색상 링크 (Colored Links)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -37,10 +33,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">링크 유틸리티 (Link Utilities)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -66,10 +58,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">링크 투명도 (Link Opacity)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -91,10 +79,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">링크 호버 투명도 (Link Hover Opacity)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -120,10 +104,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">밑줄 색상 (Underline Color)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -163,10 +143,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">밑줄 투명도 (Underline Opacity)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -201,10 +177,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">밑줄 오프셋 (Underline Offset)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -228,10 +200,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">호버 변형 (Hover Variants)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">

@@ -108,20 +108,7 @@
                             <div class="card-header">
                                 <h4 class="card-title">작업 도구가 있는 카드</h4>
                                 <div class="flex gap-1">
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
 
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:refresh" class="iconify tabler--refresh text-base"></i>
-                                    </button>
-
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:x" class="iconify tabler--x text-base"></i>
-                                    </button>
                                 </div>
                             </div>
 
@@ -167,15 +154,7 @@
                             <div class="card-header">
                                 <h4 class="card-title">작업 도구가 있는 카드</h4>
                                 <div class="flex gap-1">
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                    </button>
 
-                                    <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                        data-action="card-toggle">
-                                        <i data-icon="tabler:refresh" class="iconify tabler--refresh text-base"></i>
-                                    </button>
                                 </div>
                             </div>
 

@@ -7,10 +7,6 @@
                             <div class="card-header">
                                 <h5 class="card-title">기본 아코디언</h5>
 
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -88,10 +84,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h5 class="card-title">플러시 아코디언</h5>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -162,10 +154,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h5 class="card-title">항상 열려 있는 아코디언</h5>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -242,10 +230,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h5 class="card-title">화살표 없는 아코디언</h5>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -317,10 +301,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h5 class="card-title">테두리가 있는 아코디언</h5>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
@@ -400,10 +380,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h5 class="card-title">커스텀 아이콘 아코디언</h5>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary"
-                                    data-action="card-toggle">
-                                    <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
-                                </button>
                             </div>
 
                             <div class="card-body">
