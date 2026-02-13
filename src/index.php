@@ -2,6 +2,15 @@
 <?php include 'layout/sidebar.php'; ?>
 
 <div class="card p-6">
+    <div class="mb-4 overflow-hidden rounded-lg border border-default-200">
+        <img
+            src="images/WChwGxuZl7SE6RiHti5x.jpg"
+            alt="README 소개 이미지"
+            class="block w-full"
+            style="height: 160px; max-height: 160px; object-fit: cover; object-position: center;"
+        />
+    </div>
+
     <div id="readme-content" class="prose prose-indigo max-w-none">
         Loading...
     </div>

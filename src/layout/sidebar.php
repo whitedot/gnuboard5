@@ -11,7 +11,7 @@ function is_active($pages) {
 ?>
 <aside class="ui-sidebar">
     <div class="ui-sidebar-logo">
-        <span class="text-2xl font-bold text-indigo-600">G5AI</span>
+        <span class="text-2xl font-bold ui-guide-title">G5AI</span>
     </div>
     
     <nav class="mt-4">
@@ -87,14 +87,18 @@ function is_active($pages) {
 <main class="ui-main-content">
     <header class="ui-top-navbar">
         <div class="flex items-center">
-            <h2 class="text-lg font-semibold text-gray-800">UI Guide Dashboard</h2>
+            <h2 class="text-lg font-semibold ui-guide-title">UI Guide Dashboard</h2>
         </div>
-        <div class="flex items-center gap-4">
-            <button class="p-2 text-gray-400 hover:text-gray-600">
-                <i class="iconify text-xl" data-icon="tabler:bell"></i>
-            </button>
-            <button class="p-2 text-gray-400 hover:text-gray-600">
-                <i class="iconify text-xl" data-icon="tabler:settings"></i>
+        <div class="flex items-center gap-2">
+            <button
+                id="theme-toggle"
+                type="button"
+                class="btn btn-sm bg-light hover:bg-light-hover text-default-700 ui-theme-toggle"
+                aria-label="다크 모드로 전환"
+                title="다크 모드로 전환"
+                aria-pressed="false">
+                <i id="theme-toggle-icon" class="iconify text-base" data-icon="tabler:moon"></i>
+                <span id="theme-toggle-label">다크모드</span>
             </button>
         </div>
     </header>

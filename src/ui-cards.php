@@ -251,7 +251,7 @@
                         <div class="card">
                             <div class="grid grid-cols-1 items-center md:grid-cols-3">
                                 <div>
-                                    <img src="/images/stock/small-1.jpg" class="rounded-s-sm" alt="..." />
+                                    <img src="images/WChwGxuZl7SE6RiHti5x.jpg" class="rounded-s-sm" alt="검 든 여우 이미지" style="width: 100%; height: 100%; min-height: 220px; object-fit: cover; object-position: center;" />
                                 </div>
 
                                 <div class="col-span-2">
@@ -281,7 +281,7 @@
                                 </div>
 
                                 <div>
-                                    <img src="/images/stock/small-2.jpg" class="rounded-e-sm" alt="..." />
+                                    <img src="images/WChwGxuZl7SE6RiHti5x.jpg" class="rounded-e-sm" alt="검 든 여우 이미지" style="width: 100%; height: 100%; min-height: 220px; object-fit: cover; object-position: center;" />
                                 </div>
                             </div>
                         </div>
@@ -291,7 +291,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-base mb-base">
                         <div class="card group">
                             <a href="#">
-                                <img src="/images/stock/small-3.jpg" class="rounded-t-sm" alt="..." />
+                                <img src="images/WChwGxuZl7SE6RiHti5x.jpg" class="rounded-t-sm" alt="검 든 여우 이미지" style="width: 100%; height: 220px; object-fit: cover; object-position: center;" />
                                 <div class="card-body">
                                     <h5 class="card-title mb-2.5">확장 링크가 있는 카드</h5>
                                     <a href="#"
@@ -302,7 +302,7 @@
 
                         <div class="card">
                             <a href="#">
-                                <img src="/images/stock/small-4.jpg" class="rounded-t-sm" alt="..." />
+                                <img src="images/WChwGxuZl7SE6RiHti5x.jpg" class="rounded-t-sm" alt="검 든 여우 이미지" style="width: 100%; height: 220px; object-fit: cover; object-position: center;" />
                                 <div class="card-body">
                                     <h5 class="card-title text-primary mb-3">확장 링크가 있는 카드</h5>
                                     <p>카드 제목을 기반으로 내용을 구성하는 간단한 예시 텍스트입니다.
@@ -313,7 +313,7 @@
 
                         <div class="card group">
                             <a href="#">
-                                <img src="/images/stock/small-5.jpg" class="rounded-t-sm" alt="..." />
+                                <img src="images/WChwGxuZl7SE6RiHti5x.jpg" class="rounded-t-sm" alt="검 든 여우 이미지" style="width: 100%; height: 220px; object-fit: cover; object-position: center;" />
                                 <div class="card-body">
                                     <h5 class="card-title mb-2.5">확장 링크가 있는 카드</h5>
                                     <a href="#"
@@ -324,7 +324,7 @@
 
                         <div class="card">
                             <a href="#">
-                                <img src="/images/stock/small-6.jpg" class="rounded-t-sm" alt="..." />
+                                <img src="images/WChwGxuZl7SE6RiHti5x.jpg" class="rounded-t-sm" alt="검 든 여우 이미지" style="width: 100%; height: 220px; object-fit: cover; object-position: center;" />
                                 <div class="card-body">
                                     <h5 class="card-title text-primary mb-3">확장 링크가 있는 카드</h5>
                                     <p>카드 제목을 기반으로 내용을 구성하는 간단한 예시 텍스트입니다.
@@ -338,7 +338,7 @@
 
                     <div class="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-0 mb-base">
                         <div class="card h-full md:rounded-s-sm md:rounded-e-none">
-                            <img class="card-img-top" src="/images/stock/small-8.jpg" alt="Card image cap" />
+                            <img class="card-img-top" src="images/WChwGxuZl7SE6RiHti5x.jpg" alt="검 든 여우 이미지" style="width: 100%; height: 220px; object-fit: cover; object-position: center;" />
                             <div class="card-body">
                                 <h5 class="card-title mb-2.5">카드 제목</h5>
                                 <p class="mb-4">This is a wider card with supporting text below as a natural lead-in to
@@ -350,7 +350,7 @@
                         </div>
 
                         <div class="card h-full md:rounded-none">
-                            <img class="card-img-top" src="/images/stock/small-9.jpg" alt="Card image cap" />
+                            <img class="card-img-top" src="images/WChwGxuZl7SE6RiHti5x.jpg" alt="검 든 여우 이미지" style="width: 100%; height: 220px; object-fit: cover; object-position: center;" />
                             <div class="card-body">
                                 <h5 class="card-title mb-2.5">카드 제목</h5>
                                 <p class="mb-4">이 카드는 추가 콘텐츠로 자연스럽게 이어지는 아래의 보조 텍스트를 포함하고 있습니다.</p>
@@ -361,7 +361,7 @@
                         </div>
 
                         <div class="card h-full md:rounded-s-none md:rounded-e-sm">
-                            <img class="card-img-top" src="/images/stock/small-10.jpg" alt="Card image cap" />
+                            <img class="card-img-top" src="images/WChwGxuZl7SE6RiHti5x.jpg" alt="검 든 여우 이미지" style="width: 100%; height: 220px; object-fit: cover; object-position: center;" />
                             <div class="card-body">
                                 <h5 class="card-title mb-2.5">카드 제목</h5>
                                 <p class="mb-4">이것은 자연스럽게 추가 콘텐츠로 이어지는 보조 텍스트가 있는 더 넓은 카드입니다. 이 카드는 동일한 높이 동작을 보여주기 위해 첫

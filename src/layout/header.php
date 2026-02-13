@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UI Guide - G5AIF</title>
+    <script>
+        (function () {
+            var storageKey = 'g5aif-ui-theme';
+            var savedTheme = null;
+
+            try {
+                savedTheme = localStorage.getItem(storageKey);
+            } catch (error) {
+                savedTheme = null;
+            }
+
+            var isDark =
+                savedTheme === 'dark' ||
+                (!savedTheme &&
+                    window.matchMedia &&
+                    window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        })();
+    </script>
     <!-- Tailwind CSS (compiled or CDN depending on setup) -->
     <link rel="stylesheet" href="../css/common.css">
     <!-- UI Guide Custom CSS -->
