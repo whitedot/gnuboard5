@@ -1,5 +1,76 @@
 <?php include 'layout/header.php'; ?>
 <?php include 'layout/sidebar.php'; ?>
+<style>
+    .btn-gradient-smooth {
+        border: 0;
+        background-image: linear-gradient(135deg, var(--g1), var(--g2), var(--g3));
+        background-size: 220% 220%;
+        background-position: 0% 50%;
+        transition: background-position .55s cubic-bezier(.22, 1, .36, 1), filter .55s cubic-bezier(.22, 1, .36, 1), box-shadow .35s ease, transform .35s ease;
+        will-change: background-position, filter, transform;
+    }
+
+    .btn-gradient-smooth.gradient-axis-r {
+        background-image: linear-gradient(90deg, var(--g1), var(--g2), var(--g3));
+    }
+
+    .btn-gradient-smooth:hover,
+    .btn-gradient-smooth:focus-visible {
+        background-position: 100% 50%;
+        filter: saturate(1.08) brightness(1.02);
+    }
+
+    .btn-gradient-smooth:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, .12);
+    }
+
+    .btn-gradient-smooth:active {
+        transform: translateY(0);
+    }
+
+    .btn-gradient-purple-blue {
+        --g1: var(--color-purple-600);
+        --g2: var(--color-blue-500);
+        --g3: var(--color-purple-600);
+    }
+
+    .btn-gradient-cyan-blue {
+        --g1: var(--color-cyan-500);
+        --g2: var(--color-blue-500);
+        --g3: var(--color-cyan-500);
+    }
+
+    .btn-gradient-green-blue {
+        --g1: var(--color-green-400);
+        --g2: var(--color-blue-600);
+        --g3: var(--color-green-400);
+    }
+
+    .btn-gradient-purple-pink {
+        --g1: var(--color-purple-500);
+        --g2: var(--color-pink-500);
+        --g3: var(--color-purple-500);
+    }
+
+    .btn-gradient-pink-orange {
+        --g1: var(--color-pink-500);
+        --g2: var(--color-orange-400);
+        --g3: var(--color-pink-500);
+    }
+
+    .btn-gradient-teal-lime {
+        --g1: var(--color-teal-200);
+        --g2: var(--color-lime-200);
+        --g3: var(--color-teal-200);
+    }
+
+    .btn-gradient-red-yellow {
+        --g1: var(--color-red-200);
+        --g2: var(--color-red-300);
+        --g3: var(--color-yellow-200);
+    }
+</style>
 
 <div class="container-fluid">
                     <div class="grid grid-cols-1 xl:grid-cols-2 gap-base">
@@ -270,25 +341,25 @@
 
                             <div class="flex flex-wrap gap-2.5">
                                 <button type="button"
-                                    class="btn border-0 bg-linear-to-br from-purple-600 to-blue-500 text-white transition-all duration-300 hover:from-blue-500 hover:to-purple-600">보라색에서
+                                    class="btn btn-gradient-smooth btn-gradient-purple-blue text-white">보라색에서
                                     파란색으로</button>
                                 <button type="button"
-                                    class="btn border-0 bg-linear-to-r from-cyan-500 to-blue-500 text-white transition-all duration-300 hover:from-blue-500 hover:to-cyan-500">청록색에서
+                                    class="btn btn-gradient-smooth gradient-axis-r btn-gradient-cyan-blue text-white">청록색에서
                                     파란색으로</button>
                                 <button type="button"
-                                    class="btn border-0 bg-linear-to-br from-green-400 to-blue-600 text-white transition-all duration-300 hover:from-blue-600 hover:to-green-400">녹색에서
+                                    class="btn btn-gradient-smooth btn-gradient-green-blue text-white">녹색에서
                                     파란색으로</button>
                                 <button type="button"
-                                    class="btn border-0 bg-linear-to-r from-purple-500 to-pink-500 text-white transition-all duration-300 hover:from-pink-500 hover:to-purple-500">보라색에서
+                                    class="btn btn-gradient-smooth gradient-axis-r btn-gradient-purple-pink text-white">보라색에서
                                     분홍색으로</button>
                                 <button type="button"
-                                    class="btn border-0 bg-linear-to-br from-pink-500 to-orange-400 text-white transition-all duration-300 hover:from-orange-400 hover:to-pink-500">분홍색에서
+                                    class="btn btn-gradient-smooth btn-gradient-pink-orange text-white">분홍색에서
                                     주황색으로</button>
                                 <button type="button"
-                                    class="btn border-0 bg-linear-to-r from-teal-200 to-lime-200 text-gray-900 transition-all duration-300 hover:from-lime-200 hover:to-teal-200">청록색에서
+                                    class="btn btn-gradient-smooth gradient-axis-r btn-gradient-teal-lime text-gray-900">청록색에서
                                     라임색으로</button>
                                 <button type="button"
-                                    class="btn border-0 bg-linear-to-r from-red-200 via-red-300 to-yellow-200 text-gray-900 transition-all duration-300 hover:from-yellow-200 hover:via-red-300 hover:to-red-200">빨간색에서
+                                    class="btn btn-gradient-smooth gradient-axis-r btn-gradient-red-yellow text-gray-900">빨간색에서
                                     노란색으로</button>
                             </div>
                         </div>
@@ -308,25 +379,25 @@
 
                                 <div class="flex flex-wrap gap-2.5">
                                     <button type="button"
-                                        class="btn rounded-full border-0 bg-linear-to-br from-purple-600 to-blue-500 text-white transition-all duration-300 hover:from-blue-500 hover:to-purple-600">보라색에서
+                                        class="btn rounded-full btn-gradient-smooth btn-gradient-purple-blue text-white">보라색에서
                                         파란색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full border-0 bg-linear-to-r from-cyan-500 to-blue-500 text-white transition-all duration-300 hover:from-blue-500 hover:to-cyan-500">청록색에서
+                                        class="btn rounded-full btn-gradient-smooth gradient-axis-r btn-gradient-cyan-blue text-white">청록색에서
                                         파란색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full border-0 bg-linear-to-br from-green-400 to-blue-600 text-white transition-all duration-300 hover:from-blue-600 hover:to-green-400">녹색에서
+                                        class="btn rounded-full btn-gradient-smooth btn-gradient-green-blue text-white">녹색에서
                                         파란색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full border-0 bg-linear-to-r from-purple-500 to-pink-500 text-white transition-all duration-300 hover:from-pink-500 hover:to-purple-500">보라색에서
+                                        class="btn rounded-full btn-gradient-smooth gradient-axis-r btn-gradient-purple-pink text-white">보라색에서
                                         분홍색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full border-0 bg-linear-to-br from-pink-500 to-orange-400 text-white transition-all duration-300 hover:from-orange-400 hover:to-pink-500">분홍색에서
+                                        class="btn rounded-full btn-gradient-smooth btn-gradient-pink-orange text-white">분홍색에서
                                         주황색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full border-0 bg-linear-to-r from-teal-200 to-lime-200 text-gray-900 transition-all duration-300 hover:from-lime-200 hover:to-teal-200">청록색에서
+                                        class="btn rounded-full btn-gradient-smooth gradient-axis-r btn-gradient-teal-lime text-gray-900">청록색에서
                                         라임색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full border-0 bg-linear-to-r from-red-200 via-red-300 to-yellow-200 text-gray-900 transition-all duration-300 hover:from-yellow-200 hover:via-red-300 hover:to-red-200">빨간색에서
+                                        class="btn rounded-full btn-gradient-smooth gradient-axis-r btn-gradient-red-yellow text-gray-900">빨간색에서
                                         노란색으로</button>
                                 </div>
                             </div>
