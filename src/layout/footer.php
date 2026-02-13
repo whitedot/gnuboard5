@@ -4,5 +4,6 @@
 
 <!-- Scripts -->
 <script src="../js/common.js"></script>
+<script src="../js/ui-overlay.js"></script>
 </body>
 </html>

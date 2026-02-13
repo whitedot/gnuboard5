@@ -593,9 +593,9 @@
                                         class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
                                         role="dialog" tabindex="-1" aria-labelledby="fullscreeexampleModal-label">
                                         <div
-                                            class="hs-overlay-animation-target m-3 h-full max-h-full sm:mx-auto sm:w-full sm:max-w-full">
+                                            class="hs-overlay-animation-target h-full w-full max-h-full max-w-full">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex h-full max-h-full max-w-full flex-col rounded-md border card">
+                                                class="border-default-300 pointer-events-auto flex h-full w-full max-h-full flex-col rounded-none border-0 card">
                                                 <div
                                                     class="border-default-300 flex items-center justify-between border-b p-6">
                                                     <h3 id="fullscreeexampleModal-label"
@@ -638,16 +638,16 @@
                                         class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto"
                                         role="dialog" tabindex="-1" aria-labelledby="exampleModalFullscreenSm-label">
                                         <div
-                                            class="hs-overlay-open:mt-0 hs-overlay-animation-target hs-overlay-open:opacity-100 hs-overlay-open:duration-500 sm:hs-overlay-open:mt-10 mt-10 h-full max-h-full max-w-full opacity-0 transition-all sm:mx-auto sm:mt-0 sm:h-auto sm:max-h-none sm:max-w-lg">
+                                            class="hs-overlay-open:mt-0 hs-overlay-animation-target hs-overlay-open:opacity-100 hs-overlay-open:duration-500 sm:hs-overlay-open:mt-10 mt-0 h-full w-full max-h-full max-w-full opacity-0 transition-all sm:mx-auto sm:mt-0 sm:h-auto sm:max-h-none sm:max-w-lg">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex h-full max-h-full max-w-full flex-col rounded-md border card">
+                                                class="border-default-300 pointer-events-auto flex h-full w-full max-h-full max-w-full flex-col rounded-md border card">
                                                 <div
                                                     class="border-default-300 flex items-center justify-between border-b p-6">
                                                     <h3 id="exampleModalFullscreenSm-label"
                                                         class="text-base font-semibold">sm 미만에서 전체 화면</h3>
 
                                                     <button type="button" aria-label="Close"
-                                                        data-hs-overlay="exampleModalFullscreenSm">
+                                                        data-hs-overlay="#exampleModalFullscreenSm">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
@@ -683,16 +683,16 @@
                                         class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto"
                                         role="dialog" tabindex="-1" aria-labelledby="exampleModalFullscreenMd-label">
                                         <div
-                                            class="hs-overlay-open:mt-0 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 md:hs-overlay-open:mt-10 mt-10 h-full max-h-full max-w-full opacity-0 transition-all md:mx-auto md:mt-0 md:h-auto md:max-h-none md:max-w-lg">
+                                            class="hs-overlay-open:mt-0 hs-overlay-animation-target hs-overlay-open:opacity-100 hs-overlay-open:duration-500 md:hs-overlay-open:mt-10 mt-0 h-full w-full max-h-full max-w-full opacity-0 transition-all md:mx-auto md:mt-0 md:h-auto md:max-h-none md:max-w-lg">
                                             <div
-                                                class="border-default-300 md: pointer-events-auto flex h-full max-h-full max-w-full flex-col card md:h-auto md:max-h-none md:max-w-lg md:rounded-xl md:border md:shadow-2xs">
+                                                class="border-default-300 pointer-events-auto flex h-full w-full max-h-full max-w-full flex-col card md:h-auto md:max-h-none md:max-w-lg md:rounded-xl md:border md:shadow-2xs">
                                                 <div
                                                     class="border-default-300 flex items-center justify-between border-b p-6">
                                                     <h3 id="exampleModalFullscreenMd-label"
                                                         class="text-base font-semibold">md 미만에서 전체 화면</h3>
 
                                                     <button type="button" aria-label="Close"
-                                                        data-hs-overlay="exampleModalFullscreenMd">
+                                                        data-hs-overlay="#exampleModalFullscreenMd">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
@@ -728,16 +728,16 @@
                                         class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto"
                                         role="dialog" tabindex="-1" aria-labelledby="exampleModalFullscreenLg-label">
                                         <div
-                                            class="hs-overlay-open:mt-0 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 lg:hs-overlay-open:mt-10 mt-10 h-full max-h-full max-w-full opacity-0 transition-all lg:mx-auto lg:mt-0 lg:h-auto lg:max-h-none lg:max-w-lg">
+                                            class="hs-overlay-open:mt-0 hs-overlay-animation-target hs-overlay-open:opacity-100 hs-overlay-open:duration-500 lg:hs-overlay-open:mt-10 mt-0 h-full w-full max-h-full max-w-full opacity-0 transition-all lg:mx-auto lg:mt-0 lg:h-auto lg:max-h-none lg:max-w-lg">
                                             <div
-                                                class="border-default-300 lg: pointer-events-auto flex h-full max-h-full max-w-full flex-col card lg:h-auto lg:max-h-none lg:max-w-lg lg:rounded-xl lg:border lg:shadow-2xs">
+                                                class="border-default-300 pointer-events-auto flex h-full w-full max-h-full max-w-full flex-col card lg:h-auto lg:max-h-none lg:max-w-lg lg:rounded-xl lg:border lg:shadow-2xs">
                                                 <div
                                                     class="border-default-300 flex items-center justify-between border-b p-6">
                                                     <h3 id="exampleModalFullscreenLg-label"
                                                         class="text-base font-semibold">lg 미만에서 전체 화면</h3>
 
                                                     <button type="button" aria-label="Close"
-                                                        data-hs-overlay="exampleModalFullscreenLg">
+                                                        data-hs-overlay="#exampleModalFullscreenLg">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
@@ -773,16 +773,16 @@
                                         class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto"
                                         role="dialog" tabindex="-1" aria-labelledby="exampleModalFullscreenXl-label">
                                         <div
-                                            class="hs-overlay-open:mt-0 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 xl:hs-overlay-open:mt-10 mt-10 h-full max-h-full max-w-full opacity-0 transition-all xl:mx-auto xl:mt-0 xl:h-auto xl:max-h-none xl:max-w-xl">
+                                            class="hs-overlay-open:mt-0 hs-overlay-animation-target hs-overlay-open:opacity-100 hs-overlay-open:duration-500 xl:hs-overlay-open:mt-10 mt-0 h-full w-full max-h-full max-w-full opacity-0 transition-all xl:mx-auto xl:mt-0 xl:h-auto xl:max-h-none xl:max-w-xl">
                                             <div
-                                                class="xl: border-default-300 pointer-events-auto flex h-full max-h-full max-w-full flex-col card xl:h-auto xl:max-h-none xl:max-w-lg xl:rounded-xl xl:border xl:shadow-2xs">
+                                                class="border-default-300 pointer-events-auto flex h-full w-full max-h-full max-w-full flex-col card xl:h-auto xl:max-h-none xl:max-w-lg xl:rounded-xl xl:border xl:shadow-2xs">
                                                 <div
                                                     class="border-default-300 flex items-center justify-between border-b p-6">
                                                     <h3 id="exampleModalFullscreenXl-label"
                                                         class="text-base font-semibold">xl 미만에서 전체 화면</h3>
 
                                                     <button type="button" aria-label="Close"
-                                                        data-hs-overlay="exampleModalFullscreenXl">
+                                                        data-hs-overlay="#exampleModalFullscreenXl">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
@@ -818,16 +818,16 @@
                                         class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto"
                                         role="dialog" tabindex="-1" aria-labelledby="exampleModalFullscreenXxl-label">
                                         <div
-                                            class="hs-overlay-open:mt-0 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 xl:hs-overlay-open:mt-10 mt-10 h-full max-h-full max-w-full opacity-0 transition-all xl:mx-auto xl:mt-0 xl:h-auto xl:max-h-none xl:max-w-xl">
+                                            class="hs-overlay-open:mt-0 hs-overlay-animation-target hs-overlay-open:opacity-100 hs-overlay-open:duration-500 xl:hs-overlay-open:mt-10 mt-0 h-full w-full max-h-full max-w-full opacity-0 transition-all xl:mx-auto xl:mt-0 xl:h-auto xl:max-h-none xl:max-w-xl">
                                             <div
-                                                class="xl: border-default-300 pointer-events-auto flex h-full max-h-full max-w-full flex-col card xl:h-auto xl:max-h-none xl:max-w-lg xl:rounded-xl xl:border xl:shadow-2xs">
+                                                class="border-default-300 pointer-events-auto flex h-full w-full max-h-full max-w-full flex-col card xl:h-auto xl:max-h-none xl:max-w-lg xl:rounded-xl xl:border xl:shadow-2xs">
                                                 <div
                                                     class="border-default-300 flex items-center justify-between border-b p-6">
                                                     <h3 id="exampleModalFullscreenXxl-label"
                                                         class="text-base font-semibold">xxl 미만에서 전체 화면</h3>
 
                                                     <button type="button" aria-label="Close"
-                                                        data-hs-overlay="exampleModalFullscreenXxl">
+                                                        data-hs-overlay="#exampleModalFullscreenXxl">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
@@ -869,7 +869,7 @@
                                         data-hs-overlay="#staticBackdrop">고정 배경 모달</button>
 
                                     <div id="staticBackdrop"
-                                        class="hs-overlay [--overlay-backdrop:static] hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
+                                        class="hs-overlay [--overlay-backdrop:static] hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all" data-hs-overlay-static="true"
                                         role="dialog" tabindex="-1" aria-labelledby="staticBackdrop-label">
                                         <div class="hs-overlay-animation-target m-3 sm:mx-auto sm:w-full sm:max-w-lg">
                                             <div

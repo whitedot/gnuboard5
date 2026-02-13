@@ -101,3 +101,13 @@ body {
     flex: 1;
     background-color: #f9fafb;
 }
+
+/* Modal overlay tweaks */
+.hs-overlay {
+    z-index: 120 !important;
+}
+
+.hs-overlay.size-full {
+    background-color: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(2px);
+}
