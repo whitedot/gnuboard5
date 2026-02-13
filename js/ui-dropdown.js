@@ -6,6 +6,8 @@
   var MENU_SELECTOR = '.hs-dropdown-menu';
   var OPEN_CLASS = 'hs-dropdown-open';
   var LEGACY_OPEN_CLASS = 'open';
+  var VIEWPORT_GAP = 8;
+  var MENU_OFFSET = 6;
 
   var opened = [];
 
@@ -74,13 +76,6 @@
     return { toggle: toggle, menu: menu };
   }
 
-  function ensureContainer(dropdown) {
-    var style = window.getComputedStyle(dropdown);
-    if (style && style.position === 'static') {
-      dropdown.style.position = 'relative';
-    }
-  }
-
   function measure(menu) {
     var oldDisplay = menu.style.display;
     var oldVisibility = menu.style.visibility;
@@ -144,55 +139,134 @@
     return { side: side, align: align };
   }
 
+  function clamp(value, min, max) {
+    if (max < min) {
+      return min;
+    }
+
+    return Math.min(Math.max(value, min), max);
+  }
+
+  function getViewportBounds() {
+    return {
+      left: VIEWPORT_GAP,
+      top: VIEWPORT_GAP,
+      right: Math.max(VIEWPORT_GAP, window.innerWidth - VIEWPORT_GAP),
+      bottom: Math.max(VIEWPORT_GAP, window.innerHeight - VIEWPORT_GAP)
+    };
+  }
+
+  function getSideCandidates(side) {
+    if (side === 'top') {
+      return ['top', 'bottom'];
+    }
+
+    if (side === 'left') {
+      return ['left', 'right'];
+    }
+
+    if (side === 'right') {
+      return ['right', 'left'];
+    }
+
+    return ['bottom', 'top'];
+  }
+
+  function getCandidatePosition(toggleRect, menuSize, side, align) {
+    var left = toggleRect.left;
+    var top = toggleRect.bottom + MENU_OFFSET;
+
+    if (side === 'top') {
+      top = toggleRect.top - menuSize.height - MENU_OFFSET;
+    } else if (side === 'left') {
+      left = toggleRect.left - menuSize.width - MENU_OFFSET;
+      top = toggleRect.top;
+    } else if (side === 'right') {
+      left = toggleRect.right + MENU_OFFSET;
+      top = toggleRect.top;
+    }
+
+    if (side === 'top' || side === 'bottom') {
+      if (align === 'end') {
+        left = toggleRect.right - menuSize.width;
+      } else if (align === 'center') {
+        left = toggleRect.left + (toggleRect.width - menuSize.width) / 2;
+      }
+    } else {
+      if (align === 'end') {
+        top = toggleRect.bottom - menuSize.height;
+      } else if (align === 'center') {
+        top = toggleRect.top + (toggleRect.height - menuSize.height) / 2;
+      }
+    }
+
+    return { left: left, top: top };
+  }
+
+  function getOverflowScore(position, menuSize, bounds) {
+    var overflowLeft = Math.max(0, bounds.left - position.left);
+    var overflowTop = Math.max(0, bounds.top - position.top);
+    var overflowRight = Math.max(0, position.left + menuSize.width - bounds.right);
+    var overflowBottom = Math.max(0, position.top + menuSize.height - bounds.bottom);
+
+    return overflowLeft + overflowTop + overflowRight + overflowBottom;
+  }
+
+  function choosePlacement(toggleRect, menuSize, placement, bounds) {
+    var sides = getSideCandidates(placement.side);
+    var best = null;
+
+    for (var i = 0; i < sides.length; i += 1) {
+      var side = sides[i];
+      var position = getCandidatePosition(toggleRect, menuSize, side, placement.align);
+      var score = getOverflowScore(position, menuSize, bounds) + (i > 0 ? 1 : 0);
+
+      if (!best || score < best.score) {
+        best = {
+          side: side,
+          left: position.left,
+          top: position.top,
+          score: score
+        };
+      }
+    }
+
+    return best || {
+      side: placement.side,
+      left: toggleRect.left,
+      top: toggleRect.bottom + MENU_OFFSET
+    };
+  }
+
   function place(dropdown) {
     var refs = getRefs(dropdown);
     if (!refs) {
       return;
     }
 
-    ensureContainer(dropdown);
-
     var config = getConfig(dropdown);
     var placement = normalizePlacement(config.placement);
 
-    var size = measure(refs.menu);
+    var menuSize = measure(refs.menu);
+    var toggleRect = refs.toggle.getBoundingClientRect();
+    var bounds = getViewportBounds();
+    var selected = choosePlacement(toggleRect, menuSize, placement, bounds);
 
-    var left = refs.toggle.offsetLeft;
-    var top = refs.toggle.offsetTop + refs.toggle.offsetHeight;
+    var maxLeft = bounds.right - menuSize.width;
+    var maxTop = bounds.bottom - menuSize.height;
+    var safeLeft = clamp(selected.left, bounds.left, maxLeft);
+    var safeTop = clamp(selected.top, bounds.top, maxTop);
 
-    if (placement.side === 'top') {
-      top = refs.toggle.offsetTop - size.height;
-    }
+    var availableWidth = Math.max(80, Math.floor(bounds.right - safeLeft));
+    var availableHeight = Math.max(80, Math.floor(bounds.bottom - safeTop));
 
-    if (placement.side === 'left') {
-      left = refs.toggle.offsetLeft - size.width;
-      top = refs.toggle.offsetTop;
-    }
-
-    if (placement.side === 'right') {
-      left = refs.toggle.offsetLeft + refs.toggle.offsetWidth;
-      top = refs.toggle.offsetTop;
-    }
-
-    if (placement.side === 'top' || placement.side === 'bottom') {
-      if (placement.align === 'end') {
-        left = refs.toggle.offsetLeft + refs.toggle.offsetWidth - size.width;
-      } else if (placement.align === 'center') {
-        left = refs.toggle.offsetLeft + (refs.toggle.offsetWidth - size.width) / 2;
-      }
-    }
-
-    if (placement.side === 'left' || placement.side === 'right') {
-      if (placement.align === 'end') {
-        top = refs.toggle.offsetTop + refs.toggle.offsetHeight - size.height;
-      } else if (placement.align === 'center') {
-        top = refs.toggle.offsetTop + (refs.toggle.offsetHeight - size.height) / 2;
-      }
-    }
-
-    refs.menu.style.position = 'absolute';
-    refs.menu.style.left = left + 'px';
-    refs.menu.style.top = top + 'px';
+    refs.menu.style.position = 'fixed';
+    refs.menu.style.left = safeLeft + 'px';
+    refs.menu.style.top = safeTop + 'px';
+    refs.menu.style.margin = '0';
+    refs.menu.style.maxWidth = availableWidth + 'px';
+    refs.menu.style.maxHeight = availableHeight + 'px';
+    refs.menu.style.overflowY = 'auto';
   }
 
   function remember(dropdown) {
@@ -224,6 +298,13 @@
     refs.menu.style.opacity = '0';
     refs.menu.style.pointerEvents = 'none';
     refs.menu.style.zIndex = '';
+    refs.menu.style.position = '';
+    refs.menu.style.left = '';
+    refs.menu.style.top = '';
+    refs.menu.style.margin = '';
+    refs.menu.style.maxWidth = '';
+    refs.menu.style.maxHeight = '';
+    refs.menu.style.overflowY = '';
 
     forget(dropdown);
   }
@@ -292,6 +373,13 @@
     refs.menu.style.display = 'none';
     refs.menu.style.opacity = '0';
     refs.menu.style.pointerEvents = 'none';
+    refs.menu.style.position = '';
+    refs.menu.style.left = '';
+    refs.menu.style.top = '';
+    refs.menu.style.margin = '';
+    refs.menu.style.maxWidth = '';
+    refs.menu.style.maxHeight = '';
+    refs.menu.style.overflowY = '';
 
     if (getConfig(dropdown).trigger === 'hover' && !dropdown._hoverBound) {
       dropdown._hoverBound = true;
