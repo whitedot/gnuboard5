@@ -18,7 +18,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
-    fetch('../README.md')
+    const readmeUrl = `../README.md?v=${Date.now()}`;
+    fetch(readmeUrl, { cache: 'no-store' })
         .then(response => response.text())
         .then(text => {
             document.getElementById('readme-content').innerHTML = marked.parse(text);

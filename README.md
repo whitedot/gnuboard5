@@ -48,23 +48,25 @@
 
 ### Tag-Based Detailed Changes
 
-#### v1.2.0+g5.6.23 -> Working Tree
+#### Tag List (Format: `vX.X.X+gX.X.XXX`)
 
-- 폼 입력 시인성 개선
-- `form-input`, `form-select`, `form-textarea` 기본 보더 대비를 상향하고 내부 여백을 조정해 가독성 개선
-- 기본 배경을 `default-100` 기준 톤으로 통일
-- `form-elements.php` UI 보정
-- `textarea`에 `form-textarea` 적용해 패딩/포커스 스타일 정상화
-- 비밀번호 표시/숨기기 토글 버튼을 필드 내부 아이콘형으로 정리하고 `data-icon` 누락 보완
-- 플로팅 라벨 input/select/textarea에 실제 보더 두께(`border`)를 추가하여 경계선 표시 정상화
-- 입력 그룹(Input Group) 경계선 일관화
-- 입력 그룹 내 텍스트/버튼/드롭다운 컨테이너 보더를 `border-default-500` 기준으로 통일
-- 드롭다운+입력 조합에서 경계선이 비는 케이스를 공통 CSS에서 보정
-- 선택 컨트롤 가시성 개선
-- 체크박스 체크 아이콘을 더 굵고 크게 조정하여 흰색 표시 가독성 강화
-- 라디오 중앙 흰색 원 크기를 확대하여 선택 상태를 명확하게 표시
-- 빌드 산출물 반영
-- `css/common.css`, `theme/basic/css/common.css` 재빌드 반영
+- `v1.0.0+g5.6.23`
+- `v1.1.0+g5.6.23`
+- `v1.2.0+g5.6.23`
+- `v1.2.1+g5.6.23`
+- `v1.2.2+g5.6.23`
+- `v1.3.0+g5.6.24`
+- `v1.3.1+g5.6.24`
+
+#### v1.3.1+g5.6.24 -> Working Tree
+
+- 폼 입력 컴포넌트 시인성 개선(`input`, `select`, `textarea`)
+- 플로팅 라벨 필드 보더 누락 보정(`border` 두께 클래스 추가)
+- 입력 그룹(Input Group) 버튼/드롭다운 경계선 일관화
+- 비밀번호 표시/숨기기 아이콘 렌더링 및 버튼 UI 보정
+- 체크박스 체크 마크/라디오 중앙 원 가시성 강화
+- README 태그 기준 변경 내역 섹션 정비
+- 빌드 산출물 재생성 반영(`css/common.css`, `theme/basic/css/common.css`)
 
 ## 4. 개발 환경 및 크레딧 (Development Environment & Credits)
 
