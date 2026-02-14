@@ -53,10 +53,10 @@ if ($config['cf_twitter_key']) {
     echo '<li class="sns_li_t '.($twitter_user?'':'sns_li_off').'">';
     if ($twitter_user) {
         echo '<img src="'.G5_SNS_URL.'/icon/twitter.png" id="twitter_icon">';
-        echo '<label for="" class="sound_only">트위터 동시 등록</label>';
+        echo '<label for="" class="sr-only">트위터 동시 등록</label>';
         echo '<input type="checkbox" name="twitter_checked" id="twitter_checked" '.(get_cookie('ck_twitter_checked')?'checked':'').' value="1">';
     } else {
-        echo '<label for="" class="sound_only">트위터 동시 등록</label>';
+        echo '<label for="" class="sr-only">트위터 동시 등록</label>';
         echo '<input type="checkbox" name="twitter_checked" id="twitter_checked" disabled value="1">';
         echo '<a href="'.$twitter_url.'" id="twitter_url" onclick="return false;" "><img src="'.G5_SNS_URL.'/icon/twitter.png" id="twitter_icon" width="20"></a>';
         echo '<script>$(function(){ $(document).on("click", "#twitter_url", function(){ window.open(this.href, "twitter_url", "width=600,height=250"); }); });</script>';

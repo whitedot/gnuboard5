@@ -42,9 +42,9 @@ function editor_html($id, $content, $is_dhtml_editor=true)
         $html .= "ed_{$id}.config.editorPath = \"{$editor_url}\";\n"; 
         $html .= "ed_{$id}.inputForm = \"tx_{$id}\";\n";
         $html .= "</script>\n";                                             
-        $html .= "<span class=\"sound_only\">웹에디터 시작</span>";
+        $html .= "<span class=\"sr-only\">웹에디터 시작</span>";
         $html .= "<textarea name=\"{$id}\" id=\"tx_{$id}\" style=\"display:none;\">{$content}</textarea>\n";
-        $html .= "\n<span class=\"sound_only\">웹 에디터 끝</span>";
+        $html .= "\n<span class=\"sr-only\">웹 에디터 끝</span>";
         $html .= "<script>ed_{$id}.run();</script>\n";
     } else {
         $html .= "<textarea id=\"$id\" name=\"$id\" style=\"width:{$width};height:{$height};\" maxlength=\"65536\">$content</textarea>\n";

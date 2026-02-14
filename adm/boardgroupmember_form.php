@@ -65,7 +65,7 @@ $colspan = 4;
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall" class="sound_only">접근가능그룹 전체</label>
+                        <label for="chkall" class="sr-only">접근가능그룹 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col">그룹아이디</th>
@@ -87,7 +87,7 @@ $colspan = 4;
                 ?>
                     <tr>
                         <td class="td_chk">
-                            <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo $row['gr_subject'] ?> 그룹</label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $row['gr_subject'] ?> 그룹</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $row['gm_id'] ?>" id="chk_<?php echo $i ?>">
                         </td>
                         <td class="td_grid"><a href="<?php echo G5_BBS_URL; ?>/group.php?gr_id=<?php echo $row['gr_id'] ?>"><?php echo $row['gr_id'] ?></a></td>

@@ -129,7 +129,7 @@ if(defined('G5_THEME_USE_ITEM_CATEGORY') && G5_THEME_USE_ITEM_CATEGORY){
 }
 
 if ($is_admin) {
-    echo '<div class="sit_admin"><a href="'.G5_ADMIN_URL.'/shop_admin/itemform.php?w=u&amp;it_id='.$it_id.'" class="btn_admin btn" title="상품 관리"><span class="sound_only">상품 관리</span><i class="fa fa-cog fa-spin fa-fw"></i></a></div>';
+    echo '<div class="sit_admin"><a href="'.G5_ADMIN_URL.'/shop_admin/itemform.php?w=u&amp;it_id='.$it_id.'" class="btn_admin btn" title="상품 관리"><span class="sr-only">상품 관리</span><i class="fa fa-cog fa-spin fa-fw"></i></a></div>';
 }
 ?>
 
@@ -149,7 +149,7 @@ else
 $sql = " select it_id, it_name from {$g5['g5_shop_item_table']} where it_id > '$it_id' and SUBSTRING(ca_id,1,4) = '".substr($it['ca_id'],0,4)."' and it_use = '1' order by it_id asc limit 1 ";
 $row = sql_fetch($sql);
 if (isset($row['it_id']) && $row['it_id']) {
-    $prev_title = '이전상품<span class="sound_only"> '.$row['it_name'].'</span>';
+    $prev_title = '이전상품<span class="sr-only"> '.$row['it_name'].'</span>';
     $prev_href = '<a href="'.get_pretty_url('shop', $row['it_id']).'" id="siblings_prev">';
     $prev_href2 = '</a>'.PHP_EOL;
 } else {
@@ -162,7 +162,7 @@ if (isset($row['it_id']) && $row['it_id']) {
 $sql = " select it_id, it_name from {$g5['g5_shop_item_table']} where it_id < '$it_id' and SUBSTRING(ca_id,1,4) = '".substr($it['ca_id'],0,4)."' and it_use = '1' order by it_id desc limit 1 ";
 $row = sql_fetch($sql);
 if (isset($row['it_id']) && $row['it_id']) {
-    $next_title = '다음 상품<span class="sound_only"> '.$row['it_name'].'</span>';
+    $next_title = '다음 상품<span class="sr-only"> '.$row['it_name'].'</span>';
     $next_href = '<a href="'.get_pretty_url('shop', $row['it_id']).'" id="siblings_next">';
     $next_href2 = '</a>'.PHP_EOL;
 } else {

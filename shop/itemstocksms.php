@@ -36,7 +36,7 @@ if (G5_IS_MOBILE) {
                 <?php echo $it['it_name']; ?>
             </li>
             <li>
-                <label for="ss_hp" class="sound_only">휴대폰번호<strong> 필수</strong></label>
+                <label for="ss_hp" class="sr-only">휴대폰번호<strong> 필수</strong></label>
                 <input type="text" name="ss_hp" value="<?php echo $member['mb_hp']; ?>" id="ss_hp" required class="required frm_input full_input" placeholder="휴대폰번호">
             </li>
             <li>

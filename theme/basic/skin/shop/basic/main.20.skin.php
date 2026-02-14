@@ -219,7 +219,7 @@ if($i == 0) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>\
 
                     // control 버튼 class
                     $("#btn_"+el_id).find("button span").removeClass("sctrl_on").html("")
-                        .end().find("button.sctrl_play span").addClass("sctrl_on").html("<b class=\"sound_only\">선택됨</b>");
+                        .end().find("button.sctrl_play span").addClass("sctrl_on").html("<b class=\"sr-only\">선택됨</b>");
                 }
             }
 
@@ -229,7 +229,7 @@ if($i == 0) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>\
 
                     // control 버튼 class
                     $("#btn_"+el_id).find("button span").removeClass("sctrl_on").html("")
-                        .end().find("button.sctrl_stop span").addClass("sctrl_on").html("<b class=\"sound_only\">선택됨</b>");
+                        .end().find("button.sctrl_stop span").addClass("sctrl_on").html("<b class=\"sr-only\">선택됨</b>");
                 }
             }
         },
@@ -267,7 +267,7 @@ $(function() {
     $("#btn_smt_<?php echo $this->type; ?> button.sctrl_stop").on("click", function() {
         if($(this).parent().siblings().find(".sctrl_on").length > 0) {
             $(this).parent().siblings().find("span").removeClass("sctrl_on").html("");
-            $(this).children().addClass("sctrl_on").html("<b class=\"sound_only\">선택됨</b>");
+            $(this).children().addClass("sctrl_on").html("<b class=\"sr-only\">선택됨</b>");
             var id = $(this).closest(".sctrl").attr("id").replace("btn_", "");
             $("#"+id).topRolling("stop");
 

@@ -66,13 +66,13 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 <input type="hidden" name="sort2" value="<?php echo get_sanitize_input($sort2); ?>">
 <input type="hidden" name="page" value="<?php echo get_sanitize_input($page); ?>">
 
-<label for="sel_field" class="sound_only">검색대상</label>
+<label for="sel_field" class="sr-only">검색대상</label>
 <select name="sel_field" id="sel_field">
     <option value="it_id" <?php echo get_selected($sel_field, 'it_id'); ?>>상품코드</option>
     <option value="ss_hp" <?php echo get_selected($sel_field, 'ss_hp'); ?>>휴대폰번호</option>
 </select>
 
-<label for="search" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+<label for="search" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
 <input type="text" name="search" id="search" value="<?php echo $search; ?>" required class="frm_input required">
 <input type="submit" value="검색" class="btn_submit">
 
@@ -91,7 +91,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall" class="sound_only">알림요청 전체</label>
+            <label for="chkall" class="sr-only">알림요청 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">상품명</th>
@@ -119,7 +119,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     ?>
     <tr class="<?php echo $bg; ?>">
         <td class="td_chk">
-            <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo $it_name; ?> 알림요청</label>
+            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $it_name; ?> 알림요청</label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i; ?>">
             <input type="hidden" name="ss_id[<?php echo $i; ?>]" value="<?php echo $row['ss_id']; ?>">
         </td>

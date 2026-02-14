@@ -15,13 +15,13 @@ if ($is_admin) $colspan++;
     <legend>상세검색</legend>
     <form name="fnew" method="get">
     <?php echo $group_select ?>
-    <label for="view" class="sound_only">검색대상</label>
+    <label for="view" class="sr-only">검색대상</label>
     <select name="view" id="view">
         <option value="">전체게시물
         <option value="w">원글만
         <option value="c">코멘트만
     </select>
-    <label for="mb_id" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+    <label for="mb_id" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
     <input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" required class="frm_input" size="40">
     <button type="submit" class="btn_submit"><i class="fa fa-search" aria-hidden="true"></i> 검색</button>
     <p>회원 아이디만 검색 가능</p>
@@ -51,7 +51,7 @@ if ($is_admin) $colspan++;
 
 <?php if ($is_admin) { ?>
 <div class="admin_new_btn">
-    <button type="submit" onclick="document.pressed=this.title" title="선택삭제" class="btn_b01 btn"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="sound_only">선택삭제</span></button>
+    <button type="submit" onclick="document.pressed=this.title" title="선택삭제" class="btn_b01 btn"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="sr-only">선택삭제</span></button>
 </div>
 <?php } ?>
 <div class="tbl_head01 tbl_wrap">
@@ -63,7 +63,7 @@ if ($is_admin) $colspan++;
         	<input type="checkbox" id="all_chk" class="selec_chk">
             <label for="all_chk">
             	<span></span>
-				<b class="sound_only">목록 전체</b>
+				<b class="sr-only">목록 전체</b>
             </label>
         </th>
         <?php } ?>
@@ -89,7 +89,7 @@ if ($is_admin) $colspan++;
             <input type="checkbox" name="chk_bn_id[]" value="<?php echo $i; ?>" id="chk_bn_id_<?php echo $i; ?>" class="selec_chk">
             <label for="chk_bn_id_<?php echo $i; ?>">
             	<span></span>
-            	<b class="sound_only"><?php echo $num?>번</b>
+            	<b class="sr-only"><?php echo $num?>번</b>
             </label>
             <input type="hidden" name="bo_table[<?php echo $i; ?>]" value="<?php echo $list[$i]['bo_table']; ?>">
             <input type="hidden" name="wr_id[<?php echo $i; ?>]" value="<?php echo $list[$i]['wr_id']; ?>">
@@ -114,7 +114,7 @@ if ($is_admin) $colspan++;
 
 <?php if ($is_admin) { ?>
 <div class="admin_new_btn">
-    <button type="submit" onclick="document.pressed=this.title" title="선택삭제" class="btn_b01 btn"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="sound_only">선택삭제</span></button>
+    <button type="submit" onclick="document.pressed=this.title" title="선택삭제" class="btn_b01 btn"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="sr-only">선택삭제</span></button>
 </div>
 <?php } ?>
 </form>

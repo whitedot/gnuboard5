@@ -34,13 +34,13 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
 ?>
 
 <form name="search_form" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" class="local_sch01 local_sch" >
-<label for="st" class="sound_only">검색대상</label>
+<label for="st" class="sr-only">검색대상</label>
 <select name="st" id="st">
     <option value="hs_name"<?php echo get_selected('hs_name', $st); ?>>이름</option>
     <option value="hs_hp"<?php echo get_selected('hs_hp', $st); ?>>휴대폰번호</option>
     <option value="bk_no"<?php echo get_selected('bk_no', $st); ?>>고유번호</option>
 </select>
-<label for="sv" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+<label for="sv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
 <input type="text" name="sv" value="<?php echo $sv; ?>" id="sv" required class="required frm_input">
 <input type="submit" value="검색" class="btn_submit">
 </form>

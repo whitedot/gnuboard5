@@ -59,7 +59,7 @@ $colspan = 10;
     <select name="sfl" title="검색대상">
         <option value="od_id"<?php echo get_selected($sfl, "od_id"); ?>>주문번호</option>
     </select>
-    <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+    <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
     <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
     <input type="submit" class="btn_submit" value="검색">
 </form>
@@ -78,7 +78,7 @@ $colspan = 10;
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall" class="sound_only">미완료주문 전체</label>
+            <label for="chkall" class="sr-only">미완료주문 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col"><?php echo subject_sort_link('od_id') ?>주문번호</a></th>
@@ -130,8 +130,8 @@ $colspan = 10;
         <td class="td_center"><?php echo $data['od_settle_case']; ?></td>
         <td class="td_time"><?php echo $row['dt_time']; ?></td>
         <td class="td_mng td_mng_m">
-            <a href="./inorderform.php?od_id=<?php echo $row['od_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sound_only"><?php echo $row['od_id']; ?> </span>보기</a>
-            <a href="./inorderformupdate.php?w=d&amp;od_id=<?php echo $row['od_id']; ?>&amp;<?php echo $qstr; ?>" onclick="return delete_confirm(this);" class="btn btn_02"><span class="sound_only"><?php echo $row['od_id']; ?> </span>삭제</a>
+            <a href="./inorderform.php?od_id=<?php echo $row['od_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sr-only"><?php echo $row['od_id']; ?> </span>보기</a>
+            <a href="./inorderformupdate.php?w=d&amp;od_id=<?php echo $row['od_id']; ?>&amp;<?php echo $qstr; ?>" onclick="return delete_confirm(this);" class="btn btn_02"><span class="sr-only"><?php echo $row['od_id']; ?> </span>삭제</a>
         </td>
     </tr>
 

@@ -13,7 +13,7 @@
     <div class="compare_wrap">
         <section class="compare_left">
             <h3>등록된 전체상품 목록</h3>
-            <label for="sch_relation" class="sound_only">상품분류</label>
+            <label for="sch_relation" class="sr-only">상품분류</label>
             <span class="srel_pad">
                 <select id="sch_relation">
                     <option value=''>분류별 상품</option>
@@ -35,7 +35,7 @@
                         }
                     ?>
                 </select>
-                <label for="sch_name" class="sound_only">상품명</label>
+                <label for="sch_name" class="sr-only">상품명</label>
                 <input type="text" name="sch_name" id="sch_name" class="frm_input" size="15">
                 <button type="button" id="btn_search_item" class="btn_frmline">검색</button>
             </span>

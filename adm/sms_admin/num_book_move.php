@@ -42,7 +42,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
             <tr>
                 <th scope="col">
                     <?php if ( $inputbox_type == "checkbox" ){ //복사일때만 ?>
-                    <label for="chkall" class="sound_only">그룹 전체</label>
+                    <label for="chkall" class="sr-only">그룹 전체</label>
                     <input type="checkbox" id="chkall" onclick="if (this.checked) all_checked(true); else all_checked(false);">
                     <?php } ?>
                 </th>
@@ -53,7 +53,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
             <?php for ($i=0; $i<count($list); $i++) { ?>
             <tr>
                 <td class="td_chk">
-                    <label for="chk<?php echo $i ?>" class="sound_only"><?php echo $list[$i]['bg_name'] ?></label>
+                    <label for="chk<?php echo $i ?>" class="sr-only"><?php echo $list[$i]['bg_name'] ?></label>
                     <input type="<?php echo $inputbox_type; ?>" value="<?php echo $list[$i]['bg_no'] ?>" id="chk<?php echo $i ?>" name="chk_bg_no[]">
                 </td>
                 <td>

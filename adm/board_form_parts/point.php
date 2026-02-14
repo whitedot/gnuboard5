@@ -19,7 +19,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_read_point">글읽기 포인트<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_read_point">글읽기 포인트<strong class="sr-only">필수</strong></label></th>
             <td>
                 <input type="text" name="bo_read_point" value="<?php echo $board['bo_read_point'] ?>" id="bo_read_point" required class="required frm_input" size="5">
             </td>
@@ -31,7 +31,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_write_point">글쓰기 포인트<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_write_point">글쓰기 포인트<strong class="sr-only">필수</strong></label></th>
             <td>
                 <input type="text" name="bo_write_point" value="<?php echo $board['bo_write_point'] ?>" id="bo_write_point" required class="required frm_input" size="5">
             </td>
@@ -43,7 +43,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_comment_point">댓글쓰기 포인트<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_comment_point">댓글쓰기 포인트<strong class="sr-only">필수</strong></label></th>
             <td>
                 <input type="text" name="bo_comment_point" value="<?php echo $board['bo_comment_point'] ?>" id="bo_comment_point" required class="required frm_input" size="5">
             </td>
@@ -55,7 +55,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_download_point">다운로드 포인트<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_download_point">다운로드 포인트<strong class="sr-only">필수</strong></label></th>
             <td>
                 <input type="text" name="bo_download_point" value="<?php echo $board['bo_download_point'] ?>" id="bo_download_point" required class="required frm_input" size="5">
             </td>

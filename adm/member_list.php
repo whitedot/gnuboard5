@@ -79,7 +79,7 @@ $colspan = 16;
 
 <form id="fsearch" name="fsearch" class="local_sch01 local_sch" method="get">
 
-    <label for="sfl" class="sound_only">검색대상</label>
+    <label for="sfl" class="sr-only">검색대상</label>
     <select name="sfl" id="sfl">
         <option value="mb_id" <?php echo get_selected($sfl, "mb_id"); ?>>회원아이디</option>
         <option value="mb_nick" <?php echo get_selected($sfl, "mb_nick"); ?>>닉네임</option>
@@ -93,7 +93,7 @@ $colspan = 16;
         <option value="mb_ip" <?php echo get_selected($sfl, "mb_ip"); ?>>IP</option>
         <option value="mb_recommend" <?php echo get_selected($sfl, "mb_recommend"); ?>>추천인</option>
     </select>
-    <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+    <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
     <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
     <input type="submit" class="btn_submit" value="검색">
 
@@ -120,7 +120,7 @@ $colspan = 16;
             <thead>
                 <tr>
                     <th scope="col" id="mb_list_chk" rowspan="2">
-                        <label for="chkall" class="sound_only">회원 전체</label>
+                        <label for="chkall" class="sr-only">회원 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col" id="mb_list_id" colspan="2"><?php echo subject_sort_link('mb_id') ?>아이디</a></th>
@@ -216,7 +216,7 @@ $colspan = 16;
                     <tr class="<?php echo $bg; ?>">
                         <td headers="mb_list_chk" class="td_chk" rowspan="2">
                             <input type="hidden" name="mb_id[<?php echo $i ?>]" value="<?php echo $row['mb_id'] ?>" id="mb_id_<?php echo $i ?>">
-                            <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo get_text($row['mb_name']); ?> <?php echo get_text($row['mb_nick']); ?>님</label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['mb_name']); ?> <?php echo get_text($row['mb_nick']); ?>님</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
                         </td>
                         <td headers="mb_list_id" colspan="2" class="td_name sv_use">
@@ -254,11 +254,11 @@ $colspan = 16;
                         </td>
                         <td headers="mb_list_mailc" class="td_consent"><?php echo preg_match('/[1-9]/', $row['mb_email_certify']) ? '<span class="txt_true">Yes</span>' : '<span class="txt_false">No</span>'; ?></td>
                         <td headers="mb_list_open" class="td_consent">
-                            <label for="mb_open_<?php echo $i; ?>" class="sound_only">정보공개</label>
+                            <label for="mb_open_<?php echo $i; ?>" class="sr-only">정보공개</label>
                             <input type="checkbox" name="mb_open[<?php echo $i; ?>]" <?php echo $row['mb_open'] ? 'checked' : ''; ?> value="1" id="mb_open_<?php echo $i; ?>">
                         </td>
                         <td headers="mb_list_mailr" class="td_consent">
-                            <label for="mb_mailling_<?php echo $i; ?>" class="sound_only">메일수신</label>
+                            <label for="mb_mailling_<?php echo $i; ?>" class="sr-only">메일수신</label>
                             <input type="checkbox" name="mb_mailling[<?php echo $i; ?>]" <?php echo $row['mb_mailling'] ? 'checked' : ''; ?> value="1" id="mb_mailling_<?php echo $i; ?>">
                             <input type="hidden" name="mb_mailling_default[<?php echo $i; ?>]" value="<?php echo isset($row['mb_mailling']) ? $row['mb_mailling'] : '0'; ?> " id="mb_mailling_default_<?php echo $i; ?>">
                         </td>
@@ -283,18 +283,18 @@ $colspan = 16;
                         </td>
 
                         <td headers="mb_list_sms">
-                            <label for="mb_sms_<?php echo $i; ?>" class="sound_only">SMS수신</label>
+                            <label for="mb_sms_<?php echo $i; ?>" class="sr-only">SMS수신</label>
                             <input type="checkbox" name="mb_sms[<?php echo $i; ?>]" <?php echo $row['mb_sms'] ? 'checked' : ''; ?> value="1" id="mb_sms_<?php echo $i; ?>">
                             <input type="hidden" name="mb_sms_default[<?php echo $i; ?>]" value="<?php echo isset($row['mb_sms']) ? $row['mb_sms'] : '0'; ?> " id="mb_sms_default_<?php echo $i; ?>">
                         </td>
                         <td headers="mb_list_adultc">
-                            <label for="mb_adult_<?php echo $i; ?>" class="sound_only">성인인증</label>
+                            <label for="mb_adult_<?php echo $i; ?>" class="sr-only">성인인증</label>
                             <input type="checkbox" name="mb_adult[<?php echo $i; ?>]" <?php echo $row['mb_adult'] ? 'checked' : ''; ?> value="1" id="mb_adult_<?php echo $i; ?>">
                         </td>
                         <td headers="mb_list_deny">
                             <?php if (empty($row['mb_leave_date'])) { ?>
                                 <input type="checkbox" name="mb_intercept_date[<?php echo $i; ?>]" <?php echo $row['mb_intercept_date'] ? 'checked' : ''; ?> value="<?php echo $intercept_date ?>" id="mb_intercept_date_<?php echo $i ?>" title="<?php echo $intercept_title ?>">
-                                <label for="mb_intercept_date_<?php echo $i; ?>" class="sound_only">접근차단</label>
+                                <label for="mb_intercept_date_<?php echo $i; ?>" class="sr-only">접근차단</label>
                             <?php } ?>
                         </td>
                         <td headers="mb_list_auth" class="td_mbstat">

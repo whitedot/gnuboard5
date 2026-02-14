@@ -46,15 +46,15 @@ if ($is_nogood) $colspan++;
         </div>
 
         <ul class="btn_bo_user">
-        	<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a></li><?php } ?>
-            <?php if ($rss_href) { ?><li><a href="<?php echo $rss_href ?>" class="btn_b01 btn" title="RSS"><i class="fa fa-rss" aria-hidden="true"></i><span class="sound_only">RSS</span></a></li><?php } ?>
+        	<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sr-only">관리자</span></a></li><?php } ?>
+            <?php if ($rss_href) { ?><li><a href="<?php echo $rss_href ?>" class="btn_b01 btn" title="RSS"><i class="fa fa-rss" aria-hidden="true"></i><span class="sr-only">RSS</span></a></li><?php } ?>
             <li>
-            	<button type="button" class="btn_bo_sch btn_b01 btn" title="게시판 검색"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">게시판 검색</span></button>
+            	<button type="button" class="btn_bo_sch btn_b01 btn" title="게시판 검색"><i class="fa fa-search" aria-hidden="true"></i><span class="sr-only">게시판 검색</span></button>
             </li>
-            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
+            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">글쓰기</span></a></li><?php } ?>
         	<?php if ($is_admin == 'super' || $is_auth) {  ?>
         	<li>
-        		<button type="button" class="btn_more_opt is_list_btn btn_b01 btn" title="게시판 리스트 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
+        		<button type="button" class="btn_more_opt is_list_btn btn_b01 btn" title="게시판 리스트 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sr-only">게시판 리스트 옵션</span></button>
         		<?php if ($is_checkbox) { ?>	
 		        <ul class="more_opt is_list_btn">  
 		            <li><button type="submit" name="btn_submit" value="선택삭제" onclick="document.pressed=this.value"><i class="fa fa-trash-o" aria-hidden="true"></i> 선택삭제</button></li>
@@ -78,7 +78,7 @@ if ($is_nogood) $colspan++;
             	<input type="checkbox" id="chkall" onclick="if (this.checked) all_checked(true); else all_checked(false);" class="selec_chk">
                 <label for="chkall">
                 	<span></span>
-                	<b class="sound_only">현재 페이지 게시물  전체선택</b>
+                	<b class="sr-only">현재 페이지 게시물  전체선택</b>
 				</label>
             </th>
             <?php } ?>
@@ -103,7 +103,7 @@ if ($is_nogood) $colspan++;
 				<input type="checkbox" name="chk_wr_id[]" value="<?php echo $list[$i]['wr_id'] ?>" id="chk_wr_id_<?php echo $i ?>" class="selec_chk">
             	<label for="chk_wr_id_<?php echo $i ?>">
             		<span></span>
-            		<b class="sound_only"><?php echo $list[$i]['subject'] ?></b>
+            		<b class="sr-only"><?php echo $list[$i]['subject'] ?></b>
             	</label>
             </td>
             <?php } ?>
@@ -133,13 +133,13 @@ if ($is_nogood) $colspan++;
                         <?php echo $list[$i]['subject'] ?>
                     </a>
                     <?php
-                    if ($list[$i]['icon_new']) echo "<span class=\"new_icon\">N<span class=\"sound_only\">새글</span></span>";
+                    if ($list[$i]['icon_new']) echo "<span class=\"new_icon\">N<span class=\"sr-only\">새글</span></span>";
                     // if ($list[$i]['file']['count']) { echo '<'.$list[$i]['file']['count'].'>'; }
                     if (isset($list[$i]['icon_hot'])) echo rtrim($list[$i]['icon_hot']);
                     if (isset($list[$i]['icon_file'])) echo rtrim($list[$i]['icon_file']);
                     if (isset($list[$i]['icon_link'])) echo rtrim($list[$i]['icon_link']);
                     ?>
-                    <?php if ($list[$i]['comment_cnt']) { ?><span class="sound_only">댓글</span><span class="cnt_cmt"><?php echo $list[$i]['wr_comment']; ?></span><span class="sound_only">개</span><?php } ?>
+                    <?php if ($list[$i]['comment_cnt']) { ?><span class="sr-only">댓글</span><span class="cnt_cmt"><?php echo $list[$i]['wr_comment']; ?></span><span class="sr-only">개</span><?php } ?>
                 </div>
             </td>
             <td class="td_name sv_use"><?php echo $list[$i]['name'] ?></td>
@@ -162,9 +162,9 @@ if ($is_nogood) $colspan++;
     <div class="bo_fx">
         <?php if ($list_href || $write_href) { ?>
         <ul class="btn_bo_user">
-        	<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a></li><?php } ?>
-            <?php if ($rss_href) { ?><li><a href="<?php echo $rss_href ?>" class="btn_b01 btn" title="RSS"><i class="fa fa-rss" aria-hidden="true"></i><span class="sound_only">RSS</span></a></li><?php } ?>
-            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
+        	<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sr-only">관리자</span></a></li><?php } ?>
+            <?php if ($rss_href) { ?><li><a href="<?php echo $rss_href ?>" class="btn_b01 btn" title="RSS"><i class="fa fa-rss" aria-hidden="true"></i><span class="sr-only">RSS</span></a></li><?php } ?>
+            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">글쓰기</span></a></li><?php } ?>
         </ul>	
         <?php } ?>
     </div>
@@ -179,16 +179,16 @@ if ($is_nogood) $colspan++;
             <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
             <input type="hidden" name="sca" value="<?php echo $sca ?>">
             <input type="hidden" name="sop" value="and">
-            <label for="sfl" class="sound_only">검색대상</label>
+            <label for="sfl" class="sr-only">검색대상</label>
             <select name="sfl" id="sfl">
                 <?php echo get_board_sfl_select_options($sfl); ?>
             </select>
-            <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+            <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
             <div class="sch_bar">
                 <input type="text" name="stx" value="<?php echo stripslashes($stx) ?>" required id="stx" class="sch_input" size="25" maxlength="20" placeholder=" 검색어를 입력해주세요">
-                <button type="submit" value="검색" class="sch_btn"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">검색</span></button>
+                <button type="submit" value="검색" class="sch_btn"><i class="fa fa-search" aria-hidden="true"></i><span class="sr-only">검색</span></button>
             </div>
-            <button type="button" class="bo_sch_cls" title="닫기"><i class="fa fa-times" aria-hidden="true"></i><span class="sound_only">닫기</span></button>
+            <button type="button" class="bo_sch_cls" title="닫기"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">닫기</span></button>
             </form>
         </fieldset>
         <div class="bo_sch_bg"></div>

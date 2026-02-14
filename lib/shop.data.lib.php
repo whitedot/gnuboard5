@@ -229,7 +229,7 @@ function get_shop_item_options($it_id, $subject, $no)
                 if($i > 0)
                     $disabled = ' disabled="disabled"';
 
-                $str .= '<label for="it_option_'.$seq.'" class="sound_only">'.$subj[$i].'</label>'.PHP_EOL;
+                $str .= '<label for="it_option_'.$seq.'" class="sr-only">'.$subj[$i].'</label>'.PHP_EOL;
 
                 $select = '<select id="it_option_'.$seq.'" class="it_option"'.$disabled.'>'.PHP_EOL;
                 $select .= '<option value="">'.$subj[$i].'</option>'.PHP_EOL;

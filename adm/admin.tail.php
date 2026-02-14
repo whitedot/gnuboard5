@@ -1,43 +1,35 @@
-<?php
+﻿<?php
 if (!defined('_GNUBOARD_')) {
     exit;
 }
 
-// 그누보드5.4.5.5 버전과 영카트5.4.5.5.1 버전이 통합됨에 따라 그누보드 버전만 표시
-// $print_version = defined('G5_YOUNGCART_VER') ? 'YoungCart Version '.G5_YOUNGCART_VER : 'Version '.G5_GNUBOARD_VER;
 $print_version = ($is_admin == 'super') ? 'Version ' . G5_GNUBOARD_VER : '';
 ?>
 
 <noscript>
-    <p>
-        귀하께서 사용하시는 브라우저는 현재 <strong>자바스크립트를 사용하지 않음</strong>으로 설정되어 있습니다.<br>
-        <strong>자바스크립트를 사용하지 않음</strong>으로 설정하신 경우는 수정이나 삭제시 별도의 경고창이 나오지 않으므로 이점 주의하시기 바랍니다.
+    <p class="mx-3 mb-4 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800 dark:border-amber-500/50 dark:bg-amber-950/40 dark:text-amber-200 sm:mx-5 lg:mx-8">
+        이 페이지는 JavaScript가 활성화되어야 일부 기능이 정상 동작합니다.
     </p>
 </noscript>
 </div>
-<footer id="ft">
-    <p>
+<footer id="ft" class="px-3 pb-6 sm:px-5 lg:px-8">
+    <p class="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-600 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
         Copyright &copy; <?php echo $_SERVER['HTTP_HOST']; ?>. All rights reserved. <?php echo $print_version; ?><br>
-        <button type="button" class="scroll_top"><span class="top_img"></span><span class="top_txt">TOP</span></button>
+        <button type="button" class="scroll_top mt-2 inline-flex h-9 items-center rounded-lg border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-600 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"><span class="top_txt">TOP</span></button>
     </p>
 </footer>
 
-<!-- 공통 레이어 팝업 컨테이너 -->
 <div id="adminPopupContainer">
-    <div id="popupOverlay" class="popup-overlay is-hidden" onclick="PopupManager.close('popupOverlay')">
-        <div class="popup-content" onclick="event.stopPropagation()">
-            <div class="popup-header">
-                <strong id="popupTitle" class="popup-title"></strong>
-                <button type="button" class="popup-close-btn" onclick="PopupManager.close('popupOverlay')">
-                    <i class="fa fa-close"></i><span class="sound_only">팝업 닫기</span>
+    <div id="popupOverlay" class="popup-overlay is-hidden fixed inset-0 z-[120] hidden items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm" onclick="PopupManager.close('popupOverlay')">
+        <div class="popup-content w-full max-w-2xl rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900" onclick="event.stopPropagation()">
+            <div class="popup-header flex items-center justify-between border-b border-slate-200 px-5 py-4 dark:border-slate-700">
+                <strong id="popupTitle" class="popup-title text-lg font-semibold text-slate-900 dark:text-slate-100"></strong>
+                <button type="button" class="popup-close-btn inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800" onclick="PopupManager.close('popupOverlay')">
+                    <i class="fa fa-close"></i><span class="sr-only">팝업 닫기</span>
                 </button>
             </div>
-            <div class="popup-body" id="popupBody">
-                <!-- 동적으로 내용 주입 -->
-            </div>
-            <div class="popup-footer" id="popupFooter">
-                <!-- 버튼 등 동적으로 -->
-            </div>
+            <div class="popup-body max-h-[70vh] overflow-y-auto p-5" id="popupBody"></div>
+            <div class="popup-footer flex items-center justify-end gap-2 border-t border-slate-200 px-5 py-4 dark:border-slate-700" id="popupFooter"></div>
         </div>
     </div>
 </div>
@@ -50,25 +42,10 @@ $print_version = ($is_admin == 'super') ? 'Version ' . G5_GNUBOARD_VER : '';
     })
 </script>
 
-<!-- <p>실행시간 : <?php echo get_microtime() - $begin_time; ?> -->
-
 <script src="<?php echo G5_ADMIN_URL ?>/admin.js?ver=<?php echo G5_JS_VER; ?>"></script>
 
 <script>
     $(function() {
-
-        var admin_head_height = $("#hd_top").height() + $("#container_title").height() + 5;
-
-        $("a[href^='#']").anchorScroll({
-            scrollSpeed: 0, // scroll speed
-            offsetTop: admin_head_height, // offset for fixed top bars (defaults to 0)
-            onScroll: function() {
-                // callback on scroll start
-            },
-            scrollEnd: function() {
-                // callback on scroll end
-            }
-        });
 
         var hide_menu = false;
         var mouse_event = false;
@@ -85,7 +62,6 @@ $print_version = ($is_admin == 'super') ? 'Version ' . G5_GNUBOARD_VER : '';
             }
         });
 
-        // 주메뉴
         var $gnb = $(".gnb_1dli > a");
         $gnb.mouseover(function() {
             if (mouse_event) {
@@ -121,7 +97,7 @@ $print_version = ($is_admin == 'super') ? 'Version ' . G5_GNUBOARD_VER : '';
 
         $(".gnb_2da").focusin(function() {
             $(".gnb_1dli").removeClass("gnb_1dli_over gnb_1dli_over2 gnb_1dli_on");
-            var $gnb_li = $(this).closest(".gnb_1dli").addClass("gnb_1dli_over gnb_1dli_on");
+            $(this).closest(".gnb_1dli").addClass("gnb_1dli_over gnb_1dli_on");
             menu_rearrange($(this).closest(".gnb_1dli"));
             hide_menu = false;
         });
@@ -140,7 +116,6 @@ $print_version = ($is_admin == 'super') ? 'Version ' . G5_GNUBOARD_VER : '';
             }
         });
 
-        // 폰트 리사이즈 쿠키있으면 실행
         var font_resize_act = get_cookie("ck_font_resize_act");
         if (font_resize_act != "") {
             font_resize("container", font_resize_act);

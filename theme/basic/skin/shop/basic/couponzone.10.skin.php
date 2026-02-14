@@ -65,7 +65,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 		$coupon .= '</div>'.PHP_EOL;
 		$coupon .= '<div class="cp_cnt">'.PHP_EOL;
         $coupon .= '<div class="coupon_target">'.PHP_EOL;
-        $coupon .= '<span class="sound_only">적용</span><button class="coupon_info_btn '.$coupon_info_class.'">'.$cp_target.' <i class="fa fa-angle-right" aria-hidden="true"></i></button>'.PHP_EOL;
+        $coupon .= '<span class="sr-only">적용</span><button class="coupon_info_btn '.$coupon_info_class.'">'.$cp_target.' <i class="fa fa-angle-right" aria-hidden="true"></i></button>'.PHP_EOL;
         $coupon .= '<div class="coupon_info">
         <h4>'.$cp_target.'</h4>
         <ul>
@@ -76,10 +76,10 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         }
 
         $coupon .='</ul>
-        <button class="coupon_info_cls"><i class="fa fa-times" aria-hidden="true"></i><span class="sound_only">닫기</span></button>
+        <button class="coupon_info_cls"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">닫기</span></button>
         </div>'.PHP_EOL;
         $coupon .= '</div>'.PHP_EOL;
-        $coupon .= '<div class="coupon_date"><span class="sound_only">기한</span>다운로드 후 '.number_format($row['cz_period']).'일</div>'.PHP_EOL;
+        $coupon .= '<div class="coupon_date"><span class="sr-only">기한</span>다운로드 후 '.number_format($row['cz_period']).'일</div>'.PHP_EOL;
         //cp_1 카테고리할인
         //cp_2 개별상품할인
         //cp_3 주문금액할인
@@ -158,7 +158,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 		$coupon .= '<div class="cp_cnt">'.PHP_EOL;
 
 		$coupon .= '<div class="coupon_target">'.PHP_EOL;
-		$coupon .= '<span class="sound_only">적용</span><button class="coupon_info_btn '.$coupon_info_class.'">'.$cp_target.' <i class="fa fa-angle-right" aria-hidden="true"></i></button>'.PHP_EOL;
+		$coupon .= '<span class="sr-only">적용</span><button class="coupon_info_btn '.$coupon_info_class.'">'.$cp_target.' <i class="fa fa-angle-right" aria-hidden="true"></i></button>'.PHP_EOL;
         
         $coupon .= '<div class="coupon_info">
         <h4>'.$cp_target.'</h4>
@@ -170,12 +170,12 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         }
 
         $coupon .= '</ul>
-        <button class="coupon_info_cls"><i class="fa fa-times" aria-hidden="true"></i><span class="sound_only">닫기</span></button>
+        <button class="coupon_info_cls"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">닫기</span></button>
         </div>'.PHP_EOL;
 		
         $coupon .= '</div>'.PHP_EOL;
 
-		$coupon .= '<div class="coupon_date"><span class="sound_only">기한</span>다운로드 후 '.number_format($row['cz_period']).'일</div>'.PHP_EOL;
+		$coupon .= '<div class="coupon_date"><span class="sr-only">기한</span>다운로드 후 '.number_format($row['cz_period']).'일</div>'.PHP_EOL;
 		$coupon .= '<div class="coupon_btn"><button type="button" class="coupon_download btn02'.$disabled.'" data-cid="'.$row['cz_id'].'">포인트 '.number_format($row['cz_point']).'점 차감</button></div>'.PHP_EOL;
         
         $coupon .= '</div>'.PHP_EOL;

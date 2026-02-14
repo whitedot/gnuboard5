@@ -21,7 +21,7 @@ if ($board['bo_use_category']) {
         $category_msg = '';
         if ($category==$sca) { // 현재 선택된 카테고리라면
             $category_option .= ' id="bo_cate_on"';
-            $category_msg = '<span class="sound_only">열린 분류 </span>';
+            $category_msg = '<span class="sr-only">열린 분류 </span>';
         }
         $category_option .= '>'.$category_msg.$category.'</a></li>';
     }

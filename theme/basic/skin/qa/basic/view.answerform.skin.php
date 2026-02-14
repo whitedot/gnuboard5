@@ -39,11 +39,11 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
             </li>
             <?php } ?>
             <li>
-                <label for="qa_subject" class="sound_only">제목</label>
+                <label for="qa_subject" class="sr-only">제목</label>
                 <input type="text" name="qa_subject" value="" id="qa_subject" required class="frm_input required full_input" size="50" maxlength="255" placeholder="제목">
             </li>
             <li class="qa_content_wrap <?php echo $is_dhtml_editor ? $config['cf_editor'] : ''; ?>">
-                <label for="qa_content" class="sound_only">내용<strong>필수</strong></label>
+                <label for="qa_content" class="sr-only">내용<strong>필수</strong></label>
                 <span class="wr_content">
                     <?php echo $editor_html; // 에디터 사용시는 에디터로, 아니면 textarea 로 노출 ?>
                 </span>
@@ -51,14 +51,14 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
             <li class="bo_w_flie">
                 <div class="file_wr">
-                    <label for="bf_file_1" class="lb_icon"><i class="fa fa-download" aria-hidden="true"></i><span class="sound_only"> 파일 #1</span></label>
+                    <label for="bf_file_1" class="lb_icon"><i class="fa fa-download" aria-hidden="true"></i><span class="sr-only"> 파일 #1</span></label>
                     <input type="file" name="bf_file[1]" id="bf_file_1" title="파일첨부 1 :  용량 <?php echo $upload_max_filesize; ?> 이하만 업로드 가능" class="frm_file">
                 </div>
             </li>
 
             <li class="bo_w_flie">
                 <div class="file_wr">
-                    <label for="bf_file_2" class="lb_icon"><i class="fa fa-download" aria-hidden="true"></i><span class="sound_only"> 파일 #2</span></label>
+                    <label for="bf_file_2" class="lb_icon"><i class="fa fa-download" aria-hidden="true"></i><span class="sr-only"> 파일 #2</span></label>
                     <input type="file" name="bf_file[2]" id="bf_file_2" title="파일첨부 2 :  용량 <?php echo $upload_max_filesize; ?> 이하만 업로드 가능" class="frm_file">
                 </div>
             </li>

@@ -52,7 +52,7 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
     <form name="flist" class="local_sch01 local_sch">
     <input type="hidden" name="page" value="<?php echo $page; ?>">
 
-    <label for="bn_position" class="sound_only">검색</label>
+    <label for="bn_position" class="sr-only">검색</label>
     <select name="bn_position" id="bn_position">
         <option value=""<?php echo get_selected($bn_position, '', true); ?>>위치 전체</option>
         <option value="메인"<?php echo get_selected($bn_position, '메인', true); ?>>메인</option>

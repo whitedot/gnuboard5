@@ -29,7 +29,7 @@ $mb = array(
     'mb_leave_date' => null,
 );
 
-$sound_only = '';
+$sr_only = '';
 $required_mb_id = '';
 $required_mb_id_class = '';
 $required_mb_password = '';
@@ -39,7 +39,7 @@ if ($w == '') {
     $required_mb_id = 'required';
     $required_mb_id_class = 'required alnum_';
     $required_mb_password = 'required';
-    $sound_only = '<strong class="sound_only">필수</strong>';
+    $sr_only = '<strong class="sr-only">?꾩닔</strong>';
 
     $mb['mb_mailling'] = 1;
     $mb['mb_sms'] = 1;
@@ -47,19 +47,19 @@ if ($w == '') {
     $mb['mb_level'] = $config['cf_register_level'];
     $mb['mb_marketing_agree'] = 0;
     $mb['mb_thirdparty_agree'] = 0;
-    $html_title = '추가';
+    $html_title = '異붽?';
 } elseif ($w == 'u') {
     $mb = get_member($mb_id);
     if (!$mb['mb_id']) {
-        alert('존재하지 않는 회원자료입니다.');
+        alert('議댁옱?섏? ?딅뒗 ?뚯썝?먮즺?낅땲??');
     }
 
     if ($is_admin != 'super' && $mb['mb_level'] >= $member['mb_level']) {
-        alert('자신보다 권한이 높거나 같은 회원은 수정할 수 없습니다.');
+        alert('?먯떊蹂대떎 沅뚰븳???믨굅??媛숈? ?뚯썝? ?섏젙?????놁뒿?덈떎.');
     }
 
     $required_mb_id = 'readonly';
-    $html_title = '수정';
+    $html_title = '?섏젙';
 
     $mb['mb_name'] = get_text($mb['mb_name']);
     $mb['mb_nick'] = get_text($mb['mb_nick']);
@@ -75,25 +75,25 @@ if ($w == '') {
     $mb['mb_recommend'] = get_text($mb['mb_recommend']);
     $mb['mb_profile'] = get_text($mb['mb_profile']);
 } else {
-    alert('제대로 된 값이 넘어오지 않았습니다.');
+    alert('?쒕?濡???媛믪씠 ?섏뼱?ㅼ? ?딆븯?듬땲??');
 }
 
-// 본인확인방법
+// 蹂몄씤?뺤씤諛⑸쾿
 switch ($mb['mb_certify']) {
     case 'simple':
-        $mb_certify_case = '간편인증';
+        $mb_certify_case = 'HP';
         $mb_certify_val = 'simple';
         break;
     case 'hp':
-        $mb_certify_case = '휴대폰';
+        $mb_certify_case = 'HP';
         $mb_certify_val = 'hp';
         break;
     case 'ipin':
-        $mb_certify_case = '아이핀';
+        $mb_certify_case = '?꾩씠?';
         $mb_certify_val = 'ipin';
         break;
     case 'admin':
-        $mb_certify_case = '관리자 수정';
+        $mb_certify_case = '愿由ъ옄 ?섏젙';
         $mb_certify_val = 'admin';
         break;
     default:
@@ -102,31 +102,31 @@ switch ($mb['mb_certify']) {
         break;
 }
 
-// 본인확인
+// 蹂몄씤?뺤씤
 $mb_certify_yes  =  $mb['mb_certify'] ? 'checked="checked"' : '';
 $mb_certify_no   = !$mb['mb_certify'] ? 'checked="checked"' : '';
 
-// 성인인증
+// ?깆씤?몄쬆
 $mb_adult_yes       =  $mb['mb_adult']      ? 'checked="checked"' : '';
 $mb_adult_no        = !$mb['mb_adult']      ? 'checked="checked"' : '';
 
-//메일수신
+//硫붿씪?섏떊
 $mb_mailling_yes    =  $mb['mb_mailling']   ? 'checked="checked"' : '';
 $mb_mailling_no     = !$mb['mb_mailling']   ? 'checked="checked"' : '';
 
-// SMS 수신
+// SMS ?섏떊
 $mb_sms_yes         =  $mb['mb_sms']        ? 'checked="checked"' : '';
 $mb_sms_no          = !$mb['mb_sms']        ? 'checked="checked"' : '';
 
-// 정보 공개
+// ?뺣낫 怨듦컻
 $mb_open_yes        =  $mb['mb_open']       ? 'checked="checked"' : '';
 $mb_open_no         = !$mb['mb_open']       ? 'checked="checked"' : '';
 
-// 마케팅 목적의 개인정보 수집 및 이용
+// 留덉???紐⑹쟻??媛쒖씤?뺣낫 ?섏쭛 諛??댁슜
 $mb_marketing_agree_yes     =  $mb['mb_marketing_agree'] ? 'checked="checked"' : '';
 $mb_marketing_agree_no      = !$mb['mb_marketing_agree'] ? 'checked="checked"' : '';
 
-// 개인정보 제3자 제공 동의
+// 媛쒖씤?뺣낫 ?????쒓났 ?숈쓽
 $mb_thirdparty_agree_yes    =  $mb['mb_thirdparty_agree'] ? 'checked="checked"' : '';
 $mb_thirdparty_agree_no     = !$mb['mb_thirdparty_agree'] ? 'checked="checked"' : '';
 
@@ -137,24 +137,24 @@ if (isset($mb_id) && $mb_id) {
 }
 
 if ($mb['mb_intercept_date']) {
-    $g5['title'] = "차단된 ";
+    $g5['title'] = "李⑤떒??";
 } else {
     $g5['title'] = "";
 }
-$g5['title'] .= '회원 ' . $html_title;
+$g5['title'] .= '?뚯썝 ' . $html_title;
 require_once './admin.head.php';
 
-// add_javascript('js 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
+// add_javascript('js 援щЦ', 異쒕젰?쒖꽌); ?レ옄媛 ?묒쓣 ?섎줉 癒쇱? 異쒕젰??
+add_javascript(G5_POSTCODE_JS, 0);    //?ㅼ쓬 二쇱냼 js
 
 $pg_anchor = '<ul class="anchor">
-    <li><a href="#anc_mb_basic">기본 정보</a></li>
-    <li><a href="#anc_mb_contact">연락처 및 주소</a></li>
-    <li><a href="#anc_mb_media">아이콘 및 이미지</a></li>
-    <li><a href="#anc_mb_consent">수신 및 공개 설정</a></li>
-    <li><a href="#anc_mb_profile">프로필 및 메모</a></li>
-    <li><a href="#anc_mb_history">인증 및 활동 내역</a></li>
-    <li><a href="#anc_mb_extra">여분 필드</a></li>
+    <li><a href="#anc_mb_basic">湲곕낯 ?뺣낫</a></li>
+    <li><a href="#anc_mb_contact">?곕씫泥?諛?二쇱냼</a></li>
+    <li><a href="#anc_mb_media">?꾩씠肄?諛??대?吏</a></li>
+    <li><a href="#anc_mb_consent">?섏떊 諛?怨듦컻 ?ㅼ젙</a></li>
+    <li><a href="#anc_mb_profile">?꾨줈??諛?硫붾え</a></li>
+    <li><a href="#anc_mb_history">?몄쬆 諛??쒕룞 ?댁뿭</a></li>
+    <li><a href="#anc_mb_extra">?щ텇 ?꾨뱶</a></li>
 </ul>';
 ?>
 
@@ -170,33 +170,33 @@ $pg_anchor = '<ul class="anchor">
     <?php
     echo $pg_anchor;
 
-    // 기본 정보
+    // 湲곕낯 ?뺣낫
     include_once G5_ADMIN_PATH.'/member_form_parts/basic.php';
 
-    // 연락처 및 주소
+    // ?곕씫泥?諛?二쇱냼
     include_once G5_ADMIN_PATH.'/member_form_parts/contact.php';
 
-    // 아이콘 및 이미지
+    // ?꾩씠肄?諛??대?吏
     include_once G5_ADMIN_PATH.'/member_form_parts/media.php';
 
-    // 수신 및 공개 설정
+    // ?섏떊 諛?怨듦컻 ?ㅼ젙
     include_once G5_ADMIN_PATH.'/member_form_parts/consent.php';
 
-    // 프로필 및 메모
+    // ?꾨줈??諛?硫붾え
     include_once G5_ADMIN_PATH.'/member_form_parts/profile.php';
 
-    // 인증 및 활동 내역
+    // ?몄쬆 諛??쒕룞 ?댁뿭
     include_once G5_ADMIN_PATH.'/member_form_parts/history.php';
     ?>
 
     <div class="btn_fixed_top">
-        <a href="./member_list.php?<?php echo $qstr ?>" class="btn btn_02">목록</a>
-        <input type="submit" value="확인" class="btn_submit btn" accesskey='s'>
+        <a href="./member_list.php?<?php echo $qstr ?>" class="btn btn_02">紐⑸줉</a>
+        <input type="submit" value="?뺤씤" class="btn_submit btn" accesskey='s'>
     </div>
 </form>
 
 <?php
-// 자바스크립트
+// ?먮컮?ㅽ겕由쏀듃
 include_once G5_ADMIN_PATH.'/member_form_parts/script.php';
 
 run_event('admin_member_form_after', $mb, $w);

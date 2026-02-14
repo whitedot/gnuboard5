@@ -16,7 +16,7 @@
                 </colgroup>
                 <tbody>
                     <tr>
-                        <th scope="row"><label for="cf_member_skin">회원 스킨<strong class="sound_only">필수</strong></label></th>
+                        <th scope="row"><label for="cf_member_skin">회원 스킨<strong class="sr-only">필수</strong></label></th>
                         <td colspan="3">
                             <?php echo get_skin_select('member', 'cf_member_skin', 'cf_member_skin', $config['cf_member_skin'], 'required'); ?>
                         </td>

@@ -12,10 +12,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
     <input type="hidden" name="wr_id" value="<?php echo $wr_id ?>">
     <div class="new_win_con">
-	    <h2 class="sound_only">제목 확인 및 댓글 쓰기</h2>
+	    <h2 class="sr-only">제목 확인 및 댓글 쓰기</h2>
 	    <ul>
 	        <li class="scrap_tit">
-	            <span class="sound_only">제목</span>
+	            <span class="sr-only">제목</span>
 	            <?php echo get_text(cut_str($write['wr_subject'], 255)) ?>
 	        </li>
 	        <li>

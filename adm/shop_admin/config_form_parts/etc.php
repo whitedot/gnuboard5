@@ -66,10 +66,10 @@
             <th scope="row">이미지(소)</th>
             <td>
                 <?php echo help("분류리스트에서 보여지는 사이즈를 설정하시면 됩니다. 분류관리의 출력 이미지폭, 높이의 기본값으로 사용됩니다. 높이를 0 으로 설정하시면 폭에 비례하여 높이를 썸네일로 생성합니다."); ?>
-                <label for="de_simg_width"><span class="sound_only">이미지(소) </span>폭</label>
+                <label for="de_simg_width"><span class="sr-only">이미지(소) </span>폭</label>
                 <input type="text" name="de_simg_width" value="<?php echo get_sanitize_input($default['de_simg_width']); ?>" id="de_simg_width" class="frm_input" size="5"> 픽셀
                 /
-                <label for="de_simg_height"><span class="sound_only">이미지(소) </span>높이</label>
+                <label for="de_simg_height"><span class="sr-only">이미지(소) </span>높이</label>
                 <input type="text" name="de_simg_height" value="<?php echo get_sanitize_input($default['de_simg_height']); ?>" id="de_simg_height" class="frm_input" size="5"> 픽셀
             </td>
         </tr>
@@ -77,10 +77,10 @@
             <th scope="row">이미지(중)</th>
             <td>
                 <?php echo help("상품상세보기에서 보여지는 상품이미지의 사이즈를 픽셀로 설정합니다. 높이를 0 으로 설정하시면 폭에 비례하여 높이를 썸네일로 생성합니다."); ?>
-                <label for="de_mimg_width"><span class="sound_only">이미지(중) </span>폭</label>
+                <label for="de_mimg_width"><span class="sr-only">이미지(중) </span>폭</label>
                 <input type="text" name="de_mimg_width" value="<?php echo get_sanitize_input($default['de_mimg_width']); ?>" id="de_mimg_width" class="frm_input" size="5"> 픽셀
                 /
-                <label for="de_mimg_height"><span class="sound_only">이미지(중) </span>높이</label>
+                <label for="de_mimg_height"><span class="sr-only">이미지(중) </span>높이</label>
                 <input type="text" name="de_mimg_height" value="<?php echo get_sanitize_input($default['de_mimg_height']); ?>" id="de_mimg_height" class="frm_input" size="5"> 픽셀
             </td>
         </tr>
@@ -96,7 +96,7 @@
                     $size = getimagesize($logo_img);
                 ?>
                 <input type="checkbox" name="logo_img_del" value="1" id="logo_img_del">
-                <label for="logo_img_del"><span class="sound_only">상단로고이미지</span> 삭제</label>
+                <label for="logo_img_del"><span class="sr-only">상단로고이미지</span> 삭제</label>
                 <span class="scf_img_logoimg"></span>
                 <div id="logoimg" class="banner_or_img">
                     <img src="<?php echo G5_DATA_URL; ?>/common/logo_img" alt="">
@@ -120,7 +120,7 @@
                     $size = getimagesize($logo_img2);
                 ?>
                 <input type="checkbox" name="logo_img_del2" value="1" id="logo_img_del2">
-                <label for="logo_img_del2"><span class="sound_only">하단로고이미지</span> 삭제</label>
+                <label for="logo_img_del2"><span class="sr-only">하단로고이미지</span> 삭제</label>
                 <span class="scf_img_logoimg2"></span>
                 <div id="logoimg2" class="banner_or_img">
                     <img src="<?php echo G5_DATA_URL; ?>/common/logo_img2" alt="">
@@ -144,7 +144,7 @@
                     $size = getimagesize($mobile_logo_img);
                 ?>
                 <input type="checkbox" name="mobile_logo_img_del" value="1" id="mobile_logo_img_del">
-                <label for="mobile_logo_img_del"><span class="sound_only">모바일 상단로고이미지</span> 삭제</label>
+                <label for="mobile_logo_img_del"><span class="sr-only">모바일 상단로고이미지</span> 삭제</label>
                 <span class="scf_img_mobilelogoimg"></span>
                 <div id="mobilelogoimg" class="banner_or_img">
                     <img src="<?php echo G5_DATA_URL; ?>/common/mobile_logo_img" alt="">
@@ -168,7 +168,7 @@
                     $size = getimagesize($mobile_logo_img2);
                 ?>
                 <input type="checkbox" name="mobile_logo_img_del2" value="1" id="mobile_logo_img_del2">
-                <label for="mobile_logo_img_del2"><span class="sound_only">모바일 하단로고이미지</span> 삭제</label>
+                <label for="mobile_logo_img_del2"><span class="sr-only">모바일 하단로고이미지</span> 삭제</label>
                 <span class="scf_img_mobilelogoimg2"></span>
                 <div id="mobilelogoimg2" class="banner_or_img">
                     <img src="<?php echo G5_DATA_URL; ?>/common/mobile_logo_img2" alt="">

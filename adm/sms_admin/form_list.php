@@ -113,7 +113,7 @@ function multi_update(sel)
 
 <div class="local_sch01 local_sch sms_preset_sch">
     <form>
-    <label for="fg_no" class="sound_only">그룹명</label>
+    <label for="fg_no" class="sr-only">그룹명</label>
     <select name="fg_no" id="fg_no" onchange="location.href='<?php echo $_SERVER['SCRIPT_NAME']?>?fg_no='+this.value;">
         <option value="" <?php echo $fg_no?'':'selected'?>> 전체 </option>
         <option value="0" <?php echo $fg_no=='0'?'selected':''?>> 미분류 (<?php echo number_format($no_count)?>) </option>
@@ -125,13 +125,13 @@ function multi_update(sel)
 
     <form name="search_form" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']?>">
     <input type="hidden" name="fg_no" value="<?php echo $fg_no;?>">
-    <label for="st" class="sound_only">검색대상</label>
+    <label for="st" class="sr-only">검색대상</label>
     <select name="st" id="st">
         <option value="all"<?php echo get_selected('all', $st); ?>>제목 + 이모티콘</option>
         <option value="name"<?php echo get_selected('name', $st); ?>>제목</option>
         <option value="content"<?php echo get_selected('content', $st); ?>>이모티콘</option>
     </select>
-    <label for="sv" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+    <label for="sv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
     <input type="text" name="sv" value="<?php echo get_text($sv) ;?>" id="sv" required class="frm_input required" >
     <input type="submit" value="검색" class="btn_submit">
     </form>
@@ -170,18 +170,18 @@ function multi_update(sel)
     <li class="li_<?php echo $li_i; ?> sms5_box">
         <span class="box_ico"></span>
         <div class="li_chk">
-            <label for="fo_no_<?php echo $i; ?>" class="sound_only"><?php echo $group_name?>의 <?php echo cut_str($res['fo_name'],10)?></label>
+            <label for="fo_no_<?php echo $i; ?>" class="sr-only"><?php echo $group_name?>의 <?php echo cut_str($res['fo_name'],10)?></label>
             <input type="checkbox" name="fo_no[]" value="<?php echo $res['fo_no']?>" id="fo_no_<?php echo $i; ?>">
         </div>
         <div class="li_preview">
             <textarea readonly class="box_txt box_square"><?php echo html_purifier($res['fo_content']); ?></textarea>
         </div>
         <div class="li_info">
-            <span class="sound_only">그룹 </span><b><?php echo $group_name?></b><br>
-            <span class="sound_only">제목 </span><?php echo cut_str($res['fo_name'],10)?><br>
+            <span class="sr-only">그룹 </span><b><?php echo $group_name?></b><br>
+            <span class="sr-only">제목 </span><?php echo cut_str($res['fo_name'],10)?><br>
         </div>
         <div class="li_date">
-            <span class="sound_only">등록 </span><?php echo date('Y-m-d', strtotime($res['fo_datetime']))?>
+            <span class="sr-only">등록 </span><?php echo date('Y-m-d', strtotime($res['fo_datetime']))?>
         </div>
         <div class="li_cmd">
             <a href="./form_write.php?w=u&amp;fo_no=<?php echo $res['fo_no']?>&amp;page=<?php echo $page;?>&amp;fg_no=<?php echo $fg_no;?>&amp;st=<?php echo get_text($st);?>&amp;sv=<?php echo get_text($sv);?>">수정</a>

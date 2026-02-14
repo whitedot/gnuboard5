@@ -735,7 +735,7 @@ function relation_item($it_id, $width, $height, $rows=3)
 
     for($i=0; $row=sql_fetch_array($result); $i++) {
         if($i == 0) {
-            $str .= '<span class="sound_only">관련 상품 시작</span>';
+            $str .= '<span class="sr-only">관련 상품 시작</span>';
             $str .= '<ul class="sct_rel_ul">';
         }
 
@@ -750,7 +750,7 @@ function relation_item($it_id, $width, $height, $rows=3)
     }
 
     if($i > 0)
-        $str .= '</ul><span class="sound_only">관련 상품 끝</span>';
+        $str .= '</ul><span class="sr-only">관련 상품 끝</span>';
 
     return $str;
 }

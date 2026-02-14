@@ -33,7 +33,7 @@ if($is_item_view){
 ?>
 
 <div id="sct_location" class="<?php echo implode(' ', $location_class);?>"> <!-- class="view_location" --> <!-- view_location는 리스트 말고 상품보기에서만 표시 -->
-    <a href='<?php echo G5_SHOP_URL; ?>/' class="go_home"><span class="sound_only">메인으로</span><i class="fa fa-home" aria-hidden="true"></i></a>
+    <a href='<?php echo G5_SHOP_URL; ?>/' class="go_home"><span class="sr-only">메인으로</span><i class="fa fa-home" aria-hidden="true"></i></a>
     <i class="dividing-line fa fa-angle-right" aria-hidden="true"></i>
     <?php if ( is_array($navi_datas) && $navi_datas ){ ?>
 

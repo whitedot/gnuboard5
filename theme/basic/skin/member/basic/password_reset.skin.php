@@ -11,12 +11,12 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         <form name="fpasswordreset" action="<?php echo $action_url; ?>" onsubmit="return fpasswordreset_submit(this);" method="post" autocomplete="off">
             <fieldset id="info_fs">
                 <p>새로운 비밀번호를 입력해주세요.</p>
-                <label for="mb_id" class="sound_only">아이디</label>
+                <label for="mb_id" class="sr-only">아이디</label>
                 <br>
                 <b>회원 아이디 : <?php echo get_text($_POST['mb_id']); ?></b>
-                <label for="mb_pw" class="sound_only">새 비밀번호<strong class="sound_only">필수</strong></label>
+                <label for="mb_pw" class="sr-only">새 비밀번호<strong class="sr-only">필수</strong></label>
                 <input type="password" name="mb_password" id="mb_pw" required class="required frm_input full_input" size="30" placeholder="새 비밀번호">
-                <label for="mb_pw2" class="sound_only">새 비밀번호 확인<strong class="sound_only">필수</strong></label>
+                <label for="mb_pw2" class="sr-only">새 비밀번호 확인<strong class="sr-only">필수</strong></label>
                 <input type="password" name="mb_password_re" id="mb_pw2" required class="required frm_input full_input" size="30" placeholder="새 비밀번호 확인">
             </fieldset>
             <div class="win_btn">

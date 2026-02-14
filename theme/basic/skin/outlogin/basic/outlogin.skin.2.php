@@ -14,7 +14,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         </span>
         <strong><?php echo $nick ?>님</strong>
         <a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=register_form.php" id="ol_after_info" title="정보수정">정보수정</a>
-        <?php if ($is_admin == 'super' || $is_auth) {  ?><a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>" class="btn_admin btn" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a><?php }  ?>
+        <?php if ($is_admin == 'super' || $is_auth) {  ?><a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>" class="btn_admin btn" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sr-only">관리자</span></a><?php }  ?>
     </header>
     <ul id="ol_after_private">
     	<li>
@@ -25,7 +25,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         </li>
         <li>
             <a href="<?php echo G5_BBS_URL ?>/memo.php" target="_blank" id="ol_after_memo" class="win_memo">
-            	<i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sound_only">안 읽은 </span>쪽지
+            	<i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">안 읽은 </span>쪽지
                 <strong><?php echo $memo_not_read; ?></strong>
             </a>
         </li>

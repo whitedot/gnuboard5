@@ -58,7 +58,7 @@ $mshop_categories = get_shop_category_array(true);
     else
         echo '<p class="no-cate">등록된 분류가 없습니다.</p>'.PHP_EOL;
     ?>
-    <button type="button" class="close_btn"><i class="fa fa-times" aria-hidden="true"></i><span class="sound_only">카테고리 닫기</span></button>
+    <button type="button" class="close_btn"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">카테고리 닫기</span></button>
 </div>
 <div id="category_all_bg"></div>
 <script>

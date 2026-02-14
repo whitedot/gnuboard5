@@ -60,7 +60,7 @@ $colspan = 9;
     <option value="cp_subject"<?php echo get_selected($sfl, "cp_subject"); ?>>쿠폰이름</option>
     <option value="cp_id"<?php echo get_selected($sfl, "cp_id"); ?>>쿠폰코드</option>
 </select>
-<label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+<label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
 <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
 <input type="submit" class="btn_submit" value="검색">
 </form>
@@ -81,7 +81,7 @@ $colspan = 9;
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall" class="sound_only">쿠폰 전체</label>
+            <label for="chkall" class="sr-only">쿠폰 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">쿠폰종류</th>
@@ -143,7 +143,7 @@ $colspan = 9;
         <td class="td_datetime"><?php echo substr($row['cp_start'], 2, 8); ?> ~ <?php echo substr($row['cp_end'], 2, 8); ?></td>
         <td class="td_cntsmall"><?php echo number_format($used_count); ?></td>
         <td class="td_mng td_mng_s">
-            <a href="./couponform.php?w=u&amp;cp_id=<?php echo $row['cp_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sound_only"><?php echo $row['cp_id']; ?> </span>수정</a>
+            <a href="./couponform.php?w=u&amp;cp_id=<?php echo $row['cp_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sr-only"><?php echo $row['cp_id']; ?> </span>수정</a>
         </td>
     </tr>
 

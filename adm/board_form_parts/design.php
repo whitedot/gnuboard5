@@ -12,7 +12,7 @@
         </colgroup>
         <tbody>
             <tr>
-            <th scope="row"><label for="bo_skin">스킨 디렉토리<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_skin">스킨 디렉토리<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo get_skin_select('board', 'bo_skin', 'bo_skin', $board['bo_skin'], 'required'); ?>
             </td>
@@ -102,7 +102,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_subject_len">제목 길이<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_subject_len">제목 길이<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('목록에서의 제목 글자수. 잘리는 글은 … 로 표시') ?>
                 <input type="text" name="bo_subject_len" value="<?php echo $board['bo_subject_len'] ?>" id="bo_subject_len" required class="required numeric frm_input" size="4">
@@ -115,7 +115,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_mobile_subject_len">모바일 제목 길이<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_mobile_subject_len">모바일 제목 길이<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('목록에서의 제목 글자수. 잘리는 글은 … 로 표시') ?>
                 <input type="text" name="bo_mobile_subject_len" value="<?php echo $board['bo_mobile_subject_len'] ?>" id="bo_mobile_subject_len" required class="required numeric frm_input" size="4">
@@ -128,7 +128,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_page_rows">페이지당 목록 수<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_page_rows">페이지당 목록 수<strong class="sr-only">필수</strong></label></th>
             <td>
                 <input type="text" name="bo_page_rows" value="<?php echo $board['bo_page_rows'] ?>" id="bo_page_rows" required class="required numeric frm_input" size="4">
             </td>
@@ -140,7 +140,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_mobile_page_rows">모바일 페이지당 목록 수<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_mobile_page_rows">모바일 페이지당 목록 수<strong class="sr-only">필수</strong></label></th>
             <td>
                 <input type="text" name="bo_mobile_page_rows" value="<?php echo $board['bo_mobile_page_rows'] ?>" id="bo_mobile_page_rows" required class="required numeric frm_input" size="4">
             </td>
@@ -152,7 +152,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_gallery_cols">갤러리 이미지 수<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_gallery_cols">갤러리 이미지 수<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('갤러리 형식의 게시판 목록에서 이미지를 한줄에 몇장씩 보여 줄 것인지를 설정하는 값') ?>
                 <input type="text" name="bo_gallery_cols" value="<?php echo $board['bo_gallery_cols'] ?>" id="bo_gallery_cols" required class="required numeric frm_input" size="4">
@@ -165,7 +165,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_gallery_width">갤러리 이미지 폭<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_gallery_width">갤러리 이미지 폭<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('갤러리 형식의 게시판 목록에서 썸네일 이미지의 폭을 설정하는 값') ?>
                 <input type="text" name="bo_gallery_width" value="<?php echo $board['bo_gallery_width'] ?>" id="bo_gallery_width" required class="required numeric frm_input" size="4">
@@ -178,7 +178,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_gallery_height">갤러리 이미지 높이<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_gallery_height">갤러리 이미지 높이<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('갤러리 형식의 게시판 목록에서 썸네일 이미지의 높이를 설정하는 값') ?>
                 <input type="text" name="bo_gallery_height" value="<?php echo $board['bo_gallery_height'] ?>" id="bo_gallery_height" required class="required numeric frm_input" size="4">
@@ -191,7 +191,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_mobile_gallery_width">모바일<br>갤러리 이미지 폭<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_mobile_gallery_width">모바일<br>갤러리 이미지 폭<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('모바일로 접속시 갤러리 형식의 게시판 목록에서 썸네일 이미지의 폭을 설정하는 값') ?>
                 <input type="text" name="bo_mobile_gallery_width" value="<?php echo $board['bo_mobile_gallery_width'] ?>" id="bo_mobile_gallery_width" required class="required numeric frm_input" size="4">
@@ -204,7 +204,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_mobile_gallery_height">모바일<br>갤러리 이미지 높이<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_mobile_gallery_height">모바일<br>갤러리 이미지 높이<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('모바일로 접속시 갤러리 형식의 게시판 목록에서 썸네일 이미지의 높이를 설정하는 값') ?>
                 <input type="text" name="bo_mobile_gallery_height" value="<?php echo $board['bo_mobile_gallery_height'] ?>" id="bo_mobile_gallery_height" required class="required numeric frm_input" size="4">
@@ -217,7 +217,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_table_width">게시판 폭<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_table_width">게시판 폭<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('100 이하는 %') ?>
                 <input type="text" name="bo_table_width" value="<?php echo $board['bo_table_width'] ?>" id="bo_table_width" required class="required numeric frm_input" size="4">
@@ -230,7 +230,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_image_width">이미지 폭 크기<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_image_width">이미지 폭 크기<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('게시판에서 출력되는 이미지의 폭 크기') ?>
                 <input type="text" name="bo_image_width" value="<?php echo $board['bo_image_width'] ?>" id="bo_image_width" required class="required numeric frm_input" size="4"> 픽셀
@@ -243,7 +243,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_new">새글 아이콘<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_new">새글 아이콘<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('글 입력후 new 이미지를 출력하는 시간. 0을 입력하시면 아이콘을 출력하지 않습니다.') ?>
                 <input type="text" name="bo_new" value="<?php echo $board['bo_new'] ?>" id="bo_new" required class="required numeric frm_input" size="4">
@@ -256,7 +256,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_hot">인기글 아이콘<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_hot">인기글 아이콘<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('조회수가 설정값 이상이면 hot 이미지 출력. 0을 입력하시면 아이콘을 출력하지 않습니다.') ?>
                 <input type="text" name="bo_hot" value="<?php echo $board['bo_hot'] ?>" id="bo_hot" required class="required numeric frm_input" size="4">

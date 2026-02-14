@@ -65,7 +65,7 @@ include_once('./_head.php');
                     <?php } else { //품절이 아니면 체크할수 있도록한다 ?>
                     <div class="chk_box">
                     	<input type="checkbox" name="chk_it_id[<?php echo $i; ?>]" value="1" id="chk_it_id_<?php echo $i; ?>" onclick="out_cd_check(this, '<?php echo $out_cd; ?>');" class="selec_chk">
-                    	<label for="chk_it_id_<?php echo $i; ?>"><span></span><b class="sound_only"><?php echo $row['it_name']; ?></b></label>
+                    	<label for="chk_it_id_<?php echo $i; ?>"><span></span><b class="sr-only"><?php echo $row['it_name']; ?></b></label>
                     </div>
                     <?php } ?>
                     <input type="hidden" name="it_id[<?php echo $i; ?>]" value="<?php echo $row['it_id']; ?>">
@@ -76,7 +76,7 @@ include_once('./_head.php');
                 </div>
                 <a href="<?php echo shop_item_url($row['it_id']); ?>" class="info_link"><?php echo stripslashes($row['it_name']); ?></a>
                 <div class="info_date"><?php echo $row['wi_time']; ?></div>
-                <a href="./wishupdate.php?w=d&amp;wi_id=<?php echo $row['wi_id']; ?>" class="wish_del"><i class="fa fa-trash" aria-hidden="true"></i><span class="sound_only">삭제</span></a>
+                <a href="./wishupdate.php?w=d&amp;wi_id=<?php echo $row['wi_id']; ?>" class="wish_del"><i class="fa fa-trash" aria-hidden="true"></i><span class="sr-only">삭제</span></a>
            </div>
         </li>
         <?php

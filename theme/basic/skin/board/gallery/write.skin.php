@@ -6,7 +6,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 ?>
 
 <section id="bo_w">
-    <h2 class="sound_only"><?php echo $g5['title'] ?></h2>
+    <h2 class="sr-only"><?php echo $g5['title'] ?></h2>
 
     <!-- 게시물 작성/수정 시작 { -->
     <form name="fwrite" id="fwrite" action="<?php echo $action_url ?>" onsubmit="return fwrite_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off" style="width:<?php echo $width; ?>">
@@ -52,7 +52,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
     <?php if ($is_category) { ?>
     <div class="bo_w_select write_div">
-        <label for="ca_name" class="sound_only">분류<strong>필수</strong></label>
+        <label for="ca_name" class="sr-only">분류<strong>필수</strong></label>
         <select name="ca_name" id="ca_name" required>
             <option value="">분류를 선택하세요</option>
             <?php echo $category_option ?>
@@ -62,29 +62,29 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
     <div class="bo_w_info write_div">
 	    <?php if ($is_name) { ?>
-	        <label for="wr_name" class="sound_only">이름<strong>필수</strong></label>
+	        <label for="wr_name" class="sr-only">이름<strong>필수</strong></label>
 	        <input type="text" name="wr_name" value="<?php echo $name ?>" id="wr_name" required class="frm_input half_input required" placeholder="이름">
 	    <?php } ?>
 	
 	    <?php if ($is_password) { ?>
-	        <label for="wr_password" class="sound_only">비밀번호<strong>필수</strong></label>
+	        <label for="wr_password" class="sr-only">비밀번호<strong>필수</strong></label>
 	        <input type="password" name="wr_password" id="wr_password" <?php echo $password_required ?> class="frm_input half_input <?php echo $password_required ?>" placeholder="비밀번호">
 	    <?php } ?>
 	
 	    <?php if ($is_email) { ?>
-			<label for="wr_email" class="sound_only">이메일</label>
+			<label for="wr_email" class="sr-only">이메일</label>
 			<input type="text" name="wr_email" value="<?php echo $email ?>" id="wr_email" class="frm_input half_input email " placeholder="이메일">
 	    <?php } ?>
 	    
 	    <?php if ($is_homepage) { ?>
-	        <label for="wr_homepage" class="sound_only">홈페이지</label>
+	        <label for="wr_homepage" class="sr-only">홈페이지</label>
 	        <input type="text" name="wr_homepage" value="<?php echo $homepage ?>" id="wr_homepage" class="frm_input half_input" size="50" placeholder="홈페이지">
 	    <?php } ?>
 	</div>
 	
     <?php if ($option) { ?>
     <div class="write_div">
-        <span class="sound_only">옵션</span>
+        <span class="sr-only">옵션</span>
         <ul class="bo_v_option">
         <?php echo $option ?>
         </ul>
@@ -92,7 +92,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <?php } ?>
 
     <div class="bo_w_tit write_div">
-        <label for="wr_subject" class="sound_only">제목<strong>필수</strong></label>
+        <label for="wr_subject" class="sr-only">제목<strong>필수</strong></label>
         
         <div id="autosave_wrapper" class="write_div">
             <input type="text" name="wr_subject" value="<?php echo $subject ?>" id="wr_subject" required class="frm_input full_input required" size="50" maxlength="255" placeholder="제목">
@@ -110,7 +110,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     </div>
 
     <div class="write_div">
-        <label for="wr_content" class="sound_only">내용<strong>필수</strong></label>
+        <label for="wr_content" class="sr-only">내용<strong>필수</strong></label>
         <div class="wr_content <?php echo $is_dhtml_editor ? $config['cf_editor'] : ''; ?>">
             <?php if($write_min || $write_max) { ?>
             <!-- 최소/최대 글자 수 사용 시 -->
@@ -127,7 +127,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
     <?php for ($i=1; $is_link && $i<=G5_LINK_COUNT; $i++) { ?>
     <div class="bo_w_link write_div">
-        <label for="wr_link<?php echo $i ?>"><i class="fa fa-link" aria-hidden="true"></i><span class="sound_only"> 링크  #<?php echo $i ?></span></label>
+        <label for="wr_link<?php echo $i ?>"><i class="fa fa-link" aria-hidden="true"></i><span class="sr-only"> 링크  #<?php echo $i ?></span></label>
         <input type="text" name="wr_link<?php echo $i ?>" value="<?php if($w=="u"){ echo $write['wr_link'.$i]; } ?>" id="wr_link<?php echo $i ?>" class="frm_input full_input" size="50">
     </div>
     <?php } ?>
@@ -135,7 +135,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <?php for ($i=0; $is_file && $i<$file_count; $i++) { ?>
     <div class="bo_w_flie write_div">
         <div class="file_wr write_div">
-            <label for="bf_file_<?php echo $i+1 ?>" class="lb_icon"><i class="fa fa-folder-open" aria-hidden="true"></i><span class="sound_only"> 파일 #<?php echo $i+1 ?></span></label>
+            <label for="bf_file_<?php echo $i+1 ?>" class="lb_icon"><i class="fa fa-folder-open" aria-hidden="true"></i><span class="sr-only"> 파일 #<?php echo $i+1 ?></span></label>
             <input type="file" name="bf_file[]" id="bf_file_<?php echo $i+1 ?>" title="파일첨부 <?php echo $i+1 ?> : 용량 <?php echo $upload_max_filesize ?> 이하만 업로드 가능" class="frm_file ">
         </div>
         <?php if ($is_file_content) { ?>

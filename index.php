@@ -14,7 +14,7 @@ if(defined('G5_THEME_PATH')) {
 include_once(G5_PATH.'/head.php');
 ?>
 
-<h2 class="sound_only">최신글</h2>
+<h2 class="sr-only">최신글</h2>
 
 <div class="latest_top_wr">
     <?php

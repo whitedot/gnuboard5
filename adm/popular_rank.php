@@ -66,10 +66,10 @@ $colspan = 3;
     <div class="sch_last">
         <strong>기간별검색</strong>
         <input type="text" name="fr_date" value="<?php echo $fr_date ?>" id="fr_date" class="frm_input" size="11" maxlength="10">
-        <label for="fr_date" class="sound_only">시작일</label>
+        <label for="fr_date" class="sr-only">시작일</label>
         ~
         <input type="text" name="to_date" value="<?php echo $to_date ?>" id="to_date" class="frm_input" size="11" maxlength="10">
-        <label for="to_date" class="sound_only">종료일</label>
+        <label for="to_date" class="sr-only">종료일</label>
         <input type="submit" class="btn_sch2" value="검색">
     </div>
 </form>

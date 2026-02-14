@@ -87,12 +87,12 @@ if (strstr($sfl, "mb_id")) {
 </div>
 
 <form name="fsearch" id="fsearch" class="local_sch01 local_sch" method="get">
-    <label for="sfl" class="sound_only">검색대상</label>
+    <label for="sfl" class="sr-only">검색대상</label>
     <select name="sfl" id="sfl">
         <option value="mb_id" <?php echo get_selected($sfl, "mb_id"); ?>>회원아이디</option>
         <option value="po_content" <?php echo get_selected($sfl, "po_content"); ?>>내용</option>
     </select>
-    <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+    <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
     <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
     <input type="submit" class="btn_submit" value="검색">
 </form>
@@ -111,7 +111,7 @@ if (strstr($sfl, "mb_id")) {
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall" class="sound_only">포인트 내역 전체</label>
+                        <label for="chkall" class="sr-only">포인트 내역 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col"><?php echo subject_sort_link('mb_id') ?>회원아이디</a></th>
@@ -147,7 +147,7 @@ if (strstr($sfl, "mb_id")) {
                         <td class="td_chk">
                             <input type="hidden" name="mb_id[<?php echo $i ?>]" value="<?php echo $row['mb_id'] ?>" id="mb_id_<?php echo $i ?>">
                             <input type="hidden" name="po_id[<?php echo $i ?>]" value="<?php echo $row['po_id'] ?>" id="po_id_<?php echo $i ?>">
-                            <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo $row['po_content'] ?> 내역</label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $row['po_content'] ?> 내역</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
                         </td>
                         <td class="td_left"><a href="?sfl=mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo $row['mb_id'] ?></a></td>
@@ -206,15 +206,15 @@ if (strstr($sfl, "mb_id")) {
                 </colgroup>
                 <tbody>
                     <tr>
-                        <th scope="row"><label for="mb_id">회원아이디<strong class="sound_only">필수</strong></label></th>
+                        <th scope="row"><label for="mb_id">회원아이디<strong class="sr-only">필수</strong></label></th>
                         <td><input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" class="required frm_input" required></td>
                     </tr>
                     <tr>
-                        <th scope="row"><label for="po_content">포인트 내용<strong class="sound_only">필수</strong></label></th>
+                        <th scope="row"><label for="po_content">포인트 내용<strong class="sr-only">필수</strong></label></th>
                         <td><input type="text" name="po_content" id="po_content" required class="required frm_input" size="80"></td>
                     </tr>
                     <tr>
-                        <th scope="row"><label for="po_point">포인트<strong class="sound_only">필수</strong></label></th>
+                        <th scope="row"><label for="po_point">포인트<strong class="sr-only">필수</strong></label></th>
                         <td><input type="text" name="po_point" id="po_point" required class="required frm_input"></td>
                     </tr>
                     <?php if ($config['cf_point_term'] > 0) { ?>

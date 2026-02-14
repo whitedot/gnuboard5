@@ -68,7 +68,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 <input type="hidden" name="save_stx" value="<?php echo $stx; ?>">
 
-<label for="sca" class="sound_only">분류선택</label>
+<label for="sca" class="sr-only">분류선택</label>
 <select name="sca" id="sca">
     <option value="">전체분류</option>
     <?php
@@ -84,13 +84,13 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     ?>
 </select>
 
-<label for="sfl" class="sound_only">검색대상</label>
+<label for="sfl" class="sr-only">검색대상</label>
 <select name="sfl" id="sfl">
     <option value="it_name" <?php echo get_selected($sfl, 'it_name'); ?>>상품명</option>
     <option value="a.it_id" <?php echo get_selected($sfl, 'a.it_id'); ?>>상품코드</option>
 </select>
 
-<label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+<label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
 <input type="text" name="stx" value="<?php echo $stx; ?>" id="stx" required class="frm_input required">
 <input type="submit" value="검색" class="btn_submit">
 
@@ -110,7 +110,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall" class="sound_only">상품문의 전체</label>
+            <label for="chkall" class="sr-only">상품문의 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col"><?php echo subject_sort_link('it_name'); ?>상품명</a></th>
@@ -134,7 +134,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
      ?>
     <tr class="<?php echo $bg; ?>">
         <td class="td_chk">
-            <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo get_text($row['iq_subject']) ?> 상품문의</label>
+            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['iq_subject']) ?> 상품문의</label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i; ?>">
             <input type="hidden" name="iq_id[<?php echo $i; ?>]" value="<?php echo $row['iq_id']; ?>">
         </td>
@@ -156,7 +156,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         <td class="td_name"><?php echo $name; ?></td>
         <td class="td_boolean"><?php echo $answer; ?></td>
         <td class="td_mng td_mng_s">
-            <a href="./itemqaform.php?w=u&amp;iq_id=<?php echo $row['iq_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sound_only"><?php echo get_text($row['iq_subject']); ?> </span>수정</a>
+            <a href="./itemqaform.php?w=u&amp;iq_id=<?php echo $row['iq_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sr-only"><?php echo get_text($row['iq_subject']); ?> </span>수정</a>
         </td>
     </tr>
     <?php

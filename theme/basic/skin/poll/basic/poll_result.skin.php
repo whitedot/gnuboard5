@@ -50,10 +50,10 @@ if ((int) $total_po_cnt > 0){
             <?php for ($i=0; $i<count($list2); $i++) {  ?>
             <article>
                 <header>
-                    <h2><?php echo $list2[$i]['pc_name'] ?><span class="sound_only">님의 의견</span></h2>
+                    <h2><?php echo $list2[$i]['pc_name'] ?><span class="sr-only">님의 의견</span></h2>
                     <?php echo $list2[$i]['name'] ?>
                     <span class="poll_datetime"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $list2[$i]['datetime'] ?></span>
-                    <span class="poll_cmt_del"><?php if ($list2[$i]['del']) { echo $list2[$i]['del']."<i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i><span class=\"sound_only\">삭제</span></a>"; }  ?></span>
+                    <span class="poll_cmt_del"><?php if ($list2[$i]['del']) { echo $list2[$i]['del']."<i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i><span class=\"sr-only\">삭제</span></a>"; }  ?></span>
                 </header>
                 <p>
                     <?php echo $list2[$i]['idea'] ?>
@@ -70,13 +70,13 @@ if ((int) $total_po_cnt > 0){
             <div id="poll_result_wcmt">
             	<h3><span>기타의견</span><?php echo $po_etc ?></h3>
                 <div>
-                    <label for="pc_idea" class="sound_only">의견<strong>필수</strong></label>
+                    <label for="pc_idea" class="sr-only">의견<strong>필수</strong></label>
                     <input type="text" id="pc_idea" name="pc_idea" required class="full_input required" size="47" maxlength="100" placeholder="의견을 입력해주세요">
                 </div>
             </div>
             <?php if ($is_guest) {  ?>
             <div class="poll_guest">
-                <label for="pc_name" class="sound_only">이름<strong>필수</strong></label>
+                <label for="pc_name" class="sr-only">이름<strong>필수</strong></label>
                 <input type="text" name="pc_name" id="pc_name" required class="full_input required" size="20" placeholder="이름">
             </div>
             <?php echo captcha_html(); ?>

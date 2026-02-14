@@ -183,7 +183,7 @@ if($od['od_pg'] == 'lg') {
         </div>
         
         <div id="sod_sts_wrap">
-            <span class="sound_only">상품 상태 설명</span>
+            <span class="sr-only">상품 상태 설명</span>
             <button type="button" id="sod_sts_explan_open" class="btn_frmline">상태설명보기</button>
             <div id="sod_sts_explan">
                 <dl id="sod_fin_legend">
@@ -683,7 +683,7 @@ if($od['od_pg'] == 'lg') {
                 <input type="hidden" name="od_id"  value="<?php echo $od['od_id']; ?>">
                 <input type="hidden" name="token"  value="<?php echo $token; ?>">
 
-                <label for="cancel_memo" class="sound_only">취소사유</label>
+                <label for="cancel_memo" class="sr-only">취소사유</label>
                 <input type="text" name="cancel_memo" id="cancel_memo" required class="frm_input required" size="40" maxlength="100" placeholder="취소사유">
                 <input type="submit" value="확인" class="btn_frmline">
 

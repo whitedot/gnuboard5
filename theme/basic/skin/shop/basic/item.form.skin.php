@@ -37,7 +37,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	            echo '<img src="'.G5_SHOP_URL.'/img/no_image.gif" alt="">';
 	        }
 	        ?>
-	        <a href="<?php echo G5_SHOP_URL; ?>/largeimage.php?it_id=<?php echo $it['it_id']; ?>&amp;no=1" target="_blank" id="popup_item_image" class="popup_item_image"><i class="fa fa-search-plus" aria-hidden="true"></i><span class="sound_only">확대보기</span></a>
+	        <a href="<?php echo G5_SHOP_URL; ?>/largeimage.php?it_id=<?php echo $it['it_id']; ?>&amp;no=1" target="_blank" id="popup_item_image" class="popup_item_image"><i class="fa fa-search-plus" aria-hidden="true"></i><span class="sr-only">확대보기</span></a>
 	        </div>
 	        <?php
 	        // 썸네일
@@ -51,7 +51,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	                $sit_pvi_last ='';
 	                if ($thumb_count % 5 == 0) $sit_pvi_last = 'class="li_last"';
 	                    echo '<li '.$sit_pvi_last.'>';
-	                    echo '<a href="'.G5_SHOP_URL.'/largeimage.php?it_id='.$it['it_id'].'&amp;no='.$thumb_count.'" target="_blank" class="popup_item_image img_thumb">'.$val.'<span class="sound_only"> '.$thumb_count.'번째 이미지 새창</span></a>';
+	                    echo '<a href="'.G5_SHOP_URL.'/largeimage.php?it_id='.$it['it_id'].'&amp;no='.$thumb_count.'" target="_blank" class="popup_item_image img_thumb">'.$val.'<span class="sr-only"> '.$thumb_count.'번째 이미지 새창</span></a>';
 	                    echo '</li>';
 	            }
 	            echo '</ul>';
@@ -62,7 +62,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	
 	    <!-- 상품 요약정보 및 구매 시작 { -->
 	    <section id="sit_ov" class="2017_renewal_itemform">
-	        <h2 id="sit_title"><?php echo stripslashes($it['it_name']); ?> <span class="sound_only">요약정보 및 구매</span></h2>
+	        <h2 id="sit_title"><?php echo stripslashes($it['it_name']); ?> <span class="sr-only">요약정보 및 구매</span></h2>
 	        <p id="sit_desc"><?php echo $it['it_basic']; ?></p>
 	        <?php if($is_orderable) { ?>
 	        <p id="sit_opt_info">
@@ -72,19 +72,19 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	        
 	        <div id="sit_star_sns">
 	            <?php if ($star_score) { ?>
-	            <span class="sound_only">고객평점</span> 
+	            <span class="sr-only">고객평점</span> 
 	            <img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $star_score?>.png" alt="" class="sit_star" width="100">
-	            <span class="sound_only">별<?php echo $star_score?>개</span> 
+	            <span class="sr-only">별<?php echo $star_score?>개</span> 
 	            <?php } ?>
 	            
 	            <span class="">사용후기 <?php echo $it['it_use_cnt']; ?> 개</span>
 	            
 	            <div id="sit_btn_opt">
-	            	<span id="btn_wish"><i class="fa fa-heart-o" aria-hidden="true"></i><span class="sound_only">위시리스트</span><span class="btn_wish_num"><?php echo get_wishlist_count_by_item($it['it_id']); ?></span></span>
-	            	<button type="button" class="btn_sns_share"><i class="fa fa-share-alt" aria-hidden="true"></i><span class="sound_only">sns 공유</span></button>
+	            	<span id="btn_wish"><i class="fa fa-heart-o" aria-hidden="true"></i><span class="sr-only">위시리스트</span><span class="btn_wish_num"><?php echo get_wishlist_count_by_item($it['it_id']); ?></span></span>
+	            	<button type="button" class="btn_sns_share"><i class="fa fa-share-alt" aria-hidden="true"></i><span class="sr-only">sns 공유</span></button>
 	            	<div class="sns_area">
 	            		<?php echo $sns_share_links; ?>
-	            		<a href="javascript:popup_item_recommend('<?php echo $it['it_id']; ?>');" id="sit_btn_rec"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sound_only">추천하기</span></a>
+	            		<a href="javascript:popup_item_recommend('<?php echo $it['it_id']; ?>');" id="sit_btn_rec"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">추천하기</span></a>
 	            	</div>
 	        	</div>
 	        </div>
@@ -275,10 +275,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	                        <span class="sit_opt_subj"><?php echo $it['it_name']; ?></span>
 	                    </div>
 	                    <div class="opt_count">
-	                        <label for="ct_qty_<?php echo $i; ?>" class="sound_only">수량</label>
-							<button type="button" class="sit_qty_minus"><i class="fa fa-minus" aria-hidden="true"></i><span class="sound_only">감소</span></button>
+	                        <label for="ct_qty_<?php echo $i; ?>" class="sr-only">수량</label>
+							<button type="button" class="sit_qty_minus"><i class="fa fa-minus" aria-hidden="true"></i><span class="sr-only">감소</span></button>
 	                        <input type="text" name="ct_qty[<?php echo $it_id; ?>][]" value="<?php echo $it['it_buy_min_qty']; ?>" id="ct_qty_<?php echo $i; ?>" class="num_input" size="5">
-	                        <button type="button" class="sit_qty_plus"><i class="fa fa-plus" aria-hidden="true"></i><span class="sound_only">증가</span></button>
+	                        <button type="button" class="sit_qty_plus"><i class="fa fa-plus" aria-hidden="true"></i><span class="sr-only">증가</span></button>
 	                        <span class="sit_opt_prc">+0원</span>
 	                    </div>
 	                </li>
@@ -305,7 +305,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	            <button type="submit" onclick="document.pressed=this.value;" value="장바구니" class="sit_btn_cart">장바구니</button>
 	            <button type="submit" onclick="document.pressed=this.value;" value="바로구매" class="sit_btn_buy">바로구매</button>
 	            <?php } ?>
-	            <a href="javascript:item_wish(document.fitem, '<?php echo $it['it_id']; ?>');" class="sit_btn_wish"><i class="fa fa-heart-o" aria-hidden="true"></i><span class="sound_only">위시리스트</span></a>
+	            <a href="javascript:item_wish(document.fitem, '<?php echo $it['it_id']; ?>');" class="sit_btn_wish"><i class="fa fa-heart-o" aria-hidden="true"></i><span class="sr-only">위시리스트</span></a>
 	            	
 	            <?php if(!$is_orderable && $it['it_soldout'] && $it['it_stock_sms']) { ?>
 	            <a href="javascript:popup_stocksms('<?php echo $it['it_id']; ?>');" id="sit_btn_alm">재입고알림</a>
@@ -358,7 +358,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	        echo $prev_href.$prev_title.$prev_href2;
 	        echo $next_href.$next_title.$next_href2;
 	    } else {
-	        echo '<span class="sound_only">이 분류에 등록된 다른 상품이 없습니다.</span>';
+	        echo '<span class="sr-only">이 분류에 등록된 다른 상품이 없습니다.</span>';
 	    }
 	    ?>
 	</div>   

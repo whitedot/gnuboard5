@@ -36,7 +36,7 @@ else $g5['title'] = $g5['title'];
     <input type="hidden" name="page" value="<?php echo $page ?>">
 
     <fieldset>
-        <label for="pw_wr_password" class="sound_only">비밀번호<strong>필수</strong></label>
+        <label for="pw_wr_password" class="sr-only">비밀번호<strong>필수</strong></label>
         <input type="password" name="wr_password" id="password_wr_password" required class="frm_input required" size="15" maxLength="20" placeholder="비밀번호">
         <input type="submit" value="확인" class="btn_submit">
     </fieldset>

@@ -20,6 +20,6 @@ global $is_admin;
         <dt><span></span> 전체</dt>
         <dd><strong><?php echo number_format($visit[4]) ?></strong></dd>
     </dl>
-    <?php if ($is_admin == "super") {  ?><a href="<?php echo G5_ADMIN_URL ?>/visit_list.php" class="btn_admin btn"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a><?php } ?>
+    <?php if ($is_admin == "super") {  ?><a href="<?php echo G5_ADMIN_URL ?>/visit_list.php" class="btn_admin btn"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sr-only">관리자</span></a><?php } ?>
 </section>
 <!-- } 접속자집계 끝 -->

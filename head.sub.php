@@ -68,6 +68,7 @@ var g5_shop_url = "<?php echo G5_SHOP_URL; ?>";
 add_javascript('<script src="'.G5_JS_URL.'/jquery-1.12.4.min.js"></script>', 0);
 add_javascript('<script src="'.G5_JS_URL.'/jquery-migrate-1.4.1.min.js"></script>', 0);
 add_javascript('<script src="'.G5_JS_URL.'/common.js?ver='.G5_JS_VER.'"></script>', 0);
+add_javascript('<script src="'.G5_JS_URL.'/ui-dropdown.js?ver='.G5_JS_VER.'"></script>', 1);
 add_javascript('<script src="'.G5_JS_URL.'/wrest.js?ver='.G5_JS_VER.'"></script>', 0);
 if(!defined('G5_IS_ADMIN'))
     echo $config['cf_add_script'];

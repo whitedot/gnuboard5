@@ -29,9 +29,9 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
 
 <form name="search_form" id="search_form" action=<?php echo $_SERVER['SCRIPT_NAME'];?> class="local_sch01 local_sch" method="get">
 
-<label for="st" class="sound_only">검색대상</label>
+<label for="st" class="sr-only">검색대상</label>
 <input type="hidden" name="st" id="st" value="wr_message" >
-<label for="sv" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+<label for="sv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
 <input type="text" name="sv" value="<?php echo $sv ?>" id="sv" required class="required frm_input">
 <input type="submit" value="검색" class="btn_submit">
 

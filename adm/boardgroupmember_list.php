@@ -59,11 +59,11 @@ $colspan = 7;
 
 <form name="fsearch" id="fsearch" class="local_sch01 local_sch" method="get">
     <input type="hidden" name="gr_id" value="<?php echo $gr_id ?>">
-    <label for="sfl" class="sound_only">검색대상</label>
+    <label for="sfl" class="sr-only">검색대상</label>
     <select name="sfl" id="sfl">
         <option value="a.mb_id" <?php echo get_selected($sfl, "a.mb_id") ?>>회원아이디</option>
     </select>
-    <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+    <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
     <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
     <input type="submit" value="검색" class="btn_submit">
 </form>
@@ -84,7 +84,7 @@ $colspan = 7;
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall" class="sound_only">접근가능회원 전체</label>
+                        <label for="chkall" class="sr-only">접근가능회원 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col">그룹</th>
@@ -112,7 +112,7 @@ $colspan = 7;
                 ?>
                     <tr class="<?php echo $bg; ?>">
                         <td class="td_chk">
-                            <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo $row['mb_nick'] ?> 회원</label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $row['mb_nick'] ?> 회원</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $row['gm_id'] ?>" id="chk_<?php echo $i ?>">
                         </td>
                         <td class="td_grid"><?php echo $group ?></td>

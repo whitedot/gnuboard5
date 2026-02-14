@@ -24,7 +24,7 @@ if (!$min_year) {
 
 <form name="fvisitdelete" class="visit_del" method="post" action="./visit_delete_update.php" onsubmit="return form_submit(this);">
     <div>
-        <label for="year" class="sound_only">년도선택</label>
+        <label for="year" class="sr-only">년도선택</label>
         <select name="year" id="year">
             <option value="">년도선택</option>
             <?php
@@ -35,7 +35,7 @@ if (!$min_year) {
             }
             ?>
         </select> 년
-        <label for="month" class="sound_only">월선택</label>
+        <label for="month" class="sr-only">월선택</label>
         <select name="month" id="month">
             <option value="">월선택</option>
             <?php
@@ -46,14 +46,14 @@ if (!$min_year) {
             }
             ?>
         </select> 월
-        <label for="method" class="sound_only">삭제방법선택</label>
+        <label for="method" class="sr-only">삭제방법선택</label>
         <select name="method" id="method">
             <option value="before">선택년월 이전 자료삭제</option>
             <option value="specific">선택년월의 자료삭제</option>
         </select>
     </div>
     <div class="visit_del_bt">
-        <label for="pass">관리자 비밀번호<strong class="sound_only"> 필수</strong></label>
+        <label for="pass">관리자 비밀번호<strong class="sr-only"> 필수</strong></label>
         <input type="password" name="pass" id="pass" class="frm_input required">
         <input type="submit" value="확인" class="btn_submit">
     </div>

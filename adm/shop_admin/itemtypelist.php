@@ -88,7 +88,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 <input type="hidden" name="doc" value="<?php echo get_sanitize_input($doc); ?>">
 <input type="hidden" name="page" value="<?php echo get_sanitize_input($page); ?>">
 
-<label for="sca" class="sound_only">분류선택</label>
+<label for="sca" class="sr-only">분류선택</label>
 <select name="sca" id="sca">
     <option value="">전체분류</option>
     <?php
@@ -103,13 +103,13 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     ?>
 </select>
 
-<label for="sfl" class="sound_only">검색대상</label>
+<label for="sfl" class="sr-only">검색대상</label>
 <select name="sfl" id="sfl">
     <option value="it_name" <?php echo get_selected($sfl, 'it_name'); ?>>상품명</option>
     <option value="it_id" <?php echo get_selected($sfl, 'it_id'); ?>>상품코드</option>
 </select>
 
-<label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+<label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
 <input type="text" name="stx" value="<?php echo $stx; ?>" id="stx" required class="frm_input required">
 <input type="submit" value="검색" class="btn_submit">
 
@@ -151,27 +151,27 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         </td>
         <td class="td_left"><a href="<?php echo $href; ?>"><?php echo get_it_image($row['it_id'], 50, 50); ?><?php echo cut_str(stripslashes($row['it_name']), 60, "&#133"); ?></a></td>
         <td class="td_chk2">
-            <label for="type1_<?php echo $i; ?>" class="sound_only">히트상품</label>
+            <label for="type1_<?php echo $i; ?>" class="sr-only">히트상품</label>
             <input type="checkbox" name="it_type1[<?php echo $i; ?>]" value="1" id="type1_<?php echo $i; ?>" <?php echo ($row['it_type1'] ? 'checked' : ''); ?>>
         </td>
         <td class="td_chk2">
-            <label for="type2_<?php echo $i; ?>" class="sound_only">추천상품</label>
+            <label for="type2_<?php echo $i; ?>" class="sr-only">추천상품</label>
             <input type="checkbox" name="it_type2[<?php echo $i; ?>]" value="1" id="type2_<?php echo $i; ?>" <?php echo ($row['it_type2'] ? 'checked' : ''); ?>>
         </td>
         <td class="td_chk2">
-            <label for="type3_<?php echo $i; ?>" class="sound_only">신규상품</label>
+            <label for="type3_<?php echo $i; ?>" class="sr-only">신규상품</label>
             <input type="checkbox" name="it_type3[<?php echo $i; ?>]" value="1" id="type3_<?php echo $i; ?>" <?php echo ($row['it_type3'] ? 'checked' : ''); ?>>
         </td>
         <td class="td_chk2">
-            <label for="type4_<?php echo $i; ?>" class="sound_only">인기상품</label>
+            <label for="type4_<?php echo $i; ?>" class="sr-only">인기상품</label>
             <input type="checkbox" name="it_type4[<?php echo $i; ?>]" value="1" id="type4_<?php echo $i; ?>" <?php echo ($row['it_type4'] ? 'checked' : ''); ?>>
         </td>
         <td class="td_chk2">
-            <label for="type5_<?php echo $i; ?>" class="sound_only">할인상품</label>
+            <label for="type5_<?php echo $i; ?>" class="sr-only">할인상품</label>
             <input type="checkbox" name="it_type5[<?php echo $i; ?>]" value="1" id="type5_<?php echo $i; ?>" <?php echo ($row['it_type5'] ? 'checked' : ''); ?>>
         </td>
         <td class="td_mng td_mng_s">
-            <a href="./itemform.php?w=u&amp;it_id=<?php echo $row['it_id']; ?>&amp;ca_id=<?php echo $row['ca_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sound_only"><?php echo cut_str(stripslashes($row['it_name']), 60, "&#133"); ?> </span>수정</a>
+            <a href="./itemform.php?w=u&amp;it_id=<?php echo $row['it_id']; ?>&amp;ca_id=<?php echo $row['ca_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sr-only"><?php echo cut_str(stripslashes($row['it_name']), 60, "&#133"); ?> </span>수정</a>
          </td>
     </tr>
     <?php

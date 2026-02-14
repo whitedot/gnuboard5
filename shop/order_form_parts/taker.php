@@ -69,11 +69,11 @@
         </tr>
         <?php } ?>
         <tr>
-            <th scope="row"><label for="od_b_name">이름<strong class="sound_only"> 필수</strong></label></th>
+            <th scope="row"><label for="od_b_name">이름<strong class="sr-only"> 필수</strong></label></th>
             <td><input type="text" name="od_b_name" id="od_b_name" required class="frm_input required" maxlength="20"></td>
         </tr>
         <tr>
-            <th scope="row"><label for="od_b_tel">전화번호<strong class="sound_only"> 필수</strong></label></th>
+            <th scope="row"><label for="od_b_tel">전화번호<strong class="sr-only"> 필수</strong></label></th>
             <td><input type="text" name="od_b_tel" id="od_b_tel" required class="frm_input required" maxlength="20"></td>
         </tr>
         <tr>
@@ -83,16 +83,16 @@
         <tr>
             <th scope="row">주소</th>
             <td id="sod_frm_addr">
-                <label for="od_b_zip" class="sound_only">우편번호<strong class="sound_only"> 필수</strong></label>
+                <label for="od_b_zip" class="sr-only">우편번호<strong class="sr-only"> 필수</strong></label>
                 <input type="text" name="od_b_zip" id="od_b_zip" required class="frm_input required" size="8" maxlength="6" placeholder="우편번호">
                 <button type="button" class="btn_address" onclick="win_zip('forderform', 'od_b_zip', 'od_b_addr1', 'od_b_addr2', 'od_b_addr3', 'od_b_addr_jibeon');">주소 검색</button><br>
                 <input type="text" name="od_b_addr1" id="od_b_addr1" required class="frm_input frm_address required" size="60" placeholder="기본주소">
-                <label for="od_b_addr1" class="sound_only">기본주소<strong> 필수</strong></label><br>
+                <label for="od_b_addr1" class="sr-only">기본주소<strong> 필수</strong></label><br>
                 <input type="text" name="od_b_addr2" id="od_b_addr2" class="frm_input " size="60" placeholder="상세주소">
-                <label for="od_b_addr2" class="sound_only">상세주소</label>
+                <label for="od_b_addr2" class="sr-only">상세주소</label>
                 <br>
                 <input type="text" name="od_b_addr3" id="od_b_addr3" readonly="readonly" class="frm_input " size="60" placeholder="참고항목">
-                <label for="od_b_addr3" class="sound_only">참고항목</label><br>
+                <label for="od_b_addr3" class="sr-only">참고항목</label><br>
                 <input type="hidden" name="od_b_addr_jibeon" value="">
             </td>
         </tr>

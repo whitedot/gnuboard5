@@ -46,7 +46,7 @@
                 <tr>
                     <th scope="row">주소</th>
                     <td colspan="3" class="td_addr_line">
-                        <label for="mb_zip" class="sound_only">우편번호</label>
+                        <label for="mb_zip" class="sr-only">우편번호</label>
                         <input type="text" name="mb_zip" value="<?php echo $mb['mb_zip1'] . $mb['mb_zip2']; ?>" id="mb_zip" class="frm_input readonly" size="5" maxlength="6">
                         <button type="button" class="btn_frmline" onclick="win_zip('fmember', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon');">주소 검색</button><br>
                         <input type="text" name="mb_addr1" value="<?php echo $mb['mb_addr1'] ?>" id="mb_addr1" class="frm_input readonly" size="60">

@@ -69,7 +69,7 @@ foreach((array) $list as $row){
 
 	// 사용후기 평점표시
 	if ($this->view_star && $star_score) {
-        echo "<div class=\"sct_star\"><span class=\"sound_only\">고객평점</span><img src=\"".G5_SHOP_URL."/img/s_star".$star_score.".png\" alt=\"별점 ".$star_score."점\" class=\"sit_star\"></div>\n";
+        echo "<div class=\"sct_star\"><span class=\"sr-only\">고객평점</span><img src=\"".G5_SHOP_URL."/img/s_star".$star_score.".png\" alt=\"별점 ".$star_score."점\" class=\"sit_star\"></div>\n";
     }
 	
     if ($this->view_it_id) {
@@ -104,9 +104,9 @@ foreach((array) $list as $row){
 	
 	// 위시리스트 + 공유 버튼 시작 {
 	echo "<div class=\"sct_op_btn\">\n";
-	echo "<button type=\"button\" class=\"btn_wish\" data-it_id=\"{$row['it_id']}\"><span class=\"sound_only\">위시리스트</span><i class=\"fa fa-heart-o\" aria-hidden=\"true\"></i></button>\n";
+	echo "<button type=\"button\" class=\"btn_wish\" data-it_id=\"{$row['it_id']}\"><span class=\"sr-only\">위시리스트</span><i class=\"fa fa-heart-o\" aria-hidden=\"true\"></i></button>\n";
     if ($this->view_sns) {
-	    echo "<button type=\"button\" class=\"btn_share\"><span class=\"sound_only\">공유하기</span><i class=\"fa fa-share-alt\" aria-hidden=\"true\"></i></button>\n";
+	    echo "<button type=\"button\" class=\"btn_share\"><span class=\"sr-only\">공유하기</span><i class=\"fa fa-share-alt\" aria-hidden=\"true\"></i></button>\n";
 	}
 
 	echo "<div class=\"sct_sns_wrap\">";
@@ -118,7 +118,7 @@ foreach((array) $list as $row){
 		echo "<h3>SNS 공유</h3>";
         echo get_sns_share_link('facebook', $sns_url, $sns_title, G5_SHOP_SKIN_URL.'/img/facebook.png');
         echo get_sns_share_link('twitter', $sns_url, $sns_title, G5_SHOP_SKIN_URL.'/img/twitter.png');
-        echo "<button type=\"button\" class=\"sct_sns_cls\"><span class=\"sound_only\">닫기</span><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button>";
+        echo "<button type=\"button\" class=\"sct_sns_cls\"><span class=\"sr-only\">닫기</span><i class=\"fa fa-times\" aria-hidden=\"true\"></i></button>";
         echo "</div>\n";
     }
 	echo "<div class=\"sct_sns_bg\"></div>";

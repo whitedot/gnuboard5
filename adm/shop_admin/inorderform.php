@@ -471,19 +471,19 @@ $pg_anchor = '<ul class="anchor">
                 </colgroup>
                 <tbody>
                 <tr>
-                    <th scope="row"><span class="sound_only">주문하신 분 </span>이름</th>
+                    <th scope="row"><span class="sr-only">주문하신 분 </span>이름</th>
                     <td><?php echo get_text($data['od_name']); ?></td>
                 </tr>
                 <tr>
-                    <th scope="row"><span class="sound_only">주문하신 분 </span>전화번호</th>
+                    <th scope="row"><span class="sr-only">주문하신 분 </span>전화번호</th>
                     <td><?php echo get_text($data['od_tel']); ?></td>
                 </tr>
                 <tr>
-                    <th scope="row"><span class="sound_only">주문하신 분 </span>핸드폰</th>
+                    <th scope="row"><span class="sr-only">주문하신 분 </span>핸드폰</th>
                     <td><?php echo get_text($data['od_hp']); ?></td>
                 </tr>
                 <tr>
-                    <th scope="row"><span class="sound_only">주문하시는 분 </span>주소</th>
+                    <th scope="row"><span class="sr-only">주문하시는 분 </span>주소</th>
                     <td>
                         <span><?php echo $data['od_zip']; ?></span>
                         <span><?php echo get_text($data['od_addr1']); ?></span>
@@ -492,7 +492,7 @@ $pg_anchor = '<ul class="anchor">
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><span class="sound_only">주문하신 분 </span>E-mail</th>
+                    <th scope="row"><span class="sr-only">주문하신 분 </span>E-mail</th>
                     <td><?php echo get_text($data['od_email']); ?></td>
                 </tr>
                 </tbody>
@@ -512,19 +512,19 @@ $pg_anchor = '<ul class="anchor">
                 </colgroup>
                 <tbody>
                 <tr>
-                    <th scope="row"><span class="sound_only">받으시는 분 </span>이름</th>
+                    <th scope="row"><span class="sr-only">받으시는 분 </span>이름</th>
                     <td><?php echo get_text($data['od_b_name']); ?></td>
                 </tr>
                 <tr>
-                    <th scope="row"><span class="sound_only">받으시는 분 </span>전화번호</th>
+                    <th scope="row"><span class="sr-only">받으시는 분 </span>전화번호</th>
                     <td><?php echo get_text($data['od_b_tel']); ?></td>
                 </tr>
                 <tr>
-                    <th scope="row"><span class="sound_only">받으시는 분 </span>핸드폰</th>
+                    <th scope="row"><span class="sr-only">받으시는 분 </span>핸드폰</th>
                     <td><?php echo get_text($data['od_b_hp']); ?></td>
                 </tr>
                 <tr>
-                    <th scope="row"><span class="sound_only">받으시는 분 </span>주소</th>
+                    <th scope="row"><span class="sr-only">받으시는 분 </span>주소</th>
                     <td>
                         <span><?php echo $data['od_b_zip']; ?></span>
                         <span><?php echo get_text($data['od_b_addr1']); ?></span>

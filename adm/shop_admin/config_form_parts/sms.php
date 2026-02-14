@@ -179,7 +179,7 @@ function byte_check(el_cont, el_byte)
             <section class="scf_sms_box">
                 <h4><?php echo $scf_sms_title[$i]; ?></h4>
                 <input type="checkbox" name="de_sms_use<?php echo $i; ?>" value="1" id="de_sms_use<?php echo $i; ?>" <?php echo ($default["de_sms_use".$i] ? " checked" : ""); ?>>
-                <label for="de_sms_use<?php echo $i; ?>"><span class="sound_only"><?php echo $scf_sms_title[$i]; ?></span>사용</label>
+                <label for="de_sms_use<?php echo $i; ?>"><span class="sr-only"><?php echo $scf_sms_title[$i]; ?></span>사용</label>
                 <div class="scf_sms_img">
                     <textarea id="de_sms_cont<?php echo $i; ?>" name="de_sms_cont<?php echo $i; ?>" ONKEYUP="byte_check('de_sms_cont<?php echo $i; ?>', 'byte<?php echo $i; ?>');"><?php echo html_purifier($default['de_sms_cont'.$i]); ?></textarea>
                 </div>

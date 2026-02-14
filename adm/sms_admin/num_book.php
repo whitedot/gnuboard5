@@ -117,19 +117,19 @@ function no_hp_click(val)
 
 <form name="search_form" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']?>" class="local_sch01 local_sch">
 <input type="hidden" name="bg_no" value="<?php echo $bg_no?>" >
-<label for="st" class="sound_only">검색대상</label>
+<label for="st" class="sr-only">검색대상</label>
 <select name="st" id="st">
     <option value="all"<?php echo get_selected('all', $st); ?>>이름 + 휴대폰번호</option>
     <option value="name"<?php echo get_selected('name', $st); ?>>이름</option>
     <option value="hp" <?php echo get_selected('hp', $st); ?>>휴대폰번호</option>
 </select>
-<label for="sv" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+<label for="sv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
 <input type="text" name="sv" value="<?php echo $sv?>" id="sv" required class="frm_input required">
 <input type="submit" value="검색" class="btn_submit">
 </form>
 
 <form name="search_form" class="local_sch01 local_sch">
-<label for="bg_no" class="sound_only">그룹명</label>
+<label for="bg_no" class="sr-only">그룹명</label>
 <select name="bg_no" id="bg_no" onchange="location.href='<?php echo $_SERVER['SCRIPT_NAME']?>?bg_no='+this.value;">
     <option value=""<?php echo get_selected('', $bg_no); ?>> 전체 </option>
     <option value="<?php echo $no_group['bg_no']?>"<?php echo get_selected($no_group['bg_no'], $bg_no); ?>> <?php echo $no_group['bg_name']?> (<?php echo number_format($no_group['bg_count'])?> 명) </option>
@@ -156,7 +156,7 @@ function no_hp_click(val)
     <thead>
     <tr>
         <th scope="col">
-            <label for="chk_all" class="sound_only">현재 페이지 전체</label>
+            <label for="chk_all" class="sr-only">현재 페이지 전체</label>
             <input type="checkbox" id="chk_all" onclick="book_all_checked(this.checked)">
         </th>
         <th scope="col">번호</th>
@@ -188,7 +188,7 @@ function no_hp_click(val)
     ?>
     <tr class="<?php echo $bg; ?>">
         <td class="td_chk">
-            <label for="bk_no_<?php echo $i; ?>" class="sound_only"><?php echo $group_name?>의 <?php echo get_text($res['bk_name']) ?></label>
+            <label for="bk_no_<?php echo $i; ?>" class="sr-only"><?php echo $group_name?>의 <?php echo get_text($res['bk_name']) ?></label>
             <input type="checkbox" name="bk_no[]" value="<?php echo $res['bk_no']?>" id="bk_no_<?php echo $i; ?>">
         </td>
         <td class="td_num"><?php echo number_format($vnum--)?></td>

@@ -81,7 +81,7 @@ function num_group_submit(f)
 <input type="hidden" name="bg_no" value="<?php echo isset($res['bg_no']) ? $res['bg_no'] : ''; ?>">
 
 <div>
-    <label for="bg_name" class="sound_only">그룹추가<strong class="sound_only"> 필수</strong></label>
+    <label for="bg_name" class="sr-only">그룹추가<strong class="sr-only"> 필수</strong></label>
     <input type="text" id="bg_name" name="bg_name" required class="required frm_input">
     <input type="submit" value="그룹추가" class="btn_submit btn">
 </div>
@@ -101,7 +101,7 @@ function num_group_submit(f)
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall" class="sound_only">그룹 전체</label>
+            <label for="chkall" class="sr-only">그룹 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">그룹명</th>
@@ -125,7 +125,7 @@ function num_group_submit(f)
         <td class="td_num"><?php echo number_format($no_group['bg_receipt'])?></td>
         <td class="td_num"><?php echo number_format($no_group['bg_reject'])?></td>
         <td class="td_mng">
-            <label for="select_bg_no_999" class="sound_only">이동할 그룹</label>
+            <label for="select_bg_no_999" class="sr-only">이동할 그룹</label>
             <select name="select_bg_no_999" id="select_bg_no_999" onchange="move(<?php echo $no_group['bg_no']?>, '<?php echo $no_group['bg_name']?>', this);" >
                 <option value=""></option>
                 <?php for ($i=0; $i<count($group); $i++) { ?>
@@ -145,11 +145,11 @@ function num_group_submit(f)
     <tr class="<?php echo $bg; ?>">
         <td class="td_mng">
             <input type="hidden" name="bg_no[<?php echo $i ?>]" value="<?php echo $group[$i]['bg_no']?>" id="bg_no_<?php echo $i ?>">
-            <label for="chk_<?php echo $i ?>" class="sound_only">그룹명</label>
+            <label for="chk_<?php echo $i ?>" class="sr-only">그룹명</label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
         </td>
         <td>
-            <label for="bg_name_<?php echo $i; ?>" class="sound_only">그룹명</label>
+            <label for="bg_name_<?php echo $i; ?>" class="sr-only">그룹명</label>
             <input type="text" name="bg_name[<?php echo $i; ?>]" value="<?php echo get_sanitize_input($group[$i]['bg_name']); ?>" id="bg_name_<?php echo $i; ?>" class="frm_input">
         </td>
         <td class="td_num"><?php echo number_format($group[$i]['bg_count'])?></td>
@@ -158,7 +158,7 @@ function num_group_submit(f)
         <td class="td_num"><?php echo number_format($group[$i]['bg_receipt'])?></td>
         <td class="td_num"><?php echo number_format($group[$i]['bg_reject'])?></td>
         <td class="td_mbstat">
-            <label for="select_bg_no_<?php echo $i; ?>" class="sound_only">이동할 그룹</label>
+            <label for="select_bg_no_<?php echo $i; ?>" class="sr-only">이동할 그룹</label>
             <select name="select_bg_no[<?php echo $i ?>]" id="select_bg_no_<?php echo $i; ?>" onchange="move(<?php echo $group[$i]['bg_no']?>, '<?php echo $group[$i]['bg_name']?>', this);" >
                 <option value=""></option>
                 <option value="<?php echo $no_group['bg_no']?>"><?php echo $no_group['bg_name']?></option>

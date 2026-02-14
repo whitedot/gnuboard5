@@ -85,12 +85,12 @@ function all_send()
 <input type="hidden" name="page" value="<?php echo get_sanitize_input($page); ?>">
 <input type="hidden" name="st" value="<?php echo get_sanitize_input($st); ?>">
 <input type="hidden" name="sv" value="<?php echo get_sanitize_input($sv); ?>">
-<label for="sst" class="sound_only">검색대상</label>
+<label for="sst" class="sr-only">검색대상</label>
 <select name="sst" id="sst">
     <option value="hs_name" <?php echo get_selected('hs_name', $sst); ?>>이름</option>
     <option value="hs_hp" <?php echo get_selected('hs_hp', $sst); ?>>휴대폰번호</option>
 </select>
-<label for="ssv" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+<label for="ssv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
 <input type="text" name="ssv" value="<?php echo get_sanitize_input($ssv); ?>" id="ssv" class="frm_input">
 <input type="submit" value="검색" class="btn_submit">
 </form>

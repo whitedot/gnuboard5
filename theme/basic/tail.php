@@ -57,7 +57,7 @@ if(G5_COMMUNITY_USE === false) {
     
     
     <button type="button" id="top_btn">
-    	<i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sound_only">상단으로</span>
+    	<i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sr-only">상단으로</span>
     </button>
     <script>
     $(function() {

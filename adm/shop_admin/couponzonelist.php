@@ -47,7 +47,7 @@ $colspan = 9;
 </div>
 <form name="fsearch" id="fsearch" class="local_sch01 local_sch" method="get">
 
-<label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+<label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
 <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
 <input type="submit" class="btn_submit" value="검색">
 </form>
@@ -64,7 +64,7 @@ $colspan = 9;
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall" class="sound_only">쿠폰 전체</label>
+            <label for="chkall" class="sr-only">쿠폰 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">쿠폰이름</th>
@@ -132,7 +132,7 @@ $colspan = 9;
         <td class="td_num"><?php echo number_format($row['cz_download']); ?></td>
         <td class="td_datetime"><?php echo substr($row['cz_start'], 2, 8); ?> ~ <?php echo substr($row['cz_end'], 2, 8); ?></td>
         <td class="td_mng td_mng_s">
-            <a href="./couponzoneform.php?w=u&amp;cz_id=<?php echo $row['cz_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sound_only"><?php echo get_text($row['cz_subject']); ?> </span>수정</a>
+            <a href="./couponzoneform.php?w=u&amp;cz_id=<?php echo $row['cz_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sr-only"><?php echo get_text($row['cz_subject']); ?> </span>수정</a>
         </td>
     </tr>
 

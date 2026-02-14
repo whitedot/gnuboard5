@@ -21,13 +21,13 @@ if(isset($sfl) && $sfl && !in_array($sfl, array('vi_ip','vi_date','vi_time','vi_
 <div class="local_sch local_sch01">
     <form name="fvisit" method="get" onsubmit="return fvisit_submit(this);">
     <?php echo $listall?>
-    <label for="sch_sort" class="sound_only">검색분류</label>
+    <label for="sch_sort" class="sr-only">검색분류</label>
     <select name="sfl" id="sch_sort" class="search_sort">
         <option value="vi_ip"<?php echo get_selected($sfl, 'vi_ip'); ?>>IP</option>
         <option value="vi_referer"<?php echo get_selected($sfl, 'vi_referer'); ?>>접속경로</option>
         <option value="vi_date"<?php echo get_selected($sfl, 'vi_date'); ?>>날짜</option>
     </select>
-    <label for="sch_word" class="sound_only">검색어</label>
+    <label for="sch_word" class="sr-only">검색어</label>
     <input type="text" name="stx" size="20" value="<?php echo stripslashes($stx); ?>" id="sch_word" class="frm_input">
     <input type="submit" value="검색" class="btn_submit">
     </form>

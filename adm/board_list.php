@@ -62,13 +62,13 @@ $colspan = 15;
 </div>
 
 <form name="fsearch" id="fsearch" class="local_sch01 local_sch" method="get">
-    <label for="sfl" class="sound_only">검색대상</label>
+    <label for="sfl" class="sr-only">검색대상</label>
     <select name="sfl" id="sfl">
         <option value="bo_table" <?php echo get_selected($sfl, "bo_table", true); ?>>TABLE</option>
         <option value="bo_subject" <?php echo get_selected($sfl, "bo_subject"); ?>>제목</option>
         <option value="a.gr_id" <?php echo get_selected($sfl, "a.gr_id"); ?>>그룹ID</option>
     </select>
-    <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+    <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
     <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
     <input type="submit" value="검색" class="btn_submit">
 </form>
@@ -87,17 +87,17 @@ $colspan = 15;
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall" class="sound_only">게시판 전체</label>
+                        <label for="chkall" class="sr-only">게시판 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col"><?php echo subject_sort_link('a.gr_id') ?>그룹</a></th>
                     <th scope="col"><?php echo subject_sort_link('bo_table') ?>TABLE</a></th>
                     <th scope="col"><?php echo subject_sort_link('bo_skin', '', 'desc') ?>스킨</a></th>
                     <th scope="col"><?php echo subject_sort_link('bo_subject') ?>제목</a></th>
-                    <th scope="col">읽기P<span class="sound_only">포인트</span></th>
-                    <th scope="col">쓰기P<span class="sound_only">포인트</span></th>
-                    <th scope="col">댓글P<span class="sound_only">포인트</span></th>
-                    <th scope="col">다운P<span class="sound_only">포인트</span></th>
+                    <th scope="col">읽기P<span class="sr-only">포인트</span></th>
+                    <th scope="col">쓰기P<span class="sr-only">포인트</span></th>
+                    <th scope="col">댓글P<span class="sr-only">포인트</span></th>
+                    <th scope="col">다운P<span class="sr-only">포인트</span></th>
                     <th scope="col"><?php echo subject_sort_link('bo_use_sns') ?>SNS<br>사용</a></th>
                     <th scope="col"><?php echo subject_sort_link('bo_use_search') ?>검색<br>사용</a></th>
                     <th scope="col"><?php echo subject_sort_link('bo_order') ?>출력<br>순서</a></th>
@@ -116,7 +116,7 @@ $colspan = 15;
 
                     <tr class="<?php echo $bg; ?>">
                         <td class="td_chk">
-                            <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo get_text($row['bo_subject']) ?></label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['bo_subject']) ?></label>
                             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
                         </td>
                         <td>
@@ -131,43 +131,43 @@ $colspan = 15;
                             <a href="<?php echo get_pretty_url($row['bo_table']) ?>"><?php echo $row['bo_table'] ?></a>
                         </td>
                         <td>
-                            <label for="bo_skin_<?php echo $i; ?>" class="sound_only">스킨</label>
+                            <label for="bo_skin_<?php echo $i; ?>" class="sr-only">스킨</label>
                             <?php echo get_skin_select('board', 'bo_skin_' . $i, "bo_skin[$i]", $row['bo_skin']); ?>
                         </td>
                         <td>
-                            <label for="bo_subject_<?php echo $i; ?>" class="sound_only">게시판 제목<strong class="sound_only"> 필수</strong></label>
+                            <label for="bo_subject_<?php echo $i; ?>" class="sr-only">게시판 제목<strong class="sr-only"> 필수</strong></label>
                             <input type="text" name="bo_subject[<?php echo $i ?>]" value="<?php echo get_text($row['bo_subject']) ?>" id="bo_subject_<?php echo $i ?>" required class="required tbl_input bo_subject full_input" size="10">
                         </td>
                         <td class="td_numsmall">
-                            <label for="bo_read_point_<?php echo $i; ?>" class="sound_only">읽기 포인트</label>
+                            <label for="bo_read_point_<?php echo $i; ?>" class="sr-only">읽기 포인트</label>
                             <input type="text" name="bo_read_point[<?php echo $i ?>]" value="<?php echo $row['bo_read_point'] ?>" id="bo_read_point_<?php echo $i; ?>" class="tbl_input" size="2">
                         </td>
                         <td class="td_numsmall">
-                            <label for="bo_write_point_<?php echo $i; ?>" class="sound_only">쓰기 포인트</label>
+                            <label for="bo_write_point_<?php echo $i; ?>" class="sr-only">쓰기 포인트</label>
                             <input type="text" name="bo_write_point[<?php echo $i ?>]" value="<?php echo $row['bo_write_point'] ?>" id="bo_write_point_<?php echo $i; ?>" class="tbl_input" size="2">
                         </td>
                         <td class="td_numsmall">
-                            <label for="bo_comment_point_<?php echo $i; ?>" class="sound_only">댓글 포인트</label>
+                            <label for="bo_comment_point_<?php echo $i; ?>" class="sr-only">댓글 포인트</label>
                             <input type="text" name="bo_comment_point[<?php echo $i ?>]" value="<?php echo $row['bo_comment_point'] ?>" id="bo_comment_point_<?php echo $i; ?>" class="tbl_input" size="2">
                         </td>
                         <td class="td_numsmall">
-                            <label for="bo_download_point_<?php echo $i; ?>" class="sound_only">다운<br>포인트</label>
+                            <label for="bo_download_point_<?php echo $i; ?>" class="sr-only">다운<br>포인트</label>
                             <input type="text" name="bo_download_point[<?php echo $i ?>]" value="<?php echo $row['bo_download_point'] ?>" id="bo_download_point_<?php echo $i; ?>" class="tbl_input" size="2">
                         </td>
                         <td class="td_numsmall">
-                            <label for="bo_use_sns_<?php echo $i; ?>" class="sound_only">SNS<br>사용</label>
+                            <label for="bo_use_sns_<?php echo $i; ?>" class="sr-only">SNS<br>사용</label>
                             <input type="checkbox" name="bo_use_sns[<?php echo $i ?>]" value="1" id="bo_use_sns_<?php echo $i ?>" <?php echo $row['bo_use_sns'] ? "checked" : "" ?>>
                         </td>
                         <td class="td_numsmall">
-                            <label for="bo_use_search_<?php echo $i; ?>" class="sound_only">검색<br>사용</label>
+                            <label for="bo_use_search_<?php echo $i; ?>" class="sr-only">검색<br>사용</label>
                             <input type="checkbox" name="bo_use_search[<?php echo $i ?>]" value="1" id="bo_use_search_<?php echo $i ?>" <?php echo $row['bo_use_search'] ? "checked" : "" ?>>
                         </td>
                         <td class="td_numsmall">
-                            <label for="bo_order_<?php echo $i; ?>" class="sound_only">출력<br>순서</label>
+                            <label for="bo_order_<?php echo $i; ?>" class="sr-only">출력<br>순서</label>
                             <input type="text" name="bo_order[<?php echo $i ?>]" value="<?php echo $row['bo_order'] ?>" id="bo_order_<?php echo $i ?>" class="tbl_input" size="2">
                         </td>
                         <td class="td_mngsmall">
-                            <label for="bo_device_<?php echo $i; ?>" class="sound_only">접속기기</label>
+                            <label for="bo_device_<?php echo $i; ?>" class="sr-only">접속기기</label>
                             <select name="bo_device[<?php echo $i ?>]" id="bo_device_<?php echo $i ?>">
                                 <option value="both" <?php echo get_selected($row['bo_device'], 'both', true); ?>>모두</option>
                                 <option value="pc" <?php echo get_selected($row['bo_device'], 'pc'); ?>>PC</option>

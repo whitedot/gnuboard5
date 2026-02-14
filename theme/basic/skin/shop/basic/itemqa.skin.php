@@ -12,7 +12,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <h3>등록된 상품문의</h3>
 
     <div id="sit_qa_wbtn">
-        <a href="<?php echo $itemqa_form; ?>" class="btn02 itemqa_form">상품문의 쓰기<span class="sound_only">새 창</span></a>
+        <a href="<?php echo $itemqa_form; ?>" class="btn02 itemqa_form">상품문의 쓰기<span class="sr-only">새 창</span></a>
         <a href="<?php echo $itemqa_list; ?>" id="itemqa_list" class="btn01">더보기</a>
     </div>
 
@@ -72,13 +72,13 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             <div id="sit_qa_con_<?php echo $i; ?>" class="sit_qa_con">
                 <div class="sit_qa_p">
                     <div class="sit_qa_qaq">
-                        <strong class="sound_only">문의내용</strong>
+                        <strong class="sr-only">문의내용</strong>
                         <span class="qa_alp">Q</span>
                         <?php echo $iq_question; // 상품 문의 내용 ?>
                     </div>
                     <?php if(!$is_secret) { ?>
                     <div class="sit_qa_qaa">
-                        <strong class="sound_only">답변</strong>
+                        <strong class="sr-only">답변</strong>
                         <span class="qa_alp">A</span>
                         <?php echo $iq_answer; ?>
                     </div>

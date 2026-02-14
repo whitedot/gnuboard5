@@ -75,7 +75,7 @@ $count = sql_num_rows($result);
     }
     ?>
     <div class="btn_confirm">
-        <button type="button" id="sc_coupon_close" class="btn_close"><i class="fa fa-times" aria-hidden="true"></i><span class="sound_only">닫기</span></button>
+        <button type="button" id="sc_coupon_close" class="btn_close"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">닫기</span></button>
     </div>
 </div>
 <!-- } 쿠폰선택 끝 -->

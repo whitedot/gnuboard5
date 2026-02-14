@@ -26,11 +26,11 @@ $thumb_height = 150;
         <li>
             <a href="<?php echo $list[$i]['href'] ?>" class="lt_img"><?php echo $img_content; ?></a>
             <?php
-            if ($list[$i]['icon_secret']) echo "<i class=\"fa fa-lock\" aria-hidden=\"true\"></i><span class=\"sound_only\">비밀글</span> ";
+            if ($list[$i]['icon_secret']) echo "<i class=\"fa fa-lock\" aria-hidden=\"true\"></i><span class=\"sr-only\">비밀글</span> ";
 
-            if ($list[$i]['icon_new']) echo "<span class=\"new_icon\">N<span class=\"sound_only\">새글</span></span>";
+            if ($list[$i]['icon_new']) echo "<span class=\"new_icon\">N<span class=\"sr-only\">새글</span></span>";
 
-            if ($list[$i]['icon_hot']) echo "<span class=\"hot_icon\">H<span class=\"sound_only\">인기글</span></span>";
+            if ($list[$i]['icon_hot']) echo "<span class=\"hot_icon\">H<span class=\"sr-only\">인기글</span></span>";
 
  
             echo "<a href=\"".$list[$i]['href']."\"> ";
@@ -62,6 +62,6 @@ $thumb_height = 150;
     <li class="empty_li">게시물이 없습니다.</li>
     <?php }  ?>
     </ul>
-    <a href="<?php echo get_pretty_url($bo_table); ?>" class="lt_more"><span class="sound_only"><?php echo $bo_subject ?></span><i class="fa fa-plus" aria-hidden="true"></i><span class="sound_only"> 더보기</span></a>
+    <a href="<?php echo get_pretty_url($bo_table); ?>" class="lt_more"><span class="sr-only"><?php echo $bo_subject ?></span><i class="fa fa-plus" aria-hidden="true"></i><span class="sr-only"> 더보기</span></a>
 
 </div>

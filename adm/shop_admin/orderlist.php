@@ -159,7 +159,7 @@ if( function_exists('pg_setting_check') ){
 <input type="hidden" name="page" value="<?php echo get_sanitize_input($page); ?>">
 <input type="hidden" name="save_search" value="<?php echo get_sanitize_input($search); ?>">
 
-<label for="sel_field" class="sound_only">검색대상</label>
+<label for="sel_field" class="sr-only">검색대상</label>
 <select name="sel_field" id="sel_field">
     <option value="od_id" <?php echo get_selected($sel_field, 'od_id'); ?>>주문번호</option>
     <option value="mb_id" <?php echo get_selected($sel_field, 'mb_id'); ?>>회원 ID</option>
@@ -173,7 +173,7 @@ if( function_exists('pg_setting_check') ){
     <option value="od_invoice" <?php echo get_selected($sel_field, 'od_invoice'); ?>>운송장번호</option>
 </select>
 
-<label for="search" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+<label for="search" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
 <input type="text" name="search" value="<?php echo $search; ?>" id="search" required class="required frm_input" autocomplete="off">
 <input type="submit" value="검색" class="btn_submit">
 
@@ -262,7 +262,7 @@ if( function_exists('pg_setting_check') ){
     <thead>
     <tr>
         <th scope="col" rowspan="3">
-            <label for="chkall" class="sound_only">주문 전체</label>
+            <label for="chkall" class="sr-only">주문 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col" id="th_ordnum" rowspan="2" colspan="2"><a href="<?php echo title_sort("od_id", 1)."&amp;$qstr1"; ?>">주문번호</a></th>
@@ -357,7 +357,7 @@ if( function_exists('pg_setting_check') ){
     <tr class="orderlist<?php echo ' '.$bg; ?>">
         <td rowspan="3" class="td_chk">
             <input type="hidden" name="od_id[<?php echo $i ?>]" value="<?php echo $row['od_id'] ?>" id="od_id_<?php echo $i ?>">
-            <label for="chk_<?php echo $i; ?>" class="sound_only">주문번호 <?php echo $row['od_id']; ?></label>
+            <label for="chk_<?php echo $i; ?>" class="sr-only">주문번호 <?php echo $row['od_id']; ?></label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
         </td>
         <td headers="th_ordnum" class="td_odrnum2" rowspan="2" colspan="2">
@@ -374,7 +374,7 @@ if( function_exists('pg_setting_check') ){
         <td rowspan="3" class="td_num_right"><?php echo number_format($row['couponprice']); ?></td>
         <td rowspan="3" class="td_num_right"><?php echo number_format($row['od_misu']); ?></td>
         <td rowspan="3" class="td_mng td_mng_s">
-            <a href="./orderform.php?od_id=<?php echo $row['od_id']; ?>&amp;<?php echo $qstr; ?>" class="mng_mod btn btn_02"><span class="sound_only"><?php echo $row['od_id']; ?> </span>보기</a>
+            <a href="./orderform.php?od_id=<?php echo $row['od_id']; ?>&amp;<?php echo $qstr; ?>" class="mng_mod btn btn_02"><span class="sr-only"><?php echo $row['od_id']; ?> </span>보기</a>
         </td>
     </tr>
     <tr class="<?php echo $bg; ?>">

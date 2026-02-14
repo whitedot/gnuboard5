@@ -13,7 +13,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
     <?php echo $group_select ?>
     <script>document.getElementById("gr_id").value = "<?php echo $gr_id ?>";</script>
 
-    <label for="sfl" class="sound_only">검색조건</label>
+    <label for="sfl" class="sr-only">검색조건</label>
     <select name="sfl" id="sfl">
         <option value="wr_subject||wr_content"<?php echo get_selected($sfl, "wr_subject||wr_content") ?>>제목+내용</option>
         <option value="wr_subject"<?php echo get_selected($sfl, "wr_subject") ?>>제목</option>
@@ -22,7 +22,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         <option value="wr_name"<?php echo get_selected($sfl, "wr_name") ?>>이름</option>
     </select>
 
-    <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+    <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
     <span class="sch_wr">
         <input type="text" name="stx" value="<?php echo $text_stx ?>" id="stx" required class="frm_input" size="40">
         <button type="submit" class="btn_submit"><i class="fa fa-search" aria-hidden="true"></i> 검색</button>
@@ -115,7 +115,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         for ($i=0; $i<count($list[$idx]) && $k<$rows; $i++, $k++) {
             if ($list[$idx][$i]['wr_is_comment'])
             {
-                $comment_def = '<span class="cmt_def"><i class="fa fa-commenting-o" aria-hidden="true"></i><span class="sound_only">댓글</span></span> ';
+                $comment_def = '<span class="cmt_def"><i class="fa fa-commenting-o" aria-hidden="true"></i><span class="sr-only">댓글</span></span> ';
                 $comment_href = '#c_'.$list[$idx][$i]['wr_id'];
             }
             else
@@ -128,7 +128,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
             <li>
                 <div class="sch_tit">
                     <a href="<?php echo $list[$idx][$i]['href'] ?><?php echo $comment_href ?>" class="sch_res_title"><?php echo $comment_def ?><?php echo $list[$idx][$i]['subject'] ?></a>
-                    <a href="<?php echo $list[$idx][$i]['href'] ?><?php echo $comment_href ?>" target="_blank" class="pop_a"><i class="fa fa-window-restore" aria-hidden="true"></i><span class="sound_only">새창</span></a>
+                    <a href="<?php echo $list[$idx][$i]['href'] ?><?php echo $comment_href ?>" target="_blank" class="pop_a"><i class="fa fa-window-restore" aria-hidden="true"></i><span class="sr-only">새창</span></a>
                 </div>
                 <p><?php echo $list[$idx][$i]['content'] ?></p>
                 <div class="sch_info">

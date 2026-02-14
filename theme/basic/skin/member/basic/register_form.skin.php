@@ -31,7 +31,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	            <li>
 	                <label for="reg_mb_id">
 	                	아이디 (필수)
-	                	<button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sound_only">설명보기</span></button>
+	                	<button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">설명보기</span></button>
 						<span class="tooltip">영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요.</span>
 	                </label>
 	                <input type="text" name="mb_id" value="<?php echo $member['mb_id'] ?>" id="reg_mb_id" <?php echo $required ?> <?php echo $readonly ?> class="frm_input full_input <?php echo $required ?> <?php echo $readonly ?>" minlength="3" maxlength="20" placeholder="아이디">
@@ -103,7 +103,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	            <li>
 	                <label for="reg_mb_nick">
 	                	닉네임 (필수)
-	                	<button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sound_only">설명보기</span></button>
+	                	<button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">설명보기</span></button>
 						<span class="tooltip">공백없이 한글,영문,숫자만 입력 가능 (한글2자, 영문4자 이상)<br> 닉네임을 바꾸시면 앞으로 <?php echo (int)$config['cf_nick_modify'] ?>일 이내에는 변경 할 수 없습니다.</span>
 	                </label>
 	                
@@ -117,7 +117,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	                <label for="reg_mb_email">E-mail (필수)
 	                
 	                <?php if ($config['cf_use_email_certify']) {  ?>
-	                <button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sound_only">설명보기</span></button>
+	                <button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">설명보기</span></button>
 					<span class="tooltip">
 	                    <?php if ($w=='') { echo "E-mail 로 발송된 내용을 확인한 후 인증하셔야 회원가입이 완료됩니다."; }  ?>
 	                    <?php if ($w=='u') { echo "E-mail 주소를 변경하시면 다시 인증하셔야 합니다."; }  ?>
@@ -157,16 +157,16 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	            <li>
 	            	<label>주소</label>
 					<?php if ($config['cf_req_addr']) { ?> (필수)<?php }  ?>
-	                <label for="reg_mb_zip" class="sound_only">우편번호<?php echo $config['cf_req_addr']?' (필수)':''; ?></label>
+	                <label for="reg_mb_zip" class="sr-only">우편번호<?php echo $config['cf_req_addr']?' (필수)':''; ?></label>
 	                <input type="text" name="mb_zip" value="<?php echo $member['mb_zip1'].$member['mb_zip2']; ?>" id="reg_mb_zip" <?php echo $config['cf_req_addr']?"required":""; ?> class="frm_input twopart_input <?php echo $config['cf_req_addr']?"required":""; ?>" size="5" maxlength="6"  placeholder="우편번호">
 	                <button type="button" class="btn_frmline" onclick="win_zip('fregisterform', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon');">주소 검색</button><br>
 	                <input type="text" name="mb_addr1" value="<?php echo get_text($member['mb_addr1']) ?>" id="reg_mb_addr1" <?php echo $config['cf_req_addr']?"required":""; ?> class="frm_input frm_address full_input <?php echo $config['cf_req_addr']?"required":""; ?>" size="50"  placeholder="기본주소">
-	                <label for="reg_mb_addr1" class="sound_only">기본주소<?php echo $config['cf_req_addr']?' (필수)':''; ?></label><br>
+	                <label for="reg_mb_addr1" class="sr-only">기본주소<?php echo $config['cf_req_addr']?' (필수)':''; ?></label><br>
 	                <input type="text" name="mb_addr2" value="<?php echo get_text($member['mb_addr2']) ?>" id="reg_mb_addr2" class="frm_input frm_address full_input" size="50" placeholder="상세주소">
-	                <label for="reg_mb_addr2" class="sound_only">상세주소</label>
+	                <label for="reg_mb_addr2" class="sr-only">상세주소</label>
 	                <br>
 	                <input type="text" name="mb_addr3" value="<?php echo get_text($member['mb_addr3']) ?>" id="reg_mb_addr3" class="frm_input frm_address full_input" size="50" readonly="readonly" placeholder="참고항목">
-	                <label for="reg_mb_addr3" class="sound_only">참고항목</label>
+	                <label for="reg_mb_addr3" class="sr-only">참고항목</label>
 	                <input type="hidden" name="mb_addr_jibeon" value="<?php echo get_text($member['mb_addr_jibeon']); ?>">
 	            </li>
 	            <?php }  ?>
@@ -194,7 +194,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	            <li>
 	                <label for="reg_mb_icon" class="frm_label">
 	                	회원아이콘
-	                	<button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sound_only">설명보기</span></button>
+	                	<button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">설명보기</span></button>
 	                	<span class="tooltip">이미지 크기는 가로 <?php echo $config['cf_member_icon_width'] ?>픽셀, 세로 <?php echo $config['cf_member_icon_height'] ?>픽셀 이하로 해주세요.<br>
 gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_member_icon_size']) ?>바이트 이하만 등록됩니다.</span>
 	                </label>
@@ -213,7 +213,7 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	            <li class="reg_mb_img_file">
 	                <label for="reg_mb_img" class="frm_label">
 	                	회원이미지
-	                	<button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sound_only">설명보기</span></button>
+	                	<button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">설명보기</span></button>
 	                	<span class="tooltip">이미지 크기는 가로 <?php echo $config['cf_member_img_width'] ?>픽셀, 세로 <?php echo $config['cf_member_img_height'] ?>픽셀 이하로 해주세요.<br>
 	                    gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_member_img_size']) ?>바이트 이하만 등록됩니다.</span>
 	                </label>
@@ -233,10 +233,10 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 		            <input type="checkbox" name="mb_open" value="1" id="reg_mb_open" <?php echo ($w=='' || $member['mb_open'])?'checked':''; ?> class="selec_chk">
 		      		<label for="reg_mb_open">
 		      			<span></span>
-		      			<b class="sound_only">정보공개</b>
+		      			<b class="sr-only">정보공개</b>
 		      		</label>      
 		            <span class="chk_li">다른분들이 나의 정보를 볼 수 있도록 합니다.</span>
-		            <button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sound_only">설명보기</span></button>
+		            <button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">설명보기</span></button>
 		            <span class="tooltip">
 		                정보공개를 바꾸시면 앞으로 <?php echo (int)$config['cf_open_modify'] ?>일 이내에는 변경이 안됩니다.
 		            </span>
@@ -246,7 +246,7 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	            <li>
 	                정보공개
 	                <input type="hidden" name="mb_open" value="<?php echo $member['mb_open'] ?>">
-	                <button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sound_only">설명보기</span></button>
+	                <button type="button" class="tooltip_icon"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span class="sr-only">설명보기</span></button>
 	                <span class="tooltip">
 	                    정보공개는 수정후 <?php echo (int)$config['cf_open_modify'] ?>일 이내, <?php echo date("Y년 m월 j일", isset($member['mb_open_date']) ? strtotime("{$member['mb_open_date']} 00:00:00")+$config['cf_open_modify']*86400:G5_SERVER_TIME+$config['cf_open_modify']*86400); ?> 까지는 변경이 안됩니다.<br>
 	                    이렇게 하는 이유는 잦은 정보공개 수정으로 인하여 쪽지를 보낸 후 받지 않는 경우를 막기 위해서 입니다.
@@ -264,7 +264,7 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	            
 	            <?php if ($w == "" && $config['cf_use_recommend']) {  ?>
 	            <li>
-	                <label for="reg_mb_recommend" class="sound_only">추천인아이디</label>
+	                <label for="reg_mb_recommend" class="sr-only">추천인아이디</label>
 	                <input type="text" name="mb_recommend" id="reg_mb_recommend" class="frm_input" placeholder="추천인아이디">
 	            </li>
 	            <?php }  ?>
@@ -281,12 +281,12 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 				<li class="chk_box">
 					<div class="consent-line">
 						<input type="checkbox" name="mb_marketing_agree" value="1" id="reg_mb_marketing_agree" aria-describedby="desc_marketing" <?php echo $member['mb_marketing_agree'] ? 'checked' : ''; ?> class="selec_chk marketing-sync">
-						<label for="reg_mb_marketing_agree"><span></span><b class="sound_only">(선택) 마케팅 목적의 개인정보 수집 및 이용</b></label>
+						<label for="reg_mb_marketing_agree"><span></span><b class="sr-only">(선택) 마케팅 목적의 개인정보 수집 및 이용</b></label>
 						<span class="chk_li">(선택) 마케팅 목적의 개인정보 수집 및 이용</span>
 						<button type="button" class="js-open-consent" data-title="마케팅 목적의 개인정보 수집 및 이용" data-template="#tpl_marketing" data-check="#reg_mb_marketing_agree" aria-controls="consentDialog">자세히보기</button>
 					</div>
 					<input type="hidden" name="mb_marketing_agree_default" value="<?php echo $member['mb_marketing_agree'] ?>">
-					<div id="desc_marketing" class="sound_only">마케팅 목적의 개인정보 수집·이용에 대한 안내입니다. 자세히보기를 눌러 전문을 확인할 수 있습니다.</div>
+					<div id="desc_marketing" class="sr-only">마케팅 목적의 개인정보 수집·이용에 대한 안내입니다. 자세히보기를 눌러 전문을 확인할 수 있습니다.</div>
 					<div class="consent-date"><?php if ($member['mb_marketing_agree'] == 1 && $member['mb_marketing_date'] != "0000-00-00 00:00:00") echo "(동의일자: ".$member['mb_marketing_date'].")"; ?></div>
 
 					<template id="tpl_marketing">
@@ -301,18 +301,18 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 				<li class="chk_box consent-group">
 				<div class="consent-line">
 					<input type="checkbox" name="mb_promotion_agree" value="1" id="reg_mb_promotion_agree" aria-describedby="desc_promotion" class="selec_chk marketing-sync parent-promo">
-					<label for="reg_mb_promotion_agree"><span></span><b class="sound_only">(선택) 광고성 정보 수신 동의</b></label>
+					<label for="reg_mb_promotion_agree"><span></span><b class="sr-only">(선택) 광고성 정보 수신 동의</b></label>
 					<span class="chk_li">(선택) 광고성 정보 수신 동의</span>
 					<button type="button" class="js-open-consent" data-title="광고성 정보 수신 동의" data-template="#tpl_promotion" data-check="#reg_mb_promotion_agree" data-check-group=".child-promo" aria-controls="consentDialog">자세히보기</button>
 				</div>
 				
-				<div id="desc_promotion" class="sound_only">광고성 정보(이메일/SMS·카카오톡) 수신 동의의 상위 항목입니다. 자세히보기를 눌러 전문을 확인할 수 있습니다.</div>
+				<div id="desc_promotion" class="sr-only">광고성 정보(이메일/SMS·카카오톡) 수신 동의의 상위 항목입니다. 자세히보기를 눌러 전문을 확인할 수 있습니다.</div>
 
 				<!-- 하위 채널(이메일/SMS) -->
 				<ul class="sub-consents">
 					<li class="chk_box is-inline">
 						<input type="checkbox" name="mb_mailling" value="1" id="reg_mb_mailling" <?php echo $member['mb_mailling'] ? 'checked' : ''; ?> class="selec_chk child-promo">
-						<label for="reg_mb_mailling"><span></span><b class="sound_only">광고성 이메일 수신 동의</b></label>
+						<label for="reg_mb_mailling"><span></span><b class="sr-only">광고성 이메일 수신 동의</b></label>
 						<span class="chk_li">광고성 이메일 수신 동의</span>
 						<input type="hidden" name="mb_mailling_default" value="<?php echo $member['mb_mailling']; ?>">
 						<div class="consent-date"><?php if ($w == 'u' && $member['mb_mailling'] == 1 && $member['mb_mailling_date'] != "0000-00-00 00:00:00") echo " (동의일자: ".$member['mb_mailling_date'].")"; ?></div>
@@ -322,7 +322,7 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 					<?php if ($config['cf_use_hp'] || $config['cf_req_hp']) { ?>
 					<li class="chk_box is-inline">
 						<input type="checkbox" name="mb_sms" value="1" id="reg_mb_sms" <?php echo $member['mb_sms'] ? 'checked' : ''; ?> class="selec_chk child-promo">
-						<label for="reg_mb_sms"><span></span><b class="sound_only">광고성 SMS/카카오톡 수신 동의</b></label>
+						<label for="reg_mb_sms"><span></span><b class="sr-only">광고성 SMS/카카오톡 수신 동의</b></label>
 						<span class="chk_li">광고성 SMS/카카오톡 수신 동의</span>
 						<input type="hidden" name="mb_sms_default" value="<?php echo $member['mb_sms']; ?>">
 						<div class="consent-date"><?php if ($w == 'u' && $member['mb_sms'] == 1 && $member['mb_sms_date'] != "0000-00-00 00:00:00") echo " (동의일자: ".$member['mb_sms_date'].")"; ?></div>
@@ -353,12 +353,12 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 				<li class="chk_box">
 				<div class="consent-line">
 					<input type="checkbox" name="mb_thirdparty_agree" value="1" id="reg_mb_thirdparty_agree" aria-describedby="desc_thirdparty" <?php echo $member['mb_thirdparty_agree'] ? 'checked' : ''; ?> class="selec_chk marketing-sync">
-					<label for="reg_mb_thirdparty_agree"><span></span><b class="sound_only">(선택) 개인정보 제3자 제공 동의</b></label>
+					<label for="reg_mb_thirdparty_agree"><span></span><b class="sr-only">(선택) 개인정보 제3자 제공 동의</b></label>
 					<span class="chk_li">(선택) 개인정보 제3자 제공 동의</span>
 					<button type="button" class="js-open-consent" data-title="개인정보 제3자 제공 동의" data-template="#tpl_thirdparty" data-check="#reg_mb_thirdparty_agree" aria-controls="consentDialog">자세히보기</button>
 				</div>
 				<input type="hidden" name="mb_thirdparty_agree_default" value="<?php echo $member['mb_thirdparty_agree'] ?>">
-				<div id="desc_thirdparty" class="sound_only">개인정보 제3자 제공 동의에 대한 안내입니다. 자세히보기를 눌러 전문을 확인할 수 있습니다.</div>
+				<div id="desc_thirdparty" class="sr-only">개인정보 제3자 제공 동의에 대한 안내입니다. 자세히보기를 눌러 전문을 확인할 수 있습니다.</div>
 				<div class="consent-date"><?php if ($member['mb_thirdparty_agree'] == 1 && $member['mb_thirdparty_date'] != "0000-00-00 00:00:00") echo "(동의일자: ".$member['mb_thirdparty_date'].")"; ?></div>
 
 				<template id="tpl_thirdparty">

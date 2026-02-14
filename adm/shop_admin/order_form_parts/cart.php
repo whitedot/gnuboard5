@@ -33,7 +33,7 @@
         <tr>
             <th scope="col">상품명</th>
             <th scope="col">
-                <label for="sit_select_all" class="sound_only">주문 상품 전체</label>
+                <label for="sit_select_all" class="sr-only">주문 상품 전체</label>
                 <input type="checkbox" id="sit_select_all">
             </th>
             <th scope="col">옵션항목</th>
@@ -111,19 +111,19 @@
                     <?php if($od['od_tax_flag'] && $row['ct_notax']) echo '[비과세상품]'; ?>
                 </td>
                 <td rowspan="<?php echo $rowspan; ?>" class="td_chk">
-                    <label for="sit_sel_<?php echo $i; ?>" class="sound_only"><?php echo $row['it_name']; ?> 옵션 전체선택</label>
+                    <label for="sit_sel_<?php echo $i; ?>" class="sr-only"><?php echo $row['it_name']; ?> 옵션 전체선택</label>
                     <input type="checkbox" id="sit_sel_<?php echo $i; ?>" name="it_sel[]">
                 </td>
                 <?php } ?>
                 <td class="td_left">
-                    <label for="ct_chk_<?php echo $chk_cnt; ?>" class="sound_only"><?php echo get_text($opt['ct_option']); ?></label>
+                    <label for="ct_chk_<?php echo $chk_cnt; ?>" class="sr-only"><?php echo get_text($opt['ct_option']); ?></label>
                     <input type="checkbox" name="ct_chk[<?php echo $chk_cnt; ?>]" id="ct_chk_<?php echo $chk_cnt; ?>" value="<?php echo $chk_cnt; ?>" class="sct_sel_<?php echo $i; ?>">
                     <input type="hidden" name="ct_id[<?php echo $chk_cnt; ?>]" value="<?php echo $opt['ct_id']; ?>">
                     <?php echo get_text($opt['ct_option']); ?>
                 </td>
                 <td class="td_mngsmall"><?php echo $opt['ct_status']; ?></td>
                 <td class="td_num">
-                    <label for="ct_qty_<?php echo $chk_cnt; ?>" class="sound_only"><?php echo get_text($opt['ct_option']); ?> 수량</label>
+                    <label for="ct_qty_<?php echo $chk_cnt; ?>" class="sr-only"><?php echo get_text($opt['ct_option']); ?> 수량</label>
                     <input type="text" name="ct_qty[<?php echo $chk_cnt; ?>]" id="ct_qty_<?php echo $chk_cnt; ?>" value="<?php echo $opt['ct_qty']; ?>" required class="frm_input required" size="5">
                 </td>
                 <td class="td_num_right "><?php echo number_format($opt_price); ?></td>

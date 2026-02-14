@@ -56,7 +56,7 @@ if(defined('G5_THEME_PATH')) {
     <div id="ft_copy">Copyright &copy; <b>소유하신 도메인.</b> All rights reserved.</div>
 
     <button type="button" id="top_btn">
-    	<i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sound_only">상단으로</span>
+    	<i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sr-only">상단으로</span>
     </button>
     <script>
     $(function() {

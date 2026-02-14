@@ -31,9 +31,9 @@ if ($is_checkbox) $colspan++;
 
         <?php if ($admin_href || $write_href) { ?>
         <ul class="btn_bo_user">
-        	<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a></li><?php } ?>
+        	<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sr-only">관리자</span></a></li><?php } ?>
         	<li>
-        		<button type="button" class="btn_bo_sch btn_b01 btn" title="게시판 검색"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">게시판 검색</span></button>
+        		<button type="button" class="btn_bo_sch btn_b01 btn" title="게시판 검색"><i class="fa fa-search" aria-hidden="true"></i><span class="sr-only">게시판 검색</span></button>
 				<!-- 게시판 검색 시작 { -->
 			    <div class="bo_sch_wrap">
 				    <fieldset class="bo_sch">
@@ -42,16 +42,16 @@ if ($is_checkbox) $colspan++;
 				        <form name="fsearch" method="get">
 				        <input type="hidden" name="sca" value="<?php echo $sca ?>">
                         <input type="hidden" name="sop" value="and">
-                        <label for="sfl" class="sound_only">검색대상</label>
+                        <label for="sfl" class="sr-only">검색대상</label>
                         <select name="sfl" id="sfl">
                             <?php echo get_qa_sfl_select_options($sfl); ?>
                         </select>
-				        <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+				        <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
 				        <div class="sch_bar">
 				       		<input type="text" name="stx" value="<?php echo stripslashes($stx); ?>" id="stx" required class="sch_input" size="25" maxlength="15" placeholder=" 검색어를 입력해주세요">
-							<button type="submit" value="검색" class="sch_btn" title="검색"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">검색</span></button>
+							<button type="submit" value="검색" class="sch_btn" title="검색"><i class="fa fa-search" aria-hidden="true"></i><span class="sr-only">검색</span></button>
 				        </div>
-				        <button type="button" class="bo_sch_cls"><i class="fa fa-times" aria-hidden="true"></i><span class="sound_only">닫기</span></button>
+				        <button type="button" class="bo_sch_cls"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">닫기</span></button>
 				        </form>
 				    </fieldset>
 			    	<div class="bo_sch_bg"></div>
@@ -67,7 +67,7 @@ if ($is_checkbox) $colspan++;
 				</script>
 			    <!-- } 게시판 검색 끝 -->
 			</li>
-            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn" title="문의등록"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">문의등록</span></a></li><?php } ?>
+            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn" title="문의등록"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">문의등록</span></a></li><?php } ?>
         </ul>
         <?php } ?>
     </div>
@@ -89,7 +89,7 @@ if ($is_checkbox) $colspan++;
                 <input type="checkbox" id="chkall" onclick="if (this.checked) all_checked(true); else all_checked(false);" class="selec_chk">
             	<label for="chkall">
                 	<span></span>
-                	<b class="sound_only">현재 페이지 게시물  전체선택</b>
+                	<b class="sr-only">현재 페이지 게시물  전체선택</b>
                 </label>
             </th>
             <?php } ?>
@@ -112,7 +112,7 @@ if ($is_checkbox) $colspan++;
             	<input type="checkbox" name="chk_qa_id[]" value="<?php echo $list[$i]['qa_id'] ?>" id="chk_qa_id_<?php echo $i ?>" class="selec_chk">
                 <label for="chk_qa_id_<?php echo $i ?>">
             		<span></span>
-            		<b class="sound_only"><?php echo $list[$i]['subject'] ?></b>
+            		<b class="sr-only"><?php echo $list[$i]['subject'] ?></b>
             	</label>
             </td>
             <?php } ?>
@@ -143,10 +143,10 @@ if ($is_checkbox) $colspan++;
     <div class="bo_fx">
         <ul class="btn_bo_user">
         	<?php if ($is_checkbox) { ?>
-            <li><button type="submit" name="btn_submit" value="선택삭제" title="선택삭제" onclick="document.pressed=this.value" class="btn btn_b01 btn_admin"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="sound_only">선택삭제</span></button></li>
+            <li><button type="submit" name="btn_submit" value="선택삭제" title="선택삭제" onclick="document.pressed=this.value" class="btn btn_b01 btn_admin"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="sr-only">선택삭제</span></button></li>
             <?php } ?>
-            <?php if ($list_href) { ?><li><a href="<?php echo $list_href ?>" class="btn_b01 btn" title="목록"><i class="fa fa-list" aria-hidden="true"></i><span class="sound_only">목록</span></a></li><?php } ?>
-            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn" title="문의등록"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">문의등록</span></a></li><?php } ?>
+            <?php if ($list_href) { ?><li><a href="<?php echo $list_href ?>" class="btn_b01 btn" title="목록"><i class="fa fa-list" aria-hidden="true"></i><span class="sr-only">목록</span></a></li><?php } ?>
+            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn" title="문의등록"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">문의등록</span></a></li><?php } ?>
         </ul>
     </div>
     </form>

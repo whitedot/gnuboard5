@@ -17,15 +17,15 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <div class="new_win_con form_01">
         <ul>
             <li>
-                <label for="is_subject" class="sound_only">제목<strong> 필수</strong></label>
+                <label for="is_subject" class="sr-only">제목<strong> 필수</strong></label>
                 <input type="text" name="is_subject" value="<?php echo get_text($use['is_subject']); ?>" id="is_subject" required class="required frm_input full_input"  maxlength="250" placeholder="제목">
             </li>
             <li>
-                <strong  class="sound_only">내용</strong>
+                <strong  class="sr-only">내용</strong>
                 <?php echo $editor_html; ?>
             </li>
             <li>
-                <span class="sound_only">평점</span>
+                <span class="sr-only">평점</span>
                 <ul id="sit_use_write_star" class="chk_box">
                     <li>
                         <input type="radio" name="is_score" value="5" id="is_score5" <?php echo ($is_score==5)?'checked="checked"':''; ?>>

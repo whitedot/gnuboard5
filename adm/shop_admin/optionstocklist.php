@@ -74,7 +74,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 <input type="hidden" name="sort2" value="<?php echo get_sanitize_input($sort2); ?>">
 <input type="hidden" name="page" value="<?php echo get_sanitize_input($page); ?>">
 
-<label for="sel_ca_id" class="sound_only">분류선택</label>
+<label for="sel_ca_id" class="sr-only">분류선택</label>
 <select name="sel_ca_id" id="sel_ca_id">
     <option value=''>전체분류</option>
     <?php
@@ -89,13 +89,13 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     ?>
 </select>
 
-<label for="sel_field" class="sound_only">검색대상</label>
+<label for="sel_field" class="sr-only">검색대상</label>
 <select name="sel_field" id="sel_field">
     <option value="b.it_name" <?php echo get_selected($sel_field, 'b.it_name'); ?>>상품명</option>
     <option value="a.it_id" <?php echo get_selected($sel_field, 'a.it_id'); ?>>상품코드</option>
 </select>
 
-<label for="search" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+<label for="search" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
 <input type="text" name="search" id="search" value="<?php echo $search; ?>" required class="frm_input required">
 <input type="submit" value="검색" class="btn_submit">
 
@@ -170,7 +170,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         $io_stock_qty_st = ''; // 스타일 정의
         if($row['io_stock_qty'] <= $row['io_noti_qty']) {
             $io_stock_qty_st = ' sit_stock_qty_alert';
-            $io_stock_qty = ''.$io_stock_qty.' !<span class="sound_only"> 재고부족 </span>';
+            $io_stock_qty = ''.$io_stock_qty.' !<span class="sr-only"> 재고부족 </span>';
         }
 
         $bg = 'bg'.($i%2);
@@ -188,15 +188,15 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         <td class="td_num"><?php echo number_format($wait_qty); ?></td>
         <td class="td_num"><?php echo number_format($temporary_qty); ?></td>
         <td class="td_num">
-            <label for="stock_qty_<?php echo $i; ?>" class="sound_only">재고수정</label>
+            <label for="stock_qty_<?php echo $i; ?>" class="sr-only">재고수정</label>
             <input type="text" name="io_stock_qty[<?php echo $i; ?>]" value="<?php echo $row['io_stock_qty']; ?>" id="stock_qty_<?php echo $i; ?>" class="frm_input" size="8" autocomplete="off">
         </td>
         <td class="td_num">
-            <label for="noti_qty_<?php echo $i; ?>" class="sound_only">통보수량</label>
+            <label for="noti_qty_<?php echo $i; ?>" class="sr-only">통보수량</label>
             <input type="text" name="io_noti_qty[<?php echo $i; ?>]" value="<?php echo $row['io_noti_qty']; ?>" id="noti_qty_<?php echo $i; ?>" class="frm_input" size="8" autocomplete="off">
         </td>
         <td class="td_chk2">
-            <label for="use_<?php echo $i; ?>" class="sound_only">판매</label>
+            <label for="use_<?php echo $i; ?>" class="sr-only">판매</label>
             <input type="checkbox" name="io_use[<?php echo $i; ?>]" value="1" id="use_<?php echo $i; ?>" <?php echo ($row['io_use'] ? "checked" : ""); ?>>
         </td>
         <td class="td_mng td_mng_s"><a href="./itemform.php?w=u&amp;it_id=<?php echo $row['it_id']; ?>&amp;ca_id=<?php echo $row['ca_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03">수정</a></td>
@@ -221,7 +221,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 <div class="local_desc01 local_desc">
     <p>
         재고수정의 수치를 수정하시면 창고재고의 수치가 변경됩니다.<br>
-        창고재고가 부족한 경우 재고수량 뒤에 <span class="sit_stock_qty_alert">!</span><span class="sound_only"> 혹은 재고부족</span>으로 표시됩니다.
+        창고재고가 부족한 경우 재고수량 뒤에 <span class="sit_stock_qty_alert">!</span><span class="sr-only"> 혹은 재고부족</span>으로 표시됩니다.
     </p>
 </div>
 

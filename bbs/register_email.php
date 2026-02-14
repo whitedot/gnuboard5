@@ -33,7 +33,7 @@ if(!$ckey || $ckey != $key)
     <table>
     <caption>사이트 이용정보 입력</caption>
     <tr>
-        <th scope="row"><label for="reg_mb_email">E-mail<strong class="sound_only">필수</strong></label></th>
+        <th scope="row"><label for="reg_mb_email">E-mail<strong class="sr-only">필수</strong></label></th>
         <td><input type="text" name="mb_email" id="reg_mb_email" required class="frm_input email required" size="30" maxlength="100" value="<?php echo $mb['mb_email']; ?>"></td>
     </tr>
     <tr>

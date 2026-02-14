@@ -29,7 +29,7 @@ $cart_action_url = G5_SHOP_URL.'/cartupdate.php';
 		echo number_format($row['ct_price']).PHP_EOL;
         echo '</span>'.PHP_EOL;
 		echo '</div>';
-		echo '<button class="cart_del" type="button" data-it_id="'.$row['it_id'].'"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="sound_only">삭제</span></button>'.PHP_EOL;
+		echo '<button class="cart_del" type="button" data-it_id="'.$row['it_id'].'"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="sr-only">삭제</span></button>'.PHP_EOL;
         echo '</li>';
 
         echo '<input type="hidden" name="act" value="buy">';

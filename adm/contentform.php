@@ -70,7 +70,7 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                     <td><?php echo editor_html('co_content', get_text(html_purifier($co['co_content']), 0)); ?></td>
                 </tr>
                 <tr>
-                    <th scope="row"><label for="co_skin">스킨 디렉토리<strong class="sound_only">필수</strong></label></th>
+                    <th scope="row"><label for="co_skin">스킨 디렉토리<strong class="sr-only">필수</strong></label></th>
                     <td>
                         <?php echo get_skin_select('content', 'co_skin', 'co_skin', $co['co_skin'], 'required'); ?>
                     </td>

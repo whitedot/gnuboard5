@@ -18,24 +18,24 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <?php }  ?>
 
     <div class="form_01 new_win_con">
-        <h2 class="sound_only">메일쓰기</h2>
+        <h2 class="sr-only">메일쓰기</h2>
         <ul>
             <?php if (!$is_member) {  ?>
             <li>
-                <label for="fnick" class="sound_only">이름<strong>필수</strong></label>
+                <label for="fnick" class="sr-only">이름<strong>필수</strong></label>
                 <input type="text" name="fnick" id="fnick" required class="frm_input full_input required" placeholder="이름">
             </li>
             <li>
-                <label for="fmail" class="sound_only">E-mail<strong>필수</strong></label>
+                <label for="fmail" class="sr-only">E-mail<strong>필수</strong></label>
                 <input type="text" name="fmail"  id="fmail" required class="frm_input full_input required" placeholder="E-mail">
             </li>
             <?php }  ?>
             <li>
-                <label for="subject" class="sound_only">제목<strong>필수</strong></label>
+                <label for="subject" class="sr-only">제목<strong>필수</strong></label>
                 <input type="text" name="subject" id="subject" required class="frm_input full_input required"  placeholder="제목">
             </li>
             <li class="chk_box">
-                <span class="sound_only">형식</span>
+                <span class="sr-only">형식</span>
                 <input type="radio" name="type" value="0" id="type_text" checked>
                 <label for="type_text"><span></span>TEXT</label>
                 
@@ -46,24 +46,24 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 <label for="type_both"><span></span>TEXT+HTML</label>
             </li>
             <li>
-                <label for="content" class="sound_only">내용<strong>필수</strong></label>
+                <label for="content" class="sr-only">내용<strong>필수</strong></label>
                 <textarea name="content" id="content" required class="required"></textarea>
             </li>
             <li class="formmail_flie">
                 <div class="file_wr">
-                    <label for="file1" class="lb_icon"><i class="fa fa-download" aria-hidden="true"></i><span class="sound_only"> 첨부 파일 1</span></label>
+                    <label for="file1" class="lb_icon"><i class="fa fa-download" aria-hidden="true"></i><span class="sr-only"> 첨부 파일 1</span></label>
                     <input type="file" name="file1"  id="file1"  class="frm_file full_input">
                </div>
                <div class="frm_info">첨부 파일은 누락될 수 있으므로 메일을 보낸 후 파일이 첨부 되었는지 반드시 확인해 주시기 바랍니다.</div>   
             </li>
             <li class="formmail_flie">
                 <div class="file_wr">
-                    <label for="file2" class="lb_icon"><i class="fa fa-download" aria-hidden="true"></i><span class="sound_only"> 첨부 파일 2</span></label>
+                    <label for="file2" class="lb_icon"><i class="fa fa-download" aria-hidden="true"></i><span class="sr-only"> 첨부 파일 2</span></label>
                     <input type="file" name="file2" id="file2" class="frm_file full_input">
                 </div>
             </li>
             <li>
-                <span class="sound_only">자동등록방지</span>
+                <span class="sr-only">자동등록방지</span>
                 <?php echo captcha_html(); ?>
             </li>
         </ul>

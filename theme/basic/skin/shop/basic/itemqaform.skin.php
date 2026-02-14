@@ -17,28 +17,28 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <div class="form_01 new_win_con">
         <ul>
             <li class="chk_box">
-                <strong class="sound_only">옵션</strong>
+                <strong class="sr-only">옵션</strong>
                 <input type="checkbox" name="iq_secret" id="iq_secret" value="1" <?php echo $chk_secret; ?> class="selec_chk">
                 <label for="iq_secret"><span></span>비밀글</label> 
             </li>
             <li>
                 <div class="form_left">
-                    <label for="iq_email" class="sound_only">이메일</label>
+                    <label for="iq_email" class="sr-only">이메일</label>
                     <input type="text" name="iq_email" id="iq_email" value="<?php echo get_text($qa['iq_email']); ?>" class="frm_input full_input" size="30" placeholder="이메일"><br>
                     <span class="frm_info">이메일을 입력하시면 답변 등록 시 답변이 이메일로 전송됩니다.</span>
                 </div>
                 <div class="form_right">
-                    <label for="iq_hp" class="sound_only">휴대폰</label>
+                    <label for="iq_hp" class="sr-only">휴대폰</label>
                     <input type="text" name="iq_hp" id="iq_hp" value="<?php echo get_text($qa['iq_hp']); ?>" class="frm_input full_input" size="20" placeholder="휴대폰"><br>
                     <span class="frm_info">휴대폰번호를 입력하시면 답변 등록 시 답변등록 알림이 SMS로 전송됩니다.</span>
                 </div>
             </li>
             <li>
-                <label for="iq_subject" class="sound_only">제목<strong> 필수</strong></label>
+                <label for="iq_subject" class="sr-only">제목<strong> 필수</strong></label>
                 <input type="text" name="iq_subject" value="<?php echo get_text($qa['iq_subject']); ?>" id="iq_subject" required class="required frm_input" maxlength="250" placeholder="제목">
             </li>
             <li>
-                <label for="iq_question" class="sound_only">질문</label>
+                <label for="iq_question" class="sr-only">질문</label>
                 <?php echo $editor_html; ?>
             </li>
         </ul>

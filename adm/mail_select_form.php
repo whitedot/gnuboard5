@@ -96,13 +96,13 @@ require_once './admin.head.php';
                 <tr>
                     <th scope="row">권한</th>
                     <td>
-                        <label for="mb_level_from" class="sound_only">최소권한</label>
+                        <label for="mb_level_from" class="sr-only">최소권한</label>
                         <select name="mb_level_from" id="mb_level_from">
                             <?php for ($i = 1; $i <= 10; $i++) { ?>
                                 <option value="<?php echo $i ?>"><?php echo $i ?></option>
                             <?php } ?>
                         </select> 에서
-                        <label for="mb_level_to" class="sound_only">최대권한</label>
+                        <label for="mb_level_to" class="sr-only">최대권한</label>
                         <select name="mb_level_to" id="mb_level_to">
                             <?php for ($i = 1; $i <= 10; $i++) { ?>
                                 <option value="<?php echo $i ?>" <?php echo $i == 10 ? " selected" : ""; ?>><?php echo $i ?></option>

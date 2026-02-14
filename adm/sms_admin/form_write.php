@@ -44,7 +44,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
     </colgroup>
     <tbody>
     <tr>
-        <th scope="row"><label for="fg_no">그룹<strong class="sound_only"> 필수</strong></label></th>
+        <th scope="row"><label for="fg_no">그룹<strong class="sr-only"> 필수</strong></label></th>
         <td>
             <select name="fg_no" id="fg_no" required class="required">
                 <option value="0">미분류</option>
@@ -58,7 +58,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
         </td>
     </tr>
     <tr>
-        <th scope="row"><label for="fo_name">제목<strong class="sound_only"> 필수</strong></label></th>
+        <th scope="row"><label for="fo_name">제목<strong class="sr-only"> 필수</strong></label></th>
         <td><input type="text" name="fo_name" id="fo_name" required value="<?php echo get_sanitize_input($write['fo_name']); ?>" class="frm_input required" size="70"></td>
     </tr>
     <tr>

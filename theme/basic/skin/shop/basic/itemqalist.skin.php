@@ -11,7 +11,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 <form method="get" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
 <div id="sqa_sch">
-    <label for="sfl" class="sound_only">검색항목 필수</label>
+    <label for="sfl" class="sr-only">검색항목 필수</label>
     <select name="sfl" id="sfl" required>
         <option value="">선택</option>
         <option value="b.it_name"    <?php echo get_selected($sfl, "b.it_name", true); ?>>상품명</option>
@@ -22,9 +22,9 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         <option value="a.mb_id"      <?php echo get_selected($sfl, "a.mb_id"); ?>>작성자아이디</option>
     </select>
 	<div class="sch_wr">
-    	<label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+    	<label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
     	<input type="text" name="stx" value="<?php echo $stx; ?>" id="stx" required class="sch_input">
-    	<button type="submit" value="검색" class="sch_btn"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">검색</span></button>
+    	<button type="submit" value="검색" class="sch_btn"><i class="fa fa-search" aria-hidden="true"></i><span class="sr-only">검색</span></button>
     </div>
     <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>">전체보기</a>
 </div>
@@ -84,21 +84,21 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 			<span class="<?php echo $iq_style; ?>"><?php echo $iq_stats; ?></span>
 			
             <dl class="sqa_dl">
-                <dt class="sound_only">작성자</dt>
+                <dt class="sr-only">작성자</dt>
                 <dd><i class="fa fa-user" aria-hidden="true"></i> <?php echo $row['iq_name']; ?></dd>
-                <dt class="sound_only">작성일</dt>
+                <dt class="sr-only">작성일</dt>
                 <dd><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo substr($row['iq_time'],0,10); ?></dd>
             </dl>
 
             <div id="sqa_con_<?php echo $i; ?>" class="sqa_con" style="display:none;">
                 <div class="sit_qa_qaq">
-                    <strong class="sound_only">문의내용</strong>
+                    <strong class="sr-only">문의내용</strong>
                     <span class="qa_alp">Q</span>
                     <?php echo $iq_question; // 상품 문의 내용 ?>
                 </div>
                 <?php if(!$is_secret) { ?>
                 <div class="sit_qa_qaa">
-                    <strong class="sound_only">답변</strong>
+                    <strong class="sr-only">답변</strong>
                     <span class="qa_alp">A</span>
                     <?php echo $iq_answer; ?>
                 </div>

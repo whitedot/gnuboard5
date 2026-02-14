@@ -17,10 +17,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
         <form name="fmemoform" action="<?php echo $memo_action_url; ?>" onsubmit="return fmemoform_submit(this);" method="post" autocomplete="off">
         <div class="form_01">
-            <h2 class="sound_only">쪽지쓰기</h2>
+            <h2 class="sr-only">쪽지쓰기</h2>
             <ul>
                 <li>
-                    <label for="me_recv_mb_id" class="sound_only">받는 회원아이디<strong>필수</strong></label>
+                    <label for="me_recv_mb_id" class="sr-only">받는 회원아이디<strong>필수</strong></label>
                     
                     <input type="text" name="me_recv_mb_id" value="<?php echo $me_recv_mb_id; ?>" id="me_recv_mb_id" required class="frm_input full_input required" size="47" placeholder="받는 회원아이디">
                     <span class="frm_info">여러 회원에게 보낼때는 컴마(,)로 구분하세요.</span>
@@ -29,11 +29,11 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                     <?php } ?>
                 </li>
                 <li>
-                    <label for="me_memo" class="sound_only">내용</label>
+                    <label for="me_memo" class="sr-only">내용</label>
                     <textarea name="me_memo" id="me_memo" required class="required"><?php echo $content ?></textarea>
                 </li>
                 <li>
-                    <span class="sound_only">자동등록방지</span>
+                    <span class="sr-only">자동등록방지</span>
                     
                     <?php echo captcha_html(); ?>
                     

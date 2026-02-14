@@ -12,7 +12,7 @@
         </colgroup>
         <tbody>
         <tr>
-            <th scope="row"><label for="bo_count_modify">원글 수정 불가<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_count_modify">원글 수정 불가<strong class="sr-only">필수</strong></label></th>
             <td>
                  <?php echo help('댓글의 수가 설정 수 이상이면 원글을 수정할 수 없습니다. 0으로 설정하시면 댓글 수에 관계없이 수정할 수있습니다.'); ?>
                 댓글 <input type="text" name="bo_count_modify" value="<?php echo $board['bo_count_modify'] ?>" id="bo_count_modify" required class="required numeric frm_input" size="3">개 이상 달리면 수정불가
@@ -25,7 +25,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_count_delete">원글 삭제 불가<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_count_delete">원글 삭제 불가<strong class="sr-only">필수</strong></label></th>
             <td>
                 댓글 <input type="text" name="bo_count_delete" value="<?php echo $board['bo_count_delete'] ?>" id="bo_count_delete" required class="required numeric frm_input" size="3">개 이상 달리면 삭제불가
             </td>
@@ -259,7 +259,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_upload_count">파일 업로드 개수<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_upload_count">파일 업로드 개수<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('게시물 한건당 업로드 할 수 있는 파일의 최대 개수 (0 은 파일첨부 사용하지 않음)') ?>
                 <input type="text" name="bo_upload_count" value="<?php echo $board['bo_upload_count'] ?>" id="bo_upload_count" required class="required numeric frm_input" size="4">
@@ -272,7 +272,7 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_upload_size">파일 업로드 용량<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="bo_upload_size">파일 업로드 용량<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('최대 '.ini_get("upload_max_filesize").' 이하 업로드 가능, 1 MB = 1,048,576 bytes') ?>
                 업로드 파일 한개당 <input type="text" name="bo_upload_size" value="<?php echo $board['bo_upload_size'] ?>" id="bo_upload_size" required class="required numeric frm_input"  size="10"> bytes 이하

@@ -81,11 +81,11 @@ jQuery(function($){
                     opt += "<span class=\"sit_opt_subj\">"+option+"</span>";
                     opt += "</div>";
                     opt += "<div class=\"opt_count\">";
-                    opt += "<button type=\"button\" class=\"sit_qty_minus\"><i class=\"fa fa-minus\" aria-hidden=\"true\"></i><span class=\"sound_only\">감소</span></button>";
+                    opt += "<button type=\"button\" class=\"sit_qty_minus\"><i class=\"fa fa-minus\" aria-hidden=\"true\"></i><span class=\"sr-only\">감소</span></button>";
                     opt += "<input type=\"text\" name=\"ct_qty["+item_code+"][]\" value=\"1\" class=\"num_input\" size=\"5\">";
-                    opt += "<button type=\"button\" class=\"sit_qty_plus\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i><span class=\"sound_only\">증가</span></button>";
+                    opt += "<button type=\"button\" class=\"sit_qty_plus\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i><span class=\"sr-only\">증가</span></button>";
                     opt += "<span class=\"sit_opt_prc\">"+opt_prc+"</span>";
-                    opt += "<button type=\"button\" class=\"sit_opt_del\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i><span class=\"sound_only\">삭제</span></button></div>";
+                    opt += "<button type=\"button\" class=\"sit_opt_del\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i><span class=\"sr-only\">삭제</span></button></div>";
                     opt += "</li>";
 
                     if($("#sit_sel_option > ul").length < 1) {

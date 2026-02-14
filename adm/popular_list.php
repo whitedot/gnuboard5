@@ -79,12 +79,12 @@ $colspan = 4;
 
 <form name="fsearch" id="fsearch" class="local_sch01 local_sch" method="get">
     <div class="sch_last">
-        <label for="sfl" class="sound_only">검색대상</label>
+        <label for="sfl" class="sr-only">검색대상</label>
         <select name="sfl" id="sfl">
             <option value="pp_word" <?php echo get_selected($sfl, "pp_word"); ?>>검색어</option>
             <option value="pp_date" <?php echo get_selected($sfl, "pp_date"); ?>>등록일</option>
         </select>
-        <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+        <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
         <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
         <input type="submit" value="검색" class="btn_submit">
     </div>
@@ -104,7 +104,7 @@ $colspan = 4;
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall" class="sound_only">현재 페이지 인기검색어 전체</label>
+                        <label for="chkall" class="sr-only">현재 페이지 인기검색어 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col"><?php echo subject_sort_link('pp_word') ?>검색어</a></th>
@@ -120,7 +120,7 @@ $colspan = 4;
                 ?>
                     <tr class="<?php echo $bg; ?>">
                         <td class="td_chk">
-                            <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo $word ?></label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $word ?></label>
                             <input type="checkbox" name="chk[]" value="<?php echo $row['pp_id'] ?>" id="chk_<?php echo $i ?>">
                         </td>
                         <td class="td_left"><a href="<?php echo $_SERVER['SCRIPT_NAME'] ?>?sfl=pp_word&amp;stx=<?php echo $word ?>"><?php echo $word ?></a></td>

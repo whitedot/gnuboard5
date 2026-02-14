@@ -19,7 +19,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
     	<li><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=register_form.php" >정보수정</a></li>
         <li><a href="<?php echo G5_BBS_URL ?>/point.php" target="_blank" class="win_point">포인트<strong><?php echo $point ?></strong></a></li>
         <li><a href="<?php echo G5_SHOP_URL ?>/coupon.php" target="_blank" class="win_coupon">쿠폰<strong><?php echo number_format(get_shop_member_coupon_count($member['mb_id'], true)); ?></strong></a></li>
-        <li><a href="<?php echo G5_BBS_URL ?>/memo.php" target="_blank" class="win_memo"><span class="sound_only">안 읽은</span>쪽지<strong><?php echo $memo_not_read ?></strong></a></li>
+        <li><a href="<?php echo G5_BBS_URL ?>/memo.php" target="_blank" class="win_memo"><span class="sr-only">안 읽은</span>쪽지<strong><?php echo $memo_not_read ?></strong></a></li>
         <li><a href="<?php echo G5_SHOP_URL; ?>/mypage.php">마이페이지</a></li>
         <li>
         	<?php if ($is_admin == 'super' || $is_auth) {  ?>

@@ -20,6 +20,19 @@ $g5_head_title = strip_tags($g5_head_title);
 <html lang="ko">
 <head>
 <meta charset="utf-8">
+<script>
+(function () {
+    var key = 'g5_admin_theme';
+    var saved = null;
+    try {
+        saved = localStorage.getItem(key);
+    } catch (e) {
+        saved = null;
+    }
+    var dark = saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+})();
+</script>
 <?php
 if (G5_IS_MOBILE) {
     echo '<meta name="viewport" id="meta_viewport" content="width=device-width,initial-scale=1.0">'.PHP_EOL;
@@ -52,6 +65,7 @@ var g5_admin_url = "<?php echo G5_ADMIN_URL; ?>";
 add_javascript('<script src="'.G5_JS_URL.'/jquery-1.12.4.min.js"></script>', 0);
 add_javascript('<script src="'.G5_JS_URL.'/jquery-migrate-1.4.1.min.js"></script>', 0);
 add_javascript('<script src="'.G5_JS_URL.'/common.js?ver='.G5_JS_VER.'"></script>', 0);
+add_javascript('<script src="'.G5_JS_URL.'/ui-dropdown.js?ver='.G5_JS_VER.'"></script>', 1);
 add_javascript('<script src="'.G5_JS_URL.'/wrest.js?ver='.G5_JS_VER.'"></script>', 0);
 ?>
 </head>

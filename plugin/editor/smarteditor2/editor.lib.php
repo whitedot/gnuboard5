@@ -21,7 +21,7 @@ function editor_html($id, $content, $is_dhtml_editor=true)
     $editor_url = G5_EDITOR_URL.'/'.$config['cf_editor'];
 
     $html = "";
-    $html .= "<span class=\"sound_only\">웹에디터 시작</span>";
+    $html .= "<span class=\"sr-only\">웹에디터 시작</span>";
     if ($is_dhtml_editor)
         $html .= '<script>document.write("<div class=\'cke_sc\'><button type=\'button\' class=\'btn_cke_sc\'>단축키 일람</button></div>");</script>';
 
@@ -51,7 +51,7 @@ function editor_html($id, $content, $is_dhtml_editor=true)
 
     $smarteditor_class = $is_dhtml_editor ? "smarteditor2" : "";
     $html .= "\n<textarea id=\"$id\" name=\"$id\" class=\"$smarteditor_class\" maxlength=\"65536\" style=\"width:100%;height:300px\">$content</textarea>";
-    $html .= "\n<span class=\"sound_only\">웹 에디터 끝</span>";
+    $html .= "\n<span class=\"sr-only\">웹 에디터 끝</span>";
     return $html;
 }
 

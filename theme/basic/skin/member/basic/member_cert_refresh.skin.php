@@ -42,7 +42,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 
             <fieldset class="member_cert_refresh_agree">
                 <input type="checkbox" name="agree2" value="1" id="agree21" class="selec_chk">
-                <label for="agree21"><span></span><b class="sound_only">추가 개인정보처리방침에 동의합니다.</b></label>
+                <label for="agree21"><span></span><b class="sr-only">추가 개인정보처리방침에 동의합니다.</b></label>
             </fieldset>
         </section>
 

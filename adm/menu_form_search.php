@@ -77,7 +77,7 @@ if ($sql) {
             <td class="td_mngsmall">
                 <input type="hidden" name="subject[]" value="<?php echo preg_replace('/[\'\"]/', '', $row['subject']); ?>">
                 <input type="hidden" name="link[]" value="<?php echo $link; ?>">
-                <button type="button" class="add_select btn btn_03"><span class="sound_only"><?php echo $row['subject']; ?> </span>선택</button>
+                <button type="button" class="add_select btn btn_03"><span class="sr-only"><?php echo $row['subject']; ?> </span>선택</button>
             </td>
         </tr>
 
@@ -104,11 +104,11 @@ if ($sql) {
         </colgroup>
         <tbody>
             <tr>
-                <th scope="row"><label for="me_name">메뉴<strong class="sound_only"> 필수</strong></label></th>
+                <th scope="row"><label for="me_name">메뉴<strong class="sr-only"> 필수</strong></label></th>
                 <td><input type="text" name="me_name" id="me_name" required class="frm_input required"></td>
             </tr>
             <tr>
-                <th scope="row"><label for="me_link">링크<strong class="sound_only"> 필수</strong></label></th>
+                <th scope="row"><label for="me_link">링크<strong class="sr-only"> 필수</strong></label></th>
                 <td>
                     <?php echo help('링크는 http://를 포함해서 입력해 주세요.'); ?>
                     <input type="text" name="me_link" id="me_link" required class="frm_input full_input required">

@@ -64,7 +64,7 @@ $colspan = 10;
         <option value="pp_name"<?php echo get_selected($sfl, "pp_name"); ?>>이름</option>
         <option value="od_id"<?php echo get_selected($sfl, "od_id"); ?>>주문번호</option>
     </select>
-    <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+    <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
     <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
     <input type="submit" class="btn_submit" value="검색">
 </form>
@@ -85,7 +85,7 @@ $colspan = 10;
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall" class="sound_only">개인결제 전체</label>
+            <label for="chkall" class="sr-only">개인결제 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">제목</th>
@@ -124,8 +124,8 @@ $colspan = 10;
         <td class="td_date"><?php echo is_null_time($row['pp_receipt_time']) ? '' : substr($row['pp_receipt_time'], 2, 8); ?></td>
         <td class="td_boolean"><?php echo $row['pp_use'] ? '예' : '아니오'; ?></td>
         <td class="td_mng td_mng_m">
-            <a href="./personalpayform.php?w=u&amp;pp_id=<?php echo $row['pp_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sound_only"><?php echo $row['pp_id']; ?> </span>수정</a>
-            <a href="./personalpaycopy.php?pp_id=<?php echo $row['pp_id']; ?>" class="personalpaycopy btn btn_02"><span class="sound_only"><?php echo $row['pp_id']; ?> </span>복사</a>
+            <a href="./personalpayform.php?w=u&amp;pp_id=<?php echo $row['pp_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sr-only"><?php echo $row['pp_id']; ?> </span>수정</a>
+            <a href="./personalpaycopy.php?pp_id=<?php echo $row['pp_id']; ?>" class="personalpaycopy btn btn_02"><span class="sr-only"><?php echo $row['pp_id']; ?> </span>복사</a>
         </td>
     </tr>
 

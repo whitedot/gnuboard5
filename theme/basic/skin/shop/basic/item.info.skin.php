@@ -166,10 +166,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                             <span class="sit_opt_subj"><?php echo $it['it_name']; ?></span>
                         </div>
                         <div class="opt_count">
-                            <label for="ct_qty_<?php echo $i; ?>" class="sound_only">수량</label>
-                            <button type="button" class="sit_qty_minus"><i class="fa fa-minus" aria-hidden="true"></i><span class="sound_only">감소</span></button>
+                            <label for="ct_qty_<?php echo $i; ?>" class="sr-only">수량</label>
+                            <button type="button" class="sit_qty_minus"><i class="fa fa-minus" aria-hidden="true"></i><span class="sr-only">감소</span></button>
                             <input type="text" name="ct_copy_qty[<?php echo $it_id; ?>][]" value="<?php echo $it['it_buy_min_qty']; ?>" id="ct_qty_<?php echo $i; ?>" class="num_input" size="5">
-                            <button type="button" class="sit_qty_plus"><i class="fa fa-plus" aria-hidden="true"></i><span class="sound_only">증가</span></button>
+                            <button type="button" class="sit_qty_plus"><i class="fa fa-plus" aria-hidden="true"></i><span class="sr-only">증가</span></button>
                             <span class="sit_opt_prc">+0원</span>
                         </div>
                     </li>

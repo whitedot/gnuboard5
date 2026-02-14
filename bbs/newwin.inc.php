@@ -36,7 +36,7 @@ for ($i=0; $nw=sql_fetch_array($result); $i++)
         </div>
     </div>
 <?php }
-if ($i == 0) echo '<span class="sound_only">팝업레이어 알림이 없습니다.</span>';
+if ($i == 0) echo '<span class="sr-only">팝업레이어 알림이 없습니다.</span>';
 ?>
 </div>
 

@@ -47,7 +47,7 @@ for($k=0; $cp=sql_fetch_array($res); $k++) {
 	        </li>
 	        <li>
 	            <a href="<?php echo G5_BBS_URL ?>/memo.php" target="_blank" class="win_memo">
-	            	<i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sound_only">안 읽은 </span>쪽지
+	            	<i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">안 읽은 </span>쪽지
 	                <strong><?php echo $memo_not_read ?></strong>
 	            </a>
 	        </li>
@@ -127,7 +127,7 @@ for($k=0; $cp=sql_fetch_array($res); $k++) {
                         <?php } else { //품절이 아니면 체크할수 있도록한다 ?>
                         <div class="chk_box">
                             <input type="checkbox" name="chk_it_id[<?php echo $i; ?>]" value="1" id="chk_it_id_<?php echo $i; ?>" onclick="out_cd_check(this, '<?php echo $out_cd; ?>');" class="selec_chk">
-                            <label for="chk_it_id_<?php echo $i; ?>"><span></span><b class="sound_only"><?php echo $row['it_name']; ?></b></label>
+                            <label for="chk_it_id_<?php echo $i; ?>"><span></span><b class="sr-only"><?php echo $row['it_name']; ?></b></label>
                         </div>
                         <?php } ?>
                         <input type="hidden" name="it_id[<?php echo $i; ?>]" value="<?php echo $row['it_id']; ?>">
@@ -140,7 +140,7 @@ for($k=0; $cp=sql_fetch_array($res); $k++) {
                     <div class="smb_my_tit"><a href="<?php echo shop_item_url($row['it_id']); ?>"><?php echo stripslashes($row['it_name']); ?></a></div>
                     <div class="smb_my_price"><?php echo display_price(get_price($row), $row['it_tel_inq']); ?></div>
                     <div class="smb_my_date"><?php echo $row['wi_time']; ?></div>
-                    <a href="./wishupdate.php?w=d&amp;wi_id=<?php echo $row['wi_id']; ?>" class="wish_del"><i class="fa fa-trash" aria-hidden="true"></i><span class="sound_only">삭제</span></a>
+                    <a href="./wishupdate.php?w=d&amp;wi_id=<?php echo $row['wi_id']; ?>" class="wish_del"><i class="fa fa-trash" aria-hidden="true"></i><span class="sr-only">삭제</span></a>
                 </li>
 
                 <?php

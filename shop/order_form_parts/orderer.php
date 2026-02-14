@@ -5,7 +5,7 @@
         <table>
         <tbody>
         <tr>
-            <th scope="row"><label for="od_name">이름<strong class="sound_only"> 필수</strong></label></th>
+            <th scope="row"><label for="od_name">이름<strong class="sr-only"> 필수</strong></label></th>
             <td><input type="text" name="od_name" value="<?php echo isset($member['mb_name']) ? get_text($member['mb_name']) : ''; ?>" id="od_name" required class="frm_input required" maxlength="20"></td>
         </tr>
 
@@ -20,7 +20,7 @@
         <?php } ?>
 
         <tr>
-            <th scope="row"><label for="od_tel">전화번호<strong class="sound_only"> 필수</strong></label></th>
+            <th scope="row"><label for="od_tel">전화번호<strong class="sr-only"> 필수</strong></label></th>
             <td><input type="text" name="od_tel" value="<?php echo get_text($member['mb_tel']); ?>" id="od_tel" required class="frm_input required" maxlength="20"></td>
         </tr>
         <tr>
@@ -30,21 +30,21 @@
         <tr>
             <th scope="row">주소</th>
             <td>
-                <label for="od_zip" class="sound_only">우편번호<strong class="sound_only"> 필수</strong></label>
+                <label for="od_zip" class="sr-only">우편번호<strong class="sr-only"> 필수</strong></label>
                 <input type="text" name="od_zip" value="<?php echo $member['mb_zip1'].$member['mb_zip2']; ?>" id="od_zip" required class="frm_input required" size="8" maxlength="6" placeholder="우편번호">
                 <button type="button" class="btn_address" onclick="win_zip('forderform', 'od_zip', 'od_addr1', 'od_addr2', 'od_addr3', 'od_addr_jibeon');">주소 검색</button><br>
                 <input type="text" name="od_addr1" value="<?php echo get_text($member['mb_addr1']) ?>" id="od_addr1" required class="frm_input frm_address required" size="60" placeholder="기본주소">
-                <label for="od_addr1" class="sound_only">기본주소<strong class="sound_only"> 필수</strong></label><br>
+                <label for="od_addr1" class="sr-only">기본주소<strong class="sr-only"> 필수</strong></label><br>
                 <input type="text" name="od_addr2" value="<?php echo get_text($member['mb_addr2']) ?>" id="od_addr2" class="frm_input " size="60" placeholder="상세주소">
-                <label for="od_addr2" class="sound_only">상세주소</label>
+                <label for="od_addr2" class="sr-only">상세주소</label>
                 <br>
                 <input type="text" name="od_addr3" value="<?php echo get_text($member['mb_addr3']) ?>" id="od_addr3" class="frm_input " size="60" readonly="readonly" placeholder="참고항목">
-                <label for="od_addr3" class="sound_only">참고항목</label><br>
+                <label for="od_addr3" class="sr-only">참고항목</label><br>
                 <input type="hidden" name="od_addr_jibeon" value="<?php echo get_text($member['mb_addr_jibeon']); ?>">
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="od_email">E-mail<strong class="sound_only"> 필수</strong></label></th>
+            <th scope="row"><label for="od_email">E-mail<strong class="sr-only"> 필수</strong></label></th>
             <td><input type="text" name="od_email" value="<?php echo $member['mb_email']; ?>" id="od_email" required class="frm_input required" size="35" maxlength="100"></td>
         </tr>
 

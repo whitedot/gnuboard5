@@ -61,7 +61,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 <input type="hidden" name="doc" value="<?php echo get_sanitize_input($doc); ?>">
 <input type="hidden" name="page" value="<?php echo get_sanitize_input($page); ?>">
 
-<label for="sel_ca_id" class="sound_only">검색대상</label>
+<label for="sel_ca_id" class="sr-only">검색대상</label>
 <select name="sel_ca_id" id="sel_ca_id">
     <option value=''>전체분류</option>
     <?php
@@ -76,10 +76,10 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     ?>
 </select>
 
-<label for="fr_date" class="sound_only">시작일</label>
+<label for="fr_date" class="sr-only">시작일</label>
 <input type="text" name="fr_date" value="<?php echo $fr_date; ?>" id="fr_date" required class="required frm_input" size="8" maxlength="8">
 ~
-<label for="to_date" class="sound_only">종료일</label>
+<label for="to_date" class="sr-only">종료일</label>
 <input type="text" name="to_date" value="<?php echo $to_date; ?>" id="to_date" required class="required frm_input" size="8" maxlength="8">
 <input type="submit" value="검색" class="btn_submit">
 

@@ -16,7 +16,7 @@
                 </colgroup>
                 <tbody>
                     <tr>
-                        <th scope="row"><label for="cf_delay_sec">글쓰기 간격<strong class="sound_only">필수</strong></label></th>
+                        <th scope="row"><label for="cf_delay_sec">글쓰기 간격<strong class="sr-only">필수</strong></label></th>
                         <td><input type="text" name="cf_delay_sec" value="<?php echo (int) $config['cf_delay_sec'] ?>" id="cf_delay_sec" required class="required numeric frm_input" size="3"> 초 지난후 가능</td>
                         <th scope="row"><label for="cf_link_target">새창 링크</label></th>
                         <td>
@@ -30,7 +30,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row"><label for="cf_read_point">글읽기 포인트<strong class="sound_only">필수</strong></label></th>
+                        <th scope="row"><label for="cf_read_point">글읽기 포인트<strong class="sr-only">필수</strong></label></th>
                         <td><input type="text" name="cf_read_point" value="<?php echo (int) $config['cf_read_point'] ?>" id="cf_read_point" required class="required frm_input" size="3"> 점</td>
                         <th scope="row"><label for="cf_write_point">글쓰기 포인트</label></th>
                         <td><input type="text" name="cf_write_point" value="<?php echo (int) $config['cf_write_point'] ?>" id="cf_write_point" required class="required frm_input" size="3"> 점</td>

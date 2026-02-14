@@ -18,7 +18,7 @@
     <input type="hidden" name="mod_type" value="memo">
 
     <div class="tbl_wrap">
-        <label for="od_shop_memo" class="sound_only">상점메모</label>
+        <label for="od_shop_memo" class="sr-only">상점메모</label>
         <textarea name="od_shop_memo" id="od_shop_memo" rows="8"><?php echo html_purifier(stripslashes($od['od_shop_memo'])); ?></textarea>
     </div>
 

@@ -36,15 +36,15 @@ include_once(G5_PATH.'/head.sub.php');
         <table>
 	        <tbody>
 	        <tr>
-	            <th><label for="to_email">추천받는 분<br>E-mail<strong class="sound_only"> 필수</strong></label></th>
+	            <th><label for="to_email">추천받는 분<br>E-mail<strong class="sr-only"> 필수</strong></label></th>
 	            <td><input type="text" name="to_email" id="to_email" required class="frm_input full_input required" size="51"></td>
 	        </tr>
 	        <tr>
-	            <th><label for="subject">제목<strong class="sound_only"> 필수</strong></label></th>
+	            <th><label for="subject">제목<strong class="sr-only"> 필수</strong></label></th>
 	            <td><input type="text" name="subject" id="subject" required class="frm_input full_input required" size="51"></td>
 	        </tr>
 	        <tr>
-	            <th><label for="content">내용<strong class="sound_only"> 필수</strong></label></th>
+	            <th><label for="content">내용<strong class="sr-only"> 필수</strong></label></th>
 	            <td><textarea name="content" id="content" required class="frm_input required"></textarea></td>
 	        </tr>
 	        </tbody>

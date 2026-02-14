@@ -181,7 +181,7 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
                         <option value="">분류선택</option>
                         <?php echo $category_select; ?>
                     </select>
-                    <label for="sch_name" class="sound_only">상품명</label>
+                    <label for="sch_name" class="sr-only">상품명</label>
                     <input type="text" name="sch_name" id="sch_name" class="frm_input" size="15">
                     <button type="button" id="btn_search_item" class="btn_frmline">검색</button>
                 </span>

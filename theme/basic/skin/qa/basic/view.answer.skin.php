@@ -11,7 +11,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 	    
         <?php if ( $answer_update_href || $answer_delete_href ){ ?>
 	    <div id="ans_add">
-	    	<button type="button" class="btn_more_add btn_more_opt btn_b01 btn" title="답변 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">답변 옵션</span></button>
+	    	<button type="button" class="btn_more_add btn_more_opt btn_b01 btn" title="답변 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sr-only">답변 옵션</span></button>
 			<ul class="more_add">
 				<?php if($answer_update_href) { ?>
 				<li><a href="<?php echo $answer_update_href; ?>" class="btn_b01 btn" title="답변수정">답변수정</a></li>

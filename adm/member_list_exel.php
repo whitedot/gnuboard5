@@ -48,7 +48,7 @@ $colspan = 14;
 <form id="fsearch" name="fsearch" class="member_list_data" method="get">
     <input type="hidden" name="token" value="<?php echo get_token(); ?>">
     <fieldset>
-        <legend class="sound_only">회원 검색 필터링</legend>
+        <legend class="sr-only">회원 검색 필터링</legend>
         <div class="sch_table">
 
             <!-- 검색어 적용 -->

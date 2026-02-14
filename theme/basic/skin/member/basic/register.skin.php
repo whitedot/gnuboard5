@@ -21,7 +21,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         <textarea readonly><?php echo get_text($config['cf_stipulation']) ?></textarea>
         <fieldset class="fregister_agree">
             <input type="checkbox" name="agree" value="1" id="agree11" class="selec_chk">
-            <label for="agree11"><span></span><b class="sound_only">회원가입약관의 내용에 동의합니다.</b></label>
+            <label for="agree11"><span></span><b class="sr-only">회원가입약관의 내용에 동의합니다.</b></label>
         </fieldset>
     </section>
 
@@ -54,7 +54,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
         <fieldset class="fregister_agree">
             <input type="checkbox" name="agree2" value="1" id="agree21" class="selec_chk">
-            <label for="agree21"><span></span><b class="sound_only">개인정보 수집 및 이용의 내용에 동의합니다.</b></label>
+            <label for="agree21"><span></span><b class="sr-only">개인정보 수집 및 이용의 내용에 동의합니다.</b></label>
        </fieldset>
     </section>
 	

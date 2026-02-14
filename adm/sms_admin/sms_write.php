@@ -117,7 +117,7 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
         </div>
 
         <div id="write_reply">
-            <label for="wr_reply">회신<strong class="sound_only"> 필수</strong></label>
+            <label for="wr_reply">회신<strong class="sr-only"> 필수</strong></label>
             <input type="text" name="wr_reply" value="<?php echo isset($sms5['cf_phone']) ? get_sanitize_input($sms5['cf_phone']) : ''; ?>" id="wr_reply" required class="frm_input required" size="17" maxlength="20" readonly="readonly">
         </div>
 
@@ -125,13 +125,13 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
             <h2>받는사람</h2>
             <button type="button" class="write_floater write_floater_btn" onclick="hp_list_del()">선택삭제</button>
 
-            <label for="hp_list" class="sound_only">받는사람들</label>
+            <label for="hp_list" class="sr-only">받는사람들</label>
             <select name="hp_list" id="hp_list" size="5"></select>
 
             <div id="recv_add">
-                <label for="hp_name" class="sound_only">이름</label>
+                <label for="hp_name" class="sr-only">이름</label>
                 <input type="text" name="hp_name" id="hp_name" class="frm_input" size="11" maxlength="20" onkeypress="if(event.keyCode==13) document.getElementById('hp_number').focus();" placeholder="이름"><br>
-                <label for="hp_number" class="sound_only">번호</label>
+                <label for="hp_number" class="sr-only">번호</label>
                 <input type="text" name="hp_number" id="hp_number" class="frm_input" size="11" maxlength="20" onkeypress="if(event.keyCode==13) hp_add()" placeholder="번호">
                 <button type="button" onclick="hp_add()">추가</button><br>
             </div>
@@ -141,7 +141,7 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
             <h2>예약전송</h2>
 
             <div class="write_floater">
-                <label for="wr_booking"><span class="sound_only">예약전송 </span>사용</label>
+                <label for="wr_booking"><span class="sr-only">예약전송 </span>사용</label>
                 <input type="checkbox" name="wr_booking" id="wr_booking" onclick="booking(this.checked)">
             </div>
 
@@ -721,7 +721,7 @@ var sms_obj={
             href:'#',
             itemCurrent:'pg_current',
             itemClass:'pg_page',
-            appendhtml:'<span class="sound_only">페이지</span>',
+            appendhtml:'<span class="sr-only">페이지</span>',
             onclick:function(e,page){
                 e.preventDefault();
                 $search_form.find("input[name='page']").val( page );

@@ -72,7 +72,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 <input type="hidden" name="sort2" value="<?php echo get_sanitize_input($sort2); ?>">
 <input type="hidden" name="page" value="<?php echo get_sanitize_input($page); ?>">
 
-<label for="sel_ca_id" class="sound_only">분류선택</label>
+<label for="sel_ca_id" class="sr-only">분류선택</label>
 <select name="sel_ca_id" id="sel_ca_id">
     <option value=''>전체분류</option>
     <?php
@@ -87,13 +87,13 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     ?>
 </select>
 
-<label for="sel_field" class="sound_only">검색대상</label>
+<label for="sel_field" class="sr-only">검색대상</label>
 <select name="sel_field" id="sel_field">
     <option value="it_name" <?php echo get_selected($sel_field, 'it_name'); ?>>상품명</option>
     <option value="it_id" <?php echo get_selected($sel_field, 'it_id'); ?>>상품코드</option>
 </select>
 
-<label for="search" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+<label for="search" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
 <input type="text" name="search" id="search" value="<?php echo $search; ?>" required class="frm_input required">
 <input type="submit" value="검색" class="btn_submit">
 
@@ -174,23 +174,23 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         <td class="td_num"><?php echo number_format((float)$wait_qty); ?></td>
         <td class="td_num"><?php echo number_format((float)$temporary_qty); ?></td>
         <td class="td_num">
-            <label for="stock_qty_<?php echo $i; ?>" class="sound_only">재고수정</label>
+            <label for="stock_qty_<?php echo $i; ?>" class="sr-only">재고수정</label>
             <input type="text" name="it_stock_qty[<?php echo $i; ?>]" value="<?php echo $row['it_stock_qty']; ?>" id="stock_qty_<?php echo $i; ?>" class="frm_input" size="10" autocomplete="off">
         </td>
         <td class="td_num">
-            <label for="noti_qty_<?php echo $i; ?>" class="sound_only">통보수량</label>
+            <label for="noti_qty_<?php echo $i; ?>" class="sr-only">통보수량</label>
             <input type="text" name="it_noti_qty[<?php echo $i; ?>]" value="<?php echo $row['it_noti_qty']; ?>" id="noti_qty_<?php echo $i; ?>" class="frm_input" size="10" autocomplete="off">
         </td>
         <td class="td_chk2">
-            <label for="use_<?php echo $i; ?>" class="sound_only">판매</label>
+            <label for="use_<?php echo $i; ?>" class="sr-only">판매</label>
             <input type="checkbox" name="it_use[<?php echo $i; ?>]" value="1" id="use_<?php echo $i; ?>" <?php echo ($row['it_use'] ? "checked" : ""); ?>>
         </td>
         <td class="td_chk2">
-            <label for="soldout_<?php echo $i; ?>" class="sound_only">품절</label>
+            <label for="soldout_<?php echo $i; ?>" class="sr-only">품절</label>
             <input type="checkbox" name="it_soldout[<?php echo $i; ?>]" value="1" id="soldout_<?php echo $i; ?>" <?php echo ($row['it_soldout'] ? "checked" : ""); ?>>
         </td>
         <td class="td_chk2">
-            <label for="stock_sms_<?php echo $i; ?>" class="sound_only">재입고 알림</label>
+            <label for="stock_sms_<?php echo $i; ?>" class="sr-only">재입고 알림</label>
             <input type="checkbox" name="it_stock_sms[<?php echo $i; ?>]" value="1" id="stock_sms_<?php echo $i; ?>" <?php echo ($row['it_stock_sms'] ? "checked" : ""); ?>>
         </td>
         <td class="td_mng td_mng_s"><a href="./itemform.php?w=u&amp;it_id=<?php echo $row['it_id']; ?>&amp;ca_id=<?php echo $row['ca_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03">수정</a></td>

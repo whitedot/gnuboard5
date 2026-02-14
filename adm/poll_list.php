@@ -59,11 +59,11 @@ $colspan = 8;
 
 <form name="fsearch" id="fsearch" class="local_sch01 local_sch" method="get">
     <div class="sch_last">
-        <label for="sfl" class="sound_only">검색대상</label>
+        <label for="sfl" class="sr-only">검색대상</label>
         <select name="sfl" id="sfl">
             <option value="po_subject" <?php echo get_selected($sfl, "po_subject"); ?>>제목</option>
         </select>
-        <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+        <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
         <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
         <input type="submit" class="btn_submit" value="검색">
     </div>
@@ -84,7 +84,7 @@ $colspan = 8;
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall" class="sound_only">현재 페이지 투표 전체</label>
+                        <label for="chkall" class="sr-only">현재 페이지 투표 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col">번호</th>
@@ -111,7 +111,7 @@ $colspan = 8;
 
                     <tr class="<?php echo $bg; ?>">
                         <td class="td_chk">
-                            <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo cut_str(get_text($row['po_subject']), 70) ?> 투표</label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo cut_str(get_text($row['po_subject']), 70) ?> 투표</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $row['po_id'] ?>" id="chk_<?php echo $i ?>">
                         </td>
                         <td class="td_num"><?php echo $row['po_id'] ?></td>
