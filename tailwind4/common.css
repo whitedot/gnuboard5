@@ -300,7 +300,7 @@
         @apply aria-invalid:border-danger/60 aria-invalid:ring-danger/10;
 
         &:not([class*="bg-"]) {
-            @apply bg-default-100/20;
+            @apply bg-default-100;
         }
 
         &:not([class*="border-"]) {
@@ -371,8 +371,8 @@
         @apply rounded-sm;
 
         &:checked {
-            background-size: 0.75rem 0.75rem;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M12.78 4.97a.75.75 0 0 1 0 1.06L7.03 11.78a.75.75 0 0 1-1.06 0L3.22 9.03a.75.75 0 1 1 1.06-1.06L6.5 10.19l5.22-5.22a.75.75 0 0 1 1.06 0z' fill='white'/%3E%3C/svg%3E");
+            background-size: 0.9rem 0.9rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.3 6.6 11.3 12.6 5.3' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
         }
 
         &.form-checkbox-light {
@@ -396,8 +396,8 @@
 
     .form-radio {
         &:checked {
-            background-size: 0.625rem 0.625rem;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='3.2' fill='white'/%3E%3C/svg%3E");
+            background-size: 0.8rem 0.8rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='4.1' fill='white'/%3E%3C/svg%3E");
         }
     }
 
@@ -484,11 +484,11 @@
         }
 
         .input-group-text {
-            @apply rounded bg-default-100 text-default-600 border border-default-300 px-3 flex items-center;
+            @apply rounded bg-default-100 text-default-600 border border-default-500 px-3 flex items-center;
         }
 
         > :not(:last-child) {
-            @apply rounded-e-none border border-default-300;
+            @apply rounded-e-none border border-default-500;
         }
 
         > :not(:first-child) {
@@ -498,10 +498,15 @@
         >.btn {
             position: relative;
             z-index: 2;
+            @apply border-default-500;
         }
 
-        .hs-dropdown {
-            border-width: 0;
+        >.hs-dropdown {
+            @apply rounded-e-none border border-default-500;
+        }
+
+        >.hs-dropdown>.hs-dropdown-toggle {
+            @apply border-0 rounded-e-none;
         }
 
         &[data-touchspin] {
