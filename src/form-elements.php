@@ -34,7 +34,7 @@
                                             <div class="lg:col-span-2">
                                                 <div class="relative">
                                                     <input type="text" id="floatingInput" placeholder=""
-                                                        class="peer border-default-300 focus:border-default-500 block w-full rounded bg-transparent p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm" />
+                                                        class="peer border-default-500 focus:border-default-500 block w-full rounded bg-default-100/20 p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm" />
                                                     <label for="floatingInput"
                                                         class="text-default-500 peer-placeholder-shown:text-default-400 peer-placeholder-shown: absolute start-3 top-2 transition-all peer-placeholder-shown:top-3.5 peer-focus:top-1.5 peer-focus:border-0 peer-focus:text-xs peer-focus:ring-0">이름</label>
                                                 </div>
@@ -88,7 +88,7 @@
                                             </div>
 
                                             <div class="lg:col-span-2">
-                                                <textarea id="example-textarea" rows="5" class="form-input"></textarea>
+                                                <textarea id="example-textarea" rows="5" class="form-textarea"></textarea>
                                             </div>
                                         </div>
 
@@ -321,14 +321,14 @@
 
                                             <div class="lg:col-span-2">
                                                 <div class="relative flex items-center">
-                                                    <input id="password" type="password" class="form-input w-full"
+                                                    <input id="password" type="password" class="form-input w-full pe-10"
                                                         placeholder="비밀번호 입력" />
                                                     <button type="button"
                                                         data-hs-toggle-password='{"target":"#password"}'
-                                                        class="bg-default-100 border-default-300 absolute inset-y-0 end-0 flex items-center rounded rounded-s-none! border px-3 py-1.75">
-                                                        <i
+                                                        class="absolute end-3 top-1/2 inline-flex size-6 -translate-y-1/2 items-center justify-center text-default-500 transition-colors hover:text-default-700 focus:outline-none">
+                                                        <i data-icon="tabler:eye"
                                                             class="iconify tabler--eye hs-password-active:hidden block text-sm"></i>
-                                                        <i
+                                                        <i data-icon="tabler:eye-off"
                                                             class="iconify tabler--eye-off hs-password-active:block hidden text-sm"></i>
                                                     </button>
                                                 </div>
@@ -687,7 +687,7 @@
                                                 <!-- Floating Input -->
                                                 <div class="relative">
                                                     <input type="email" id="hs-floating-input-email"
-                                                        class="peer border-default-300 focus:border-default-500 block w-full rounded bg-transparent p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm"
+                                                        class="peer border-default-500 focus:border-default-500 block w-full rounded bg-default-100/20 p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm"
                                                         placeholder="you@email.com" />
                                                     <label for="hs-floating-input-email"
                                                         class="peer-focus:text-default-500 peer-not-placeholder-shown:text-default-500 pointer-events-none absolute start-0 top-0 h-full origin-top-left truncate border border-transparent p-4 transition duration-100 ease-in-out peer-not-placeholder-shown:translate-x-0.5 peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:scale-90 peer-focus:translate-x-0.5 peer-focus:-translate-y-1.5 peer-focus:scale-90 sm:text-sm">이메일</label>
@@ -707,7 +707,7 @@
                                             <div class="lg:col-span-2">
                                                 <div class="relative">
                                                     <textarea id="floatingTextarea" rows="4" placeholder=""
-                                                        class="peer border-default-300 focus:border-default-500 block w-full rounded bg-transparent p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm"></textarea>
+                                                        class="peer border-default-500 focus:border-default-500 block w-full rounded bg-default-100/20 p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm"></textarea>
                                                     <label for="floatingTextarea"
                                                         class="peer-focus:text-default-500 peer-not-placeholder-shown:text-default-500 pointer-events-none absolute start-0 top-0 h-full origin-top-left truncate border border-transparent p-4 transition duration-100 ease-in-out peer-not-placeholder-shown:translate-x-0.5 peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:scale-90 peer-focus:translate-x-0.5 peer-focus:-translate-y-1.5 peer-focus:scale-90 sm:text-sm">의견</label>
                                                 </div>
@@ -725,7 +725,7 @@
                                             <div class="lg:col-span-2">
                                                 <div class="relative">
                                                     <input type="password" id="floatingPassword" placeholder=""
-                                                        class="peer border-default-300 focus:border-default-500 block w-full rounded bg-transparent p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm" />
+                                                        class="peer border-default-500 focus:border-default-500 block w-full rounded bg-default-100/20 p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm" />
                                                     <label for="floatingPassword"
                                                         class="peer-focus:text-default-500 peer-not-placeholder-shown:text-default-500 pointer-events-none absolute start-0 top-0 h-full origin-top-left truncate border border-transparent p-4 transition duration-100 ease-in-out peer-not-placeholder-shown:translate-x-0.5 peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:scale-90 peer-focus:translate-x-0.5 peer-focus:-translate-y-1.5 peer-focus:scale-90 sm:text-sm">비밀번호</label>
                                                 </div>
@@ -743,7 +743,7 @@
                                             <div class="lg:col-span-2">
                                                 <div class="relative">
                                                     <select id="floatingSelect" placeholder=""
-                                                        class="peer border-default-300 focus:border-default-500 block w-full rounded bg-transparent p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm">
+                                                        class="peer border-default-500 focus:border-default-500 block w-full rounded bg-default-100/20 p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm">
                                                         <option value="" selected disabled>이 선택 메뉴를 여세요
                                                         </option>
                                                         <option value="1">하나</option>
