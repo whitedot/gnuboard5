@@ -85,8 +85,8 @@ function wrestHangul(fld)
 {
     if (!wrestTrim(fld)) return;
 
-    //var pattern = /([^媛-??x20])/i;
-    var pattern = /([^媛-??x20])/;
+    // Hangul syllables + space
+    var pattern = /([^\uAC00-\uD7A3\x20])/;
 
     if (pattern.test(fld.value)) {
         if (wrestFld == null) {
@@ -101,8 +101,8 @@ function wrestHangul2(fld)
 {
     if (!wrestTrim(fld)) return;
 
-    var pattern = /([^媛-?ｃ꽦-?롢뀖-??x20])/i;
-    //var pattern = /([^媛-?ｃ꽦-?롢뀖-??x20])/;
+    // Hangul syllables + jamo + space
+    var pattern = /([^\uAC00-\uD7A3\u3131-\u314E\u314F-\u3163\x20])/i;
 
     if (pattern.test(fld.value)) {
         if (wrestFld == null) {
@@ -117,7 +117,7 @@ function wrestHangulAlNum(fld)
 {
     if (!wrestTrim(fld)) return;
 
-    var pattern = /([^媛-??x20^a-z^A-Z^0-9])/i;
+    var pattern = /([^\uAC00-\uD7A3\x20a-zA-Z0-9])/i;
 
     if (pattern.test(fld.value)) {
         if (wrestFld == null) {
@@ -132,7 +132,7 @@ function wrestHangulAlpha(fld)
 {
     if (!wrestTrim(fld)) return;
 
-    var pattern = /([^媛-??x20^a-z^A-Z])/i;
+    var pattern = /([^\uAC00-\uD7A3\x20a-zA-Z])/i;
 
     if (pattern.test(fld.value)) {
         if (wrestFld == null) {

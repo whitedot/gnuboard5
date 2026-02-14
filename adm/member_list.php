@@ -298,7 +298,16 @@ $colspan = 16;
                             <?php } ?>
                         </td>
                         <td headers="mb_list_auth" class="td_mbstat">
-                            <?php echo get_member_level_select("mb_level[$i]", 1, $member['mb_level'], $row['mb_level']) ?>
+                            <?php
+                            $level_max = max((int) $member['mb_level'], (int) $row['mb_level']);
+                            echo get_member_level_select(
+                                "mb_level[$i]",
+                                1,
+                                $level_max,
+                                $row['mb_level'],
+                                'class="form-select" style="min-width:88px;padding-inline-end:2.75rem !important;"'
+                            );
+                            ?>
                         </td>
                         <td headers="mb_list_tel" class="td_tel"><?php echo get_text($row['mb_tel']); ?></td>
                         <td headers="mb_list_join" class="td_date"><?php echo substr($row['mb_datetime'], 2, 8); ?></td>
