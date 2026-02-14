@@ -9,7 +9,7 @@ function is_active($pages) {
     return $current_page == $pages ? 'active' : '';
 }
 ?>
-<aside class="ui-sidebar">
+<aside class="ui-sidebar" id="ui-sidebar">
     <div class="ui-sidebar-logo">
         <span class="text-2xl font-bold ui-guide-title">G5AI</span>
     </div>
@@ -83,10 +83,20 @@ function is_active($pages) {
         </a>
     </nav>
 </aside>
+<div class="ui-sidebar-backdrop" id="ui-sidebar-backdrop"></div>
 
 <main class="ui-main-content">
     <header class="ui-top-navbar">
         <div class="flex items-center">
+            <button
+                id="ui-sidebar-toggle"
+                type="button"
+                class="ui-sidebar-toggle"
+                aria-label="사이드바 열기"
+                aria-controls="ui-sidebar"
+                aria-expanded="false">
+                <i class="iconify text-xl" data-icon="tabler:menu-2"></i>
+            </button>
             <h2 class="text-lg font-semibold ui-guide-title">UI Guide Dashboard</h2>
         </div>
         <div class="flex items-center gap-2">
