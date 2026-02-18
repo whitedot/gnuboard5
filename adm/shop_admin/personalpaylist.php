@@ -54,19 +54,19 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 $colspan = 10;
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
    <span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> <?php echo number_format($total_count) ?>건 </span></span>
 </div>
 
-<form name="fsearch" id="fsearch" class="local_sch01 local_sch" method="get">
-    <select name="sfl" title="검색대상">
+<form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
+    <select class="form-select" name="sfl" title="검색대상">
         <option value="pp_id"<?php echo get_selected($sfl, "pp_id"); ?>>개인결제번호</option>
         <option value="pp_name"<?php echo get_selected($sfl, "pp_name"); ?>>이름</option>
         <option value="od_id"<?php echo get_selected($sfl, "od_id"); ?>>주문번호</option>
     </select>
     <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
-    <input type="submit" class="btn_submit" value="검색">
+    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input form-input">
+    <input type="submit" class="btn btn-sm border-default-300" value="검색">
 </form>
 
 
@@ -79,7 +79,7 @@ $colspan = 10;
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 <input type="hidden" name="token" value="">
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>

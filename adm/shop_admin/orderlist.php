@@ -144,7 +144,7 @@ if( function_exists('pg_setting_check') ){
 }
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall; ?>
     <span class="btn_ov01"><span class="ov_txt">전체 주문내역</span><span class="ov_num"> <?php echo number_format($total_count); ?>건</span></span>
     <?php if($od_status == '준비' && $total_count > 0) { ?>
@@ -152,7 +152,7 @@ if( function_exists('pg_setting_check') ){
     <?php } ?>
 </div>
 
-<form name="frmorderlist" class="local_sch01 local_sch">
+<form name="frmorderlist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
 <input type="hidden" name="doc" value="<?php echo get_sanitize_input($doc); ?>">
 <input type="hidden" name="sort1" value="<?php echo get_sanitize_input($sort1); ?>">
 <input type="hidden" name="sort2" value="<?php echo get_sanitize_input($sort2); ?>">
@@ -160,7 +160,7 @@ if( function_exists('pg_setting_check') ){
 <input type="hidden" name="save_search" value="<?php echo get_sanitize_input($search); ?>">
 
 <label for="sel_field" class="sr-only">검색대상</label>
-<select name="sel_field" id="sel_field">
+<select class="form-select" name="sel_field" id="sel_field">
     <option value="od_id" <?php echo get_selected($sel_field, 'od_id'); ?>>주문번호</option>
     <option value="mb_id" <?php echo get_selected($sel_field, 'mb_id'); ?>>회원 ID</option>
     <option value="od_name" <?php echo get_selected($sel_field, 'od_name'); ?>>주문자</option>
@@ -174,8 +174,8 @@ if( function_exists('pg_setting_check') ){
 </select>
 
 <label for="search" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="search" value="<?php echo $search; ?>" id="search" required class="required frm_input" autocomplete="off">
-<input type="submit" value="검색" class="btn_submit">
+<input type="text" name="search" value="<?php echo $search; ?>" id="search" required class="required frm_input form-input" autocomplete="off">
+<input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
 
@@ -240,8 +240,8 @@ if( function_exists('pg_setting_check') ){
 
 <div class="sch_last">
     <strong>주문일자</strong>
-    <input type="text" id="fr_date"  name="fr_date" value="<?php echo $fr_date; ?>" class="frm_input" size="10" maxlength="10"> ~
-    <input type="text" id="to_date"  name="to_date" value="<?php echo $to_date; ?>" class="frm_input" size="10" maxlength="10">
+    <input type="text" id="fr_date"  name="fr_date" value="<?php echo $fr_date; ?>" class="frm_input form-input" size="10" maxlength="10"> ~
+    <input type="text" id="to_date"  name="to_date" value="<?php echo $to_date; ?>" class="frm_input form-input" size="10" maxlength="10">
     <button type="button" onclick="javascript:set_date('오늘');">오늘</button>
     <button type="button" onclick="javascript:set_date('어제');">어제</button>
     <button type="button" onclick="javascript:set_date('이번주');">이번주</button>
@@ -249,14 +249,14 @@ if( function_exists('pg_setting_check') ){
     <button type="button" onclick="javascript:set_date('지난주');">지난주</button>
     <button type="button" onclick="javascript:set_date('지난달');">지난달</button>
     <button type="button" onclick="javascript:set_date('전체');">전체</button>
-    <input type="submit" value="검색" class="btn_submit">
+    <input type="submit" value="검색" class="btn btn-sm border-default-300">
 </div>
 </form>
 
 <form name="forderlist" id="forderlist" onsubmit="return forderlist_submit(this);" method="post" autocomplete="off">
 <input type="hidden" name="search_od_status" value="<?php echo $od_status; ?>">
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table id="sodr_list">
     <caption>주문 내역 목록</caption>
     <thead>
@@ -399,14 +399,14 @@ if( function_exists('pg_setting_check') ){
         </td>
         <td headers="delino" class="delino">
             <?php if ($od_status == '준비') { ?>
-                <input type="text" name="od_invoice[<?php echo $i; ?>]" value="<?php echo $row['od_invoice']; ?>" class="frm_input" size="10">
+                <input type="text" name="od_invoice[<?php echo $i; ?>]" value="<?php echo $row['od_invoice']; ?>" class="frm_input form-input" size="10">
             <?php } else {
                 echo ($row['od_invoice'] ? $row['od_invoice'] : '-');
             } ?>
         </td>
         <td headers="delicom">
             <?php if ($od_status == '준비') { ?>
-                <select name="od_delivery_company[<?php echo $i; ?>]">
+                <select class="form-select" name="od_delivery_company[<?php echo $i; ?>]">
                     <?php echo get_delivery_company($delivery_company); ?>
                 </select>
             <?php } else {
@@ -415,7 +415,7 @@ if( function_exists('pg_setting_check') ){
         </td>
         <td headers="delidate">
             <?php if ($od_status == '준비') { ?>
-                <input type="text" name="od_invoice_time[<?php echo $i; ?>]" value="<?php echo $invoice_time; ?>" class="frm_input" size="10" maxlength="19">
+                <input type="text" name="od_invoice_time[<?php echo $i; ?>]" value="<?php echo $invoice_time; ?>" class="frm_input form-input" size="10" maxlength="19">
             <?php } else {
                 echo (is_null_time($row['od_invoice_time']) ? '-' : substr($row['od_invoice_time'],2,14));
             } ?>
@@ -474,12 +474,12 @@ if( function_exists('pg_setting_check') ){
     <input type="checkbox" name="send_escrow" value="1" id="od_send_escrow">
     <label for="od_send_escrow">에스크로배송등록</label>
     <?php } ?>
-    <input type="submit" value="선택수정" class="btn_submit" onclick="document.pressed=this.value">
+    <input type="submit" value="선택수정" class="btn btn-sm border-default-300" onclick="document.pressed=this.value">
 <?php } ?>
-    <?php if ($od_status == '주문') { ?> <span>주문상태에서만 삭제가 가능합니다.</span> <input type="submit" value="선택삭제" class="btn_submit" onclick="document.pressed=this.value"><?php } ?>
+    <?php if ($od_status == '주문') { ?> <span>주문상태에서만 삭제가 가능합니다.</span> <input type="submit" value="선택삭제" class="btn btn-sm border-default-300" onclick="document.pressed=this.value"><?php } ?>
 </div>
 
-<div class="local_desc02 local_desc">
+<div class="hint-text">
 <p>
     &lt;무통장&gt;인 경우에만 &lt;주문&gt;에서 &lt;입금&gt;으로 변경됩니다. 가상계좌는 입금시 자동으로 &lt;입금&gt;처리됩니다.<br>
     &lt;준비&gt;에서 &lt;배송&gt;으로 변경시 &lt;에스크로배송등록&gt;을 체크하시면 에스크로 주문에 한해 PG사에 배송정보가 자동 등록됩니다.<br>

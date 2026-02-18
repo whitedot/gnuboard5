@@ -54,25 +54,25 @@ $result = sql_query($sql);
 $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall; ?>
     <span class="btn_ov01"><span class="ov_txt">생성된  분류 수</span><span class="ov_num">  <?php echo number_format($total_count); ?>개</span></span>
 </div>
 
-<form name="flist" class="local_sch01 local_sch">
+<form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 <input type="hidden" name="save_stx" value="<?php echo $stx; ?>">
 
 <label for="sfl" class="sr-only">검색대상</label>
-<select name="sfl" id="sfl">
+<select class="form-select" name="sfl" id="sfl">
     <option value="ca_name"<?php echo get_selected($sfl, "ca_name", true); ?>>분류명</option>
     <option value="ca_id"<?php echo get_selected($sfl, "ca_id", true); ?>>분류코드</option>
     <option value="ca_mb_id"<?php echo get_selected($sfl, "ca_mb_id", true); ?>>회원아이디</option>
 </select>
 
 <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="stx" value="<?php echo $stx; ?>" id="stx" required class="required frm_input">
-<input type="submit" value="검색" class="btn_submit">
+<input type="text" name="stx" value="<?php echo $stx; ?>" id="stx" required class="required frm_input form-input">
+<input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
 
@@ -83,7 +83,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 <input type="hidden" name="stx" value="<?php echo $stx; ?>">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 
-<div id="sct" class="tbl_head01 tbl_wrap">
+<div id="sct" class="tbl_head01 tbl_wrap card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -192,7 +192,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
             <label for="ca_skin_dir<?php echo $i; ?>" class="sr-only">PC스킨폴더</label>
             <?php echo get_skin_select('shop', 'ca_skin_dir'.$i, 'ca_skin_dir['.$i.']', $row['ca_skin_dir'], 'class="skin_dir"'); ?>
             <label for="ca_skin<?php echo $i; ?>" class="sr-only">PC스킨파일</label>
-            <select id="ca_skin<?php echo $i; ?>" name="ca_skin[<?php echo $i; ?>]" required class="required">
+            <select class="form-select" id="ca_skin<?php echo $i; ?>" name="ca_skin[<?php echo $i; ?>]" required class="required">
                 <?php echo get_list_skin_options("^list.[0-9]+\.skin\.php", $g5_shop_skin_path, $row['ca_skin']); ?>
             </select>
         </td>

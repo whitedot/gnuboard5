@@ -39,7 +39,7 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
     <input type="hidden" name="w" value="d">
     <input type="hidden" name="page" value="<?php echo $page; ?>">
     <input type="hidden" name="token" value="">
-    <div class="tbl_head01 tbl_wrap">
+    <div class="tbl_head01 tbl_wrap card">
         <table>
         <caption>추가배송비 내역</caption>
         <thead>
@@ -102,30 +102,30 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
         <tbody>
         <tr>
             <th scope="row"><label for="sc_name">지역명<strong class="sr-only">필수</strong></label></th>
-            <td><input type="text" name="sc_name" value="" id="sc_name" class="required frm_input" size="30" required></td>
+            <td><input type="text" name="sc_name" value="" id="sc_name" class="required frm_input form-input" size="30" required></td>
         </tr>
         <tr>
             <th scope="row"><label for="sc_zip1">우편번호 시작<strong class="sr-only">필수</strong></label></th>
             <td>
-                <input type="text" name="sc_zip1" id="sc_zip1" required class="required frm_input" size="10"> (입력 예 : 01234)
+                <input type="text" name="sc_zip1" id="sc_zip1" required class="required frm_input form-input" size="10"> (입력 예 : 01234)
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="sc_zip2">우편번호 끝<strong class="sr-only">필수</strong></label></th>
             <td>
-                <input type="text" name="sc_zip2" id="sc_zip2" required class="required frm_input" size="10"> (입력 예 : 01234)
+                <input type="text" name="sc_zip2" id="sc_zip2" required class="required frm_input form-input" size="10"> (입력 예 : 01234)
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="sc_price">추가배송비<strong class="sr-only">필수</strong></label></th>
-            <td><input type="text" name="sc_price" id="sc_price" size="8" required class="required frm_input"> 원</td>
+            <td><input type="text" name="sc_price" id="sc_price" size="8" required class="required frm_input form-input"> 원</td>
         </tr>
         </tbody>
         </table>
     </div>
 
     <div class="btn_confirm01 btn_confirm">
-        <input type="submit" value="확인" class="btn_submit btn">
+        <input type="submit" value="확인" class="btn btn-sm border-default-300">
     </div>
 
     </form>

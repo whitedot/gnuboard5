@@ -82,16 +82,16 @@ $qstr  = $qstr.'&amp;sca='.$sca.'&amp;page='.$page.'&amp;save_stx='.$stx;
 $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall; ?>
     <span class="btn_ov01"><span class="ov_txt">등록된 상품</span><span class="ov_num"> <?php echo $total_count; ?>건</span></span>
 </div>
 
-<form name="flist" class="local_sch01 local_sch">
+<form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
 <input type="hidden" name="save_stx" value="<?php echo $stx; ?>">
 
 <label for="sca" class="sr-only">분류선택</label>
-<select name="sca" id="sca">
+<select class="form-select" name="sca" id="sca">
     <option value="">전체분류</option>
     <?php
     $sql1 = " select ca_id, ca_name from {$g5['g5_shop_category_table']} order by ca_order, ca_id ";
@@ -106,7 +106,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 </select>
 
 <label for="sfl" class="sr-only">검색대상</label>
-<select name="sfl" id="sfl">
+<select class="form-select" name="sfl" id="sfl">
     <option value="it_name" <?php echo get_selected($sfl, 'it_name'); ?>>상품명</option>
     <option value="it_id" <?php echo get_selected($sfl, 'it_id'); ?>>상품코드</option>
     <option value="it_maker" <?php echo get_selected($sfl, 'it_maker'); ?>>제조사</option>
@@ -115,8 +115,8 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 </select>
 
 <label for="stx" class="sr-only">검색어</label>
-<input type="text" name="stx" value="<?php echo $stx; ?>" id="stx" class="frm_input">
-<input type="submit" value="검색" class="btn_submit">
+<input type="text" name="stx" value="<?php echo $stx; ?>" id="stx" class="frm_input form-input">
+<input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
 
@@ -128,7 +128,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 <input type="hidden" name="stx" value="<?php echo $stx; ?>">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -179,15 +179,15 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         </td>
         <td colspan="5" class="td_sort">
             <label for="ca_id_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['it_name']); ?> 기본분류</label>
-            <select name="ca_id[<?php echo $i; ?>]" id="ca_id_<?php echo $i; ?>">
+            <select class="form-select" name="ca_id[<?php echo $i; ?>]" id="ca_id_<?php echo $i; ?>">
                 <?php echo conv_selected_option($ca_list, $row['ca_id']); ?>
             </select>
             <label for="ca_id2_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['it_name']); ?> 2차분류</label>
-            <select name="ca_id2[<?php echo $i; ?>]" id="ca_id2_<?php echo $i; ?>">
+            <select class="form-select" name="ca_id2[<?php echo $i; ?>]" id="ca_id2_<?php echo $i; ?>">
                 <?php echo conv_selected_option($ca_list, $row['ca_id2']); ?>
             </select>
             <label for="ca_id3_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['it_name']); ?> 3차분류</label>
-            <select name="ca_id3[<?php echo $i; ?>]" id="ca_id3_<?php echo $i; ?>">
+            <select class="form-select" name="ca_id3[<?php echo $i; ?>]" id="ca_id3_<?php echo $i; ?>">
                 <?php echo conv_selected_option($ca_list, $row['ca_id3']); ?>
             </select>
         </td>
@@ -255,7 +255,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     <?php } ?>
 </div>
 <!-- <div class="btn_confirm01 btn_confirm">
-    <input type="submit" value="일괄수정" class="btn_submit" accesskey="s">
+    <input type="submit" value="일괄수정" class="btn btn-sm border-default-300" accesskey="s">
 </div> -->
 </form>
 
