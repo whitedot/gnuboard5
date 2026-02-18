@@ -17,7 +17,7 @@
                         <th scope="row"><label for="cf_add_script">추가 script, css</label></th>
                         <td>
                             <?php echo help('HTML의 &lt;/HEAD&gt; 태그위로 추가될 JavaScript와 css 코드를 설정합니다.<br>관리자 페이지에서는 이 코드를 사용하지 않습니다.') ?>
-                            <textarea name="cf_add_script" id="cf_add_script"><?php echo get_text($config['cf_add_script']); ?></textarea>
+                            <textarea name="cf_add_script" id="cf_add_script" class="form-textarea min-h-24 w-full"><?php echo get_text($config['cf_add_script']); ?></textarea>
                         </td>
                     </tr>
                 </tbody>

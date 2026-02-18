@@ -61,17 +61,17 @@
                         <th scope="row"><label for="cf_register_level">회원가입시 권한</label></th>
                         <td><?php echo get_member_level_select('cf_register_level', 1, 9, $config['cf_register_level']) ?></td>
                         <th scope="row"><label for="cf_register_point">회원가입시 포인트</label></th>
-                        <td><input type="text" name="cf_register_point" value="<?php echo (int) $config['cf_register_point'] ?>" id="cf_register_point" class="frm_input" size="5"> 점</td>
+                        <td><input type="text" name="cf_register_point" value="<?php echo (int) $config['cf_register_point'] ?>" id="cf_register_point" class="frm_input form-input" size="5"> 점</td>
                     </tr>
                     <tr>
                         <th scope="row" id="th310"><label for="cf_leave_day">회원탈퇴후 삭제일</label></th>
-                        <td colspan="3"><input type="text" name="cf_leave_day" value="<?php echo (int) $config['cf_leave_day'] ?>" id="cf_leave_day" class="frm_input" size="2"> 일 후 자동 삭제</td>
+                        <td colspan="3"><input type="text" name="cf_leave_day" value="<?php echo (int) $config['cf_leave_day'] ?>" id="cf_leave_day" class="frm_input form-input" size="2"> 일 후 자동 삭제</td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="cf_use_member_icon">회원아이콘 사용</label></th>
                         <td>
                             <?php echo help('게시물에 게시자 닉네임 대신 아이콘 사용') ?>
-                            <select name="cf_use_member_icon" id="cf_use_member_icon">
+                            <select name="cf_use_member_icon" id="cf_use_member_icon" class="form-select">
                                 <option value="0" <?php echo get_selected($config['cf_use_member_icon'], '0') ?>>미사용
                                 <option value="1" <?php echo get_selected($config['cf_use_member_icon'], '1') ?>>아이콘만 표시
                                 <option value="2" <?php echo get_selected($config['cf_use_member_icon'], '2') ?>>아이콘+이름 표시
@@ -82,25 +82,25 @@
                     </tr>
                     <tr>
                         <th scope="row"><label for="cf_member_icon_size">회원아이콘 용량</label></th>
-                        <td><input type="text" name="cf_member_icon_size" value="<?php echo (int) $config['cf_member_icon_size'] ?>" id="cf_member_icon_size" class="frm_input" size="10"> 바이트 이하</td>
+                        <td><input type="text" name="cf_member_icon_size" value="<?php echo (int) $config['cf_member_icon_size'] ?>" id="cf_member_icon_size" class="frm_input form-input" size="10"> 바이트 이하</td>
                         <th scope="row">회원아이콘 사이즈</th>
                         <td>
                             <label for="cf_member_icon_width">가로</label>
-                            <input type="text" name="cf_member_icon_width" value="<?php echo (int) $config['cf_member_icon_width'] ?>" id="cf_member_icon_width" class="frm_input" size="2">
+                            <input type="text" name="cf_member_icon_width" value="<?php echo (int) $config['cf_member_icon_width'] ?>" id="cf_member_icon_width" class="frm_input form-input" size="2">
                             <label for="cf_member_icon_height">세로</label>
-                            <input type="text" name="cf_member_icon_height" value="<?php echo (int) $config['cf_member_icon_height'] ?>" id="cf_member_icon_height" class="frm_input" size="2">
+                            <input type="text" name="cf_member_icon_height" value="<?php echo (int) $config['cf_member_icon_height'] ?>" id="cf_member_icon_height" class="frm_input form-input" size="2">
                             픽셀 이하
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="cf_member_img_size">회원이미지 용량</label></th>
-                        <td><input type="text" name="cf_member_img_size" value="<?php echo (int) $config['cf_member_img_size'] ?>" id="cf_member_img_size" class="frm_input" size="10"> 바이트 이하</td>
+                        <td><input type="text" name="cf_member_img_size" value="<?php echo (int) $config['cf_member_img_size'] ?>" id="cf_member_img_size" class="frm_input form-input" size="10"> 바이트 이하</td>
                         <th scope="row">회원이미지 사이즈</th>
                         <td>
                             <label for="cf_member_img_width">가로</label>
-                            <input type="text" name="cf_member_img_width" value="<?php echo (int) $config['cf_member_img_width'] ?>" id="cf_member_img_width" class="frm_input" size="2">
+                            <input type="text" name="cf_member_img_width" value="<?php echo (int) $config['cf_member_img_width'] ?>" id="cf_member_img_width" class="frm_input form-input" size="2">
                             <label for="cf_member_img_height">세로</label>
-                            <input type="text" name="cf_member_img_height" value="<?php echo (int) $config['cf_member_img_height'] ?>" id="cf_member_img_height" class="frm_input" size="2">
+                            <input type="text" name="cf_member_img_height" value="<?php echo (int) $config['cf_member_img_height'] ?>" id="cf_member_img_height" class="frm_input form-input" size="2">
                             픽셀 이하
                         </td>
                     </tr>
@@ -108,27 +108,27 @@
                         <th scope="row"><label for="cf_use_recommend">추천인제도 사용</label></th>
                         <td><input type="checkbox" name="cf_use_recommend" value="1" id="cf_use_recommend" <?php echo $config['cf_use_recommend'] ? 'checked' : ''; ?>> 사용</td>
                         <th scope="row"><label for="cf_recommend_point">추천인 포인트</label></th>
-                        <td><input type="text" name="cf_recommend_point" value="<?php echo (int) $config['cf_recommend_point'] ?>" id="cf_recommend_point" class="frm_input"> 점</td>
+                        <td><input type="text" name="cf_recommend_point" value="<?php echo (int) $config['cf_recommend_point'] ?>" id="cf_recommend_point" class="frm_input form-input"> 점</td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="cf_prohibit_id">아이디,닉네임 금지단어</label></th>
                         <td>
                             <?php echo help('회원아이디, 닉네임으로 사용할 수 없는 단어를 정합니다. 쉼표 (,) 로 구분') ?>
-                            <textarea name="cf_prohibit_id" id="cf_prohibit_id" rows="5"><?php echo get_sanitize_input($config['cf_prohibit_id']); ?></textarea>
+                            <textarea name="cf_prohibit_id" id="cf_prohibit_id" rows="5" class="form-textarea min-h-24 w-full"><?php echo get_sanitize_input($config['cf_prohibit_id']); ?></textarea>
                         </td>
                         <th scope="row"><label for="cf_prohibit_email">입력 금지 메일</label></th>
                         <td>
                             <?php echo help('입력 받지 않을 도메인을 지정합니다. 엔터로 구분 ex) hotmail.com') ?>
-                            <textarea name="cf_prohibit_email" id="cf_prohibit_email" rows="5"><?php echo get_sanitize_input($config['cf_prohibit_email']); ?></textarea>
+                            <textarea name="cf_prohibit_email" id="cf_prohibit_email" rows="5" class="form-textarea min-h-24 w-full"><?php echo get_sanitize_input($config['cf_prohibit_email']); ?></textarea>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="cf_stipulation">회원가입약관</label></th>
-                        <td colspan="3"><textarea name="cf_stipulation" id="cf_stipulation" rows="10"><?php echo html_purifier($config['cf_stipulation']); ?></textarea></td>
+                        <td colspan="3"><textarea name="cf_stipulation" id="cf_stipulation" rows="10" class="form-textarea min-h-24 w-full"><?php echo html_purifier($config['cf_stipulation']); ?></textarea></td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="cf_privacy">개인정보처리방침</label></th>
-                        <td colspan="3"><textarea id="cf_privacy" name="cf_privacy" rows="10"><?php echo html_purifier($config['cf_privacy']); ?></textarea></td>
+                        <td colspan="3"><textarea id="cf_privacy" name="cf_privacy" rows="10" class="form-textarea min-h-24 w-full"><?php echo html_purifier($config['cf_privacy']); ?></textarea></td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="cf_use_promotion">회원가입 약관 동의에<br>광고성 정보 수신 동의 표시 여부</label></th>
