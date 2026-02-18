@@ -21,14 +21,32 @@ if (!$config['cf_mobile_faq_skin']) {
 
 $g5['title'] = '환경설정';
 require_once './admin.head.php';
+?>
+<style>
+    .hint-text {
+        margin-bottom: var(--spacing-base);
+        border-radius: var(--radius);
+        border: 1px dashed var(--color-default-300);
+        background-color: var(--color-default-100);
+        padding: calc(var(--spacing) * 4);
+        font-size: var(--text-sm);
+        color: var(--color-default-600);
+        line-height: 1.5;
+    }
+
+    .hint-text p {
+        margin: 0;
+    }
+</style>
+<?php
 
 $pg_anchor = '';
 $pg_anchor_menu = '
-<nav class="card">
-    <div class="card-header">
+<nav class="rounded-xl border border-default-300 bg-card shadow-sm">
+    <div class="flex items-center justify-between border-b border-default-300 px-5 py-3.5">
         <h3 class="card-title">환경설정 바로가기</h3>
     </div>
-    <div class="card-body">
+    <div class="p-5">
         <ul class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-1 gap-2.5">
             <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_basic">기본</a></li>
             <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_board">게시판</a></li>
@@ -81,11 +99,11 @@ if ($config['cf_sms_use'] && $config['cf_icode_id'] && $config['cf_icode_pw']) {
             include_once G5_ADMIN_PATH.'/config_form_parts/sms.php';
             ?>
 
-            <div id="config_captcha_wrap" class="card hidden">
-                <div class="card-header">
+            <div id="config_captcha_wrap" class="hidden rounded-xl border border-default-300 bg-card shadow-sm">
+                <div class="flex items-center justify-between border-b border-default-300 px-5 py-3.5">
                     <h2 class="card-title">캡차 입력</h2>
                 </div>
-                <div class="card-body">
+                <div class="p-5">
                     <?php
                     require_once G5_CAPTCHA_PATH . '/captcha.lib.php';
                     $captcha_html = captcha_html();

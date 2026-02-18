@@ -37,7 +37,7 @@ $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
 <section id="anc_cf_url">
     <h2 class="h2_frm">짧은 주소 설정</h2>
     <?php echo $pg_anchor ?>
-    <div class="local_desc02 local_desc">
+    <div class="hint-text">
         <p>
             게시판과 컨텐츠 페이지에 짧은 URL 을 사용합니다. <a href="https://sir.kr/manual/g5/286" class="btn btn_03" target="_blank" style="margin-left:10px">설정 관련 메뉴얼 보기</a>
             <?php if ($is_use_apache && !$is_use_nginx) { ?>
@@ -59,14 +59,8 @@ $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
         <?php } ?>
     </div>
 
-    <div class="tbl_frm01 tbl_wrap">
-        <table>
-            <caption>짧은주소 설정</caption>
-            <colgroup>
-                <col class="grid_4">
-                <col>
-            </colgroup>
-            <tbody>
+    <div class="card">
+            <div class="grid grid-cols-1 gap-4">
                 <?php
                 $short_url_arrs = array(
                     '0' => array('label' => '사용안함', 'url' => G5_URL . '/board.php?bo_table=free&wr_id=123'),
@@ -76,14 +70,13 @@ $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
                 foreach ($short_url_arrs as $k => $v) {
                     $checked = ((int) $config['cf_bbs_rewrite'] === (int) $k) ? 'checked' : '';
                 ?>
-                    <tr>
-                        <td><input name="cf_bbs_rewrite" id="cf_bbs_rewrite_<?php echo $k; ?>" type="radio" value="<?php echo $k; ?>" <?php echo $checked; ?>><label for="cf_bbs_rewrite_<?php echo $k; ?>" class="rules_label"><?php echo $v['label']; ?></label></td>
-                        <td><?php echo $v['url']; ?></td>
-                    </tr>
+                                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
+                                            <div class="lg:col-span-1"><input name="cf_bbs_rewrite" id="cf_bbs_rewrite_<?php echo $k; ?>" type="radio" value="<?php echo $k; ?>" <?php echo $checked; ?>><label for="cf_bbs_rewrite_<?php echo $k; ?>" class="rules_label form-label py-2 mb-0!"><?php echo $v['label']; ?></label>                    </div>
+                                            <div class="lg:col-span-1"><?php echo $v['url']; ?>                    </div>
+                                    </div>
                 <?php } //end foreach ?>
-            </tbody>
-        </table>
-    </div>
+                        </div>
+        </div>
 
     <div class="server_rewrite_info">
         <div class="is_rewrite remodal" data-remodal-id="modal_apache" role="dialog" aria-labelledby="modalApache" aria-describedby="modal1Desc">
@@ -113,7 +106,6 @@ $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
             </button>
             <h4 class="copy_title">아래 코드를 복사하여 nginx 설정 파일에 적용해 주세요.</h4>
             <textarea readonly="readonly" rows="10"><?php echo get_nginx_conf_rules(true); ?></textarea>
+            </div>
         </div>
-
-    </div>
-</section>
+    </section>

@@ -1,18 +1,5 @@
 <?php include 'layout/header.php'; ?>
 <?php include 'layout/sidebar.php'; ?>
-<style>
-    @media (max-width: 768px) {
-        td > .form-select,
-        td .form-select {
-            width: auto !important;
-            min-width: 7.25rem !important;
-            max-width: 100% !important;
-            padding-inline-end: 2rem !important;
-            text-overflow: clip !important;
-            white-space: nowrap !important;
-        }
-    }
-</style>
 
 <div class="container-fluid">
                     <div class="grid grid-cols-1 gap-base">
@@ -132,7 +119,7 @@
                                             <div class="lg:col-span-2">
                                                 <input type="text" id="example-helping" placeholder="도움말 텍스트"
                                                     class="form-input" />
-                                                <small class="text-default-400 mt-1 block text-xs">새 줄로 나뉘며 한 줄 이상 확장될 수
+                                                <small class="hint-text">새 줄로 나뉘며 한 줄 이상 확장될 수
                                                     있는 도움말 텍스트 블록입니다.</small>
                                             </div>
                                         </div>

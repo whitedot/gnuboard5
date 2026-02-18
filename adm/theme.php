@@ -26,13 +26,13 @@ include_once('./admin.head.php');
 ?>
 
 <script src="<?php echo G5_ADMIN_URL; ?>/theme.js"></script>
-<div class="local_wr">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <span class="btn_ov01"><span class="ov_txt">설치된 테마</span><span class="ov_num">  <?php echo number_format($total_count); ?></span></span>
 
 </div>
 
 <?php if($total_count > 0) { ?>
-<ul id="theme_list">
+<ul id="theme_list" class="card p-4">
     <?php
     for($i=0; $i<$total_count; $i++) {
         $info = get_theme_info($theme[$i]);

@@ -48,13 +48,13 @@ $sql = "select * $sql_common order by nw_id desc ";
 $result = sql_query($sql);
 ?>
 
-<div class="local_ov01 local_ov"><span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> <?php echo $total_count; ?>건</span></span></div>
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5"><span class="btn btn-sm border-default-300"><span class="ov_txt">전체 </span><span class="ov_num"> <?php echo $total_count; ?>건</span></span></div>
 
 <div class="btn_fixed_top ">
-    <a href="./newwinform.php" class="btn btn_01">새창관리추가</a>
+    <a href="./newwinform.php" class="btn btn-sm border-default-300">새창관리추가</a>
 </div>
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
         <caption><?php echo $g5['title']; ?> 목록</caption>
         <thead>

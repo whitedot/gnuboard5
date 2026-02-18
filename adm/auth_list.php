@@ -54,17 +54,17 @@ require_once './admin.head.php';
 $colspan = 5;
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall ?>
     <span class="btn_ov01"><span class="ov_txt">설정된 관리권한</span><span class="ov_num"><?php echo number_format($total_count) ?>건</span></span>
 </div>
 
-<form name="fsearch" id="fsearch" class="local_sch01 local_sch" method="get">
+<form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
     <input type="hidden" name="sfl" value="a.mb_id" id="sfl">
 
     <label for="stx" class="sound_only">회원아이디<strong class="sound_only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
-    <input type="submit" value="검색" id="fsearch_submit" class="btn_submit">
+    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input form-input">
+    <input type="submit" value="검색" id="fsearch_submit" class="btn btn-sm border-default-300">
 
 </form>
 
@@ -175,66 +175,68 @@ echo $pagelist;
     <section id="add_admin">
         <h2 class="h2_frm">관리권한 추가</h2>
 
-        <div class="local_desc01 local_desc">
+        <div class="hint-text">
             <p>
                 다음 양식에서 회원에게 관리권한을 부여하실 수 있습니다.<br>
                 권한 <strong>r</strong>은 읽기권한, <strong>w</strong>는 쓰기권한, <strong>d</strong>는 삭제권한입니다.
             </p>
         </div>
 
-        <div class="tbl_frm01 tbl_wrap">
-            <table>
-                <colgroup>
-                    <col class="grid_4">
-                    <col>
-                </colgroup>
-                <tbody>
-                    <tr>
-                        <th scope="row"><label for="mb_id">회원아이디<strong class="sound_only">필수</strong></label></th>
-                        <td>
-                            <strong id="msg_mb_id" class="msg_sound_only"></strong>
-                            <input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" required class="required frm_input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><label for="au_menu">접근가능메뉴<strong class="sound_only">필수</strong></label></th>
-                        <td>
-                            <select id="au_menu" name="au_menu" required class="required">
-                                <option value=''>선택하세요</option>
-                                <?php
-                                foreach ($auth_menu as $key => $value) {
-                                    if (!(substr($key, -3) == '000' || $key == '-' || !$key)) {
-                                        echo '<option value="' . $key . '">' . $key . ' ' . $value . '</option>';
-                                    }
-                                }
-                                ?>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">권한지정</th>
-                        <td>
-                            <input type="checkbox" name="r" value="r" id="r" checked>
-                            <label for="r">r (읽기)</label>
-                            <input type="checkbox" name="w" value="w" id="w">
-                            <label for="w">w (쓰기)</label>
-                            <input type="checkbox" name="d" value="d" id="d">
-                            <label for="d">d (삭제)</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">자동등록방지</th>
-                        <td>
+        <div class="card">
+            <div class="grid grid-cols-1 gap-4">
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
+                    <div class="lg:col-span-1">
+                        <label for="mb_id" class="form-label py-2 mb-0!">회원아이디<strong class="sound_only">필수</strong></label>
+                    </div>
+                    <div class="lg:col-span-3">
+                        <strong id="msg_mb_id" class="msg_sound_only"></strong>
+                        <input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" required class="required frm_input form-input">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
+                    <div class="lg:col-span-1">
+                        <label for="au_menu" class="form-label py-2 mb-0!">접근가능메뉴<strong class="sound_only">필수</strong></label>
+                    </div>
+                    <div class="lg:col-span-3">
+                        <select id="au_menu" name="au_menu" required class="required form-select">
+                            <option value=''>선택하세요</option>
                             <?php
-                            require_once G5_CAPTCHA_PATH . '/captcha.lib.php';
-                            $captcha_html = captcha_html();
-                            $captcha_js   = chk_captcha_js();
-                            echo $captcha_html;
+                            foreach ($auth_menu as $key => $value) {
+                                if (!(substr($key, -3) == '000' || $key == '-' || !$key)) {
+                                    echo '<option value="' . $key . '">' . $key . ' ' . $value . '</option>';
+                                }
+                            }
                             ?>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
+                    <div class="lg:col-span-1">
+                        <span class="form-label py-2 mb-0!">권한지정</span>
+                    </div>
+                    <div class="lg:col-span-3">
+                        <input type="checkbox" name="r" value="r" id="r" checked class="form-checkbox">
+                        <label for="r">r (읽기)</label>
+                        <input type="checkbox" name="w" value="w" id="w" class="form-checkbox">
+                        <label for="w">w (쓰기)</label>
+                        <input type="checkbox" name="d" value="d" id="d" class="form-checkbox">
+                        <label for="d">d (삭제)</label>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
+                    <div class="lg:col-span-1">
+                        <span class="form-label py-2 mb-0!">자동등록방지</span>
+                    </div>
+                    <div class="lg:col-span-3">
+                        <?php
+                        require_once G5_CAPTCHA_PATH . '/captcha.lib.php';
+                        $captcha_html = captcha_html();
+                        $captcha_js   = chk_captcha_js();
+                        echo $captcha_html;
+                        ?>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="btn_confirm01 btn_confirm">

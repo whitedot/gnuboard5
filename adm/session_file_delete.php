@@ -9,7 +9,7 @@ $g5['title'] = "세션파일 일괄삭제";
 include_once("./admin.head.php");
 ?>
 
-<div class="local_desc02 local_desc">
+<div class="hint-text">
     <p>
         완료 메세지가 나오기 전에 프로그램의 실행을 중지하지 마십시오.
     </p>
@@ -28,6 +28,7 @@ include_once("./admin.head.php");
     }
 
     $cnt=0;
+    echo '<div class="card p-4 mb-base">';
     echo $list_tag_st;
     while($file=readdir($dir)) {
 
@@ -53,7 +54,8 @@ include_once("./admin.head.php");
         }
     }
     echo $list_tag_end;
-    echo '<div class="local_desc01 local_desc"><p><strong>세션데이터 '.$cnt.'건 삭제 완료됐습니다.</strong><br>프로그램의 실행을 끝마치셔도 좋습니다.</p></div>'.PHP_EOL;
+    echo '</div>';
+    echo '<div class="hint-text"><p><strong>세션데이터 '.$cnt.'건 삭제 완료됐습니다.</strong><br>프로그램의 실행을 끝마치셔도 좋습니다.</p></div>'.PHP_EOL;
 ?>
 
 <?php

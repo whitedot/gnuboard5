@@ -286,6 +286,16 @@ if (!empty($_COOKIE['g5_admin_btn_gnb'])) {
                 $section.append($body);
             });
 
+            // Avoid nested card visuals: section.card > .card-body > .card
+            // Keep inner layout wrapper, but strip redundant card skin.
+            $scope.find("section.card > .card-body > .card").each(function() {
+                var $inner = $(this);
+                $inner.removeClass("card");
+                if (!$inner.attr("class")) {
+                    $inner.removeAttr("class");
+                }
+            });
+
             $scope.find("label").addClass("form-label");
             $scope.find('input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="url"], input[type="search"], input[type="tel"], input[type="date"], input[type="time"], input[type="week"], input[type="month"], input[type="file"]').not('.btn, [type="hidden"], [type="radio"], [type="checkbox"], [type="submit"]').addClass("form-input");
             $scope.find("select").addClass("form-select");
