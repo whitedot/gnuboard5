@@ -304,8 +304,7 @@ $colspan = 16;
                                 "mb_level[$i]",
                                 1,
                                 $level_max,
-                                $row['mb_level'],
-                                'class="form-select" style="min-width:88px;padding-inline-end:2.75rem !important;"'
+                                $row['mb_level']
                             );
                             ?>
                         </td>

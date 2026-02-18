@@ -348,19 +348,47 @@ if (!empty($_COOKIE['g5_admin_btn_gnb'])) {
 
             $scope.find("input.frm_input, input.tbl_input").not('.btn, [type="hidden"], [type="radio"], [type="checkbox"], [type="submit"]').addClass("form-input");
             $scope.find("select").addClass("form-select");
+            $scope.find("select[id^='mb_level['], select[name^='mb_level[']").each(function() {
+                this.style.setProperty("padding-inline-end", "1.5rem", "important");
+                this.style.setProperty("padding-inline-start", "0.625rem", "important");
+                this.style.minWidth = "4.5rem";
+                this.style.width = "4.5rem";
+            });
             $scope.find("textarea").addClass("form-textarea");
             $scope.find('input[type="checkbox"]').addClass("form-checkbox");
             $scope.find('input[type="radio"]').addClass("form-radio rounded-full!");
 
             $scope.find("a.btn, button.btn, .btn_submit, .btn_01, .btn_02, .btn_03").addClass("btn btn-sm border-default-300").removeClass("btn_01 btn_02 btn_03");
 
-            $scope.find(".tbl_head01, .tbl_head02").addClass("card overflow-hidden");
+            $scope.find(".tbl_head01, .tbl_head02").addClass("card");
             $scope.find(".tbl_head01 > table, .tbl_head02 > table").addClass("w-full text-sm");
             $scope.find(".tbl_head01 caption, .tbl_head02 caption").addClass("sr-only");
             $scope.find(".tbl_head01 thead th, .tbl_head02 thead th").addClass("px-3 py-2 text-left text-xs font-semibold text-default-700 bg-default-100");
             $scope.find(".tbl_head01 tbody td, .tbl_head02 tbody td").addClass("px-3 py-2 align-top text-sm text-default-700");
             $scope.find(".tbl_head01 tbody tr, .tbl_head02 tbody tr").addClass("border-b border-default-300");
             $scope.find(".tbl_head01.tbl_wrap, .tbl_head02.tbl_wrap").addClass("overflow-x-auto");
+
+            // Keep member tables readable on narrow screens: horizontal scroll + stable cell width.
+            $scope.find(".tbl_head01, .tbl_head02").css("overflow", "visible");
+            $scope.find(".tbl_head01.tbl_wrap, .tbl_head02.tbl_wrap").css({
+                "overflow-x": "auto",
+                "overflow-y": "hidden",
+                "-webkit-overflow-scrolling": "touch"
+            });
+            $scope.find(".tbl_head01 > table, .tbl_head02 > table").css({
+                "min-width": "980px",
+                "width": "100%"
+            });
+            $scope.find(".tbl_head01 thead th, .tbl_head02 thead th, .tbl_head01 tbody td, .tbl_head02 tbody td").css("white-space", "nowrap");
+
+            // Member certify column: keep radio + text on one line per option.
+            $scope.find(".td_mbcert input[type='radio']").css("vertical-align", "middle");
+            $scope.find(".td_mbcert label").css({
+                "display": "inline-block",
+                "margin-left": "6px",
+                "margin-bottom": "0",
+                "font-weight": "400"
+            });
         }
 
         if (isEnvMenuPage) {
