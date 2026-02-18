@@ -54,7 +54,7 @@ $sql = "select * $sql_common order by co_id limit $from_record, {$config['cf_pag
 $result = sql_query($sql);
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php if ($page > 1) { ?><a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>">처음으로</a><?php } ?>
     <span class="btn_ov01"><span class="ov_txt">전체 내용</span><span class="ov_num"> <?php echo $total_count; ?>건</span></span>
 </div>
@@ -63,7 +63,7 @@ $result = sql_query($sql);
     <a href="./contentform.php" class="btn btn_01">내용 추가</a>
 </div>
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
         <caption><?php echo $g5['title']; ?> 목록</caption>
         <thead>
@@ -100,3 +100,4 @@ $result = sql_query($sql);
 
 <?php
 require_once G5_ADMIN_PATH . '/admin.tail.php';
+

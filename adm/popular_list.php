@@ -72,21 +72,21 @@ $colspan = 4;
     var list_delete_php = 'popular_list.php';
 </script>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall ?>
     <span class="btn_ov01"><span class="ov_txt">건수</span><span class="ov_num"> <?php echo number_format($total_count) ?>개</span></span>
 </div>
 
-<form name="fsearch" id="fsearch" class="local_sch01 local_sch" method="get">
+<form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
     <div class="sch_last">
         <label for="sfl" class="sr-only">검색대상</label>
-        <select name="sfl" id="sfl">
+        <select class="form-select" name="sfl" id="sfl">
             <option value="pp_word" <?php echo get_selected($sfl, "pp_word"); ?>>검색어</option>
             <option value="pp_date" <?php echo get_selected($sfl, "pp_date"); ?>>등록일</option>
         </select>
         <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-        <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
-        <input type="submit" value="검색" class="btn_submit">
+        <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input form-input">
+        <input type="submit" value="검색" class="btn btn-sm border-default-300">
     </div>
 </form>
 
@@ -98,7 +98,7 @@ $colspan = 4;
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="<?php echo isset($token) ? $token : ''; ?>">
 
-    <div class="tbl_head01 tbl_wrap">
+    <div class="tbl_head01 tbl_wrap card">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -168,3 +168,4 @@ $colspan = 4;
 
 <?php
 require_once './admin.tail.php';
+

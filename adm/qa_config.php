@@ -127,7 +127,7 @@ if (!isset($qaconfig['qa_include_head'])) {
                     <tr>
                         <th scope="row"><label for="qa_title">타이틀<strong class="sr-only">필수</strong></label></th>
                         <td>
-                            <input type="text" name="qa_title" value="<?php echo get_sanitize_input($qaconfig['qa_title']); ?>" id="qa_title" required class="required frm_input" size="40">
+                            <input type="text" name="qa_title" value="<?php echo get_sanitize_input($qaconfig['qa_title']); ?>" id="qa_title" required class="required frm_input form-input" size="40">
                             <a href="<?php echo G5_BBS_URL; ?>/qalist.php" class="btn_frmline">1:1문의 바로가기</a>
                         </td>
                     </tr>
@@ -135,7 +135,7 @@ if (!isset($qaconfig['qa_include_head'])) {
                         <th scope="row"><label for="qa_category">분류<strong class="sr-only">필수</strong></label></th>
                         <td>
                             <?php echo help('분류와 분류 사이는 | 로 구분하세요. (예: 질문|답변) 첫자로 #은 입력하지 마세요. (예: #질문|#답변 [X])') ?>
-                            <input type="text" name="qa_category" value="<?php echo get_sanitize_input($qaconfig['qa_category']); ?>" id="qa_category" required class="required frm_input" size="70">
+                            <input type="text" name="qa_category" value="<?php echo get_sanitize_input($qaconfig['qa_category']); ?>" id="qa_category" required class="required frm_input form-input" size="70">
                         </td>
                     </tr>
                     <tr>
@@ -162,7 +162,7 @@ if (!isset($qaconfig['qa_include_head'])) {
                         <th scope="row"><label for="qa_use_sms">SMS 알림</label></th>
                         <td>
                             <?php echo help('휴대폰 입력을 사용하실 경우 문의글 등록시 등록자가 답변등록시 SMS 알림 수신을 선택할 수 있도록 합니다.<br>SMS 알림을 사용하기 위해서는 기본환경설정 > <a href="' . G5_ADMIN_URL . '/config_form.php#anc_cf_sms">SMS 설정</a>을 하셔야 합니다.') ?>
-                            <select name="qa_use_sms" id="qa_use_sms">
+                            <select class="form-select" name="qa_use_sms" id="qa_use_sms">
                                 <?php echo option_selected(0, $qaconfig['qa_use_sms'], '사용안함'); ?>
                                 <?php echo option_selected(1, $qaconfig['qa_use_sms'], '사용함'); ?>
                             </select>
@@ -172,28 +172,28 @@ if (!isset($qaconfig['qa_include_head'])) {
                         <th scope="row"><label for="qa_send_number">SMS 발신번호</label></th>
                         <td>
                             <?php echo help('SMS 알림 전송시 발신번호로 사용됩니다.'); ?>
-                            <input type="text" name="qa_send_number" value="<?php echo get_sanitize_input($qaconfig['qa_send_number']); ?>" id="qa_send_number" class="frm_input" size="30">
+                            <input type="text" name="qa_send_number" value="<?php echo get_sanitize_input($qaconfig['qa_send_number']); ?>" id="qa_send_number" class="frm_input form-input" size="30">
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="qa_admin_hp">관리자 휴대폰번호</label></th>
                         <td>
                             <?php echo help('관리자 휴대폰번호를 입력하시면 문의글 등록시 등록하신 번호로 SMS 알림이 전송됩니다.<br>SMS 알림을 사용하지 않으시면 알림이 전송되지 않습니다.'); ?>
-                            <input type="text" name="qa_admin_hp" value="<?php echo get_sanitize_input($qaconfig['qa_admin_hp']); ?>" id="qa_admin_hp" class="frm_input" size="30">
+                            <input type="text" name="qa_admin_hp" value="<?php echo get_sanitize_input($qaconfig['qa_admin_hp']); ?>" id="qa_admin_hp" class="frm_input form-input" size="30">
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="qa_admin_email">관리자 이메일</label></th>
                         <td>
                             <?php echo help('관리자 이메일을 입력하시면 문의글 등록시 등록하신 이메일로 알림이 전송됩니다.'); ?>
-                            <input type="text" name="qa_admin_email" value="<?php echo get_sanitize_input($qaconfig['qa_admin_email']); ?>" id="qa_admin_email" class="frm_input" size="50">
+                            <input type="text" name="qa_admin_email" value="<?php echo get_sanitize_input($qaconfig['qa_admin_email']); ?>" id="qa_admin_email" class="frm_input form-input" size="50">
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="qa_use_editor">DHTML 에디터 사용</label></th>
                         <td>
                             <?php echo help('글작성시 내용을 DHTML 에디터 기능으로 사용할 것인지 설정합니다. 스킨에 따라 적용되지 않을 수 있습니다.'); ?>
-                            <select name="qa_use_editor" id="qa_use_editor">
+                            <select class="form-select" name="qa_use_editor" id="qa_use_editor">
                                 <?php echo option_selected(0, $qaconfig['qa_use_editor'], '사용안함'); ?>
                                 <?php echo option_selected(1, $qaconfig['qa_use_editor'], '사용함'); ?>
                             </select>
@@ -242,13 +242,13 @@ if (!isset($qaconfig['qa_include_head'])) {
                     <tr>
                         <th scope="row"><label for="qa_include_head">상단 파일 경로</label></th>
                         <td>
-                            <input type="text" name="qa_include_head" value="<?php echo get_sanitize_input($qaconfig['qa_include_head']); ?>" id="qa_include_head" class="frm_input" size="50">
+                            <input type="text" name="qa_include_head" value="<?php echo get_sanitize_input($qaconfig['qa_include_head']); ?>" id="qa_include_head" class="frm_input form-input" size="50">
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="qa_include_tail">하단 파일 경로</label></th>
                         <td>
-                            <input type="text" name="qa_include_tail" value="<?php echo get_sanitize_input($qaconfig['qa_include_tail']); ?>" id="qa_include_tail" class="frm_input" size="50">
+                            <input type="text" name="qa_include_tail" value="<?php echo get_sanitize_input($qaconfig['qa_include_tail']); ?>" id="qa_include_tail" class="frm_input form-input" size="50">
                         </td>
                     </tr>
                     <tr id="admin_captcha_box" style="display:none;">
@@ -291,7 +291,7 @@ if (!isset($qaconfig['qa_include_head'])) {
     </section>
 
     <div class="btn_fixed_top">
-        <input type="submit" value="확인" class="btn_submit btn" accesskey="s">
+        <input type="submit" value="확인" class="btn btn-sm border-default-300" accesskey="s">
     </div>
 
 </form>
@@ -359,3 +359,4 @@ if (!isset($qaconfig['qa_include_head'])) {
 
 <?php
 require_once './admin.tail.php';
+

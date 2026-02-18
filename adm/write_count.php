@@ -133,7 +133,7 @@ switch ($day) {
 ?>
 <div id="wr_cont">
     <form>
-    <select name="bo_table">
+    <select class="form-select" name="bo_table">
     <option value="">전체게시판</option>
     <?php
     $sql = " select bo_table, bo_subject from {$g5['board_table']} order by bo_count_write desc ";
@@ -147,7 +147,7 @@ switch ($day) {
     ?>
     </select>
 
-    <select name="period">
+    <select class="form-select" name="period">
     <?php
     foreach($period_array as $key=>$value) {
         echo "<option value=\"{$key}\"";
@@ -158,12 +158,12 @@ switch ($day) {
     ?>
     </select>
 
-    <select name="graph">
+    <select class="form-select" name="graph">
     <option value="line" <?php echo ($graph == 'line' ? 'selected="selected"' : ''); ?>>선그래프</option>
     <option value="bar" <?php echo ($graph == 'bar' ? 'selected="selected"' : ''); ?>>막대그래프</option>
     </select>
 
-    <input type="submit" class="btn_submit" value="확인">
+    <input type="submit" class="btn btn-sm border-default-300" value="확인">
     </form>
     <ul id="grp_color">
         <li><span></span>글 수</li>

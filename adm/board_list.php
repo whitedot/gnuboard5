@@ -56,21 +56,21 @@ require_once './admin.head.php';
 $colspan = 15;
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall ?>
     <span class="btn_ov01"><span class="ov_txt">생성된 게시판수</span><span class="ov_num"> <?php echo number_format($total_count) ?>개</span></span>
 </div>
 
-<form name="fsearch" id="fsearch" class="local_sch01 local_sch" method="get">
+<form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
     <label for="sfl" class="sr-only">검색대상</label>
-    <select name="sfl" id="sfl">
+    <select class="form-select" name="sfl" id="sfl">
         <option value="bo_table" <?php echo get_selected($sfl, "bo_table", true); ?>>TABLE</option>
         <option value="bo_subject" <?php echo get_selected($sfl, "bo_subject"); ?>>제목</option>
         <option value="a.gr_id" <?php echo get_selected($sfl, "a.gr_id"); ?>>그룹ID</option>
     </select>
     <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
-    <input type="submit" value="검색" class="btn_submit">
+    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input form-input">
+    <input type="submit" value="검색" class="btn btn-sm border-default-300">
 </form>
 
 <form name="fboardlist" id="fboardlist" action="./board_list_update.php" onsubmit="return fboardlist_submit(this);" method="post">
@@ -81,7 +81,7 @@ $colspan = 15;
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="<?php echo isset($token) ? $token : ''; ?>">
 
-    <div class="tbl_head01 tbl_wrap">
+    <div class="tbl_head01 tbl_wrap card">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -168,7 +168,7 @@ $colspan = 15;
                         </td>
                         <td class="td_mngsmall">
                             <label for="bo_device_<?php echo $i; ?>" class="sr-only">접속기기</label>
-                            <select name="bo_device[<?php echo $i ?>]" id="bo_device_<?php echo $i ?>">
+                            <select class="form-select" name="bo_device[<?php echo $i ?>]" id="bo_device_<?php echo $i ?>">
                                 <option value="both" <?php echo get_selected($row['bo_device'], 'both', true); ?>>모두</option>
                                 <option value="pc" <?php echo get_selected($row['bo_device'], 'pc'); ?>>PC</option>
                                 <option value="mobile" <?php echo get_selected($row['bo_device'], 'mobile'); ?>>모바일</option>
@@ -227,3 +227,4 @@ $colspan = 15;
 
 <?php
 require_once './admin.tail.php';
+

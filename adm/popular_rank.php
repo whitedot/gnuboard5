@@ -57,20 +57,20 @@ $colspan = 3;
     });
 </script>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall ?>
     <span class="btn_ov01"><span class="ov_txt">건수</span><span class="ov_num"> <?php echo number_format($total_count) ?>개</span></span>
 </div>
 
-<form name="fsearch" id="fsearch" class="local_sch02 local_sch" method="get">
+<form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
     <div class="sch_last">
         <strong>기간별검색</strong>
-        <input type="text" name="fr_date" value="<?php echo $fr_date ?>" id="fr_date" class="frm_input" size="11" maxlength="10">
+        <input type="text" name="fr_date" value="<?php echo $fr_date ?>" id="fr_date" class="frm_input form-input" size="11" maxlength="10">
         <label for="fr_date" class="sr-only">시작일</label>
         ~
-        <input type="text" name="to_date" value="<?php echo $to_date ?>" id="to_date" class="frm_input" size="11" maxlength="10">
+        <input type="text" name="to_date" value="<?php echo $to_date ?>" id="to_date" class="frm_input form-input" size="11" maxlength="10">
         <label for="to_date" class="sr-only">종료일</label>
-        <input type="submit" class="btn_sch2" value="검색">
+        <input type="submit" class="btn btn-sm border-default-300" value="검색">
     </div>
 </form>
 
@@ -82,7 +82,7 @@ $colspan = 3;
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="<?php echo isset($token) ? $token : ''; ?>">
 
-    <div class="tbl_head01 tbl_wrap">
+    <div class="tbl_head01 tbl_wrap card">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -120,3 +120,4 @@ $colspan = 3;
 echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page=");
 
 require_once './admin.tail.php';
+

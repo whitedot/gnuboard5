@@ -71,14 +71,14 @@ $sql = "select * $sql_common order by fm_order, fm_id limit $from_record, {$conf
 $result = sql_query($sql);
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php if ($page > 1) { ?>
         <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>">처음으로</a>
     <?php } ?>
     <span class="btn_ov01"><span class="ov_txt"> 전체 FAQ </span><span class="ov_num"> <?php echo $total_count; ?>건</span></span>
 </div>
 
-<div class="local_desc01 local_desc">
+<div class="hint-text">
     <ol>
         <li>FAQ는 무제한으로 등록할 수 있습니다</li>
         <li><strong>FAQ추가</strong>를 눌러 FAQ Master를 생성합니다. (하나의 FAQ 타이틀 생성 : 자주하시는 질문, 이용안내..등 )</li>
@@ -90,7 +90,7 @@ $result = sql_query($sql);
     <a href="./faqmasterform.php" class="btn_01 btn">FAQ추가</a>
 </div>
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
         <caption><?php echo $g5['title']; ?> 목록</caption>
         <thead>
@@ -135,3 +135,4 @@ $result = sql_query($sql);
 
 <?php
 require_once G5_ADMIN_PATH . '/admin.tail.php';
+
