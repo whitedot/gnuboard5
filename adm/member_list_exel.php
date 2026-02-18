@@ -24,7 +24,7 @@ $colspan = 14;
 
 <h2>회원 엑셀 생성</h2>
 
-<div class="local_desc01 local_desc">
+<div class="hint-text">
     <p><b>회원수 <?php echo number_format(MEMBER_EXPORT_PAGE_SIZE);?>건 초과 시</b> <?php echo number_format(MEMBER_EXPORT_PAGE_SIZE);?>건 단위로 분리 저장되며, <b>엑셀 생성 최대 건수는 <?php echo number_format(MEMBER_EXPORT_MAX_SIZE);?>건</b>입니다. 초과 시 조건 추가 설정 후 재시도하시기 바랍니다.</p>
     <p><b>수신동의 확인 대상은 만료일까지 1달 미만인 회원</b>을 기준으로 필터링됩니다.</p>
 
@@ -33,7 +33,7 @@ $colspan = 14;
     <p>회원 정보 수정은 <a href="<?php echo G5_ADMIN_URL;?>/member_list.php" class="link"><b>회원 관리</b></a>에서 진행하실 수 있습니다.</p>
 </div>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <span class="btn_ov01">
         <span class="ov_txt">총건수 </span>
         <?php if($total_error != "") { ?>
@@ -128,7 +128,7 @@ $colspan = 14;
                     <label><input type="checkbox" name="use_intercept" value="1" <?php echo isset($_GET['use_intercept']) ? 'checked' : ''; ?>> 차단회원</label>
                 </div>
                 <div class="field">
-                    <select name="intercept" id="intercept">
+                    <select name="intercept" id="intercept" class="form-select">
                         <?php
                             // 차단회원 옵션 : [정의] get_export_config() - adm/member_list_exel.lib.php
                             foreach (get_export_config('intercept_list') as $val => $label) {
@@ -168,7 +168,7 @@ $colspan = 14;
                             <label for="ad_range_type">회원범위</label>
                         </div>
                         <div class="field">
-                            <select name="ad_range_type" id="ad_range_type">
+                            <select name="ad_range_type" id="ad_range_type" class="form-select">
                                 <?php 
                                     foreach (get_export_config('ad_range_list') as $val => $label) {
                                         $selected = ((isset($_GET['ad_range_type']) ? $_GET['ad_range_type'] : '') === $val) ? 'selected' : '';

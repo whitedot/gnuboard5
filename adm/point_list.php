@@ -73,7 +73,7 @@ if (strstr($sfl, "mb_id")) {
 }
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall ?>
     <span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> <?php echo number_format($total_count) ?> 건 </span></span>
     <?php
@@ -86,15 +86,15 @@ if (strstr($sfl, "mb_id")) {
     ?>
 </div>
 
-<form name="fsearch" id="fsearch" class="local_sch01 local_sch" method="get">
+<form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
     <label for="sfl" class="sr-only">검색대상</label>
-    <select name="sfl" id="sfl">
+    <select name="sfl" id="sfl" class="form-select">
         <option value="mb_id" <?php echo get_selected($sfl, "mb_id"); ?>>회원아이디</option>
         <option value="po_content" <?php echo get_selected($sfl, "po_content"); ?>>내용</option>
     </select>
     <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
-    <input type="submit" class="btn_submit" value="검색">
+    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input form-input">
+    <input type="submit" class="btn btn-sm border-default-300" value="검색">
 </form>
 
 <form name="fpointlist" id="fpointlist" method="post" action="./point_list_delete.php" onsubmit="return fpointlist_submit(this);">
@@ -105,7 +105,7 @@ if (strstr($sfl, "mb_id")) {
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <div class="tbl_head01 tbl_wrap">
+    <div class="tbl_head01 tbl_wrap card">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -198,7 +198,7 @@ if (strstr($sfl, "mb_id")) {
         <input type="hidden" name="page" value="<?php echo $page ?>">
         <input type="hidden" name="token" value="<?php echo isset($token) ? $token : ''; ?>">
 
-        <div class="tbl_frm01 tbl_wrap">
+        <div class="card">
             <table>
                 <colgroup>
                     <col class="grid_4">
@@ -207,20 +207,20 @@ if (strstr($sfl, "mb_id")) {
                 <tbody>
                     <tr>
                         <th scope="row"><label for="mb_id">회원아이디<strong class="sr-only">필수</strong></label></th>
-                        <td><input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" class="required frm_input" required></td>
+                        <td><input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" class="required frm_input form-input" required></td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="po_content">포인트 내용<strong class="sr-only">필수</strong></label></th>
-                        <td><input type="text" name="po_content" id="po_content" required class="required frm_input" size="80"></td>
+                        <td><input type="text" name="po_content" id="po_content" required class="required frm_input form-input" size="80"></td>
                     </tr>
                     <tr>
                         <th scope="row"><label for="po_point">포인트<strong class="sr-only">필수</strong></label></th>
-                        <td><input type="text" name="po_point" id="po_point" required class="required frm_input"></td>
+                        <td><input type="text" name="po_point" id="po_point" required class="required frm_input form-input"></td>
                     </tr>
                     <?php if ($config['cf_point_term'] > 0) { ?>
                         <tr>
                             <th scope="row"><label for="po_expire_term">포인트 유효기간</label></th>
-                            <td><input type="text" name="po_expire_term" value="<?php echo $po_expire_term; ?>" id="po_expire_term" class="frm_input" size="5"> 일</td>
+                            <td><input type="text" name="po_expire_term" value="<?php echo $po_expire_term; ?>" id="po_expire_term" class="frm_input form-input" size="5"> 일</td>
                         </tr>
                     <?php } ?>
                 </tbody>

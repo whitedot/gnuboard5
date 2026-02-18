@@ -36,7 +36,7 @@ $sql = " select *
 $result = sql_query($sql);
 ?>
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>

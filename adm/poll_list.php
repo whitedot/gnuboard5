@@ -52,20 +52,20 @@ require_once './admin.head.php';
 $colspan = 8;
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall ?>
     <span class="btn_ov01"><span class="ov_txt">투표수</span><span class="ov_num"> <?php echo number_format($total_count) ?>개</span></span>
 </div>
 
-<form name="fsearch" id="fsearch" class="local_sch01 local_sch" method="get">
+<form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
     <div class="sch_last">
         <label for="sfl" class="sr-only">검색대상</label>
-        <select name="sfl" id="sfl">
+        <select name="sfl" id="sfl" class="form-select">
             <option value="po_subject" <?php echo get_selected($sfl, "po_subject"); ?>>제목</option>
         </select>
         <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-        <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input">
-        <input type="submit" class="btn_submit" value="검색">
+        <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input form-input">
+        <input type="submit" class="btn btn-sm border-default-300" value="검색">
     </div>
 </form>
 
@@ -78,7 +78,7 @@ $colspan = 8;
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <div class="tbl_head01 tbl_wrap">
+    <div class="tbl_head01 tbl_wrap card">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
