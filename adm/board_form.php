@@ -8,10 +8,10 @@ auth_check_menu($auth, $sub_menu, 'w');
 $sql = " select count(*) as cnt from {$g5['group_table']} ";
 $row = sql_fetch($sql);
 if (!$row['cnt']) {
-    alert('寃뚯떆?먭렇猷뱀씠 ?쒓컻 ?댁긽 ?앹꽦?섏뼱???⑸땲??', './boardgroup_form.php');
+    alert('게시판그룹이 한개 이상 생성되어야 합니다.', './boardgroup_form.php');
 }
 
-$html_title = 'Board';
+$html_title = '게시판';
 
 $board_default = array(
 'bo_mobile_subject'=>'',
@@ -69,14 +69,14 @@ run_event('adm_board_form_before', $board, $w);
 
 $required = "";
 $readonly = "";
-$sr_only = "";
+$sound_only = "";
 $required_valid = "";
 if ($w == '') {
-    $html_title .= ' ?앹꽦';
+    $html_title .= ' 생성';
 
     $required = 'required';
     $required_valid = 'alnum_';
-    $sr_only = '<strong class="sr-only">?꾩닔</strong>';
+    $sound_only = '<strong class="sound_only">필수</strong>';
 
     $board['bo_count_delete'] = 1;
     $board['bo_count_modify'] = 1;
@@ -108,15 +108,15 @@ if ($w == '') {
     $board['bo_include_head'] = '_head.php';
     $board['bo_include_tail'] = '_tail.php';
 } elseif ($w == 'u') {
-    $html_title .= ' ?섏젙';
+    $html_title .= ' 수정';
 
     if (!$board['bo_table']) {
-        alert('議댁옱?섏? ?딆? 寃뚯떆???낅땲??');
+        alert('존재하지 않은 게시판 입니다.');
     }
 
     if ($is_admin == 'group') {
         if ($member['mb_id'] != $group['gr_admin']) {
-            alert('洹몃９???由쎈땲??');
+            alert('그룹이 틀립니다.');
         }
     }
 
@@ -132,12 +132,12 @@ $g5['title'] = $html_title;
 require_once './admin.head.php';
 
 $pg_anchor = '<ul class="anchor">
-    <li><a href="#anc_bo_basic">湲곕낯 ?ㅼ젙</a></li>
-    <li><a href="#anc_bo_auth">沅뚰븳 ?ㅼ젙</a></li>
-    <li><a href="#anc_bo_function">湲곕뒫 ?ㅼ젙</a></li>
-    <li><a href="#anc_bo_design">?붿옄???묒떇</a></li>
-    <li><a href="#anc_bo_point">?ъ씤???ㅼ젙</a></li>
-    <li><a href="#anc_bo_extra">?щ텇?꾨뱶</a></li>
+    <li><a href="#anc_bo_basic">기본 설정</a></li>
+    <li><a href="#anc_bo_auth">권한 설정</a></li>
+    <li><a href="#anc_bo_function">기능 설정</a></li>
+    <li><a href="#anc_bo_design">디자인/양식</a></li>
+    <li><a href="#anc_bo_point">포인트 설정</a></li>
+    <li><a href="#anc_bo_extra">여분필드</a></li>
 </ul>';
 
 ?>
@@ -152,35 +152,35 @@ $pg_anchor = '<ul class="anchor">
 <input type="hidden" name="token" value="">
 
 <?php
-// 湲곕낯 ?ㅼ젙
+// 기본 설정
 include_once G5_ADMIN_PATH.'/board_form_parts/basic.php';
 
-// 沅뚰븳 ?ㅼ젙
+// 권한 설정
 include_once G5_ADMIN_PATH.'/board_form_parts/auth.php';
 
-// 湲곕뒫 ?ㅼ젙
+// 기능 설정
 include_once G5_ADMIN_PATH.'/board_form_parts/function.php';
 
-// ?붿옄???묒떇
+// 디자인/양식
 include_once G5_ADMIN_PATH.'/board_form_parts/design.php';
 
-// ?ъ씤???ㅼ젙
+// 포인트 설정
 include_once G5_ADMIN_PATH.'/board_form_parts/point.php';
 ?>
 
 <div class="btn_fixed_top">
     <?php if ($bo_table && $w) { ?>
-        <a href="./board_copy.php?bo_table=<?php echo $board['bo_table']; ?>" id="board_copy" target="win_board_copy" class=" btn_02 btn">寃뚯떆?먮났??/a>
-        <a href="<?php echo get_pretty_url($board['bo_table']); ?>" class=" btn_02 btn">寃뚯떆??諛붾줈媛湲?/a>
-        <a href="./board_thumbnail_delete.php?bo_table=<?php echo $board['bo_table'].'&amp;'.$qstr;?>" onclick="return delete_confirm2('寃뚯떆???몃꽕???뚯씪????젣?섏떆寃좎뒿?덇퉴?');" class="btn_02 btn">寃뚯떆???몃꽕????젣</a>
+        <a href="./board_copy.php?bo_table=<?php echo $board['bo_table']; ?>" id="board_copy" target="win_board_copy" class=" btn_02 btn">게시판복사</a>
+        <a href="<?php echo get_pretty_url($board['bo_table']); ?>" class=" btn_02 btn">게시판 바로가기</a>
+        <a href="./board_thumbnail_delete.php?bo_table=<?php echo $board['bo_table'].'&amp;'.$qstr;?>" onclick="return delete_confirm2('게시판 썸네일 파일을 삭제하시겠습니까?');" class="btn_02 btn">게시판 썸네일 삭제</a>
     <?php } ?>
-    <input type="submit" value="?뺤씤" class="btn_submi btn btn_01" accesskey="s">
+    <input type="submit" value="확인" class="btn_submi btn btn_01" accesskey="s">
 </div>
 
 </form>
 
 <?php
-// ?먮컮?ㅽ겕由쏀듃
+// 자바스크립트
 include_once G5_ADMIN_PATH.'/board_form_parts/script.php';
 
 require_once './admin.tail.php';

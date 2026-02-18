@@ -12,15 +12,15 @@ $po = array(
     'po_point' => '',
 );
 
-$html_title = '?ы몴';
+$html_title = '투표';
 if ($w == '') {
-    $html_title .= ' ?앹꽦';
+    $html_title .= ' 생성';
 } elseif ($w == 'u') {
-    $html_title .= ' ?섏젙';
+    $html_title .= ' 수정';
     $sql = " select * from {$g5['poll_table']} where po_id = '{$po_id}' ";
     $po = sql_fetch($sql);
 } else {
-    alert('w 媛믪씠 ?쒕?濡??섏뼱?ㅼ? ?딆븯?듬땲??');
+    alert('w 값이 제대로 넘어오지 않았습니다.');
 }
 
 $g5['title'] = $html_title;
@@ -43,17 +43,17 @@ require_once './admin.head.php';
             <caption><?php echo $g5['title']; ?></caption>
             <tbody>
                 <tr>
-                    <th scope="row"><label for="po_subject">?ы몴 ?쒕ぉ<strong class="sr-only">?꾩닔</strong></label></th>
+                    <th scope="row"><label for="po_subject">투표 제목<strong class="sound_only">필수</strong></label></th>
                     <td><input type="text" name="po_subject" value="<?php echo get_sanitize_input($po['po_subject']); ?>" id="po_subject" required class="required frm_input" size="80" maxlength="125"></td>
                 </tr>
 
                 <?php
                 for ($i = 1; $i <= 9; $i++) {
                     $required = '';
-                    $sr_only = '';
+                    $sound_only = '';
                     if ($i == 1 || $i == 2) {
                         $required = 'required';
-                        $sr_only = '<strong class="sr-only">?꾩닔</strong>';
+                        $sound_only = '<strong class="sound_only">필수</strong>';
                     }
 
                     $po_poll = isset($po['po_poll' . $i]) ? get_text($po['po_poll' . $i]) : '';
@@ -61,10 +61,10 @@ require_once './admin.head.php';
                     ?>
 
                     <tr>
-                        <th scope="row"><label for="po_poll<?php echo $i ?>">??ぉ <?php echo $i ?><?php echo $sr_only ?></label></th>
+                        <th scope="row"><label for="po_poll<?php echo $i ?>">항목 <?php echo $i ?><?php echo $sound_only ?></label></th>
                         <td>
                             <input type="text" name="po_poll<?php echo $i ?>" value="<?php echo $po_poll ?>" id="po_poll<?php echo $i ?>" <?php echo $required ?> class="frm_input <?php echo $required ?>" maxlength="125">
-                            <label for="po_cnt<?php echo $i ?>">??ぉ <?php echo $i ?> ?ы몴??/label>
+                            <label for="po_cnt<?php echo $i ?>">항목 <?php echo $i ?> 투표수</label>
                             <input type="text" name="po_cnt<?php echo $i ?>" value="<?php echo $po_cnt; ?>" id="po_cnt<?php echo $i ?>" class="frm_input" size="3">
                         </td>
                     </tr>
@@ -72,42 +72,42 @@ require_once './admin.head.php';
                 <?php } ?>
 
                 <tr>
-                    <th scope="row"><label for="po_etc">湲고??섍껄</label></th>
+                    <th scope="row"><label for="po_etc">기타의견</label></th>
                     <td>
-                        <?php echo help('湲고? ?섍껄???④만 ???덈룄濡??섎젮硫? 媛꾨떒??吏덈Ц???낅젰?섏꽭??') ?>
+                        <?php echo help('기타 의견을 남길 수 있도록 하려면, 간단한 질문을 입력하세요.') ?>
                         <input type="text" name="po_etc" value="<?php echo get_text($po['po_etc']) ?>" id="po_etc" class="frm_input" size="80" maxlength="125">
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><label for="po_level">?ы몴媛???뚯썝?덈꺼</label></th>
+                    <th scope="row"><label for="po_level">투표가능 회원레벨</label></th>
                     <td>
-                        <?php echo help("?덈꺼??1濡??ㅼ젙?섎㈃ ?먮떂???ы몴?????덉뒿?덈떎.") ?>
-                        <?php echo get_member_level_select('po_level', 1, 10, $po['po_level']) ?> ?댁긽 ?ы몴?????덉쓬
+                        <?php echo help("레벨을 1로 설정하면 손님도 투표할 수 있습니다.") ?>
+                        <?php echo get_member_level_select('po_level', 1, 10, $po['po_level']) ?> 이상 투표할 수 있음
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><label for="po_point">?ъ씤??/label></th>
+                    <th scope="row"><label for="po_point">포인트</label></th>
                     <td>
-                        <?php echo help('?ы몴??李몄뿬???뚯썝?먭쾶 ?ъ씤?몃? 遺?ы빀?덈떎.') ?>
-                        <input type="text" name="po_point" value="<?php echo $po['po_point'] ?>" id="po_point" class="frm_input"> ??
+                        <?php echo help('투표에 참여한 회원에게 포인트를 부여합니다.') ?>
+                        <input type="text" name="po_point" value="<?php echo $po['po_point'] ?>" id="po_point" class="frm_input"> 점
                     </td>
                 </tr>
 
                 <?php if ($w == 'u') { ?>
                     <tr>
-                        <th scope="row">?ы몴?ъ슜</th>
-                        <td><input type="checkbox" name="po_use" id="po_use" value="1" <?php if ($po['po_use']) { echo 'checked="checked"'; } ?>> <label for="po_use">?ъ슜</label></td>
+                        <th scope="row">투표사용</th>
+                        <td><input type="checkbox" name="po_use" id="po_use" value="1" <?php if ($po['po_use']) { echo 'checked="checked"'; } ?>> <label for="po_use">사용</label></td>
                     </tr>
                     <tr>
-                        <th scope="row">?ы몴?깅줉??/th>
+                        <th scope="row">투표등록일</th>
                         <td><?php echo $po['po_date']; ?></td>
                     </tr>
                     <tr>
-                        <th scope="row"><label for="po_ips">?ы몴李멸? IP</label></th>
+                        <th scope="row"><label for="po_ips">투표참가 IP</label></th>
                         <td><textarea name="po_ips" id="po_ips" readonly rows="10"><?php echo html_purifier(preg_replace("/\n/", " / ", $po['po_ips'])); ?></textarea></td>
                     </tr>
                     <tr>
-                        <th scope="row"><label for="mb_ids">?ы몴李멸? ?뚯썝</label></th>
+                        <th scope="row"><label for="mb_ids">투표참가 회원</label></th>
                         <td><textarea name="mb_ids" id="mb_ids" readonly rows="10"><?php echo html_purifier(preg_replace("/\n/", " / ", $po['mb_ids'])); ?></textarea></td>
                     </tr>
                 <?php } ?>
@@ -117,8 +117,8 @@ require_once './admin.head.php';
     </div>
 
     <div class="btn_fixed_top ">
-        <a href="./poll_list.php?<?php echo $qstr ?>" class="btn_02 btn">紐⑸줉</a>
-        <input type="submit" value="?뺤씤" class="btn_submit btn" accesskey="s">
+        <a href="./poll_list.php?<?php echo $qstr ?>" class="btn_02 btn">목록</a>
+        <input type="submit" value="확인" class="btn_submit btn" accesskey="s">
     </div>
 
 </form>

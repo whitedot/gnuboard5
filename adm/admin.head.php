@@ -293,44 +293,171 @@ if (!empty($_COOKIE['g5_admin_btn_gnb'])) {
             $scope.find('input[type="checkbox"]').addClass("form-checkbox");
             $scope.find('input[type="radio"]').addClass("form-radio rounded-full!");
             $scope.find("a.btn_frmline, .server_config_views button, .btn_01, .btn_02, .btn_03, .btn_submit").addClass("btn btn-sm border-default-300").removeClass("btn_01 btn_02 btn_03");
+        }
+
+        function applyCommonFormElements($scope) {
+            if (!$scope || !$scope.length) {
+                return;
+            }
+
+            $scope.find("label").addClass("form-label");
+            $scope.find("input.frm_input, input.tbl_input, input[type='text'], input[type='password'], input[type='email'], input[type='number'], input[type='url'], input[type='search'], input[type='tel'], input[type='date'], input[type='time'], input[type='week'], input[type='month'], input[type='file']")
+                .not(".btn, [type='hidden'], [type='radio'], [type='checkbox'], [type='submit']")
+                .addClass("form-input");
+            $scope.find("select").addClass("form-select");
+            $scope.find("textarea").addClass("form-textarea");
+            $scope.find("input[type='checkbox']").addClass("form-checkbox");
+            $scope.find("input[type='radio']").addClass("form-radio rounded-full!");
+            $scope.find("a.btn, button.btn, .btn_submit, .btn_01, .btn_02, .btn_03, a.btn_frmline, .server_config_views button")
+                .addClass("btn btn-sm border-default-300")
+                .removeClass("btn_01 btn_02 btn_03");
+
+            // On narrow screens, select text in table cells can be clipped.
+            // Keep text readable for td > .form-select while preserving compact level selects.
+            if (window.matchMedia("(max-width: 768px)").matches) {
+                $scope.find("td > select.form-select, td select.form-select")
+                    .not("select[id^='mb_level['], select[name^='mb_level[']")
+                    .each(function() {
+                        this.style.setProperty("width", "auto", "important");
+                        this.style.setProperty("min-width", "7.25rem", "important");
+                        this.style.setProperty("max-width", "100%", "important");
+                        this.style.setProperty("padding-inline-end", "2rem", "important");
+                        this.style.setProperty("text-overflow", "clip", "important");
+                        this.style.setProperty("white-space", "nowrap", "important");
+                    });
+            }
+        }
+
+        function convertFormTablesToDiv($scope) {
+            if (!$scope || !$scope.length) {
+                return;
+            }
+
+            function copyCellMeta($from, $to) {
+                var id = $from.attr("id");
+                var cls = $from.attr("class");
+                var style = $from.attr("style");
+
+                if (id) {
+                    $to.attr("id", id);
+                }
+                if (cls) {
+                    $to.addClass(cls);
+                }
+                if (style) {
+                    $to.attr("style", style);
+                }
+            }
+
+            function buildPairRow($th, $td) {
+                var $row = $('<div class="grid grid-cols-1 gap-1.5 lg:grid-cols-3 lg:gap-9 py-3 border-b border-default-300"></div>');
+                var $labelCol = $('<div class="break-keep"></div>');
+                var $valueCol = $('<div class="lg:col-span-2 text-sm text-default-700"></div>');
+
+                copyCellMeta($th, $labelCol);
+                copyCellMeta($td, $valueCol);
+
+                $labelCol.append($th.contents());
+                $valueCol.append($td.contents());
+
+                if (!$labelCol.find("label").length) {
+                    var $labelNode = $labelCol.find("strong, span, p, div").first();
+                    if ($labelNode.length) {
+                        $labelNode.addClass("form-label py-2 mb-0!");
+                    } else {
+                        $labelCol.wrapInner('<span class="form-label py-2 mb-0!"></span>');
+                    }
+                } else {
+                    $labelCol.find("label").first().addClass("py-2 mb-0!");
+                }
+
+                $row.append($labelCol, $valueCol);
+                return $row;
+            }
+
+            function buildWideRow($td) {
+                var $row = $('<div class="grid grid-cols-1 gap-1.5 py-3 border-b border-default-300"></div>');
+                var $valueCol = $('<div class="text-sm text-default-700"></div>');
+
+                copyCellMeta($td, $valueCol);
+                $valueCol.append($td.contents());
+                $row.append($valueCol);
+
+                return $row;
+            }
 
             $scope.find(".tbl_frm01 table, .tbl_frm02 table").each(function() {
                 var $table = $(this);
-                if ($table.attr("data-env-table-refactored") === "1") {
+                if ($table.attr("data-form-div-converted") === "1") {
+                    return;
+                }
+                if ($table.closest(".no-auto-div-form").length) {
+                    return;
+                }
+                if (!$table.find("input, select, textarea, .btn_confirm, .btn_submit").length) {
                     return;
                 }
 
-                $table.attr("data-env-table-refactored", "1")
-                    .addClass("w-full border-collapse table-fixed");
-                $table.find("caption").addClass("sr-only");
-                $table.find("colgroup").remove();
-                $table.find("tbody").addClass("block");
-                $table.find("tbody > tr").addClass("block border-b border-default-300 py-3 xl:grid xl:grid-cols-6 xl:gap-x-4 xl:py-0");
-                $table.find("th").addClass("block w-full px-0 pb-2 text-left text-sm font-medium text-default-700 break-keep xl:col-span-1 xl:px-3 xl:py-3");
-                $table.find("td").addClass("block w-full px-0 pb-2 text-sm text-default-700 break-keep xl:px-3 xl:py-3");
+                var $tbody = $table.children("tbody");
+                var $rows = $tbody.length ? $tbody.children("tr") : $table.find("tr");
+                if (!$rows.length) {
+                    return;
+                }
 
-                $table.find("tbody > tr").each(function() {
+                var $formGrid = $('<div class="admin-form-grid space-y-0" data-form-div-converted="1"></div>');
+                var $caption = $table.children("caption").first();
+                if ($caption.length) {
+                    $formGrid.append('<div class="sr-only">' + $caption.text() + '</div>');
+                }
+
+                $rows.each(function() {
                     var $tr = $(this);
-                    var $ths = $tr.children("th");
-                    var $tds = $tr.children("td");
-                    var cells = $ths.length + $tds.length;
-
-                    $tds.addClass("xl:col-span-2");
-
-                    if (cells <= 2) {
-                        $ths.addClass("xl:col-span-1");
-                        $tds.removeClass("xl:col-span-2").addClass("xl:col-span-5");
+                    var $cells = $tr.children("th, td");
+                    if (!$cells.length) {
+                        return;
                     }
 
-                    $tds.filter("[colspan]").each(function() {
-                        var span = parseInt($(this).attr("colspan") || "1", 10);
-                        if (span >= 3) {
-                            $(this).removeClass("xl:col-span-2").addClass("xl:col-span-5");
-                        } else if (span === 2) {
-                            $(this).removeClass("xl:col-span-2").addClass("xl:col-span-3");
+                    var $pendingTh = null;
+                    $cells.each(function() {
+                        var $cell = $(this);
+                        if ($cell.is("th")) {
+                            $pendingTh = $cell;
+                            return;
+                        }
+
+                        if ($pendingTh) {
+                            $formGrid.append(buildPairRow($pendingTh, $cell));
+                            $pendingTh = null;
+                        } else {
+                            $formGrid.append(buildWideRow($cell));
                         }
                     });
+
+                    if ($pendingTh) {
+                        var $labelOnlyRow = $('<div class="grid grid-cols-1 gap-1.5 py-3 border-b border-default-300"></div>');
+                        var $labelOnlyCol = $('<div class="break-keep"></div>');
+                        copyCellMeta($pendingTh, $labelOnlyCol);
+                        $labelOnlyCol.append($pendingTh.contents());
+                        if ($labelOnlyCol.find("label").length) {
+                            $labelOnlyCol.find("label").addClass("form-label py-2 mb-0!");
+                        } else {
+                            var $labelOnlyNode = $labelOnlyCol.find("strong, span, p, div").first();
+                            if ($labelOnlyNode.length) {
+                                $labelOnlyNode.addClass("form-label py-2 mb-0!");
+                            } else {
+                                $labelOnlyCol.wrapInner('<span class="form-label py-2 mb-0!"></span>');
+                            }
+                        }
+                        $labelOnlyRow.append($labelOnlyCol);
+                        $formGrid.append($labelOnlyRow);
+                    }
                 });
+
+                if ($formGrid.children().length) {
+                    $table.attr("data-form-div-converted", "1");
+                    $table.closest(".tbl_wrap").addClass("card p-4");
+                    $table.replaceWith($formGrid);
+                }
             });
         }
 
@@ -397,6 +524,10 @@ if (!empty($_COOKIE['g5_admin_btn_gnb'])) {
         if (isMemberMenuPage) {
             applyMemberGuideRefactor();
         }
+
+        var $containerScope = $("#container .container_wr");
+        applyCommonFormElements($containerScope);
+        convertFormTablesToDiv($containerScope);
     });
 </script>
 

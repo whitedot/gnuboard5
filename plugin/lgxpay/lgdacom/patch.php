@@ -1,22 +1,22 @@
 <?php
 
-	$configPath = "C:/lgdacom"; //LGÀ¯ÇÃ·¯½º¿¡¼­ Á¦°øÇÑ È¯°æÆÄÀÏ("/conf/lgdacom.conf") À§Ä¡ ÁöÁ¤. 
+	$configPath = "C:/lgdacom"; //LGìœ í”ŒëŸ¬ìŠ¤ì—ì„œ ì œê³µí•œ í™˜ê²½íŒŒì¼("/conf/lgdacom.conf") ìœ„ì¹˜ ì§€ì •. 
 	
     /*
-     * [LGÀ¯ÇÃ·¯½º È¯°æÆÄÀÏ UPDATE]
+     * [LGìœ í”ŒëŸ¬ìŠ¤ í™˜ê²½íŒŒì¼ UPDATE]
      *
-     * ÀÌ ÆäÀÌÁö´Â LGÀ¯ÇÃ·¯½º È¯°æÆÄÀÏÀ» UPDATE ÇÕ´Ï´Ù.(¼öÁ¤ÇÏÁö ¸¶¼¼¿ä.)
+     * ì´ í˜ì´ì§€ëŠ” LGìœ í”ŒëŸ¬ìŠ¤ í™˜ê²½íŒŒì¼ì„ UPDATE í•©ë‹ˆë‹¤.(ìˆ˜ì •í•˜ì§€ ë§ˆì„¸ìš”.)
      */
     $CST_PLATFORM   = $HTTP_POST_VARS["CST_PLATFORM"];
     $CST_MID        = $HTTP_POST_VARS["CST_MID"];
     $LGD_MID        = (("test" == $CST_PLATFORM)?"t":"").$CST_MID;
 
     if( $CST_PLATFORM == null || $CST_PLATFORM == "" ) {
-        echo "[TX_PING error] ÆÄ¶ó¹ÌÅÍ ´©¶ô<br>";
+        echo "[TX_PING error] íŒŒë¼ë¯¸í„° ëˆ„ë½<br>";
         return;
     }
     if( $LGD_MID == null || $LGD_MID == "" ) {
-        echo "[TX_PING error] ÆÄ¶ó¹ÌÅÍ ´©¶ô<br>";
+        echo "[TX_PING error] íŒŒë¼ë¯¸í„° ëˆ„ë½<br>";
         return;
     }
 

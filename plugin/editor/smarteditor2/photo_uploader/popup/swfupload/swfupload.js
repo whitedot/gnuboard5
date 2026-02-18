@@ -229,10 +229,10 @@ SWFUpload.prototype.loadFlash = function () {
     containerStyle.height = targetElement.parentNode.offsetHeight+"px";
     containerStyle.overflow = "hidden";
 
-    if (this.getStyle(container, 'position') === 'static') { //ÄÚµåÃß°¡
+    if (this.getStyle(container, 'position') === 'static') { //ì½”ë“œì¶”ê°€
         container.style.position = 'relative';
     }
-    targetElement.parentNode.replaceChild(tempParent, targetElement);   //ÄÚµåÃß°¡
+    targetElement.parentNode.replaceChild(tempParent, targetElement);   //ì½”ë“œì¶”ê°€
 	// Fix IE Flash/Form bug
 	if (window[this.movieName] == undefined) {
 		window[this.movieName] = this.getMovieElement();
@@ -993,7 +993,7 @@ SWFUpload.Console.writeLine = function (message) {
 	}
 };
 
-SWFUpload.prototype.getStyle = function (obj, name) { //»ç¿ëÀÚÃß°¡
+SWFUpload.prototype.getStyle = function (obj, name) { //ì‚¬ìš©ìì¶”ê°€
     if (obj.currentStyle) {
         return obj.currentStyle[name];
     } else if (window.getComputedStyle) {
