@@ -35,7 +35,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     <input type="hidden" name="act" value="<?php echo get_sanitize_input($act); ?>">
     <input type="hidden" name="url" value="<?php echo clean_xss_tags(strip_tags($_SERVER['HTTP_REFERER'])); ?>">
     <div class=" new_win_con"> 
-        <div class="tbl_head01 tbl_wrap">
+        <div class="tbl_head01 tbl_wrap card">
             <table>
             <caption><?php echo $act ?>할 그룹을 한개 이상 선택하여 주십시오.</caption>
             <thead>
@@ -68,7 +68,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
         </div>
     </div>
     <div class="win_btn">
-        <input type="submit" value="<?php echo $act ?>" id="btn_submit" class="btn_submit btn">
+        <input type="submit" value="<?php echo $act ?>" id="btn_submit" class="btn btn-sm border-default-300">
         <button type="button" class="btn_cancel btn">창닫기</button>
     </div>
     </form>

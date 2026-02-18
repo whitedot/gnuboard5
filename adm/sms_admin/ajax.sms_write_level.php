@@ -29,7 +29,7 @@ $str_json = array();
 $line = 0;
 $tmp_str = '';
 $tmp_str .= '
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
     <thead>
     <tr>

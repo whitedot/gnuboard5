@@ -46,32 +46,32 @@ if ($page < 1) { $page = 1; } // 페이지가 없으면 첫 페이지 (1 페이�
 $from_record = ($page - 1) * $rows; // 시작 열을 구함
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <span class="btn_ov01"><span class="ov_txt"> <?php echo ($sql_search) ? '검색' : '등록'; ?>된 배너 </span><span class="ov_num"> <?php echo $total_count; ?>개</span></span>
 
-    <form name="flist" class="local_sch01 local_sch">
+    <form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <input type="hidden" name="page" value="<?php echo $page; ?>">
 
     <label for="bn_position" class="sr-only">검색</label>
-    <select name="bn_position" id="bn_position">
+    <select class="form-select" name="bn_position" id="bn_position">
         <option value=""<?php echo get_selected($bn_position, '', true); ?>>위치 전체</option>
         <option value="메인"<?php echo get_selected($bn_position, '메인', true); ?>>메인</option>
         <option value="왼쪽"<?php echo get_selected($bn_position, '왼쪽', true); ?>>왼쪽</option>
     </select>
 
-    <select name="bn_device" id="bn_device">
+    <select class="form-select" name="bn_device" id="bn_device">
         <option value="both"<?php echo get_selected($bn_device, 'both', true); ?>>PC와 모바일</option>
         <option value="pc"<?php echo get_selected($bn_device, 'pc'); ?>>PC</option>
         <option value="mobile"<?php echo get_selected($bn_device, 'mobile'); ?>>모바일</option>
     </select>
 
-    <select name="bn_time" id="bn_time">
+    <select class="form-select" name="bn_time" id="bn_time">
         <option value=""<?php echo get_selected($bn_time, '', true); ?>>배너 시간 전체</option>
         <option value="ing"<?php echo get_selected($bn_time, 'ing'); ?>>진행중인 배너</option>
         <option value="end"<?php echo get_selected($bn_time, 'end'); ?>>종료된 배너</option>
     </select>
 
-    <input type="submit" value="검색" class="btn_submit">
+    <input type="submit" value="검색" class="btn btn-sm border-default-300">
 
     </form>
 
@@ -81,7 +81,7 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
     <a href="./bannerform.php" class="btn_01 btn">배너추가</a>
 </div>
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>

@@ -27,17 +27,17 @@ $line = 0;
 include_once(G5_ADMIN_PATH.'/admin.head.php');
 ?>
 
-<form name="search_form" id="search_form" action=<?php echo $_SERVER['SCRIPT_NAME'];?> class="local_sch01 local_sch" method="get">
+<form name="search_form" id="search_form" action=<?php echo $_SERVER['SCRIPT_NAME'];?> class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
 
 <label for="st" class="sr-only">검색대상</label>
 <input type="hidden" name="st" id="st" value="wr_message" >
 <label for="sv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="sv" value="<?php echo $sv ?>" id="sv" required class="required frm_input">
-<input type="submit" value="검색" class="btn_submit">
+<input type="text" name="sv" value="<?php echo $sv ?>" id="sv" required class="required frm_input form-input">
+<input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>

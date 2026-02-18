@@ -46,7 +46,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
     <tr>
         <th scope="row"><label for="fg_no">그룹<strong class="sr-only"> 필수</strong></label></th>
         <td>
-            <select name="fg_no" id="fg_no" required class="required">
+            <select class="form-select" name="fg_no" id="fg_no" required class="required">
                 <option value="0">미분류</option>
                 <?php
                 $qry = sql_query("select * from {$g5['sms5_form_group_table']} order by fg_name");
@@ -59,7 +59,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
     </tr>
     <tr>
         <th scope="row"><label for="fo_name">제목<strong class="sr-only"> 필수</strong></label></th>
-        <td><input type="text" name="fo_name" id="fo_name" required value="<?php echo get_sanitize_input($write['fo_name']); ?>" class="frm_input required" size="70"></td>
+        <td><input type="text" name="fo_name" id="fo_name" required value="<?php echo get_sanitize_input($write['fo_name']); ?>" class="frm_input form-input required" size="70"></td>
     </tr>
     <tr>
         <th scope="row">메세지</th>
@@ -155,7 +155,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
     </table>
     </div>
     <div class="btn_confirm01 btn_confirm">
-        <input type="submit" value="확인" class="btn_submit" accesskey="s">
+        <input type="submit" value="확인" class="btn btn-sm border-default-300" accesskey="s">
         <a href="./form_list.php?<?php echo clean_query_string($_SERVER['QUERY_STRING']); ?>">목록</a>
     </div>
 </form>

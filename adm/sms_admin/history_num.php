@@ -33,19 +33,19 @@ $vnum = $total_count - (($page-1) * $page_size);
 include_once(G5_ADMIN_PATH.'/admin.head.php');
 ?>
 
-<form name="search_form" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" class="local_sch01 local_sch" >
+<form name="search_form" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" >
 <label for="st" class="sr-only">검색대상</label>
-<select name="st" id="st">
+<select class="form-select" name="st" id="st">
     <option value="hs_name"<?php echo get_selected('hs_name', $st); ?>>이름</option>
     <option value="hs_hp"<?php echo get_selected('hs_hp', $st); ?>>휴대폰번호</option>
     <option value="bk_no"<?php echo get_selected('bk_no', $st); ?>>고유번호</option>
 </select>
 <label for="sv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="sv" value="<?php echo $sv; ?>" id="sv" required class="required frm_input">
-<input type="submit" value="검색" class="btn_submit">
+<input type="text" name="sv" value="<?php echo $sv; ?>" id="sv" required class="required frm_input form-input">
+<input type="submit" value="검색" class="btn btn-sm border-default-300">
 </form>
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>

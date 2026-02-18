@@ -106,7 +106,7 @@ function no_hp_click(val)
 }
 </script>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <span class="btn_ov01"><span class="ov_txt">업데이트 </span><span class="ov_num"><?php echo isset($sms5['cf_datetime']) ? $sms5['cf_datetime'] : ''; ?></span></span>
     <span class="btn_ov01"><span class="ov_txt"> 건수  </span><span class="ov_num"><?php echo number_format($total_count)?>명</span></span>
     <span class="btn_ov01"><span class="ov_txt"> 회원  </span><span class="ov_num"> <?php echo number_format($member_count)?>명</span></span>
@@ -115,22 +115,22 @@ function no_hp_click(val)
     <span class="btn_ov01"><span class="ov_txt"> 거부  </span><span class="ov_num"> <?php echo number_format($reject_count)?>명</span></span>
 </div>
 
-<form name="search_form" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']?>" class="local_sch01 local_sch">
+<form name="search_form" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']?>" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
 <input type="hidden" name="bg_no" value="<?php echo $bg_no?>" >
 <label for="st" class="sr-only">검색대상</label>
-<select name="st" id="st">
+<select class="form-select" name="st" id="st">
     <option value="all"<?php echo get_selected('all', $st); ?>>이름 + 휴대폰번호</option>
     <option value="name"<?php echo get_selected('name', $st); ?>>이름</option>
     <option value="hp" <?php echo get_selected('hp', $st); ?>>휴대폰번호</option>
 </select>
 <label for="sv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="sv" value="<?php echo $sv?>" id="sv" required class="frm_input required">
-<input type="submit" value="검색" class="btn_submit">
+<input type="text" name="sv" value="<?php echo $sv?>" id="sv" required class="frm_input form-input required">
+<input type="submit" value="검색" class="btn btn-sm border-default-300">
 </form>
 
-<form name="search_form" class="local_sch01 local_sch">
+<form name="search_form" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
 <label for="bg_no" class="sr-only">그룹명</label>
-<select name="bg_no" id="bg_no" onchange="location.href='<?php echo $_SERVER['SCRIPT_NAME']?>?bg_no='+this.value;">
+<select class="form-select" name="bg_no" id="bg_no" onchange="location.href='<?php echo $_SERVER['SCRIPT_NAME']?>?bg_no='+this.value;">
     <option value=""<?php echo get_selected('', $bg_no); ?>> 전체 </option>
     <option value="<?php echo $no_group['bg_no']?>"<?php echo get_selected($no_group['bg_no'], $bg_no); ?>> <?php echo $no_group['bg_name']?> (<?php echo number_format($no_group['bg_count'])?> 명) </option>
     <?php for($i=0; $i<count($group); $i++) {?>
@@ -150,7 +150,7 @@ function no_hp_click(val)
 <input type="hidden" name="atype" value="del">
 <input type="hidden" name="str_query" value="<?php echo clean_query_string($_SERVER['QUERY_STRING']); ?>" >
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>

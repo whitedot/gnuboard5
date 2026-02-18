@@ -54,27 +54,27 @@ $qstr = $qstr1.'&amp;sort1='.$sort1.'&amp;sort2='.$sort2.'&amp;page='.$page;
 $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall; ?>
      <span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> <?php echo number_format($total_count); ?>건</span></span>  
      <span class="btn_ov01"><span class="ov_txt">미전송 </span><span class="ov_num"><?php echo number_format($unsend_count); ?>건</span></span>  
 </div>
 
-<form name="flist" class="local_sch01 local_sch">
+<form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
 <input type="hidden" name="doc" value="<?php echo get_sanitize_input($doc); ?>">
 <input type="hidden" name="sort1" value="<?php echo get_sanitize_input($sort1); ?>">
 <input type="hidden" name="sort2" value="<?php echo get_sanitize_input($sort2); ?>">
 <input type="hidden" name="page" value="<?php echo get_sanitize_input($page); ?>">
 
 <label for="sel_field" class="sr-only">검색대상</label>
-<select name="sel_field" id="sel_field">
+<select class="form-select" name="sel_field" id="sel_field">
     <option value="it_id" <?php echo get_selected($sel_field, 'it_id'); ?>>상품코드</option>
     <option value="ss_hp" <?php echo get_selected($sel_field, 'ss_hp'); ?>>휴대폰번호</option>
 </select>
 
 <label for="search" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="search" id="search" value="<?php echo $search; ?>" required class="frm_input required">
-<input type="submit" value="검색" class="btn_submit">
+<input type="text" name="search" id="search" value="<?php echo $search; ?>" required class="frm_input form-input required">
+<input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
 
@@ -85,7 +85,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 <input type="hidden" name="search" value="<?php echo $search; ?>">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -143,7 +143,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     <?php if ($is_admin == 'super') { ?>
     <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn_02">
     <?php } ?>
-    <input type="submit" name="act_button" value="선택SMS전송" class="btn_submit btn" onclick="document.pressed=this.value">
+    <input type="submit" name="act_button" value="선택SMS전송" class="btn btn-sm border-default-300" onclick="document.pressed=this.value">
 </div>
 </form>
 

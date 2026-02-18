@@ -16,7 +16,7 @@ $pg_anchor = '<ul class="anchor">
     <h2>가격비교사이트 연동 안내</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="local_desc01 local_desc">
+    <div class="hint-text">
         <ol>
             <li>가격비교사이트는 네이버 지식쇼핑, 다음 쇼핑하우 등이 있습니다.</li>
             <li>앞서 나열한 가격비교사이트 중 희망하시는 사이트에 입점합니다.</li>
@@ -29,7 +29,7 @@ $pg_anchor = '<ul class="anchor">
     <h2>사이트별 엔진페이지 URL</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="local_desc01 local_desc">
+    <div class="hint-text">
         <p>사이트 명을 클릭하시면 해당 사이트로 이동합니다.</p>
 
         <dl class="price_engine">

@@ -52,17 +52,17 @@ $qstr1 = $qstr.'&amp;fr_date='.$fr_date.'&amp;to_date='.$to_date.'&amp;sel_ca_id
 $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall; ?>
     <span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> <?php echo $total_count; ?>건</span></span>
 </div>
 
-<form name="flist" class="local_sch01 local_sch">
+<form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
 <input type="hidden" name="doc" value="<?php echo get_sanitize_input($doc); ?>">
 <input type="hidden" name="page" value="<?php echo get_sanitize_input($page); ?>">
 
 <label for="sel_ca_id" class="sr-only">검색대상</label>
-<select name="sel_ca_id" id="sel_ca_id">
+<select class="form-select" name="sel_ca_id" id="sel_ca_id">
     <option value=''>전체분류</option>
     <?php
     $sql1 = " select ca_id, ca_name from {$g5['g5_shop_category_table']} order by ca_order, ca_id ";
@@ -77,15 +77,15 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 </select>
 
 <label for="fr_date" class="sr-only">시작일</label>
-<input type="text" name="fr_date" value="<?php echo $fr_date; ?>" id="fr_date" required class="required frm_input" size="8" maxlength="8">
+<input type="text" name="fr_date" value="<?php echo $fr_date; ?>" id="fr_date" required class="required frm_input form-input" size="8" maxlength="8">
 ~
 <label for="to_date" class="sr-only">종료일</label>
-<input type="text" name="to_date" value="<?php echo $to_date; ?>" id="to_date" required class="required frm_input" size="8" maxlength="8">
-<input type="submit" value="검색" class="btn_submit">
+<input type="text" name="to_date" value="<?php echo $to_date; ?>" id="to_date" required class="required frm_input form-input" size="8" maxlength="8">
+<input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <thead>
@@ -127,7 +127,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 
 <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr1&amp;page="); ?>
 
-<div class="local_desc01 local_desc">
+<div class="hint-text">
     <p>고객님들이 보관함에 가장 많이 넣은 순으로 순위를 출력합니다.</p>
 </div>
 

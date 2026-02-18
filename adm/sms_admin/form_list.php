@@ -107,14 +107,14 @@ function multi_update(sel)
 }
 </script>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <span class="btn_ov01"><span class="ov_txt">건수</span><span class="ov_num"><?php echo number_format($total_count);?>건</span></span> 
 </div>
 
-<div class="local_sch01 local_sch sms_preset_sch">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5 sms_preset_sch">
     <form>
     <label for="fg_no" class="sr-only">그룹명</label>
-    <select name="fg_no" id="fg_no" onchange="location.href='<?php echo $_SERVER['SCRIPT_NAME']?>?fg_no='+this.value;">
+    <select class="form-select" name="fg_no" id="fg_no" onchange="location.href='<?php echo $_SERVER['SCRIPT_NAME']?>?fg_no='+this.value;">
         <option value="" <?php echo $fg_no?'':'selected'?>> 전체 </option>
         <option value="0" <?php echo $fg_no=='0'?'selected':''?>> 미분류 (<?php echo number_format($no_count)?>) </option>
         <?php for($i=0; $i<count($group); $i++) {?>
@@ -126,14 +126,14 @@ function multi_update(sel)
     <form name="search_form" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']?>">
     <input type="hidden" name="fg_no" value="<?php echo $fg_no;?>">
     <label for="st" class="sr-only">검색대상</label>
-    <select name="st" id="st">
+    <select class="form-select" name="st" id="st">
         <option value="all"<?php echo get_selected('all', $st); ?>>제목 + 이모티콘</option>
         <option value="name"<?php echo get_selected('name', $st); ?>>제목</option>
         <option value="content"<?php echo get_selected('content', $st); ?>>이모티콘</option>
     </select>
     <label for="sv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="sv" value="<?php echo get_text($sv) ;?>" id="sv" required class="frm_input required" >
-    <input type="submit" value="검색" class="btn_submit">
+    <input type="text" name="sv" value="<?php echo get_text($sv) ;?>" id="sv" required class="frm_input form-input required" >
+    <input type="submit" value="검색" class="btn btn-sm border-default-300">
     </form>
 </div>
 

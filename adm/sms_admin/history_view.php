@@ -79,24 +79,24 @@ function all_send()
 }
 </script>
 
-<form name="search_form" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']?>" class="local_sch01 local_sch">
+<form name="search_form" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']?>" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
 <input type="hidden" name="wr_no" value="<?php echo get_sanitize_input($wr_no); ?>">
 <input type="hidden" name="wr_renum" value="<?php echo get_sanitize_input($wr_renum); ?>">
 <input type="hidden" name="page" value="<?php echo get_sanitize_input($page); ?>">
 <input type="hidden" name="st" value="<?php echo get_sanitize_input($st); ?>">
 <input type="hidden" name="sv" value="<?php echo get_sanitize_input($sv); ?>">
 <label for="sst" class="sr-only">검색대상</label>
-<select name="sst" id="sst">
+<select class="form-select" name="sst" id="sst">
     <option value="hs_name" <?php echo get_selected('hs_name', $sst); ?>>이름</option>
     <option value="hs_hp" <?php echo get_selected('hs_hp', $sst); ?>>휴대폰번호</option>
 </select>
 <label for="ssv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="ssv" value="<?php echo get_sanitize_input($ssv); ?>" id="ssv" class="frm_input">
-<input type="submit" value="검색" class="btn_submit">
+<input type="text" name="ssv" value="<?php echo get_sanitize_input($ssv); ?>" id="ssv" class="frm_input form-input">
+<input type="submit" value="검색" class="btn btn-sm border-default-300">
 </form>
 
 <div id="sms5_sent">
-    <div class="local_ov01 local_ov">
+    <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
         <span class="btn_ov01"><span class="ov_txt">전송건수</span><span class="ov_num"> <?php echo number_format($write['wr_total'])?> 건</span></span>
         <span class="btn_ov01"><span class="ov_txt">성공건수 </span><span class="ov_num"><?php echo number_format($write['wr_success'])?> 건</span></span>
         <span class="btn_ov01"><span class="ov_txt">실패건수 </span><span class="ov_num"><?php echo number_format($write['wr_failure'])?> 건</span></span>
@@ -194,7 +194,7 @@ function all_send()
         <?php } ?>
     </div>
 
-    <div class="tbl_head01 tbl_wrap">
+    <div class="tbl_head01 tbl_wrap card">
         <table>
         <thead>
         <tr>

@@ -62,19 +62,19 @@ $qstr1 = $qstr.'&amp;fr_date='.$fr_date.'&amp;to_date='.$to_date.'&amp;sel_ca_id
 $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall; ?>
     <span class="btn_ov01"><span class="ov_txt">등록상품 </span><span class="ov_num"> <?php echo $total_count; ?>건 </span></span> 
 </div>
 
-<form name="flist" class="local_sch01 local_sch">
+<form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
 <input type="hidden" name="doc" value="<?php echo get_sanitize_input($doc); ?>">
 <input type="hidden" name="sort1" value="<?php echo get_sanitize_input($sort1); ?>">
 <input type="hidden" name="sort2" value="<?php echo get_sanitize_input($sort2); ?>">
 <input type="hidden" name="page" value="<?php echo get_sanitize_input($page); ?>">
 
 <label for="sel_ca_id" class="sr-only">검색대상</label>
-<select name="sel_ca_id" id="sel_ca_id">
+<select class="form-select" name="sel_ca_id" id="sel_ca_id">
     <option value=''>전체분류</option>
     <?php
     $sql1 = " select ca_id, ca_name from {$g5['g5_shop_category_table']} order by ca_order, ca_id ";
@@ -90,14 +90,14 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 
 기간설정
 <label for="fr_date" class="sr-only">시작일</label>
-<input type="text" name="fr_date" value="<?php echo $fr_date; ?>" id="fr_date" required class="required frm_input" size="8" maxlength="8"> 에서
+<input type="text" name="fr_date" value="<?php echo $fr_date; ?>" id="fr_date" required class="required frm_input form-input" size="8" maxlength="8"> 에서
 <label for="to_date" class="sr-only">종료일</label>
-<input type="text" name="to_date" value="<?php echo $to_date; ?>" id="to_date" required class="required frm_input" size="8" maxlength="8"> 까지
-<input type="submit" value="검색" class="btn_submit">
+<input type="text" name="to_date" value="<?php echo $to_date; ?>" id="to_date" required class="required frm_input form-input" size="8" maxlength="8"> 까지
+<input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
 
-<div class="local_desc01 local_desc">
+<div class="hint-text">
     <p>판매량을 합산하여 상품판매순위를 집계합니다.</p>
 </div>
 
@@ -106,7 +106,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     <a href="./itemlist.php" class="btn_01 btn">상품등록</a>
 </div>
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>

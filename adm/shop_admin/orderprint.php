@@ -21,7 +21,7 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
         <input type="radio" name="csv" value="csv" id="csv1">
         <label for="csv1">MS엑셀 CSV 데이터</label>
         <label for="ct_status_p" class="sr-only">출력대상</label>
-        <select name="ct_status" id="ct_status_p">
+        <select class="form-select" name="ct_status" id="ct_status_p">
             <option value="주문">주문</option>
             <option value="입금">입금</option>
             <option value="준비">준비</option>
@@ -33,11 +33,11 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
             <option value="">전체</option>
         </select>
         <label for="fr_date" class="sr-only">기간 시작일</label>
-        <input type="text" name="fr_date" value="<?php echo date("Ymd"); ?>" id="fr_date" required class="required frm_input" size="10" maxlength="8">
+        <input type="text" name="fr_date" value="<?php echo date("Ymd"); ?>" id="fr_date" required class="required frm_input form-input" size="10" maxlength="8">
         ~
         <label for="to_date" class="sr-only">기간 종료일</label>
-        <input type="text" name="to_date" value="<?php echo date("Ymd"); ?>" id="to_date" required class="required frm_input" size="10" maxlength="8">
-        <input type="submit" value="출력 (새창)" class="btn_submit">
+        <input type="text" name="to_date" value="<?php echo date("Ymd"); ?>" id="to_date" required class="required frm_input form-input" size="10" maxlength="8">
+        <input type="submit" value="출력 (새창)" class="btn btn-sm border-default-300">
 
         </form>
     </div>
@@ -53,7 +53,7 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
         <input type="radio" name="csv" value="csv" id="csv2">
         <label for="csv2">MS엑셀 CSV 데이터</label>
         <label for="ct_status_n" class="sr-only">출력대상</label>
-        <select name="ct_status" id="ct_status_n">
+        <select class="form-select" name="ct_status" id="ct_status_n">
             <option value="주문">주문</option>
             <option value="입금">입금</option>
             <option value="준비">준비</option>
@@ -65,11 +65,11 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
             <option value="">전체</option>
         </select>
         <label for="fr_od_id" class="sr-only">주문번호 구간 시작</label>
-        <input type="text" name="fr_od_id" id="fr_od_id" required class="required frm_input" size="10" maxlength="20">
+        <input type="text" name="fr_od_id" id="fr_od_id" required class="required frm_input form-input" size="10" maxlength="20">
         ~
         <label for="fr_od_id" class="sr-only">주문번호 구간 종료</label>
-        <input type="text" name="to_od_id" id="to_od_id" required class="required frm_input" size="10" maxlength="20">
-        <input type="submit" value="출력 (새창)" class="btn_submit">
+        <input type="text" name="to_od_id" id="to_od_id" required class="required frm_input form-input" size="10" maxlength="20">
+        <input type="submit" value="출력 (새창)" class="btn btn-sm border-default-300">
 
         </form>
     </div>
@@ -80,7 +80,7 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
     <a href="./orderlist.php" class="btn_01 btn ">주문내역</a>
 </div>
 
-<div class="local_desc01 local_desc">
+<div class="hint-text">
     <p>기간별 혹은 주문번호구간별 주문내역을 새창으로 출력할 수 있습니다.</p>
 </div>
 

@@ -52,7 +52,7 @@ include_once(G5_ADMIN_PATH.'/shop_admin/config_form_parts/sms.php');
 
 <div class="btn_fixed_top">
     <a href=" <?php echo G5_SHOP_URL; ?>" class="btn btn_02">쇼핑몰</a>
-    <input type="submit" value="확인" class="btn_submit btn" accesskey="s">
+    <input type="submit" value="확인" class="btn btn-sm border-default-300" accesskey="s">
 </div>
 
 </form>

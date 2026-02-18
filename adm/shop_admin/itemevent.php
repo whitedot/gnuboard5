@@ -18,7 +18,7 @@ $sql = "select * $sql_common order by ev_id desc ";
 $result = sql_query($sql);
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
        <span class="btn_ov01"><span class="ov_txt">전체 이벤트</span><span class="ov_num"> <?php echo $total_count; ?>건</span></span>  
 </div>
 
@@ -27,7 +27,7 @@ $result = sql_query($sql);
     <a href="./itemeventform.php" class="btn btn_01">이벤트 추가</a>
 </div>
 
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>

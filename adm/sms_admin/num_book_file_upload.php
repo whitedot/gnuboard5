@@ -144,12 +144,12 @@ var html = '';
 
 html += \"<ul id=\\\"upload_result\\\"><li>총 건수 : ".number_format($counter)." 건</li>\";
 html += \"<li class=\\\"sms5_txt_fail\\\">등록불가 ".number_format($failure)." 건</li>\";
-html += \"<li>중복번호 ".number_format($overlap)." 건<div id=\\\"overlap\\\" class=\\\"local_desc01 local_desc\\\"></div></li>\";";
+html += \"<li>중복번호 ".number_format($overlap)." 건<div id=\\\"overlap\\\" class=\\\"hint-text\\\"></div></li>\";";
 if ($result)
 {
     if ($confirm) {
-        echo "html += \"<li class=\\\"sms5_txt_success\\\">등록가능 ".number_format($result)." 건<div id=\\\"regi_hps\\\" class=\\\"local_desc01 local_desc\\\"></div>\";";
-        echo "html += \"<br><button type=\\\"button\\\" id=\\\"btn_fileup\\\" class=\\\"btn_submit\\\" onclick=\\\"upload(1)\\\">등록하기</button>\";";
+        echo "html += \"<li class=\\\"sms5_txt_success\\\">등록가능 ".number_format($result)." 건<div id=\\\"regi_hps\\\" class=\\\"hint-text\\\"></div>\";";
+        echo "html += \"<br><button type=\\\"button\\\" id=\\\"btn_fileup\\\" class=\\\"btn btn-sm border-default-300\\\" onclick=\\\"upload(1)\\\">등록하기</button>\";";
     }
     else
         echo "html += \"<br><span class=\\\"sms5_txt_success\\\">총 ".number_format($success)." 건의 휴대폰번호 등록을 완료하였습니다.</span>\";";

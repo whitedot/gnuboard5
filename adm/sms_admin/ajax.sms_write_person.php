@@ -75,7 +75,7 @@ $group = array();
 $qry = sql_query("select * from {$g5['sms5_book_group_table']} where bg_no>1 order by bg_name");
 while ($res = sql_fetch_array($qry)) array_push($group, $res);
 ?>
-<div class="tbl_head01 tbl_wrap">
+<div class="tbl_head01 tbl_wrap card">
     <table>
     <thead>
     <tr>
@@ -140,7 +140,7 @@ while ($res = sql_fetch_array($qry)) array_push($group, $res);
 <input type="hidden" name="page" value="<?php echo $page?>">
 
 <label for="bg_no" class="sr-only">그룹</label>
-<select name="bg_no" id="bg_no">
+<select class="form-select" name="bg_no" id="bg_no">
     <option value=""<?php echo get_selected('', $bg_no); ?>> 전체 </option>
     <option value="1"<?php echo get_selected(1, $bg_no); ?>> <?php echo $no_group['bg_name']?> (<?php echo number_format($no_group['bg_receipt'])?> 명) </option>
     <?php for($i=0; $i<count($group); $i++) {?>
@@ -149,15 +149,15 @@ while ($res = sql_fetch_array($qry)) array_push($group, $res);
 </select>
 
 <label for="stt" class="sr-only">검색대상</label>
-<select name="st" id="stt">
+<select class="form-select" name="st" id="stt">
     <option value="all"<?php echo get_selected('all', $st); ?>>이름 + 번호</option>
     <option value="name"<?php echo get_selected('name', $st); ?>>이름</option>
     <option value="hp"<?php echo get_selected('hp', $st); ?>>번호</option>
 </select>
 
 <label for="svv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" size="15" name="sv" value="<?php echo $sv?>" id="svv" required class="required frm_input">
-<input type="submit" value="검색" class="btn_submit btn">
+<input type="text" size="15" name="sv" value="<?php echo $sv?>" id="svv" required class="required frm_input form-input">
+<input type="submit" value="검색" class="btn btn-sm border-default-300">
 </form>
 
 <!--

@@ -30,7 +30,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     <input type="hidden" name="fo_no_list" value="<?php echo $fo_no_list ?>">
     <input type="hidden" name="url" value="<?php echo clean_xss_tags(strip_tags($_SERVER['HTTP_REFERER'])); ?>">
 
-    <div class="tbl_head01 tbl_wrap">
+    <div class="tbl_head01 tbl_wrap card">
         <table>
         <caption>이동할 그룹을 한개 이상 선택하여 주십시오.</caption>
         <thead>
@@ -55,7 +55,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     </div>
 
     <div class="win_btn">
-        <input type="submit" value="이동" id="btn_submit" class="btn_submit">
+        <input type="submit" value="이동" id="btn_submit" class="btn btn-sm border-default-300">
         <button type="button" class="btn_cancel">창닫기</button>
     </div>
     </form>
