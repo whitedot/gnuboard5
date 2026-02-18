@@ -32,12 +32,12 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
 <label for="st" class="sr-only">검색대상</label>
 <input type="hidden" name="st" id="st" value="wr_message" >
 <label for="sv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="sv" value="<?php echo $sv ?>" id="sv" required class="required frm_input form-input">
+<input type="text" name="sv" value="<?php echo $sv ?>" id="sv" required class="required form-input">
 <input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
 
-<div class="tbl_head01 tbl_wrap card">
+<div class="table-card table-shell card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -58,7 +58,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
      <tbody>
     <?php if (!$total_count) { ?>
     <tr>
-        <td colspan="<?php echo $colspan?>" class="empty_table" >
+        <td colspan="<?php echo $colspan?>" class="table-empty" >
             데이터가 없습니다.
         </td>
     </tr>
@@ -71,18 +71,18 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
         $dupli_count = (isset($tmp_wr_memo['total']) && $tmp_wr_memo['total']) ? (int) $tmp_wr_memo['total'] : 0;
     ?>
     <tr class="<?php echo $bg; ?>">
-        <td class="td_numsmall"><?php echo $vnum--?></td>
-        <td class="td_left"><span title="<?php echo $res['wr_message']?>"><?php echo $res['wr_message']?></span></td>
-        <td class="td_tel"><?php echo $res['wr_reply']?></td>
-        <td class="td_datetime"><?php echo date('Y-m-d H:i', strtotime($res['wr_datetime']))?></td>
-        <td class="td_boolean"><?php echo $res['wr_booking']!='0000-00-00 00:00:00'?"<span title='{$res['wr_booking']}'>예약</span>":'';?></td>
-        <td class="td_num"><?php echo number_format($res['wr_total'])?></td>
-        <td class="td_num"><?php echo number_format($res['wr_success'])?></td>
-        <td class="td_num"><?php echo number_format($res['wr_failure'])?></td>
-        <td class="td_num"><?php echo $dupli_count;?></td>
-        <td class="td_num"><?php echo number_format($res['wr_re_total'])?></td>
-        <td class="td_mng td_mng_s">
-            <a href="./history_view.php?page=<?php echo $page;?>&amp;st=<?php echo $st;?>&amp;sv=<?php echo $sv;?>&amp;wr_no=<?php echo $res['wr_no'];?>" class="btn btn_03">수정</a>
+        <td class="cell-numsmall"><?php echo $vnum--?></td>
+        <td class="cell-left"><span title="<?php echo $res['wr_message']?>"><?php echo $res['wr_message']?></span></td>
+        <td class="cell-tel"><?php echo $res['wr_reply']?></td>
+        <td class="cell-datetime"><?php echo date('Y-m-d H:i', strtotime($res['wr_datetime']))?></td>
+        <td class="cell-boolean"><?php echo $res['wr_booking']!='0000-00-00 00:00:00'?"<span title='{$res['wr_booking']}'>예약</span>":'';?></td>
+        <td class="cell-num"><?php echo number_format($res['wr_total'])?></td>
+        <td class="cell-num"><?php echo number_format($res['wr_success'])?></td>
+        <td class="cell-num"><?php echo number_format($res['wr_failure'])?></td>
+        <td class="cell-num"><?php echo $dupli_count;?></td>
+        <td class="cell-num"><?php echo number_format($res['wr_re_total'])?></td>
+        <td class="cell-mng cell-mng-s">
+            <a href="./history_view.php?page=<?php echo $page;?>&amp;st=<?php echo $st;?>&amp;sv=<?php echo $sv;?>&amp;wr_no=<?php echo $res['wr_no'];?>" class="btn btn-tertiary">수정</a>
             <!-- <a href="./history_del.php?page=<?php echo $page;?>&amp;st=<?php echo $st;?>&amp;sv=<?php echo $sv;?>&amp;wr_no=<?php echo $res['wr_no'];?>">삭제</a> -->
         </td>
     </tr>

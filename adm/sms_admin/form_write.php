@@ -35,11 +35,11 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
 <input type="hidden" name="fo_no" value="<?php echo $write['fo_no']; ?>">
 <input type="hidden" name="get_fg_no" value="<?php echo $fg_no?>">
 
-    <div class="tbl_frm01 tbl_wrap">
+    <div class="form-card table-shell">
     <table>
     <caption><?php echo $g5['title'];?> 목록</caption>
     <colgroup>
-        <col class="grid_4">
+        <col class="col-4">
         <col>
     </colgroup>
     <tbody>
@@ -59,7 +59,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
     </tr>
     <tr>
         <th scope="row"><label for="fo_name">제목<strong class="sr-only"> 필수</strong></label></th>
-        <td><input type="text" name="fo_name" id="fo_name" required value="<?php echo get_sanitize_input($write['fo_name']); ?>" class="frm_input form-input required" size="70"></td>
+        <td><input type="text" name="fo_name" id="fo_name" required value="<?php echo get_sanitize_input($write['fo_name']); ?>" class="form-input required" size="70"></td>
     </tr>
     <tr>
         <th scope="row">메세지</th>
@@ -154,7 +154,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
     </tbody>
     </table>
     </div>
-    <div class="btn_confirm01 btn_confirm">
+    <div class="action-bar">
         <input type="submit" value="확인" class="btn btn-sm border-default-300" accesskey="s">
         <a href="./form_list.php?<?php echo clean_query_string($_SERVER['QUERY_STRING']); ?>">목록</a>
     </div>

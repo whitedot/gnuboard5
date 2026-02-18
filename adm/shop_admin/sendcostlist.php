@@ -39,7 +39,7 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
     <input type="hidden" name="w" value="d">
     <input type="hidden" name="page" value="<?php echo $page; ?>">
     <input type="hidden" name="token" value="">
-    <div class="tbl_head01 tbl_wrap card">
+    <div class="table-card table-shell card">
         <table>
         <caption>추가배송비 내역</caption>
         <thead>
@@ -59,26 +59,26 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
         $bg = 'bg'.($i%2);
         ?>
         <tr class="<?php echo $bg; ?>">
-            <td class="td_chk">
+            <td class="cell-chk">
                 <input type="hidden" id="sc_id_<?php echo $i; ?>" name="sc_id[<?php echo $i; ?>]" value="<?php echo $row['sc_id']; ?>">
                 <input type="checkbox" id="chk_<?php echo $i; ?>" name="chk[]" value="<?php echo $i; ?>" title="내역선택">
             </td>
-            <td class="td_left"><?php echo $row['sc_name']; ?></td>
-            <td class="td_postalbig"><?php echo $row['sc_zip1'].' ~ '.$row['sc_zip2']; ?></td>
-            <td class="td_sendcost_add"><?php echo number_format($row['sc_price']); ?></td>
+            <td class="cell-left"><?php echo $row['sc_name']; ?></td>
+            <td class="cell-postalbig"><?php echo $row['sc_zip1'].' ~ '.$row['sc_zip2']; ?></td>
+            <td class="cell-sendcost-add"><?php echo number_format($row['sc_price']); ?></td>
         </tr>
         <?php
         }
 
         if ($i == 0)
-            echo '<tr><td colspan="4" class="empty_table">자료가 없습니다.</td></tr>';
+            echo '<tr><td colspan="4" class="table-empty">자료가 없습니다.</td></tr>';
         ?>
         </tbody>
         </table>
     </div>
 
-    <div class="btn_list01 btn_list">
-        <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn_frmline">
+    <div class="action-inline">
+        <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn-inline">
     </div>
 
     </form>
@@ -87,44 +87,44 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page="); ?>
 
 <section id="sendcost_postal">
-    <h2 class="h2_frm">추가배송비 등록</h2>
+    <h2 class="section-title">추가배송비 등록</h2>
 
     <form name="fsendcost2" method="post" id="fsendcost2" action="./sendcostupdate.php" autocomplete="off">
     <input type="hidden" name="token" value="">
 
-    <div class="tbl_frm01 tbl_wrap">
+    <div class="form-card table-shell">
         <table>
         <caption>추가배송비 등록</caption>
         <colgroup>
-            <col class="grid_4">
+            <col class="col-4">
             <col>
         </colgroup>
         <tbody>
         <tr>
             <th scope="row"><label for="sc_name">지역명<strong class="sr-only">필수</strong></label></th>
-            <td><input type="text" name="sc_name" value="" id="sc_name" class="required frm_input form-input" size="30" required></td>
+            <td><input type="text" name="sc_name" value="" id="sc_name" class="required form-input" size="30" required></td>
         </tr>
         <tr>
             <th scope="row"><label for="sc_zip1">우편번호 시작<strong class="sr-only">필수</strong></label></th>
             <td>
-                <input type="text" name="sc_zip1" id="sc_zip1" required class="required frm_input form-input" size="10"> (입력 예 : 01234)
+                <input type="text" name="sc_zip1" id="sc_zip1" required class="required form-input" size="10"> (입력 예 : 01234)
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="sc_zip2">우편번호 끝<strong class="sr-only">필수</strong></label></th>
             <td>
-                <input type="text" name="sc_zip2" id="sc_zip2" required class="required frm_input form-input" size="10"> (입력 예 : 01234)
+                <input type="text" name="sc_zip2" id="sc_zip2" required class="required form-input" size="10"> (입력 예 : 01234)
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="sc_price">추가배송비<strong class="sr-only">필수</strong></label></th>
-            <td><input type="text" name="sc_price" id="sc_price" size="8" required class="required frm_input form-input"> 원</td>
+            <td><input type="text" name="sc_price" id="sc_price" size="8" required class="required form-input"> 원</td>
         </tr>
         </tbody>
         </table>
     </div>
 
-    <div class="btn_confirm01 btn_confirm">
+    <div class="action-bar">
         <input type="submit" value="확인" class="btn btn-sm border-default-300">
     </div>
 

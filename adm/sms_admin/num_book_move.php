@@ -34,8 +34,8 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     <input type="hidden" name="bk_no_list" value="<?php echo get_sanitize_input($bk_no_list); ?>">
     <input type="hidden" name="act" value="<?php echo get_sanitize_input($act); ?>">
     <input type="hidden" name="url" value="<?php echo clean_xss_tags(strip_tags($_SERVER['HTTP_REFERER'])); ?>">
-    <div class=" new_win_con"> 
-        <div class="tbl_head01 tbl_wrap card">
+    <div class="new_win_con"> 
+        <div class="table-card table-shell card">
             <table>
             <caption><?php echo $act ?>할 그룹을 한개 이상 선택하여 주십시오.</caption>
             <thead>
@@ -52,7 +52,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
             <tbody>
             <?php for ($i=0; $i<count($list); $i++) { ?>
             <tr>
-                <td class="td_chk">
+                <td class="cell-chk">
                     <label for="chk<?php echo $i ?>" class="sr-only"><?php echo $list[$i]['bg_name'] ?></label>
                     <input type="<?php echo $inputbox_type; ?>" value="<?php echo $list[$i]['bg_no'] ?>" id="chk<?php echo $i ?>" name="chk_bg_no[]">
                 </td>
@@ -68,7 +68,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
         </div>
     </div>
     <div class="win_btn">
-        <input type="submit" value="<?php echo $act ?>" id="btn_submit" class="btn btn-sm border-default-300">
+        <input type="submit" value="<?php echo $act ?>" id="btn-primary" class="btn btn-sm border-default-300">
         <button type="button" class="btn_cancel btn">창닫기</button>
     </div>
     </form>
@@ -117,7 +117,7 @@ function fboardmoveall_submit(f)
         return false;
     }
 
-    document.getElementById('btn_submit').disabled = true;
+    document.getElementById('btn-primary').disabled = true;
 
     return true;
 }

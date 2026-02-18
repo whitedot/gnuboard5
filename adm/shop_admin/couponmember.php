@@ -45,10 +45,10 @@ $qstr1 = 'mb_name='.urlencode($mb_name);
     <form name="fmember" method="get">
     <div id="scp_list_find">
         <label for="mb_name">회원이름</label>
-        <input type="text" name="mb_name" id="mb_name" value="<?php echo get_text($mb_name); ?>" class="frm_input" size="20">
-        <input type="submit" value="검색" class="btn_frmline">
+        <input type="text" name="mb_name" id="mb_name" value="<?php echo get_text($mb_name); ?>" class="form-input" size="20">
+        <input type="submit" value="검색" class="btn-inline">
     </div>
-    <div class="tbl_head01 tbl_wrap new_win_con">
+    <div class="table-card table-shell new_win_con">
         <table>
         <caption>검색결과</caption>
         <thead>
@@ -63,15 +63,15 @@ $qstr1 = 'mb_name='.urlencode($mb_name);
         for($i=0; $row=sql_fetch_array($result); $i++) {
         ?>
         <tr>
-            <td class="td_mbname"><?php echo get_text($row['mb_name']); ?></td>
-            <td class="td_left"><?php echo $row['mb_id']; ?></td>
-            <td class="scp_find_select td_mng td_mng_s"><button type="button" class="btn btn_03" onclick="sel_member_id('<?php echo $row['mb_id']; ?>');">선택</button></td>
+            <td class="cell-mbname"><?php echo get_text($row['mb_name']); ?></td>
+            <td class="cell-left"><?php echo $row['mb_id']; ?></td>
+            <td class="scp_find_select cell-mng cell-mng-s"><button type="button" class="btn btn-tertiary" onclick="sel_member_id('<?php echo $row['mb_id']; ?>');">선택</button></td>
         </tr>
         <?php
         }
 
         if($i ==0)
-            echo '<tr><td colspan="3" class="empty_table">검색된 자료가 없습니다.</td></tr>';
+            echo '<tr><td colspan="3" class="table-empty">검색된 자료가 없습니다.</td></tr>';
         ?>
         </tbody>
         </table>
@@ -80,7 +80,7 @@ $qstr1 = 'mb_name='.urlencode($mb_name);
 
     <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, '?'.$qstr1.'&amp;page='); ?>
 
-    <div class="btn_confirm01 btn_confirm win_btn">
+    <div class="action-bar win_btn">
         <button type="button" onclick="window.close();" class="btn_close btn">닫기</button>
     </div>
 </div>

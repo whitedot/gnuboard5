@@ -51,13 +51,13 @@ $result = sql_query($sql);
 $qstr1 = 'sel_field='.$sel_field.'&amp;search='.$search;
 $qstr = $qstr1.'&amp;sort1='.$sort1.'&amp;sort2='.$sort2.'&amp;page='.$page;
 
-$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
+$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목록</a>';
 ?>
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall; ?>
-     <span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> <?php echo number_format($total_count); ?>건</span></span>  
-     <span class="btn_ov01"><span class="ov_txt">미전송 </span><span class="ov_num"><?php echo number_format($unsend_count); ?>건</span></span>  
+     <span class="summary-chip"><span class="summary-label">전체 </span><span class="summary-value"> <?php echo number_format($total_count); ?>건</span></span>  
+     <span class="summary-chip"><span class="summary-label">미전송 </span><span class="summary-value"><?php echo number_format($unsend_count); ?>건</span></span>  
 </div>
 
 <form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
@@ -73,7 +73,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 </select>
 
 <label for="search" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="search" id="search" value="<?php echo $search; ?>" required class="frm_input form-input required">
+<input type="text" name="search" id="search" value="<?php echo $search; ?>" required class="form-input required">
 <input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
@@ -85,7 +85,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 <input type="hidden" name="search" value="<?php echo $search; ?>">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 
-<div class="tbl_head01 tbl_wrap card">
+<div class="table-card table-shell card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -118,30 +118,30 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 
     ?>
     <tr class="<?php echo $bg; ?>">
-        <td class="td_chk">
+        <td class="cell-chk">
             <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $it_name; ?> 알림요청</label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i; ?>">
             <input type="hidden" name="ss_id[<?php echo $i; ?>]" value="<?php echo $row['ss_id']; ?>">
         </td>
-        <td class="td_left"><?php echo $it_name; ?></td>
-        <td class="td_telbig"><?php echo $row['ss_hp']; ?></td>
-        <td class="td_stat"><?php echo ($row['ss_send'] ? '전송완료' : '전송전'); ?></td>
-        <td class="td_datetime"><?php echo (is_null_time($row['ss_send_time']) ? '' : $row['ss_send_time']); ?></td>
-        <td class="td_datetime"><?php echo (is_null_time($row['ss_datetime']) ? '' : $row['ss_datetime']); ?></td>
+        <td class="cell-left"><?php echo $it_name; ?></td>
+        <td class="cell-telbig"><?php echo $row['ss_hp']; ?></td>
+        <td class="cell-stat"><?php echo ($row['ss_send'] ? '전송완료' : '전송전'); ?></td>
+        <td class="cell-datetime"><?php echo (is_null_time($row['ss_send_time']) ? '' : $row['ss_send_time']); ?></td>
+        <td class="cell-datetime"><?php echo (is_null_time($row['ss_datetime']) ? '' : $row['ss_datetime']); ?></td>
     </tr>
     <?php
     }
     if (!$i)
-        echo '<tr><td colspan="6" class="empty_table"><span>자료가 없습니다.</span></td></tr>';
+        echo '<tr><td colspan="6" class="table-empty"><span>자료가 없습니다.</span></td></tr>';
     ?>
     </tbody>
     </table>
 </div>
 
     
-<div class="btn_fixed_top">
+<div class="action-bar">
     <?php if ($is_admin == 'super') { ?>
-    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn_02">
+    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
     <?php } ?>
     <input type="submit" name="act_button" value="선택SMS전송" class="btn btn-sm border-default-300" onclick="document.pressed=this.value">
 </div>

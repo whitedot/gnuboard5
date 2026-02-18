@@ -33,10 +33,10 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
             <option value="">전체</option>
         </select>
         <label for="fr_date" class="sr-only">기간 시작일</label>
-        <input type="text" name="fr_date" value="<?php echo date("Ymd"); ?>" id="fr_date" required class="required frm_input form-input" size="10" maxlength="8">
+        <input type="text" name="fr_date" value="<?php echo date("Ymd"); ?>" id="fr_date" required class="required form-input" size="10" maxlength="8">
         ~
         <label for="to_date" class="sr-only">기간 종료일</label>
-        <input type="text" name="to_date" value="<?php echo date("Ymd"); ?>" id="to_date" required class="required frm_input form-input" size="10" maxlength="8">
+        <input type="text" name="to_date" value="<?php echo date("Ymd"); ?>" id="to_date" required class="required form-input" size="10" maxlength="8">
         <input type="submit" value="출력 (새창)" class="btn btn-sm border-default-300">
 
         </form>
@@ -65,10 +65,10 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
             <option value="">전체</option>
         </select>
         <label for="fr_od_id" class="sr-only">주문번호 구간 시작</label>
-        <input type="text" name="fr_od_id" id="fr_od_id" required class="required frm_input form-input" size="10" maxlength="20">
+        <input type="text" name="fr_od_id" id="fr_od_id" required class="required form-input" size="10" maxlength="20">
         ~
         <label for="fr_od_id" class="sr-only">주문번호 구간 종료</label>
-        <input type="text" name="to_od_id" id="to_od_id" required class="required frm_input form-input" size="10" maxlength="20">
+        <input type="text" name="to_od_id" id="to_od_id" required class="required form-input" size="10" maxlength="20">
         <input type="submit" value="출력 (새창)" class="btn btn-sm border-default-300">
 
         </form>
@@ -76,8 +76,8 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
 
 </div>
 
-<div class="btn_fixed_top">
-    <a href="./orderlist.php" class="btn_01 btn ">주문내역</a>
+<div class="action-bar">
+    <a href="./orderlist.php" class="btn-primary btn">주문내역</a>
 </div>
 
 <div class="hint-text">

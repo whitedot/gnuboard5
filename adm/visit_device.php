@@ -36,7 +36,7 @@ while ($row=sql_fetch_array($result)) {
 }
 ?>
 
-<div class="tbl_head01 tbl_wrap">
+<div class="table-card table-shell">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -84,21 +84,21 @@ while ($row=sql_fetch_array($result)) {
     ?>
 
     <tr class="<?php echo $bg; ?>">
-        <td class="td_num"><?php echo $no ?></td>
-        <td class="td_category td_category1"><?php echo $key ?></td>
+        <td class="cell-num"><?php echo $no ?></td>
+        <td class="cell-category cell-category1"><?php echo $key ?></td>
         <td>
             <div class="visit_bar">
                 <span style="width:<?php echo $s_rate ?>%"></span>
             </div>
         </td>
-        <td class="td_num_c3"><?php echo $count ?></td>
-        <td class="td_num"><?php echo $s_rate ?></td>
+        <td class="cell-num-c3"><?php echo $count ?></td>
+        <td class="cell-num"><?php echo $s_rate ?></td>
     </tr>
 
     <?php
         }
     } else {
-        echo '<tr><td colspan="'.$colspan.'" class="empty_table">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="'.$colspan.'" class="table-empty">자료가 없습니다.</td></tr>';
     }
     ?>
     </tbody>

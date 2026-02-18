@@ -26,7 +26,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
     <div id="res_msg" class="hint-text">
     </div>
 
-    <div class="btn_fixed_top">
+    <div class="action-bar">
         <input type="submit" value="실행" class="btn btn-sm border-default-300">
     </div>
     </form>

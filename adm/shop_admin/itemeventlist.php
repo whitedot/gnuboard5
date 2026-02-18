@@ -60,7 +60,7 @@ $result = sql_query($sql);
 $qstr1 = 'ev_id='.$ev_id.'&amp;sel_ca_id='.$sel_ca_id.'&amp;sel_field='.$sel_field.'&amp;search='.$search;
 $qstr  = $qstr1.'&amp;sort1='.$sort1.'&amp;sort2='.$sort2.'&amp;page='.$page;
 
-$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
+$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목록</a>';
 
 // 이벤트제목
 if($ev_id) {
@@ -71,7 +71,7 @@ if($ev_id) {
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall; ?>
-    <span class="btn_ov01"><span class="ov_txt">전체 이벤트</span><span class="ov_num"> <?php echo $total_count; ?>건</span></span>  
+    <span class="summary-chip"><span class="summary-label">전체 이벤트</span><span class="summary-value"> <?php echo $total_count; ?>건</span></span>  
 </div>
 
 <form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" autocomplete="off">
@@ -119,7 +119,7 @@ if($ev_id) {
 </select>
 
 <label for="search" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="search" value="<?php echo $search; ?>" id="search" required class="frm_input form-input required">
+<input type="text" name="search" value="<?php echo $search; ?>" id="search" required class="form-input required">
 <input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
@@ -137,7 +137,7 @@ if($ev_id) {
 <input type="hidden" name="sort1" value="<?php echo $sort1; ?>">
 <input type="hidden" name="sort2" value="<?php echo $sort2; ?>">
 
-<div class="tbl_head01 tbl_wrap card">
+<div class="table-card table-shell card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -160,20 +160,20 @@ if($ev_id) {
     ?>
 
     <tr class="<?php echo $bg; ?>">
-        <td class="td_chk2">
+        <td class="cell-chk2">
             <input type="hidden" name="it_id[<?php echo $i; ?>]" value="<?php echo $row['it_id']; ?>">
             <label for="ev_chk_<?php echo $i; ?>" class="sr-only">이벤트 사용</label>
             <input type="checkbox" name="ev_chk[<?php echo $i; ?>]" value="1" id="ev_chk_<?php echo $i; ?>" <?php echo ($row['ev_id'] ? "checked" : ""); ?>>
         </td>
-        <td class="td_num"><a href="<?php echo $href; ?>"><?php echo $row['it_id']; ?></a></td>
-        <td class="td_left"><a href="<?php echo $href; ?>"><?php echo get_it_image($row['it_id'], 50, 50); ?> <?php echo cut_str(stripslashes($row['it_name']), 60, "&#133"); ?></a></td>
+        <td class="cell-num"><a href="<?php echo $href; ?>"><?php echo $row['it_id']; ?></a></td>
+        <td class="cell-left"><a href="<?php echo $href; ?>"><?php echo get_it_image($row['it_id'], 50, 50); ?> <?php echo cut_str(stripslashes($row['it_name']), 60, "&#133"); ?></a></td>
     </tr>
 
     <?php
     }
 
     if ($i == 0)
-        echo '<tr><td colspan="4" class="empty_table">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="4" class="table-empty">자료가 없습니다.</td></tr>';
     ?>
     </tbody>
     </table>
@@ -190,7 +190,7 @@ if($ev_id) {
         <?php } ?>
     </p>
 </div>
-<div class="btn_fixed_top">
+<div class="action-bar">
     <input type="submit" value="일괄수정" class="btn btn-sm border-default-300" accesskey="s">
 </div>
 

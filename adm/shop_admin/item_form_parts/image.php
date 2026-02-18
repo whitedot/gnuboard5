@@ -1,12 +1,12 @@
 <section id="anc_sitfrm_img">
-    <h2 class="h2_frm">이미지</h2>
+    <h2 class="section-title">이미지</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="tbl_frm01 tbl_wrap">
+    <div class="form-card table-shell">
         <table>
         <caption>이미지 업로드</caption>
         <colgroup>
-            <col class="grid_4">
+            <col class="col-4">
             <col>
         </colgroup>
         <tbody>
@@ -31,7 +31,7 @@
                     <button type="button" class="sit_wimg_close">닫기</button>
                 </div>
                 <script>
-                $('<button type="button" id="it_limg<?php echo $i; ?>_view" class="btn_frmline sit_wimg_view">이미지<?php echo $i; ?> 확인</button>').appendTo('.sit_wimg_limg<?php echo $i; ?>');
+                $('<button type="button" id="it_limg<?php echo $i; ?>_view" class="btn-inline sit_wimg_view">이미지<?php echo $i; ?> 확인</button>').appendTo('.sit_wimg_limg<?php echo $i; ?>');
                 </script>
                 <?php } ?>
             </td>

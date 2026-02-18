@@ -36,7 +36,7 @@ for($i=0;$row=sql_fetch_array($result);$i++) {
     $list .= '<li>';
     $list .= '<input type="hidden" name="it_id[]" value="'.$row['it_id'].'">';
     $list .= '<div class="list_item">'.$it_name.'</div>';
-    $list .= '<div class="list_item_btn"><button type="button" class="add_item btn_frmline">추가</button></div>';
+    $list .= '<div class="list_item_btn"><button type="button" class="add_item btn-inline">추가</button></div>';
     $list .= '</li>'.PHP_EOL;
 }
 

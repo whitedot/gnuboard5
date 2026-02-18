@@ -33,11 +33,11 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
     <input type="hidden" name="fm_id" value="<?php echo $fm_id; ?>">
     <input type="hidden" name="token" value="">
 
-    <div class="tbl_frm01 tbl_wrap">
+    <div class="form-card table-shell">
         <table>
             <caption><?php echo $g5['title']; ?></caption>
             <colgroup>
-                <col class="grid_4">
+                <col class="col-4">
                 <col>
             </colgroup>
             <tbody>
@@ -45,16 +45,16 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                     <th scope="row"><label for="fm_order">출력순서</label></th>
                     <td>
                         <?php echo help('숫자가 작을수록 FAQ 분류에서 먼저 출력됩니다.'); ?>
-                        <input type="text" name="fm_order" value="<?php echo $fm['fm_order']; ?>" id="fm_order" class="frm_input" maxlength="10" size="10">
+                        <input type="text" name="fm_order" value="<?php echo $fm['fm_order']; ?>" id="fm_order" class="form-input" maxlength="10" size="10">
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="fm_subject">제목</label></th>
                     <td>
-                        <input type="text" value="<?php echo get_text($fm['fm_subject']); ?>" name="fm_subject" id="fm_subject" required class="frm_input required" size="70">
+                        <input type="text" value="<?php echo get_text($fm['fm_subject']); ?>" name="fm_subject" id="fm_subject" required class="form-input required" size="70">
                         <?php if ($w == 'u') { ?>
-                            <a href="<?php echo G5_BBS_URL; ?>/faq.php?fm_id=<?php echo $fm_id; ?>" class="btn_frmline">보기</a>
-                            <a href="./faqlist.php?fm_id=<?php echo $fm_id; ?>" class="btn_frmline">상세보기</a>
+                            <a href="<?php echo G5_BBS_URL; ?>/faq.php?fm_id=<?php echo $fm_id; ?>" class="btn-inline">보기</a>
+                            <a href="./faqlist.php?fm_id=<?php echo $fm_id; ?>" class="btn-inline">상세보기</a>
                         <?php } ?>
                     </td>
                 </tr>
@@ -131,9 +131,9 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
         </table>
     </div>
 
-    <div class="btn_fixed_top">
-        <a href="./faqmasterlist.php" class="btn btn_02">목록</a>
-        <input type="submit" value="확인" class="btn_submit btn" accesskey="s">
+    <div class="action-bar">
+        <a href="./faqmasterlist.php" class="btn btn-secondary">목록</a>
+        <input type="submit" value="확인" class="btn-primary btn" accesskey="s">
     </div>
 
 </form>

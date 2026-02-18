@@ -45,7 +45,7 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
 $sql = " select * {$sql_common} {$sql_search} {$sql_order} limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 
-$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="ov_listall">처음</a>';
+$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="summary-all">처음</a>';
 
 $g5['title'] = '게시판그룹설정';
 require_once './admin.head.php';
@@ -55,7 +55,7 @@ $colspan = 10;
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall ?>
-    <span class="btn_ov01"><span class="ov_txt">전체그룹</span><span class="ov_num"> <?php echo number_format($total_count) ?>개</span></span>
+    <span class="summary-chip"><span class="summary-label">전체그룹</span><span class="summary-value"> <?php echo number_format($total_count) ?>개</span></span>
 </div>
 
 <form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
@@ -66,7 +66,7 @@ $colspan = 10;
         <option value="gr_admin" <?php echo get_selected($sfl, "gr_admin"); ?>>그룹관리자</option>
     </select>
     <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="stx" id="stx" value="<?php echo $stx ?>" required class="required frm_input form-input">
+    <input type="text" name="stx" id="stx" value="<?php echo $stx ?>" required class="required form-input">
     <input type="submit" value="검색" class="btn btn-sm border-default-300">
 </form>
 
@@ -79,7 +79,7 @@ $colspan = 10;
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <div class="tbl_head01 tbl_wrap card">
+    <div class="table-card table-shell card">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -110,41 +110,41 @@ $colspan = 10;
                     $sql2 = " select count(*) as cnt from {$g5['board_table']} where gr_id = '{$row['gr_id']}' ";
                     $row2 = sql_fetch($sql2);
 
-                    $s_upd = '<a href="./boardgroup_form.php?' . $qstr . '&amp;w=u&amp;gr_id=' . $row['gr_id'] . '" class="btn_03 btn">수정</a>';
+                    $s_upd = '<a href="./boardgroup_form.php?' . $qstr . '&amp;w=u&amp;gr_id=' . $row['gr_id'] . '" class="btn-tertiary btn">수정</a>';
 
                     $bg = 'bg' . ($i % 2);
                 ?>
 
                     <tr class="<?php echo $bg; ?>">
-                        <td class="td_chk">
+                        <td class="cell-chk">
                             <input type="hidden" name="group_id[<?php echo $i ?>]" value="<?php echo $row['gr_id'] ?>">
                             <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['gr_subject']); ?> 그룹</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
                         </td>
-                        <td class="td_left"><a href="<?php echo G5_BBS_URL ?>/group.php?gr_id=<?php echo $row['gr_id'] ?>"><?php echo $row['gr_id'] ?></a></td>
-                        <td class="td_input">
+                        <td class="cell-left"><a href="<?php echo G5_BBS_URL ?>/group.php?gr_id=<?php echo $row['gr_id'] ?>"><?php echo $row['gr_id'] ?></a></td>
+                        <td class="cell-input">
                             <label for="gr_subject_<?php echo $i; ?>" class="sr-only">그룹제목</label>
-                            <input type="text" name="gr_subject[<?php echo $i ?>]" value="<?php echo get_text($row['gr_subject']) ?>" id="gr_subject_<?php echo $i ?>" class="tbl_input">
+                            <input type="text" name="gr_subject[<?php echo $i ?>]" value="<?php echo get_text($row['gr_subject']) ?>" id="gr_subject_<?php echo $i ?>" class="form-input">
                         </td>
-                        <td class="td_mng td_input">
+                        <td class="cell-mng cell-input">
                             <?php if ($is_admin == 'super') { ?>
                                 <label for="gr_admin_<?php echo $i; ?>" class="sr-only">그룹관리자</label>
-                                <input type="text" name="gr_admin[<?php echo $i ?>]" value="<?php echo get_sanitize_input($row['gr_admin']); ?>" id="gr_admin_<?php echo $i ?>" class="tbl_input" size="10" maxlength="20">
+                                <input type="text" name="gr_admin[<?php echo $i ?>]" value="<?php echo get_sanitize_input($row['gr_admin']); ?>" id="gr_admin_<?php echo $i ?>" class="form-input" size="10" maxlength="20">
                             <?php } else { ?>
                                 <input type="hidden" name="gr_admin[<?php echo $i ?>]" value="<?php echo get_sanitize_input($row['gr_admin']); ?>"><?php echo get_text($row['gr_admin']); ?>
                             <?php } ?>
                         </td>
-                        <td class="td_num"><a href="./board_list.php?sfl=a.gr_id&amp;stx=<?php echo $row['gr_id'] ?>"><?php echo $row2['cnt'] ?></a></td>
-                        <td class="td_numsmall">
+                        <td class="cell-num"><a href="./board_list.php?sfl=a.gr_id&amp;stx=<?php echo $row['gr_id'] ?>"><?php echo $row2['cnt'] ?></a></td>
+                        <td class="cell-numsmall">
                             <label for="gr_use_access_<?php echo $i; ?>" class="sr-only">접근회원 사용</label>
                             <input type="checkbox" name="gr_use_access[<?php echo $i ?>]" <?php echo $row['gr_use_access'] ? 'checked' : '' ?> value="1" id="gr_use_access_<?php echo $i ?>">
                         </td>
-                        <td class="td_num"><a href="./boardgroupmember_list.php?gr_id=<?php echo $row['gr_id'] ?>"><?php echo $row1['cnt'] ?></a></td>
-                        <td class="td_numsmall">
+                        <td class="cell-num"><a href="./boardgroupmember_list.php?gr_id=<?php echo $row['gr_id'] ?>"><?php echo $row1['cnt'] ?></a></td>
+                        <td class="cell-numsmall">
                             <label for="gr_order_<?php echo $i; ?>" class="sr-only">메인메뉴 출력순서</label>
-                            <input type="text" name="gr_order[<?php echo $i ?>]" value="<?php echo $row['gr_order'] ?>" id="gr_order_<?php echo $i ?>" class="tbl_input" size="2">
+                            <input type="text" name="gr_order[<?php echo $i ?>]" value="<?php echo $row['gr_order'] ?>" id="gr_order_<?php echo $i ?>" class="form-input" size="2">
                         </td>
-                        <td class="td_mng">
+                        <td class="cell-mng">
                             <label for="gr_device_<?php echo $i; ?>" class="sr-only">접속기기</label>
                             <select class="form-select" name="gr_device[<?php echo $i ?>]" id="gr_device_<?php echo $i ?>">
                                 <option value="both" <?php echo get_selected($row['gr_device'], 'both'); ?>>모두</option>
@@ -152,21 +152,21 @@ $colspan = 10;
                                 <option value="mobile" <?php echo get_selected($row['gr_device'], 'mobile'); ?>>모바일</option>
                             </select>
                         </td>
-                        <td class="td_mng td_mng_s"><?php echo $s_upd ?></td>
+                        <td class="cell-mng cell-mng-s"><?php echo $s_upd ?></td>
                     </tr>
                 <?php
                 }
                 if ($i == 0) {
-                    echo '<tr><td colspan="' . $colspan . '" class="empty_table">자료가 없습니다.</td></tr>';
+                    echo '<tr><td colspan="' . $colspan . '" class="table-empty">자료가 없습니다.</td></tr>';
                 }
                 ?>
         </table>
     </div>
 
-    <div class="btn_fixed_top">
-        <input type="submit" name="act_button" onclick="document.pressed=this.value" value="선택수정" class="btn btn_02">
-        <input type="submit" name="act_button" onclick="document.pressed=this.value" value="선택삭제" class="btn btn_02">
-        <a href="./boardgroup_form.php" class="btn btn_01">게시판그룹 추가</a>
+    <div class="action-bar">
+        <input type="submit" name="act_button" onclick="document.pressed=this.value" value="선택수정" class="btn btn-secondary">
+        <input type="submit" name="act_button" onclick="document.pressed=this.value" value="선택삭제" class="btn btn-secondary">
+        <a href="./boardgroup_form.php" class="btn btn-primary">게시판그룹 추가</a>
     </div>
 </form>
 

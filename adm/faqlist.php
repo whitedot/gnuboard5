@@ -29,7 +29,7 @@ $result = sql_query($sql);
 ?>
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
-    <span class="btn_ov01"><span class="ov_txt"> 등록된 FAQ 상세내용</span><span class="ov_num"> <?php echo $total_count; ?>건</span></span>
+    <span class="summary-chip"><span class="summary-label"> 등록된 FAQ 상세내용</span><span class="summary-value"> <?php echo $total_count; ?>건</span></span>
 </div>
 
 <div class="hint-text">
@@ -39,12 +39,12 @@ $result = sql_query($sql);
     </ol>
 </div>
 
-<div class="btn_fixed_top">
-    <a href="./faqmasterlist.php" class="btn btn_02">FAQ 관리</a>
-    <a href="./faqform.php?fm_id=<?php echo $fm['fm_id']; ?>" class="btn btn_01">FAQ 상세내용 추가</a>
+<div class="action-bar">
+    <a href="./faqmasterlist.php" class="btn btn-secondary">FAQ 관리</a>
+    <a href="./faqform.php?fm_id=<?php echo $fm['fm_id']; ?>" class="btn btn-primary">FAQ 상세내용 추가</a>
 </div>
 
-<div class="tbl_head01 tbl_wrap">
+<div class="table-card table-shell">
     <table>
         <caption><?php echo $g5['title']; ?> 목록</caption>
         <thead>
@@ -72,19 +72,19 @@ $result = sql_query($sql);
                 ?>
 
                 <tr class="<?php echo $bg; ?>">
-                    <td class="td_num"><?php echo $num; ?></td>
-                    <td class="td_left"><?php echo $fa_subject; ?></td>
-                    <td class="td_num"><?php echo $row['fa_order']; ?></td>
-                    <td class="td_mng td_mng_m">
-                        <a href="./faqform.php?w=u&amp;fm_id=<?php echo $row['fm_id']; ?>&amp;fa_id=<?php echo $row['fa_id']; ?>" class="btn btn_03"><span class="sr-only"><?php echo $fa_subject; ?> </span>수정</a>
-                        <a href="./faqformupdate.php?w=d&amp;fm_id=<?php echo $row['fm_id']; ?>&amp;fa_id=<?php echo $row['fa_id']; ?>" onclick="return delete_confirm(this);" class="btn btn_02"><span class="sr-only"><?php echo $fa_subject; ?> </span>삭제</a>
+                    <td class="cell-num"><?php echo $num; ?></td>
+                    <td class="cell-left"><?php echo $fa_subject; ?></td>
+                    <td class="cell-num"><?php echo $row['fa_order']; ?></td>
+                    <td class="cell-mng cell-mng-m">
+                        <a href="./faqform.php?w=u&amp;fm_id=<?php echo $row['fm_id']; ?>&amp;fa_id=<?php echo $row['fa_id']; ?>" class="btn btn-tertiary"><span class="sr-only"><?php echo $fa_subject; ?> </span>수정</a>
+                        <a href="./faqformupdate.php?w=d&amp;fm_id=<?php echo $row['fm_id']; ?>&amp;fa_id=<?php echo $row['fa_id']; ?>" onclick="return delete_confirm(this);" class="btn btn-secondary"><span class="sr-only"><?php echo $fa_subject; ?> </span>삭제</a>
                     </td>
                 </tr>
                 <?php
             }
 
             if ($i == 0) {
-                echo '<tr><td colspan="4" class="empty_table">자료가 없습니다.</td></tr>';
+                echo '<tr><td colspan="4" class="table-empty">자료가 없습니다.</td></tr>';
             }
             ?>
         </tbody>

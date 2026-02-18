@@ -13,7 +13,7 @@
 ?>
 
 <section id="anc_sodr_pay">
-    <h2 class="h2_frm">주문결제 내역</h2>
+    <h2 class="section-title">주문결제 내역</h2>
     <?php echo $pg_anchor; ?>
 
     <?php
@@ -39,7 +39,7 @@
         $s_receipt_way .= "+포인트";
     ?>
 
-    <div class="tbl_head01 tbl_wrap">
+    <div class="table-card table-shell">
         <strong class="sodr_nonpay">미수금 <?php echo display_price($od['od_misu']); ?></strong>
 
         <table>
@@ -59,13 +59,13 @@
         <tbody>
         <tr>
             <td><?php echo $od['od_id']; ?></td>
-            <td class="td_paybybig"><?php echo $s_receipt_way; ?></td>
-            <td class="td_numbig td_numsum"><?php echo display_price($amount['order']); ?></td>
-            <td class="td_numbig"><?php echo display_price($od['od_send_cost'] + $od['od_send_cost2']); ?></td>
-            <td class="td_numbig"><?php echo display_point($od['od_receipt_point']); ?></td>
-            <td class="td_numbig td_numincome"><?php echo number_format($amount['receipt']); ?>원</td>
-            <td class="td_numbig td_numcoupon"><?php echo display_price($amount['coupon']); ?></td>
-            <td class="td_numbig td_numcancel"><?php echo number_format($amount['cancel']); ?>원</td>
+            <td class="cell-paybybig"><?php echo $s_receipt_way; ?></td>
+            <td class="cell-numbig cell-numsum"><?php echo display_price($amount['order']); ?></td>
+            <td class="cell-numbig"><?php echo display_price($od['od_send_cost'] + $od['od_send_cost2']); ?></td>
+            <td class="cell-numbig"><?php echo display_point($od['od_receipt_point']); ?></td>
+            <td class="cell-numbig cell-numincome"><?php echo number_format($amount['receipt']); ?>원</td>
+            <td class="cell-numbig cell-numcoupon"><?php echo display_price($amount['coupon']); ?></td>
+            <td class="cell-numbig cell-numcancel"><?php echo number_format($amount['cancel']); ?>원</td>
         </tr>
         </tbody>
         </table>

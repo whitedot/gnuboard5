@@ -30,7 +30,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     <input type="hidden" name="fo_no_list" value="<?php echo $fo_no_list ?>">
     <input type="hidden" name="url" value="<?php echo clean_xss_tags(strip_tags($_SERVER['HTTP_REFERER'])); ?>">
 
-    <div class="tbl_head01 tbl_wrap card">
+    <div class="table-card table-shell card">
         <table>
         <caption>이동할 그룹을 한개 이상 선택하여 주십시오.</caption>
         <thead>
@@ -42,7 +42,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
         <tbody>
         <?php for ($i=0; $i<count($list); $i++) { ?>
         <tr>
-            <td class="td_chk">
+            <td class="cell-chk">
                 <input type="radio" value="<?php echo $list[$i]['fg_no'] ?>" id="chk<?php echo $i ?>" name="chk_fg_no[]">
             </td>
             <td>
@@ -55,7 +55,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     </div>
 
     <div class="win_btn">
-        <input type="submit" value="이동" id="btn_submit" class="btn btn-sm border-default-300">
+        <input type="submit" value="이동" id="btn-primary" class="btn btn-sm border-default-300">
         <button type="button" class="btn_cancel">창닫기</button>
     </div>
     </form>
@@ -104,7 +104,7 @@ function fboardmoveall_submit(f)
         return false;
     }
 
-    document.getElementById('btn_submit').disabled = true;
+    document.getElementById('btn-primary').disabled = true;
 
     return true;
 }

@@ -6,7 +6,7 @@ auth_check_menu($auth, $sub_menu, "r");
 
 $g5['title'] = '가격비교사이트';
 include_once (G5_ADMIN_PATH.'/admin.head.php');
-$pg_anchor = '<ul class="anchor">
+$pg_anchor = '<ul class="section-anchor">
 <li><a href="#anc_pricecompare_info">가격비교사이트 연동 안내</a></li>
 <li><a href="#anc_pricecompare_engine">사이트별 엔진페이지 URL</a></li>
 </ul>';

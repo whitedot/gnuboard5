@@ -1,15 +1,15 @@
 <section id="anc_scf_skin">
-    <h2 class="h2_frm">스킨설정</h2>
+    <h2 class="section-title">스킨설정</h2>
     <?php echo $pg_anchor; ?>
-    <div class="local_desc02 local_desc">
+    <div class="hint-box">
         <p>상품 분류리스트, 상품상세보기 등 에서 사용할 스킨을 설정합니다.</p>
     </div>
 
-    <div class="tbl_frm01 tbl_wrap">
+    <div class="form-card table-shell">
         <table>
         <caption>스킨설정</caption>
         <colgroup>
-            <col class="grid_4">
+            <col class="col-4">
             <col>
         </colgroup>
         <tbody>

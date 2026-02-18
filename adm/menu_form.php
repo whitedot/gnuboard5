@@ -51,7 +51,7 @@ if ($new == 'new' || !$code) {
         function link_checks_all_chage() {
 
             var $links = $(opener.document).find("#menulist input[name='me_link[]']"),
-                $o_link = $(".td_mngsmall input[name='link[]']"),
+                $o_link = $(".cell-mngsmall input[name='link[]']"),
                 hrefs = [],
                 menu_exist = false;
 
@@ -131,9 +131,9 @@ if ($new == 'new' || !$code) {
         var ms = new Date().getTime();
         var sub_menu_class;
         <?php if ($new == 'new') { ?>
-            sub_menu_class = " class=\"td_category\"";
+            sub_menu_class = " class=\"cell-category\"";
         <?php } else { ?>
-            sub_menu_class = " class=\"td_category sub_menu_class\"";
+            sub_menu_class = " class=\"cell-category sub_menu_class\"";
         <?php } ?>
         
         name = htmlEscape(name);
@@ -143,42 +143,42 @@ if ($new == 'new' || !$code) {
         list += "<td" + sub_menu_class + ">";
         list += "<label for=\"me_name_" + ms + "\"  class=\"sr-only\">메뉴<strong class=\"sr-only\"> 필수</strong></label>";
         list += "<input type=\"hidden\" name=\"code[]\" value=\"<?php echo $code; ?>\">";
-        list += "<input type=\"text\" name=\"me_name[]\" value=\"" + name + "\" id=\"me_name_" + ms + "\" required class=\"required frm_input full_input\">";
+        list += "<input type=\"text\" name=\"me_name[]\" value=\"" + name + "\" id=\"me_name_" + ms + "\" required class=\"required form-input w-full\">";
         list += "</td>";
         list += "<td>";
         list += "<label for=\"me_link_" + ms + "\"  class=\"sr-only\">링크<strong class=\"sr-only\"> 필수</strong></label>";
-        list += "<input type=\"text\" name=\"me_link[]\" value=\"" + link + "\" id=\"me_link_" + ms + "\" required class=\"required frm_input full_input\">";
+        list += "<input type=\"text\" name=\"me_link[]\" value=\"" + link + "\" id=\"me_link_" + ms + "\" required class=\"required form-input w-full\">";
         list += "</td>";
-        list += "<td class=\"td_mng\">";
+        list += "<td class=\"cell-mng\">";
         list += "<label for=\"me_target_" + ms + "\"  class=\"sr-only\">새창</label>";
         list += "<select name=\"me_target[]\" id=\"me_target_" + ms + "\">";
         list += "<option value=\"self\">사용안함</option>";
         list += "<option value=\"blank\">사용함</option>";
         list += "</select>";
         list += "</td>";
-        list += "<td class=\"td_numsmall\">";
+        list += "<td class=\"cell-numsmall\">";
         list += "<label for=\"me_order_" + ms + "\"  class=\"sr-only\">순서<strong class=\"sr-only\"> 필수</strong></label>";
-        list += "<input type=\"text\" name=\"me_order[]\" value=\"0\" id=\"me_order_" + ms + "\" required class=\"required frm_input\" size=\"5\">";
+        list += "<input type=\"text\" name=\"me_order[]\" value=\"0\" id=\"me_order_" + ms + "\" required class=\"required form-input\" size=\"5\">";
         list += "</td>";
-        list += "<td class=\"td_mngsmall\">";
+        list += "<td class=\"cell-mngsmall\">";
         list += "<label for=\"me_use_" + ms + "\"  class=\"sr-only\">PC사용</label>";
         list += "<select name=\"me_use[]\" id=\"me_use_" + ms + "\">";
         list += "<option value=\"1\">사용함</option>";
         list += "<option value=\"0\">사용안함</option>";
         list += "</select>";
         list += "</td>";
-        list += "<td class=\"td_mngsmall\">";
+        list += "<td class=\"cell-mngsmall\">";
         list += "<label for=\"me_mobile_use_" + ms + "\"  class=\"sr-only\">모바일사용</label>";
         list += "<select name=\"me_mobile_use[]\" id=\"me_mobile_use_" + ms + "\">";
         list += "<option value=\"1\">사용함</option>";
         list += "<option value=\"0\">사용안함</option>";
         list += "</select>";
         list += "</td>";
-        list += "<td class=\"td_mng\">";
+        list += "<td class=\"cell-mng\">";
         <?php if ($new == 'new') { ?>
-            list += "<button type=\"button\" class=\"btn_add_submenu btn_03\">추가</button>\n";
+            list += "<button type=\"button\" class=\"btn_add_submenu btn-tertiary\">추가</button>\n";
         <?php } ?>
-        list += "<button type=\"button\" class=\"btn_del_menu btn_02\">삭제</button>";
+        list += "<button type=\"button\" class=\"btn_del_menu btn-secondary\">삭제</button>";
         list += "</td>";
         list += "</tr>";
 

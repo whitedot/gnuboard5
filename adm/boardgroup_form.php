@@ -21,7 +21,7 @@ if (!isset($group['gr_id'])) {
 $gr = array('gr_use_access' => 0, 'gr_admin' => '');
 if ($w == '') {
     $gr_id_attr = 'required';
-    $sound_only = '<strong class="sound_only"> 필수</strong>';
+    $sound_only = '<strong class="sr-only"> 필수</strong>';
     $html_title .= ' 생성';
 } elseif ($w == 'u') {
     $gr_id_attr = 'readonly';
@@ -49,33 +49,33 @@ require_once './admin.head.php';
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <div class="tbl_frm01 tbl_wrap">
+    <div class="form-card table-shell">
         <table>
             <caption><?php echo $g5['title']; ?></caption>
             <colgroup>
-                <col class="grid_4">
+                <col class="col-4">
                 <col>
             </colgroup>
             <tbody>
                 <tr>
                     <th scope="row"><label for="gr_id">그룹 ID<?php echo $sound_only ?></label></th>
-                    <td><input type="text" name="gr_id" value="<?php echo $group['gr_id'] ?>" id="gr_id" <?php echo $gr_id_attr; ?> class="<?php echo $gr_id_attr; ?> alnum_ frm_input" maxlength="10">
+                    <td><input type="text" name="gr_id" value="<?php echo $group['gr_id'] ?>" id="gr_id" <?php echo $gr_id_attr; ?> class="<?php echo $gr_id_attr; ?> alnum_ form-input" maxlength="10">
                         <?php
                         if ($w == '') {
                             echo '영문자, 숫자, _ 만 가능 (공백없이)';
                         } else {
-                            echo '<a href="' . G5_BBS_URL . '/group.php?gr_id=' . $group['gr_id'] . '" class="btn_frmline">게시판그룹 바로가기</a>';
+                            echo '<a href="' . G5_BBS_URL . '/group.php?gr_id=' . $group['gr_id'] . '" class="btn-inline">게시판그룹 바로가기</a>';
                         }
                         ?>
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><label for="gr_subject">그룹 제목<strong class="sound_only"> 필수</strong></label></th>
+                    <th scope="row"><label for="gr_subject">그룹 제목<strong class="sr-only"> 필수</strong></label></th>
                     <td>
-                        <input type="text" name="gr_subject" value="<?php echo get_text($group['gr_subject']) ?>" id="gr_subject" required class="required frm_input" size="80">
+                        <input type="text" name="gr_subject" value="<?php echo get_text($group['gr_subject']) ?>" id="gr_subject" required class="required form-input" size="80">
                         <?php
                         if ($w == 'u') {
-                            echo '<a href="./board_form.php?gr_id=' . $gr_id . '" class="btn_frmline">게시판생성</a>';
+                            echo '<a href="./board_form.php?gr_id=' . $gr_id . '" class="btn-inline">게시판생성</a>';
                         }
                         ?>
                     </td>
@@ -104,7 +104,7 @@ require_once './admin.head.php';
                     <td>
                         <?php
                         if ($is_admin == 'super') {
-                            echo '<input type="text" id="gr_admin" name="gr_admin" class="frm_input" value="' . $gr['gr_admin'] . '" maxlength="20">';
+                            echo '<input type="text" id="gr_admin" name="gr_admin" class="form-input" value="' . $gr['gr_admin'] . '" maxlength="20">';
                         } else {
                             echo '<input type="hidden" id="gr_admin" name="gr_admin" value="' . $gr['gr_admin'] . '">' . $gr['gr_admin'];
                         }
@@ -130,11 +130,11 @@ require_once './admin.head.php';
                 <?php for ($i = 1; $i <= 10; $i++) { ?>
                     <tr>
                         <th scope="row">여분필드<?php echo $i ?></th>
-                        <td class="td_extra">
+                        <td class="cell-extra">
                             <label for="gr_<?php echo $i ?>_subj">여분필드 <?php echo $i ?> 제목</label>
-                            <input type="text" name="gr_<?php echo $i ?>_subj" value="<?php echo isset($group['gr_' . $i . '_subj']) ? get_text($group['gr_' . $i . '_subj']) : ''; ?>" id="gr_<?php echo $i ?>_subj" class="frm_input">
+                            <input type="text" name="gr_<?php echo $i ?>_subj" value="<?php echo isset($group['gr_' . $i . '_subj']) ? get_text($group['gr_' . $i . '_subj']) : ''; ?>" id="gr_<?php echo $i ?>_subj" class="form-input">
                             <label for="gr_<?php echo $i ?>">여분필드 <?php echo $i ?> 내용</label>
-                            <input type="text" name="gr_<?php echo $i ?>" value="<?php echo isset($gr['gr_' . $i]) ? get_sanitize_input($gr['gr_' . $i]) : ''; ?>" id="gr_<?php echo $i ?>" class="frm_input">
+                            <input type="text" name="gr_<?php echo $i ?>" value="<?php echo isset($gr['gr_' . $i]) ? get_sanitize_input($gr['gr_' . $i]) : ''; ?>" id="gr_<?php echo $i ?>" class="form-input">
                         </td>
                     </tr>
                 <?php } ?>
@@ -142,14 +142,14 @@ require_once './admin.head.php';
         </table>
     </div>
 
-    <div class="btn_fixed_top">
-        <a href="./boardgroup_list.php?<?php echo $qstr ?>" class="btn btn_02">목록</a>
-        <input type="submit" class="btn_submit btn" accesskey="s" value="확인">
+    <div class="action-bar">
+        <a href="./boardgroup_list.php?<?php echo $qstr ?>" class="btn btn-secondary">목록</a>
+        <input type="submit" class="btn-primary btn" accesskey="s" value="확인">
     </div>
 
 </form>
 
-<div class="local_desc01 local_desc">
+<div class="hint-box">
     <p>
         게시판을 생성하시려면 1개 이상의 게시판그룹이 필요합니다.<br>
         게시판그룹을 이용하시면 더 효과적으로 게시판을 관리할 수 있습니다.

@@ -1,5 +1,5 @@
     <section id="anc_cf_join">
-        <h2 class="h2_frm">회원가입 설정</h2>
+        <h2 class="section-title">회원가입 설정</h2>
         <?php echo $pg_anchor ?>
         <div class="hint-text">
             <p>회원가입 시 사용할 스킨과 입력 받을 정보 등을 설정할 수 있습니다.</p>
@@ -53,11 +53,11 @@
                                             <div class="lg:col-span-1"><label for="cf_register_level" class="form-label py-2 mb-0!">회원가입시 권한</label>                    </div>
                                             <div class="lg:col-span-1"><?php echo get_member_level_select('cf_register_level', 1, 9, $config['cf_register_level']) ?>                    </div>
                                             <div class="lg:col-span-1"><label for="cf_register_point" class="form-label py-2 mb-0!">회원가입시 포인트</label>                    </div>
-                                            <div class="lg:col-span-1"><input type="text" name="cf_register_point" value="<?php echo (int) $config['cf_register_point'] ?>" id="cf_register_point" class="frm_input form-input" size="5"> 점                    </div>
+                                            <div class="lg:col-span-1"><input type="text" name="cf_register_point" value="<?php echo (int) $config['cf_register_point'] ?>" id="cf_register_point" class="form-input" size="5"> 점                    </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_leave_day" class="form-label py-2 mb-0!">회원탈퇴후 삭제일</label>                    </div>
-                                            <div class="lg:col-span-3"><input type="text" name="cf_leave_day" value="<?php echo (int) $config['cf_leave_day'] ?>" id="cf_leave_day" class="frm_input form-input" size="2"> 일 후 자동 삭제                    </div>
+                                            <div class="lg:col-span-3"><input type="text" name="cf_leave_day" value="<?php echo (int) $config['cf_leave_day'] ?>" id="cf_leave_day" class="form-input" size="2"> 일 후 자동 삭제                    </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_use_member_icon" class="form-label py-2 mb-0!">회원아이콘 사용</label>                    </div>
@@ -74,25 +74,25 @@
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_member_icon_size" class="form-label py-2 mb-0!">회원아이콘 용량</label>                    </div>
-                                            <div class="lg:col-span-1"><input type="text" name="cf_member_icon_size" value="<?php echo (int) $config['cf_member_icon_size'] ?>" id="cf_member_icon_size" class="frm_input form-input" size="10"> 바이트 이하                    </div>
+                                            <div class="lg:col-span-1"><input type="text" name="cf_member_icon_size" value="<?php echo (int) $config['cf_member_icon_size'] ?>" id="cf_member_icon_size" class="form-input" size="10"> 바이트 이하                    </div>
                                             <div class="lg:col-span-1">회원아이콘 사이즈                    </div>
                                             <div class="lg:col-span-1">
                             <label for="cf_member_icon_width" class="form-label py-2 mb-0!">가로</label>
-                            <input type="text" name="cf_member_icon_width" value="<?php echo (int) $config['cf_member_icon_width'] ?>" id="cf_member_icon_width" class="frm_input form-input" size="2">
+                            <input type="text" name="cf_member_icon_width" value="<?php echo (int) $config['cf_member_icon_width'] ?>" id="cf_member_icon_width" class="form-input" size="2">
                             <label for="cf_member_icon_height" class="form-label py-2 mb-0!">세로</label>
-                            <input type="text" name="cf_member_icon_height" value="<?php echo (int) $config['cf_member_icon_height'] ?>" id="cf_member_icon_height" class="frm_input form-input" size="2">
+                            <input type="text" name="cf_member_icon_height" value="<?php echo (int) $config['cf_member_icon_height'] ?>" id="cf_member_icon_height" class="form-input" size="2">
                             픽셀 이하
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_member_img_size" class="form-label py-2 mb-0!">회원이미지 용량</label>                    </div>
-                                            <div class="lg:col-span-1"><input type="text" name="cf_member_img_size" value="<?php echo (int) $config['cf_member_img_size'] ?>" id="cf_member_img_size" class="frm_input form-input" size="10"> 바이트 이하                    </div>
+                                            <div class="lg:col-span-1"><input type="text" name="cf_member_img_size" value="<?php echo (int) $config['cf_member_img_size'] ?>" id="cf_member_img_size" class="form-input" size="10"> 바이트 이하                    </div>
                                             <div class="lg:col-span-1">회원이미지 사이즈                    </div>
                                             <div class="lg:col-span-1">
                             <label for="cf_member_img_width" class="form-label py-2 mb-0!">가로</label>
-                            <input type="text" name="cf_member_img_width" value="<?php echo (int) $config['cf_member_img_width'] ?>" id="cf_member_img_width" class="frm_input form-input" size="2">
+                            <input type="text" name="cf_member_img_width" value="<?php echo (int) $config['cf_member_img_width'] ?>" id="cf_member_img_width" class="form-input" size="2">
                             <label for="cf_member_img_height" class="form-label py-2 mb-0!">세로</label>
-                            <input type="text" name="cf_member_img_height" value="<?php echo (int) $config['cf_member_img_height'] ?>" id="cf_member_img_height" class="frm_input form-input" size="2">
+                            <input type="text" name="cf_member_img_height" value="<?php echo (int) $config['cf_member_img_height'] ?>" id="cf_member_img_height" class="form-input" size="2">
                             픽셀 이하
                                             </div>
                                     </div>
@@ -100,7 +100,7 @@
                                             <div class="lg:col-span-1"><label for="cf_use_recommend" class="form-label py-2 mb-0!">추천인제도 사용</label>                    </div>
                                             <div class="lg:col-span-1"><input type="checkbox" name="cf_use_recommend" value="1" id="cf_use_recommend" <?php echo $config['cf_use_recommend'] ? 'checked' : ''; ?>> 사용                    </div>
                                             <div class="lg:col-span-1"><label for="cf_recommend_point" class="form-label py-2 mb-0!">추천인 포인트</label>                    </div>
-                                            <div class="lg:col-span-1"><input type="text" name="cf_recommend_point" value="<?php echo (int) $config['cf_recommend_point'] ?>" id="cf_recommend_point" class="frm_input form-input"> 점                    </div>
+                                            <div class="lg:col-span-1"><input type="text" name="cf_recommend_point" value="<?php echo (int) $config['cf_recommend_point'] ?>" id="cf_recommend_point" class="form-input"> 점                    </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_prohibit_id" class="form-label py-2 mb-0!">아이디,닉네임 금지단어</label>                    </div>
@@ -135,5 +135,5 @@
                                     </div>
                             </div>
         </div>
-        <button type="button" class="get_theme_confc btn btn_02" data-type="conf_member">테마 회원스킨설정 가져오기</button>
+        <button type="button" class="get_theme_confc btn btn-secondary" data-type="conf_member">테마 회원스킨설정 가져오기</button>
     </section>

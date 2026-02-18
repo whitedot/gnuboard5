@@ -49,12 +49,12 @@ $result = sql_query($sql);
 
 $qstr1 = $qstr.'&amp;fr_date='.$fr_date.'&amp;to_date='.$to_date.'&amp;sel_ca_id='.$sel_ca_id;
 
-$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
+$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목록</a>';
 ?>
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall; ?>
-    <span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> <?php echo $total_count; ?>건</span></span>
+    <span class="summary-chip"><span class="summary-label">전체 </span><span class="summary-value"> <?php echo $total_count; ?>건</span></span>
 </div>
 
 <form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
@@ -77,15 +77,15 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 </select>
 
 <label for="fr_date" class="sr-only">시작일</label>
-<input type="text" name="fr_date" value="<?php echo $fr_date; ?>" id="fr_date" required class="required frm_input form-input" size="8" maxlength="8">
+<input type="text" name="fr_date" value="<?php echo $fr_date; ?>" id="fr_date" required class="required form-input" size="8" maxlength="8">
 ~
 <label for="to_date" class="sr-only">종료일</label>
-<input type="text" name="to_date" value="<?php echo $to_date; ?>" id="to_date" required class="required frm_input form-input" size="8" maxlength="8">
+<input type="text" name="to_date" value="<?php echo $to_date; ?>" id="to_date" required class="required form-input" size="8" maxlength="8">
 <input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
 
-<div class="tbl_head01 tbl_wrap card">
+<div class="table-card table-shell card">
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <thead>
@@ -108,17 +108,17 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         $bg = 'bg'.($i%2);
     ?>
     <tr class="<?php echo $bg; ?>">
-        <td class="td_num"><?php echo $num; ?></td>
-        <td class="td_left">
+        <td class="cell-num"><?php echo $num; ?></td>
+        <td class="cell-left">
             <a href="<?php echo $href; ?>"><?php echo get_it_image($row['it_id'], 50, 50); ?> <?php echo cut_str($row['it_name'],30); ?></a>
         </td>
-        <td class="td_num"><?php echo $row['it_id_cnt']; ?></td>
+        <td class="cell-num"><?php echo $row['it_id_cnt']; ?></td>
     </tr>
     <?php
     }
 
     if ($i == 0) {
-        echo '<tr><td colspan="3" class="empty_table">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="3" class="table-empty">자료가 없습니다.</td></tr>';
     }
     ?>
     </tbody>

@@ -59,7 +59,7 @@ $sql = " select count(*) as cnt {$sql_common} {$sql_search} and mb_intercept_dat
 $row = sql_fetch($sql);
 $intercept_count = $row['cnt'];
 
-$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="ov_listall">전체목록</a>';
+$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="summary-all">전체목록</a>';
 
 $g5['title'] = '회원관리';
 require_once './admin.head.php';
@@ -72,9 +72,9 @@ $colspan = 16;
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall ?>
-    <span class="btn_ov01"><span class="ov_txt">총회원수 </span><span class="ov_num"> <?php echo number_format($total_count) ?>명 </span></span>
-    <a href="?sst=mb_intercept_date&amp;sod=desc&amp;sfl=<?php echo $sfl ?>&amp;stx=<?php echo $stx ?>" class="btn_ov01" data-tooltip-text="차단된 순으로 정렬합니다.&#xa;전체 데이터를 출력합니다."> <span class="ov_txt">차단 </span><span class="ov_num"><?php echo number_format($intercept_count) ?>명</span></a>
-    <a href="?sst=mb_leave_date&amp;sod=desc&amp;sfl=<?php echo $sfl ?>&amp;stx=<?php echo $stx ?>" class="btn_ov01" data-tooltip-text="탈퇴된 순으로 정렬합니다.&#xa;전체 데이터를 출력합니다."> <span class="ov_txt">탈퇴 </span><span class="ov_num"><?php echo number_format($leave_count) ?>명</span></a>
+    <span class="summary-chip"><span class="summary-label">총회원수 </span><span class="summary-value"> <?php echo number_format($total_count) ?>명 </span></span>
+    <a href="?sst=mb_intercept_date&amp;sod=desc&amp;sfl=<?php echo $sfl ?>&amp;stx=<?php echo $stx ?>" class="summary-chip" data-tooltip-text="차단된 순으로 정렬합니다.&#xa;전체 데이터를 출력합니다."> <span class="summary-label">차단 </span><span class="summary-value"><?php echo number_format($intercept_count) ?>명</span></a>
+    <a href="?sst=mb_leave_date&amp;sod=desc&amp;sfl=<?php echo $sfl ?>&amp;stx=<?php echo $stx ?>" class="summary-chip" data-tooltip-text="탈퇴된 순으로 정렬합니다.&#xa;전체 데이터를 출력합니다."> <span class="summary-label">탈퇴 </span><span class="summary-value"><?php echo number_format($leave_count) ?>명</span></a>
 </div>
 
 <form id="fsearch" name="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
@@ -94,7 +94,7 @@ $colspan = 16;
         <option value="mb_recommend" <?php echo get_selected($sfl, "mb_recommend"); ?>>추천인</option>
     </select>
     <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input form-input">
+    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required form-input">
     <input type="submit" class="btn btn-sm border-default-300" value="검색">
 
 </form>
@@ -114,7 +114,7 @@ $colspan = 16;
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <div class="tbl_head01 tbl_wrap card">
+    <div class="table-card table-shell card">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -160,9 +160,9 @@ $colspan = 16;
                     if ($is_admin == 'group') {
                         $s_mod = '';
                     } else {
-                        $s_mod = '<a href="./member_form.php?' . $qstr . '&amp;w=u&amp;mb_id=' . $row['mb_id'] . '" class="btn btn_03">수정</a>';
+                        $s_mod = '<a href="./member_form.php?' . $qstr . '&amp;w=u&amp;mb_id=' . $row['mb_id'] . '" class="btn btn-tertiary">수정</a>';
                     }
-                    $s_grp = '<a href="./boardgroupmember_form.php?mb_id=' . $row['mb_id'] . '" class="btn btn_02">그룹</a>';
+                    $s_grp = '<a href="./boardgroupmember_form.php?mb_id=' . $row['mb_id'] . '" class="btn btn-secondary">그룹</a>';
 
                     $leave_date = $row['mb_leave_date'] ? $row['mb_leave_date'] : date('Ymd', G5_SERVER_TIME);
                     $intercept_date = $row['mb_intercept_date'] ? $row['mb_intercept_date'] : date('Ymd', G5_SERVER_TIME);
@@ -214,12 +214,12 @@ $colspan = 16;
                 ?>
 
                     <tr class="<?php echo $bg; ?>">
-                        <td headers="mb_list_chk" class="td_chk" rowspan="2">
+                        <td headers="mb_list_chk" class="cell-chk" rowspan="2">
                             <input type="hidden" name="mb_id[<?php echo $i ?>]" value="<?php echo $row['mb_id'] ?>" id="mb_id_<?php echo $i ?>">
                             <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['mb_name']); ?> <?php echo get_text($row['mb_nick']); ?>님</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
                         </td>
-                        <td headers="mb_list_id" colspan="2" class="td_name sv_use">
+                        <td headers="mb_list_id" colspan="2" class="cell-name sv_use">
                             <?php echo $mb_id ?>
                             <?php
                             //소셜계정이 있다면
@@ -244,7 +244,7 @@ $colspan = 16;
                             }
                             ?>
                         </td>
-                        <td headers="mb_list_cert" rowspan="2" class="td_mbcert">
+                        <td headers="mb_list_cert" rowspan="2" class="cell-mbcert">
                             <input type="radio" name="mb_certify[<?php echo $i; ?>]" value="simple" id="mb_certify_sa_<?php echo $i; ?>" <?php echo $row['mb_certify'] == 'simple' ? 'checked' : ''; ?>>
                             <label for="mb_certify_sa_<?php echo $i; ?>">간편인증</label><br>
                             <input type="radio" name="mb_certify[<?php echo $i; ?>]" value="hp" id="mb_certify_hp_<?php echo $i; ?>" <?php echo $row['mb_certify'] == 'hp' ? 'checked' : ''; ?>>
@@ -252,17 +252,17 @@ $colspan = 16;
                             <input type="radio" name="mb_certify[<?php echo $i; ?>]" value="ipin" id="mb_certify_ipin_<?php echo $i; ?>" <?php echo $row['mb_certify'] == 'ipin' ? 'checked' : ''; ?>>
                             <label for="mb_certify_ipin_<?php echo $i; ?>">아이핀</label>
                         </td>
-                        <td headers="mb_list_mailc" class="td_consent"><?php echo preg_match('/[1-9]/', $row['mb_email_certify']) ? '<span class="txt_true">Yes</span>' : '<span class="txt_false">No</span>'; ?></td>
-                        <td headers="mb_list_open" class="td_consent">
+                        <td headers="mb_list_mailc" class="cell-consent"><?php echo preg_match('/[1-9]/', $row['mb_email_certify']) ? '<span class="txt_true">Yes</span>' : '<span class="txt_false">No</span>'; ?></td>
+                        <td headers="mb_list_open" class="cell-consent">
                             <label for="mb_open_<?php echo $i; ?>" class="sr-only">정보공개</label>
                             <input type="checkbox" name="mb_open[<?php echo $i; ?>]" <?php echo $row['mb_open'] ? 'checked' : ''; ?> value="1" id="mb_open_<?php echo $i; ?>">
                         </td>
-                        <td headers="mb_list_mailr" class="td_consent">
+                        <td headers="mb_list_mailr" class="cell-consent">
                             <label for="mb_mailling_<?php echo $i; ?>" class="sr-only">메일수신</label>
                             <input type="checkbox" name="mb_mailling[<?php echo $i; ?>]" <?php echo $row['mb_mailling'] ? 'checked' : ''; ?> value="1" id="mb_mailling_<?php echo $i; ?>">
                             <input type="hidden" name="mb_mailling_default[<?php echo $i; ?>]" value="<?php echo isset($row['mb_mailling']) ? $row['mb_mailling'] : '0'; ?> " id="mb_mailling_default_<?php echo $i; ?>">
                         </td>
-                        <td headers="mb_list_auth" class="td_mbstat">
+                        <td headers="mb_list_auth" class="cell-mbstat">
                             <?php
                             if ($leave_msg || $intercept_msg) {
                                 echo $leave_msg . ' ' . $intercept_msg;
@@ -271,14 +271,14 @@ $colspan = 16;
                             }
                             ?>
                         </td>
-                        <td headers="mb_list_mobile" class="td_tel"><?php echo get_text($row['mb_hp']); ?></td>
-                        <td headers="mb_list_lastcall" class="td_date"><?php echo substr($row['mb_today_login'], 2, 8); ?></td>
-                        <td headers="mb_list_grp" class="td_numsmall"><?php echo $group ?></td>
-                        <td headers="mb_list_mng" rowspan="2" class="td_mng td_mng_s"><?php echo $s_mod ?><?php echo $s_grp ?></td>
+                        <td headers="mb_list_mobile" class="cell-tel"><?php echo get_text($row['mb_hp']); ?></td>
+                        <td headers="mb_list_lastcall" class="cell-date"><?php echo substr($row['mb_today_login'], 2, 8); ?></td>
+                        <td headers="mb_list_grp" class="cell-numsmall"><?php echo $group ?></td>
+                        <td headers="mb_list_mng" rowspan="2" class="cell-mng cell-mng-s"><?php echo $s_mod ?><?php echo $s_grp ?></td>
                     </tr>
                     <tr class="<?php echo $bg; ?>">
-                        <td headers="mb_list_name" class="td_mbname"><?php echo get_text($row['mb_name']); ?></td>
-                        <td headers="mb_list_nick" class="td_name sv_use">
+                        <td headers="mb_list_name" class="cell-mbname"><?php echo get_text($row['mb_name']); ?></td>
+                        <td headers="mb_list_nick" class="cell-name sv_use">
                             <div><?php echo $mb_nick ?></div>
                         </td>
 
@@ -297,7 +297,7 @@ $colspan = 16;
                                 <label for="mb_intercept_date_<?php echo $i; ?>" class="sr-only">접근차단</label>
                             <?php } ?>
                         </td>
-                        <td headers="mb_list_auth" class="td_mbstat">
+                        <td headers="mb_list_auth" class="cell-mbstat">
                             <?php
                             $level_max = max((int) $member['mb_level'], (int) $row['mb_level']);
                             echo get_member_level_select(
@@ -308,27 +308,27 @@ $colspan = 16;
                             );
                             ?>
                         </td>
-                        <td headers="mb_list_tel" class="td_tel"><?php echo get_text($row['mb_tel']); ?></td>
-                        <td headers="mb_list_join" class="td_date"><?php echo substr($row['mb_datetime'], 2, 8); ?></td>
-                        <td headers="mb_list_point" class="td_num"><a href="point_list.php?sfl=mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo number_format($row['mb_point']) ?></a></td>
+                        <td headers="mb_list_tel" class="cell-tel"><?php echo get_text($row['mb_tel']); ?></td>
+                        <td headers="mb_list_join" class="cell-date"><?php echo substr($row['mb_datetime'], 2, 8); ?></td>
+                        <td headers="mb_list_point" class="cell-num"><a href="point_list.php?sfl=mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo number_format($row['mb_point']) ?></a></td>
 
                     </tr>
 
                 <?php
                 }
                 if ($i == 0) {
-                    echo "<tr><td colspan=\"" . $colspan . "\" class=\"empty_table\">자료가 없습니다.</td></tr>";
+                    echo "<tr><td colspan=\"" . $colspan . "\" class=\"table-empty\">자료가 없습니다.</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
     </div>
 
-    <div class="btn_fixed_top">
-        <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value" class="btn btn_02">
-        <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn_02">
+    <div class="action-bar">
+        <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value" class="btn btn-secondary">
+        <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
         <?php if ($is_admin == 'super') { ?>
-            <a href="./member_form.php" id="member_add" class="btn btn_01">회원추가</a>
+            <a href="./member_form.php" id="member_add" class="btn btn-primary">회원추가</a>
         <?php } ?>
 
     </div>

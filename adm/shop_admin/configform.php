@@ -16,7 +16,7 @@ if ($config['cf_sms_use'] && $config['cf_icode_id'] && $config['cf_icode_pw']) {
 $g5['title'] = '쇼핑몰설정';
 include_once (G5_ADMIN_PATH.'/admin.head.php');
 
-$pg_anchor = '<ul class="anchor">
+$pg_anchor = '<ul class="section-anchor">
 <li><a href="#anc_scf_info">사업자정보</a></li>
 <li><a href="#anc_scf_skin">스킨설정</a></li>
 <li><a href="#anc_scf_index">쇼핑몰 초기화면</a></li>
@@ -50,8 +50,8 @@ include_once(G5_ADMIN_PATH.'/shop_admin/config_form_parts/etc.php');
 include_once(G5_ADMIN_PATH.'/shop_admin/config_form_parts/sms.php');
 ?>
 
-<div class="btn_fixed_top">
-    <a href=" <?php echo G5_SHOP_URL; ?>" class="btn btn_02">쇼핑몰</a>
+<div class="action-bar">
+    <a href=" <?php echo G5_SHOP_URL; ?>" class="btn btn-secondary">쇼핑몰</a>
     <input type="submit" value="확인" class="btn btn-sm border-default-300" accesskey="s">
 </div>
 

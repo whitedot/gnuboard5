@@ -47,7 +47,7 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
 ?>
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
-    <span class="btn_ov01"><span class="ov_txt"> <?php echo ($sql_search) ? '검색' : '등록'; ?>된 배너 </span><span class="ov_num"> <?php echo $total_count; ?>개</span></span>
+    <span class="summary-chip"><span class="summary-label"> <?php echo ($sql_search) ? '검색' : '등록'; ?>된 배너 </span><span class="summary-value"> <?php echo $total_count; ?>개</span></span>
 
     <form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <input type="hidden" name="page" value="<?php echo $page; ?>">
@@ -77,11 +77,11 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
 
 </div>
 
-<div class="btn_fixed_top">
-    <a href="./bannerform.php" class="btn_01 btn">배너추가</a>
+<div class="action-bar">
+    <a href="./bannerform.php" class="btn-primary btn">배너추가</a>
 </div>
 
-<div class="tbl_head01 tbl_wrap card">
+<div class="table-card table-shell card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -143,29 +143,29 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
     ?>
 
     <tr class="<?php echo $bg; ?>">
-        <td headers="th_id" rowspan="2" class="td_num"><?php echo $row['bn_id']; ?></td>
+        <td headers="th_id" rowspan="2" class="cell-num"><?php echo $row['bn_id']; ?></td>
         <td headers="th_dvc"><?php echo $bn_device; ?></td>
         <td headers="th_loc"><?php echo $row['bn_position']; ?></td>
-        <td headers="th_st" class="td_datetime"><?php echo $bn_begin_time; ?></td>
-        <td headers="th_end" class="td_datetime"><?php echo $bn_end_time; ?></td>
-        <td headers="th_odr" class="td_num"><?php echo $row['bn_order']; ?></td>
-        <td headers="th_hit" class="td_num"><?php echo $row['bn_hit']; ?></td>
-        <td headers="th_mng" class="td_mng td_mns_m">
-            <a href="./bannerform.php?w=u&amp;bn_id=<?php echo $row['bn_id']; ?>" class="btn btn_03">수정</a>
-            <a href="./bannerformupdate.php?w=d&amp;bn_id=<?php echo $row['bn_id']; ?>" onclick="return delete_confirm(this);" class="btn btn_02">삭제</a>
+        <td headers="th_st" class="cell-datetime"><?php echo $bn_begin_time; ?></td>
+        <td headers="th_end" class="cell-datetime"><?php echo $bn_end_time; ?></td>
+        <td headers="th_odr" class="cell-num"><?php echo $row['bn_order']; ?></td>
+        <td headers="th_hit" class="cell-num"><?php echo $row['bn_hit']; ?></td>
+        <td headers="th_mng" class="cell-mng cell-mns-m">
+            <a href="./bannerform.php?w=u&amp;bn_id=<?php echo $row['bn_id']; ?>" class="btn btn-tertiary">수정</a>
+            <a href="./bannerformupdate.php?w=d&amp;bn_id=<?php echo $row['bn_id']; ?>" onclick="return delete_confirm(this);" class="btn btn-secondary">삭제</a>
         </td>
     </tr>
     <tr class="<?php echo $bg; ?>">
-        <td headers="th_img" colspan="7" class="td_img_view sbn_img">
+        <td headers="th_img" colspan="7" class="cell-img-view sbn_img">
             <div class="sbn_image"><?php echo $bn_img; ?></div>
-            <button type="button" class="sbn_img_view btn_frmline">이미지확인</button>
+            <button type="button" class="sbn_img_view btn-inline">이미지확인</button>
         </td>
     </tr>
 
     <?php
     }
     if ($i == 0) {
-    echo '<tr><td colspan="8" class="empty_table">자료가 없습니다.</td></tr>';
+    echo '<tr><td colspan="8" class="table-empty">자료가 없습니다.</td></tr>';
     }
     ?>
     </tbody>
@@ -178,7 +178,7 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
 <script>
 jQuery(function($) {
     $(".sbn_img_view").on("click", function() {
-        $(this).closest(".td_img_view").find(".sbn_image").slideToggle();
+        $(this).closest(".cell-img-view").find(".sbn_image").slideToggle();
     });
 });
 </script>

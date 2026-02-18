@@ -1,5 +1,5 @@
 <section id="anc_sitfrm_event" class="srel">
-    <h2 class="h2_frm">관련이벤트</h2>
+    <h2 class="section-title">관련이벤트</h2>
     <?php echo $pg_anchor; ?>
 
     <div class="compare_wrap">
@@ -16,7 +16,7 @@
                     <li>
                         <input type="hidden" name="ev_id[]" value="<?php echo $row['ev_id']; ?>">
                         <div class="list_item"><?php echo get_text($row['ev_subject']); ?></div>
-                        <div class="list_item_btn"><button type="button" class="add_event btn_frmline">추가</button></div>
+                        <div class="list_item_btn"><button type="button" class="add_event btn-inline">추가</button></div>
                     </li>
                 <?php
                 }
@@ -94,7 +94,7 @@
                     <li>
                         <input type="hidden" name="ev_id[]" value="<?php echo $row['ev_id']; ?>">
                         <div class="list_item"><?php echo get_text($row['ev_subject']); ?></div>
-                        <div class="list_item_btn"><button type="button" class="del_event btn_frmline">삭제</button></div>
+                        <div class="list_item_btn"><button type="button" class="del_event btn-inline">삭제</button></div>
                     </li>
                 <?php
                 }

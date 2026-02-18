@@ -32,15 +32,15 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca;
 <input type="hidden" name="stx" value="<?php echo $stx; ?>">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 
-<div class="local_desc01 local_desc">
+<div class="hint-box">
     <p>상품에 대한 문의에 답변하실 수 있습니다. 상품 문의 내용의 수정도 가능합니다.</p>
 </div>
 
-<div class="tbl_frm01 tbl_wrap">
+<div class="form-card table-shell">
     <table>
     <caption><?php echo $g5['title']; ?> 수정</caption>
     <colgroup>
-        <col class="grid_4">
+        <col class="col-4">
         <col>
     </colgroup>
     <tbody>
@@ -62,7 +62,7 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca;
     <?php } ?>
     <tr>
         <th scope="row"><label for="iq_subject">제목</label></th>
-        <td><input type="text" name="iq_subject" value="<?php echo conv_subject($iq['iq_subject'],120); ?>" id="iq_subject" required class="frm_input required" size="95"></td>
+        <td><input type="text" name="iq_subject" value="<?php echo conv_subject($iq['iq_subject'],120); ?>" id="iq_subject" required class="form-input required" size="95"></td>
     </tr>
     <tr>
         <th scope="row"><label for="iq_question">질문</label></th>
@@ -77,9 +77,9 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca;
     </table>
 </div>
 
-<div class="btn_fixed_top">
-    <a href="./itemqalist.php?<?php echo $qstr; ?>" class="btn btn_02">목록</a>
-    <input type="submit" accesskey='s' value="확인" class="btn_submit btn">
+<div class="action-bar">
+    <a href="./itemqalist.php?<?php echo $qstr; ?>" class="btn btn-secondary">목록</a>
+    <input type="submit" accesskey='s' value="확인" class="btn-primary btn">
 </div>
 </form>
 

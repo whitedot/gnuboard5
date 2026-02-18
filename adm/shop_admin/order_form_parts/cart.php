@@ -1,7 +1,7 @@
 <section id="anc_sodr_list">
-    <h2 class="h2_frm">주문상품 목록</h2>
+    <h2 class="section-title">주문상품 목록</h2>
     <?php echo $pg_anchor; ?>
-    <div class="local_desc02 local_desc">
+    <div class="hint-box">
         <p>
             현재 주문상태 <strong><?php echo $od['od_status'] ?></strong>
             |
@@ -26,7 +26,7 @@
     <input type="hidden" name="page" value="<?php echo $page;?>">
     <input type="hidden" name="pg_cancel" value="0">
 
-    <div class="tbl_head01 tbl_wrap">
+    <div class="table-card table-shell">
         <table>
         <caption>주문 상품 목록</caption>
         <thead>
@@ -106,33 +106,33 @@
             ?>
             <tr>
                 <?php if($k == 0) { ?>
-                <td rowspan="<?php echo $rowspan; ?>" class="td_left">
+                <td rowspan="<?php echo $rowspan; ?>" class="cell-left">
                     <a href="./itemform.php?w=u&amp;it_id=<?php echo $row['it_id']; ?>"><?php echo $image; ?> <?php echo stripslashes($row['it_name']); ?></a>
                     <?php if($od['od_tax_flag'] && $row['ct_notax']) echo '[비과세상품]'; ?>
                 </td>
-                <td rowspan="<?php echo $rowspan; ?>" class="td_chk">
+                <td rowspan="<?php echo $rowspan; ?>" class="cell-chk">
                     <label for="sit_sel_<?php echo $i; ?>" class="sr-only"><?php echo $row['it_name']; ?> 옵션 전체선택</label>
                     <input type="checkbox" id="sit_sel_<?php echo $i; ?>" name="it_sel[]">
                 </td>
                 <?php } ?>
-                <td class="td_left">
+                <td class="cell-left">
                     <label for="ct_chk_<?php echo $chk_cnt; ?>" class="sr-only"><?php echo get_text($opt['ct_option']); ?></label>
                     <input type="checkbox" name="ct_chk[<?php echo $chk_cnt; ?>]" id="ct_chk_<?php echo $chk_cnt; ?>" value="<?php echo $chk_cnt; ?>" class="sct_sel_<?php echo $i; ?>">
                     <input type="hidden" name="ct_id[<?php echo $chk_cnt; ?>]" value="<?php echo $opt['ct_id']; ?>">
                     <?php echo get_text($opt['ct_option']); ?>
                 </td>
-                <td class="td_mngsmall"><?php echo $opt['ct_status']; ?></td>
-                <td class="td_num">
+                <td class="cell-mngsmall"><?php echo $opt['ct_status']; ?></td>
+                <td class="cell-num">
                     <label for="ct_qty_<?php echo $chk_cnt; ?>" class="sr-only"><?php echo get_text($opt['ct_option']); ?> 수량</label>
-                    <input type="text" name="ct_qty[<?php echo $chk_cnt; ?>]" id="ct_qty_<?php echo $chk_cnt; ?>" value="<?php echo $opt['ct_qty']; ?>" required class="frm_input required" size="5">
+                    <input type="text" name="ct_qty[<?php echo $chk_cnt; ?>]" id="ct_qty_<?php echo $chk_cnt; ?>" value="<?php echo $opt['ct_qty']; ?>" required class="form-input required" size="5">
                 </td>
-                <td class="td_num_right "><?php echo number_format($opt_price); ?></td>
-                <td class="td_num_right"><?php echo number_format($ct_price['stotal']); ?></td>
-                <td class="td_num_right"><?php echo number_format($opt['cp_price']); ?></td>
-                <td class=" td_num_right"><?php echo number_format($ct_point['stotal']); ?></td>
-                <td class="td_sendcost_by"><?php echo $ct_send_cost; ?></td>
-                <td class="td_mngsmall"><?php echo get_yn($opt['ct_point_use']); ?></td>
-                <td class="td_mngsmall"><?php echo get_yn($opt['ct_stock_use']); ?></td>
+                <td class="cell-num-right"><?php echo number_format($opt_price); ?></td>
+                <td class="cell-num-right"><?php echo number_format($ct_price['stotal']); ?></td>
+                <td class="cell-num-right"><?php echo number_format($opt['cp_price']); ?></td>
+                <td class="cell-num-right"><?php echo number_format($ct_point['stotal']); ?></td>
+                <td class="cell-sendcost-by"><?php echo $ct_send_cost; ?></td>
+                <td class="cell-mngsmall"><?php echo get_yn($opt['ct_point_use']); ?></td>
+                <td class="cell-mngsmall"><?php echo get_yn($opt['ct_stock_use']); ?></td>
             </tr>
             <?php
                 $chk_cnt++;
@@ -145,22 +145,22 @@
         </table>
     </div>
 
-    <div class="btn_list02 btn_list">
+    <div class="action-inline action-inline">
         <p>
             <input type="hidden" name="chk_cnt" value="<?php echo $chk_cnt; ?>">
             <strong>주문 및 장바구니 상태 변경</strong>
-            <input type="submit" name="ct_status" value="주문" onclick="document.pressed=this.value" class="btn_02 color_01">
-            <input type="submit" name="ct_status" value="입금" onclick="document.pressed=this.value" class="btn_02 color_02">
-            <input type="submit" name="ct_status" value="준비" onclick="document.pressed=this.value" class="btn_02 color_03">
-            <input type="submit" name="ct_status" value="배송" onclick="document.pressed=this.value" class="btn_02 color_04">
-            <input type="submit" name="ct_status" value="완료" onclick="document.pressed=this.value" class="btn_02 color_05">
-            <input type="submit" name="ct_status" value="취소" onclick="document.pressed=this.value" class="btn_02 color_06">
-            <input type="submit" name="ct_status" value="반품" onclick="document.pressed=this.value" class="btn_02 color_06">
-            <input type="submit" name="ct_status" value="품절" onclick="document.pressed=this.value" class="btn_02 color_06">
+            <input type="submit" name="ct_status" value="주문" onclick="document.pressed=this.value" class="btn-secondary status-order">
+            <input type="submit" name="ct_status" value="입금" onclick="document.pressed=this.value" class="btn-secondary status-paid">
+            <input type="submit" name="ct_status" value="준비" onclick="document.pressed=this.value" class="btn-secondary status-ready">
+            <input type="submit" name="ct_status" value="배송" onclick="document.pressed=this.value" class="btn-secondary status-ship">
+            <input type="submit" name="ct_status" value="완료" onclick="document.pressed=this.value" class="btn-secondary status-done">
+            <input type="submit" name="ct_status" value="취소" onclick="document.pressed=this.value" class="btn-secondary status-cancel">
+            <input type="submit" name="ct_status" value="반품" onclick="document.pressed=this.value" class="btn-secondary status-cancel">
+            <input type="submit" name="ct_status" value="품절" onclick="document.pressed=this.value" class="btn-secondary status-cancel">
         </p>
     </div>
 
-    <div class="local_desc01 local_desc">
+    <div class="hint-box">
         <p>주문, 입금, 준비, 배송, 완료는 장바구니와 주문서 상태를 모두 변경하지만, 취소, 반품, 품절은 장바구니의 상태만 변경하며, 주문서 상태는 변경하지 않습니다.</p>
         <p>개별적인(이곳에서의) 상태 변경은 모든 작업을 수동으로 처리합니다. 예를 들어 주문에서 입금으로 상태 변경시 입금액(결제금액)을 포함한 모든 정보는 수동 입력으로 처리하셔야 합니다.</p>
     </div>

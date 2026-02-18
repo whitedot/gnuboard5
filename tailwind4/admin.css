@@ -6,6 +6,195 @@
         @apply mt-1 block text-xs text-default-400;
     }
 
+    .hint-box {
+        @apply mb-4 rounded-xl border border-default-300 bg-default-100 px-4 py-3 text-sm text-default-700;
+    }
+
+    .section-title {
+        @apply mb-3 text-lg font-semibold text-slate-900 dark:text-slate-100;
+    }
+
+    .section-anchor {
+        @apply mb-4 flex flex-wrap gap-2;
+    }
+
+    .section-anchor a {
+        @apply inline-flex items-center rounded-lg border border-default-300 bg-white px-3 py-1.5 text-xs font-medium text-default-700 hover:bg-default-100;
+    }
+
+    .table-shell {
+        @apply overflow-x-auto;
+    }
+
+    .table-card,
+    .form-card {
+        @apply rounded-xl border border-default-300 bg-card shadow-sm;
+    }
+
+    .table-card > table,
+    .form-card > table {
+        @apply w-full;
+    }
+
+    .table-card thead th {
+        @apply border-b border-default-300 bg-default-100 px-3 py-2 text-left text-sm font-semibold text-default-700;
+    }
+
+    .table-card tbody td {
+        @apply border-b border-default-300 px-3 py-2 align-middle text-sm;
+    }
+
+    .form-card tbody th {
+        @apply w-40 border-b border-default-300 bg-default-100 px-4 py-3 text-left text-sm font-semibold text-default-700;
+    }
+
+    .form-card tbody td {
+        @apply border-b border-default-300 px-4 py-3 align-middle text-sm;
+    }
+
+    .form-card tbody tr:last-child th,
+    .form-card tbody tr:last-child td,
+    .table-card tbody tr:last-child td {
+        @apply border-b-0;
+    }
+
+    .table-empty {
+        @apply px-4 py-8 text-center text-sm text-default-500;
+    }
+
+    .summary-all {
+        @apply inline-flex items-center rounded-lg border border-default-300 bg-white px-3 py-1.5 text-sm text-default-700 hover:bg-default-100;
+    }
+
+    .summary-chip {
+        @apply inline-flex items-center gap-1 rounded-lg border border-default-300 bg-default-100 px-3 py-1.5 text-sm text-default-700;
+    }
+
+    .summary-label {
+        @apply text-default-600;
+    }
+
+    .summary-value {
+        @apply font-semibold text-default-900 dark:text-default-100;
+    }
+
+    .action-bar {
+        @apply mt-4 flex flex-wrap items-center justify-end gap-2;
+    }
+
+    .action-inline {
+        @apply mt-4 flex flex-wrap items-center gap-2;
+    }
+
+    .action-bar-popup {
+        @apply mt-4 flex flex-wrap items-center justify-end gap-2;
+    }
+
+    .btn-primary {
+        @apply border border-transparent bg-primary text-white hover:bg-primary-hover;
+    }
+
+    .btn-secondary {
+        @apply border border-default-300 bg-white text-default-700 hover:bg-default-100;
+    }
+
+    .btn-tertiary {
+        @apply border border-default-300 bg-default-100 text-default-700 hover:bg-default-200;
+    }
+
+    .btn-inline {
+        @apply inline-flex items-center rounded-lg border border-default-300 bg-white px-2.5 py-1 text-xs font-medium text-default-700 hover:bg-default-100;
+    }
+
+    .is-active {
+        @apply ring-2 ring-primary/20;
+    }
+
+    [class^="cell-"],
+    [class*=" cell-"] {
+        @apply align-middle;
+    }
+
+    .cell-chk,
+    .cell-chk2 {
+        @apply w-10 text-center;
+    }
+
+    .cell-mng,
+    .cell-mng-s,
+    .cell-mng-m,
+    .cell-mngsmall {
+        @apply text-center whitespace-nowrap;
+    }
+
+    .cell-num,
+    .cell-numsmall,
+    .cell-numbig,
+    .cell-num-right,
+    .cell-numincome,
+    .cell-numsum,
+    .cell-numcoupon,
+    .cell-numrdy,
+    .cell-numcancel0,
+    .cell-numcancel1,
+    .cell-price {
+        @apply text-right tabular-nums whitespace-nowrap;
+    }
+
+    .cell-date,
+    .cell-datetime {
+        @apply whitespace-nowrap text-default-600;
+    }
+
+    .cell-left {
+        @apply text-left;
+    }
+
+    .cell-name,
+    .cell-mbname,
+    .cell-mbid,
+    .cell-category,
+    .cell-tel,
+    .cell-input {
+        @apply text-left;
+    }
+
+    .col-3 {
+        width: 12rem;
+    }
+
+    .col-2 {
+        width: 10rem;
+    }
+
+    .col-4 {
+        width: 16rem;
+    }
+
+    .status-order {
+        @apply border-blue-500/40 bg-blue-500/10 text-blue-600;
+    }
+
+    .status-paid {
+        @apply border-emerald-500/40 bg-emerald-500/10 text-emerald-600;
+    }
+
+    .status-ready {
+        @apply border-amber-500/40 bg-amber-500/10 text-amber-700;
+    }
+
+    .status-ship {
+        @apply border-cyan-500/40 bg-cyan-500/10 text-cyan-700;
+    }
+
+    .status-done {
+        @apply border-purple-500/40 bg-purple-500/10 text-purple-700;
+    }
+
+    .status-cancel {
+        @apply border-rose-500/40 bg-rose-500/10 text-rose-700;
+    }
+
     @media (max-width: 768px) {
         td > .form-select,
         td .form-select {

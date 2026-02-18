@@ -46,7 +46,7 @@ $sql = " select *
             limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 
-$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="ov_listall btn_ov02">전체목록</a>';
+$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="summary-all btn_ov02">전체목록</a>';
 
 $g5['title'] = "관리권한설정";
 require_once './admin.head.php';
@@ -56,14 +56,14 @@ $colspan = 5;
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall ?>
-    <span class="btn_ov01"><span class="ov_txt">설정된 관리권한</span><span class="ov_num"><?php echo number_format($total_count) ?>건</span></span>
+    <span class="summary-chip"><span class="summary-label">설정된 관리권한</span><span class="summary-value"><?php echo number_format($total_count) ?>건</span></span>
 </div>
 
 <form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
     <input type="hidden" name="sfl" value="a.mb_id" id="sfl">
 
-    <label for="stx" class="sound_only">회원아이디<strong class="sound_only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input form-input">
+    <label for="stx" class="sr-only">회원아이디<strong class="sr-only"> 필수</strong></label>
+    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required form-input">
     <input type="submit" value="검색" id="fsearch_submit" class="btn btn-sm border-default-300">
 
 </form>
@@ -76,13 +76,13 @@ $colspan = 5;
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <div class="tbl_head01 tbl_wrap">
+    <div class="table-card table-shell">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall" class="sound_only">현재 페이지 회원 전체</label>
+                        <label for="chkall" class="sr-only">현재 페이지 회원 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col"><?php echo subject_sort_link('a.mb_id') ?>회원아이디</a></th>
@@ -117,34 +117,34 @@ $colspan = 5;
                     $bg = 'bg' . ($i % 2);
                 ?>
                     <tr class="<?php echo $bg; ?>">
-                        <td class="td_chk">
+                        <td class="cell-chk">
                             <input type="hidden" name="au_menu[<?php echo $i ?>]" value="<?php echo $row['au_menu'] ?>">
                             <input type="hidden" name="mb_id[<?php echo $i ?>]" value="<?php echo $row['mb_id'] ?>">
-                            <label for="chk_<?php echo $i; ?>" class="sound_only"><?php echo $row['mb_nick'] ?>님 권한</label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $row['mb_nick'] ?>님 권한</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
                         </td>
-                        <td class="td_mbid"><a href="?sfl=a.mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo $row['mb_id'] ?></a></td>
-                        <td class="td_auth_mbnick"><?php echo $mb_nick ?></td>
-                        <td class="td_menu">
+                        <td class="cell-mbid"><a href="?sfl=a.mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo $row['mb_id'] ?></a></td>
+                        <td class="cell-auth-mbnick"><?php echo $mb_nick ?></td>
+                        <td class="cell-menu">
                             <?php echo $row['au_menu'] ?>
                             <?php echo $auth_menu[$row['au_menu']] ?>
                         </td>
-                        <td class="td_auth"><?php echo $row['au_auth'] ?></td>
+                        <td class="cell-auth"><?php echo $row['au_auth'] ?></td>
                     </tr>
                 <?php
                     $count++;
                 }
 
                 if ($count == 0) {
-                    echo '<tr><td colspan="' . $colspan . '" class="empty_table">자료가 없습니다.</td></tr>';
+                    echo '<tr><td colspan="' . $colspan . '" class="table-empty">자료가 없습니다.</td></tr>';
                 }
                 ?>
             </tbody>
         </table>
     </div>
 
-    <div class="btn_list01 btn_list">
-        <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn_02">
+    <div class="action-inline">
+        <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
     </div>
 
     <?php
@@ -173,7 +173,7 @@ echo $pagelist;
     <input type="hidden" name="token" value="">
 
     <section id="add_admin">
-        <h2 class="h2_frm">관리권한 추가</h2>
+        <h2 class="section-title">관리권한 추가</h2>
 
         <div class="hint-text">
             <p>
@@ -186,16 +186,16 @@ echo $pagelist;
             <div class="grid grid-cols-1 gap-4">
                 <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                     <div class="lg:col-span-1">
-                        <label for="mb_id" class="form-label py-2 mb-0!">회원아이디<strong class="sound_only">필수</strong></label>
+                        <label for="mb_id" class="form-label py-2 mb-0!">회원아이디<strong class="sr-only">필수</strong></label>
                     </div>
                     <div class="lg:col-span-3">
                         <strong id="msg_mb_id" class="msg_sound_only"></strong>
-                        <input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" required class="required frm_input form-input">
+                        <input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" required class="required form-input">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                     <div class="lg:col-span-1">
-                        <label for="au_menu" class="form-label py-2 mb-0!">접근가능메뉴<strong class="sound_only">필수</strong></label>
+                        <label for="au_menu" class="form-label py-2 mb-0!">접근가능메뉴<strong class="sr-only">필수</strong></label>
                     </div>
                     <div class="lg:col-span-3">
                         <select class="form-select" id="au_menu" name="au_menu" required class="required form-select">
@@ -239,7 +239,7 @@ echo $pagelist;
             </div>
         </div>
 
-        <div class="btn_confirm01 btn_confirm">
+        <div class="action-bar">
             <input type="submit" value="추가" class="btn btn-sm border-default-300">
         </div>
     </section>

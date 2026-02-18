@@ -59,12 +59,12 @@ $result = sql_query($sql);
 //$qstr = 'page='.$page.'&amp;sort1='.$sort1.'&amp;sort2='.$sort2;
 $qstr1 = $qstr.'&amp;fr_date='.$fr_date.'&amp;to_date='.$to_date.'&amp;sel_ca_id='.$sel_ca_id;
 
-$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
+$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목록</a>';
 ?>
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall; ?>
-    <span class="btn_ov01"><span class="ov_txt">등록상품 </span><span class="ov_num"> <?php echo $total_count; ?>건 </span></span> 
+    <span class="summary-chip"><span class="summary-label">등록상품 </span><span class="summary-value"> <?php echo $total_count; ?>건 </span></span> 
 </div>
 
 <form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
@@ -90,9 +90,9 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 
 기간설정
 <label for="fr_date" class="sr-only">시작일</label>
-<input type="text" name="fr_date" value="<?php echo $fr_date; ?>" id="fr_date" required class="required frm_input form-input" size="8" maxlength="8"> 에서
+<input type="text" name="fr_date" value="<?php echo $fr_date; ?>" id="fr_date" required class="required form-input" size="8" maxlength="8"> 에서
 <label for="to_date" class="sr-only">종료일</label>
-<input type="text" name="to_date" value="<?php echo $to_date; ?>" id="to_date" required class="required frm_input form-input" size="8" maxlength="8"> 까지
+<input type="text" name="to_date" value="<?php echo $to_date; ?>" id="to_date" required class="required form-input" size="8" maxlength="8"> 까지
 <input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
@@ -101,12 +101,12 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     <p>판매량을 합산하여 상품판매순위를 집계합니다.</p>
 </div>
 
-<div class="btn_fixed_top">
-    <a href="./itemstocklist.php" class="btn_02 btn">상품재고관리</a>
-    <a href="./itemlist.php" class="btn_01 btn">상품등록</a>
+<div class="action-bar">
+    <a href="./itemstocklist.php" class="btn-secondary btn">상품재고관리</a>
+    <a href="./itemlist.php" class="btn-primary btn">상품등록</a>
 </div>
 
-<div class="tbl_head01 tbl_wrap card">
+<div class="table-card table-shell card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -136,24 +136,24 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         $bg = 'bg'.($i%2);
         ?>
         <tr class="<?php echo $bg; ?>">
-            <td class="td_num"><?php echo $num; ?></td>
-            <td class="td_left"><a href="<?php echo $href; ?>"><?php echo get_it_image($row['it_id'], 50, 50); ?> <?php echo cut_str($row['it_name'],30); ?></a></td>
-            <td class="td_num"><?php echo $row['ct_status_1']; ?></td>
-            <td class="td_num"><?php echo $row['ct_status_2']; ?></td>
-            <td class="td_num"><?php echo $row['ct_status_3']; ?></td>
-            <td class="td_num"><?php echo $row['ct_status_4']; ?></td>
-            <td class="td_num"><?php echo $row['ct_status_5']; ?></td>
-            <td class="td_num"><?php echo $row['ct_status_6']; ?></td>
-            <td class="td_num"><?php echo $row['ct_status_7']; ?></td>
-            <td class="td_num"><?php echo $row['ct_status_8']; ?></td>
-            <td class="td_num"><?php echo $row['ct_status_9']; ?></td>
-            <td class="td_num"><?php echo $row['ct_status_sum']; ?></td>
+            <td class="cell-num"><?php echo $num; ?></td>
+            <td class="cell-left"><a href="<?php echo $href; ?>"><?php echo get_it_image($row['it_id'], 50, 50); ?> <?php echo cut_str($row['it_name'],30); ?></a></td>
+            <td class="cell-num"><?php echo $row['ct_status_1']; ?></td>
+            <td class="cell-num"><?php echo $row['ct_status_2']; ?></td>
+            <td class="cell-num"><?php echo $row['ct_status_3']; ?></td>
+            <td class="cell-num"><?php echo $row['ct_status_4']; ?></td>
+            <td class="cell-num"><?php echo $row['ct_status_5']; ?></td>
+            <td class="cell-num"><?php echo $row['ct_status_6']; ?></td>
+            <td class="cell-num"><?php echo $row['ct_status_7']; ?></td>
+            <td class="cell-num"><?php echo $row['ct_status_8']; ?></td>
+            <td class="cell-num"><?php echo $row['ct_status_9']; ?></td>
+            <td class="cell-num"><?php echo $row['ct_status_sum']; ?></td>
         </tr>
         <?php
     }
 
     if ($i == 0) {
-        echo '<tr><td colspan="12" class="empty_table">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="12" class="table-empty">자료가 없습니다.</td></tr>';
     }
     ?>
     </tbody>

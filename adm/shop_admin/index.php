@@ -7,7 +7,7 @@ $max_limit = 7; // 몇행 출력할 것인지?
 $g5['title'] = ' 쇼핑몰현황';
 include_once (G5_ADMIN_PATH.'/admin.head.php');
 
-$pg_anchor = '<ul class="anchor sidx_anchor">
+$pg_anchor = '<ul class="section-anchor sidx_anchor">
 <li><a href="#anc_sidx_ord">주문현황</a></li>
 <li><a href="#anc_sidx_rdy">입금완료미배송내역</a></li>
 <li><a href="#anc_sidx_wait">미입금주문내역</a></li>
@@ -208,11 +208,11 @@ function get_max_value($arr)
             <h2>처리할 주문</h2>
             <?php echo $pg_anchor; ?>
 
-            <div id="sidx_take_act" class="tbl_head01 tbl_wrap">
+            <div id="sidx_take_act" class="table-card table-shell">
                 <table>
                 <thead>
                 <tr>
-                    <th scope="col" class="td_mng">상태변경</th>
+                    <th scope="col" class="cell-mng">상태변경</th>
                     <th scope="col">건수</th>
                     <th scope="col">금액</th>
                 </tr>
@@ -223,32 +223,32 @@ function get_max_value($arr)
                     $info = get_order_status_sum('주문');
                     ?>
                     <th scope="row">주문 -&gt; 입금</th>
-                    <td class="td_num"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
+                    <td class="cell-num"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
+                    <td class="cell-price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
                 </tr>
                 <tr>
                     <?php
                     $info = get_order_status_sum('입금');
                     ?>
                     <th scope="row">입금 -&gt; 준비</th>
-                    <td class="td_num"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
+                    <td class="cell-num"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
+                    <td class="cell-price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
                 </tr>
                 <tr>
                     <?php
                     $info = get_order_status_sum('준비');
                     ?>
                     <th scope="row">준비 -&gt; 배송</th>
-                    <td class="td_num"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
+                    <td class="cell-num"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
+                    <td class="cell-price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
                 </tr>
                 <tr>
                     <?php
                     $info = get_order_status_sum('배송');
                     ?>
                     <th scope="row">배송 -&gt; 완료</th>
-                    <td class="td_num"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="td_price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
+                    <td class="cell-num"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
+                    <td class="cell-price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
                 </tr>
                 </tbody>
                 </table>
@@ -285,7 +285,7 @@ function get_max_value($arr)
                 $userinfo = get_icode_userinfo($config['cf_icode_id'], $config['cf_icode_pw']);
             }
             ?>
-            <div id="sidx_stock" class="tbl_head01 tbl_wrap">
+            <div id="sidx_stock" class="table-card table-shell">
                 <table>
                 <thead>
                 <tr>
@@ -296,9 +296,9 @@ function get_max_value($arr)
                 </thead>
                 <tbody>
                 <tr>
-                    <td class="td_num2"><a href="./itemstocklist.php"><?php echo number_format($item_noti); ?></a></td>
-                    <td class="td_num2"><a href="./optionstocklist.php"><?php echo number_format($option_noti); ?></a></td>
-                    <td class="td_price"><?php echo display_price(intval($userinfo['coin'])); ?></td>
+                    <td class="cell-num2"><a href="./itemstocklist.php"><?php echo number_format($item_noti); ?></a></td>
+                    <td class="cell-num2"><a href="./optionstocklist.php"><?php echo number_format($option_noti); ?></a></td>
+                    <td class="cell-price"><?php echo display_price(intval($userinfo['coin'])); ?></td>
                 </tr>
                 </tbody>
                 </table>
@@ -311,7 +311,7 @@ function get_max_value($arr)
     <h2>결제수단별 주문현황</h2>
     <?php echo $pg_anchor; ?>
 
-    <div id="sidx_settle" class="tbl_head01 tbl_wrap">
+    <div id="sidx_settle" class="table-card table-shell">
         <table>
         <thead>
         <tr>
@@ -349,7 +349,7 @@ function get_max_value($arr)
             $val_cnt++;
         ?>
         <tr>
-            <th scope="row" id="th_val_<?php echo $val_cnt; ?>" class="td_category"><?php echo $val; ?></th>
+            <th scope="row" id="th_val_<?php echo $val_cnt; ?>" class="cell-category"><?php echo $val; ?></th>
             <?php
             foreach($info_key as $date)
             {
@@ -463,7 +463,7 @@ function graph_draw()
             </ul>
         </div>
 
-        <div class="btn_list03 btn_list">
+        <div class="action-inline">
             <a href="<?php echo G5_BBS_URL; ?>/qalist.php" target="_blank">1:1문의 더보기</a>
         </div>
     </section>
@@ -500,7 +500,7 @@ function graph_draw()
             </ul>
         </div>
 
-        <div class="btn_list03 btn_list">
+        <div class="action-inline">
             <a href="./itemqalist.php?sort1=iq_answer&amp;sort2=asc">상품문의 더보기</a>
         </div>
     </section>
@@ -535,7 +535,7 @@ function graph_draw()
             </ul>
         </div>
 
-        <div class="btn_list03 btn_list">
+        <div class="action-inline">
             <a href="./itemuselist.php?sort1=is_confirm&amp;sort2=asc">사용후기 더보기</a>
         </div>
     </section>

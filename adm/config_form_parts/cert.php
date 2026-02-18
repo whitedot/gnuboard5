@@ -1,5 +1,5 @@
     <section id="anc_cf_cert">
-        <h2 class="h2_frm">본인확인 설정</h2>
+        <h2 class="section-title">본인확인 설정</h2>
         <?php echo $pg_anchor ?>
         <div class="hint-text">
             <p>
@@ -71,21 +71,21 @@
                                             <div class="lg:col-span-1"><label for="cf_cert_kg_cd" class="form-label py-2 mb-0!">KG이니시스 간편인증 MID</label>                    </div>
                                             <div class="lg:col-span-1">
                             <span class="sitecode">SRA</span>
-                            <input type="text" name="cf_cert_kg_mid" value="<?php echo get_sanitize_input($config['cf_cert_kg_mid']); ?>" id="cf_cert_kg_mid" class="frm_input form-input" size="10" minlength="7" maxlength="7">
-                            <a href="http://sir.kr/main/service/inicis_cert_form.php" target="_blank" class="btn_frmline">KG이니시스 통합인증(간편인증) 신청페이지</a>
+                            <input type="text" name="cf_cert_kg_mid" value="<?php echo get_sanitize_input($config['cf_cert_kg_mid']); ?>" id="cf_cert_kg_mid" class="form-input" size="10" minlength="7" maxlength="7">
+                            <a href="http://sir.kr/main/service/inicis_cert_form.php" target="_blank" class="btn-inline">KG이니시스 통합인증(간편인증) 신청페이지</a>
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_cert_kg_cd" class="form-label py-2 mb-0!">KG이니시스 간편인증 API KEY</label>                    </div>
                                             <div class="lg:col-span-1">
-                            <input type="text" name="cf_cert_kg_cd" value="<?php echo get_sanitize_input($config['cf_cert_kg_cd']); ?>" id="cf_cert_kg_cd" class="frm_input form-input" size="40" minlength="32" maxlength="32">
+                            <input type="text" name="cf_cert_kg_cd" value="<?php echo get_sanitize_input($config['cf_cert_kg_cd']); ?>" id="cf_cert_kg_cd" class="form-input" size="40" minlength="32" maxlength="32">
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_cert_kcb_cd" class="form-label py-2 mb-0!">코리아크레딧뷰로<br>KCB 회원사ID</label>                    </div>
                                             <div class="lg:col-span-1">
                             <?php echo help('KCB 회원사ID를 입력해 주십시오.<br>서비스에 가입되어 있지 않다면, KCB와 계약체결 후 회원사ID를 발급 받으실 수 있습니다.<br>이용하시려는 서비스에 대한 계약을 아이핀, 휴대폰 본인확인 각각 체결해주셔야 합니다.<br>아이핀 본인확인 테스트의 경우에는 KCB 회원사ID가 필요 없으나,<br>휴대폰 본인확인 테스트의 경우 KCB 에서 따로 발급 받으셔야 합니다.') ?>
-                            <input type="text" name="cf_cert_kcb_cd" value="<?php echo get_sanitize_input($config['cf_cert_kcb_cd']); ?>" id="cf_cert_kcb_cd" class="frm_input form-input" size="20">
+                            <input type="text" name="cf_cert_kcb_cd" value="<?php echo get_sanitize_input($config['cf_cert_kcb_cd']); ?>" id="cf_cert_kcb_cd" class="form-input" size="20">
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
@@ -93,21 +93,21 @@
                                             <div class="lg:col-span-1">
                             <?php echo help('SM으로 시작하는 5자리 사이트 코드중 뒤의 3자리만 입력해 주십시오.<br>서비스에 가입되어 있지 않다면, 본인확인 서비스 신청페이지에서 서비스 신청 후 사이트코드를 발급 받으실 수 있습니다.') ?>
                             <span class="sitecode">SM</span>
-                            <input type="text" name="cf_cert_kcp_cd" value="<?php echo get_sanitize_input($config['cf_cert_kcp_cd']); ?>" id="cf_cert_kcp_cd" class="frm_input form-input" size="3"> <a href="http://sir.kr/main/service/p_cert.php" target="_blank" class="btn_frmline">NHN KCP 휴대폰 본인확인 서비스 신청페이지</a>
+                            <input type="text" name="cf_cert_kcp_cd" value="<?php echo get_sanitize_input($config['cf_cert_kcp_cd']); ?>" id="cf_cert_kcp_cd" class="form-input" size="3"> <a href="http://sir.kr/main/service/p_cert.php" target="_blank" class="btn-inline">NHN KCP 휴대폰 본인확인 서비스 신청페이지</a>
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_cert_kcp_enckey" class="form-label py-2 mb-0!">NHN KCP 가맹점 인증키</label>                    </div>
                                             <div class="lg:col-span-1">
                             <?php echo help('(선택사항, 추후 NHN_KCP 상점관리자에서 인증키 발급 메뉴 오픈일정 이후부터 적용되는 내용입니다.)<br>NHN_KCP 상점관리자 > 기술관리센터 > 인증센터 > 가맹점 인증키관리 에서 인증키 발급 후에 인증키 정보를 입력') ?>
-                            <input type="text" name="cf_cert_kcp_enckey" value="<?php echo get_sanitize_input($config['cf_cert_kcp_enckey']); ?>" id="cf_cert_kcp_enckey" class="frm_input form-input" maxlength="100" size="40"> <a href="https://partner.kcp.co.kr" target="_blank" class="btn_frmline">NHN KCP 상점관리자</a>
+                            <input type="text" name="cf_cert_kcp_enckey" value="<?php echo get_sanitize_input($config['cf_cert_kcp_enckey']); ?>" id="cf_cert_kcp_enckey" class="form-input" maxlength="100" size="40"> <a href="https://partner.kcp.co.kr" target="_blank" class="btn-inline">NHN KCP 상점관리자</a>
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_cert_limit" class="form-label py-2 mb-0!">본인확인 이용제한</label>                    </div>
                                             <div class="lg:col-span-1">
                             <?php echo help('1일 단위 본인인증을 시도할 수 있는 최대횟수를 지정합니다. (0으로 설정 시 무한으로 인증시도 가능)<br>아이핀/휴대폰/간편인증에서 개별 적용됩니다.)'); ?>
-                            <input type="text" name="cf_cert_limit" value="<?php echo (int) $config['cf_cert_limit']; ?>" id="cf_cert_limit" class="frm_input form-input" size="3"> 회
+                            <input type="text" name="cf_cert_limit" value="<?php echo (int) $config['cf_cert_limit']; ?>" id="cf_cert_limit" class="form-input" size="3"> 회
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">

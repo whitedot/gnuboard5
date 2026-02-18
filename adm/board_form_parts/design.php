@@ -1,14 +1,14 @@
 <section id="anc_bo_design">
-    <h2 class="h2_frm">게시판 디자인/양식</h2>
+    <h2 class="section-title">게시판 디자인/양식</h2>
     <?php echo $pg_anchor ?>
 
-    <div class="tbl_frm01 tbl_wrap">
+    <div class="form-card table-shell">
         <table>
         <caption>게시판 디자인/양식</caption>
         <colgroup>
-            <col class="grid_4">
+            <col class="col-4">
             <col>
-            <col class="grid_3">
+            <col class="col-3">
         </colgroup>
         <tbody>
             <tr>
@@ -16,7 +16,7 @@
             <td>
                 <?php echo get_skin_select('board', 'bo_skin', 'bo_skin', $board['bo_skin'], 'required'); ?>
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_skin" value="1" id="chk_grp_skin">
                 <label for="chk_grp_skin">그룹적용</label>
                 <input type="checkbox" name="chk_all_skin" value="1" id="chk_all_skin">
@@ -27,9 +27,9 @@
         <tr>
             <th scope="row"><label for="bo_include_head">상단 파일 경로</label></th>
             <td>
-                <input type="text" name="bo_include_head" value="<?php echo get_sanitize_input($board['bo_include_head']); ?>" id="bo_include_head" class="frm_input" size="50">
+                <input type="text" name="bo_include_head" value="<?php echo get_sanitize_input($board['bo_include_head']); ?>" id="bo_include_head" class="form-input" size="50">
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_include_head" value="1" id="chk_grp_include_head">
                 <label for="chk_grp_include_head">그룹적용</label>
                 <input type="checkbox" name="chk_all_include_head" value="1" id="chk_all_include_head">
@@ -39,9 +39,9 @@
         <tr>
             <th scope="row"><label for="bo_include_tail">하단 파일 경로</label></th>
             <td>
-                <input type="text" name="bo_include_tail" value="<?php echo get_sanitize_input($board['bo_include_tail']); ?>" id="bo_include_tail" class="frm_input" size="50">
+                <input type="text" name="bo_include_tail" value="<?php echo get_sanitize_input($board['bo_include_tail']); ?>" id="bo_include_tail" class="form-input" size="50">
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_include_tail" value="1" id="chk_grp_include_tail">
                 <label for="chk_grp_include_tail">그룹적용</label>
                 <input type="checkbox" name="chk_all_include_tail" value="1" id="chk_all_include_tail">
@@ -69,7 +69,7 @@
             <td>
                 <?php echo editor_html("bo_content_head", get_text(html_purifier($board['bo_content_head']), 0)); ?>
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_content_head" value="1" id="chk_grp_content_head">
                 <label for="chk_grp_content_head">그룹적용</label>
                 <input type="checkbox" name="chk_all_content_head" value="1" id="chk_all_content_head">
@@ -81,7 +81,7 @@
             <td>
                 <?php echo editor_html("bo_content_tail", get_text(html_purifier($board['bo_content_tail']), 0)); ?>
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_content_tail" value="1" id="chk_grp_content_tail">
                 <label for="chk_grp_content_tail">그룹적용</label>
                 <input type="checkbox" name="chk_all_content_tail" value="1" id="chk_all_content_tail">
@@ -94,7 +94,7 @@
             <td>
                 <textarea id="bo_insert_content" name="bo_insert_content" rows="5"><?php echo html_purifier($board['bo_insert_content']); ?></textarea>
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_insert_content" value="1" id="chk_grp_insert_content">
                 <label for="chk_grp_insert_content">그룹적용</label>
                 <input type="checkbox" name="chk_all_insert_content" value="1" id="chk_all_insert_content">
@@ -105,9 +105,9 @@
             <th scope="row"><label for="bo_subject_len">제목 길이<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('목록에서의 제목 글자수. 잘리는 글은 … 로 표시') ?>
-                <input type="text" name="bo_subject_len" value="<?php echo $board['bo_subject_len'] ?>" id="bo_subject_len" required class="required numeric frm_input" size="4">
+                <input type="text" name="bo_subject_len" value="<?php echo $board['bo_subject_len'] ?>" id="bo_subject_len" required class="required numeric form-input" size="4">
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_subject_len" value="1" id="chk_grp_subject_len">
                 <label for="chk_grp_subject_len">그룹적용</label>
                 <input type="checkbox" name="chk_all_subject_len" value="1" id="chk_all_subject_len">
@@ -118,9 +118,9 @@
             <th scope="row"><label for="bo_mobile_subject_len">모바일 제목 길이<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('목록에서의 제목 글자수. 잘리는 글은 … 로 표시') ?>
-                <input type="text" name="bo_mobile_subject_len" value="<?php echo $board['bo_mobile_subject_len'] ?>" id="bo_mobile_subject_len" required class="required numeric frm_input" size="4">
+                <input type="text" name="bo_mobile_subject_len" value="<?php echo $board['bo_mobile_subject_len'] ?>" id="bo_mobile_subject_len" required class="required numeric form-input" size="4">
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_mobile_subject_len" value="1" id="chk_grp_mobile_subject_len">
                 <label for="chk_grp_mobile_subject_len">그룹적용</label>
                 <input type="checkbox" name="chk_all_mobile_subject_len" value="1" id="chk_all_mobile_subject_len">
@@ -130,9 +130,9 @@
         <tr>
             <th scope="row"><label for="bo_page_rows">페이지당 목록 수<strong class="sr-only">필수</strong></label></th>
             <td>
-                <input type="text" name="bo_page_rows" value="<?php echo $board['bo_page_rows'] ?>" id="bo_page_rows" required class="required numeric frm_input" size="4">
+                <input type="text" name="bo_page_rows" value="<?php echo $board['bo_page_rows'] ?>" id="bo_page_rows" required class="required numeric form-input" size="4">
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_page_rows" value="1" id="chk_grp_page_rows">
                 <label for="chk_grp_page_rows">그룹적용</label>
                 <input type="checkbox" name="chk_all_page_rows" value="1" id="chk_all_page_rows">
@@ -142,9 +142,9 @@
         <tr>
             <th scope="row"><label for="bo_mobile_page_rows">모바일 페이지당 목록 수<strong class="sr-only">필수</strong></label></th>
             <td>
-                <input type="text" name="bo_mobile_page_rows" value="<?php echo $board['bo_mobile_page_rows'] ?>" id="bo_mobile_page_rows" required class="required numeric frm_input" size="4">
+                <input type="text" name="bo_mobile_page_rows" value="<?php echo $board['bo_mobile_page_rows'] ?>" id="bo_mobile_page_rows" required class="required numeric form-input" size="4">
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_mobile_page_rows" value="1" id="chk_grp_mobile_page_rows">
                 <label for="chk_grp_mobile_page_rows">그룹적용</label>
                 <input type="checkbox" name="chk_all_mobile_page_rows" value="1" id="chk_all_mobile_page_rows">
@@ -155,9 +155,9 @@
             <th scope="row"><label for="bo_gallery_cols">갤러리 이미지 수<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('갤러리 형식의 게시판 목록에서 이미지를 한줄에 몇장씩 보여 줄 것인지를 설정하는 값') ?>
-                <input type="text" name="bo_gallery_cols" value="<?php echo $board['bo_gallery_cols'] ?>" id="bo_gallery_cols" required class="required numeric frm_input" size="4">
+                <input type="text" name="bo_gallery_cols" value="<?php echo $board['bo_gallery_cols'] ?>" id="bo_gallery_cols" required class="required numeric form-input" size="4">
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_gallery_cols" value="1" id="chk_grp_gallery_cols">
                 <label for="chk_grp_gallery_cols">그룹적용</label>
                 <input type="checkbox" name="chk_all_gallery_cols" value="1" id="chk_all_gallery_cols">
@@ -168,9 +168,9 @@
             <th scope="row"><label for="bo_gallery_width">갤러리 이미지 폭<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('갤러리 형식의 게시판 목록에서 썸네일 이미지의 폭을 설정하는 값') ?>
-                <input type="text" name="bo_gallery_width" value="<?php echo $board['bo_gallery_width'] ?>" id="bo_gallery_width" required class="required numeric frm_input" size="4">
+                <input type="text" name="bo_gallery_width" value="<?php echo $board['bo_gallery_width'] ?>" id="bo_gallery_width" required class="required numeric form-input" size="4">
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_gallery_width" value="1" id="chk_grp_gallery_width">
                 <label for="chk_grp_gallery_width">그룹적용</label>
                 <input type="checkbox" name="chk_all_gallery_width" value="1" id="chk_all_gallery_width">
@@ -181,9 +181,9 @@
             <th scope="row"><label for="bo_gallery_height">갤러리 이미지 높이<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('갤러리 형식의 게시판 목록에서 썸네일 이미지의 높이를 설정하는 값') ?>
-                <input type="text" name="bo_gallery_height" value="<?php echo $board['bo_gallery_height'] ?>" id="bo_gallery_height" required class="required numeric frm_input" size="4">
+                <input type="text" name="bo_gallery_height" value="<?php echo $board['bo_gallery_height'] ?>" id="bo_gallery_height" required class="required numeric form-input" size="4">
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_gallery_height" value="1" id="chk_grp_gallery_height">
                 <label for="chk_grp_gallery_height">그룹적용</label>
                 <input type="checkbox" name="chk_all_gallery_height" value="1" id="chk_all_gallery_height">
@@ -194,9 +194,9 @@
             <th scope="row"><label for="bo_mobile_gallery_width">모바일<br>갤러리 이미지 폭<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('모바일로 접속시 갤러리 형식의 게시판 목록에서 썸네일 이미지의 폭을 설정하는 값') ?>
-                <input type="text" name="bo_mobile_gallery_width" value="<?php echo $board['bo_mobile_gallery_width'] ?>" id="bo_mobile_gallery_width" required class="required numeric frm_input" size="4">
+                <input type="text" name="bo_mobile_gallery_width" value="<?php echo $board['bo_mobile_gallery_width'] ?>" id="bo_mobile_gallery_width" required class="required numeric form-input" size="4">
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_mobile_gallery_width" value="1" id="chk_grp_mobile_gallery_width">
                 <label for="chk_grp_mobile_gallery_width">그룹적용</label>
                 <input type="checkbox" name="chk_all_mobile_gallery_width" value="1" id="chk_all_mobile_gallery_width">
@@ -207,9 +207,9 @@
             <th scope="row"><label for="bo_mobile_gallery_height">모바일<br>갤러리 이미지 높이<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('모바일로 접속시 갤러리 형식의 게시판 목록에서 썸네일 이미지의 높이를 설정하는 값') ?>
-                <input type="text" name="bo_mobile_gallery_height" value="<?php echo $board['bo_mobile_gallery_height'] ?>" id="bo_mobile_gallery_height" required class="required numeric frm_input" size="4">
+                <input type="text" name="bo_mobile_gallery_height" value="<?php echo $board['bo_mobile_gallery_height'] ?>" id="bo_mobile_gallery_height" required class="required numeric form-input" size="4">
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_mobile_gallery_height" value="1" id="chk_grp_mobile_gallery_height">
                 <label for="chk_grp_mobile_gallery_height">그룹적용</label>
                 <input type="checkbox" name="chk_all_mobile_gallery_height" value="1" id="chk_all_mobile_gallery_height">
@@ -220,9 +220,9 @@
             <th scope="row"><label for="bo_table_width">게시판 폭<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('100 이하는 %') ?>
-                <input type="text" name="bo_table_width" value="<?php echo $board['bo_table_width'] ?>" id="bo_table_width" required class="required numeric frm_input" size="4">
+                <input type="text" name="bo_table_width" value="<?php echo $board['bo_table_width'] ?>" id="bo_table_width" required class="required numeric form-input" size="4">
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_table_width" value="1" id="chk_grp_table_width">
                 <label for="chk_grp_table_width">그룹적용</label>
                 <input type="checkbox" name="chk_all_table_width" value="1" id="chk_all_table_width">
@@ -233,9 +233,9 @@
             <th scope="row"><label for="bo_image_width">이미지 폭 크기<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('게시판에서 출력되는 이미지의 폭 크기') ?>
-                <input type="text" name="bo_image_width" value="<?php echo $board['bo_image_width'] ?>" id="bo_image_width" required class="required numeric frm_input" size="4"> 픽셀
+                <input type="text" name="bo_image_width" value="<?php echo $board['bo_image_width'] ?>" id="bo_image_width" required class="required numeric form-input" size="4"> 픽셀
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_image_width" value="1" id="chk_grp_image_width">
                 <label for="chk_grp_image_width">그룹적용</label>
                 <input type="checkbox" name="chk_all_image_width" value="1" id="chk_all_image_width">
@@ -246,9 +246,9 @@
             <th scope="row"><label for="bo_new">새글 아이콘<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('글 입력후 new 이미지를 출력하는 시간. 0을 입력하시면 아이콘을 출력하지 않습니다.') ?>
-                <input type="text" name="bo_new" value="<?php echo $board['bo_new'] ?>" id="bo_new" required class="required numeric frm_input" size="4">
+                <input type="text" name="bo_new" value="<?php echo $board['bo_new'] ?>" id="bo_new" required class="required numeric form-input" size="4">
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_new" value="1" id="chk_grp_new">
                 <label for="chk_grp_new">그룹적용</label>
                 <input type="checkbox" name="chk_all_new" value="1" id="chk_all_new">
@@ -259,9 +259,9 @@
             <th scope="row"><label for="bo_hot">인기글 아이콘<strong class="sr-only">필수</strong></label></th>
             <td>
                 <?php echo help('조회수가 설정값 이상이면 hot 이미지 출력. 0을 입력하시면 아이콘을 출력하지 않습니다.') ?>
-                <input type="text" name="bo_hot" value="<?php echo $board['bo_hot'] ?>" id="bo_hot" required class="required numeric frm_input" size="4">
+                <input type="text" name="bo_hot" value="<?php echo $board['bo_hot'] ?>" id="bo_hot" required class="required numeric form-input" size="4">
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_hot" value="1" id="chk_grp_hot">
                 <label for="chk_grp_hot">그룹적용</label>
                 <input type="checkbox" name="chk_all_hot" value="1" id="chk_all_hot">
@@ -276,7 +276,7 @@
                     <option value="0"<?php echo get_selected($board['bo_reply_order'], 0); ?>>나중에 쓴 답변 위로 달기
                 </select>
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" id="chk_grp_reply_order" name="chk_grp_reply_order" value="1">
                 <label for="chk_grp_reply_order">그룹적용</label>
                 <input type="checkbox" id="chk_all_reply_order" name="chk_all_reply_order" value="1">
@@ -306,7 +306,7 @@
                     } //end foreach ?>
                 </select>
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_grp_sort_field" value="1" id="chk_grp_sort_field">
                 <label for="chk_grp_sort_field">그룹적용</label>
                 <input type="checkbox" name="chk_all_sort_field" value="1" id="chk_all_sort_field">
@@ -315,5 +315,5 @@
         </tbody>
         </table>
     </div>
-    <button type="button" class="get_theme_galc btn btn_02" >테마 이미지설정 가져오기</button>
+    <button type="button" class="get_theme_galc btn btn-secondary" >테마 이미지설정 가져오기</button>
 </section>

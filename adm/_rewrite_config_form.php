@@ -35,11 +35,11 @@ $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 ?>
 <section id="anc_cf_url">
-    <h2 class="h2_frm">짧은 주소 설정</h2>
+    <h2 class="section-title">짧은 주소 설정</h2>
     <?php echo $pg_anchor ?>
     <div class="hint-text">
         <p>
-            게시판과 컨텐츠 페이지에 짧은 URL 을 사용합니다. <a href="https://sir.kr/manual/g5/286" class="btn btn_03" target="_blank" style="margin-left:10px">설정 관련 메뉴얼 보기</a>
+            게시판과 컨텐츠 페이지에 짧은 URL 을 사용합니다. <a href="https://sir.kr/manual/g5/286" class="btn btn-tertiary" target="_blank" style="margin-left:10px">설정 관련 메뉴얼 보기</a>
             <?php if ($is_use_apache && !$is_use_nginx) { ?>
                 <?php if (!$is_apache_rewrite) { ?>
                     <br><strong>Apache 서버인 경우 rewrite_module 이 비활성화 되어 있으면 짧은 주소를 사용할수 없습니다.</strong>
@@ -52,10 +52,10 @@ $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
 
     <div class="server_config_views">
         <?php if ($is_use_apache) { ?>
-            <button type="button" data-remodal-target="modal_apache" class="btn btn_03">Apache 설정 코드 보기</button>
+            <button type="button" data-remodal-target="modal_apache" class="btn btn-tertiary">Apache 설정 코드 보기</button>
         <?php } ?>
         <?php if ($is_use_nginx) { ?>
-            <button type="button" data-remodal-target="modal_nginx" class="btn btn_03">Nginx 설정 코드 보기</button>
+            <button type="button" data-remodal-target="modal_nginx" class="btn btn-tertiary">Nginx 설정 코드 보기</button>
         <?php } ?>
     </div>
 

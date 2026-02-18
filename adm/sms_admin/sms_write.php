@@ -118,7 +118,7 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
 
         <div id="write_reply">
             <label for="wr_reply">회신<strong class="sr-only"> 필수</strong></label>
-            <input type="text" name="wr_reply" value="<?php echo isset($sms5['cf_phone']) ? get_sanitize_input($sms5['cf_phone']) : ''; ?>" id="wr_reply" required class="frm_input form-input required" size="17" maxlength="20" readonly="readonly">
+            <input type="text" name="wr_reply" value="<?php echo isset($sms5['cf_phone']) ? get_sanitize_input($sms5['cf_phone']) : ''; ?>" id="wr_reply" required class="form-input required" size="17" maxlength="20" readonly="readonly">
         </div>
 
         <div id="write_recv" class="write_inner">
@@ -130,9 +130,9 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
 
             <div id="recv_add">
                 <label for="hp_name" class="sr-only">이름</label>
-                <input type="text" name="hp_name" id="hp_name" class="frm_input form-input" size="11" maxlength="20" onkeypress="if(event.keyCode==13) document.getElementById('hp_number').focus();" placeholder="이름"><br>
+                <input type="text" name="hp_name" id="hp_name" class="form-input" size="11" maxlength="20" onkeypress="if(event.keyCode==13) document.getElementById('hp_number').focus();" placeholder="이름"><br>
                 <label for="hp_number" class="sr-only">번호</label>
-                <input type="text" name="hp_number" id="hp_number" class="frm_input form-input" size="11" maxlength="20" onkeypress="if(event.keyCode==13) hp_add()" placeholder="번호">
+                <input type="text" name="hp_number" id="hp_number" class="form-input" size="11" maxlength="20" onkeypress="if(event.keyCode==13) hp_add()" placeholder="번호">
                 <button type="button" onclick="hp_add()">추가</button><br>
             </div>
         </div>
@@ -176,7 +176,7 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
             <label for="wr_bi">분</label>
         </div>
 
-        <div class="btn_confirm01 btn_confirm">
+        <div class="action-bar">
             <input type="submit" value="전송" class="btn btn-sm border-default-300">
             <!-- <input type="submit" value="전송" onclick="send()"> -->
         </div>
@@ -186,9 +186,9 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
     <div id="send_book">
         <h2>휴대폰번호 목록</h2>
         <div id="book_tab">
-            <a href="#book_group" id="book_group" class="btn btn_02">그룹</a>
-            <a href="#book_person" id="book_person" class="btn btn_02">개인</a>
-            <a href="#book_level" id="book_level" class="btn btn_02">권한</a>
+            <a href="#book_group" id="book_group" class="btn btn-secondary">그룹</a>
+            <a href="#book_person" id="book_person" class="btn btn-secondary">개인</a>
+            <a href="#book_level" id="book_level" class="btn btn-secondary">권한</a>
         </div>
 
         <div id="num_book"></div>
@@ -823,11 +823,11 @@ var sms_obj={
 <?php } else { //아이코드 사용설정이 안되어 있다면... ?>
 
 <section>
-    <h2 class="h2_frm">SMS 문자전송 서비스를 사용할 수 없습니다.</h2>
+    <h2 class="section-title">SMS 문자전송 서비스를 사용할 수 없습니다.</h2>
     <div class="hint-text">
         <p>
             SMS 를 사용하지 않고 있기 때문에, 문자 전송을 할 수 없습니다.<br>
-            SMS 사용 설정은 <a href="../config_form.php#anc_cf_sms" class="btn_frmline">환경설정 &gt; 기본환경설정 &gt; SMS설정</a> 에서 SMS 사용을 아이코드로 변경해 주셔야 사용하실수 있습니다.
+            SMS 사용 설정은 <a href="../config_form.php#anc_cf_sms" class="btn-inline">환경설정 &gt; 기본환경설정 &gt; SMS설정</a> 에서 SMS 사용을 아이코드로 변경해 주셔야 사용하실수 있습니다.
         </p>
     </div>
 </section>

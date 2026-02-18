@@ -1,22 +1,22 @@
 <section id="anc_sitfrm_cost">
-    <h2 class="h2_frm">가격 및 재고</h2>
+    <h2 class="section-title">가격 및 재고</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="tbl_frm01 tbl_wrap">
+    <div class="form-card table-shell">
         <table>
         <caption>가격 및 재고 입력</caption>
         <colgroup>
-            <col class="grid_4">
+            <col class="col-4">
             <col>
-            <col class="grid_3">
+            <col class="col-3">
         </colgroup>
         <tbody>
         <tr>
             <th scope="row"><label for="it_price">판매가격</label></th>
             <td>
-                <input type="text" name="it_price" value="<?php echo $it['it_price']; ?>" id="it_price" class="frm_input" size="8"> 원
+                <input type="text" name="it_price" value="<?php echo $it['it_price']; ?>" id="it_price" class="form-input" size="8"> 원
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_ca_it_price" value="1" id="chk_ca_it_price">
                 <label for="chk_ca_it_price">분류적용</label>
                 <input type="checkbox" name="chk_all_it_price" value="1" id="chk_all_it_price">
@@ -27,9 +27,9 @@
             <th scope="row"><label for="it_cust_price">시중가격</label></th>
             <td>
                 <?php echo help("입력하지 않으면 상품상세페이지에 출력하지 않습니다."); ?>
-                <input type="text" name="it_cust_price" value="<?php echo $it['it_cust_price']; ?>" id="it_cust_price" class="frm_input" size="8"> 원
+                <input type="text" name="it_cust_price" value="<?php echo $it['it_cust_price']; ?>" id="it_cust_price" class="form-input" size="8"> 원
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_ca_it_cust_price" value="1" id="chk_ca_it_cust_price">
                 <label for="chk_ca_it_cust_price">분류적용</label>
                 <input type="checkbox" name="chk_all_it_cust_price" value="1" id="chk_all_it_cust_price">
@@ -56,7 +56,7 @@
                 });
                 </script>
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_ca_it_point_type" value="1" id="chk_ca_it_point_type">
                 <label for="chk_ca_it_point_type">분류적용</label>
                 <input type="checkbox" name="chk_all_it_point_type" value="1" id="chk_all_it_point_type">
@@ -67,9 +67,9 @@
             <th scope="row"><label for="it_point">포인트</label></th>
             <td>
                 <?php echo help("주문완료후 환경설정에서 설정한 주문완료 설정일 후 회원에게 부여하는 포인트입니다.\n또, 포인트부여를 '아니오'로 설정한 경우 신용카드, 계좌이체로 주문하는 회원께는 부여하지 않습니다."); ?>
-                <input type="text" name="it_point" value="<?php echo $it['it_point']; ?>" id="it_point" class="frm_input" size="8"> <span id="it_point_unit"><?php if($it['it_point_type']) echo '%'; else echo '점'; ?></span>
+                <input type="text" name="it_point" value="<?php echo $it['it_point']; ?>" id="it_point" class="form-input" size="8"> <span id="it_point_unit"><?php if($it['it_point_type']) echo '%'; else echo '점'; ?></span>
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_ca_it_point" value="1" id="chk_ca_it_point">
                 <label for="chk_ca_it_point">분류적용</label>
                 <input type="checkbox" name="chk_all_it_point" value="1" id="chk_all_it_point">
@@ -80,9 +80,9 @@
             <th scope="row"><label for="it_supply_point">추가옵션상품 포인트</label></th>
             <td>
                 <?php echo help("상품의 추가옵션상품 구매에 일괄적으로 지급하는 포인트입니다. 0으로 설정하시면 구매포인트를 지급하지 않습니다.\n주문완료후 환경설정에서 설정한 주문완료 설정일 후 회원에게 부여하는 포인트입니다.\n또, 포인트부여를 '아니오'로 설정한 경우 신용카드, 계좌이체로 주문하는 회원께는 부여하지 않습니다."); ?>
-                <input type="text" name="it_supply_point" value="<?php echo $it['it_supply_point']; ?>" id="it_supply_point" class="frm_input" size="8"> 점
+                <input type="text" name="it_supply_point" value="<?php echo $it['it_supply_point']; ?>" id="it_supply_point" class="form-input" size="8"> 점
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_ca_it_supply_point" value="1" id="chk_ca_it_supply_point">
                 <label for="chk_ca_it_supply_point">분류적용</label>
                 <input type="checkbox" name="chk_all_it_supply_point" value="1" id="chk_all_it_supply_point">
@@ -95,7 +95,7 @@
                 <?php echo help("잠시 판매를 중단하거나 재고가 없을 경우에 체크해 놓으면 품절상품으로 표시됩니다."); ?>
                 <input type="checkbox" name="it_soldout" value="1" id="it_soldout" <?php echo ($it['it_soldout']) ? "checked" : ""; ?>> 예
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_ca_it_soldout" value="1" id="chk_ca_it_soldout">
                 <label for="chk_ca_it_soldout">분류적용</label>
                 <input type="checkbox" name="chk_all_it_soldout" value="1" id="chk_all_it_soldout">
@@ -113,9 +113,9 @@
             <th scope="row"><label for="it_stock_qty">재고수량</label></th>
             <td>
                 <?php echo help("<b>주문관리에서 상품별 상태 변경에 따라 자동으로 재고를 가감합니다.</b> 재고는 규격/색상별이 아닌, 상품별로만 관리됩니다.<br>재고수량을 0으로 설정하시면 품절상품으로 표시됩니다."); ?>
-                <input type="text" name="it_stock_qty" value="<?php echo $it['it_stock_qty']; ?>" id="it_stock_qty" class="frm_input" size="8"> 개
+                <input type="text" name="it_stock_qty" value="<?php echo $it['it_stock_qty']; ?>" id="it_stock_qty" class="form-input" size="8"> 개
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_ca_it_stock_qty" value="1" id="chk_ca_it_stock_qty">
                 <label for="chk_ca_it_stock_qty">분류적용</label>
                 <input type="checkbox" name="chk_all_it_stock_qty" value="1" id="chk_all_it_stock_qty">
@@ -126,9 +126,9 @@
             <th scope="row"><label for="it_noti_qty">재고 통보수량</label></th>
             <td>
                 <?php echo help("상품의 재고가 통보수량보다 작을 때 쇼핑몰관리 메인화면의 재고현황에 재고부족 상품으로 표시됩니다.<br>옵션이 있는 상품은 개별 옵션의 통보수량이 적용됩니다."); ?>
-                <input type="text" name="it_noti_qty" value="<?php echo $it['it_noti_qty']; ?>" id="it_noti_qty" class="frm_input" size="8"> 개
+                <input type="text" name="it_noti_qty" value="<?php echo $it['it_noti_qty']; ?>" id="it_noti_qty" class="form-input" size="8"> 개
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_ca_it_noti_qty" value="1" id="chk_ca_it_noti_qty">
                 <label for="chk_ca_it_noti_qty">분류적용</label>
                 <input type="checkbox" name="chk_all_it_noti_qty" value="1" id="chk_all_it_noti_qty">
@@ -139,9 +139,9 @@
             <th scope="row"><label for="it_buy_min_qty">최소구매수량</label></th>
             <td>
                 <?php echo help("상품 구매시 최소 구매 수량을 설정합니다."); ?>
-                <input type="text" name="it_buy_min_qty" value="<?php echo $it['it_buy_min_qty']; ?>" id="it_buy_min_qty" class="frm_input" size="8"> 개
+                <input type="text" name="it_buy_min_qty" value="<?php echo $it['it_buy_min_qty']; ?>" id="it_buy_min_qty" class="form-input" size="8"> 개
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_ca_it_buy_min_qty" value="1" id="chk_ca_it_buy_min_qty">
                 <label for="chk_ca_it_buy_min_qty">분류적용</label>
                 <input type="checkbox" name="chk_all_it_buy_min_qty" value="1" id="chk_all_it_buy_min_qty">
@@ -152,9 +152,9 @@
             <th scope="row"><label for="it_buy_max_qty">최대구매수량</label></th>
             <td>
                 <?php echo help("상품 구매시 최대 구매 수량을 설정합니다."); ?>
-                <input type="text" name="it_buy_max_qty" value="<?php echo $it['it_buy_max_qty']; ?>" id="it_buy_max_qty" class="frm_input" size="8"> 개
+                <input type="text" name="it_buy_max_qty" value="<?php echo $it['it_buy_max_qty']; ?>" id="it_buy_max_qty" class="form-input" size="8"> 개
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_ca_it_buy_max_qty" value="1" id="chk_ca_it_buy_max_qty">
                 <label for="chk_ca_it_buy_max_qty">분류적용</label>
                 <input type="checkbox" name="chk_all_it_buy_max_qty" value="1" id="chk_all_it_buy_max_qty">
@@ -170,7 +170,7 @@
                     <option value="1"<?php echo get_selected('1', $it['it_notax']); ?>>비과세</option>
                 </select>
             </td>
-            <td class="td_grpset">
+            <td class="cell-grpset">
                 <input type="checkbox" name="chk_ca_it_notax" value="1" id="chk_ca_it_notax">
                 <label for="chk_ca_it_notax">분류적용</label>
                 <input type="checkbox" name="chk_all_it_notax" value="1" id="chk_all_it_notax">
@@ -183,49 +183,49 @@
         <tr>
             <th scope="row">상품선택옵션</th>
             <td colspan="2">
-                <div class="sit_option tbl_frm01">
+                <div class="sit_option form-card">
                     <?php echo help('옵션항목은 콤마(,) 로 구분하여 여러개를 입력할 수 있습니다. 옷을 예로 들어 [옵션1 : 사이즈 , 옵션1 항목 : XXL,XL,L,M,S] , [옵션2 : 색상 , 옵션2 항목 : 빨,파,노]<br><strong>옵션명과 옵션항목에 따옴표(\', ")는 입력할 수 없습니다.</strong>'); ?>
                     <table>
                     <caption>상품선택옵션 입력</caption>
                     <colgroup>
-                        <col class="grid_4">
+                        <col class="col-4">
                         <col>
                     </colgroup>
                     <tbody>
                     <tr>
                         <th scope="row">
                             <label for="opt1_subject">옵션1</label>
-                            <input type="text" name="opt1_subject" value="<?php echo isset($opt_subject[0]) ? $opt_subject[0] : ''; ?>" id="opt1_subject" class="frm_input" size="15">
+                            <input type="text" name="opt1_subject" value="<?php echo isset($opt_subject[0]) ? $opt_subject[0] : ''; ?>" id="opt1_subject" class="form-input" size="15">
                         </th>
                         <td>
                             <label for="opt1"><b>옵션1 항목</b></label>
-                            <input type="text" name="opt1" value="" id="opt1" class="frm_input" size="50">
+                            <input type="text" name="opt1" value="" id="opt1" class="form-input" size="50">
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">
                             <label for="opt2_subject">옵션2</label>
-                            <input type="text" name="opt2_subject" value="<?php echo isset($opt_subject[1]) ? $opt_subject[1] : ''; ?>" id="opt2_subject" class="frm_input" size="15">
+                            <input type="text" name="opt2_subject" value="<?php echo isset($opt_subject[1]) ? $opt_subject[1] : ''; ?>" id="opt2_subject" class="form-input" size="15">
                         </th>
                         <td>
                             <label for="opt2"><b>옵션2 항목</b></label>
-                            <input type="text" name="opt2" value="" id="opt2" class="frm_input" size="50">
+                            <input type="text" name="opt2" value="" id="opt2" class="form-input" size="50">
                         </td>
                     </tr>
                      <tr>
                         <th scope="row">
                             <label for="opt3_subject">옵션3</label>
-                            <input type="text" name="opt3_subject" value="<?php echo isset($opt_subject[2]) ? $opt_subject[2] : ''; ?>" id="opt3_subject" class="frm_input" size="15">
+                            <input type="text" name="opt3_subject" value="<?php echo isset($opt_subject[2]) ? $opt_subject[2] : ''; ?>" id="opt3_subject" class="form-input" size="15">
                         </th>
                         <td>
                             <label for="opt3"><b>옵션3 항목</b></label>
-                            <input type="text" name="opt3" value="" id="opt3" class="frm_input" size="50">
+                            <input type="text" name="opt3" value="" id="opt3" class="form-input" size="50">
                         </td>
                     </tr>
                     </tbody>
                     </table>
-                    <div class="btn_confirm02 btn_confirm">
-                        <button type="button" id="option_table_create" class="btn_frmline">옵션목록생성</button>
+                    <div class="action-bar action-bar">
+                        <button type="button" id="option_table_create" class="btn-inline">옵션목록생성</button>
                     </div>
                 </div>
                 <div id="sit_option_frm"><?php include_once(G5_ADMIN_PATH.'/shop_admin/itemoption.php'); ?></div>
@@ -362,12 +362,12 @@
         <tr>
             <th scope="row">상품추가옵션</th>
             <td colspan="2">
-                <div id="sit_supply_frm" class="sit_option tbl_frm01">
+                <div id="sit_supply_frm" class="sit_option form-card">
                     <?php echo help('옵션항목은 콤마(,) 로 구분하여 여러개를 입력할 수 있습니다. 스마트폰을 예로 들어 [추가1 : 추가구성상품 , 추가1 항목 : 액정보호필름,케이스,충전기]<br><strong>옵션명과 옵션항목에 따옴표(\', ")는 입력할 수 없습니다.</strong>'); ?>
                     <table>
                     <caption>상품추가옵션 입력</caption>
                     <colgroup>
-                        <col class="grid_4">
+                        <col class="col-4">
                         <col>
                     </colgroup>
                     <tbody>
@@ -379,14 +379,14 @@
                     <tr>
                         <th scope="row">
                             <label for="spl_subject_<?php echo $seq; ?>">추가<?php echo $seq; ?></label>
-                            <input type="text" name="spl_subject[]" id="spl_subject_<?php echo $seq; ?>" value="<?php echo $spl_subject[$i]; ?>" class="frm_input" size="15">
+                            <input type="text" name="spl_subject[]" id="spl_subject_<?php echo $seq; ?>" value="<?php echo $spl_subject[$i]; ?>" class="form-input" size="15">
                         </th>
                         <td>
                             <label for="spl_item_<?php echo $seq; ?>"><b>추가<?php echo $seq; ?> 항목</b></label>
-                            <input type="text" name="spl[]" id="spl_item_<?php echo $seq; ?>" value="" class="frm_input" size="40">
+                            <input type="text" name="spl[]" id="spl_item_<?php echo $seq; ?>" value="" class="form-input" size="40">
                             <?php
                             if($i > 0)
-                                echo '<button type="button" id="del_supply_row" class="btn_frmline">삭제</button>';
+                                echo '<button type="button" id="del_supply_row" class="btn-inline">삭제</button>';
                             ?>
                         </td>
                     </tr>
@@ -396,8 +396,8 @@
                     ?>
                     </tbody>
                     </table>
-                    <div id="sit_option_addfrm_btn"><button type="button" id="add_supply_row" class="btn_frmline">옵션추가</button></div>
-                    <div class="btn_confirm02 btn_confirm">
+                    <div id="sit_option_addfrm_btn"><button type="button" id="add_supply_row" class="btn-inline">옵션추가</button></div>
+                    <div class="action-bar action-bar">
                         <button type="button" id="supply_table_create">옵션목록생성</button>
                     </div>
                 </div>
@@ -435,12 +435,12 @@
                         var fld = "<tr>\n";
                         fld += "<th scope=\"row\">\n";
                         fld += "<label for=\"\">추가</label>\n";
-                        fld += "<input type=\"text\" name=\"spl_subject[]\" value=\"\" class=\"frm_input\" size=\"15\">\n";
+                        fld += "<input type=\"text\" name=\"spl_subject[]\" value=\"\" class=\"form-input\" size=\"15\">\n";
                         fld += "</th>\n";
                         fld += "<td>\n";
                         fld += "<label for=\"\"><b>추가 항목</b></label>\n";
-                        fld += "<input type=\"text\" name=\"spl[]\" value=\"\" class=\"frm_input\" size=\"40\">\n";
-                        fld += "<button type=\"button\" id=\"del_supply_row\" class=\"btn_frmline\">삭제</button>\n";
+                        fld += "<input type=\"text\" name=\"spl[]\" value=\"\" class=\"form-input\" size=\"40\">\n";
+                        fld += "<button type=\"button\" id=\"del_supply_row\" class=\"btn-inline\">삭제</button>\n";
                         fld += "</td>\n";
                         fld += "</tr>";
 
@@ -563,7 +563,7 @@
                 {
                     var $tr = $("#sit_supply_frm tr");
                     var seq;
-                    var th_label, td_label;
+                    var th_label, cell-label;
 
                     $tr.each(function(index) {
                         seq = index + 1;

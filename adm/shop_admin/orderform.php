@@ -44,7 +44,7 @@ $od['mb_id'] = $od['mb_id'] ? $od['mb_id'] : "비회원";
 //------------------------------------------------------------------------------
 
 
-$pg_anchor = '<ul class="anchor">
+$pg_anchor = '<ul class="section-anchor">
 <li><a href="#anc_sodr_list">주문상품 목록</a></li>
 <li><a href="#anc_sodr_pay">주문결제 내역</a></li>
 <li><a href="#anc_sodr_chk">결제상세정보 확인</a></li>

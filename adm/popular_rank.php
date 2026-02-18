@@ -35,7 +35,7 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
 $sql = " select pp_word, count(*) as cnt {$sql_common} {$sql_search} {$sql_group} {$sql_order} limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 
-$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="ov_listall">전체목록</a>';
+$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="summary-all">전체목록</a>';
 
 $g5['title'] = '인기검색어순위';
 require_once './admin.head.php';
@@ -59,16 +59,16 @@ $colspan = 3;
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall ?>
-    <span class="btn_ov01"><span class="ov_txt">건수</span><span class="ov_num"> <?php echo number_format($total_count) ?>개</span></span>
+    <span class="summary-chip"><span class="summary-label">건수</span><span class="summary-value"> <?php echo number_format($total_count) ?>개</span></span>
 </div>
 
 <form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
     <div class="sch_last">
         <strong>기간별검색</strong>
-        <input type="text" name="fr_date" value="<?php echo $fr_date ?>" id="fr_date" class="frm_input form-input" size="11" maxlength="10">
+        <input type="text" name="fr_date" value="<?php echo $fr_date ?>" id="fr_date" class="form-input" size="11" maxlength="10">
         <label for="fr_date" class="sr-only">시작일</label>
         ~
-        <input type="text" name="to_date" value="<?php echo $to_date ?>" id="to_date" class="frm_input form-input" size="11" maxlength="10">
+        <input type="text" name="to_date" value="<?php echo $to_date ?>" id="to_date" class="form-input" size="11" maxlength="10">
         <label for="to_date" class="sr-only">종료일</label>
         <input type="submit" class="btn btn-sm border-default-300" value="검색">
     </div>
@@ -82,7 +82,7 @@ $colspan = 3;
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="<?php echo isset($token) ? $token : ''; ?>">
 
-    <div class="tbl_head01 tbl_wrap card">
+    <div class="table-card table-shell card">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -99,15 +99,15 @@ $colspan = 3;
                     $rank = ($i + 1 + ($rows * ($page - 1)));
                     ?>
                     <tr>
-                        <td class="td_num"><?php echo $rank ?></td>
-                        <td class="td_left"><?php echo $word ?></td>
-                        <td class="td_num"><?php echo $row['cnt'] ?></td>
+                        <td class="cell-num"><?php echo $rank ?></td>
+                        <td class="cell-left"><?php echo $word ?></td>
+                        <td class="cell-num"><?php echo $row['cnt'] ?></td>
                     </tr>
                     <?php
                 }
 
                 if ($i == 0) {
-                    echo '<tr><td colspan="' . $colspan . '" class="empty_table">자료가 없습니다.</td></tr>';
+                    echo '<tr><td colspan="' . $colspan . '" class="table-empty">자료가 없습니다.</td></tr>';
                 }
                 ?>
             </tbody>

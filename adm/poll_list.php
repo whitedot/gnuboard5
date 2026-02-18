@@ -44,7 +44,7 @@ $sql = " select *
             limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 
-$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="ov_listall">전체목록</a>';
+$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="summary-all">전체목록</a>';
 
 $g5['title'] = '투표관리';
 require_once './admin.head.php';
@@ -54,7 +54,7 @@ $colspan = 8;
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall ?>
-    <span class="btn_ov01"><span class="ov_txt">투표수</span><span class="ov_num"> <?php echo number_format($total_count) ?>개</span></span>
+    <span class="summary-chip"><span class="summary-label">투표수</span><span class="summary-value"> <?php echo number_format($total_count) ?>개</span></span>
 </div>
 
 <form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
@@ -64,7 +64,7 @@ $colspan = 8;
             <option value="po_subject" <?php echo get_selected($sfl, "po_subject"); ?>>제목</option>
         </select>
         <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-        <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input form-input">
+        <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required form-input">
         <input type="submit" class="btn btn-sm border-default-300" value="검색">
     </div>
 </form>
@@ -78,7 +78,7 @@ $colspan = 8;
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <div class="tbl_head01 tbl_wrap card">
+    <div class="table-card table-shell card">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -104,39 +104,39 @@ $colspan = 8;
                     $po_etc = ($row['po_etc']) ? "사용" : "미사용";
                     $po_use = ($row['po_use']) ? "사용" : "미사용";
 
-                    $s_mod = '<a href="./poll_form.php?' . $qstr . '&amp;w=u&amp;po_id=' . $row['po_id'] . '" class="btn btn_03">수정</a>';
+                    $s_mod = '<a href="./poll_form.php?' . $qstr . '&amp;w=u&amp;po_id=' . $row['po_id'] . '" class="btn btn-tertiary">수정</a>';
 
                     $bg = 'bg' . ($i % 2);
                     ?>
 
                     <tr class="<?php echo $bg; ?>">
-                        <td class="td_chk">
+                        <td class="cell-chk">
                             <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo cut_str(get_text($row['po_subject']), 70) ?> 투표</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $row['po_id'] ?>" id="chk_<?php echo $i ?>">
                         </td>
-                        <td class="td_num"><?php echo $row['po_id'] ?></td>
-                        <td class="td_left"><?php echo cut_str(get_text($row['po_subject']), 70) ?></td>
-                        <td class="td_num"><?php echo $row['po_level'] ?></td>
-                        <td class="td_num"><?php echo $row2['sum_po_cnt'] ?></td>
-                        <td class="td_etc"><?php echo $po_etc ?></td>
-                        <td class="td_use"><?php echo $po_use ?></td>
-                        <td class="td_mng td_mng_s"><?php echo $s_mod ?></td>
+                        <td class="cell-num"><?php echo $row['po_id'] ?></td>
+                        <td class="cell-left"><?php echo cut_str(get_text($row['po_subject']), 70) ?></td>
+                        <td class="cell-num"><?php echo $row['po_level'] ?></td>
+                        <td class="cell-num"><?php echo $row2['sum_po_cnt'] ?></td>
+                        <td class="cell-etc"><?php echo $po_etc ?></td>
+                        <td class="cell-use"><?php echo $po_use ?></td>
+                        <td class="cell-mng cell-mng-s"><?php echo $s_mod ?></td>
                     </tr>
 
                     <?php
                 }
 
                 if ($i == 0) {
-                    echo '<tr><td colspan="' . $colspan . '" class="empty_table">자료가 없습니다.</td></tr>';
+                    echo '<tr><td colspan="' . $colspan . '" class="table-empty">자료가 없습니다.</td></tr>';
                 }
                 ?>
             </tbody>
         </table>
     </div>
 
-    <div class="btn_fixed_top">
-        <input type="submit" value="선택삭제" class="btn btn_02">
-        <a href="./poll_form.php" id="poll_add" class="btn btn_01">투표 추가</a>
+    <div class="action-bar">
+        <input type="submit" value="선택삭제" class="btn btn-secondary">
+        <a href="./poll_form.php" id="poll_add" class="btn btn-primary">투표 추가</a>
     </div>
 </form>
 

@@ -62,11 +62,11 @@ include_once(G5_ADMIN_PATH."/admin.head.php");
 <input type="hidden" name="mb_id" id="mb_id" value="<?php echo $write['mb_id']?>">
 <input type="hidden" name="get_bg_no" value="<?php echo get_sanitize_input($bg_no); ?>">
 
-<div class="tbl_frm01 tbl_wrap">
+<div class="form-card table-shell">
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <colgroup>
-        <col class="grid_4">
+        <col class="col-4">
         <col>
     </colgroup>
     <tbody>
@@ -86,12 +86,12 @@ include_once(G5_ADMIN_PATH."/admin.head.php");
     </tr>
     <tr>
         <th scope="row"><label for="bk_name">이름<strong class="sr-only"> 필수</strong></label></th>
-        <td><input type="text" name="bk_name" id="bk_name" maxlength="50" value="<?php echo get_sanitize_input($write['bk_name']); ?>" required class="frm_input form-input required"></td>
+        <td><input type="text" name="bk_name" id="bk_name" maxlength="50" value="<?php echo get_sanitize_input($write['bk_name']); ?>" required class="form-input required"></td>
     </tr>
     <tr>
         <th scope="row"><label for="bk_hp">휴대폰번호<strong class="sr-only"> 필수</strong></label></th>
         <td>
-            <input type="text" name="bk_hp" id="bk_hp" value="<?php echo $write['bk_hp']?>" required class="frm_input form-input required">
+            <input type="text" name="bk_hp" id="bk_hp" value="<?php echo $write['bk_hp']?>" required class="form-input required">
             <?php if( count($exist_hplist) ) { // 중복되는 목록이 있다면 ?>
             <div id="hp_check_el">
                 <ul>
@@ -140,9 +140,9 @@ include_once(G5_ADMIN_PATH."/admin.head.php");
 </table>
 </div>
 
-<div class="btn_fixed_top">
+<div class="action-bar">
     <input type="submit" value="확인" class="btn btn-sm border-default-300" accesskey="s" onclick="return book_submit();">
-    <a href="./num_book.php?<?php echo clean_query_string($_SERVER['QUERY_STRING']); ?>" class="btn btn_02">목록</a>
+    <a href="./num_book.php?<?php echo clean_query_string($_SERVER['QUERY_STRING']); ?>" class="btn btn-secondary">목록</a>
 </div>
 
 </form>

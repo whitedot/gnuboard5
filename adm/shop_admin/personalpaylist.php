@@ -55,7 +55,7 @@ $colspan = 10;
 ?>
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
-   <span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> <?php echo number_format($total_count) ?>건 </span></span>
+   <span class="summary-chip"><span class="summary-label">전체 </span><span class="summary-value"> <?php echo number_format($total_count) ?>건 </span></span>
 </div>
 
 <form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
@@ -65,7 +65,7 @@ $colspan = 10;
         <option value="od_id"<?php echo get_selected($sfl, "od_id"); ?>>주문번호</option>
     </select>
     <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input form-input">
+    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required form-input">
     <input type="submit" class="btn btn-sm border-default-300" value="검색">
 </form>
 
@@ -79,7 +79,7 @@ $colspan = 10;
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 <input type="hidden" name="token" value="">
 
-<div class="tbl_head01 tbl_wrap card">
+<div class="table-card table-shell card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -111,21 +111,21 @@ $colspan = 10;
     ?>
 
     <tr class="<?php echo $bg; ?>">
-        <td class="td_chk">
+        <td class="cell-chk">
             <input type="hidden" id="pp_id_<?php echo $i; ?>" name="pp_id[<?php echo $i; ?>]" value="<?php echo $row['pp_id']; ?>">
             <input type="checkbox" id="chk_<?php echo $i; ?>" name="chk[]" value="<?php echo $i; ?>" title="내역선택">
         </td>
-        <td class="td_left"><?php echo get_text($row['pp_name']); ?></td>
-        <td class="td_odrnum3"><?php echo $od_id; ?></td>
-        <td class="td_numsum"><?php echo number_format($row['pp_price']); ?></td>
-        <td class="td_numincome"><?php echo number_format($row['pp_receipt_price']); ?></td>
-        <td class="td_numrdy"><?php echo number_format($row['pp_price'] - $row['pp_receipt_price']); ?></td>
-        <td class="td_payby"><?php echo $row['pp_settle_case']; ?></td>
-        <td class="td_date"><?php echo is_null_time($row['pp_receipt_time']) ? '' : substr($row['pp_receipt_time'], 2, 8); ?></td>
-        <td class="td_boolean"><?php echo $row['pp_use'] ? '예' : '아니오'; ?></td>
-        <td class="td_mng td_mng_m">
-            <a href="./personalpayform.php?w=u&amp;pp_id=<?php echo $row['pp_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sr-only"><?php echo $row['pp_id']; ?> </span>수정</a>
-            <a href="./personalpaycopy.php?pp_id=<?php echo $row['pp_id']; ?>" class="personalpaycopy btn btn_02"><span class="sr-only"><?php echo $row['pp_id']; ?> </span>복사</a>
+        <td class="cell-left"><?php echo get_text($row['pp_name']); ?></td>
+        <td class="cell-odrnum3"><?php echo $od_id; ?></td>
+        <td class="cell-numsum"><?php echo number_format($row['pp_price']); ?></td>
+        <td class="cell-numincome"><?php echo number_format($row['pp_receipt_price']); ?></td>
+        <td class="cell-numrdy"><?php echo number_format($row['pp_price'] - $row['pp_receipt_price']); ?></td>
+        <td class="cell-payby"><?php echo $row['pp_settle_case']; ?></td>
+        <td class="cell-date"><?php echo is_null_time($row['pp_receipt_time']) ? '' : substr($row['pp_receipt_time'], 2, 8); ?></td>
+        <td class="cell-boolean"><?php echo $row['pp_use'] ? '예' : '아니오'; ?></td>
+        <td class="cell-mng cell-mng-m">
+            <a href="./personalpayform.php?w=u&amp;pp_id=<?php echo $row['pp_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn-tertiary"><span class="sr-only"><?php echo $row['pp_id']; ?> </span>수정</a>
+            <a href="./personalpaycopy.php?pp_id=<?php echo $row['pp_id']; ?>" class="personalpaycopy btn btn-secondary"><span class="sr-only"><?php echo $row['pp_id']; ?> </span>복사</a>
         </td>
     </tr>
 
@@ -133,15 +133,15 @@ $colspan = 10;
     }
 
     if ($i == 0)
-        echo '<tr><td colspan="'.$colspan.'" class="empty_table">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="'.$colspan.'" class="table-empty">자료가 없습니다.</td></tr>';
     ?>
     </tbody>
     </table>
 </div>
 
-<div class="btn_fixed_top">
-    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn_02">
-    <a href="./personalpayform.php" id="personalpay_add" class="btn btn_01">개인결제 추가</a>
+<div class="action-bar">
+    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
+    <a href="./personalpayform.php" id="personalpay_add" class="btn btn-primary">개인결제 추가</a>
 </div>
 
 </form>

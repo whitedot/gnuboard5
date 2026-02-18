@@ -1,5 +1,5 @@
     <section id="anc_cf_mail">
-        <h2 class="h2_frm">기본 메일 환경 설정</h2>
+        <h2 class="section-title">기본 메일 환경 설정</h2>
         <?php echo $pg_anchor ?>
 
         <div class="card">
@@ -32,7 +32,7 @@
 
 
     <section id="anc_cf_article_mail">
-        <h2 class="h2_frm">게시판 글 작성 시 메일 설정</h2>
+        <h2 class="section-title">게시판 글 작성 시 메일 설정</h2>
         <?php echo $pg_anchor ?>
 
         <div class="card">
@@ -78,7 +78,7 @@
 
 
     <section id="anc_cf_join_mail">
-        <h2 class="h2_frm">회원가입 시 메일 설정</h2>
+        <h2 class="section-title">회원가입 시 메일 설정</h2>
         <?php echo $pg_anchor ?>
 
         <div class="card">
@@ -103,7 +103,7 @@
 
 
     <section id="anc_cf_vote_mail">
-        <h2 class="h2_frm">투표 기타의견 작성 시 메일 설정</h2>
+        <h2 class="section-title">투표 기타의견 작성 시 메일 설정</h2>
         <?php echo $pg_anchor ?>
 
         <div class="card">

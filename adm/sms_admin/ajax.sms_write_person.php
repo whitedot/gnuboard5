@@ -75,7 +75,7 @@ $group = array();
 $qry = sql_query("select * from {$g5['sms5_book_group_table']} where bg_no>1 order by bg_name");
 while ($res = sql_fetch_array($qry)) array_push($group, $res);
 ?>
-<div class="tbl_head01 tbl_wrap card">
+<div class="table-card table-shell card">
     <table>
     <thead>
     <tr>
@@ -92,7 +92,7 @@ while ($res = sql_fetch_array($qry)) array_push($group, $res);
     <tbody>
     <?php if (!$total_count) { ?>
     <tr>
-        <td colspan="<?php echo $colspan?>" class="td_mbstat">데이터가 없습니다.</td>
+        <td colspan="<?php echo $colspan?>" class="cell-mbstat">데이터가 없습니다.</td>
     </tr>
     <?php
     }
@@ -109,24 +109,24 @@ while ($res = sql_fetch_array($qry)) array_push($group, $res);
             $group_name = $tmp['bg_name'];
     ?>
     <tr class="<?php echo $bg; ?>">
-        <td class="td_chk">
+        <td class="cell-chk">
             <label for="bk_no_<?php echo $res['bk_no']; ?>" class="sr-only"><?php echo get_text($res['bk_name']) ?></label>
             <input type="checkbox" name="bk_no" value="<?php echo $res['bk_no']?>" id="bk_no_<?php echo $res['bk_no']; ?>">
         </td>
-        <!-- <td class="td_name"><?php echo $group_name?></td> -->
-        <td class="td_mbname"><?php echo get_text($res['bk_name']) ?></td>
+        <!-- <td class="cell-name"><?php echo $group_name?></td> -->
+        <td class="cell-mbname"><?php echo get_text($res['bk_name']) ?></td>
         <td><?php echo $res['bk_hp']?></td>
-        <!-- <td class="td_boolean"><?php echo $res['bk_receipt'] ? '수신' : '거부'?></td> -->
-        <!-- <td class="td_boolean"><?php echo $res['bk_receipt'] ? '예' : ''?></td> -->
-        <td class="td_boolean"><?php echo $res['mb_id'] ? '회원' : '비회원'?></td>
-        <td class="td_mngsmall"><button type="button" class="btn_frmline" onclick="sms_obj.person_add(<?php echo $res['bk_no']?>, '<?php echo get_text($res['bk_name']) ?>', '<?php echo $res['bk_hp']?>')">추가</button></td>
+        <!-- <td class="cell-boolean"><?php echo $res['bk_receipt'] ? '수신' : '거부'?></td> -->
+        <!-- <td class="cell-boolean"><?php echo $res['bk_receipt'] ? '예' : ''?></td> -->
+        <td class="cell-boolean"><?php echo $res['mb_id'] ? '회원' : '비회원'?></td>
+        <td class="cell-mngsmall"><button type="button" class="btn-inline" onclick="sms_obj.person_add(<?php echo $res['bk_no']?>, '<?php echo get_text($res['bk_name']) ?>', '<?php echo $res['bk_hp']?>')">추가</button></td>
     </tr>
     <?php } ?>
     </tbody>
     </table>
 </div>
 
-<div class="btn_list01 btn_list">
+<div class="action-inline">
     <button type="button" onclick="sms_obj.person_multi_add()" class="btn btn02">선택추가</button>
     <button type="button" onclick="sms_obj.triggerclick('#book_group')"  class="btn btn02">그룹목록</button>
 </div>
@@ -156,7 +156,7 @@ while ($res = sql_fetch_array($qry)) array_push($group, $res);
 </select>
 
 <label for="svv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" size="15" name="sv" value="<?php echo $sv?>" id="svv" required class="required frm_input form-input">
+<input type="text" size="15" name="sv" value="<?php echo $sv?>" id="svv" required class="required form-input">
 <input type="submit" value="검색" class="btn btn-sm border-default-300">
 </form>
 

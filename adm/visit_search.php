@@ -28,12 +28,12 @@ if(isset($sfl) && $sfl && !in_array($sfl, array('vi_ip','vi_date','vi_time','vi_
         <option value="vi_date"<?php echo get_selected($sfl, 'vi_date'); ?>>날짜</option>
     </select>
     <label for="sch_word" class="sr-only">검색어</label>
-    <input type="text" name="stx" size="20" value="<?php echo stripslashes($stx); ?>" id="sch_word" class="frm_input form-input">
+    <input type="text" name="stx" size="20" value="<?php echo stripslashes($stx); ?>" id="sch_word" class="form-input">
     <input type="submit" value="검색" class="btn btn-sm border-default-300">
     </form>
 </div>
 
-<div class="tbl_wrap tbl_head01 card">
+<div class="table-shell table-card card">
     <table>
     <thead>
     <tr>
@@ -108,15 +108,15 @@ if(isset($sfl) && $sfl && !in_array($sfl, array('vi_ip','vi_date','vi_time','vi_
         $bg = 'bg'.($i%2);
     ?>
     <tr class="<?php echo $bg; ?>">
-        <td class="td_id"><a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sfl=vi_ip&amp;stx=<?php echo $ip; ?>"><?php echo $ip; ?></a></td>
-        <td class="td_left"><?php echo $link.$title; ?><?php echo $link ? '</a>' : ''; ?></td>
-        <td class="td_idsmall td_category1"><?php echo $brow; ?></td>
-        <td class="td_idsmall td_category3"><?php echo $os; ?></td>
-        <td class="td_idsmall td_category2"><?php echo $device; ?></td>
-        <td class="td_datetime"><a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sfl=vi_date&amp;stx=<?php echo $row['vi_date']; ?>"><?php echo $row['vi_date']; ?></a> <?php echo $row['vi_time']; ?></td>
+        <td class="cell-id"><a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sfl=vi_ip&amp;stx=<?php echo $ip; ?>"><?php echo $ip; ?></a></td>
+        <td class="cell-left"><?php echo $link.$title; ?><?php echo $link ? '</a>' : ''; ?></td>
+        <td class="cell-idsmall cell-category1"><?php echo $brow; ?></td>
+        <td class="cell-idsmall cell-category3"><?php echo $os; ?></td>
+        <td class="cell-idsmall cell-category2"><?php echo $device; ?></td>
+        <td class="cell-datetime"><a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sfl=vi_date&amp;stx=<?php echo $row['vi_date']; ?>"><?php echo $row['vi_date']; ?></a> <?php echo $row['vi_time']; ?></td>
     </tr>
     <?php } ?>
-    <?php if ($i == 0) echo '<tr><td colspan="'.$colspan.'" class="empty_table">자료가 없습니다.</td></tr>'; ?>
+    <?php if ($i == 0) echo '<tr><td colspan="'.$colspan.'" class="table-empty">자료가 없습니다.</td></tr>'; ?>
     </tbody>
     </table>
 </div>

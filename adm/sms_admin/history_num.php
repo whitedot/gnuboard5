@@ -41,11 +41,11 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
     <option value="bk_no"<?php echo get_selected('bk_no', $st); ?>>고유번호</option>
 </select>
 <label for="sv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="sv" value="<?php echo $sv; ?>" id="sv" required class="required frm_input form-input">
+<input type="text" name="sv" value="<?php echo $sv; ?>" id="sv" required class="required form-input">
 <input type="submit" value="검색" class="btn btn-sm border-default-300">
 </form>
 
-<div class="tbl_head01 tbl_wrap card">
+<div class="table-card table-shell card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -65,7 +65,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
      <tbody>
         <?php if (!$total_count) { ?>
         <tr>
-            <td colspan="<?php echo $colspan; ?>" class="empty_table" >
+            <td colspan="<?php echo $colspan; ?>" class="table-empty" >
                 데이터가 없습니다.
             </td>
         </tr>
@@ -88,17 +88,17 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
             $mb_id = '비회원';
     ?>
     <tr class="<?php echo $bg; ?>">
-        <td class="td_num"><?php echo $vnum--; ?></td>
-        <td class="td_mbname"><?php echo $bg_name; ?></td>
-        <td class="td_mbname"><a href="./num_book_write.php?w=u&amp;bk_no=<?php echo $res['bk_no']; ?>"><?php echo $res['hs_name']; ?></a></td>
-        <td class="td_mbid"><?php echo $mb_id; ?></td>
-        <td class="td_numbig"><?php echo $res['hs_hp']; ?></td>
-        <td class="td_datetime"><?php echo date('Y-m-d H:i', strtotime($write['wr_datetime']))?></td>
-        <td class="td_boolean"><?php echo $write['wr_booking']!='0000-00-00 00:00:00'?"<span title='{$write['wr_booking']}'>예약</span>":'';?></td>
-        <td class="td_boolean"><?php echo $res['hs_flag']?'성공':'실패'?></td>
-        <td class="td_left"><span title="<?php echo $write['wr_message']?>"><?php echo $write['wr_message']?></span></td>
-        <td class="td_mng td_mng_s">
-            <a href="./history_view.php?page=<?php echo $page; ?>&amp;st=<?php echo $st; ?>&amp;sv=<?php echo $sv; ?>&amp;wr_no=<?php echo $res['wr_no']; ?>" class="btn btn_03">수정</a>
+        <td class="cell-num"><?php echo $vnum--; ?></td>
+        <td class="cell-mbname"><?php echo $bg_name; ?></td>
+        <td class="cell-mbname"><a href="./num_book_write.php?w=u&amp;bk_no=<?php echo $res['bk_no']; ?>"><?php echo $res['hs_name']; ?></a></td>
+        <td class="cell-mbid"><?php echo $mb_id; ?></td>
+        <td class="cell-numbig"><?php echo $res['hs_hp']; ?></td>
+        <td class="cell-datetime"><?php echo date('Y-m-d H:i', strtotime($write['wr_datetime']))?></td>
+        <td class="cell-boolean"><?php echo $write['wr_booking']!='0000-00-00 00:00:00'?"<span title='{$write['wr_booking']}'>예약</span>":'';?></td>
+        <td class="cell-boolean"><?php echo $res['hs_flag']?'성공':'실패'?></td>
+        <td class="cell-left"><span title="<?php echo $write['wr_message']?>"><?php echo $write['wr_message']?></span></td>
+        <td class="cell-mng cell-mng-s">
+            <a href="./history_view.php?page=<?php echo $page; ?>&amp;st=<?php echo $st; ?>&amp;sv=<?php echo $sv; ?>&amp;wr_no=<?php echo $res['wr_no']; ?>" class="btn btn-tertiary">수정</a>
         </td>
     </tr>
     <?php } ?>

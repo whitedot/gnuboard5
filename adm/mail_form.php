@@ -27,7 +27,7 @@ $g5['title'] = $html_title;
 require_once './admin.head.php';
 ?>
 
-<div class="local_desc">
+<div class="hint-box">
     <p>메일 내용에 {이름} , {닉네임} , {회원아이디} , {이메일} 처럼 내용에 삽입하면 해당 내용에 맞게 변환하여 메일을 발송합니다.</p>
 </div>
 
@@ -36,17 +36,17 @@ require_once './admin.head.php';
     <input type="hidden" name="ma_id" value="<?php echo $ma['ma_id'] ?>" id="ma_id">
     <input type="hidden" name="token" value="" id="token">
 
-    <div class="tbl_frm01 tbl_wrap">
+    <div class="form-card table-shell">
         <table>
             <caption><?php echo $g5['title']; ?></caption>
             <colgroup>
-                <col class="grid_4">
+                <col class="col-4">
                 <col>
             </colgroup>
             <tbody>
                 <tr>
                     <th scope="row"><label for="ma_subject">메일 제목<strong class="sr-only">필수</strong></label></th>
-                    <td><input type="text" name="ma_subject" value="<?php echo get_sanitize_input($ma['ma_subject']); ?>" id="ma_subject" required class="required frm_input" size="100"></td>
+                    <td><input type="text" name="ma_subject" value="<?php echo get_sanitize_input($ma['ma_subject']); ?>" id="ma_subject" required class="required form-input" size="100"></td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="ma_content">메일 내용<strong class="sr-only">필수</strong></label></th>
@@ -56,8 +56,8 @@ require_once './admin.head.php';
         </table>
     </div>
 
-    <div class="btn_fixed_top ">
-        <input type="submit" class="btn_submit btn" accesskey="s" value="확인">
+    <div class="action-bar">
+        <input type="submit" class="btn-primary btn" accesskey="s" value="확인">
     </div>
 </form>
 

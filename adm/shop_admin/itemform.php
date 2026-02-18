@@ -154,7 +154,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     $script .= "ca_sell_email['{$row['ca_id']}'] = '{$row['ca_sell_email']}';\n";
 }
 
-$pg_anchor ='<ul class="anchor">
+$pg_anchor ='<ul class="section-anchor">
 <li><a href="#anc_sitfrm_cate">상품분류</a></li>
 <li><a href="#anc_sitfrm_skin">스킨설정</a></li>
 <li><a href="#anc_sitfrm_ini">기본정보</a></li>
@@ -193,10 +193,10 @@ include_once(G5_ADMIN_PATH.'/shop_admin/item_form_parts/event.php'); // 관련�
 include_once(G5_ADMIN_PATH.'/shop_admin/item_form_parts/details.php'); // 상세설명설정
 ?>
 
-<div class="btn_fixed_top">
-    <a href="./itemlist.php?<?php echo $qstr; ?>" class="btn btn_02">목록</a>
-    <a href="<?php echo shop_item_url($it_id); ?>" class="btn_02  btn">상품보기</a>
-    <input type="submit" value="확인" class="btn_submit btn" accesskey="s">
+<div class="action-bar">
+    <a href="./itemlist.php?<?php echo $qstr; ?>" class="btn btn-secondary">목록</a>
+    <a href="<?php echo shop_item_url($it_id); ?>" class="btn-secondary btn">상품보기</a>
+    <input type="submit" value="확인" class="btn-primary btn" accesskey="s">
 </div>
 </form>
 

@@ -43,15 +43,15 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
     <input type="hidden" name="nw_id" value="<?php echo $nw_id; ?>">
     <input type="hidden" name="token" value="">
 
-    <div class="local_desc01 local_desc">
+    <div class="hint-box">
         <p>초기화면 접속 시 자동으로 뜰 팝업레이어를 설정합니다.</p>
     </div>
 
-    <div class="tbl_frm01 tbl_wrap">
+    <div class="form-card table-shell">
         <table>
             <caption><?php echo $g5['title']; ?></caption>
             <colgroup>
-                <col class="grid_4">
+                <col class="col-4">
                 <col>
             </colgroup>
             <tbody>
@@ -83,13 +83,13 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                     <th scope="row"><label for="nw_disable_hours">시간<strong class="sr-only"> 필수</strong></label></th>
                     <td>
                         <?php echo help("고객이 다시 보지 않음을 선택할 시 몇 시간동안 팝업레이어를 보여주지 않을지 설정합니다."); ?>
-                        <input type="text" name="nw_disable_hours" value="<?php echo $nw['nw_disable_hours']; ?>" id="nw_disable_hours" required class="frm_input required" size="5"> 시간
+                        <input type="text" name="nw_disable_hours" value="<?php echo $nw['nw_disable_hours']; ?>" id="nw_disable_hours" required class="form-input required" size="5"> 시간
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="nw_begin_time">시작일시<strong class="sr-only"> 필수</strong></label></th>
                     <td>
-                        <input type="text" name="nw_begin_time" value="<?php echo $nw['nw_begin_time']; ?>" id="nw_begin_time" required class="frm_input required" size="21" maxlength="19">
+                        <input type="text" name="nw_begin_time" value="<?php echo $nw['nw_begin_time']; ?>" id="nw_begin_time" required class="form-input required" size="21" maxlength="19">
                         <input type="checkbox" name="nw_begin_chk" value="<?php echo date("Y-m-d 00:00:00", G5_SERVER_TIME); ?>" id="nw_begin_chk" onclick="if (this.checked == true) this.form.nw_begin_time.value=this.form.nw_begin_chk.value; else this.form.nw_begin_time.value = this.form.nw_begin_time.defaultValue;">
                         <label for="nw_begin_chk">시작일시를 오늘로</label>
                     </td>
@@ -97,7 +97,7 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                 <tr>
                     <th scope="row"><label for="nw_end_time">종료일시<strong class="sr-only"> 필수</strong></label></th>
                     <td>
-                        <input type="text" name="nw_end_time" value="<?php echo $nw['nw_end_time']; ?>" id="nw_end_time" required class="frm_input required" size="21" maxlength="19">
+                        <input type="text" name="nw_end_time" value="<?php echo $nw['nw_end_time']; ?>" id="nw_end_time" required class="form-input required" size="21" maxlength="19">
                         <input type="checkbox" name="nw_end_chk" value="<?php echo date("Y-m-d 23:59:59", G5_SERVER_TIME + (60 * 60 * 24 * 7)); ?>" id="nw_end_chk" onclick="if (this.checked == true) this.form.nw_end_time.value=this.form.nw_end_chk.value; else this.form.nw_end_time.value = this.form.nw_end_time.defaultValue;">
                         <label for="nw_end_chk">종료일시를 오늘로부터 7일 후로</label>
                     </td>
@@ -105,31 +105,31 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                 <tr>
                     <th scope="row"><label for="nw_left">팝업레이어 좌측 위치<strong class="sr-only"> 필수</strong></label></th>
                     <td>
-                        <input type="text" name="nw_left" value="<?php echo $nw['nw_left']; ?>" id="nw_left" required class="frm_input required" size="5"> px
+                        <input type="text" name="nw_left" value="<?php echo $nw['nw_left']; ?>" id="nw_left" required class="form-input required" size="5"> px
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="nw_top">팝업레이어 상단 위치<strong class="sr-only"> 필수</strong></label></th>
                     <td>
-                        <input type="text" name="nw_top" value="<?php echo $nw['nw_top']; ?>" id="nw_top" required class="frm_input required" size="5"> px
+                        <input type="text" name="nw_top" value="<?php echo $nw['nw_top']; ?>" id="nw_top" required class="form-input required" size="5"> px
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="nw_width">팝업레이어 넓이<strong class="sr-only"> 필수</strong></label></th>
                     <td>
-                        <input type="text" name="nw_width" value="<?php echo $nw['nw_width'] ?>" id="nw_width" required class="frm_input required" size="5"> px
+                        <input type="text" name="nw_width" value="<?php echo $nw['nw_width'] ?>" id="nw_width" required class="form-input required" size="5"> px
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="nw_height">팝업레이어 높이<strong class="sr-only"> 필수</strong></label></th>
                     <td>
-                        <input type="text" name="nw_height" value="<?php echo $nw['nw_height'] ?>" id="nw_height" required class="frm_input required" size="5"> px
+                        <input type="text" name="nw_height" value="<?php echo $nw['nw_height'] ?>" id="nw_height" required class="form-input required" size="5"> px
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="nw_subject">팝업 제목<strong class="sr-only"> 필수</strong></label></th>
                     <td>
-                        <input type="text" name="nw_subject" value="<?php echo get_sanitize_input($nw['nw_subject']); ?>" id="nw_subject" required class="frm_input required" size="80">
+                        <input type="text" name="nw_subject" value="<?php echo get_sanitize_input($nw['nw_subject']); ?>" id="nw_subject" required class="form-input required" size="80">
                     </td>
                 </tr>
                 <tr>
@@ -140,9 +140,9 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
         </table>
     </div>
 
-    <div class="btn_fixed_top">
-        <a href="./newwinlist.php" class=" btn btn_02">목록</a>
-        <input type="submit" value="확인" class="btn_submit btn" accesskey="s">
+    <div class="action-bar">
+        <a href="./newwinlist.php" class="btn btn-secondary">목록</a>
+        <input type="submit" value="확인" class="btn-primary btn" accesskey="s">
     </div>
 </form>
 

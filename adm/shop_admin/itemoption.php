@@ -83,25 +83,25 @@ if($po_run) {
             $opt_use = $row['io_use'];
     ?>
     <tr>
-        <td class="td_chk">
+        <td class="cell-chk">
             <input type="hidden" name="opt_id[]" value="<?php echo get_text($opt_id); ?>">
             <label for="opt_chk_<?php echo $i; ?>" class="sr-only"></label>
             <input type="checkbox" name="opt_chk[]" id="opt_chk_<?php echo $i; ?>" value="1">
         </td>
         <td class="opt-cell"><?php echo get_text($opt_1); if ($opt_2_len) echo ' <small>&gt;</small> '.get_text($opt_2); if ($opt_3_len) echo ' <small>&gt;</small> '.get_text($opt_3); ?></td>
-        <td class="td_numsmall">
+        <td class="cell-numsmall">
             <label for="opt_price_<?php echo $i; ?>" class="sr-only"></label>
-            <input type="text" name="opt_price[]" value="<?php echo $opt_price; ?>" id="opt_price_<?php echo $i; ?>" class="frm_input" size="9">
+            <input type="text" name="opt_price[]" value="<?php echo $opt_price; ?>" id="opt_price_<?php echo $i; ?>" class="form-input" size="9">
         </td>
-        <td class="td_num">
+        <td class="cell-num">
             <label for="opt_stock_qty_<?php echo $i; ?>" class="sr-only"></label>
-            <input type="text" name="opt_stock_qty[]" value="<?php echo $opt_stock_qty; ?>" id="op_stock_qty_<?php echo $i; ?>" class="frm_input" size="5">
+            <input type="text" name="opt_stock_qty[]" value="<?php echo $opt_stock_qty; ?>" id="op_stock_qty_<?php echo $i; ?>" class="form-input" size="5">
         </td>
-        <td class="td_num">
+        <td class="cell-num">
             <label for="opt_noti_qty_<?php echo $i; ?>" class="sr-only"></label>
-            <input type="text" name="opt_noti_qty[]" value="<?php echo $opt_noti_qty; ?>" id="opt_noti_qty_<?php echo $i; ?>" class="frm_input" size="5">
+            <input type="text" name="opt_noti_qty[]" value="<?php echo $opt_noti_qty; ?>" id="opt_noti_qty_<?php echo $i; ?>" class="form-input" size="5">
         </td>
-        <td class="td_mng">
+        <td class="cell-mng">
             <label for="opt_use_<?php echo $i; ?>" class="sr-only"></label>
             <select name="opt_use[]" id="opt_use_<?php echo $i; ?>">
                 <option value="1" <?php echo get_selected('1', $opt_use); ?>>사용함</option>
@@ -156,25 +156,25 @@ if($po_run) {
                     }
     ?>
     <tr>
-        <td class="td_chk">
+        <td class="cell-chk">
             <input type="hidden" name="opt_id[]" value="<?php echo $opt_id; ?>">
             <label for="opt_chk_<?php echo $i; ?>" class="sr-only"></label>
             <input type="checkbox" name="opt_chk[]" id="opt_chk_<?php echo $i; ?>" value="1">
         </td>
         <td class="opt1-cell"><?php echo $opt_1; if ($opt_2_len) echo ' <small>&gt;</small> '.$opt_2; if ($opt_3_len) echo ' <small>&gt;</small> '.$opt_3; ?></td>
-        <td class="td_numsmall">
+        <td class="cell-numsmall">
             <label for="opt_price_<?php echo $i; ?>" class="sr-only"></label>
-            <input type="text" name="opt_price[]" value="<?php echo $opt_price; ?>" id="opt_price_<?php echo $i; ?>" class="frm_input" size="9">
+            <input type="text" name="opt_price[]" value="<?php echo $opt_price; ?>" id="opt_price_<?php echo $i; ?>" class="form-input" size="9">
         </td>
-        <td class="td_num">
+        <td class="cell-num">
             <label for="opt_stock_qty_<?php echo $i; ?>" class="sr-only"></label>
-            <input type="text" name="opt_stock_qty[]" value="<?php echo $opt_stock_qty; ?>" id="opt_stock_qty_<?php echo $i; ?>" class="frm_input" size="5">
+            <input type="text" name="opt_stock_qty[]" value="<?php echo $opt_stock_qty; ?>" id="opt_stock_qty_<?php echo $i; ?>" class="form-input" size="5">
         </td>
-        <td class="td_num">
+        <td class="cell-num">
             <label for="opt_noti_qty_<?php echo $i; ?>" class="sr-only"></label>
-            <input type="text" name="opt_noti_qty[]" value="<?php echo $opt_noti_qty; ?>" id="opt_noti_qty_<?php echo $i; ?>" class="frm_input" size="5">
+            <input type="text" name="opt_noti_qty[]" value="<?php echo $opt_noti_qty; ?>" id="opt_noti_qty_<?php echo $i; ?>" class="form-input" size="5">
         </td>
-        <td class="td_mng">
+        <td class="cell-mng">
             <label for="opt_use_<?php echo $i; ?>" class="sr-only"></label>
             <select name="opt_use[]" id="opt_use_<?php echo $i; ?>">
                 <option value="1" <?php echo get_selected('1', $opt_use); ?>>사용함</option>
@@ -195,8 +195,8 @@ if($po_run) {
     </table>
 </div>
 
-<div class="btn_list01 btn_list">
-    <input type="button" value="선택삭제" id="sel_option_delete" class="btn btn_02">
+<div class="action-inline">
+    <input type="button" value="선택삭제" id="sel_option_delete" class="btn btn-secondary">
 </div>
 
 <fieldset>
@@ -204,20 +204,20 @@ if($po_run) {
     <?php echo help('전체 옵션의 추가금액, 재고/통보수량 및 사용여부를 일괄 적용할 수 있습니다. 단, 체크된 수정항목만 일괄 적용됩니다.'); ?>
     <label for="opt_com_price">추가금액</label>
     <label for="opt_com_price_chk" class="sr-only">추가금액일괄수정</label><input type="checkbox" name="opt_com_price_chk" value="1" id="opt_com_price_chk" class="opt_com_chk">
-    <input type="text" name="opt_com_price" value="0" id="opt_com_price" class="frm_input" size="5">
+    <input type="text" name="opt_com_price" value="0" id="opt_com_price" class="form-input" size="5">
     <label for="opt_com_stock">재고수량</label>
     <label for="opt_com_stock_chk" class="sr-only">재고수량일괄수정</label><input type="checkbox" name="opt_com_stock_chk" value="1" id="opt_com_stock_chk" class="opt_com_chk">
-    <input type="text" name="opt_com_stock" value="0" id="opt_com_stock" class="frm_input" size="5">
+    <input type="text" name="opt_com_stock" value="0" id="opt_com_stock" class="form-input" size="5">
     <label for="opt_com_noti">통보수량</label>
     <label for="opt_com_noti_chk" class="sr-only">통보수량일괄수정</label><input type="checkbox" name="opt_com_noti_chk" value="1" id="opt_com_noti_chk" class="opt_com_chk">
-    <input type="text" name="opt_com_noti" value="0" id="opt_com_noti" class="frm_input" size="5">
+    <input type="text" name="opt_com_noti" value="0" id="opt_com_noti" class="form-input" size="5">
     <label for="opt_com_use">사용여부</label>
     <label for="opt_com_use_chk" class="sr-only">사용여부일괄수정</label><input type="checkbox" name="opt_com_use_chk" value="1" id="opt_com_use_chk" class="opt_com_chk">
     <select name="opt_com_use" id="opt_com_use">
         <option value="1">사용함</option>
         <option value="0">사용안함</option>
     </select>
-    <button type="button" id="opt_value_apply" class="btn_frmline">일괄적용</button>
+    <button type="button" id="opt_value_apply" class="btn-inline">일괄적용</button>
 </fieldset>
 <?php
 }

@@ -58,12 +58,12 @@ $result = sql_query($sql);
 //$qstr = 'page='.$page.'&amp;sst='.$sst.'&amp;sod='.$sod.'&amp;stx='.$stx;
 $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca.'&amp;save_stx='.$stx;
 
-$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
+$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목록</a>';
 ?>
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall; ?>
-    <span class="btn_ov01"><span class="ov_txt"> 전체 후기내역</span><span class="ov_num">  <?php echo $total_count; ?>건</span></span>
+    <span class="summary-chip"><span class="summary-label"> 전체 후기내역</span><span class="summary-value">  <?php echo $total_count; ?>건</span></span>
 </div>
 
 <form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
@@ -94,7 +94,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 </select>
 
 <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="stx" id="stx" value="<?php echo $stx; ?>" required class="frm_input form-input required">
+<input type="text" name="stx" id="stx" value="<?php echo $stx; ?>" required class="form-input required">
 <input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
@@ -107,7 +107,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 <input type="hidden" name="stx" value="<?php echo $stx; ?>">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 
-<div class="tbl_head01 tbl_wrap card" id="itemuselist">
+<div class="table-card table-shell card" id="itemuselist">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -135,21 +135,21 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     ?>
 
     <tr class="<?php echo $bg; ?>">
-        <td class="td_chk">
+        <td class="cell-chk">
             <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['is_subject']) ?> 사용후기</label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i; ?>">
             <input type="hidden" name="is_id[<?php echo $i; ?>]" value="<?php echo $row['is_id']; ?>">
             <input type="hidden" name="it_id[<?php echo $i; ?>]" value="<?php echo $row['it_id']; ?>">
         </td>
-        <td class="td_left"><a href="<?php echo $href; ?>"><?php echo get_it_image($row['it_id'], 50, 50); ?><?php echo cut_str($row['it_name'],30); ?></a></td>
-        <td class="td_name"><?php echo $name; ?></td>
-        <td class="sit_use_subject td_left">
+        <td class="cell-left"><a href="<?php echo $href; ?>"><?php echo get_it_image($row['it_id'], 50, 50); ?><?php echo cut_str($row['it_name'],30); ?></a></td>
+        <td class="cell-name"><?php echo $name; ?></td>
+        <td class="sit_use_subject cell-left">
             <a href="#" class="use_href" onclick="return false;" target="<?php echo $i; ?>"><?php echo get_text($row['is_subject']); ?><span class="tit_op">열기</span></a>
             <div id="use_div<?php echo $i; ?>" class="use_div" style="display:none;">
                 <?php echo $is_content; ?>
             </div>
         </td>
-        <td class="td_select">
+        <td class="cell-select">
             <label for="score_<?php echo $i; ?>" class="sr-only">평점</label>
             <select class="form-select" name="is_score[<?php echo $i; ?>]" id="score_<?php echo $i; ?>">
             <option value="5" <?php echo get_selected($row['is_score'], "5"); ?>>매우만족</option>
@@ -159,12 +159,12 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
             <option value="1" <?php echo get_selected($row['is_score'], "1"); ?>>매우불만</option>
             </select>
         </td>
-        <td class="td_chk2">
+        <td class="cell-chk2">
             <label for="confirm_<?php echo $i; ?>" class="sr-only">확인</label>
             <input type="checkbox" name="is_confirm[<?php echo $i; ?>]" <?php echo ($row['is_confirm'] ? 'checked' : ''); ?> value="1" id="confirm_<?php echo $i; ?>">
         </td>
-        <td class="td_mng td_mng_s">
-            <a href="./itemuseform.php?w=u&amp;is_id=<?php echo $row['is_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sr-only"><?php echo get_text($row['is_subject']); ?> </span>수정</a>
+        <td class="cell-mng cell-mng-s">
+            <a href="./itemuseform.php?w=u&amp;is_id=<?php echo $row['is_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn-tertiary"><span class="sr-only"><?php echo get_text($row['is_subject']); ?> </span>수정</a>
         </td>
     </tr>
 
@@ -172,16 +172,16 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
     }
 
     if ($i == 0) {
-        echo '<tr><td colspan="7" class="empty_table">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="7" class="table-empty">자료가 없습니다.</td></tr>';
     }
     ?>
     </tbody>
     </table>
 </div>
 
-<div class="btn_fixed_top">
-    <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value" class="btn btn_02">
-    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn_02">
+<div class="action-bar">
+    <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value" class="btn btn-secondary">
+    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
 </div>
 </form>
 

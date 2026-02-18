@@ -47,7 +47,7 @@ $sub_menu_info = '';
 
 
 
-    <div id="menulist" class="tbl_head01 tbl_wrap card">
+    <div id="menulist" class="table-card table-shell card">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -77,60 +77,60 @@ $sub_menu_info = '';
                     $me_name = str_replace($search, $replace, $row['me_name']);
                 ?>
                     <tr class="<?php echo $bg; ?> menu_list menu_group_<?php echo substr($row['me_code'], 0, 2); ?>">
-                        <td class="td_category<?php echo $sub_menu_class; ?>">
+                        <td class="cell-category<?php echo $sub_menu_class; ?>">
                             <input type="hidden" name="code[]" value="<?php echo substr($row['me_code'], 0, 2) ?>">
                             <label for="me_name_<?php echo $i; ?>" class="sr-only"><?php echo $sub_menu_info; ?> 메뉴<strong class="sr-only"> 필수</strong></label>
-                            <input type="text" name="me_name[]" value="<?php echo get_sanitize_input($me_name); ?>" id="me_name_<?php echo $i; ?>" required class="required tbl_input full_input">
+                            <input type="text" name="me_name[]" value="<?php echo get_sanitize_input($me_name); ?>" id="me_name_<?php echo $i; ?>" required class="required form-input w-full">
                         </td>
                         <td>
                             <label for="me_link_<?php echo $i; ?>" class="sr-only">링크<strong class="sr-only"> 필수</strong></label>
-                            <input type="text" name="me_link[]" value="<?php echo $row['me_link'] ?>" id="me_link_<?php echo $i; ?>" required class="required tbl_input full_input">
+                            <input type="text" name="me_link[]" value="<?php echo $row['me_link'] ?>" id="me_link_<?php echo $i; ?>" required class="required form-input w-full">
                         </td>
-                        <td class="td_mng">
+                        <td class="cell-mng">
                             <label for="me_target_<?php echo $i; ?>" class="sr-only">새창</label>
                             <select class="form-select" name="me_target[]" id="me_target_<?php echo $i; ?>">
                                 <option value="self" <?php echo get_selected($row['me_target'], 'self', true); ?>>사용안함</option>
                                 <option value="blank" <?php echo get_selected($row['me_target'], 'blank', true); ?>>사용함</option>
                             </select>
                         </td>
-                        <td class="td_num">
+                        <td class="cell-num">
                             <label for="me_order_<?php echo $i; ?>" class="sr-only">순서</label>
-                            <input type="text" name="me_order[]" value="<?php echo $row['me_order'] ?>" id="me_order_<?php echo $i; ?>" class="tbl_input" size="5">
+                            <input type="text" name="me_order[]" value="<?php echo $row['me_order'] ?>" id="me_order_<?php echo $i; ?>" class="form-input" size="5">
                         </td>
-                        <td class="td_mng">
+                        <td class="cell-mng">
                             <label for="me_use_<?php echo $i; ?>" class="sr-only">PC사용</label>
                             <select class="form-select" name="me_use[]" id="me_use_<?php echo $i; ?>">
                                 <option value="1" <?php echo get_selected($row['me_use'], '1', true); ?>>사용함</option>
                                 <option value="0" <?php echo get_selected($row['me_use'], '0', true); ?>>사용안함</option>
                             </select>
                         </td>
-                        <td class="td_mng">
+                        <td class="cell-mng">
                             <label for="me_mobile_use_<?php echo $i; ?>" class="sr-only">모바일사용</label>
                             <select class="form-select" name="me_mobile_use[]" id="me_mobile_use_<?php echo $i; ?>">
                                 <option value="1" <?php echo get_selected($row['me_mobile_use'], '1', true); ?>>사용함</option>
                                 <option value="0" <?php echo get_selected($row['me_mobile_use'], '0', true); ?>>사용안함</option>
                             </select>
                         </td>
-                        <td class="td_mng">
+                        <td class="cell-mng">
                             <?php if (strlen($row['me_code']) == 2) { ?>
-                                <button type="button" class="btn_add_submenu btn_03 ">추가</button>
+                                <button type="button" class="btn_add_submenu btn-tertiary">추가</button>
                             <?php } ?>
-                            <button type="button" class="btn_del_menu btn_02">삭제</button>
+                            <button type="button" class="btn_del_menu btn-secondary">삭제</button>
                         </td>
                     </tr>
                 <?php
                 }
 
                 if ($i == 0) {
-                    echo '<tr id="empty_menu_list"><td colspan="' . $colspan . '" class="empty_table">자료가 없습니다.</td></tr>';
+                    echo '<tr id="empty_menu_list"><td colspan="' . $colspan . '" class="table-empty">자료가 없습니다.</td></tr>';
                 }
                 ?>
             </tbody>
         </table>
     </div>
 
-    <div class="btn_fixed_top">
-        <button type="button" onclick="return add_menu();" class="btn btn_02">메뉴추가<span class="sr-only"> 새창</span></button>
+    <div class="action-bar">
+        <button type="button" onclick="return add_menu();" class="btn btn-secondary">메뉴추가<span class="sr-only"> 새창</span></button>
         <input type="submit" name="act_button" value="확인" class="btn btn-sm border-default-300">
     </div>
 
@@ -156,7 +156,7 @@ $sub_menu_info = '';
             }
 
             if ($("#menulist tr.menu_list").length < 1) {
-                var list = "<tr id=\"empty_menu_list\"><td colspan=\"<?php echo $colspan; ?>\" class=\"empty_table\">자료가 없습니다.</td></tr>\n";
+                var list = "<tr id=\"empty_menu_list\"><td colspan=\"<?php echo $colspan; ?>\" class=\"table-empty\">자료가 없습니다.</td></tr>\n";
                 $("#menulist table tbody").append(list);
             } else {
                 $("#menulist tr.menu_list").each(function(index) {

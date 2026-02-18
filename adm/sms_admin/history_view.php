@@ -91,18 +91,18 @@ function all_send()
     <option value="hs_hp" <?php echo get_selected('hs_hp', $sst); ?>>휴대폰번호</option>
 </select>
 <label for="ssv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="ssv" value="<?php echo get_sanitize_input($ssv); ?>" id="ssv" class="frm_input form-input">
+<input type="text" name="ssv" value="<?php echo get_sanitize_input($ssv); ?>" id="ssv" class="form-input">
 <input type="submit" value="검색" class="btn btn-sm border-default-300">
 </form>
 
 <div id="sms5_sent">
     <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
-        <span class="btn_ov01"><span class="ov_txt">전송건수</span><span class="ov_num"> <?php echo number_format($write['wr_total'])?> 건</span></span>
-        <span class="btn_ov01"><span class="ov_txt">성공건수 </span><span class="ov_num"><?php echo number_format($write['wr_success'])?> 건</span></span>
-        <span class="btn_ov01"><span class="ov_txt">실패건수 </span><span class="ov_num"><?php echo number_format($write['wr_failure'])?> 건</span></span>
-        <span class="btn_ov01"><span class="ov_txt">전송일시 </span><span class="ov_num"><?php echo $write['wr_datetime']?></span></span>
-        <span class="btn_ov01"><span class="ov_txt">예약일시 </span><span class="ov_num"><?php echo $write['wr_booking']?></span></span>
-        <span class="btn_ov01"><span class="ov_txt">회신번호 </span><span class="ov_num"><?php echo $write['wr_reply']?></span></span>
+        <span class="summary-chip"><span class="summary-label">전송건수</span><span class="summary-value"> <?php echo number_format($write['wr_total'])?> 건</span></span>
+        <span class="summary-chip"><span class="summary-label">성공건수 </span><span class="summary-value"><?php echo number_format($write['wr_success'])?> 건</span></span>
+        <span class="summary-chip"><span class="summary-label">실패건수 </span><span class="summary-value"><?php echo number_format($write['wr_failure'])?> 건</span></span>
+        <span class="summary-chip"><span class="summary-label">전송일시 </span><span class="summary-value"><?php echo $write['wr_datetime']?></span></span>
+        <span class="summary-chip"><span class="summary-label">예약일시 </span><span class="summary-value"><?php echo $write['wr_booking']?></span></span>
+        <span class="summary-chip"><span class="summary-label">회신번호 </span><span class="summary-value"><?php echo $write['wr_reply']?></span></span>
     </div>
 
     <h2>전송내용</h2>
@@ -114,7 +114,7 @@ function all_send()
 
     <?php if ($write['wr_re_total'] && !$wr_renum) { ?>
     <h2>전송실패 문자 재전송 내역</h2>
-    <div  class=" tbl_head01">
+    <div  class="table-card">
     <table>
     <thead>
     <tr>
@@ -146,8 +146,8 @@ function all_send()
         <td><?php echo number_format($res['wr_total'])?></td>
         <td><?php echo number_format($res['wr_success'])?></td>
         <td><?php echo number_format($res['wr_failure'])?></td>
-        <td class="td_mng">
-            <a href="./history_view.php?page=<?php echo $page?>&amp;st=<?php echo $st?>&amp;sv=<?php echo $sv?>&amp;wr_no=<?php echo $res['wr_no']?>&amp;wr_renum=<?php echo $res['wr_renum']?>" class="btn btn_03">수정</a>
+        <td class="cell-mng">
+            <a href="./history_view.php?page=<?php echo $page?>&amp;st=<?php echo $st?>&amp;sv=<?php echo $sv?>&amp;wr_no=<?php echo $res['wr_no']?>&amp;wr_renum=<?php echo $res['wr_renum']?>" class="btn btn-tertiary">수정</a>
             <!-- <a href="./history_del.php?page=<?php echo $page?>&amp;st=<?php echo $st?>&amp;sv=<?php echo $sv?>&amp;wr_no=<?php echo $res['wr_no']?>&amp;wr_renum=<?php echo $res['wr_renum']?>">삭제</a> -->
         </td>
     </tr>
@@ -194,7 +194,7 @@ function all_send()
         <?php } ?>
     </div>
 
-    <div class="tbl_head01 tbl_wrap card">
+    <div class="table-card table-shell card">
         <table>
         <thead>
         <tr>
@@ -212,7 +212,7 @@ function all_send()
         <tbody>
         <?php if (!$total_count) { ?>
         <tr>
-            <td colspan="<?php echo $colspan?>" class="empty_table">
+            <td colspan="<?php echo $colspan?>" class="table-empty">
                 데이터가 없습니다.
             </td>
         </tr>
@@ -236,23 +236,23 @@ function all_send()
             $res['hs_log'] = str_replace($config['cf_icode_pw'], '**********', $res['hs_log']);
         ?>
         <tr class="<?php echo $bg; ?>">
-            <td class="td_numsmall"><?php echo number_format($vnum--)?></td>
-            <td class="td_name"><?php echo $bg_name?></td>
-            <td class="td_mbname"><?php echo $res['hs_name']?></a></td>
-            <td class="td_mbid"><?php echo $mb_id?></td>
-            <td class="td_numbig"><?php echo $res['hs_hp']?></td>
-            <td class="td_datetime"><?php echo $res['hs_datetime']?></td>
-            <td class="td_boolean"><?php echo $res['hs_flag']?'성공':'실패'?></td>
-            <td class="td_left">
+            <td class="cell-numsmall"><?php echo number_format($vnum--)?></td>
+            <td class="cell-name"><?php echo $bg_name?></td>
+            <td class="cell-mbname"><?php echo $res['hs_name']?></a></td>
+            <td class="cell-mbid"><?php echo $mb_id?></td>
+            <td class="cell-numbig"><?php echo $res['hs_hp']?></td>
+            <td class="cell-datetime"><?php echo $res['hs_datetime']?></td>
+            <td class="cell-boolean"><?php echo $res['hs_flag']?'성공':'실패'?></td>
+            <td class="cell-left">
                 <u>결과코드</u> : <?php echo $res['hs_code']?><br>
                 <u>로그</u> : <?php echo $res['hs_log']?><br>
                 <u>메모</u> : <?php echo $res['hs_memo']?>
             </td>
-            <td class="td_mng td_mng_s">
+            <td class="cell-mng cell-mng-s">
                 <?php if ($res['bk_no']) { ?>
-                <a href="./history_num.php?wr_id=<?php echo $res['wr_no']?>&amp;st=bk_no&amp;sv=<?php echo $res['bk_no']?>" class="btn_03 btn">내역</a>
+                <a href="./history_num.php?wr_id=<?php echo $res['wr_no']?>&amp;st=bk_no&amp;sv=<?php echo $res['bk_no']?>" class="btn-tertiary btn">내역</a>
                 <?php } else { ?>
-                <a href="./history_num.php?wr_id=<?php echo $res['wr_no']?>&amp;st=hs_hp&amp;sv=<?php echo $res['hs_hp']?>" class="btn_03 btn">내역</a>
+                <a href="./history_num.php?wr_id=<?php echo $res['wr_no']?>&amp;st=hs_hp&amp;sv=<?php echo $res['hs_hp']?>" class="btn-tertiary btn">내역</a>
                 <?php } ?>
             </td>
         </tr>

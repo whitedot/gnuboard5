@@ -48,7 +48,7 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
 $sql = " select * {$sql_common} {$sql_search} {$sql_order} limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 
-$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="ov_listall">전체목록</a>';
+$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="summary-all">전체목록</a>';
 
 $g5['title'] = '게시판관리';
 require_once './admin.head.php';
@@ -58,7 +58,7 @@ $colspan = 15;
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall ?>
-    <span class="btn_ov01"><span class="ov_txt">생성된 게시판수</span><span class="ov_num"> <?php echo number_format($total_count) ?>개</span></span>
+    <span class="summary-chip"><span class="summary-label">생성된 게시판수</span><span class="summary-value"> <?php echo number_format($total_count) ?>개</span></span>
 </div>
 
 <form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
@@ -69,7 +69,7 @@ $colspan = 15;
         <option value="a.gr_id" <?php echo get_selected($sfl, "a.gr_id"); ?>>그룹ID</option>
     </select>
     <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input form-input">
+    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required form-input">
     <input type="submit" value="검색" class="btn btn-sm border-default-300">
 </form>
 
@@ -81,7 +81,7 @@ $colspan = 15;
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="<?php echo isset($token) ? $token : ''; ?>">
 
-    <div class="tbl_head01 tbl_wrap card">
+    <div class="table-card table-shell card">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -108,14 +108,14 @@ $colspan = 15;
             <tbody>
                 <?php
                 for ($i = 0; $row = sql_fetch_array($result); $i++) {
-                    $one_update = '<a href="./board_form.php?w=u&amp;bo_table=' . $row['bo_table'] . '&amp;' . $qstr . '" class="btn btn_03">수정</a>';
-                    $one_copy = '<a href="./board_copy.php?bo_table=' . $row['bo_table'] . '" class="board_copy btn btn_02" target="win_board_copy">복사</a>';
+                    $one_update = '<a href="./board_form.php?w=u&amp;bo_table=' . $row['bo_table'] . '&amp;' . $qstr . '" class="btn btn-tertiary">수정</a>';
+                    $one_copy = '<a href="./board_copy.php?bo_table=' . $row['bo_table'] . '" class="board_copy btn btn-secondary" target="win_board_copy">복사</a>';
 
                     $bg = 'bg' . ($i % 2);
                 ?>
 
                     <tr class="<?php echo $bg; ?>">
-                        <td class="td_chk">
+                        <td class="cell-chk">
                             <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['bo_subject']) ?></label>
                             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
                         </td>
@@ -136,37 +136,37 @@ $colspan = 15;
                         </td>
                         <td>
                             <label for="bo_subject_<?php echo $i; ?>" class="sr-only">게시판 제목<strong class="sr-only"> 필수</strong></label>
-                            <input type="text" name="bo_subject[<?php echo $i ?>]" value="<?php echo get_text($row['bo_subject']) ?>" id="bo_subject_<?php echo $i ?>" required class="required tbl_input bo_subject full_input" size="10">
+                            <input type="text" name="bo_subject[<?php echo $i ?>]" value="<?php echo get_text($row['bo_subject']) ?>" id="bo_subject_<?php echo $i ?>" required class="required form-input bo_subject w-full" size="10">
                         </td>
-                        <td class="td_numsmall">
+                        <td class="cell-numsmall">
                             <label for="bo_read_point_<?php echo $i; ?>" class="sr-only">읽기 포인트</label>
-                            <input type="text" name="bo_read_point[<?php echo $i ?>]" value="<?php echo $row['bo_read_point'] ?>" id="bo_read_point_<?php echo $i; ?>" class="tbl_input" size="2">
+                            <input type="text" name="bo_read_point[<?php echo $i ?>]" value="<?php echo $row['bo_read_point'] ?>" id="bo_read_point_<?php echo $i; ?>" class="form-input" size="2">
                         </td>
-                        <td class="td_numsmall">
+                        <td class="cell-numsmall">
                             <label for="bo_write_point_<?php echo $i; ?>" class="sr-only">쓰기 포인트</label>
-                            <input type="text" name="bo_write_point[<?php echo $i ?>]" value="<?php echo $row['bo_write_point'] ?>" id="bo_write_point_<?php echo $i; ?>" class="tbl_input" size="2">
+                            <input type="text" name="bo_write_point[<?php echo $i ?>]" value="<?php echo $row['bo_write_point'] ?>" id="bo_write_point_<?php echo $i; ?>" class="form-input" size="2">
                         </td>
-                        <td class="td_numsmall">
+                        <td class="cell-numsmall">
                             <label for="bo_comment_point_<?php echo $i; ?>" class="sr-only">댓글 포인트</label>
-                            <input type="text" name="bo_comment_point[<?php echo $i ?>]" value="<?php echo $row['bo_comment_point'] ?>" id="bo_comment_point_<?php echo $i; ?>" class="tbl_input" size="2">
+                            <input type="text" name="bo_comment_point[<?php echo $i ?>]" value="<?php echo $row['bo_comment_point'] ?>" id="bo_comment_point_<?php echo $i; ?>" class="form-input" size="2">
                         </td>
-                        <td class="td_numsmall">
+                        <td class="cell-numsmall">
                             <label for="bo_download_point_<?php echo $i; ?>" class="sr-only">다운<br>포인트</label>
-                            <input type="text" name="bo_download_point[<?php echo $i ?>]" value="<?php echo $row['bo_download_point'] ?>" id="bo_download_point_<?php echo $i; ?>" class="tbl_input" size="2">
+                            <input type="text" name="bo_download_point[<?php echo $i ?>]" value="<?php echo $row['bo_download_point'] ?>" id="bo_download_point_<?php echo $i; ?>" class="form-input" size="2">
                         </td>
-                        <td class="td_numsmall">
+                        <td class="cell-numsmall">
                             <label for="bo_use_sns_<?php echo $i; ?>" class="sr-only">SNS<br>사용</label>
                             <input type="checkbox" name="bo_use_sns[<?php echo $i ?>]" value="1" id="bo_use_sns_<?php echo $i ?>" <?php echo $row['bo_use_sns'] ? "checked" : "" ?>>
                         </td>
-                        <td class="td_numsmall">
+                        <td class="cell-numsmall">
                             <label for="bo_use_search_<?php echo $i; ?>" class="sr-only">검색<br>사용</label>
                             <input type="checkbox" name="bo_use_search[<?php echo $i ?>]" value="1" id="bo_use_search_<?php echo $i ?>" <?php echo $row['bo_use_search'] ? "checked" : "" ?>>
                         </td>
-                        <td class="td_numsmall">
+                        <td class="cell-numsmall">
                             <label for="bo_order_<?php echo $i; ?>" class="sr-only">출력<br>순서</label>
-                            <input type="text" name="bo_order[<?php echo $i ?>]" value="<?php echo $row['bo_order'] ?>" id="bo_order_<?php echo $i ?>" class="tbl_input" size="2">
+                            <input type="text" name="bo_order[<?php echo $i ?>]" value="<?php echo $row['bo_order'] ?>" id="bo_order_<?php echo $i ?>" class="form-input" size="2">
                         </td>
-                        <td class="td_mngsmall">
+                        <td class="cell-mngsmall">
                             <label for="bo_device_<?php echo $i; ?>" class="sr-only">접속기기</label>
                             <select class="form-select" name="bo_device[<?php echo $i ?>]" id="bo_device_<?php echo $i ?>">
                                 <option value="both" <?php echo get_selected($row['bo_device'], 'both', true); ?>>모두</option>
@@ -174,7 +174,7 @@ $colspan = 15;
                                 <option value="mobile" <?php echo get_selected($row['bo_device'], 'mobile'); ?>>모바일</option>
                             </select>
                         </td>
-                        <td class="td_mng td_mng_m">
+                        <td class="cell-mng cell-mng-m">
                             <?php echo $one_update ?>
                             <?php echo $one_copy ?>
                         </td>
@@ -182,18 +182,18 @@ $colspan = 15;
                 <?php
                 }
                 if ($i == 0) {
-                    echo '<tr><td colspan="' . $colspan . '" class="empty_table">자료가 없습니다.</td></tr>';
+                    echo '<tr><td colspan="' . $colspan . '" class="table-empty">자료가 없습니다.</td></tr>';
                 }
                 ?>
             </tbody>
         </table>
     </div>
 
-    <div class="btn_fixed_top">
-        <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value" class="btn_02 btn">
+    <div class="action-bar">
+        <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value" class="btn-secondary btn">
         <?php if ($is_admin == 'super') { ?>
-            <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn_02 btn">
-            <a href="./board_form.php" id="bo_add" class="btn_01 btn">게시판 추가</a>
+            <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn-secondary btn">
+            <a href="./board_form.php" id="bo_add" class="btn-primary btn">게시판 추가</a>
         <?php } ?>
     </div>
 

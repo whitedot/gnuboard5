@@ -1,10 +1,10 @@
 <section id="anc_mb_profile">
-    <h2 class="h2_frm">프로필 및 메모</h2>
-    <div class="tbl_frm01 tbl_wrap">
+    <h2 class="section-title">프로필 및 메모</h2>
+    <div class="form-card table-shell">
         <table>
             <caption>프로필 및 메모</caption>
             <colgroup>
-                <col class="grid_4">
+                <col class="col-4">
                 <col>
             </colgroup>
             <tbody>

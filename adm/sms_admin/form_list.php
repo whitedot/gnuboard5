@@ -108,7 +108,7 @@ function multi_update(sel)
 </script>
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
-    <span class="btn_ov01"><span class="ov_txt">건수</span><span class="ov_num"><?php echo number_format($total_count);?>건</span></span> 
+    <span class="summary-chip"><span class="summary-label">건수</span><span class="summary-value"><?php echo number_format($total_count);?>건</span></span> 
 </div>
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5 sms_preset_sch">
@@ -132,7 +132,7 @@ function multi_update(sel)
         <option value="content"<?php echo get_selected('content', $st); ?>>이모티콘</option>
     </select>
     <label for="sv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="sv" value="<?php echo get_text($sv) ;?>" id="sv" required class="frm_input form-input required" >
+    <input type="text" name="sv" value="<?php echo get_text($sv) ;?>" id="sv" required class="form-input required" >
     <input type="submit" value="검색" class="btn btn-sm border-default-300">
     </form>
 </div>
@@ -192,10 +192,10 @@ function multi_update(sel)
     <?php } ?>
 </ul>
 
-<div class="btn_fixed_top" >
-    <input type="submit" name="act_button" value="선택이동" onclick="document.pressed=this.value" class="btn btn_02">
-    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn_02">
-    <a href="./form_write.php?page=<?php echo $page?>&amp;fg_no=<?php echo $fg_no?>" class="btn btn_01">이모티콘 추가</a>
+<div class="action-bar" >
+    <input type="submit" name="act_button" value="선택이동" onclick="document.pressed=this.value" class="btn btn-secondary">
+    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
+    <a href="./form_write.php?page=<?php echo $page?>&amp;fg_no=<?php echo $fg_no?>" class="btn btn-primary">이모티콘 추가</a>
 </div>
 
 </form>

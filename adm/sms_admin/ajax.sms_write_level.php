@@ -29,7 +29,7 @@ $str_json = array();
 $line = 0;
 $tmp_str = '';
 $tmp_str .= '
-<div class="tbl_head01 tbl_wrap card">
+<div class="table-card table-shell card">
     <table>
     <thead>
     <tr>
@@ -44,8 +44,8 @@ $tmp_str .= '
         $tmp_str .= '
         <tr class="'.$bg.'">
             <td>'.$i.' 레벨</td>
-            <td class="td_num">'.number_format($lev[$i]).'</td>
-            <td class="td_mng"><button type="button" class="btn_frmline" onclick="sms_obj.level_add('.$i.', \''.number_format($lev[$i]).'\')">추가</button></td>
+            <td class="cell-num">'.number_format($lev[$i]).'</td>
+            <td class="cell-mng"><button type="button" class="btn-inline" onclick="sms_obj.level_add('.$i.', \''.number_format($lev[$i]).'\')">추가</button></td>
         </tr>';
     }
 $tmp_str .= '

@@ -322,7 +322,7 @@ $is_check = run_replace('admin_dbupgrade', $is_check);
 $db_upgrade_msg = $is_check ? 'DB 업그레이드가 완료되었습니다.' : '더 이상 업그레이드 할 내용이 없습니다.<br>현재 DB 업그레이드가 완료된 상태입니다.';
 ?>
 
-<div class="local_desc01 local_desc">
+<div class="hint-box">
     <p>
         <?php echo $db_upgrade_msg; ?>
     </p>

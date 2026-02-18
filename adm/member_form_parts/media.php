@@ -1,10 +1,10 @@
 <section id="anc_mb_media">
-    <h2 class="h2_frm">아이콘 및 이미지</h2>
-    <div class="tbl_frm01 tbl_wrap">
+    <h2 class="section-title">아이콘 및 이미지</h2>
+    <div class="form-card table-shell">
         <table>
             <caption>아이콘 및 이미지</caption>
             <colgroup>
-                <col class="grid_4">
+                <col class="col-4">
                 <col>
             </colgroup>
             <tbody>

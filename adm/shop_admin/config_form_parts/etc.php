@@ -1,12 +1,12 @@
 <section id="anc_scf_etc">
-    <h2 class="h2_frm">기타 설정</h2>
+    <h2 class="section-title">기타 설정</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="tbl_frm01 tbl_wrap">
+    <div class="form-card table-shell">
         <table>
         <caption>기타 설정</caption>
         <colgroup>
-            <col class="grid_4">
+            <col class="col-4">
             <col>
         </colgroup>
         <tbody>
@@ -19,11 +19,11 @@
                     <?php echo get_list_skin_options("^relation.[0-9]+\.skin\.php", G5_SHOP_SKIN_PATH, $default['de_rel_list_skin']); ?>
                 </select>
                 <label for="de_rel_img_width">이미지폭</label>
-                <input type="text" name="de_rel_img_width" value="<?php echo get_sanitize_input($default['de_rel_img_width']); ?>" id="de_rel_img_width" class="frm_input" size="3">
+                <input type="text" name="de_rel_img_width" value="<?php echo get_sanitize_input($default['de_rel_img_width']); ?>" id="de_rel_img_width" class="form-input" size="3">
                 <label for="de_rel_img_height">이미지높이</label>
-                <input type="text" name="de_rel_img_height" value="<?php echo get_sanitize_input($default['de_rel_img_height']); ?>" id="de_rel_img_height" class="frm_input" size="3">
+                <input type="text" name="de_rel_img_height" value="<?php echo get_sanitize_input($default['de_rel_img_height']); ?>" id="de_rel_img_height" class="form-input" size="3">
                 <label for="de_rel_list_mod">1줄당 이미지 수</label>
-                <input type="text" name="de_rel_list_mod" value="<?php echo get_sanitize_input($default['de_rel_list_mod']); ?>" id="de_rel_list_mod" class="frm_input" size="3">
+                <input type="text" name="de_rel_list_mod" value="<?php echo get_sanitize_input($default['de_rel_list_mod']); ?>" id="de_rel_list_mod" class="form-input" size="3">
                 <label for="de_rel_list_use">출력</label>
                 <input type="checkbox" name="de_rel_list_use" value="1" id="de_rel_list_use" <?php echo $default['de_rel_list_use']?"checked":""; ?>>
             </td>
@@ -36,13 +36,13 @@
                     <?php echo get_list_skin_options("^list.[0-9]+\.skin\.php", G5_SHOP_SKIN_PATH, $default['de_search_list_skin']); ?>
                 </select>
                 <label for="de_search_img_width">이미지폭</label>
-                <input type="text" name="de_search_img_width" value="<?php echo get_sanitize_input($default['de_search_img_width']); ?>" id="de_search_img_width" class="frm_input" size="3">
+                <input type="text" name="de_search_img_width" value="<?php echo get_sanitize_input($default['de_search_img_width']); ?>" id="de_search_img_width" class="form-input" size="3">
                 <label for="de_search_img_height">이미지높이</label>
-                <input type="text" name="de_search_img_height" value="<?php echo get_sanitize_input($default['de_search_img_height']); ?>" id="de_search_img_height" class="frm_input" size="3">
+                <input type="text" name="de_search_img_height" value="<?php echo get_sanitize_input($default['de_search_img_height']); ?>" id="de_search_img_height" class="form-input" size="3">
                 <label for="de_search_list_mod">1줄당 이미지 수</label>
-                <input type="text" name="de_search_list_mod" value="<?php echo get_sanitize_input($default['de_search_list_mod']); ?>" id="de_search_list_mod" class="frm_input" size="3">
+                <input type="text" name="de_search_list_mod" value="<?php echo get_sanitize_input($default['de_search_list_mod']); ?>" id="de_search_list_mod" class="form-input" size="3">
                 <label for="de_search_list_row">출력할 줄 수</label>
-                <input type="text" name="de_search_list_row" value="<?php echo get_sanitize_input($default['de_search_list_row']); ?>" id="de_search_list_row" class="frm_input" size="3">
+                <input type="text" name="de_search_list_row" value="<?php echo get_sanitize_input($default['de_search_list_row']); ?>" id="de_search_list_row" class="form-input" size="3">
             </td>
         </tr>
         <tr>
@@ -53,13 +53,13 @@
                     <?php echo get_list_skin_options("^list.[0-9]+\.skin\.php", G5_SHOP_SKIN_PATH, $default['de_listtype_list_skin']); ?>
                 </select>
                 <label for="de_listtype_img_width">이미지폭</label>
-                <input type="text" name="de_listtype_img_width" value="<?php echo get_sanitize_input($default['de_listtype_img_width']); ?>" id="de_listtype_img_width" class="frm_input" size="3">
+                <input type="text" name="de_listtype_img_width" value="<?php echo get_sanitize_input($default['de_listtype_img_width']); ?>" id="de_listtype_img_width" class="form-input" size="3">
                 <label for="de_listtype_img_height">이미지높이</label>
-                <input type="text" name="de_listtype_img_height" value="<?php echo get_sanitize_input($default['de_listtype_img_height']); ?>" id="de_listtype_img_height" class="frm_input" size="3">
+                <input type="text" name="de_listtype_img_height" value="<?php echo get_sanitize_input($default['de_listtype_img_height']); ?>" id="de_listtype_img_height" class="form-input" size="3">
                 <label for="de_listtype_list_mod">1줄당 이미지 수</label>
-                <input type="text" name="de_listtype_list_mod" value="<?php echo get_sanitize_input($default['de_listtype_list_mod']); ?>" id="de_listtype_list_mod" class="frm_input" size="3">
+                <input type="text" name="de_listtype_list_mod" value="<?php echo get_sanitize_input($default['de_listtype_list_mod']); ?>" id="de_listtype_list_mod" class="form-input" size="3">
                 <label for="de_listtype_list_row">출력할 줄 수</label>
-                <input type="text" name="de_listtype_list_row" value="<?php echo get_sanitize_input($default['de_listtype_list_row']); ?>" id="de_listtype_list_row" class="frm_input" size="3">
+                <input type="text" name="de_listtype_list_row" value="<?php echo get_sanitize_input($default['de_listtype_list_row']); ?>" id="de_listtype_list_row" class="form-input" size="3">
             </td>
         </tr>
         <tr>
@@ -67,10 +67,10 @@
             <td>
                 <?php echo help("분류리스트에서 보여지는 사이즈를 설정하시면 됩니다. 분류관리의 출력 이미지폭, 높이의 기본값으로 사용됩니다. 높이를 0 으로 설정하시면 폭에 비례하여 높이를 썸네일로 생성합니다."); ?>
                 <label for="de_simg_width"><span class="sr-only">이미지(소) </span>폭</label>
-                <input type="text" name="de_simg_width" value="<?php echo get_sanitize_input($default['de_simg_width']); ?>" id="de_simg_width" class="frm_input" size="5"> 픽셀
+                <input type="text" name="de_simg_width" value="<?php echo get_sanitize_input($default['de_simg_width']); ?>" id="de_simg_width" class="form-input" size="5"> 픽셀
                 /
                 <label for="de_simg_height"><span class="sr-only">이미지(소) </span>높이</label>
-                <input type="text" name="de_simg_height" value="<?php echo get_sanitize_input($default['de_simg_height']); ?>" id="de_simg_height" class="frm_input" size="5"> 픽셀
+                <input type="text" name="de_simg_height" value="<?php echo get_sanitize_input($default['de_simg_height']); ?>" id="de_simg_height" class="form-input" size="5"> 픽셀
             </td>
         </tr>
         <tr>
@@ -78,10 +78,10 @@
             <td>
                 <?php echo help("상품상세보기에서 보여지는 상품이미지의 사이즈를 픽셀로 설정합니다. 높이를 0 으로 설정하시면 폭에 비례하여 높이를 썸네일로 생성합니다."); ?>
                 <label for="de_mimg_width"><span class="sr-only">이미지(중) </span>폭</label>
-                <input type="text" name="de_mimg_width" value="<?php echo get_sanitize_input($default['de_mimg_width']); ?>" id="de_mimg_width" class="frm_input" size="5"> 픽셀
+                <input type="text" name="de_mimg_width" value="<?php echo get_sanitize_input($default['de_mimg_width']); ?>" id="de_mimg_width" class="form-input" size="5"> 픽셀
                 /
                 <label for="de_mimg_height"><span class="sr-only">이미지(중) </span>높이</label>
-                <input type="text" name="de_mimg_height" value="<?php echo get_sanitize_input($default['de_mimg_height']); ?>" id="de_mimg_height" class="frm_input" size="5"> 픽셀
+                <input type="text" name="de_mimg_height" value="<?php echo get_sanitize_input($default['de_mimg_height']); ?>" id="de_mimg_height" class="form-input" size="5"> 픽셀
             </td>
         </tr>
         <tr>
@@ -103,7 +103,7 @@
                     <button type="button" class="sit_wimg_close">닫기</button>
                 </div>
                 <script>
-                $('<button type="button" id="cf_logoimg_view" class="btn_frmline scf_img_view">상단로고이미지 확인</button>').appendTo('.scf_img_logoimg');
+                $('<button type="button" id="cf_logoimg_view" class="btn-inline scf_img_view">상단로고이미지 확인</button>').appendTo('.scf_img_logoimg');
                 </script>
                 <?php } ?>
             </td>
@@ -127,7 +127,7 @@
                     <button type="button" class="sit_wimg_close">닫기</button>
                 </div>
                 <script>
-                $('<button type="button" id="cf_logoimg2_view" class="btn_frmline scf_img_view">하단로고이미지 확인</button>').appendTo('.scf_img_logoimg2');
+                $('<button type="button" id="cf_logoimg2_view" class="btn-inline scf_img_view">하단로고이미지 확인</button>').appendTo('.scf_img_logoimg2');
                 </script>
                 <?php } ?>
             </td>
@@ -151,7 +151,7 @@
                     <button type="button" class="sit_wimg_close">닫기</button>
                 </div>
                 <script>
-                $('<button type="button" id="cf_mobilelogoimg_view" class="btn_frmline scf_img_view">모바일 상단로고이미지 확인</button>').appendTo('.scf_img_mobilelogoimg');
+                $('<button type="button" id="cf_mobilelogoimg_view" class="btn-inline scf_img_view">모바일 상단로고이미지 확인</button>').appendTo('.scf_img_mobilelogoimg');
                 </script>
                 <?php } ?>
             </td>
@@ -175,7 +175,7 @@
                     <button type="button" class="sit_wimg_close">닫기</button>
                 </div>
                 <script>
-                $('<button type="button" id="cf_mobilelogoimg2_view" class="btn_frmline scf_img_view">모바일 하단로고이미지 확인</button>').appendTo('.scf_img_mobilelogoimg2');
+                $('<button type="button" id="cf_mobilelogoimg2_view" class="btn-inline scf_img_view">모바일 하단로고이미지 확인</button>').appendTo('.scf_img_mobilelogoimg2');
                 </script>
                 <?php } ?>
             </td>
@@ -211,7 +211,7 @@
             <th scope="row"><label for="de_cart_keep_term">장바구니 보관기간</label></th>
             <td>
                  <?php echo help("장바구니 상품의 보관 기간을 설정하십시오."); ?>
-                <input type="text" name="de_cart_keep_term" value="<?php echo get_sanitize_input($default['de_cart_keep_term']); ?>" id="de_cart_keep_term" class="frm_input" size="5"> 일
+                <input type="text" name="de_cart_keep_term" value="<?php echo get_sanitize_input($default['de_cart_keep_term']); ?>" id="de_cart_keep_term" class="form-input" size="5"> 일
             </td>
         </tr>
         <tr>
@@ -228,11 +228,11 @@
                 <label for="de_member_reg_coupon_use">쿠폰발행</label>
                 <input type="checkbox" name="de_member_reg_coupon_use" value="1" id="de_member_reg_coupon_use"<?php echo $default['de_member_reg_coupon_use']?' checked':''; ?>>
                 <label for="de_member_reg_coupon_price">쿠폰할인금액</label>
-                <input type="text" name="de_member_reg_coupon_price" value="<?php echo get_sanitize_input($default['de_member_reg_coupon_price']); ?>" id="de_member_reg_coupon_price" class="frm_input" size="10"> 원
+                <input type="text" name="de_member_reg_coupon_price" value="<?php echo get_sanitize_input($default['de_member_reg_coupon_price']); ?>" id="de_member_reg_coupon_price" class="form-input" size="10"> 원
                 <label for="de_member_reg_coupon_minimum">주문최소금액</label>
-                <input type="text" name="de_member_reg_coupon_minimum" value="<?php echo get_sanitize_input($default['de_member_reg_coupon_minimum']); ?>" id="de_member_reg_coupon_minimum" class="frm_input" size="10"> 원이상
+                <input type="text" name="de_member_reg_coupon_minimum" value="<?php echo get_sanitize_input($default['de_member_reg_coupon_minimum']); ?>" id="de_member_reg_coupon_minimum" class="form-input" size="10"> 원이상
                 <label for="de_member_reg_coupon_term">쿠폰유효기간</label>
-                <input type="text" name="de_member_reg_coupon_term" value="<?php echo get_sanitize_input($default['de_member_reg_coupon_term']); ?>" id="de_member_reg_coupon_term" class="frm_input" size="5"> 일
+                <input type="text" name="de_member_reg_coupon_term" value="<?php echo get_sanitize_input($default['de_member_reg_coupon_term']); ?>" id="de_member_reg_coupon_term" class="form-input" size="5"> 일
             </td>
         </tr>
         <tr>

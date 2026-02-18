@@ -64,7 +64,7 @@ $colspan = 7;
         <option value="a.mb_id" <?php echo get_selected($sfl, "a.mb_id") ?>>회원아이디</option>
     </select>
     <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input form-input">
+    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required form-input">
     <input type="submit" value="검색" class="btn btn-sm border-default-300">
 </form>
 
@@ -78,7 +78,7 @@ $colspan = 7;
     <input type="hidden" name="gr_id" value="<?php echo $gr_id ?>">
     <input type="hidden" name="w" value="ld">
 
-    <div class="tbl_head01 tbl_wrap">
+    <div class="table-card table-shell">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -111,29 +111,29 @@ $colspan = 7;
                     $bg = 'bg' . ($i % 2);
                 ?>
                     <tr class="<?php echo $bg; ?>">
-                        <td class="td_chk">
+                        <td class="cell-chk">
                             <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $row['mb_nick'] ?> 회원</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $row['gm_id'] ?>" id="chk_<?php echo $i ?>">
                         </td>
-                        <td class="td_grid"><?php echo $group ?></td>
-                        <td class="td_mbid"><?php echo $row['mb_id'] ?></td>
-                        <td class="td_mbname"><?php echo get_text($row['mb_name']); ?></td>
-                        <td class="td_name sv_use"><?php echo $mb_nick ?></td>
-                        <td class="td_datetime"><?php echo substr($row['mb_today_login'], 2, 8) ?></td>
-                        <td class="td_datetime"><?php echo $row['gm_datetime'] ?></td>
+                        <td class="cell-grid"><?php echo $group ?></td>
+                        <td class="cell-mbid"><?php echo $row['mb_id'] ?></td>
+                        <td class="cell-mbname"><?php echo get_text($row['mb_name']); ?></td>
+                        <td class="cell-name sv_use"><?php echo $mb_nick ?></td>
+                        <td class="cell-datetime"><?php echo substr($row['mb_today_login'], 2, 8) ?></td>
+                        <td class="cell-datetime"><?php echo $row['gm_datetime'] ?></td>
                     </tr>
                 <?php
                 }
 
                 if ($i == 0) {
-                    echo '<tr><td colspan="' . $colspan . '" class="empty_table">자료가 없습니다.</td></tr>';
+                    echo '<tr><td colspan="' . $colspan . '" class="table-empty">자료가 없습니다.</td></tr>';
                 }
                 ?>
             </tbody>
         </table>
     </div>
 
-    <div class="btn_list01 btn_list">
+    <div class="action-inline">
         <input type="submit" name="" value="선택삭제">
     </div>
 </form>

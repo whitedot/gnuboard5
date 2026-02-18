@@ -1,12 +1,12 @@
     <section id="anc_cf_basic">
-        <h2 class="h2_frm">홈페이지 기본환경 설정</h2>
+        <h2 class="section-title">홈페이지 기본환경 설정</h2>
         <?php echo $pg_anchor ?>
 
         <div class="card">
             <div class="grid grid-cols-1 gap-4">
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_title" class="form-label py-2 mb-0!">홈페이지 제목<strong class="sr-only">필수</strong></label>                    </div>
-                                            <div class="lg:col-span-3"><input type="text" name="cf_title" value="<?php echo get_sanitize_input($config['cf_title']); ?>" id="cf_title" required class="required frm_input form-input" size="40">                    </div>
+                                            <div class="lg:col-span-3"><input type="text" name="cf_title" value="<?php echo get_sanitize_input($config['cf_title']); ?>" id="cf_title" required class="required form-input" size="40">                    </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_admin" class="form-label py-2 mb-0!">최고관리자<strong class="sr-only">필수</strong></label>                    </div>
@@ -16,7 +16,7 @@
                                             <div class="lg:col-span-1"><label for="cf_admin_email" class="form-label py-2 mb-0!">관리자 메일 주소<strong class="sr-only">필수</strong></label>                    </div>
                                             <div class="lg:col-span-3">
                             <?php echo help('관리자가 보내고 받는 용도로 사용하는 메일 주소를 입력합니다. (회원가입, 인증메일, 테스트, 회원메일발송 등에서 사용)') ?>
-                            <input type="text" name="cf_admin_email" value="<?php echo get_sanitize_input($config['cf_admin_email']); ?>" id="cf_admin_email" required class="required email frm_input form-input" size="40">
+                            <input type="text" name="cf_admin_email" value="<?php echo get_sanitize_input($config['cf_admin_email']); ?>" id="cf_admin_email" required class="required email form-input" size="40">
                             <?php if (function_exists('domain_mail_host') && $config['cf_admin_email'] && stripos($config['cf_admin_email'], domain_mail_host()) === false) { ?>
                             <?php echo help('외부메일설정이나 기타 설정을 하지 않았다면, 도메인과 다른 헤더로 여겨 스팸이나 차단될 가능성이 있습니다.<br>name'.domain_mail_host().' 과 같은 도메인 형식으로 설정할것을 권장합니다.') ?>
                             <?php } ?>
@@ -26,7 +26,7 @@
                                             <div class="lg:col-span-1"><label for="cf_admin_email_name" class="form-label py-2 mb-0!">관리자 메일 발송이름<strong class="sr-only">필수</strong></label>                    </div>
                                             <div class="lg:col-span-3">
                             <?php echo help('관리자가 보내고 받는 용도로 사용하는 메일의 발송이름을 입력합니다. (회원가입, 인증메일, 테스트, 회원메일발송 등에서 사용)') ?>
-                            <input type="text" name="cf_admin_email_name" value="<?php echo get_sanitize_input($config['cf_admin_email_name']); ?>" id="cf_admin_email_name" required class="required frm_input form-input" size="40">
+                            <input type="text" name="cf_admin_email_name" value="<?php echo get_sanitize_input($config['cf_admin_email_name']); ?>" id="cf_admin_email_name" required class="required form-input" size="40">
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
@@ -37,79 +37,79 @@
                                             <div class="lg:col-span-1"><label for="cf_login_point" class="form-label py-2 mb-0!">로그인시 포인트<strong class="sr-only">필수</strong></label>                    </div>
                                             <div class="lg:col-span-1">
                             <?php echo help('회원이 로그인시 하루에 한번만 적립') ?>
-                            <input type="text" name="cf_login_point" value="<?php echo (int) $config['cf_login_point'] ?>" id="cf_login_point" required class="required frm_input form-input" size="5"> 점
+                            <input type="text" name="cf_login_point" value="<?php echo (int) $config['cf_login_point'] ?>" id="cf_login_point" required class="required form-input" size="5"> 점
                                             </div>
                                             <div class="lg:col-span-1"><label for="cf_memo_send_point" class="form-label py-2 mb-0!">쪽지보낼시 차감 포인트<strong class="sr-only">필수</strong></label>                    </div>
                                             <div class="lg:col-span-1">
                             <?php echo help('양수로 입력하십시오. 0점은 쪽지 보낼시 포인트를 차감하지 않습니다.') ?>
-                            <input type="text" name="cf_memo_send_point" value="<?php echo (int) $config['cf_memo_send_point']; ?>" id="cf_memo_send_point" required class="required frm_input form-input" size="5"> 점
+                            <input type="text" name="cf_memo_send_point" value="<?php echo (int) $config['cf_memo_send_point']; ?>" id="cf_memo_send_point" required class="required form-input" size="5"> 점
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_cut_name" class="form-label py-2 mb-0!">이름(닉네임) 표시</label>                    </div>
                                             <div class="lg:col-span-3">
-                            <input type="text" name="cf_cut_name" value="<?php echo (int) $config['cf_cut_name'] ?>" id="cf_cut_name" class="frm_input form-input" size="5"> 자리만 표시
+                            <input type="text" name="cf_cut_name" value="<?php echo (int) $config['cf_cut_name'] ?>" id="cf_cut_name" class="form-input" size="5"> 자리만 표시
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_nick_modify" class="form-label py-2 mb-0!">닉네임 수정</label>                    </div>
-                                            <div class="lg:col-span-1">수정하면 <input type="text" name="cf_nick_modify" value="<?php echo (int) $config['cf_nick_modify'] ?>" id="cf_nick_modify" class="frm_input form-input" size="3"> 일 동안 바꿀 수 없음                    </div>
+                                            <div class="lg:col-span-1">수정하면 <input type="text" name="cf_nick_modify" value="<?php echo (int) $config['cf_nick_modify'] ?>" id="cf_nick_modify" class="form-input" size="3"> 일 동안 바꿀 수 없음                    </div>
                                             <div class="lg:col-span-1"><label for="cf_open_modify" class="form-label py-2 mb-0!">정보공개 수정</label>                    </div>
-                                            <div class="lg:col-span-1">수정하면 <input type="text" name="cf_open_modify" value="<?php echo (int) $config['cf_open_modify'] ?>" id="cf_open_modify" class="frm_input form-input" size="3"> 일 동안 바꿀 수 없음                    </div>
+                                            <div class="lg:col-span-1">수정하면 <input type="text" name="cf_open_modify" value="<?php echo (int) $config['cf_open_modify'] ?>" id="cf_open_modify" class="form-input" size="3"> 일 동안 바꿀 수 없음                    </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_new_del" class="form-label py-2 mb-0!">최근게시물 삭제</label>                    </div>
                                             <div class="lg:col-span-1">
                             <?php echo help('설정일이 지난 최근게시물 자동 삭제') ?>
-                            <input type="text" name="cf_new_del" value="<?php echo (int) $config['cf_new_del'] ?>" id="cf_new_del" class="frm_input form-input" size="5"> 일
+                            <input type="text" name="cf_new_del" value="<?php echo (int) $config['cf_new_del'] ?>" id="cf_new_del" class="form-input" size="5"> 일
                                             </div>
                                             <div class="lg:col-span-1"><label for="cf_memo_del" class="form-label py-2 mb-0!">쪽지 삭제</label>                    </div>
                                             <div class="lg:col-span-1">
                             <?php echo help('설정일이 지난 쪽지 자동 삭제') ?>
-                            <input type="text" name="cf_memo_del" value="<?php echo (int) $config['cf_memo_del'] ?>" id="cf_memo_del" class="frm_input form-input" size="5"> 일
+                            <input type="text" name="cf_memo_del" value="<?php echo (int) $config['cf_memo_del'] ?>" id="cf_memo_del" class="form-input" size="5"> 일
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_visit_del" class="form-label py-2 mb-0!">접속자로그 삭제</label>                    </div>
                                             <div class="lg:col-span-1">
                             <?php echo help('설정일이 지난 접속자 로그 자동 삭제') ?>
-                            <input type="text" name="cf_visit_del" value="<?php echo (int) $config['cf_visit_del'] ?>" id="cf_visit_del" class="frm_input form-input" size="5"> 일
+                            <input type="text" name="cf_visit_del" value="<?php echo (int) $config['cf_visit_del'] ?>" id="cf_visit_del" class="form-input" size="5"> 일
                                             </div>
                                             <div class="lg:col-span-1"><label for="cf_popular_del" class="form-label py-2 mb-0!">인기검색어 삭제</label>                    </div>
                                             <div class="lg:col-span-1">
                             <?php echo help('설정일이 지난 인기검색어 자동 삭제') ?>
-                            <input type="text" name="cf_popular_del" value="<?php echo (int) $config['cf_popular_del'] ?>" id="cf_popular_del" class="frm_input form-input" size="5"> 일
+                            <input type="text" name="cf_popular_del" value="<?php echo (int) $config['cf_popular_del'] ?>" id="cf_popular_del" class="form-input" size="5"> 일
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_login_minutes" class="form-label py-2 mb-0!">현재 접속자</label>                    </div>
                                             <div class="lg:col-span-1">
                             <?php echo help('설정값 이내의 접속자를 현재 접속자로 인정') ?>
-                            <input type="text" name="cf_login_minutes" value="<?php echo (int) $config['cf_login_minutes'] ?>" id="cf_login_minutes" class="frm_input form-input" size="3"> 분
+                            <input type="text" name="cf_login_minutes" value="<?php echo (int) $config['cf_login_minutes'] ?>" id="cf_login_minutes" class="form-input" size="3"> 분
                                             </div>
                                             <div class="lg:col-span-1"><label for="cf_new_rows" class="form-label py-2 mb-0!">최근게시물 라인수</label>                    </div>
                                             <div class="lg:col-span-1">
                             <?php echo help('목록 한페이지당 라인수') ?>
-                            <input type="text" name="cf_new_rows" value="<?php echo (int) $config['cf_new_rows'] ?>" id="cf_new_rows" class="frm_input form-input" size="3"> 라인
+                            <input type="text" name="cf_new_rows" value="<?php echo (int) $config['cf_new_rows'] ?>" id="cf_new_rows" class="form-input" size="3"> 라인
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_page_rows" class="form-label py-2 mb-0!">한페이지당 라인수</label>                    </div>
                                             <div class="lg:col-span-1">
                             <?php echo help('목록(리스트) 한페이지당 라인수') ?>
-                            <input type="text" name="cf_page_rows" value="<?php echo (int) $config['cf_page_rows'] ?>" id="cf_page_rows" class="frm_input form-input" size="3"> 라인
+                            <input type="text" name="cf_page_rows" value="<?php echo (int) $config['cf_page_rows'] ?>" id="cf_page_rows" class="form-input" size="3"> 라인
                                             </div>
                                             <div class="lg:col-span-1"><label for="cf_mobile_page_rows" class="form-label py-2 mb-0!">모바일 한페이지당 라인수</label>                    </div>
                                             <div class="lg:col-span-1">
                             <?php echo help('모바일 목록 한페이지당 라인수') ?>
-                            <input type="text" name="cf_mobile_page_rows" value="<?php echo (int) $config['cf_mobile_page_rows'] ?>" id="cf_mobile_page_rows" class="frm_input form-input" size="3"> 라인
+                            <input type="text" name="cf_mobile_page_rows" value="<?php echo (int) $config['cf_mobile_page_rows'] ?>" id="cf_mobile_page_rows" class="form-input" size="3"> 라인
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_write_pages" class="form-label py-2 mb-0!">페이지 표시 수<strong class="sr-only">필수</strong></label>                    </div>
-                                            <div class="lg:col-span-1"><input type="text" name="cf_write_pages" value="<?php echo (int) $config['cf_write_pages'] ?>" id="cf_write_pages" required class="required numeric frm_input form-input" size="3"> 페이지씩 표시                    </div>
+                                            <div class="lg:col-span-1"><input type="text" name="cf_write_pages" value="<?php echo (int) $config['cf_write_pages'] ?>" id="cf_write_pages" required class="required numeric form-input" size="3"> 페이지씩 표시                    </div>
                                             <div class="lg:col-span-1"><label for="cf_mobile_pages" class="form-label py-2 mb-0!">모바일 페이지 표시 수<strong class="sr-only">필수</strong></label>                    </div>
-                                            <div class="lg:col-span-1"><input type="text" name="cf_mobile_pages" value="<?php echo (int) $config['cf_mobile_pages'] ?>" id="cf_mobile_pages" required class="required numeric frm_input form-input" size="3"> 페이지씩 표시                    </div>
+                                            <div class="lg:col-span-1"><input type="text" name="cf_mobile_pages" value="<?php echo (int) $config['cf_mobile_pages'] ?>" id="cf_mobile_pages" required class="required numeric form-input" size="3"> 페이지씩 표시                    </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_new_skin" class="form-label py-2 mb-0!">최근게시물 스킨<strong class="sr-only">필수</strong></label>                    </div>
@@ -180,13 +180,13 @@
                                             <div class="lg:col-span-1"><label for="cf_recaptcha_site_key" class="form-label py-2 mb-0!">구글 reCAPTCHA Site key</label>                    </div>
                                             <div class="lg:col-span-3">
                             <?php echo help('reCAPTCHA V2와 Invisible reCAPTCHA 캡챠의 sitekey 와 secret 키는 동일하지 않고, 서로 발급받는 키가 다릅니다.') ?>
-                            <input type="text" name="cf_recaptcha_site_key" value="<?php echo get_sanitize_input($config['cf_recaptcha_site_key']); ?>" id="cf_recaptcha_site_key" class="frm_input form-input" size="52"> <a href="https://www.google.com/recaptcha/admin" target="_blank" class="btn_frmline">reCAPTCHA 등록하기</a>
+                            <input type="text" name="cf_recaptcha_site_key" value="<?php echo get_sanitize_input($config['cf_recaptcha_site_key']); ?>" id="cf_recaptcha_site_key" class="form-input" size="52"> <a href="https://www.google.com/recaptcha/admin" target="_blank" class="btn-inline">reCAPTCHA 등록하기</a>
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_recaptcha_secret_key" class="form-label py-2 mb-0!">구글 reCAPTCHA Secret key</label>                    </div>
                                             <div class="lg:col-span-3">
-                            <input type="text" name="cf_recaptcha_secret_key" value="<?php echo get_sanitize_input($config['cf_recaptcha_secret_key']); ?>" id="cf_recaptcha_secret_key" class="frm_input form-input" size="52">
+                            <input type="text" name="cf_recaptcha_secret_key" value="<?php echo get_sanitize_input($config['cf_recaptcha_secret_key']); ?>" id="cf_recaptcha_secret_key" class="form-input" size="52">
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
@@ -200,7 +200,7 @@
                                             <div class="lg:col-span-1"><label for="cf_point_term" class="form-label py-2 mb-0!">포인트 유효기간</label>                    </div>
                                             <div class="lg:col-span-3">
                             <?php echo help('기간을 0으로 설정시 포인트 유효기간이 적용되지 않습니다.') ?>
-                            <input type="text" name="cf_point_term" value="<?php echo (int) $config['cf_point_term']; ?>" id="cf_point_term" required class="required frm_input form-input" size="5"> 일
+                            <input type="text" name="cf_point_term" value="<?php echo (int) $config['cf_point_term']; ?>" id="cf_point_term" required class="required form-input" size="5"> 일
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
@@ -236,17 +236,17 @@
                                 echo help('<b>경고) curl이 지원되지 않아 네이버 신디케이션을 사용할수 없습니다.</b>');
                             } ?>
                             <?php echo help('네이버 신디케이션 연동키(token)을 입력하면 네이버 신디케이션을 사용할 수 있습니다.<br>연동키는 <a href="http://webmastertool.naver.com/" target="_blank"><u>네이버 웹마스터도구</u></a> -> 네이버 신디케이션에서 발급할 수 있습니다.') ?>
-                            <input type="text" name="cf_syndi_token" value="<?php echo isset($config['cf_syndi_token']) ? get_sanitize_input($config['cf_syndi_token']) : ''; ?>" id="cf_syndi_token" class="frm_input form-input" size="70">
+                            <input type="text" name="cf_syndi_token" value="<?php echo isset($config['cf_syndi_token']) ? get_sanitize_input($config['cf_syndi_token']) : ''; ?>" id="cf_syndi_token" class="form-input" size="70">
                                             </div>
                                     </div>
                                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
                                             <div class="lg:col-span-1"><label for="cf_syndi_except" class="form-label py-2 mb-0!">네이버 신디케이션 제외게시판</label>                    </div>
                                             <div class="lg:col-span-3">
                             <?php echo help('네이버 신디케이션 수집에서 제외할 게시판 아이디를 | 로 구분하여 입력하십시오. 예) notice|adult<br>참고로 그룹접근사용 게시판, 글읽기 권한 2 이상 게시판, 비밀글은 신디케이션 수집에서 제외됩니다.') ?>
-                            <input type="text" name="cf_syndi_except" value="<?php echo isset($config['cf_syndi_except']) ? get_sanitize_input($config['cf_syndi_except']) : ''; ?>" id="cf_syndi_except" class="frm_input form-input" size="70">
+                            <input type="text" name="cf_syndi_except" value="<?php echo isset($config['cf_syndi_except']) ? get_sanitize_input($config['cf_syndi_except']) : ''; ?>" id="cf_syndi_except" class="form-input" size="70">
                                             </div>
                                     </div>
             </div>
         </div>
     </section>
-    <button type="button" class="get_theme_confc btn_02 btn" data-type="conf_skin">테마 스킨설정 가져오기</button>
+    <button type="button" class="get_theme_confc btn-secondary btn" data-type="conf_skin">테마 스킨설정 가져오기</button>

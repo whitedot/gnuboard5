@@ -22,9 +22,9 @@ $colspan = 4;
     <input type="hidden" name="token" value="" id="token">
 
     <div class="local_ov01 local_ov">
-        <span class="btn_ov01"><span class="ov_txt"> 아이디</span><span class="ov_num"><?php echo $mb['mb_id'] ?></span></span>
-        <span class="btn_ov01"><span class="ov_txt"> 이름</span><span class="ov_num"><?php echo get_text($mb['mb_name']); ?></span></span>
-        <span class="btn_ov01"><span class="ov_txt"> 닉네임</span><span class="ov_num"><?php echo $mb['mb_nick'] ?></span></span>
+        <span class="summary-chip"><span class="summary-label"> 아이디</span><span class="summary-value"><?php echo $mb['mb_id'] ?></span></span>
+        <span class="summary-chip"><span class="summary-label"> 이름</span><span class="summary-value"><?php echo get_text($mb['mb_name']); ?></span></span>
+        <span class="summary-chip"><span class="summary-label"> 닉네임</span><span class="summary-value"><?php echo $mb['mb_nick'] ?></span></span>
     </div>
 
     <div class="local_cmd01 local_cmd">
@@ -45,7 +45,7 @@ $colspan = 4;
             }
             ?>
         </select>
-        <input type="submit" value="선택" class="btn_submit btn" accesskey="s">
+        <input type="submit" value="선택" class="btn-primary btn" accesskey="s">
     </div>
 </form>
 
@@ -59,7 +59,7 @@ $colspan = 4;
     <input type="hidden" name="mb_id" value="<?php echo $mb['mb_id'] ?>" id="mb_id">
     <input type="hidden" name="w" value="d" id="w">
 
-    <div class="tbl_head01 tbl_wrap">
+    <div class="table-card table-shell">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -86,27 +86,27 @@ $colspan = 4;
                 for ($i = 0; $row = sql_fetch_array($result); $i++) {
                 ?>
                     <tr>
-                        <td class="td_chk">
+                        <td class="cell-chk">
                             <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $row['gr_subject'] ?> 그룹</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $row['gm_id'] ?>" id="chk_<?php echo $i ?>">
                         </td>
-                        <td class="td_grid"><a href="<?php echo G5_BBS_URL; ?>/group.php?gr_id=<?php echo $row['gr_id'] ?>"><?php echo $row['gr_id'] ?></a></td>
-                        <td class="td_category"><?php echo $row['gr_subject'] ?></td>
-                        <td class="td_datetime"><?php echo $row['gm_datetime'] ?></td>
+                        <td class="cell-grid"><a href="<?php echo G5_BBS_URL; ?>/group.php?gr_id=<?php echo $row['gr_id'] ?>"><?php echo $row['gr_id'] ?></a></td>
+                        <td class="cell-category"><?php echo $row['gr_subject'] ?></td>
+                        <td class="cell-datetime"><?php echo $row['gm_datetime'] ?></td>
                     </tr>
                 <?php
                 }
 
                 if ($i == 0) {
-                    echo '<tr><td colspan="' . $colspan . '" class="empty_table">접근가능한 그룹이 없습니다.</td></tr>';
+                    echo '<tr><td colspan="' . $colspan . '" class="table-empty">접근가능한 그룹이 없습니다.</td></tr>';
                 }
                 ?>
             </tbody>
         </table>
     </div>
 
-    <div class="btn_list01 btn_list">
-        <input type="submit" name="" value="선택삭제" class="btn btn_02">
+    <div class="action-inline">
+        <input type="submit" name="" value="선택삭제" class="btn btn-secondary">
     </div>
 </form>
 

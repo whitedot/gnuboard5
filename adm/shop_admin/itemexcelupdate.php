@@ -172,7 +172,7 @@ include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 <div class="new_win">
     <h1><?php echo $g5['title']; ?></h1>
 
-    <div class="local_desc01 local_desc">
+    <div class="hint-box">
         <p>상품등록을 완료했습니다.</p>
     </div>
 
@@ -195,7 +195,7 @@ include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
         <?php } ?>
     </dl>
 
-    <div class="btn_win01 btn_win">
+    <div class="btn_win01 action-bar-popup">
         <button type="button" onclick="window.close();">창닫기</button>
     </div>
 

@@ -351,7 +351,7 @@ if (sql_num_rows($result) == 0)
         <?php } ?>
 
         <h3>주문 목록</h3>
-        <div class="tbl_head01">
+        <div class="table-card">
             <table>
             <caption>주문 목록</caption>
             <thead>
@@ -438,10 +438,10 @@ if (sql_num_rows($result) == 0)
             ?>
             <tr>
                 <td><?php echo $it_name; ?></td>
-                <td class="td_num"><?php echo number_format($it_price); ?></td>
-                <td class="td_cntsmall"><?php echo $fontqty1; ?><?php echo number_format($row2['ct_qty']); ?><?php echo $fontqty2; ?></td>
-                <td class="td_num td_numsum"><?php echo number_format($row2_tot_price); ?></td>
-                <td class="td_sendcost_by"><?php echo $ct_send_cost; ?></td>
+                <td class="cell-num"><?php echo number_format($it_price); ?></td>
+                <td class="cell-cntsmall"><?php echo $fontqty1; ?><?php echo number_format($row2['ct_qty']); ?><?php echo $fontqty2; ?></td>
+                <td class="cell-num cell-numsum"><?php echo number_format($row2_tot_price); ?></td>
+                <td class="cell-sendcost-by"><?php echo $ct_send_cost; ?></td>
             </tr>
             <?php
                 $cnt++;
@@ -449,17 +449,17 @@ if (sql_num_rows($result) == 0)
             ?>
             <tr>
                 <td>배송비</td>
-                <td class="td_num"><?php echo number_format($row1['od_send_cost']); ?></td>
-                <td class="td_cntsmall"><?php echo $fontqty1; ?>1<?php echo $fontqty2; ?></td>
-                <td class="td_num td_numsum"><?php echo number_format($row1['od_send_cost']); ?></td>
-                <td class="td_sendcost_by"></td>
+                <td class="cell-num"><?php echo number_format($row1['od_send_cost']); ?></td>
+                <td class="cell-cntsmall"><?php echo $fontqty1; ?>1<?php echo $fontqty2; ?></td>
+                <td class="cell-num cell-numsum"><?php echo number_format($row1['od_send_cost']); ?></td>
+                <td class="cell-sendcost-by"></td>
             </tr>
             <tr>
                 <td>추가 배송비</td>
-                <td class="td_num"><?php echo number_format($row1['od_send_cost2']); ?></td>
-                <td class="td_cntsmall"><?php echo $fontqty1; ?>1<?php echo $fontqty2; ?></td>
-                <td class="td_num td_numsum"><?php echo number_format($row1['od_send_cost2']); ?></td>
-                <td class="td_sendcost_by"></td>
+                <td class="cell-num"><?php echo number_format($row1['od_send_cost2']); ?></td>
+                <td class="cell-cntsmall"><?php echo $fontqty1; ?>1<?php echo $fontqty2; ?></td>
+                <td class="cell-num cell-numsum"><?php echo number_format($row1['od_send_cost2']); ?></td>
+                <td class="cell-sendcost-by"></td>
             </tr>
             </tbody>
             <tfoot>

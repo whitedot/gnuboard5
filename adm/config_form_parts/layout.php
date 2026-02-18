@@ -1,5 +1,5 @@
     <section id="anc_cf_lay">
-        <h2 class="h2_frm">레이아웃 추가설정</h2>
+        <h2 class="section-title">레이아웃 추가설정</h2>
         <?php echo $pg_anchor; ?>
         <div class="hint-text">
             <p>기본 설정된 파일 경로 및 script, css 를 추가하거나 변경할 수 있습니다.</p>

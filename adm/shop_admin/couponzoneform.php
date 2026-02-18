@@ -56,11 +56,11 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
 <input type="hidden" name="stx" value="<?php echo $stx; ?>">
 <input type="hidden" name="page" value="<?php echo $page;?>">
 
-<div class="tbl_frm01 tbl_wrap">
+<div class="form-card table-shell">
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <colgroup>
-        <col class="grid_4">
+        <col class="col-4">
         <col>
     </colgroup>
     <tbody>
@@ -77,35 +77,35 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
     <tr>
         <th scope="row"><label for="cz_subject">쿠폰이름</label></th>
         <td>
-            <input type="text" name="cz_subject" value="<?php echo get_text($cp['cz_subject']); ?>" id="cz_subject" required class="required frm_input" size="50">
+            <input type="text" name="cz_subject" value="<?php echo get_text($cp['cz_subject']); ?>" id="cz_subject" required class="required form-input" size="50">
         </td>
     </tr>
     <tr>
         <th scope="row"><label for="cz_start">사용시작일</label></th>
         <td>
             <?php echo help('입력 예: '.date('Y-m-d')); ?>
-            <input type="text" name="cz_start" value="<?php echo stripslashes($cp['cz_start']); ?>" id="cz_start" required class="frm_input required">
+            <input type="text" name="cz_start" value="<?php echo stripslashes($cp['cz_start']); ?>" id="cz_start" required class="form-input required">
         </td>
     </tr>
     <tr>
         <th scope="row"><label for="cz_end">사용종료일</label></th>
         <td>
             <?php echo help('입력 예: '.date('Y-m-d')); ?>
-            <input type="text" name="cz_end" value="<?php echo stripslashes($cp['cz_end']); ?>" id="cz_end" required class="frm_input required">
+            <input type="text" name="cz_end" value="<?php echo stripslashes($cp['cz_end']); ?>" id="cz_end" required class="form-input required">
         </td>
     </tr>
     <tr id="tr_cz_point">
         <th scope="row"><label for="cz_point">쿠폰교환 포인트</label></th>
         <td>
             <?php echo help("쿠폰으로 교환할 회원의 포인트를 지정합니다. 쿠폰 다운로드 때 설정한 값만큼 회원의 포인트를 차감합니다."); ?>
-            <input type="text" name="cz_point" value="<?php echo get_text($cp['cz_point']); ?>" id="cz_point" class="frm_input">
+            <input type="text" name="cz_point" value="<?php echo get_text($cp['cz_point']); ?>" id="cz_point" class="form-input">
         </td>
     </tr>
     <tr>
         <th scope="row"><label for="cz_period">쿠폰사용기한</label></th>
         <td>
             <?php echo help("쿠폰 다운로드 후 사용할 수 있는 기간을 설정합니다."); ?>
-            <input type="text" name="cz_period" value="<?php echo stripslashes($cp['cz_period']); ?>" id="cz_period" required class="frm_input required" size="5"> 일
+            <input type="text" name="cz_period" value="<?php echo stripslashes($cp['cz_period']); ?>" id="cz_period" required class="form-input required" size="5"> 일
         </td>
     </tr>
     <tr>
@@ -147,8 +147,8 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
     <tr id="tr_cp_target">
         <th scope="row"><label for="cp_target"><?php echo $cp_target_label; ?></label></th>
         <td>
-           <input type="text" name="cp_target" value="<?php echo stripslashes($cp['cp_target']); ?>" id="cp_target" required class="required frm_input">
-           <button type="button" id="sch_target" class="btn_frmline"><?php echo $cp_target_btn; ?></button>
+           <input type="text" name="cp_target" value="<?php echo stripslashes($cp['cp_target']); ?>" id="cp_target" required class="required form-input">
+           <button type="button" id="sch_target" class="btn-inline"><?php echo $cp_target_btn; ?></button>
         </td>
     </tr>
     <tr>
@@ -163,7 +163,7 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
     <tr>
         <th scope="row"><label for="cp_price"><?php echo $cp['cp_type'] ? '할인비율' : '할인금액'; ?></label></th>
         <td>
-            <input type="text" name="cp_price" value="<?php echo stripslashes($cp['cp_price']); ?>" id="cp_price" required class="frm_input required"> <span id="cp_price_unit"><?php echo $cp['cp_type'] ? '%' : '원'; ?></span>
+            <input type="text" name="cp_price" value="<?php echo stripslashes($cp['cp_price']); ?>" id="cp_price" required class="form-input required"> <span id="cp_price_unit"><?php echo $cp['cp_type'] ? '%' : '원'; ?></span>
         </td>
     </tr>
     <tr id="tr_cp_trunc">
@@ -180,22 +180,22 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
     <tr>
         <th scope="row"><label for="cp_minimum">최소주문금액</label></th>
         <td>
-            <input type="text" name="cp_minimum" value="<?php echo stripslashes($cp['cp_minimum']); ?>" id="cp_minimum" class="frm_input"> 원
+            <input type="text" name="cp_minimum" value="<?php echo stripslashes($cp['cp_minimum']); ?>" id="cp_minimum" class="form-input"> 원
         </td>
     </tr>
     <tr id="tr_cp_maximum">
         <th scope="row"><label for="cp_maximum">최대할인금액</label></th>
         <td>
-            <input type="text" name="cp_maximum" value="<?php echo stripslashes($cp['cp_maximum']); ?>" id="cp_maximum" class="frm_input"> 원
+            <input type="text" name="cp_maximum" value="<?php echo stripslashes($cp['cp_maximum']); ?>" id="cp_maximum" class="form-input"> 원
         </td>
     </tr>
     </tbody>
     </table>
 </div>
 
-<div class="btn_fixed_top">
-    <a href="./couponzonelist.php?<?php echo $qstr; ?>" class="btn_02 btn">목록</a>
-    <input type="submit" value="확인" class="btn_submit btn" accesskey="s">
+<div class="action-bar">
+    <a href="./couponzonelist.php?<?php echo $qstr; ?>" class="btn-secondary btn">목록</a>
+    <input type="submit" value="확인" class="btn-primary btn" accesskey="s">
 </div>
 
 </form>

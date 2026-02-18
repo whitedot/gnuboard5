@@ -46,11 +46,11 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 <input type="hidden" name="w" value="<?php echo $w; ?>">
 <input type="hidden" name="bn_id" value="<?php echo $bn_id; ?>">
 
-<div class="tbl_frm01 tbl_wrap">
+<div class="form-card table-shell">
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <colgroup>
-        <col class="grid_4">
+        <col class="col-4">
         <col>
     </colgroup>
     <tbody>
@@ -83,14 +83,14 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
         <th scope="row"><label for="bn_alt">이미지 설명</label></th>
         <td>
             <?php echo help("img 태그의 alt, title 에 해당되는 내용입니다.\n배너에 마우스를 오버하면 이미지의 설명이 나옵니다."); ?>
-            <input type="text" name="bn_alt" value="<?php echo get_text($bn['bn_alt']); ?>" id="bn_alt" class="frm_input" size="80">
+            <input type="text" name="bn_alt" value="<?php echo get_text($bn['bn_alt']); ?>" id="bn_alt" class="form-input" size="80">
         </td>
     </tr>
     <tr>
         <th scope="row"><label for="bn_url">링크</label></th>
         <td>
             <?php echo help("배너클릭시 이동하는 주소입니다."); ?>
-            <input type="text" name="bn_url" size="80" value="<?php echo get_sanitize_input($bn['bn_url']); ?>" id="bn_url" class="frm_input">
+            <input type="text" name="bn_url" size="80" value="<?php echo get_sanitize_input($bn['bn_url']); ?>" id="bn_url" class="form-input">
         </td>
     </tr>
     <tr>
@@ -138,7 +138,7 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
         <th scope="row"><label for="bn_begin_time">시작일시</label></th>
         <td>
             <?php echo help("배너 게시 시작일시를 설정합니다."); ?>
-            <input type="text" name="bn_begin_time" value="<?php echo $bn['bn_begin_time']; ?>" id="bn_begin_time" class="frm_input"  size="21" maxlength="19">
+            <input type="text" name="bn_begin_time" value="<?php echo $bn['bn_begin_time']; ?>" id="bn_begin_time" class="form-input"  size="21" maxlength="19">
             <input type="checkbox" name="bn_begin_chk" value="<?php echo date("Y-m-d 00:00:00", time()); ?>" id="bn_begin_chk" onclick="if (this.checked == true) this.form.bn_begin_time.value=this.form.bn_begin_chk.value; else this.form.bn_begin_time.value = this.form.bn_begin_time.defaultValue;">
             <label for="bn_begin_chk">오늘</label>
         </td>
@@ -147,7 +147,7 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
         <th scope="row"><label for="bn_end_time">종료일시</label></th>
         <td>
             <?php echo help("배너 게시 종료일시를 설정합니다."); ?>
-            <input type="text" name="bn_end_time" value="<?php echo $bn['bn_end_time']; ?>" id="bn_end_time" class="frm_input" size=21 maxlength=19>
+            <input type="text" name="bn_end_time" value="<?php echo $bn['bn_end_time']; ?>" id="bn_end_time" class="form-input" size=21 maxlength=19>
             <input type="checkbox" name="bn_end_chk" value="<?php echo date("Y-m-d 23:59:59", time()+60*60*24*31); ?>" id="bn_end_chk" onclick="if (this.checked == true) this.form.bn_end_time.value=this.form.bn_end_chk.value; else this.form.bn_end_time.value = this.form.bn_end_time.defaultValue;">
             <label for="bn_end_chk">오늘+31일</label>
         </td>
@@ -163,9 +163,9 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
     </table>
 </div>
 
-<div class="btn_fixed_top">
-    <a href="./bannerlist.php" class="btn_02 btn">목록</a>
-    <input type="submit" value="확인" class="btn_submit btn" accesskey="s">
+<div class="action-bar">
+    <a href="./bannerlist.php" class="btn-secondary btn">목록</a>
+    <input type="submit" value="확인" class="btn-primary btn" accesskey="s">
 </div>
 
 </form>

@@ -51,12 +51,12 @@ $sql  = " select *
              limit $from_record, $rows ";
 $result = sql_query($sql);
 
-$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
+$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목록</a>';
 ?>
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall; ?>
-    <span class="btn_ov01"><span class="ov_txt">생성된  분류 수</span><span class="ov_num">  <?php echo number_format($total_count); ?>개</span></span>
+    <span class="summary-chip"><span class="summary-label">생성된  분류 수</span><span class="summary-value">  <?php echo number_format($total_count); ?>개</span></span>
 </div>
 
 <form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
@@ -71,7 +71,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 </select>
 
 <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="stx" value="<?php echo $stx; ?>" id="stx" required class="required frm_input form-input">
+<input type="text" name="stx" value="<?php echo $stx; ?>" id="stx" required class="required form-input">
 <input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
@@ -83,7 +83,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
 <input type="hidden" name="stx" value="<?php echo $stx; ?>">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 
-<div id="sct" class="tbl_head01 tbl_wrap card">
+<div id="sct" class="table-card table-shell card">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -129,12 +129,12 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         $s_level = '<div><label for="ca_name_'.$i.'" '.$class.'><span class="sr-only">'.$p_ca_name.''.($level+1).'단 분류</span></label></div>';
         $s_level_input_size = 25 - $level *2; // 하위 분류일 수록 입력칸 넓이 작아짐 - 지운아빠 2013-04-02
 
-        if ($level+2 < 6) $s_add = '<a href="./categoryform.php?ca_id='.$row['ca_id'].'&amp;'.$qstr.'" class="btn btn_03">추가</a> '; // 분류는 5단계까지만 가능
+        if ($level+2 < 6) $s_add = '<a href="./categoryform.php?ca_id='.$row['ca_id'].'&amp;'.$qstr.'" class="btn btn-tertiary">추가</a> '; // 분류는 5단계까지만 가능
         else $s_add = '';
-        $s_upd = '<a href="./categoryform.php?w=u&amp;ca_id='.$row['ca_id'].'&amp;'.$qstr.'" class="btn btn_02"><span class="sr-only">'.get_text($row['ca_name']).' </span>수정</a> ';
+        $s_upd = '<a href="./categoryform.php?w=u&amp;ca_id='.$row['ca_id'].'&amp;'.$qstr.'" class="btn btn-secondary"><span class="sr-only">'.get_text($row['ca_name']).' </span>수정</a> ';
 
         if ($is_admin == 'super')
-            $s_del = '<a href="./categoryformupdate.php?w=d&amp;ca_id='.$row['ca_id'].'&amp;'.$qstr.'" onclick="return delete_confirm(this);" class="btn btn_02"><span class="sr-only">'.get_text($row['ca_name']).' </span>삭제</a> ';
+            $s_del = '<a href="./categoryformupdate.php?w=d&amp;ca_id='.$row['ca_id'].'&amp;'.$qstr.'" onclick="return delete_confirm(this);" class="btn btn-secondary"><span class="sr-only">'.get_text($row['ca_name']).' </span>삭제</a> ';
 
         // 해당 분류에 속한 상품의 수
         $sql1 = " select COUNT(*) as cnt from {$g5['g5_shop_item_table']}
@@ -165,28 +165,28 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         $bg = 'bg'.($i%2);
     ?>
     <tr class="<?php echo $bg; ?>">
-        <td class="td_code" rowspan="2">
+        <td class="cell-code" rowspan="2">
             <input type="hidden" name="ca_id[<?php echo $i; ?>]" value="<?php echo $row['ca_id']; ?>">
             <a href="<?php echo shop_category_url($row['ca_id']); ?>"><?php echo $row['ca_id']; ?></a>
         </td>
-        <td headers="sct_cate" class="sct_name<?php echo $level; ?>"><?php echo $s_level; ?> <input type="text" name="ca_name[<?php echo $i; ?>]" value="<?php echo get_text($row['ca_name']); ?>" id="ca_name_<?php echo $i; ?>" required class="tbl_input full_input required"></td>
-        <td headers="sct_amount" class="td_amount"><a href="./itemlist.php?sca=<?php echo $row['ca_id']; ?>"><?php echo $row1['cnt']; ?></a></td>
-        <td headers="sct_hpcert" class="td_possible">
+        <td headers="sct_cate" class="sct_name<?php echo $level; ?>"><?php echo $s_level; ?> <input type="text" name="ca_name[<?php echo $i; ?>]" value="<?php echo get_text($row['ca_name']); ?>" id="ca_name_<?php echo $i; ?>" required class="form-input w-full required"></td>
+        <td headers="sct_amount" class="cell-amount"><a href="./itemlist.php?sca=<?php echo $row['ca_id']; ?>"><?php echo $row1['cnt']; ?></a></td>
+        <td headers="sct_hpcert" class="cell-possible">
             <input type="checkbox" name="ca_cert_use[<?php echo $i; ?>]" value="1" id="ca_cert_use_yes<?php echo $i; ?>" <?php if($row['ca_cert_use']) echo 'checked="checked"'; ?>>
             <label for="ca_cert_use_yes<?php echo $i; ?>">사용</label>
         </td>
         <td headers="sct_imgw">
             <label for="ca_out_width<?php echo $i; ?>" class="sr-only">출력이미지 폭</label>
-            <input type="text" name="ca_img_width[<?php echo $i; ?>]" value="<?php echo get_text($row['ca_img_width']); ?>" id="ca_out_width<?php echo $i; ?>" required class="required tbl_input" size="3" > <span class="sr-only">픽셀</span>
+            <input type="text" name="ca_img_width[<?php echo $i; ?>]" value="<?php echo get_text($row['ca_img_width']); ?>" id="ca_out_width<?php echo $i; ?>" required class="required form-input" size="3" > <span class="sr-only">픽셀</span>
         </td>
         
         <td headers="sct_imgcol">
             <label for="ca_lineimg_num<?php echo $i; ?>" class="sr-only">1줄당 이미지 수</label>
-            <input type="text" name="ca_list_mod[<?php echo $i; ?>]" size="3" value="<?php echo $row['ca_list_mod']; ?>" id="ca_lineimg_num<?php echo $i; ?>" required class="required tbl_input"> <span class="sr-only">개</span>
+            <input type="text" name="ca_list_mod[<?php echo $i; ?>]" size="3" value="<?php echo $row['ca_list_mod']; ?>" id="ca_lineimg_num<?php echo $i; ?>" required class="required form-input"> <span class="sr-only">개</span>
         </td>
         <td headers="sct_mobileimg">
             <label for="ca_mobileimg_num<?php echo $i; ?>" class="sr-only">모바일 1줄당 이미지 수</label>
-            <input type="text" name="ca_mobile_list_mod[<?php echo $i; ?>]" size="3" value="<?php echo $row['ca_mobile_list_mod']; ?>" id="ca_mobileimg_num<?php echo $i; ?>" required class="required tbl_input"> <span class="sr-only">개</span>
+            <input type="text" name="ca_mobile_list_mod[<?php echo $i; ?>]" size="3" value="<?php echo $row['ca_mobile_list_mod']; ?>" id="ca_mobileimg_num<?php echo $i; ?>" required class="required form-input"> <span class="sr-only">개</span>
         </td>
         <td headers="sct_pcskin" class="sct_pcskin">
             <label for="ca_skin_dir<?php echo $i; ?>" class="sr-only">PC스킨폴더</label>
@@ -196,7 +196,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
                 <?php echo get_list_skin_options("^list.[0-9]+\.skin\.php", $g5_shop_skin_path, $row['ca_skin']); ?>
             </select>
         </td>
-        <td class="td_mng td_mng_s" rowspan="2">
+        <td class="cell-mng cell-mng-s" rowspan="2">
             <?php echo $s_add; ?>
             <?php echo $s_vie; ?>
             <?php echo $s_upd; ?>
@@ -207,46 +207,46 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목�
         <td headers="sct_admin">
             <?php if ($is_admin == 'super') {?>
             <label for="ca_mb_id<?php echo $i; ?>" class="sr-only">관리회원아이디</label>
-            <input type="text" name="ca_mb_id[<?php echo $i; ?>]" value="<?php echo $row['ca_mb_id']; ?>" id="ca_mb_id<?php echo $i; ?>" class="tbl_input full_input" size="15" maxlength="20">
+            <input type="text" name="ca_mb_id[<?php echo $i; ?>]" value="<?php echo $row['ca_mb_id']; ?>" id="ca_mb_id<?php echo $i; ?>" class="form-input w-full" size="15" maxlength="20">
             <?php } else { ?>
             <input type="hidden" name="ca_mb_id[<?php echo $i; ?>]" value="<?php echo $row['ca_mb_id']; ?>">
             <?php echo $row['ca_mb_id']; ?>
             <?php } ?>
         </td>
-        <td headers="sct_sell" class="td_possible">
+        <td headers="sct_sell" class="cell-possible">
             <input type="checkbox" name="ca_use[<?php echo $i; ?>]" value="1" id="ca_use<?php echo $i; ?>" <?php echo ($row['ca_use'] ? "checked" : ""); ?>>
             <label for="ca_use<?php echo $i; ?>">판매</label>
         </td>
 
-        <td headers="sct_adultcert" class="td_possible">
+        <td headers="sct_adultcert" class="cell-possible">
             <input type="checkbox" name="ca_adult_use[<?php echo $i; ?>]" value="1" id="ca_adult_use_yes<?php echo $i; ?>" <?php if($row['ca_adult_use']) echo 'checked="checked"'; ?>>
             <label for="ca_adult_use_yes<?php echo $i; ?>">사용</label>
         </td>
         <td headers="sct_imgh">
             <label for="ca_img_height<?php echo $i; ?>" class="sr-only">출력이미지 높이</label>
-            <input type="text" name="ca_img_height[<?php echo $i; ?>]" value="<?php echo $row['ca_img_height']; ?>" id="ca_img_height<?php echo $i; ?>" required class="required tbl_input" size="3" > <span class="sr-only">픽셀</span>
+            <input type="text" name="ca_img_height[<?php echo $i; ?>]" value="<?php echo $row['ca_img_height']; ?>" id="ca_img_height<?php echo $i; ?>" required class="required form-input" size="3" > <span class="sr-only">픽셀</span>
         </td>
         <td headers="sct_imgrow">
             <label for="ca_imgline_num<?php echo $i; ?>" class="sr-only">이미지 줄 수</label>
-            <input type="text" name="ca_list_row[<?php echo $i; ?>]" value='<?php echo $row['ca_list_row']; ?>' id="ca_imgline_num<?php echo $i; ?>" required class="required tbl_input" size="3"> <span class="sr-only">줄</span>
+            <input type="text" name="ca_list_row[<?php echo $i; ?>]" value='<?php echo $row['ca_list_row']; ?>' id="ca_imgline_num<?php echo $i; ?>" required class="required form-input" size="3"> <span class="sr-only">줄</span>
         </td>
         <td headers="sct_mobilerow">
             <label for="ca_mobileimg_row<?php echo $i; ?>" class="sr-only">모바일 이미지 줄 수</label>
-            <input type="text" name="ca_mobile_list_row[<?php echo $i; ?>]" value='<?php echo $row['ca_mobile_list_row']; ?>' id="ca_mobileimg_row<?php echo $i; ?>" required class="required tbl_input" size="3">
+            <input type="text" name="ca_mobile_list_row[<?php echo $i; ?>]" value='<?php echo $row['ca_mobile_list_row']; ?>' id="ca_mobileimg_row<?php echo $i; ?>" required class="required form-input" size="3">
         </td>
     </tr>
     <?php }
-    if ($i == 0) echo "<tr><td colspan=\"9\" class=\"empty_table\">자료가 한 건도 없습니다.</td></tr>\n";
+    if ($i == 0) echo "<tr><td colspan=\"9\" class=\"table-empty\">자료가 한 건도 없습니다.</td></tr>\n";
     ?>
     </tbody>
     </table>
 </div>
 
-<div class="btn_fixed_top">
-    <input type="submit" value="일괄수정" class="btn_02 btn">
+<div class="action-bar">
+    <input type="submit" value="일괄수정" class="btn-secondary btn">
 
     <?php if ($is_admin == 'super') {?>
-    <a href="./categoryform.php" id="cate_add" class="btn btn_01">분류 추가</a>
+    <a href="./categoryform.php" id="cate_add" class="btn btn-primary">분류 추가</a>
     <?php } ?>
 </div>
 

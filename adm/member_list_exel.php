@@ -34,12 +34,12 @@ $colspan = 14;
 </div>
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
-    <span class="btn_ov01">
-        <span class="ov_txt">총건수 </span>
+    <span class="summary-chip">
+        <span class="summary-label">총건수 </span>
         <?php if($total_error != "") { ?>
-        <span class="ov_num"> <?php echo $total_error ?></span>
+        <span class="summary-value"> <?php echo $total_error ?></span>
         <?php } else {?>
-        <span class="ov_num"> <?php echo number_format($total_count) ?>건</span>
+        <span class="summary-value"> <?php echo number_format($total_count) ?>건</span>
         <?php } ?>
     </span>
 </div>
@@ -429,13 +429,13 @@ function handleProgressUpdate() {
 
             if (zipFile) {
                 const url = `${filePath}/${zipFile}`;
-                html += `<a href="${url}" class="btn btn_03" download>압축파일 다운로드</a>`;
+                html += `<a href="${url}" class="btn btn-tertiary" download>압축파일 다운로드</a>`;
                 downloadBoxEl.innerHTML = html;
                 triggerAutoDownload(url, zipFile);
             } else if (files?.length) {
                 files.forEach((file, index) => {
                     const url = `${filePath}/${file}`;
-                    html += `<a class="btn btn_03" href="${url}" download>엑셀파일 다운로드 ${index + 1}</a>`;
+                    html += `<a class="btn btn-tertiary" href="${url}" download>엑셀파일 다운로드 ${index + 1}</a>`;
                 });
                 downloadBoxEl.innerHTML = html;
 

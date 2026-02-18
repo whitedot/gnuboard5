@@ -137,7 +137,7 @@ if($default['de_escrow_use'])
     $qstr1 .= "&amp;od_escrow=$od_escrow";
 $qstr = "$qstr1&amp;sort1=$sort1&amp;sort2=$sort2&amp;page=$page";
 
-$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
+$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목록</a>';
 
 if( function_exists('pg_setting_check') ){
 	pg_setting_check(true);
@@ -146,9 +146,9 @@ if( function_exists('pg_setting_check') ){
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php echo $listall; ?>
-    <span class="btn_ov01"><span class="ov_txt">전체 주문내역</span><span class="ov_num"> <?php echo number_format($total_count); ?>건</span></span>
+    <span class="summary-chip"><span class="summary-label">전체 주문내역</span><span class="summary-value"> <?php echo number_format($total_count); ?>건</span></span>
     <?php if($od_status == '준비' && $total_count > 0) { ?>
-    <a href="./orderdelivery.php" id="order_delivery" class="ov_a">엑셀배송처리</a>
+    <a href="./orderdelivery.php" id="order_delivery" class="summary-all">엑셀배송처리</a>
     <?php } ?>
 </div>
 
@@ -174,7 +174,7 @@ if( function_exists('pg_setting_check') ){
 </select>
 
 <label for="search" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="search" value="<?php echo $search; ?>" id="search" required class="required frm_input form-input" autocomplete="off">
+<input type="text" name="search" value="<?php echo $search; ?>" id="search" required class="required form-input" autocomplete="off">
 <input type="submit" value="검색" class="btn btn-sm border-default-300">
 
 </form>
@@ -240,8 +240,8 @@ if( function_exists('pg_setting_check') ){
 
 <div class="sch_last">
     <strong>주문일자</strong>
-    <input type="text" id="fr_date"  name="fr_date" value="<?php echo $fr_date; ?>" class="frm_input form-input" size="10" maxlength="10"> ~
-    <input type="text" id="to_date"  name="to_date" value="<?php echo $to_date; ?>" class="frm_input form-input" size="10" maxlength="10">
+    <input type="text" id="fr_date"  name="fr_date" value="<?php echo $fr_date; ?>" class="form-input" size="10" maxlength="10"> ~
+    <input type="text" id="to_date"  name="to_date" value="<?php echo $to_date; ?>" class="form-input" size="10" maxlength="10">
     <button type="button" onclick="javascript:set_date('오늘');">오늘</button>
     <button type="button" onclick="javascript:set_date('어제');">어제</button>
     <button type="button" onclick="javascript:set_date('이번주');">이번주</button>
@@ -256,7 +256,7 @@ if( function_exists('pg_setting_check') ){
 <form name="forderlist" id="forderlist" onsubmit="return forderlist_submit(this);" method="post" autocomplete="off">
 <input type="hidden" name="search_od_status" value="<?php echo $od_status; ?>">
 
-<div class="tbl_head01 tbl_wrap card">
+<div class="table-card table-shell card">
     <table id="sodr_list">
     <caption>주문 내역 목록</caption>
     <thead>
@@ -355,26 +355,26 @@ if( function_exists('pg_setting_check') ){
         }
     ?>
     <tr class="orderlist<?php echo ' '.$bg; ?>">
-        <td rowspan="3" class="td_chk">
+        <td rowspan="3" class="cell-chk">
             <input type="hidden" name="od_id[<?php echo $i ?>]" value="<?php echo $row['od_id'] ?>" id="od_id_<?php echo $i ?>">
             <label for="chk_<?php echo $i; ?>" class="sr-only">주문번호 <?php echo $row['od_id']; ?></label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
         </td>
-        <td headers="th_ordnum" class="td_odrnum2" rowspan="2" colspan="2">
+        <td headers="th_ordnum" class="cell-odrnum2" rowspan="2" colspan="2">
             <a href="<?php echo G5_SHOP_URL; ?>/orderinquiryview.php?od_id=<?php echo $row['od_id']; ?>&amp;uid=<?php echo $uid; ?>" class="orderitem"><?php echo $disp_od_id; ?></a>
             <?php echo $od_mobile; ?>
             <?php echo $od_paytype; ?>
         </td>
-        <td headers="th_odrer" class="td_name"><?php echo $mb_nick; ?></td>
-        <td headers="th_odrertel" class="td_tel"><?php echo get_text($row['od_tel']); ?></td>
-        <td headers="th_recvr" class="td_name"><a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sort1=<?php echo $sort1; ?>&amp;sort2=<?php echo $sort2; ?>&amp;sel_field=od_b_name&amp;search=<?php echo get_text($row['od_b_name']); ?>"><?php echo get_text($row['od_b_name']); ?></a></td>
-        <td rowspan="3" class="td_num td_numsum"><?php echo number_format($row['od_cart_price'] + $row['od_send_cost'] + $row['od_send_cost2']); ?></td>
-        <td rowspan="3" class="td_num_right"><?php echo number_format($row['od_receipt_price']); ?></td>
-        <td rowspan="3" class="td_numcancel<?php echo $td_color; ?> td_num"><?php echo number_format($row['od_cancel_price']); ?></td>
-        <td rowspan="3" class="td_num_right"><?php echo number_format($row['couponprice']); ?></td>
-        <td rowspan="3" class="td_num_right"><?php echo number_format($row['od_misu']); ?></td>
-        <td rowspan="3" class="td_mng td_mng_s">
-            <a href="./orderform.php?od_id=<?php echo $row['od_id']; ?>&amp;<?php echo $qstr; ?>" class="mng_mod btn btn_02"><span class="sr-only"><?php echo $row['od_id']; ?> </span>보기</a>
+        <td headers="th_odrer" class="cell-name"><?php echo $mb_nick; ?></td>
+        <td headers="th_odrertel" class="cell-tel"><?php echo get_text($row['od_tel']); ?></td>
+        <td headers="th_recvr" class="cell-name"><a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sort1=<?php echo $sort1; ?>&amp;sort2=<?php echo $sort2; ?>&amp;sel_field=od_b_name&amp;search=<?php echo get_text($row['od_b_name']); ?>"><?php echo get_text($row['od_b_name']); ?></a></td>
+        <td rowspan="3" class="cell-num cell-numsum"><?php echo number_format($row['od_cart_price'] + $row['od_send_cost'] + $row['od_send_cost2']); ?></td>
+        <td rowspan="3" class="cell-num-right"><?php echo number_format($row['od_receipt_price']); ?></td>
+        <td rowspan="3" class="cell-numcancel<?php echo $td_color; ?> cell-num"><?php echo number_format($row['od_cancel_price']); ?></td>
+        <td rowspan="3" class="cell-num-right"><?php echo number_format($row['couponprice']); ?></td>
+        <td rowspan="3" class="cell-num-right"><?php echo number_format($row['od_misu']); ?></td>
+        <td rowspan="3" class="cell-mng cell-mng-s">
+            <a href="./orderform.php?od_id=<?php echo $row['od_id']; ?>&amp;<?php echo $qstr; ?>" class="mng_mod btn btn-secondary"><span class="sr-only"><?php echo $row['od_id']; ?> </span>보기</a>
         </td>
     </tr>
     <tr class="<?php echo $bg; ?>">
@@ -399,7 +399,7 @@ if( function_exists('pg_setting_check') ){
         </td>
         <td headers="delino" class="delino">
             <?php if ($od_status == '준비') { ?>
-                <input type="text" name="od_invoice[<?php echo $i; ?>]" value="<?php echo $row['od_invoice']; ?>" class="frm_input form-input" size="10">
+                <input type="text" name="od_invoice[<?php echo $i; ?>]" value="<?php echo $row['od_invoice']; ?>" class="form-input" size="10">
             <?php } else {
                 echo ($row['od_invoice'] ? $row['od_invoice'] : '-');
             } ?>
@@ -415,7 +415,7 @@ if( function_exists('pg_setting_check') ){
         </td>
         <td headers="delidate">
             <?php if ($od_status == '준비') { ?>
-                <input type="text" name="od_invoice_time[<?php echo $i; ?>]" value="<?php echo $invoice_time; ?>" class="frm_input form-input" size="10" maxlength="19">
+                <input type="text" name="od_invoice_time[<?php echo $i; ?>]" value="<?php echo $invoice_time; ?>" class="form-input" size="10" maxlength="19">
             <?php } else {
                 echo (is_null_time($row['od_invoice_time']) ? '-' : substr($row['od_invoice_time'],2,14));
             } ?>
@@ -431,7 +431,7 @@ if( function_exists('pg_setting_check') ){
     }
     sql_free_result($result);
     if ($i == 0)
-        echo '<tr><td colspan="12" class="empty_table">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="12" class="table-empty">자료가 없습니다.</td></tr>';
     ?>
     </tbody>
     <tfoot>
@@ -512,7 +512,7 @@ $(function(){
                 $this.after("<div id=\"orderitemlist\"><div class=\"itemlist\"></div></div>");
                 $("#orderitemlist .itemlist")
                     .html(data)
-                    .append("<div id=\"orderitemlist_close\"><button type=\"button\" id=\"orderitemlist-x\" class=\"btn_frmline\">닫기</button></div>");
+                    .append("<div id=\"orderitemlist_close\"><button type=\"button\" id=\"orderitemlist-x\" class=\"btn-inline\">닫기</button></div>");
             }
         );
 

@@ -8,7 +8,7 @@ $g5['title'] = '부가서비스';
 include_once('./admin.head.php');
 ?>
 
-<div class="local_desc02 local_desc">
+<div class="hint-box">
     <p>아래의 서비스들은 영카트에서 이미 지원하는 기능으로 별도의 개발이 필요 없으며 서비스 신청후 바로 사용 할수 있습니다.</p>
 </div>
 

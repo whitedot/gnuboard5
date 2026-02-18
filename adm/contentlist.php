@@ -56,14 +56,14 @@ $result = sql_query($sql);
 
 <div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <?php if ($page > 1) { ?><a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>">처음으로</a><?php } ?>
-    <span class="btn_ov01"><span class="ov_txt">전체 내용</span><span class="ov_num"> <?php echo $total_count; ?>건</span></span>
+    <span class="summary-chip"><span class="summary-label">전체 내용</span><span class="summary-value"> <?php echo $total_count; ?>건</span></span>
 </div>
 
-<div class="btn_fixed_top">
-    <a href="./contentform.php" class="btn btn_01">내용 추가</a>
+<div class="action-bar">
+    <a href="./contentform.php" class="btn btn-primary">내용 추가</a>
 </div>
 
-<div class="tbl_head01 tbl_wrap card">
+<div class="table-card table-shell card">
     <table>
         <caption><?php echo $g5['title']; ?> 목록</caption>
         <thead>
@@ -78,18 +78,18 @@ $result = sql_query($sql);
                 $bg = 'bg' . ($i % 2);
             ?>
                 <tr class="<?php echo $bg; ?>">
-                    <td class="td_id"><?php echo $row['co_id']; ?></td>
-                    <td class="td_left"><?php echo htmlspecialchars2($row['co_subject']); ?></td>
-                    <td class="td_mng td_mng_l">
-                        <a href="./contentform.php?w=u&amp;co_id=<?php echo $row['co_id']; ?>" class="btn btn_03"><span class="sr-only"><?php echo htmlspecialchars2($row['co_subject']); ?> </span>수정</a>
-                        <a href="<?php echo get_pretty_url('content', $row['co_id']); ?>" class="btn btn_02"><span class="sr-only"><?php echo htmlspecialchars2($row['co_subject']); ?> </span> 보기</a>
-                        <a href="./contentformupdate.php?w=d&amp;co_id=<?php echo $row['co_id']; ?>" onclick="return delete_confirm(this);" class="btn btn_02"><span class="sr-only"><?php echo htmlspecialchars2($row['co_subject']); ?> </span>삭제</a>
+                    <td class="cell-id"><?php echo $row['co_id']; ?></td>
+                    <td class="cell-left"><?php echo htmlspecialchars2($row['co_subject']); ?></td>
+                    <td class="cell-mng cell-mng-l">
+                        <a href="./contentform.php?w=u&amp;co_id=<?php echo $row['co_id']; ?>" class="btn btn-tertiary"><span class="sr-only"><?php echo htmlspecialchars2($row['co_subject']); ?> </span>수정</a>
+                        <a href="<?php echo get_pretty_url('content', $row['co_id']); ?>" class="btn btn-secondary"><span class="sr-only"><?php echo htmlspecialchars2($row['co_subject']); ?> </span> 보기</a>
+                        <a href="./contentformupdate.php?w=d&amp;co_id=<?php echo $row['co_id']; ?>" onclick="return delete_confirm(this);" class="btn btn-secondary"><span class="sr-only"><?php echo htmlspecialchars2($row['co_subject']); ?> </span>삭제</a>
                     </td>
                 </tr>
             <?php
             }
             if ($i == 0) {
-                echo '<tr><td colspan="3" class="empty_table">자료가 한건도 없습니다.</td></tr>';
+                echo '<tr><td colspan="3" class="table-empty">자료가 한건도 없습니다.</td></tr>';
             }
             ?>
         </tbody>

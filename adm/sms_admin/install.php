@@ -40,7 +40,7 @@ if( isset($g5['sms5_config_table']) && sql_query(" DESCRIBE {$g5['sms5_config_ta
         <li id="sms5_job_03"></li>
     </ol>
 
-    <p><button type="button" id="sms5_btn_next" disabled class="btn_frmline" onclick="location.href='config.php';">SMS 기본설정</button></p>
+    <p><button type="button" id="sms5_btn_next" disabled class="btn-inline" onclick="location.href='config.php';">SMS 기본설정</button></p>
 
 </div>
 <?php

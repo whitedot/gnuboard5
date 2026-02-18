@@ -1,12 +1,12 @@
 <section id="anc_mb_consent">
-    <h2 class="h2_frm">수신 및 공개 설정</h2>
-    <div class="tbl_frm01 tbl_wrap">
+    <h2 class="section-title">수신 및 공개 설정</h2>
+    <div class="form-card table-shell">
         <table>
             <caption>수신 및 공개 설정</caption>
             <colgroup>
-                <col class="grid_4">
+                <col class="col-4">
                 <col>
-                <col class="grid_4">
+                <col class="col-4">
                 <col>
             </colgroup>
             <tbody>

@@ -45,11 +45,11 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
     <input type="hidden" name="co_html" value="1">
     <input type="hidden" name="token" value="">
 
-    <div class="tbl_frm01 tbl_wrap">
+    <div class="form-card table-shell">
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <colgroup>
-                <col class="grid_4">
+                <col class="col-4">
                 <col>
             </colgroup>
             <tbody>
@@ -57,13 +57,13 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                     <th scope="row"><label for="co_id">ID</label></th>
                     <td>
                         <?php echo help('20자 이내의 영문자, 숫자, _ 만 가능합니다.'); ?>
-                        <input type="text" value="<?php echo $co['co_id']; ?>" name="co_id" id="co_id" required <?php echo $readonly; ?> class="required <?php echo $readonly; ?> frm_input" size="20" maxlength="20">
-                        <?php if ($w == 'u') { ?><a href="<?php echo get_pretty_url('content', $co_id); ?>" class="btn_frmline">내용확인</a><?php } ?>
+                        <input type="text" value="<?php echo $co['co_id']; ?>" name="co_id" id="co_id" required <?php echo $readonly; ?> class="required <?php echo $readonly; ?> form-input" size="20" maxlength="20">
+                        <?php if ($w == 'u') { ?><a href="<?php echo get_pretty_url('content', $co_id); ?>" class="btn-inline">내용확인</a><?php } ?>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="co_subject">제목</label></th>
-                    <td><input type="text" name="co_subject" value="<?php echo htmlspecialchars2($co['co_subject']); ?>" id="co_subject" required class="frm_input required" size="90"></td>
+                    <td><input type="text" name="co_subject" value="<?php echo htmlspecialchars2($co['co_subject']); ?>" id="co_subject" required class="form-input required" size="90"></td>
                 </tr>
                 <tr>
                     <th scope="row">내용</th>
@@ -91,14 +91,14 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                     <th scope="row"><label for="co_include_head">상단 파일 경로</label></th>
                     <td>
                         <?php echo help("설정값이 없으면 기본 상단 파일을 사용합니다."); ?>
-                        <input type="text" name="co_include_head" value="<?php echo get_sanitize_input($co['co_include_head']); ?>" id="co_include_head" class="frm_input" size="60">
+                        <input type="text" name="co_include_head" value="<?php echo get_sanitize_input($co['co_include_head']); ?>" id="co_include_head" class="form-input" size="60">
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="co_include_tail">하단 파일 경로</label></th>
                     <td>
                         <?php echo help("설정값이 없으면 기본 하단 파일을 사용합니다."); ?>
-                        <input type="text" name="co_include_tail" value="<?php echo get_sanitize_input($co['co_include_tail']); ?>" id="co_include_tail" class="frm_input" size="60">
+                        <input type="text" name="co_include_tail" value="<?php echo get_sanitize_input($co['co_include_tail']); ?>" id="co_include_tail" class="form-input" size="60">
                     </td>
                 </tr>
                 <tr id="admin_captcha_box" style="display:none;">
@@ -173,9 +173,9 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
         </table>
     </div>
 
-    <div class="btn_fixed_top">
-        <a href="./contentlist.php" class="btn btn_02">목록</a>
-        <input type="submit" value="확인" class="btn btn_submit" accesskey="s">
+    <div class="action-bar">
+        <a href="./contentlist.php" class="btn btn-secondary">목록</a>
+        <input type="submit" value="확인" class="btn btn-primary" accesskey="s">
     </div>
 
 </form>

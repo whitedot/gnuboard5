@@ -51,7 +51,7 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 $colspan = 9;
 ?>
 <div class="local_ov">
-    <span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> <?php echo number_format($total_count) ?> 개</span></span>
+    <span class="summary-chip"><span class="summary-label">전체 </span><span class="summary-value"> <?php echo number_format($total_count) ?> 개</span></span>
 </div>
 <form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
 
@@ -61,7 +61,7 @@ $colspan = 9;
     <option value="cp_id"<?php echo get_selected($sfl, "cp_id"); ?>>쿠폰코드</option>
 </select>
 <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required frm_input form-input">
+<input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required form-input">
 <input type="submit" class="btn btn-sm border-default-300" value="검색">
 </form>
 
@@ -75,7 +75,7 @@ $colspan = 9;
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 <input type="hidden" name="token" value="">
 
-<div class="tbl_head01 tbl_wrap card">
+<div class="table-card table-shell card">
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <thead>
@@ -131,19 +131,19 @@ $colspan = 9;
     ?>
 
     <tr class="<?php echo $bg; ?>">
-        <td class="td_chk">
+        <td class="cell-chk">
             <input type="hidden" id="cp_id_<?php echo $i; ?>" name="cp_id[<?php echo $i; ?>]" value="<?php echo $row['cp_id']; ?>">
             <input type="checkbox" id="chk_<?php echo $i; ?>" name="chk[]" value="<?php echo $i; ?>" title="내역선택">
         </td>
         <td><?php echo $cp_method; ?></td>
         <td><?php echo $row['cp_id']; ?></td>
-        <td class="td_left"><?php echo $row['cp_subject']; ?></td>
+        <td class="cell-left"><?php echo $row['cp_subject']; ?></td>
         <td><?php echo $cp_target; ?></td>
-        <td class="td_name sv_use"><div><?php echo $row['mb_id']; ?></div></td>
-        <td class="td_datetime"><?php echo substr($row['cp_start'], 2, 8); ?> ~ <?php echo substr($row['cp_end'], 2, 8); ?></td>
-        <td class="td_cntsmall"><?php echo number_format($used_count); ?></td>
-        <td class="td_mng td_mng_s">
-            <a href="./couponform.php?w=u&amp;cp_id=<?php echo $row['cp_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn_03"><span class="sr-only"><?php echo $row['cp_id']; ?> </span>수정</a>
+        <td class="cell-name sv_use"><div><?php echo $row['mb_id']; ?></div></td>
+        <td class="cell-datetime"><?php echo substr($row['cp_start'], 2, 8); ?> ~ <?php echo substr($row['cp_end'], 2, 8); ?></td>
+        <td class="cell-cntsmall"><?php echo number_format($used_count); ?></td>
+        <td class="cell-mng cell-mng-s">
+            <a href="./couponform.php?w=u&amp;cp_id=<?php echo $row['cp_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn-tertiary"><span class="sr-only"><?php echo $row['cp_id']; ?> </span>수정</a>
         </td>
     </tr>
 
@@ -151,14 +151,14 @@ $colspan = 9;
     }
 
     if ($i == 0)
-        echo '<tr><td colspan="'.$colspan.'" class="empty_table">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="'.$colspan.'" class="table-empty">자료가 없습니다.</td></tr>';
     ?>
     </tbody>
     </table>
 </div>
-<div class="btn_fixed_top">
-     <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn_02">
-   <a href="./couponform.php" id="coupon_add" class="btn btn_01">쿠폰 추가</a> 
+<div class="action-bar">
+     <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
+   <a href="./couponform.php" id="coupon_add" class="btn btn-primary">쿠폰 추가</a> 
 </div>
 
 </form>

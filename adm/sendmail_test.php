@@ -28,7 +28,7 @@ if (isset($_POST['email'])) {
 
     if( $real_email ){
         echo '<section class="card p-5 mb-base">';
-        echo '<h2 class="h2_frm">결과메세지</h2>';
+        echo '<h2 class="section-title">결과메세지</h2>';
         echo '<div class="hint-text"><p>';
         echo '다음 '.count($real_email).'개의 메일 주소로 테스트 메일 발송이 완료되었습니다.';
         echo '</p></div>';
@@ -49,7 +49,7 @@ if (isset($_POST['email'])) {
 ?>
 
 <section>
-    <h2 class="h2_frm">테스트 메일 발송</h2>
+    <h2 class="section-title">테스트 메일 발송</h2>
     <div class="hint-text">
         <p>
             메일서버가 정상적으로 동작 중인지 확인할 수 있습니다.<br>
@@ -64,7 +64,7 @@ if (isset($_POST['email'])) {
     <fieldset id="fsendmailtest" class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6">
         <legend>테스트메일 발송</legend>
         <label for="email" class="form-label py-2 mb-0! lg:col-span-1">받는 메일주소<strong class="sr-only"> 필수</strong></label>
-        <input type="text" name="email" value="<?php echo $member['mb_email'] ?>" id="email" required class="required email frm_input form-input lg:col-span-2" size="80">
+        <input type="text" name="email" value="<?php echo $member['mb_email'] ?>" id="email" required class="required email form-input lg:col-span-2" size="80">
         <input type="submit" value="발송" class="btn btn-sm border-default-300 lg:col-span-1">
     </fieldset>
     </form>

@@ -36,7 +36,7 @@ $fg_no = isset($_REQUEST['fg_no']) ? (int) $_REQUEST['fg_no'] : 0;
     <option value="content"<?php echo get_selected('content', $st); ?>>이모티콘</option>
 </select>
 <label for="sv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="sv" value="<?php echo $sv?>" id="sv" required class="frm_input form-input required" size="15">
+<input type="text" name="sv" value="<?php echo $sv?>" id="sv" required class="form-input required" size="15">
 <input type="submit" value="검색" class="btn btn-sm border-default-300">
 </form>
 

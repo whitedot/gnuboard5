@@ -20,28 +20,28 @@ if(!$row['pp_id'])
     <form name="fpersonalpaycopy" method="post" action="./personalpaycopyupdate.php" onsubmit="return form_check(this);">
     <input type="hidden" name="pp_id" value="<?php echo $pp_id; ?>">
 
-     <div class="tbl_frm01 tbl_wrap">
+     <div class="form-card table-shell">
         <table>
         <caption><?php echo $g5['title']; ?></caption>
         <tbody>
         <tr>
             <th scope="row"><label for="pp_name">이름</label></th>
-            <td><input type="text" name="pp_name" value="<?php echo $row['pp_name']; ?>" id="pp_name" required class="required frm_input"></td>
+            <td><input type="text" name="pp_name" value="<?php echo $row['pp_name']; ?>" id="pp_name" required class="required form-input"></td>
         </tr>
         <tr>
             <th scope="row"><label for="od_id">주문번호</label></th>
-            <td><input type="text" name="od_id" value="<?php echo $row['od_id']; ?>" id="od_id" class="frm_input"></td>
+            <td><input type="text" name="od_id" value="<?php echo $row['od_id']; ?>" id="od_id" class="form-input"></td>
         </tr>
         <tr>
             <th scope="row"><label for="pp_price">주문금액</label></th>
-            <td><input type="text" name="pp_price" value="" id="pp_price" required class="required frm_input" size="20"> 원</td>
+            <td><input type="text" name="pp_price" value="" id="pp_price" required class="required form-input" size="20"> 원</td>
         </tr>
         </tbody>
         </table>
     </div>
 
-    <div class="btn_confirm01 btn_confirm">
-        <input type="submit" value="복사하기" class="btn_submit">
+    <div class="action-bar">
+        <input type="submit" value="복사하기" class="btn-primary">
         <button type="button" onclick="self.close();">창닫기</button>
     </div>
 
