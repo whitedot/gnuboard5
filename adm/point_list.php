@@ -88,7 +88,7 @@ if (strstr($sfl, "mb_id")) {
 
 <form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
     <label for="sfl" class="sr-only">검색대상</label>
-    <select name="sfl" id="sfl" class="form-select">
+    <select class="form-select" name="sfl" id="sfl" class="form-select">
         <option value="mb_id" <?php echo get_selected($sfl, "mb_id"); ?>>회원아이디</option>
         <option value="po_content" <?php echo get_selected($sfl, "po_content"); ?>>내용</option>
     </select>
@@ -228,7 +228,7 @@ if (strstr($sfl, "mb_id")) {
         </div>
 
         <div class="btn_confirm01 btn_confirm">
-            <input type="submit" value="확인" class="btn_submit btn">
+            <input type="submit" value="확인" class="btn btn-sm border-default-300">
         </div>
 
     </form>

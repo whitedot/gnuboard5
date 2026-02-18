@@ -198,7 +198,7 @@ echo $pagelist;
                         <label for="au_menu" class="form-label py-2 mb-0!">접근가능메뉴<strong class="sound_only">필수</strong></label>
                     </div>
                     <div class="lg:col-span-3">
-                        <select id="au_menu" name="au_menu" required class="required form-select">
+                        <select class="form-select" id="au_menu" name="au_menu" required class="required form-select">
                             <option value=''>선택하세요</option>
                             <?php
                             foreach ($auth_menu as $key => $value) {
@@ -240,7 +240,7 @@ echo $pagelist;
         </div>
 
         <div class="btn_confirm01 btn_confirm">
-            <input type="submit" value="추가" class="btn_submit btn">
+            <input type="submit" value="추가" class="btn btn-sm border-default-300">
         </div>
     </section>
 

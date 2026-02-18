@@ -88,7 +88,7 @@ $sub_menu_info = '';
                         </td>
                         <td class="td_mng">
                             <label for="me_target_<?php echo $i; ?>" class="sr-only">새창</label>
-                            <select name="me_target[]" id="me_target_<?php echo $i; ?>">
+                            <select class="form-select" name="me_target[]" id="me_target_<?php echo $i; ?>">
                                 <option value="self" <?php echo get_selected($row['me_target'], 'self', true); ?>>사용안함</option>
                                 <option value="blank" <?php echo get_selected($row['me_target'], 'blank', true); ?>>사용함</option>
                             </select>
@@ -99,14 +99,14 @@ $sub_menu_info = '';
                         </td>
                         <td class="td_mng">
                             <label for="me_use_<?php echo $i; ?>" class="sr-only">PC사용</label>
-                            <select name="me_use[]" id="me_use_<?php echo $i; ?>">
+                            <select class="form-select" name="me_use[]" id="me_use_<?php echo $i; ?>">
                                 <option value="1" <?php echo get_selected($row['me_use'], '1', true); ?>>사용함</option>
                                 <option value="0" <?php echo get_selected($row['me_use'], '0', true); ?>>사용안함</option>
                             </select>
                         </td>
                         <td class="td_mng">
                             <label for="me_mobile_use_<?php echo $i; ?>" class="sr-only">모바일사용</label>
-                            <select name="me_mobile_use[]" id="me_mobile_use_<?php echo $i; ?>">
+                            <select class="form-select" name="me_mobile_use[]" id="me_mobile_use_<?php echo $i; ?>">
                                 <option value="1" <?php echo get_selected($row['me_mobile_use'], '1', true); ?>>사용함</option>
                                 <option value="0" <?php echo get_selected($row['me_mobile_use'], '0', true); ?>>사용안함</option>
                             </select>
@@ -131,7 +131,7 @@ $sub_menu_info = '';
 
     <div class="btn_fixed_top">
         <button type="button" onclick="return add_menu();" class="btn btn_02">메뉴추가<span class="sr-only"> 새창</span></button>
-        <input type="submit" name="act_button" value="확인" class="btn_submit btn ">
+        <input type="submit" name="act_button" value="확인" class="btn btn-sm border-default-300">
     </div>
 
 </form>

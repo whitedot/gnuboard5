@@ -28,11 +28,11 @@ $sql = "select * $sql_common order by fa_order , fa_id ";
 $result = sql_query($sql);
 ?>
 
-<div class="local_ov01 local_ov">
+<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
     <span class="btn_ov01"><span class="ov_txt"> 등록된 FAQ 상세내용</span><span class="ov_num"> <?php echo $total_count; ?>건</span></span>
 </div>
 
-<div class="local_desc01 local_desc">
+<div class="hint-text">
     <ol>
         <li>FAQ는 무제한으로 등록할 수 있습니다</li>
         <li><strong>FAQ 상세내용 추가</strong>를 눌러 자주하는 질문과 답변을 입력합니다.</li>

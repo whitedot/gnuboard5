@@ -125,7 +125,7 @@ require_once './admin.head.php';
     </div>
 
     <div class="btn_confirm01 btn_confirm">
-        <input type="submit" value="메일보내기" class="btn_submit">
+        <input type="submit" value="메일보내기" class="btn btn-sm border-default-300">
         <a href="./mail_select_form.php?ma_id=<?php echo $ma_id ?>">뒤로</a>
     </div>
 

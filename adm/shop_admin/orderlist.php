@@ -179,7 +179,7 @@ if( function_exists('pg_setting_check') ){
 
 </form>
 
-<form class="local_sch03 local_sch">
+<form class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
 <div>
     <strong>주문상태</strong>
     <input type="radio" name="od_status" value="" id="od_status_all"    <?php echo get_checked($od_status, '');     ?>>
