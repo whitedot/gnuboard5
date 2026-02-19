@@ -1,4 +1,3 @@
-// Legacy entry point. Canonical source: js/ui-kit/ui-overlay.js
 (function () {
   'use strict';
 

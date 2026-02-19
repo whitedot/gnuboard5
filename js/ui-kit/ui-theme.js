@@ -1,4 +1,3 @@
-// Legacy entry point. Canonical source: js/ui-kit/ui-theme.js
 (function () {
     var storageKey = 'g5aif-ui-theme';
     var root = document.documentElement;

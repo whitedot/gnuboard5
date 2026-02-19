@@ -634,5 +634,5 @@
                     </div>
                 </div>
 
-<script src="../js/ui-tabs.js?v=<?php echo @filemtime(__DIR__ . '/../js/ui-tabs.js') ?: time(); ?>"></script>
+<script src="../../js/ui-kit/ui-tabs.js?v=<?php echo @filemtime(__DIR__ . '/../../js/ui-kit/ui-tabs.js') ?: time(); ?>"></script>
 <?php include 'layout/footer.php'; ?>

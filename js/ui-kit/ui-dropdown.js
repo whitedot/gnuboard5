@@ -1,4 +1,3 @@
-// Legacy entry point. Canonical source: js/ui-kit/ui-dropdown.js
 (function () {
   'use strict';
 
