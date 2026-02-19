@@ -24,20 +24,20 @@ if (G5_IS_MOBILE) {
 }
 ?>
 
-<div id="sit_sms_new" class="new_win">
+<div id="sit_sms_new">
     <h1 id="win_title"><?php echo $g5['title']; ?></h1>
 
     <form name="fstocksms" method="post" action="<?php echo G5_HTTPS_SHOP_URL; ?>/itemstocksmsupdate.php" onsubmit="return fstocksms_submit(this);"  autocomplete="off">
     <input type="hidden" name="it_id" value="<?php echo $it_id; ?>">
 
-    <div class="form_01">
+    <div>
         <ul>
-            <li class="prd_name">
+            <li>
                 <?php echo $it['it_name']; ?>
             </li>
             <li>
-                <label for="ss_hp" class="sr-only">휴대폰번호<strong> 필수</strong></label>
-                <input type="text" name="ss_hp" value="<?php echo $member['mb_hp']; ?>" id="ss_hp" required class="required frm_input full_input" placeholder="휴대폰번호">
+                <label for="ss_hp">휴대폰번호<strong> 필수</strong></label>
+                <input type="text" name="ss_hp" value="<?php echo $member['mb_hp']; ?>" id="ss_hp" required placeholder="휴대폰번호">
             </li>
             <li>
                 <strong>개인정보처리방침안내</strong>
@@ -45,14 +45,14 @@ if (G5_IS_MOBILE) {
             </li>
         </ul>
         
-        <div id="sms_agree" class="chk_box">
-            <input type="checkbox" name="agree" value="1" id="agree" class="selec_chk">
+        <div id="sms_agree">
+            <input type="checkbox" name="agree" value="1" id="agree">
             <label for="agree"><span></span>개인정보처리방침안내의 내용에 동의합니다.</label>
         </div>
         
-        <div class="win_btn">
-            <button type="submit" class="btn_submit">확인</button>
-            <button type="button" onclick="window.close();" class="btn_close">닫기</button>
+        <div>
+            <button type="submit">확인</button>
+            <button type="button" onclick="window.close();">닫기</button>
         </div>
     </div>
     </form>

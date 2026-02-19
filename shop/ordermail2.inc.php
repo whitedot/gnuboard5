@@ -62,8 +62,8 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     $result2 = sql_query($sql2);
 
     $options = '';
-    $options_ul = ' style="margin:0;padding:0"'; // ul style
-    $options_li = ' style="padding:5px 0;list-style:none"'; // li style
+    $options_ul = ''; // ul style
+    $options_li = ''; // li style
     for($k=0; $row2=sql_fetch_array($result2); $k++) {
         if($k == 0)
             $options .= '<ul'.$options_ul.'>'.PHP_EOL;

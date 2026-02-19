@@ -24,7 +24,7 @@ include_once(G5_SHOP_PATH.'/shop.head.php');
 
 <?php if($default['de_type1_list_use']) { ?>
 <!-- 히트상품 시작 { -->
-<section id="idx_hit" class="sct_wrap">
+<section id="idx_hit">
     <header>
         <h2><a href="<?php echo shop_type_url('1'); ?>">히트상품</a></h2>
     </header>
@@ -68,7 +68,7 @@ $(function(){
 
 <?php if($default['de_type3_list_use']) { ?>
 <!-- 최신상품 시작 { -->
-<section class="sct_wrap">
+<section>
     <header>
         <h2><a href="<?php echo shop_type_url('3'); ?>">최신상품</a></h2>
     </header>
@@ -91,7 +91,7 @@ $(function(){
 
 <?php if($default['de_type2_list_use']) { ?>
 <!-- 추천상품 시작 { -->
-<section class="sct_wrap">
+<section>
     <header>
         <h2><a href="<?php echo shop_type_url('2'); ?>">추천상품</a></h2>
     </header>
@@ -116,7 +116,7 @@ $(function(){
 
 <?php if($default['de_type5_list_use']) { ?>
 <!-- 할인상품 시작 { -->
-<section class="sct_wrap">
+<section>
     <header>
         <h2><a href="<?php echo shop_type_url('5'); ?>">할인상품</a></h2>
     </header>

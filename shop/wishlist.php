@@ -31,7 +31,7 @@ include_once('./_head.php');
     <input type="hidden" name="sw_direct" value="">
     <input type="hidden" name="prog" value="wish">
 
-    <div class="list_02">
+    <div>
         <ul>
         <?php
         $sql  = " select a.wi_id, a.wi_time, b.* from {$g5['g5_shop_wish_table']} a left join {$g5['g5_shop_item_table']} b on ( a.it_id = b.it_id ) ";
@@ -53,9 +53,9 @@ include_once('./_head.php');
         ?>
 
         <li>
-            <div class="sod_ws_img"><a href="<?php echo shop_item_url($row['it_id']); ?>"><?php echo $image; ?></a></div>
-            <div class="wish_info">
-				<div class="wish_chk">
+            <div><a href="<?php echo shop_item_url($row['it_id']); ?>"><?php echo $image; ?></a></div>
+            <div>
+				<div>
                     <?php
                     // 품절검사
                     if(is_soldout($row['it_id']))
@@ -63,9 +63,9 @@ include_once('./_head.php');
                     ?>
                     품절
                     <?php } else { //품절이 아니면 체크할수 있도록한다 ?>
-                    <div class="chk_box">
-                    	<input type="checkbox" name="chk_it_id[<?php echo $i; ?>]" value="1" id="chk_it_id_<?php echo $i; ?>" onclick="out_cd_check(this, '<?php echo $out_cd; ?>');" class="selec_chk">
-                    	<label for="chk_it_id_<?php echo $i; ?>"><span></span><b class="sr-only"><?php echo $row['it_name']; ?></b></label>
+                    <div>
+                    	<input type="checkbox" name="chk_it_id[<?php echo $i; ?>]" value="1" id="chk_it_id_<?php echo $i; ?>" onclick="out_cd_check(this, '<?php echo $out_cd; ?>');">
+                    	<label for="chk_it_id_<?php echo $i; ?>"><span></span><b><?php echo $row['it_name']; ?></b></label>
                     </div>
                     <?php } ?>
                     <input type="hidden" name="it_id[<?php echo $i; ?>]" value="<?php echo $row['it_id']; ?>">
@@ -74,23 +74,23 @@ include_once('./_head.php');
                     <input type="hidden" name="io_value[<?php echo $row['it_id']; ?>][0]" value="<?php echo $row['it_name']; ?>">
                     <input type="hidden" name="ct_qty[<?php echo $row['it_id']; ?>][0]" value="1">
                 </div>
-                <a href="<?php echo shop_item_url($row['it_id']); ?>" class="info_link"><?php echo stripslashes($row['it_name']); ?></a>
-                <div class="info_date"><?php echo $row['wi_time']; ?></div>
-                <a href="./wishupdate.php?w=d&amp;wi_id=<?php echo $row['wi_id']; ?>" class="wish_del"><i class="fa fa-trash" aria-hidden="true"></i><span class="sr-only">삭제</span></a>
+                <a href="<?php echo shop_item_url($row['it_id']); ?>"><?php echo stripslashes($row['it_name']); ?></a>
+                <div><?php echo $row['wi_time']; ?></div>
+                <a href="./wishupdate.php?w=d&amp;wi_id=<?php echo $row['wi_id']; ?>"><i aria-hidden="true"></i><span>삭제</span></a>
            </div>
         </li>
         <?php
         }
 
         if ($i == 0)
-            echo '<li class="empty_table">보관함이 비었습니다.</li>';
+            echo '<li>보관함이 비었습니다.</li>';
         ?>
         </ul>
     </div>
 
     <div id="sod_ws_act">
-        <button type="submit" class="btn01" onclick="return fwishlist_check(document.fwishlist,'');">장바구니 담기</button>
-        <button type="submit" class="btn02" onclick="return fwishlist_check(document.fwishlist,'direct_buy');">주문하기</button>
+        <button type="submit" onclick="return fwishlist_check(document.fwishlist,'');">장바구니 담기</button>
+        <button type="submit" onclick="return fwishlist_check(document.fwishlist,'direct_buy');">주문하기</button>
     </div>
     </form>
 </div>

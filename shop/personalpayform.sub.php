@@ -15,10 +15,10 @@ require_once(G5_SHOP_PATH.'/'.$default['de_pg_service'].'/orderform.1.php');
     require_once(G5_SHOP_PATH.'/'.$default['de_pg_service'].'/orderform.2.php');
     ?>
 
-    <section class="pesonal sod_left"><!-- id="sod_frm_pay" -->
+    <section><!-- id="sod_frm_pay" -->
         <h2>개인결제정보</h2>
 
-        <div class="tbl_frm01 tbl_wrap">
+        <div>
             <table>
             <tbody>
             <?php if(trim($pp['pp_content'])) { ?>
@@ -37,25 +37,25 @@ require_once(G5_SHOP_PATH.'/'.$default['de_pg_service'].'/orderform.1.php');
                 <td colspan="2"><?php echo display_price($pp['pp_price']); ?></td>
             </tr>
             <tr>
-                <th scope="col"><label for="pp_name">이름<strong class="sr-only"> 필수</strong></label></th>
+                <th scope="col"><label for="pp_name">이름<strong> 필수</strong></label></th>
                 <th scope="col"><label for="pp_hp">휴대폰</label></th>
             </tr>
             <tr>
-                <td><input type="text" name="pp_name" value="<?php echo get_text($pp['pp_name']); ?>" id="pp_name" required class="required frm_input"></td>
-                <td><input type="text" name="pp_hp" value="<?php echo get_text($member['mb_hp']); ?>" id="pp_hp" required class="required frm_input"></td>
+                <td><input type="text" name="pp_name" value="<?php echo get_text($pp['pp_name']); ?>" id="pp_name" required></td>
+                <td><input type="text" name="pp_hp" value="<?php echo get_text($member['mb_hp']); ?>" id="pp_hp" required></td>
             </tr>
             <tr>
-                <th scope="col" colspan="2"><label for="pp_email">이메일<strong class="sr-only"> 필수</strong></label></th>
+                <th scope="col" colspan="2"><label for="pp_email">이메일<strong> 필수</strong></label></th>
             </tr>
             <tr>
-                <td colspan="2"><input type="text" name="pp_email" value="<?php echo $member['mb_email']; ?>" id="pp_email" required class="required frm_input" size="30"></td>
+                <td colspan="2"><input type="text" name="pp_email" value="<?php echo $member['mb_email']; ?>" id="pp_email" required size="30"></td>
             </tr>
             </tbody>
             </table>
         </div>
     </section>
 
-    <div class="sod_right" id="personal_pay">
+    <div id="personal_pay">
         <h2>결제수단</h2>
         <?php
         $multi_settle = 0;
@@ -82,13 +82,13 @@ require_once(G5_SHOP_PATH.'/'.$default['de_pg_service'].'/orderform.1.php');
         }
 		?>
 	
-		<ul class="pay_way chk_box">
+		<ul>
 			<li>
 			<?php
 	        // 가상계좌 사용
 	        if ($default['de_vbank_use']) {
 	            $multi_settle++;
-	            echo '<input type="radio" id="pp_settle_vbank" name="pp_settle_case" value="가상계좌" '.$checked.'> <label for="pp_settle_vbank" class="lb_icon"><span></span>'.$escrow_title.'가상계좌</label>'.PHP_EOL;
+	            echo '<input type="radio" id="pp_settle_vbank" name="pp_settle_case" value="가상계좌" '.$checked.'> <label for="pp_settle_vbank"><span></span>'.$escrow_title.'가상계좌</label>'.PHP_EOL;
 	            $checked = '';
 	        }
 			?>
@@ -99,7 +99,7 @@ require_once(G5_SHOP_PATH.'/'.$default['de_pg_service'].'/orderform.1.php');
 	        // 계좌이체 사용
 	        if ($default['de_iche_use']) {
 	            $multi_settle++;
-	            echo '<input type="radio" id="pp_settle_iche" name="pp_settle_case" value="계좌이체" '.$checked.'> <label for="pp_settle_iche" class="lb_icon"><span></span>'.$escrow_title. ($default['de_pg_service'] == 'toss' ? '퀵계좌이체' :'계좌이체') . '</label>'.PHP_EOL;
+	            echo '<input type="radio" id="pp_settle_iche" name="pp_settle_case" value="계좌이체" '.$checked.'> <label for="pp_settle_iche"><span></span>'.$escrow_title. ($default['de_pg_service'] == 'toss' ? '퀵계좌이체' :'계좌이체') . '</label>'.PHP_EOL;
 	            $checked = '';
 	        }
 			?>
@@ -110,7 +110,7 @@ require_once(G5_SHOP_PATH.'/'.$default['de_pg_service'].'/orderform.1.php');
 	        // 휴대폰 사용
 	        if ($default['de_hp_use']) {
 	            $multi_settle++;
-	            echo '<input type="radio" id="pp_settle_hp" name="pp_settle_case" value="휴대폰" '.$checked.'> <label for="pp_settle_hp" class="lb_icon"><span></span>휴대폰</label>'.PHP_EOL;
+	            echo '<input type="radio" id="pp_settle_hp" name="pp_settle_case" value="휴대폰" '.$checked.'> <label for="pp_settle_hp"><span></span>휴대폰</label>'.PHP_EOL;
 	            $checked = '';
 	        }
 			?>
@@ -121,7 +121,7 @@ require_once(G5_SHOP_PATH.'/'.$default['de_pg_service'].'/orderform.1.php');
 	        // 신용카드 사용
 	        if ($default['de_card_use']) {
 	            $multi_settle++;
-	            echo '<input type="radio" id="pp_settle_card" name="pp_settle_case" value="신용카드" '.$checked.'> <label for="pp_settle_card" class="lb_icon"><span></span>신용카드</label>'.PHP_EOL;
+	            echo '<input type="radio" id="pp_settle_card" name="pp_settle_case" value="신용카드" '.$checked.'> <label for="pp_settle_card"><span></span>신용카드</label>'.PHP_EOL;
 	            $checked = '';
 	        }
 			?>

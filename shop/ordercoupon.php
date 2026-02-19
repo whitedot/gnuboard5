@@ -22,11 +22,11 @@ $count = sql_num_rows($result);
 ?>
 
 <!-- 쿠폰 선택 시작 { -->
-<div class="od_coupon_wrap">
-    <div id="od_coupon_frm" class="od_coupon">
+<div>
+    <div id="od_coupon_frm">
         <h3>쿠폰 선택</h3>
         <?php if($count > 0) { ?>
-        <div class="tbl_head02 tbl_wrap">
+        <div>
             <table>
             <caption>쿠폰 선택</caption>
             <thead>
@@ -60,8 +60,8 @@ $count = sql_num_rows($result);
                     <input type="hidden" name="o_cp_subj[]" value="<?php echo $row['cp_subject']; ?>">
                     <?php echo get_text($row['cp_subject']); ?>
                 </td>
-                <td class="td_numbig"><?php echo number_format($dc); ?></td>
-                <td class="td_mngsmall"><button type="button" class="od_cp_apply btn_frmline">적용</button></td>
+                <td><?php echo number_format($dc); ?></td>
+                <td><button type="button">적용</button></td>
             </tr>
             <?php
             }
@@ -74,8 +74,8 @@ $count = sql_num_rows($result);
             echo '<p>사용할 수 있는 쿠폰이 없습니다.</p>';
         }
         ?>
-        <div class="btn_confirm">
-            <button type="button" id="od_coupon_close" class="btn_close"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">닫기</span></button>
+        <div>
+            <button type="button" id="od_coupon_close"><i aria-hidden="true"></i><span>닫기</span></button>
         </div>
     </div>
 </div>

@@ -32,7 +32,7 @@ $result = sql_query($sql);
 ?>
 
 <!-- 쿠폰 내역 시작 { -->
-<div id="coupon" class="new_win">
+<div id="coupon">
     <h1 id="win_title"><?php echo $g5['title'] ?></h1>
     <ul>
     <?php
@@ -62,23 +62,23 @@ $result = sql_query($sql);
         $cp_count++;
     ?>
     <li>
-        <div class="cou_top">
-            <span class="cou_tit"><?php echo $row['cp_subject']; ?></span>
-            <span class="cou_pri"><?php echo $cp_price; ?></span>
+        <div>
+            <span><?php echo $row['cp_subject']; ?></span>
+            <span><?php echo $cp_price; ?></span>
         </div>
         <div>
-            <span class="cou_target"><?php echo $cp_target; ?> <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-            <span class="cou_date"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo substr($row['cp_start'], 2, 8); ?> ~ <?php echo substr($row['cp_end'], 2, 8); ?></span>
+            <span><?php echo $cp_target; ?> <i aria-hidden="true"></i></span>
+            <span><i aria-hidden="true"></i> <?php echo substr($row['cp_start'], 2, 8); ?> ~ <?php echo substr($row['cp_end'], 2, 8); ?></span>
         </div>
     </li>
     <?php
     }
 
     if(!$cp_count)
-        echo '<li class="empty_li">사용할 수 있는 쿠폰이 없습니다.</li>';
+        echo '<li>사용할 수 있는 쿠폰이 없습니다.</li>';
     ?>
     </ul>
-    <button type="button" onclick="window.close();" class="btn_close">창닫기</button>
+    <button type="button" onclick="window.close();">창닫기</button>
 </div>
 
 <?php

@@ -26,7 +26,7 @@ $g5['title'] = $ev['ev_subject'];
 include_once('./_head.php');
 
 if ($is_admin)
-    echo '<div class="sev_admin"><a href="'.G5_ADMIN_URL.'/shop_admin/itemeventform.php?w=u&amp;ev_id='.$ev['ev_id'].'" class="btn_admin btn"><span class="sr-only">이벤트 관리</span><i class="fa fa-cog fa-spin fa-fw"></i></a></div>';
+    echo '<div><a href="'.G5_ADMIN_URL.'/shop_admin/itemeventform.php?w=u&amp;ev_id='.$ev['ev_id'].'"><span>이벤트 관리</span><i></i></a></div>';
 ?>
 
 <script>
@@ -38,7 +38,7 @@ var itemlist_ca_id = "<?php echo $ev_id; ?>";
 <?php
 $himg = G5_DATA_PATH.'/event/'.$ev_id.'_h';
 if (file_exists($himg))
-    echo '<div id="sev_himg" class="sev_img"><img src="'.G5_DATA_URL.'/event/'.$ev_id.'_h" alt=""></div>';
+    echo '<div id="sev_himg"><img src="'.G5_DATA_URL.'/event/'.$ev_id.'_h" alt=""></div>';
 
 // 상단 HTML
 echo '<div id="sev_hhtml">'.conv_content($ev['ev_head_html'], 1).'</div>';
@@ -112,7 +112,7 @@ echo '<div id="sev_thtml">'.conv_content($ev['ev_tail_html'], 1).'</div>';
 
 $timg = G5_DATA_PATH.'/event/'.$ev_id.'_t';
 if (file_exists($timg))
-    echo '<div id="sev_timg" class="sev_img"><img src="'.G5_DATA_URL.'/event/'.$ev_id.'_t" alt=""></div>';
+    echo '<div id="sev_timg"><img src="'.G5_DATA_URL.'/event/'.$ev_id.'_t" alt=""></div>';
 ?>
 <!-- } 이벤트 끝 -->
 

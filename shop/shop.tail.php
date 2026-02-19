@@ -19,15 +19,15 @@ $admin = get_admin("super");
 <!-- 하단 시작 { -->
 <div id="ft">
     <div id="ft_wr">
-        <ul id="ft_link" class="ft_cnt">
+        <ul id="ft_link">
             <li><a href="<?php echo get_pretty_url('content', 'company'); ?>">회사소개</a></li>
             <li><a href="<?php echo get_pretty_url('content', 'provision'); ?>">서비스이용약관</a></li>
             <li><a href="<?php echo get_pretty_url('content', 'privacy'); ?>">개인정보처리방침</a></li>
             <li><a href="<?php echo get_device_change_url(); ?>">모바일버전</a></li>
         </ul>
-        <div id="ft_company" class="ft_cnt">
+        <div id="ft_company">
         	<h2>사이트 정보</h2>
-	        <p class="ft_info">
+	        <p>
 		        <span><b>회사명</b> <?php echo $default['de_admin_company_name']; ?></span>
 	            <span><b>주소</b> <?php echo $default['de_admin_company_addr']; ?></span><br>
 	            <span><b>사업자 등록번호</b> <?php echo $default['de_admin_company_saupja_no']; ?></span>

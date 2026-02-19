@@ -13,7 +13,7 @@ $g5['title'] = '쿠폰존';
 include_once(G5_SHOP_PATH.'/_head.php');
 
 if (!G5_IS_MOBILE && $is_admin)
-    echo '<div class="sct_admin"><a href="'.G5_ADMIN_URL.'/shop_admin/couponzonelist.php" class="btn_admin btn"><span class="sr-only">쿠폰존 관리</span><i class="fa fa-cog fa-spin fa-fw"></i></a></div>';
+    echo '<div><a href="'.G5_ADMIN_URL.'/shop_admin/couponzonelist.php"><span>쿠폰존 관리</span><i></i></a></div>';
 
 if(G5_IS_MOBILE) {
     define('G5_SHOP_CSS_URL', G5_MSHOP_SKIN_URL);
@@ -27,7 +27,7 @@ if (is_file($skin_file)) {
     include_once($skin_file);
 
 } else {
-    echo '<div class="sct_nofile">'.str_replace(G5_PATH.'/', '', $skin_file).' 파일을 찾을 수 없습니다.<br>관리자에게 알려주시면 감사하겠습니다.</div>';
+    echo '<div>'.str_replace(G5_PATH.'/', '', $skin_file).' 파일을 찾을 수 없습니다.<br>관리자에게 알려주시면 감사하겠습니다.</div>';
 }
 
 include_once(G5_SHOP_PATH.'/_tail.php');

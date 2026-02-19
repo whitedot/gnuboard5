@@ -29,12 +29,12 @@ if($is_kakaopay_use) {
 ?>
 
 <form name="forderform" id="forderform" method="post" action="<?php echo $order_action_url; ?>" autocomplete="off">
-<div id="sod_frm" class="sod_frm_pc">
+<div id="sod_frm">
     
     <!-- 주문상품 확인 시작 -->
     <?php include_once(G5_SHOP_PATH.'/order_form_parts/cart.php'); ?>
 
-    <div class="sod_left">
+    <div>
         <input type="hidden" name="od_price"    value="<?php echo $tot_sell_price; ?>">
         <input type="hidden" name="org_od_price"    value="<?php echo $tot_sell_price; ?>">
         <input type="hidden" name="od_send_cost" value="<?php echo $send_cost; ?>">
@@ -60,27 +60,27 @@ if($is_kakaopay_use) {
         <?php include_once(G5_SHOP_PATH.'/order_form_parts/taker.php'); ?>
     </div>
 
-    <div class="sod_right">
+    <div>
         <!-- 주문상품 합계 시작 { -->
         <div id="sod_bsk_tot">
             <ul>
-                <li class="sod_bsk_sell">
+                <li>
                     <span>주문</span>
                     <strong><?php echo number_format($tot_sell_price); ?></strong>원
                 </li>
-                <li class="sod_bsk_coupon">
+                <li>
                     <span>쿠폰할인</span>
                     <strong id="ct_tot_coupon">0</strong>원
                 </li>
-                <li class="sod_bsk_dvr">
+                <li>
                     <span>배송비</span>
                     <strong><?php echo number_format($send_cost); ?></strong>원
                 </li>
-                <li class="sod_bsk_point">
+                <li>
                     <span>포인트</span>
                     <strong><?php echo number_format($tot_point); ?></strong>점
                 </li>
-               <li class="sod_bsk_cnt">
+               <li>
                     <span>총계</span>
                     <?php $tot_price = $tot_sell_price + $send_cost; // 총계 = 주문상품금액합계 + 배송비 ?>
                     <strong id="ct_tot_price"><?php echo number_format($tot_price); ?></strong>원

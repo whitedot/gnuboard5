@@ -79,10 +79,10 @@ if($pp['pp_pg'] == 'lg') {
         <section id="sod_fin_pay">
             <h3>결제정보</h3>
 
-            <div class="tbl_head01 tbl_wrap">
+            <div>
                 <table>
                 <colgroup>
-                    <col class="grid_3">
+                    <col>
                     <col>
                 </colgroup>
                 <tbody>
@@ -243,13 +243,13 @@ if($pp['pp_pg'] == 'lg') {
                             $cash_receipt_script = 'window.open(\''.G5_CASH_RECEIPT_URL.$default['de_kcp_mid'].'&orderid='.$pp_id.'&bill_yn=Y&authno='.$cash['receipt_no'].'\', \'taxsave_receipt\', \'width=360,height=647,scrollbars=0,menus=0\');';
                         }
                     ?>
-                        <a href="javascript:;" onclick="<?php echo $cash_receipt_script; ?>" class="btn_frmline">현금영수증 확인하기</a>
+                        <a href="javascript:;" onclick="<?php echo $cash_receipt_script; ?>">현금영수증 확인하기</a>
                     <?php
                     }
                     else
                     {
                     ?>
-                        <a href="javascript:;" onclick="window.open('<?php echo G5_SHOP_URL; ?>/taxsave.php?tx=personalpay&od_id=<?php echo $pp_id; ?>', 'taxsave', 'width=550,height=400,scrollbars=1,menus=0');" class="btn_frmline">현금영수증을 발급하시려면 클릭하십시오.</a>
+                        <a href="javascript:;" onclick="window.open('<?php echo G5_SHOP_URL; ?>/taxsave.php?tx=personalpay&od_id=<?php echo $pp_id; ?>', 'taxsave', 'width=550,height=400,scrollbars=1,menus=0');">현금영수증을 발급하시려면 클릭하십시오.</a>
                     <?php } ?>
                     </td>
                 </tr>
@@ -290,13 +290,13 @@ if($pp['pp_pg'] == 'lg') {
     preg_match("/\s{1}([^\s]+)\s?/", $pp['pp_bank_account'], $matchs);
     $deposit_no = trim($matchs[1]);
     ?>
-    <div class="tbl_frm01 tbl_wrap">
+    <div>
         <form method="post" action="http://devadmin.kcp.co.kr/Modules/Noti/TEST_Vcnt_Noti_Proc.jsp" target="_blank">
         <p>관리자가 가상계좌 테스트를 한 경우에만 보입니다.</p>
         <table>
         <caption>모의입금처리</caption>
         <colgroup>
-            <col class="grid_3">
+            <col>
             <col>
         </colgroup>
         <tbody>
@@ -318,8 +318,8 @@ if($pp['pp_pg'] == 'lg') {
         </tr>
         </tbody>
         </table>
-        <div id="sod_fin_test" class="btn_confirm">
-            <input type="submit" value="입금통보 테스트" class="btn_submit">
+        <div id="sod_fin_test">
+            <input type="submit" value="입금통보 테스트">
         </div>
         </form>
     </div>

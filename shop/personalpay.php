@@ -52,12 +52,12 @@ include_once('./_head.php');
     else
     {
         $i = 0;
-        $error = '<p class="sct_nofile">personalpay.skin.php 파일을 찾을 수 없습니다.<br>관리자에게 알려주시면 감사하겠습니다.</p>';
+        $error = '<p>personalpay.skin.php 파일을 찾을 수 없습니다.<br>관리자에게 알려주시면 감사하겠습니다.</p>';
     }
 
     if ($i==0)
     {
-        echo '<p class="sct_noitem">등록된 개인결제가 없습니다.</p>';
+        echo '<p>등록된 개인결제가 없습니다.</p>';
     }
     ?>
 

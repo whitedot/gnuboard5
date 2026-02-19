@@ -1,5 +1,5 @@
 <!-- 주문상품 확인 시작 { -->
-<div class="tbl_head03 tbl_wrap od_prd_list">
+<div>
     <table id="sod_list">
     <thead>
     <tr>
@@ -88,7 +88,7 @@
         $it_name = '<b>' . stripslashes($row['it_name']) . '</b>';
         $it_options = print_item_options($row['it_id'], $s_cart_id);
         if($it_options) {
-            $it_name .= '<div class="sod_opt">'.$it_options.'</div>';
+            $it_name .= '<div>'.$it_options.'</div>';
         }
 
         // 복합과세금액
@@ -138,7 +138,7 @@
             }
 
             if($cp_count) {
-                $cp_button = '<button type="button" class="cp_btn">쿠폰적용</button>';
+                $cp_button = '<button type="button">쿠폰적용</button>';
                 $it_cp_count++;
             }
         }
@@ -168,9 +168,9 @@
 
     <tr>
 
-        <td class="td_prd">
-            <div class="sod_img"><?php echo $image; ?></div>
-            <div class="sod_name">
+        <td>
+            <div><?php echo $image; ?></div>
+            <div>
                 <input type="hidden" name="it_id[<?php echo $i; ?>]"    value="<?php echo $row['it_id']; ?>">
                 <input type="hidden" name="it_name[<?php echo $i; ?>]"  value="<?php echo get_text($row['it_name']); ?>">
                 <input type="hidden" name="it_price[<?php echo $i; ?>]" value="<?php echo $sell_price; ?>">
@@ -184,11 +184,11 @@
 
                 </div>
         </td>
-        <td class="td_num"><?php echo number_format($sum['qty']); ?></td>
-        <td class="td_numbig  text_right"><?php echo number_format($row['ct_price']); ?></td>
-        <td class="td_numbig  text_right"><span class="total_price"><?php echo number_format($sell_price); ?></span></td>
-        <td class="td_numbig  text_right"><?php echo number_format($point); ?></td>
-        <td class="td_dvr"><?php echo $ct_send_cost; ?></td>
+        <td><?php echo number_format($sum['qty']); ?></td>
+        <td><?php echo number_format($row['ct_price']); ?></td>
+        <td><span><?php echo number_format($sell_price); ?></span></td>
+        <td><?php echo number_format($point); ?></td>
+        <td><?php echo $ct_send_cost; ?></td>
     </tr>
 
     <?php
@@ -197,7 +197,7 @@
     } // for 끝
 
     if ($i == 0) {
-        //echo '<tr><td colspan="7" class="empty_table">장바구니에 담긴 상품이 없습니다.</td></tr>';
+        //echo '<tr><td colspan="7">장바구니에 담긴 상품이 없습니다.</td></tr>';
         alert('장바구니가 비어 있습니다.', G5_SHOP_URL.'/cart.php');
     } else {
         // 배송비 계산

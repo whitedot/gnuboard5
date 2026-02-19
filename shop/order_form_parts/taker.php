@@ -1,7 +1,7 @@
 <section id="sod_frm_taker">
     <h2>받으시는 분</h2>
 
-    <div class="tbl_frm01 tbl_wrap">
+    <div>
         <table>
         <tbody>
         <?php
@@ -43,7 +43,7 @@
             $addr_list .= '<input type="radio" name="ad_sel_addr" value="new" id="od_sel_addr_new">'.PHP_EOL;
             $addr_list .= '<label for="od_sel_addr_new">신규배송지</label>'.PHP_EOL;
 
-            $addr_list .='<a href="'.G5_SHOP_URL.'/orderaddress.php" id="order_address" class="btn_frmline">배송지목록</a>';
+            $addr_list .='<a href="'.G5_SHOP_URL.'/orderaddress.php" id="order_address">배송지목록</a>';
         } else {
             // 주문자와 동일
             $addr_list .= '<input type="checkbox" name="ad_sel_addr" value="same" id="ad_sel_addr_same">'.PHP_EOL;
@@ -53,7 +53,7 @@
         <tr>
             <th scope="row">배송지선택</th>
             <td>
-                <div class="order_choice_place">
+                <div>
                 <?php echo $addr_list; ?>
                 </div>
             </td>
@@ -62,37 +62,37 @@
         <tr>
             <th scope="row"><label for="ad_subject">배송지명</label></th>
             <td>
-                <input type="text" name="ad_subject" id="ad_subject" class="frm_input" maxlength="20">
+                <input type="text" name="ad_subject" id="ad_subject" maxlength="20">
                 <input type="checkbox" name="ad_default" id="ad_default" value="1">
                 <label for="ad_default">기본배송지로 설정</label>
             </td>
         </tr>
         <?php } ?>
         <tr>
-            <th scope="row"><label for="od_b_name">이름<strong class="sr-only"> 필수</strong></label></th>
-            <td><input type="text" name="od_b_name" id="od_b_name" required class="frm_input required" maxlength="20"></td>
+            <th scope="row"><label for="od_b_name">이름<strong> 필수</strong></label></th>
+            <td><input type="text" name="od_b_name" id="od_b_name" required maxlength="20"></td>
         </tr>
         <tr>
-            <th scope="row"><label for="od_b_tel">전화번호<strong class="sr-only"> 필수</strong></label></th>
-            <td><input type="text" name="od_b_tel" id="od_b_tel" required class="frm_input required" maxlength="20"></td>
+            <th scope="row"><label for="od_b_tel">전화번호<strong> 필수</strong></label></th>
+            <td><input type="text" name="od_b_tel" id="od_b_tel" required maxlength="20"></td>
         </tr>
         <tr>
             <th scope="row"><label for="od_b_hp">핸드폰</label></th>
-            <td><input type="text" name="od_b_hp" id="od_b_hp" class="frm_input" maxlength="20"></td>
+            <td><input type="text" name="od_b_hp" id="od_b_hp" maxlength="20"></td>
         </tr>
         <tr>
             <th scope="row">주소</th>
             <td id="sod_frm_addr">
-                <label for="od_b_zip" class="sr-only">우편번호<strong class="sr-only"> 필수</strong></label>
-                <input type="text" name="od_b_zip" id="od_b_zip" required class="frm_input required" size="8" maxlength="6" placeholder="우편번호">
-                <button type="button" class="btn_address" onclick="win_zip('forderform', 'od_b_zip', 'od_b_addr1', 'od_b_addr2', 'od_b_addr3', 'od_b_addr_jibeon');">주소 검색</button><br>
-                <input type="text" name="od_b_addr1" id="od_b_addr1" required class="frm_input frm_address required" size="60" placeholder="기본주소">
-                <label for="od_b_addr1" class="sr-only">기본주소<strong> 필수</strong></label><br>
-                <input type="text" name="od_b_addr2" id="od_b_addr2" class="frm_input " size="60" placeholder="상세주소">
-                <label for="od_b_addr2" class="sr-only">상세주소</label>
+                <label for="od_b_zip">우편번호<strong> 필수</strong></label>
+                <input type="text" name="od_b_zip" id="od_b_zip" required size="8" maxlength="6" placeholder="우편번호">
+                <button type="button" onclick="win_zip('forderform', 'od_b_zip', 'od_b_addr1', 'od_b_addr2', 'od_b_addr3', 'od_b_addr_jibeon');">주소 검색</button><br>
+                <input type="text" name="od_b_addr1" id="od_b_addr1" required size="60" placeholder="기본주소">
+                <label for="od_b_addr1">기본주소<strong> 필수</strong></label><br>
+                <input type="text" name="od_b_addr2" id="od_b_addr2" size="60" placeholder="상세주소">
+                <label for="od_b_addr2">상세주소</label>
                 <br>
-                <input type="text" name="od_b_addr3" id="od_b_addr3" readonly="readonly" class="frm_input " size="60" placeholder="참고항목">
-                <label for="od_b_addr3" class="sr-only">참고항목</label><br>
+                <input type="text" name="od_b_addr3" id="od_b_addr3" readonly="readonly" size="60" placeholder="참고항목">
+                <label for="od_b_addr3">참고항목</label><br>
                 <input type="hidden" name="od_b_addr_jibeon" value="">
             </td>
         </tr>

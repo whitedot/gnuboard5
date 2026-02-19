@@ -41,7 +41,7 @@ if(defined('G5_THEME_USE_OPTIONS_TRTD') && G5_THEME_USE_OPTIONS_TRTD){
 }
 if($option_1) {
 ?>
-<section class="option_wr">
+<section>
     <h3>선택옵션</h3>
 
     <?php // 선택옵션
@@ -62,7 +62,7 @@ if(defined('G5_THEME_USE_OPTIONS_TRTD') && G5_THEME_USE_OPTIONS_TRTD){
 }
 if($option_2) {
 ?>
-<section class="option_wr">
+<section>
     <h3>추가옵션</h3>
 
     <?php // 추가옵션
@@ -93,22 +93,22 @@ if($option_2) {
             if($row['io_type'])
                 $cls = 'spl';
         ?>
-        <li class="sit_<?php echo $cls; ?>_list">
+        <li class="<?php echo $cls; ?>">
             <input type="hidden" name="io_type[<?php echo $it['it_id']; ?>][]" value="<?php echo $row['io_type']; ?>">
             <input type="hidden" name="io_id[<?php echo $it['it_id']; ?>][]" value="<?php echo $row['io_id']; ?>">
             <input type="hidden" name="io_value[<?php echo $it['it_id']; ?>][]" value="<?php echo $row['ct_option']; ?>">
             <input type="hidden" class="io_price" value="<?php echo $row['io_price']; ?>">
             <input type="hidden" class="io_stock" value="<?php echo $it_stock_qty; ?>">
-            <div class="opt_name">
-                <span class="sit_opt_subj"><?php echo $row['ct_option']; ?></span>
+            <div>
+                <span><?php echo $row['ct_option']; ?></span>
             </div>
-            <div class="opt_count">
-                <button type="button" class="sit_qty_minus btn_frmline"><i class="fa fa-minus" aria-hidden="true"></i><span class="sr-only">감소</span></button>
-                <label for="ct_qty_<?php echo $i; ?>" class="sr-only">수량</label>
-                <input type="text" name="ct_qty[<?php echo $it['it_id']; ?>][]" value="<?php echo $row['ct_qty']; ?>" id="ct_qty_<?php echo $i; ?>" class="num_input" size="5">
-                <button type="button" class="sit_qty_plus btn_frmline"><i class="fa fa-plus" aria-hidden="true"></i><span class="sr-only">증가</span></button>
-                <span class="sit_opt_prc"><?php echo $io_price; ?></span>
-                <button type="button" class="sit_opt_del"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">삭제</span></button>
+            <div>
+                <button type="button"><i aria-hidden="true"></i><span>감소</span></button>
+                <label for="ct_qty_<?php echo $i; ?>">수량</label>
+                <input type="text" name="ct_qty[<?php echo $it['it_id']; ?>][]" value="<?php echo $row['ct_qty']; ?>" id="ct_qty_<?php echo $i; ?>" size="5">
+                <button type="button"><i aria-hidden="true"></i><span>증가</span></button>
+                <span><?php echo $io_price; ?></span>
+                <button type="button"><i aria-hidden="true"></i><span>삭제</span></button>
             </div>
 
         </li>
@@ -120,9 +120,9 @@ if($option_2) {
 
 <div id="sit_tot_price"></div>
 
-<div class="btn_confirm">
-    <button type="submit" class="btn_submit">확인</button>
-    <button type="button" id="mod_option_close" class="btn_close"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">닫기</span></button>
+<div>
+    <button type="submit">확인</button>
+    <button type="button" id="mod_option_close"><i aria-hidden="true"></i><span>닫기</span></button>
 </div>
 </form>
 

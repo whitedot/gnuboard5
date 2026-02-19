@@ -74,7 +74,7 @@ if($ca['ca_skin_dir']) {
 define('G5_SHOP_CSS_URL', str_replace(G5_PATH, G5_URL, $skin_dir));
 
 if ($is_admin)
-    echo '<div class="sct_admin"><a href="'.G5_ADMIN_URL.'/shop_admin/categoryform.php?w=u&amp;ca_id='.$ca_id.'" class="btn_admin btn"><span class="sr-only">분류 관리</span><i class="fa fa-cog fa-spin fa-fw"></i></a></div>';
+    echo '<div><a href="'.G5_ADMIN_URL.'/shop_admin/categoryform.php?w=u&amp;ca_id='.$ca_id.'"><span>분류 관리</span><i></i></a></div>';
 ?>
 
 <script>
@@ -105,7 +105,7 @@ var itemlist_ca_id = "<?php echo $ca_id; ?>";
     else
         $order_by = 'it_order, it_id desc';
 
-    $error = '<p class="sct_noitem">등록된 상품이 없습니다.</p>';
+    $error = '<p>등록된 상품이 없습니다.</p>';
 
     // 리스트 스킨
     $skin_file = is_include_path_check($skin_dir.'/'.$ca['ca_skin']) ? $skin_dir.'/'.$ca['ca_skin'] : $skin_dir.'/list.10.skin.php';
@@ -156,7 +156,7 @@ var itemlist_ca_id = "<?php echo $ca_id; ?>";
     }
     else
     {
-        echo '<div class="sct_nofile">'.str_replace(G5_PATH.'/', '', $skin_file).' 파일을 찾을 수 없습니다.<br>관리자에게 알려주시면 감사하겠습니다.</div>';
+        echo '<div>'.str_replace(G5_PATH.'/', '', $skin_file).' 파일을 찾을 수 없습니다.<br>관리자에게 알려주시면 감사하겠습니다.</div>';
     }
 
     $qstr1 = 'ca_id='.$ca_id;

@@ -15,25 +15,25 @@ function get_mshop_category($ca_id, $len)
 }
 ?>
 <div id="category">
-    <button type="button" class="close_btn"><i class="fa fa-times" aria-hidden="true"></i> 카테고리<span class="sr-only">닫기</span></button>
+    <button type="button" class="close_btn"><i aria-hidden="true"></i> 카테고리<span>닫기</span></button>
 
-    <div class="ct_wr">
+    <div>
         <?php
         $mshop_ca_res1 = sql_query(get_mshop_category('', 2));
         for($i=0; $mshop_ca_row1=sql_fetch_array($mshop_ca_res1); $i++) {
             if($i == 0)
-                echo '<ul class="cate">'.PHP_EOL;
+                echo '<ul>'.PHP_EOL;
         ?>
-            <li class="cate_li_1">
-                <a href="<?php echo shop_category_url($mshop_ca_row1['ca_id']); ?>" class="cate_li_1_a"><?php echo get_text($mshop_ca_row1['ca_name']); ?></a>
+            <li>
+                <a href="<?php echo shop_category_url($mshop_ca_row1['ca_id']); ?>"><?php echo get_text($mshop_ca_row1['ca_name']); ?></a>
                 <?php
                 $mshop_ca_res2 = sql_query(get_mshop_category($mshop_ca_row1['ca_id'], 4));
 
                 for($j=0; $mshop_ca_row2=sql_fetch_array($mshop_ca_res2); $j++) {
                     if($j == 0)
-                        echo '<ul class="sub_cate sub_cate1">'.PHP_EOL;
+                        echo '<ul>'.PHP_EOL;
                 ?>
-                    <li class="cate_li_2">
+                    <li>
                         <a href="<?php echo shop_category_url($mshop_ca_row2['ca_id']); ?>"><?php echo get_text($mshop_ca_row2['ca_name']); ?></a>
                     </li>
                 <?php
@@ -49,7 +49,7 @@ function get_mshop_category($ca_id, $len)
         if($i > 0)
             echo '</ul>'.PHP_EOL;
         else
-            echo '<p class="no-cate">등록된 분류가 없습니다.</p>'.PHP_EOL;
+            echo '<p>등록된 분류가 없습니다.</p>'.PHP_EOL;
         ?>
     </div>
 </div>
