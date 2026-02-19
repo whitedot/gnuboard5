@@ -299,6 +299,7 @@ function get_sideview($mb_id, $name, $email='', $homepage='', $bo_table='')
 {
     global $g5;
 
+    $mb_id = clean_xss_tags($mb_id);
     $email = base64_encode($email);
     $homepage = set_http(clean_xss_tags($homepage));
 
@@ -307,32 +308,35 @@ function get_sideview($mb_id, $name, $email='', $homepage='', $bo_table='')
         return $name;
     }
 
-    $tmp_name = "";
-    if ($mb_id) {
-        $tmp_name = "<span class=\"sv_wrap\">
-            <a href=\"".G5_BBS_URL."/profile.php?mb_id=".$mb_id."\" class=\"sv_member\" title=\"$name 자기소개\" target=\"_blank\" onclick=\"return false;\">$name</a>
-            <span class=\"sv\">
-                <a href=\"".G5_BBS_URL."/memo_form.php?me_recv_mb_id=".$mb_id."\" onclick=\"win_memo(this.href); return false;\">쪽지보내기</a>";
+    $tmp_name = "<span class=\"sv_wrap hs-dropdown relative inline-flex [--placement:bottom-left]\">";
+    $tmp_name .= "<button type=\"button\" class=\"sv_member hs-dropdown-toggle inline-flex items-center gap-1 text-inherit hover:underline focus:outline-none\" aria-haspopup=\"menu\" aria-expanded=\"false\">";
+    $tmp_name .= $name;
+    $tmp_name .= "<span class=\"sr-only\">메뉴 열기</span>";
+    $tmp_name .= "</button>";
+    $tmp_name .= "<div class=\"sv hs-dropdown-menu\" role=\"menu\" aria-orientation=\"vertical\">";
 
-        if ($email)
-            $tmp_name .= "<a href=\"".G5_BBS_URL."/formmail.php?mb_id=".$mb_id."&name=".urlencode($name)."&email=".$email."\" onclick=\"win_email(this.href); return false;\">메일보내기</a>";
-        if ($homepage)
-            $tmp_name .= "<a href=\"$homepage\" target=\"_blank\">홈페이지</a>";
-        if ($mb_id)
-            $tmp_name .= "<a href=\"".G5_BBS_URL."/profile.php?mb_id=".$mb_id."\" onclick=\"win_profile(this.href); return false;\">자기소개</a>";
-        if ($bo_table) {
-            $tmp_name .= "<a href=\"".G5_BBS_URL."/board.php?bo_table=".$bo_table."&sca=&sfl=mb_id,1&stx=".$mb_id."\">전체게시물</a>";
-        }
+    $tmp_name .= "<a href=\"".G5_BBS_URL."/memo_form.php?me_recv_mb_id=".$mb_id."\" class=\"dropdown-item win_memo\">쪽지보내기</a>";
 
-        if (is_admin($mb_id)) {
-            $tmp_name .= "<a href=\"".G5_ADMIN_URL."/member_form.php?w=u&mb_id=".$mb_id."\" target=\"_blank\">회원정보변경</a>";
-            $tmp_name .= "<a href=\"".G5_ADMIN_URL."/point_list.php?sfl=mb_id&stx=".$mb_id."\" target=\"_blank\">포인트내역</a>";
-        }
-
-        $tmp_name .= "</span></span>";
-    } else {
-        $tmp_name = $name;
+    if ($email) {
+        $tmp_name .= "<a href=\"".G5_BBS_URL."/formmail.php?mb_id=".$mb_id."&name=".urlencode($name)."&email=".$email."\" class=\"dropdown-item win_email\">메일보내기</a>";
     }
+
+    if ($homepage) {
+        $tmp_name .= "<a href=\"".$homepage."\" class=\"dropdown-item\" target=\"_blank\" rel=\"noopener\">홈페이지</a>";
+    }
+
+    $tmp_name .= "<a href=\"".G5_BBS_URL."/profile.php?mb_id=".$mb_id."\" class=\"dropdown-item win_profile\">자기소개</a>";
+
+    if ($bo_table) {
+        $tmp_name .= "<a href=\"".G5_BBS_URL."/board.php?bo_table=".$bo_table."&sca=&sfl=mb_id,1&stx=".$mb_id."\" class=\"dropdown-item\">전체게시물</a>";
+    }
+
+    if (is_admin($mb_id)) {
+        $tmp_name .= "<a href=\"".G5_ADMIN_URL."/member_form.php?w=u&mb_id=".$mb_id."\" class=\"dropdown-item\" target=\"_blank\" rel=\"noopener\">회원정보변경</a>";
+        $tmp_name .= "<a href=\"".G5_ADMIN_URL."/point_list.php?sfl=mb_id&stx=".$mb_id."\" class=\"dropdown-item\" target=\"_blank\" rel=\"noopener\">포인트내역</a>";
+    }
+
+    $tmp_name .= "</div></span>";
 
     return $tmp_name;
 }
