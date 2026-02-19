@@ -207,3 +207,15 @@
         }
     }
 }
+
+@layer utilities {
+    .caption-sr-only {
+        @apply sr-only;
+    }
+}
+
+@layer components {
+    table > caption {
+        @apply sr-only;
+    }
+}

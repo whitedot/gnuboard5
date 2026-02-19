@@ -99,8 +99,8 @@ if (!empty($_COOKIE['g5_admin_btn_gnb'])) {
 
     <nav id="gnb" class="gnb_large fixed inset-y-0 left-0 z-50 w-72 -translate-x-full overflow-y-auto border-r border-slate-200 bg-white px-4 py-6 transition-transform duration-300 lg:translate-x-0 dark:border-slate-800 dark:bg-slate-900 <?php echo $adm_menu_cookie['gnb']; ?>">
         <h2 class="mb-6 flex items-center gap-3 px-2 text-lg font-semibold text-slate-900 dark:text-white">
-            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-white dark:bg-slate-200 dark:text-slate-900">M</span>
-            <span>Modulix Admin</span>
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-white dark:bg-slate-200 dark:text-slate-900">G</span>
+            <span>G5 AIF</span>
         </h2>
 
         <ul class="gnb_ul space-y-2">
