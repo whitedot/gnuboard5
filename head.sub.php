@@ -44,11 +44,6 @@ if($config['cf_add_meta'])
     echo $config['cf_add_meta'].PHP_EOL;
 ?>
 <title><?php echo $g5_head_title; ?></title>
-<?php
-$common_css_path = G5_CSS_PATH.'/common.css';
-$common_css_ver = is_file($common_css_path) ? filemtime($common_css_path) : G5_CSS_VER;
-echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_CSS_URL.'/common.css?ver='.$common_css_ver, G5_THEME_URL).'">'.PHP_EOL;
-?>
 <script>
 // 자바스크립트에서 사용하는 전역변수 선언
 var g5_url       = "<?php echo G5_URL ?>";

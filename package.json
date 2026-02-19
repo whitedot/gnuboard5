@@ -8,10 +8,10 @@
   },
   "scripts": {
     "build": "npm run build:root && npm run build:theme && npm run build:admin",
-    "build:root": "tailwindcss -i ./tailwind4/common.css -o ./css/common.css --minify",
+    "build:root": "tailwindcss -i ./tailwind4/common.css -o ./docs/ui-kit/css/common.css --minify",
     "build:theme": "tailwindcss -i ./tailwind4/common.css -o ./theme/basic/css/common.css --minify",
     "build:admin": "tailwindcss -i ./tailwind4/admin.css -o ./adm/css/admin.css --minify",
-    "watch": "tailwindcss -i ./tailwind4/common.css -o ./css/common.css --watch"
+    "watch": "tailwindcss -i ./tailwind4/common.css -o ./docs/ui-kit/css/common.css --watch"
   },
   "repository": {
     "type": "git",

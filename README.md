@@ -66,7 +66,7 @@
 - 비밀번호 표시/숨기기 아이콘 렌더링 및 버튼 UI 보정
 - 체크박스 체크 마크/라디오 중앙 원 가시성 강화
 - README 태그 기준 변경 내역 섹션 정비
-- 빌드 산출물 재생성 반영(`css/common.css`, `theme/basic/css/common.css`)
+- 빌드 산출물 재생성 반영(`docs/ui-kit/css/common.css`, `theme/basic/css/common.css`)
 
 ## 4. 개발 환경 및 크레딧 (Development Environment & Credits)
 

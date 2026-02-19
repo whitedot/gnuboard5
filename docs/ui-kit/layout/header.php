@@ -25,7 +25,7 @@
         })();
     </script>
     <!-- Tailwind CSS (compiled or CDN depending on setup) -->
-    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="css/common.css">
     <!-- UI Guide Custom CSS -->
     <link rel="stylesheet" href="css/ui-guide.css">
     <!-- Iconify -->
