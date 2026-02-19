@@ -115,19 +115,6 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_mobile_subject_len">모바일 제목 길이<strong>필수</strong></label></th>
-            <td>
-                <?php echo help('목록에서의 제목 글자수. 잘리는 글은 … 로 표시') ?>
-                <input type="text" name="bo_mobile_subject_len" value="<?php echo $board['bo_mobile_subject_len'] ?>" id="bo_mobile_subject_len" required class="required" size="4">
-            </td>
-            <td>
-                <input type="checkbox" name="chk_grp_mobile_subject_len" value="1" id="chk_grp_mobile_subject_len">
-                <label for="chk_grp_mobile_subject_len">그룹적용</label>
-                <input type="checkbox" name="chk_all_mobile_subject_len" value="1" id="chk_all_mobile_subject_len">
-                <label for="chk_all_mobile_subject_len">전체적용</label>
-            </td>
-        </tr>
-        <tr>
             <th scope="row"><label for="bo_page_rows">페이지당 목록 수<strong>필수</strong></label></th>
             <td>
                 <input type="text" name="bo_page_rows" value="<?php echo $board['bo_page_rows'] ?>" id="bo_page_rows" required class="required" size="4">
@@ -137,18 +124,6 @@
                 <label for="chk_grp_page_rows">그룹적용</label>
                 <input type="checkbox" name="chk_all_page_rows" value="1" id="chk_all_page_rows">
                 <label for="chk_all_page_rows">전체적용</label>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="bo_mobile_page_rows">모바일 페이지당 목록 수<strong>필수</strong></label></th>
-            <td>
-                <input type="text" name="bo_mobile_page_rows" value="<?php echo $board['bo_mobile_page_rows'] ?>" id="bo_mobile_page_rows" required class="required" size="4">
-            </td>
-            <td>
-                <input type="checkbox" name="chk_grp_mobile_page_rows" value="1" id="chk_grp_mobile_page_rows">
-                <label for="chk_grp_mobile_page_rows">그룹적용</label>
-                <input type="checkbox" name="chk_all_mobile_page_rows" value="1" id="chk_all_mobile_page_rows">
-                <label for="chk_all_mobile_page_rows">전체적용</label>
             </td>
         </tr>
         <tr>
@@ -188,32 +163,6 @@
                 <label for="chk_grp_gallery_height">그룹적용</label>
                 <input type="checkbox" name="chk_all_gallery_height" value="1" id="chk_all_gallery_height">
                 <label for="chk_all_gallery_height">전체적용</label>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="bo_mobile_gallery_width">모바일<br>갤러리 이미지 폭<strong>필수</strong></label></th>
-            <td>
-                <?php echo help('모바일로 접속시 갤러리 형식의 게시판 목록에서 썸네일 이미지의 폭을 설정하는 값') ?>
-                <input type="text" name="bo_mobile_gallery_width" value="<?php echo $board['bo_mobile_gallery_width'] ?>" id="bo_mobile_gallery_width" required class="required" size="4">
-            </td>
-            <td>
-                <input type="checkbox" name="chk_grp_mobile_gallery_width" value="1" id="chk_grp_mobile_gallery_width">
-                <label for="chk_grp_mobile_gallery_width">그룹적용</label>
-                <input type="checkbox" name="chk_all_mobile_gallery_width" value="1" id="chk_all_mobile_gallery_width">
-                <label for="chk_all_mobile_gallery_width">전체적용</label>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="bo_mobile_gallery_height">모바일<br>갤러리 이미지 높이<strong>필수</strong></label></th>
-            <td>
-                <?php echo help('모바일로 접속시 갤러리 형식의 게시판 목록에서 썸네일 이미지의 높이를 설정하는 값') ?>
-                <input type="text" name="bo_mobile_gallery_height" value="<?php echo $board['bo_mobile_gallery_height'] ?>" id="bo_mobile_gallery_height" required class="required" size="4">
-            </td>
-            <td>
-                <input type="checkbox" name="chk_grp_mobile_gallery_height" value="1" id="chk_grp_mobile_gallery_height">
-                <label for="chk_grp_mobile_gallery_height">그룹적용</label>
-                <input type="checkbox" name="chk_all_mobile_gallery_height" value="1" id="chk_all_mobile_gallery_height">
-                <label for="chk_all_mobile_gallery_height">전체적용</label>
             </td>
         </tr>
         <tr>

@@ -39,24 +39,22 @@ if($mode == 'list' || $mode == 'view') {
     if($tconfig['preview_board_skin'])
         $board['bo_skin'] = preg_match('#^theme/.+$#', $tconfig['preview_board_skin']) ? $tconfig['preview_board_skin'] : 'theme/'.$tconfig['preview_board_skin'];
 
-    if($tconfig['preview_mobile_board_skin'])
-        $board['bo_mobile_skin'] = preg_match('#^theme/.+$#', $tconfig['preview_mobile_board_skin']) ? $tconfig['preview_mobile_board_skin'] : 'theme/'.$tconfig['preview_mobile_board_skin'];
 }
 
 // 스킨경로
 if (G5_IS_MOBILE) {
-    $board_skin_path    = get_skin_path('board', $board['bo_mobile_skin']);
-    $board_skin_url     = get_skin_url('board', $board['bo_mobile_skin']);
-    $member_skin_path   = get_skin_path('member', $config['cf_mobile_member_skin']);
-    $member_skin_url    = get_skin_url('member', $config['cf_mobile_member_skin']);
-    $new_skin_path      = get_skin_path('new', $config['cf_mobile_new_skin']);
-    $new_skin_url       = get_skin_url('new', $config['cf_mobile_new_skin']);
-    $search_skin_path   = get_skin_path('search', $config['cf_mobile_search_skin']);
-    $search_skin_url    = get_skin_url('search', $config['cf_mobile_search_skin']);
-    $connect_skin_path  = get_skin_path('connect', $config['cf_mobile_connect_skin']);
-    $connect_skin_url   = get_skin_url('connect', $config['cf_mobile_connect_skin']);
-    $faq_skin_path      = get_skin_path('faq', $config['cf_mobile_faq_skin']);
-    $faq_skin_url       = get_skin_url('faq', $config['cf_mobile_faq_skin']);
+    $board_skin_path    = get_skin_path('board', $board['bo_skin']);
+    $board_skin_url     = get_skin_url('board', $board['bo_skin']);
+    $member_skin_path   = get_skin_path('member', $config['cf_member_skin']);
+    $member_skin_url    = get_skin_url('member', $config['cf_member_skin']);
+    $new_skin_path      = get_skin_path('new', $config['cf_new_skin']);
+    $new_skin_url       = get_skin_url('new', $config['cf_new_skin']);
+    $search_skin_path   = get_skin_path('search', $config['cf_search_skin']);
+    $search_skin_url    = get_skin_url('search', $config['cf_search_skin']);
+    $connect_skin_path  = get_skin_path('connect', $config['cf_connect_skin']);
+    $connect_skin_url   = get_skin_url('connect', $config['cf_connect_skin']);
+    $faq_skin_path      = get_skin_path('faq', $config['cf_faq_skin']);
+    $faq_skin_url       = get_skin_url('faq', $config['cf_faq_skin']);
 } else {
     $board_skin_path    = get_skin_path('board', $board['bo_skin']);
     $board_skin_url     = get_skin_url('board', $board['bo_skin']);
@@ -76,8 +74,6 @@ if (G5_IS_MOBILE) {
 if($tconfig['de_shop_skin'])
     $default['de_shop_skin'] = preg_match('#^theme/.+$#', $tconfig['de_shop_skin']) ? $tconfig['de_shop_skin'] : 'theme/'.$tconfig['de_shop_skin'];
 
-if($tconfig['de_shop_mobile_skin'])
-    $default['de_shop_mobile_skin'] = preg_match('#^theme/.+$#', $tconfig['de_shop_mobile_skin']) ? $tconfig['de_shop_mobile_skin'] : 'theme/'.$tconfig['de_shop_mobile_skin'];
 
 // 쇼핑몰초기화면 변수 재설정
 for($i=1; $i<=5; $i++) {
@@ -88,12 +84,6 @@ for($i=1; $i<=5; $i++) {
     $default['de_type'.$i.'_img_width']         = (isset($tconfig['de_type'.$i.'_img_width']) && $tconfig['de_type'.$i.'_img_width']) ? $tconfig['de_type'.$i.'_img_width'] : $default['de_type'.$i.'_img_width'];
     $default['de_type'.$i.'_img_height']        = (isset($tconfig['de_type'.$i.'_img_height']) && $tconfig['de_type'.$i.'_img_height']) ? $tconfig['de_type'.$i.'_img_height'] : $default['de_type'.$i.'_img_height'];
 
-    $default['de_mobile_type'.$i.'_list_use']   = (isset($tconfig['de_mobile_type'.$i.'_list_use']) && $tconfig['de_mobile_type'.$i.'_list_use']) ? $tconfig['de_mobile_type'.$i.'_list_use'] : $default['de_mobile_type'.$i.'_list_use'];
-    $default['de_mobile_type'.$i.'_list_skin']  = (isset($tconfig['de_mobile_type'.$i.'_list_skin']) && $tconfig['de_mobile_type'.$i.'_list_skin']) ? $tconfig['de_mobile_type'.$i.'_list_skin'] : $default['de_mobile_type'.$i.'_list_skin'];
-    $default['de_mobile_type'.$i.'_list_mod']   = (isset($tconfig['de_mobile_type'.$i.'_list_mod']) && $tconfig['de_mobile_type'.$i.'_list_mod']) ? $tconfig['de_mobile_type'.$i.'_list_mod'] : $default['de_mobile_type'.$i.'_list_mod'];
-    $default['de_mobile_type'.$i.'_list_row']   = (isset($tconfig['de_mobile_type'.$i.'_list_row']) && $tconfig['de_mobile_type'.$i.'_list_row']) ? $tconfig['de_mobile_type'.$i.'_list_row'] : $default['de_mobile_type'.$i.'_list_row'];
-    $default['de_mobile_type'.$i.'_img_width']  = (isset($tconfig['de_mobile_type'.$i.'_img_width']) && $tconfig['de_mobile_type'.$i.'_img_width']) ? $tconfig['de_mobile_type'.$i.'_img_width'] : $default['de_mobile_type'.$i.'_img_width'];
-    $default['de_mobile_type'.$i.'_img_height'] = (isset($tconfig['de_mobile_type'.$i.'_img_height']) && $tconfig['de_mobile_type'.$i.'_img_height']) ? $tconfig['de_mobile_type'.$i.'_img_height'] : $default['de_mobile_type'.$i.'_img_height'];
 }
 
 // 상품상세 이미지 사이즈 재설정

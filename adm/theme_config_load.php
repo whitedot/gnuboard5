@@ -28,7 +28,7 @@ if(!in_array($type, $arr_type)) {
 }
 
 if($type == 'board') {
-    $keys = run_replace('theme_config_load_keys', array('bo_gallery_cols', 'bo_gallery_width', 'bo_gallery_height', 'bo_mobile_gallery_width', 'bo_mobile_gallery_height', 'bo_image_width'), $type);
+    $keys = run_replace('theme_config_load_keys', array('bo_gallery_cols', 'bo_gallery_width', 'bo_gallery_height', 'bo_image_width'), $type);
     $tconfig = get_theme_config_value($config['cf_theme'], implode(',', $keys));
 
     $i = 0;

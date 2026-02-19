@@ -12,7 +12,7 @@ if (!function_exists("itemdelete")) {
     {
         global $g5, $is_admin;
 
-        $sql = " select it_explan, it_mobile_explan, it_img1, it_img2, it_img3, it_img4, it_img5, it_img6, it_img7, it_img8, it_img9, it_img10
+        $sql = " select it_explan, it_img1, it_img2, it_img3, it_img4, it_img5, it_img6, it_img7, it_img8, it_img9, it_img10
                     from {$g5['g5_shop_item_table']} where it_id = '$it_id' ";
         $it = sql_fetch($sql);
 
@@ -85,23 +85,6 @@ if (!function_exists("itemdelete")) {
                 @unlink($destfile);
         }
 
-        $imgs = get_editor_image($it['it_mobile_explan'], false);
-        $count_imgs = (isset($imgs[1]) && is_array($imgs[1])) ? count($imgs[1]) : 0;
-
-        for($i=0;$i<$count_imgs;$i++) {
-            $p = parse_url($imgs[1][$i]);
-            if(strpos($p['path'], "/data/editor/") === false)
-                continue;
-            if(strpos($p['path'], "/data/") != 0)
-                $data_path = preg_replace("/^\/.*\/data/", "/data", $p['path']);
-            else
-                $data_path = $p['path'];
-
-            $destfile = G5_PATH.clean_relative_paths($data_path);
-
-            if(is_file($destfile) && preg_match('/(\.(gif|jpe?g|png))$/i', $destfile))
-                @unlink($destfile);
-        }
         //------------------------------------------------------------------------
 
 

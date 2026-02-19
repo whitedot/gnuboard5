@@ -15,9 +15,6 @@ $config = sql_fetch($sql);
 if (!$config['cf_faq_skin']) {
     $config['cf_faq_skin'] = 'basic';
 }
-if (!$config['cf_mobile_faq_skin']) {
-    $config['cf_mobile_faq_skin'] = 'basic';
-}
 
 $g5['title'] = '환경설정';
 require_once './admin.head.php';

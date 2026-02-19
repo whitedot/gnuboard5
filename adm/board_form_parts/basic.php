@@ -39,13 +39,6 @@
             </td>
         </tr>
         <tr>
-            <th scope="row"><label for="bo_mobile_subject">모바일 게시판 제목</label></th>
-            <td colspan="2">
-                <?php echo help("모바일에서 보여지는 게시판 제목이 다른 경우에 입력합니다. 입력이 없으면 기본 게시판 제목이 출력됩니다.") ?>
-                <input type="text" name="bo_mobile_subject" value="<?php echo get_text($board['bo_mobile_subject']) ?>" id="bo_mobile_subject" size="80" maxlength="120">
-            </td>
-        </tr>
-        <tr>
             <th scope="row"><label for="bo_device">접속기기</label></th>
             <td>
                 <?php echo help("PC 와 모바일 사용을 구분합니다.") ?>

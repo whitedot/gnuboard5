@@ -20,7 +20,6 @@ $pg_anchor = '<ul>
 <li><a href="#anc_scf_info">사업자정보</a></li>
 <li><a href="#anc_scf_skin">스킨설정</a></li>
 <li><a href="#anc_scf_index">쇼핑몰 초기화면</a></li>
-<li><a href="#anc_mscf_index">모바일 초기화면</a></li>
 <li><a href="#anc_scf_payment">결제설정</a></li>
 <li><a href="#anc_scf_delivery">배송설정</a></li>
 <li><a href="#anc_scf_etc">기타설정</a></li>
@@ -43,7 +42,6 @@ if(!$default['de_kakaopay_cancelpwd']){
 include_once(G5_ADMIN_PATH.'/shop_admin/config_form_parts/info.php');
 include_once(G5_ADMIN_PATH.'/shop_admin/config_form_parts/skin.php');
 include_once(G5_ADMIN_PATH.'/shop_admin/config_form_parts/index.php');
-include_once(G5_ADMIN_PATH.'/shop_admin/config_form_parts/mobile_index.php');
 include_once(G5_ADMIN_PATH.'/shop_admin/config_form_parts/payment.php');
 include_once(G5_ADMIN_PATH.'/shop_admin/config_form_parts/delivery.php');
 include_once(G5_ADMIN_PATH.'/shop_admin/config_form_parts/etc.php');

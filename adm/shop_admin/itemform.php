@@ -25,7 +25,6 @@ $it = array(
 'it_use'=>0,
 'it_nocoupon'=>0,
 'ec_mall_pid'=>'',
-'it_mobile_explan'=>'',
 'it_sell_email'=>'',
 'it_shop_memo'=>'',
 'it_info_gubun'=>'',
@@ -61,8 +60,6 @@ $it = array(
 'it_img10'=>'',
 'it_head_html'=>'',
 'it_tail_html'=>'',
-'it_mobile_head_html'=>'',
-'it_mobile_tail_html'=>'',
 );
 
 for($i=0;$i<=10;$i++){

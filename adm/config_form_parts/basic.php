@@ -99,17 +99,8 @@
                             <?php echo help('목록(리스트) 한페이지당 라인수') ?>
                             <input type="text" name="cf_page_rows" value="<?php echo (int) $config['cf_page_rows'] ?>" id="cf_page_rows" size="3"> 라인
                                             </div>
-                                            <div><label for="cf_mobile_page_rows">모바일 한페이지당 라인수</label>                    </div>
-                                            <div>
-                            <?php echo help('모바일 목록 한페이지당 라인수') ?>
-                            <input type="text" name="cf_mobile_page_rows" value="<?php echo (int) $config['cf_mobile_page_rows'] ?>" id="cf_mobile_page_rows" size="3"> 라인
-                                            </div>
-                                    </div>
-                                    <div>
                                             <div><label for="cf_write_pages">페이지 표시 수<strong>필수</strong></label>                    </div>
                                             <div><input type="text" name="cf_write_pages" value="<?php echo (int) $config['cf_write_pages'] ?>" id="cf_write_pages" required class="required" size="3"> 페이지씩 표시                    </div>
-                                            <div><label for="cf_mobile_pages">모바일 페이지 표시 수<strong>필수</strong></label>                    </div>
-                                            <div><input type="text" name="cf_mobile_pages" value="<?php echo (int) $config['cf_mobile_pages'] ?>" id="cf_mobile_pages" required class="required" size="3"> 페이지씩 표시                    </div>
                                     </div>
                                     <div>
                                             <div><label for="cf_new_skin">최근게시물 스킨<strong>필수</strong></label>                    </div>

@@ -149,7 +149,7 @@ $(function() {
                     return false;
                 }
 
-                var field = Array('de_shop_skin', 'de_shop_mobile_skin');
+                var field = Array('de_shop_skin');
                 var count = field.length;
                 var key;
 
@@ -163,7 +163,7 @@ $(function() {
         });
     });
 
-    $(".shop_pc_index, .shop_mobile_index, .shop_etc").on("click", function() {
+    $(".shop_pc_index, .shop_etc").on("click", function() {
         if(!confirm("현재 테마의 스킨, 이미지 사이즈 등의 설정을 적용하시겠습니까?"))
             return false;
 

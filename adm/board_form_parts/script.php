@@ -22,7 +22,7 @@ $(function(){
                     return false;
                 }
 
-                var field = Array('bo_gallery_cols', 'bo_gallery_width', 'bo_gallery_height', 'bo_mobile_gallery_width', 'bo_mobile_gallery_height', 'bo_image_width');
+                var field = Array('bo_gallery_cols', 'bo_gallery_width', 'bo_gallery_height', 'bo_image_width');
                 var count = field.length;
                 var key;
 
@@ -119,8 +119,6 @@ function fboardform_submit(f)
 
     <?php echo get_editor_js("bo_content_head"); ?>
     <?php echo get_editor_js("bo_content_tail"); ?>
-    <?php echo get_editor_js("bo_mobile_content_head"); ?>
-    <?php echo get_editor_js("bo_mobile_content_tail"); ?>
 
     if (parseInt(f.bo_count_modify.value) < 0) {
         alert("원글 수정 불가 댓글수는 0 이상 입력하셔야 합니다.");

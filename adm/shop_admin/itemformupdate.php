@@ -384,7 +384,6 @@ $sql_common = " ca_id               = '$ca_id',
                 it_basic            = '$it_basic',
                 it_explan           = '$it_explan',
                 it_explan2          = '".strip_tags(trim(clean_xss_attributes($it_explan)))."',
-                it_mobile_explan    = '$it_mobile_explan',
                 it_cust_price       = '$it_cust_price',
                 it_price            = '$it_price',
                 it_point            = '$it_point',
@@ -407,8 +406,6 @@ $sql_common = " ca_id               = '$ca_id',
                 it_buy_max_qty      = '$it_buy_max_qty',
                 it_head_html        = '$it_head_html',
                 it_tail_html        = '$it_tail_html',
-                it_mobile_head_html = '$it_mobile_head_html',
-                it_mobile_tail_html = '$it_mobile_tail_html',
                 it_ip               = '{$_SERVER['REMOTE_ADDR']}',
                 it_order            = '$it_order',
                 it_tel_inq          = '$it_tel_inq',
@@ -588,8 +585,6 @@ if(is_checked('chk_ca_it_buy_min_qty'))         $ca_fields .= " , it_buy_min_qty
 if(is_checked('chk_ca_it_buy_max_qty'))         $ca_fields .= " , it_buy_max_qty = '$it_buy_max_qty' ";
 if(is_checked('chk_ca_it_head_html'))           $ca_fields .= " , it_head_html = '$it_head_html' ";
 if(is_checked('chk_ca_it_tail_html'))           $ca_fields .= " , it_tail_html = '$it_tail_html' ";
-if(is_checked('chk_ca_it_mobile_head_html'))    $ca_fields .= " , it_mobile_head_html = '$it_mobile_head_html' ";
-if(is_checked('chk_ca_it_mobile_tail_html'))    $ca_fields .= " , it_mobile_tail_html = '$it_mobile_tail_html' ";
 if(is_checked('chk_ca_1'))                      $ca_fields .= " , it_1_subj = '$it_1_subj', it_1 = '$it_1' ";
 if(is_checked('chk_ca_2'))                      $ca_fields .= " , it_2_subj = '$it_2_subj', it_2 = '$it_2' ";
 if(is_checked('chk_ca_3'))                      $ca_fields .= " , it_3_subj = '$it_3_subj', it_3 = '$it_3' ";
@@ -639,8 +634,6 @@ if(is_checked('chk_all_it_buy_min_qty'))         $all_fields .= " , it_buy_min_q
 if(is_checked('chk_all_it_buy_max_qty'))         $all_fields .= " , it_buy_max_qty = '$it_buy_max_qty' ";
 if(is_checked('chk_all_it_head_html'))           $all_fields .= " , it_head_html = '$it_head_html' ";
 if(is_checked('chk_all_it_tail_html'))           $all_fields .= " , it_tail_html = '$it_tail_html' ";
-if(is_checked('chk_all_it_mobile_head_html'))    $all_fields .= " , it_mobile_head_html = '$it_mobile_head_html' ";
-if(is_checked('chk_all_it_mobile_tail_html'))    $all_fields .= " , it_mobile_tail_html = '$it_mobile_tail_html' ";
 if(is_checked('chk_all_1'))                      $all_fields .= " , it_1_subj = '$it_1_subj', it_1 = '$it_1' ";
 if(is_checked('chk_all_2'))                      $all_fields .= " , it_2_subj = '$it_2_subj', it_2 = '$it_2' ";
 if(is_checked('chk_all_3'))                      $all_fields .= " , it_3_subj = '$it_3_subj', it_3 = '$it_3' ";

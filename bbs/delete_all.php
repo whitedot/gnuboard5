@@ -18,7 +18,7 @@ else // 일괄삭제
 
 $chk_count = count($tmp_array);
 
-if($chk_count > (G5_IS_MOBILE ? $board['bo_mobile_page_rows'] : $board['bo_page_rows']))
+if($chk_count > $board['bo_page_rows'])
     alert('올바른 방법으로 이용해 주십시오.');
 
 // 사용자 코드 실행

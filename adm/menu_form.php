@@ -167,13 +167,6 @@ if ($new == 'new' || !$code) {
         list += "<option value=\"0\">사용안함</option>";
         list += "</select>";
         list += "</td>";
-        list += "<td class=\"cell-mngsmall\">";
-        list += "<label for=\"me_mobile_use_" + ms + "\"  class=\"sr-only\">모바일사용</label>";
-        list += "<select name=\"me_mobile_use[]\" id=\"me_mobile_use_" + ms + "\">";
-        list += "<option value=\"1\">사용함</option>";
-        list += "<option value=\"0\">사용안함</option>";
-        list += "</select>";
-        list += "</td>";
         list += "<td class=\"cell-mng\">";
         <?php if ($new == 'new') { ?>
             list += "<button type=\"button\" class=\"btn_add_submenu btn-tertiary\">추가</button>\n";

@@ -178,7 +178,7 @@ $colspan = 10;
 </div>
 
 <?php
-$pagelist = get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME'] . '?' . $qstr . '&amp;page=');
+$pagelist = get_paging($config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME'] . '?' . $qstr . '&amp;page=');
 echo $pagelist;
 ?>
 
@@ -201,4 +201,5 @@ echo $pagelist;
 
 <?php
 require_once './admin.tail.php';
+
 

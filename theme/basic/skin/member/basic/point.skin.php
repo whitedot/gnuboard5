@@ -71,7 +71,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         </ul>
     </div>
 
-    <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME'].'?'.$qstr.'&amp;page='); ?>
+    <?php echo get_paging($config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME'].'?'.$qstr.'&amp;page='); ?>
 
     <button type="button" onclick="javascript:window.close();">창닫기</button>
 </div>

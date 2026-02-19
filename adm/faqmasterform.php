@@ -142,8 +142,6 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
     function frmfaqmasterform_check(f) {
         <?php echo get_editor_js('fm_head_html'); ?>
         <?php echo get_editor_js('fm_tail_html'); ?>
-        <?php echo get_editor_js('fm_mobile_head_html'); ?>
-        <?php echo get_editor_js('fm_mobile_tail_html'); ?>
     }
 
     // document.frmfaqmasterform.fm_subject.focus();

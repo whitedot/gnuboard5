@@ -32,7 +32,7 @@ $sql = " select count(*) as cnt {$sql_common} ";
 $row = sql_fetch($sql);
 $total_count = $row['cnt'];
 
-$rows = G5_IS_MOBILE ? $config['cf_mobile_page_rows'] : $config['cf_new_rows'];
+$rows = $config['cf_new_rows'];
 $total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
 if ($page < 1) $page = 1; // 페이지가 없으면 첫 페이지 (1 페이지)
 $from_record = ($page - 1) * $rows; // 시작 열을 구함
@@ -46,7 +46,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
 $group_select .= '</select>';
 
 $list = array();
-$sql = " select a.*, b.bo_subject, b.bo_mobile_subject, c.gr_subject, c.gr_id {$sql_common} {$sql_order} limit {$from_record}, {$rows} ";
+$sql = " select a.*, b.bo_subject, c.gr_subject, c.gr_id {$sql_common} {$sql_order} limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 for ($i=0; $row=sql_fetch_array($result); $i++) {
     $tmp_write_table = $g5['write_prefix'].$row['bo_table'];
@@ -104,11 +104,11 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
     $list[$i]['datetime2'] = $datetime2;
 
     $list[$i]['gr_subject'] = $row['gr_subject'];
-    $list[$i]['bo_subject'] = ((G5_IS_MOBILE && $row['bo_mobile_subject']) ? $row['bo_mobile_subject'] : $row['bo_subject']);
+    $list[$i]['bo_subject'] = $row['bo_subject'];
     $list[$i]['wr_subject'] = $row2['wr_subject'];
 }
 
-$write_pages = get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, "?gr_id=$gr_id&amp;view=$view&amp;mb_id=$mb_id&amp;page=");
+$write_pages = get_paging($config['cf_write_pages'], $page, $total_page, "?gr_id=$gr_id&amp;view=$view&amp;mb_id=$mb_id&amp;page=");
 
 include_once($new_skin_path.'/new.skin.php');
 

@@ -25,9 +25,7 @@ if (!sql_query(" DESCRIBE `{$g5['qa_config_table']}` ", false)) {
                   `qa_admin_hp` varchar(255) NOT NULL DEFAULT '',
                   `qa_use_editor` tinyint(4) NOT NULL DEFAULT '0',
                   `qa_subject_len` int(11) NOT NULL DEFAULT '0',
-                  `qa_mobile_subject_len` int(11) NOT NULL DEFAULT '0',
                   `qa_page_rows` int(11) NOT NULL DEFAULT '0',
-                  `qa_mobile_page_rows` int(11) NOT NULL DEFAULT '0',
                   `qa_image_width` int(11) NOT NULL DEFAULT '0',
                   `qa_upload_size` int(11) NOT NULL DEFAULT '0',
                   `qa_insert_content` text NOT NULL,
@@ -80,9 +78,9 @@ $qaconfig = get_qa_config();
 
 if (empty($qaconfig)) {
     $sql = " insert into `{$g5['qa_config_table']}`
-                ( qa_title, qa_category, qa_skin, qa_use_email, qa_req_email, qa_use_hp, qa_req_hp, qa_use_editor, qa_subject_len, qa_mobile_subject_len, qa_page_rows, qa_mobile_page_rows, qa_image_width, qa_upload_size, qa_insert_content )
+                ( qa_title, qa_category, qa_skin, qa_use_email, qa_req_email, qa_use_hp, qa_req_hp, qa_use_editor, qa_subject_len, qa_page_rows, qa_image_width, qa_upload_size, qa_insert_content )
               values
-                ( '1:1문의', '회원|포인트', 'theme/basic', '1', '0', '1', '0', '1', '60', '30', '15', '15', '600', '1048576', '' ) ";
+                ( '1:1문의', '회원|포인트', 'theme/basic', '1', '0', '1', '0', '1', '60', '15', '600', '1048576', '' ) ";
     sql_query($sql);
 
     $qaconfig = get_qa_config();
@@ -198,19 +196,8 @@ if (!isset($qaconfig['qa_include_head'])) {
                     </div>
                 </div>
                 <div>
-                    <div><label for="qa_mobile_subject_len">모바일 제목 길이<strong> 필수</strong></label></div>
-                    <div>
-                        <?php echo help('목록에서의 제목 글자수') ?>
-                        <input type="text" name="qa_mobile_subject_len" value="<?php echo $qaconfig['qa_mobile_subject_len'] ?>" id="qa_mobile_subject_len" required class="required" size="4">
-                    </div>
-                </div>
-                <div>
                     <div><label for="qa_page_rows">페이지당 목록 수<strong> 필수</strong></label></div>
                     <div><input type="text" name="qa_page_rows" value="<?php echo $qaconfig['qa_page_rows'] ?>" id="qa_page_rows" required class="required" size="4"></div>
-                </div>
-                <div>
-                    <div><label for="qa_mobile_page_rows">모바일 페이지당 목록 수<strong> 필수</strong></label></div>
-                    <div><input type="text" name="qa_mobile_page_rows" value="<?php echo $qaconfig['qa_mobile_page_rows'] ?>" id="qa_mobile_page_rows" required class="required" size="4"></div>
                 </div>
                 <div>
                     <div><label for="qa_image_width">이미지 폭 크기<strong> 필수</strong></label></div>

@@ -13,7 +13,6 @@ check_admin_token();
 $gr_id              = isset($_POST['gr_id']) ? preg_replace('/[^a-z0-9_]/i', '', (string)$_POST['gr_id']) : '';
 $bo_admin           = isset($_POST['bo_admin']) ? preg_replace('/[^a-z0-9_\, \|\#]/i', '', $_POST['bo_admin']) : '';
 $bo_subject         = isset($_POST['bo_subject']) ? strip_tags(clean_xss_attributes($_POST['bo_subject'])) : '';
-$bo_mobile_subject  = isset($_POST['bo_mobile_subject']) ? strip_tags(clean_xss_attributes($_POST['bo_mobile_subject'])) : '';
 
 if (!$gr_id) {
     alert('그룹 ID는 반드시 선택하세요.');
@@ -107,7 +106,6 @@ $src_char = array('&', '=');
 $dst_char = array('＆', '〓');
 $bo_category_list = isset($_POST['bo_category_list']) ? str_replace($src_char, $dst_char, $_POST['bo_category_list']) : '';
 //https://github.com/gnuboard/gnuboard5/commit/f5f4925d4eb28ba1af728e1065fc2bdd9ce1da58 에 따른 조치
-$str_bo_category_list = preg_replace("/[\<\>\'\"\\\'\\\"\%\=\(\)\/\^\*]/", "", (string)$bo_category_list);
 
 $bo_use_category = isset($_POST['bo_use_category']) ? (int) $_POST['bo_use_category'] : 0;
 $bo_use_sideview = isset($_POST['bo_use_sideview']) ? (int) $_POST['bo_use_sideview'] : 0;
@@ -125,9 +123,7 @@ $bo_use_sns = isset($_POST['bo_use_sns']) ? (int) $_POST['bo_use_sns'] : 0;
 $bo_use_captcha = isset($_POST['bo_use_captcha']) ? (int) $_POST['bo_use_captcha'] : 0;
 $bo_table_width = isset($_POST['bo_table_width']) ? (int) $_POST['bo_table_width'] : 0;
 $bo_subject_len = isset($_POST['bo_subject_len']) ? (int) $_POST['bo_subject_len'] : 0;
-$bo_mobile_subject_len = isset($_POST['bo_mobile_subject_len']) ? (int) $_POST['bo_mobile_subject_len'] : 0;
 $bo_page_rows = isset($_POST['bo_page_rows']) ? (int) $_POST['bo_page_rows'] : 0;
-$bo_mobile_page_rows = isset($_POST['bo_mobile_page_rows']) ? (int) $_POST['bo_mobile_page_rows'] : 0;
 $bo_use_rss_view = isset($_POST['bo_use_rss_view']) ? (int) $_POST['bo_use_rss_view'] : 0;
 $bo_use_secret = isset($_POST['bo_use_secret']) ? (int) $_POST['bo_use_secret'] : 0;
 $bo_use_file_content = isset($_POST['bo_use_file_content']) ? (int) $_POST['bo_use_file_content'] : 0;
@@ -160,8 +156,6 @@ $bo_insert_content = isset($_POST['bo_insert_content']) ? $_POST['bo_insert_cont
 $bo_gallery_cols = isset($_POST['bo_gallery_cols']) ? (int) $_POST['bo_gallery_cols'] : 0;
 $bo_gallery_width = isset($_POST['bo_gallery_width']) ? (int) $_POST['bo_gallery_width'] : 0;
 $bo_gallery_height = isset($_POST['bo_gallery_height']) ? (int) $_POST['bo_gallery_height'] : 0;
-$bo_mobile_gallery_width = isset($_POST['bo_mobile_gallery_width']) ? (int) $_POST['bo_mobile_gallery_width'] : 0;
-$bo_mobile_gallery_height = isset($_POST['bo_mobile_gallery_height']) ? (int) $_POST['bo_mobile_gallery_height'] : 0;
 $bo_upload_count = isset($_POST['bo_upload_count']) ? (int) $_POST['bo_upload_count'] : 0;
 $bo_upload_size = isset($_POST['bo_upload_size']) ? (int) $_POST['bo_upload_size'] : 0;
 $bo_reply_order = isset($_POST['bo_reply_order']) ? (int) $_POST['bo_reply_order'] : 0;
@@ -185,7 +179,6 @@ for ($i = 1; $i <= 10; $i++) {
 
 $sql_common = " gr_id               = '{$gr_id}',
                 bo_subject          = '{$bo_subject}',
-                bo_mobile_subject   = '{$bo_mobile_subject}',
                 bo_device           = '{$bo_device}',
                 bo_admin            = '{$bo_admin}',
                 bo_list_level       = '{$bo_list_level}',
@@ -225,9 +218,7 @@ $sql_common = " gr_id               = '{$gr_id}',
                 bo_use_captcha      = '{$bo_use_captcha}',
                 bo_table_width      = '{$bo_table_width}',
                 bo_subject_len      = '{$bo_subject_len}',
-                bo_mobile_subject_len      = '{$bo_mobile_subject_len}',
                 bo_page_rows        = '{$bo_page_rows}',
-                bo_mobile_page_rows = '{$bo_mobile_page_rows}',
                 bo_new              = '{$bo_new}',
                 bo_hot              = '{$bo_hot}',
                 bo_image_width      = '{$bo_image_width}',
@@ -247,8 +238,6 @@ $sql_common .= " bo_insert_content   = '{$bo_insert_content}',
                 bo_gallery_cols     = '{$bo_gallery_cols}',
                 bo_gallery_width    = '{$bo_gallery_width}',
                 bo_gallery_height   = '{$bo_gallery_height}',
-                bo_mobile_gallery_width = '{$bo_mobile_gallery_width}',
-                bo_mobile_gallery_height= '{$bo_mobile_gallery_height}',
                 bo_upload_count     = '{$bo_upload_count}',
                 bo_upload_size      = '{$bo_upload_size}',
                 bo_reply_order      = '{$bo_reply_order}',
@@ -408,13 +397,9 @@ if (is_checked('chk_grp_skin'))                 $grp_fields .= " , bo_skin = '{$
 if (is_checked('chk_grp_gallery_cols'))         $grp_fields .= " , bo_gallery_cols = '{$bo_gallery_cols}' ";
 if (is_checked('chk_grp_gallery_width'))        $grp_fields .= " , bo_gallery_width = '{$bo_gallery_width}' ";
 if (is_checked('chk_grp_gallery_height'))       $grp_fields .= " , bo_gallery_height = '{$bo_gallery_height}' ";
-if (is_checked('chk_grp_mobile_gallery_width')) $grp_fields .= " , bo_mobile_gallery_width = '{$bo_mobile_gallery_width}' ";
-if (is_checked('chk_grp_mobile_gallery_height'))$grp_fields .= " , bo_mobile_gallery_height = '{$bo_mobile_gallery_height}' ";
 if (is_checked('chk_grp_table_width'))          $grp_fields .= " , bo_table_width = '{$bo_table_width}' ";
 if (is_checked('chk_grp_page_rows'))            $grp_fields .= " , bo_page_rows = '{$bo_page_rows}' ";
-if (is_checked('chk_grp_mobile_page_rows'))     $grp_fields .= " , bo_mobile_page_rows = '{$bo_mobile_page_rows}' ";
 if (is_checked('chk_grp_subject_len'))          $grp_fields .= " , bo_subject_len = '{$bo_subject_len}' ";
-if (is_checked('chk_grp_mobile_subject_len'))   $grp_fields .= " , bo_mobile_subject_len = '{$bo_mobile_subject_len}' ";
 if (is_checked('chk_grp_new'))                  $grp_fields .= " , bo_new = '{$bo_new}' ";
 if (is_checked('chk_grp_hot'))                  $grp_fields .= " , bo_hot = '{$bo_hot}' ";
 if (is_checked('chk_grp_image_width'))          $grp_fields .= " , bo_image_width = '{$bo_image_width}' ";
@@ -495,13 +480,9 @@ if (is_checked('chk_all_skin'))                 $all_fields .= " , bo_skin = '{$
 if (is_checked('chk_all_gallery_cols'))         $all_fields .= " , bo_gallery_cols = '{$bo_gallery_cols}' ";
 if (is_checked('chk_all_gallery_width'))        $all_fields .= " , bo_gallery_width = '{$bo_gallery_width}' ";
 if (is_checked('chk_all_gallery_height'))       $all_fields .= " , bo_gallery_height = '{$bo_gallery_height}' ";
-if (is_checked('chk_all_mobile_gallery_width')) $all_fields .= " , bo_mobile_gallery_width = '{$bo_mobile_gallery_width}' ";
-if (is_checked('chk_all_mobile_gallery_height')) $all_fields .= " , bo_mobile_gallery_height = '{$bo_mobile_gallery_height}' ";
 if (is_checked('chk_all_table_width'))          $all_fields .= " , bo_table_width = '{$bo_table_width}' ";
 if (is_checked('chk_all_page_rows'))            $all_fields .= " , bo_page_rows = '{$bo_page_rows}' ";
-if (is_checked('chk_all_mobile_page_rows'))     $all_fields .= " , bo_mobile_page_rows = '{$bo_mobile_page_rows}' ";
 if (is_checked('chk_all_subject_len'))          $all_fields .= " , bo_subject_len = '{$bo_subject_len}' ";
-if (is_checked('chk_all_mobile_subject_len'))   $all_fields .= " , bo_mobile_subject_len = '{$bo_mobile_subject_len}' ";
 if (is_checked('chk_all_new'))                  $all_fields .= " , bo_new = '{$bo_new}' ";
 if (is_checked('chk_all_hot'))                  $all_fields .= " , bo_hot = '{$bo_hot}' ";
 if (is_checked('chk_all_image_width'))          $all_fields .= " , bo_image_width = '{$bo_image_width}' ";

@@ -336,7 +336,7 @@ $colspan = 16;
 
 </form>
 
-<?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, '?' . $qstr . '&amp;page='); ?>
+<?php echo get_paging($config['cf_write_pages'], $page, $total_page, '?' . $qstr . '&amp;page='); ?>
 
 <script>
     function fmemberlist_submit(f) {
@@ -357,3 +357,4 @@ $colspan = 16;
 
 <?php
 require_once './admin.tail.php';
+

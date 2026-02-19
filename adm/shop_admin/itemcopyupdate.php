@@ -87,37 +87,6 @@ if($cp['it_explan']) {
     sql_query($sql);
 }
 
-if($cp['it_mobile_explan']) {
-    $matchs = get_editor_image($cp['it_mobile_explan'], false);
-    $count_matchs = (isset($matchs[1]) && is_array($matchs[1])) ? count($matchs[1]) : 0;
-
-    // 파일의 경로를 얻어 복사
-    for($i=0;$i<$count_matchs;$i++) {
-        $p = parse_url($matchs[1][$i]);
-        if(strpos($p['path'], "/data/") != 0)
-            $src_path = preg_replace("/^\/.*\/data/", "/data", $p['path']);
-        else
-            $src_path = $p['path'];
-
-        $srcfile = G5_PATH.$src_path;
-        $dstfile = preg_replace("/\.([^\.]+)$/", "_".$new_it_id.".\\1", $srcfile);
-
-        if(is_file($srcfile)) {
-            copy($srcfile, $dstfile);
-
-            $newfile = preg_replace("/\.([^\.]+)$/", "_".$new_it_id.".\\1", $matchs[1][$i]);
-            $cp['it_mobile_explan'] = str_replace($matchs[1][$i], $newfile, $cp['it_mobile_explan']);
-
-            $copied_editor_images[] = array(
-                'original' => $srcfile,
-                'new' => $dstfile
-            );
-        }
-    }
-
-    $sql = " update {$g5['g5_shop_item_table']} set it_mobile_explan = '".addslashes($cp['it_mobile_explan'])."' where it_id = '$new_it_id' ";
-    sql_query($sql);
-}
 
 // 상품이미지 복사
 function copy_directory($src_dir, $dest_dir)

@@ -106,7 +106,7 @@ $qstr1 = 'sch_target='.$sch_target.'&amp;sch_word='.urlencode($sch_word);
     </div>
     </form>
 
-    <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, '?'.$qstr1.'&amp;page='); ?>
+    <?php echo get_paging($config['cf_write_pages'], $page, $total_page, '?'.$qstr1.'&amp;page='); ?>
 
     <div class="win_btn">
         <button type="button" onclick="window.close();">닫기</button>

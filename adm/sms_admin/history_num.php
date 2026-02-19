@@ -106,7 +106,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
     </table>
 </div>
 
-<?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME']."?st=$st&amp;sv=$sv&amp;page="); ?>
+<?php echo get_paging($config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME']."?st=$st&amp;sv=$sv&amp;page="); ?>
 
 <?php
 include_once(G5_ADMIN_PATH.'/admin.tail.php');

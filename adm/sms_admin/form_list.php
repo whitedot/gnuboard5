@@ -236,6 +236,6 @@ function select_copy(sw, f) {
 </script>
 
 <?php
-echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME']."?fg_no=$fg_no&amp;st=$st&amp;sv=$sv&amp;page=");
+echo get_paging($config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME']."?fg_no=$fg_no&amp;st=$st&amp;sv=$sv&amp;page=");
 
 include_once(G5_ADMIN_PATH.'/admin.tail.php');

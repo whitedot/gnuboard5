@@ -14,7 +14,6 @@ if (!$row['cnt']) {
 $html_title = '게시판';
 
 $board_default = array(
-'bo_mobile_subject'=>'',
 'bo_device'=>'',
 'bo_use_category'=>0,
 'bo_category_list'=>'',
@@ -52,8 +51,6 @@ $board_default = array(
 'bo_use_captcha'=>0,
 'bo_content_head'=>'',
 'bo_content_tail'=>'',
-'bo_mobile_content_head'=>'',
-'bo_mobile_content_tail'=>'',
 'bo_insert_content'=>'',
 'bo_sort_field'=>'',
 );
@@ -88,13 +85,9 @@ if ($w == '') {
     $board['bo_gallery_cols'] = 4;
     $board['bo_gallery_width'] = 202;
     $board['bo_gallery_height'] = 150;
-    $board['bo_mobile_gallery_width'] = 125;
-    $board['bo_mobile_gallery_height'] = 100;
     $board['bo_table_width'] = 100;
     $board['bo_page_rows'] = $config['cf_page_rows'];
-    $board['bo_mobile_page_rows'] = $config['cf_page_rows'];
     $board['bo_subject_len'] = 60;
-    $board['bo_mobile_subject_len'] = 30;
     $board['bo_new'] = 24;
     $board['bo_hot'] = 100;
     $board['bo_image_width'] = 600;

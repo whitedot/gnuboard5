@@ -48,7 +48,7 @@
                         return false;
                     }
 
-                    var field = Array('cf_member_skin', 'cf_mobile_member_skin', 'cf_new_skin', 'cf_mobile_new_skin', 'cf_search_skin', 'cf_mobile_search_skin', 'cf_connect_skin', 'cf_mobile_connect_skin', 'cf_faq_skin', 'cf_mobile_faq_skin');
+                    var field = Array('cf_member_skin', 'cf_new_skin', 'cf_search_skin', 'cf_connect_skin', 'cf_faq_skin');
                     var count = field.length;
                     var key;
 

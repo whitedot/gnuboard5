@@ -80,7 +80,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     $list[$i]['del_href'] = './memo_delete.php?me_id='.$row['me_id'].'&amp;token='.$token.'&amp;kind='.$kind;
 }
 
-$write_pages = get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, "./memo.php?kind=$kind".$qstr."&amp;page=");
+$write_pages = get_paging($config['cf_write_pages'], $page, $total_page, "./memo.php?kind=$kind".$qstr."&amp;page=");
 
 include_once($member_skin_path.'/memo.skin.php');
 

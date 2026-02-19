@@ -185,7 +185,7 @@ if (strstr($sfl, "mb_id")) {
 
 </form>
 
-<?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page="); ?>
+<?php echo get_paging($config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page="); ?>
 
 <section id="point_mng">
     <h2>개별회원 포인트 증감 설정</h2>
@@ -254,3 +254,4 @@ if (strstr($sfl, "mb_id")) {
 
 <?php
 require_once './admin.tail.php';
+

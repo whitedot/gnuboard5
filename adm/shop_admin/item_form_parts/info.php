@@ -183,10 +183,6 @@
             <td colspan="2"> <?php echo editor_html('it_explan', get_text(html_purifier($it['it_explan']), 0)); ?></td>
         </tr>
         <tr>
-            <th scope="row">모바일 상품설명</th>
-            <td colspan="2"> <?php echo editor_html('it_mobile_explan', get_text(html_purifier($it['it_mobile_explan']), 0)); ?></td>
-        </tr>
-        <tr>
             <th scope="row"><label for="it_sell_email">판매자 e-mail</label></th>
             <td>
                 <?php echo help("운영자와 실제 판매자가 다른 경우 실제 판매자의 e-mail을 입력하면, 상품 주문 시점을 기준으로 실제 판매자에게도 주문서를 발송합니다."); ?>

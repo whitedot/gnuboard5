@@ -21,7 +21,6 @@ if (!sql_query(" DESCRIBE {$g5['menu_table']} ", false)) {
                   `me_target` varchar(255) NOT NULL DEFAULT '0',
                   `me_order` int(11) NOT NULL DEFAULT '0',
                   `me_use` tinyint(4) NOT NULL DEFAULT '0',
-                  `me_mobile_use` tinyint(4) NOT NULL DEFAULT '0',
                   PRIMARY KEY (`me_id`)
                 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ",
         true
@@ -34,7 +33,7 @@ $result = sql_query($sql);
 $g5['title'] = "메뉴설정";
 require_once './admin.head.php';
 
-$colspan = 7;
+$colspan = 6;
 $sub_menu_info = '';
 ?>
 
@@ -57,7 +56,6 @@ $sub_menu_info = '';
                     <th scope="col">새창</th>
                     <th scope="col">순서</th>
                     <th scope="col">PC사용</th>
-                    <th scope="col">모바일사용</th>
                     <th scope="col">관리</th>
                 </tr>
             </thead>
@@ -102,13 +100,6 @@ $sub_menu_info = '';
                             <select name="me_use[]" id="me_use_<?php echo $i; ?>">
                                 <option value="1" <?php echo get_selected($row['me_use'], '1', true); ?>>사용함</option>
                                 <option value="0" <?php echo get_selected($row['me_use'], '0', true); ?>>사용안함</option>
-                            </select>
-                        </td>
-                        <td>
-                            <label for="me_mobile_use_<?php echo $i; ?>">모바일사용</label>
-                            <select name="me_mobile_use[]" id="me_mobile_use_<?php echo $i; ?>">
-                                <option value="1" <?php echo get_selected($row['me_mobile_use'], '1', true); ?>>사용함</option>
-                                <option value="0" <?php echo get_selected($row['me_mobile_use'], '0', true); ?>>사용안함</option>
                             </select>
                         </td>
                         <td>

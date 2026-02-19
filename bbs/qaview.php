@@ -30,7 +30,7 @@ if(is_file($skin_file)) {
     if(!(isset($view['qa_id']) && $view['qa_id']))
         alert('게시글이 존재하지 않습니다.\\n삭제되었거나 자신의 글이 아닌 경우입니다.');
 
-    $subject_len = G5_IS_MOBILE ? $qaconfig['qa_mobile_subject_len'] : $qaconfig['qa_subject_len'];
+    $subject_len = $qaconfig['qa_subject_len'];
 
     $view['category'] = get_text($view['qa_category']);
     $view['subject'] = conv_subject($view['qa_subject'], $subject_len, '…');

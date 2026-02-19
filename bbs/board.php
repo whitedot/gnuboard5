@@ -16,7 +16,7 @@ if (!$bo_table) {
     alert($msg);
 }
 
-$g5['board_title'] = ((G5_IS_MOBILE && $board['bo_mobile_subject']) ? $board['bo_mobile_subject'] : $board['bo_subject']);
+$g5['board_title'] = $board['bo_subject'];
 
 // wr_id 값이 있으면 글읽기
 if ((isset($wr_id) && $wr_id) || (isset($wr_seo_title) && $wr_seo_title)) {
@@ -128,7 +128,7 @@ if ((isset($wr_id) && $wr_id) || (isset($wr_seo_title) && $wr_seo_title)) {
             if ($config['cf_use_point'] && $board['bo_read_point'] && $member['mb_point'] + $board['bo_read_point'] < 0)
                 alert('보유하신 포인트('.number_format($member['mb_point']).')가 없거나 모자라서 글읽기('.number_format($board['bo_read_point']).')가 불가합니다.\\n\\n포인트를 모으신 후 다시 글읽기 해 주십시오.');
 
-            insert_point($member['mb_id'], $board['bo_read_point'], ((G5_IS_MOBILE && $board['bo_mobile_subject']) ? $board['bo_mobile_subject'] : $board['bo_subject']).' '.$wr_id.' 글읽기', $bo_table, $wr_id, '읽기');
+            insert_point($member['mb_id'], $board['bo_read_point'], $board['bo_subject'].' '.$wr_id.' 글읽기', $bo_table, $wr_id, '읽기');
         }
 
         set_session($ss_name, TRUE);
@@ -232,6 +232,6 @@ if ($member['mb_level'] >= $board['bo_list_level'] && $board['bo_use_list_view']
 
 include_once(G5_BBS_PATH.'/board_tail.php');
 
-echo "\n<!-- 사용스킨 : ".(G5_IS_MOBILE ? $board['bo_mobile_skin'] : $board['bo_skin'])." -->\n";
+echo "\n<!-- 사용스킨 : ".$board['bo_skin']." -->\n";
 
 include_once(G5_PATH.'/tail.sub.php');

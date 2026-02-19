@@ -94,7 +94,6 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
         <th scope="col" id="sct_hpcert">본인인증</th>
         <th scope="col" id="sct_imgw">이미지 폭</th>
         <th scope="col" id="sct_imgcol">1행이미지수</th>
-        <th scope="col" id="sct_mobileimg">모바일<br>1행이미지수</th>
         <th scope="col" id="sct_pcskin">PC스킨지정</th>
         <th scope="col" rowspan="2">관리</th>
     </tr>
@@ -104,7 +103,6 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
         <th scope="col" id="sct_adultcert">성인인증</th>
         <th scope="col" id="sct_imgh">이미지 높이</th>
         <th scope="col" id="sct_imgrow">이미지 행수</th>
-        <th scope="col" id="sct_mobilerow">모바일<br>이미지 행수</th>
     </tr>
     </thead>
     <tbody>
@@ -153,14 +151,6 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
                 $g5_shop_skin_path  = G5_PATH.'/'.G5_SKIN_DIR.'/shop/'.$row['ca_skin_dir'];
         }
 
-        if(!$row['ca_mobile_skin_dir'])
-            $g5_mshop_skin_path = G5_MSHOP_SKIN_PATH;
-        else {
-            if(preg_match('#^theme/(.+)$#', $row['ca_mobile_skin_dir'], $match))
-                $g5_mshop_skin_path = G5_THEME_MOBILE_PATH.'/'.G5_SKIN_DIR.'/shop/'.$match[1];
-            else
-                $g5_mshop_skin_path = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/shop/'.$row['ca_mobile_skin_dir'];
-        }
 
         $bg = 'bg'.($i%2);
     ?>
@@ -183,10 +173,6 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
         <td headers="sct_imgcol">
             <label for="ca_lineimg_num<?php echo $i; ?>">1줄당 이미지 수</label>
             <input type="text" name="ca_list_mod[<?php echo $i; ?>]" size="3" value="<?php echo $row['ca_list_mod']; ?>" id="ca_lineimg_num<?php echo $i; ?>" required class="required"> <span>개</span>
-        </td>
-        <td headers="sct_mobileimg">
-            <label for="ca_mobileimg_num<?php echo $i; ?>">모바일 1줄당 이미지 수</label>
-            <input type="text" name="ca_mobile_list_mod[<?php echo $i; ?>]" size="3" value="<?php echo $row['ca_mobile_list_mod']; ?>" id="ca_mobileimg_num<?php echo $i; ?>" required class="required"> <span>개</span>
         </td>
         <td headers="sct_pcskin">
             <label for="ca_skin_dir<?php echo $i; ?>">PC스킨폴더</label>
@@ -230,13 +216,9 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
             <label for="ca_imgline_num<?php echo $i; ?>">이미지 줄 수</label>
             <input type="text" name="ca_list_row[<?php echo $i; ?>]" value='<?php echo $row['ca_list_row']; ?>' id="ca_imgline_num<?php echo $i; ?>" required class="required" size="3"> <span>줄</span>
         </td>
-        <td headers="sct_mobilerow">
-            <label for="ca_mobileimg_row<?php echo $i; ?>">모바일 이미지 줄 수</label>
-            <input type="text" name="ca_mobile_list_row[<?php echo $i; ?>]" value='<?php echo $row['ca_mobile_list_row']; ?>' id="ca_mobileimg_row<?php echo $i; ?>" required class="required" size="3">
-        </td>
     </tr>
     <?php }
-    if ($i == 0) echo "<tr><td colspan=\"9\">자료가 한 건도 없습니다.</td></tr>\n";
+    if ($i == 0) echo "<tr><td colspan=\"8\">자료가 한 건도 없습니다.</td></tr>\n";
     ?>
     </tbody>
     </table>
@@ -252,7 +234,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 
 </form>
 
-<?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page="); ?>
+<?php echo get_paging($config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page="); ?>
 
 <script>
 $(function() {
@@ -266,9 +248,6 @@ $(function() {
         var $sel = $(this).siblings("select");
         var sval = $sel.find("option:selected").val();
 
-        if(id.search("mobile") > -1)
-            type = "mobile";
-
         $sel.load(
             "./ajax.skinfile.php",
             { dir : dir, type : type, sval: sval }
@@ -279,3 +258,4 @@ $(function() {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+

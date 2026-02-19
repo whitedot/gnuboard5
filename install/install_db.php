@@ -174,7 +174,6 @@ if ($g5_install || $is_install === false) {
                     cf_comment_point = '$comment_point',
                     cf_download_point = '$download_point',
                     cf_write_pages = '10',
-                    cf_mobile_pages = '5',
                     cf_link_target = '_blank',
                     cf_delay_sec = '30',
                     cf_filter = '18아,18놈,18새끼,18뇬,18노,18것,18넘,개년,개놈,개뇬,개새,개색끼,개세끼,개세이,개쉐이,개쉑,개쉽,개시키,개자식,개좆,게색기,게색끼,광뇬,뇬,눈깔,뉘미럴,니귀미,니기미,니미,도촬,되질래,뒈져라,뒈진다,디져라,디진다,디질래,병쉰,병신,뻐큐,뻑큐,뽁큐,삐리넷,새꺄,쉬발,쉬밸,쉬팔,쉽알,스패킹,스팽,시벌,시부랄,시부럴,시부리,시불,시브랄,시팍,시팔,시펄,실밸,십8,십쌔,십창,싶알,쌉년,썅놈,쌔끼,쌩쑈,썅,써벌,썩을년,쎄꺄,쎄엑,쓰바,쓰발,쓰벌,쓰팔,씨8,씨댕,씨바,씨발,씨뱅,씨봉알,씨부랄,씨부럴,씨부렁,씨부리,씨불,씨브랄,씨빠,씨빨,씨뽀랄,씨팍,씨팔,씨펄,씹,아가리,아갈이,엄창,접년,잡놈,재랄,저주글,조까,조빠,조쟁이,조지냐,조진다,조질래,존나,존니,좀물,좁년,좃,좆,좇,쥐랄,쥐롤,쥬디,지랄,지럴,지롤,지미랄,쫍빱,凸,퍽큐,뻑큐,빠큐,ㅅㅂㄹㅁ',
@@ -209,7 +208,6 @@ if ($g5_install || $is_install === false) {
                     cf_movie_extension = 'asx|asf|wmv|wma|mpg|mpeg|mov|avi|mp3',
                     cf_formmail_is_member = '1',
                     cf_page_rows = '15',
-                    cf_mobile_page_rows = '15',
                     cf_cert_limit = '2',
                     cf_stipulation = '해당 홈페이지에 맞는 회원가입약관을 입력합니다.',
                     cf_privacy = '해당 홈페이지에 맞는 개인정보처리방침을 입력합니다.'
@@ -218,9 +216,9 @@ if ($g5_install || $is_install === false) {
 
     // 1:1문의 설정
     $sql = " insert into `{$table_prefix}qa_config`
-                ( qa_title, qa_category, qa_skin, qa_use_email, qa_req_email, qa_use_hp, qa_req_hp, qa_use_editor, qa_subject_len, qa_mobile_subject_len, qa_page_rows, qa_mobile_page_rows, qa_image_width, qa_upload_size, qa_insert_content )
+                ( qa_title, qa_category, qa_skin, qa_use_email, qa_req_email, qa_use_hp, qa_req_hp, qa_use_editor, qa_subject_len, qa_page_rows, qa_image_width, qa_upload_size, qa_insert_content )
               values
-                ( '1:1문의', '회원|포인트', 'theme/basic', '1', '0', '1', '0', '1', '60', '30', '15', '15', '600', '1048576', '' ) ";
+                ( '1:1문의', '회원|포인트', 'theme/basic', '1', '0', '1', '0', '1', '60', '15', '600', '1048576', '' ) ";
     sql_query($sql, true, $dblink);
 
     // 관리자 회원가입
@@ -314,9 +312,7 @@ if ($g5_install || $is_install === false) {
                         bo_use_email        = '0',
                         bo_table_width      = '100',
                         bo_subject_len      = '60',
-                        bo_mobile_subject_len      = '30',
                         bo_page_rows        = '15',
-                        bo_mobile_page_rows = '15',
                         bo_new              = '24',
                         bo_hot              = '100',
                         bo_image_width      = '835',
@@ -329,8 +325,6 @@ if ($g5_install || $is_install === false) {
                         bo_gallery_cols     = '4',
                         bo_gallery_width    = '202',
                         bo_gallery_height   = '150',
-                        bo_mobile_gallery_width = '125',
-                        bo_mobile_gallery_height= '100',
                         bo_upload_count     = '2',
                         bo_upload_size      = '1048576',
                         bo_reply_order      = '1',
@@ -617,8 +611,6 @@ fclose($f);
 if($g5_shop_install) {
     @copy('./logo_img', $data_path.'/common/logo_img');
     @copy('./logo_img', $data_path.'/common/logo_img2');
-    @copy('./mobile_logo_img', $data_path.'/common/mobile_logo_img');
-    @copy('./mobile_logo_img', $data_path.'/common/mobile_logo_img2');
 }
 //-------------------------------------------------------------------------------------------------
 ?>

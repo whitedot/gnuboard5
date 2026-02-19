@@ -128,11 +128,8 @@ function fitemformcheck(f)
     $("input[name=ev_list]").val(ev);
 
     <?php echo get_editor_js('it_explan'); ?>
-    <?php echo get_editor_js('it_mobile_explan'); ?>
     <?php echo get_editor_js('it_head_html'); ?>
     <?php echo get_editor_js('it_tail_html'); ?>
-    <?php echo get_editor_js('it_mobile_head_html'); ?>
-    <?php echo get_editor_js('it_mobile_tail_html'); ?>
 
     return true;
 }

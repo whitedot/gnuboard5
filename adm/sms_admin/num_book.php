@@ -263,7 +263,7 @@ function select_copy(sw, f) {
 }
 </script>
 
-<?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME']."?bg_no=$bg_no&amp;st=$st&amp;sv=$sv&amp;ap=$ap&amp;page="); ?>
+<?php echo get_paging($config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME']."?bg_no=$bg_no&amp;st=$st&amp;sv=$sv&amp;ap=$ap&amp;page="); ?>
 
 <?php
 include_once(G5_ADMIN_PATH.'/admin.tail.php');
