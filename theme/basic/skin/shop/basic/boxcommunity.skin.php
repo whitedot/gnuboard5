@@ -14,7 +14,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
     $hresult = sql_query($hsql);
     for ($i=0; $row=sql_fetch_array($hresult); $i++)
     {
-        echo '<li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="'.get_pretty_url($row['bo_table']).'">'.$row['bo_subject'].'</a></li>'.PHP_EOL;
+        echo '<li><i aria-hidden="true"></i> <a href="'.get_pretty_url($row['bo_table']).'">'.$row['bo_subject'].'</a></li>'.PHP_EOL;
     }
 
     if ($i==0)

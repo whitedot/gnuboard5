@@ -14,7 +14,7 @@ $tv_div['img_length'] = 10; // 한번에 보여줄 이미지 수
 
 <!-- 오늘 본 상품 시작 { -->
 <div id="stv">
-    <h2 class="s_h2">오늘 본 상품 <span><?php echo get_view_today_items_count(); ?></span></h2>
+    <h2>오늘 본 상품 <span><?php echo get_view_today_items_count(); ?></span></h2>
 
     <?php if ($tv_datas) { // 오늘 본 상품이 1개라도 있을 때 ?>
     <?php
@@ -36,15 +36,15 @@ $tv_div['img_length'] = 10; // 한번에 보여줄 이미지 수
         $print_price = is_int($it_price) ? number_format($it_price) : $it_price;
 
         if ($tv_tot_count == 0) echo '<ul id="stv_ul">'.PHP_EOL;
-        echo '<li class="stv_item c'.$k.'">'.PHP_EOL;
-        echo '<div class="prd_img">';
+        echo '<li>'.PHP_EOL;
+        echo '<div>';
         echo $img;
         echo '</div>'.PHP_EOL;
-		echo '<div class="prd_cnt">';
-        echo '<span class="prd_name">';
+		echo '<div>';
+        echo '<span>';
         echo cut_str($it_name, 10, '').PHP_EOL;
         echo '</span>';
-        echo '<span class="prd_cost">';
+        echo '<span>';
         echo $print_price.PHP_EOL;
         echo '</span>'.PHP_EOL;
 		echo '</div>'.PHP_EOL;
@@ -102,7 +102,7 @@ $tv_div['img_length'] = 10; // 한번에 보여줄 이미지 수
 
     <?php } else { // 오늘 본 상품이 없을 때 ?>
 
-    <p class="li_empty">없음</p>
+    <p>없음</p>
 
     <?php } ?>
 </div>

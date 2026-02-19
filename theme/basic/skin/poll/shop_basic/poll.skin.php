@@ -12,14 +12,14 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 <section id="poll">
     <header>
         <h2>설문조사</h2>
-		<?php if ($is_admin == "super") {  ?><a href="<?php echo G5_ADMIN_URL ?>/poll_form.php?w=u&amp;po_id=<?php echo $po_id ?>" class="btn_admin"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sr-only">설문관리</span></a><?php }  ?>
-    	<a href="<?php echo G5_BBS_URL."/poll_result.php?po_id=$po_id&amp;skin_dir=".urlencode($skin_dir); ?>" target="_blank" onclick="poll_result(this.href); return false;" class="btn_result">결과보기</a>
+		<?php if ($is_admin == "super") {  ?><a href="<?php echo G5_ADMIN_URL ?>/poll_form.php?w=u&amp;po_id=<?php echo $po_id ?>"><i></i><span>설문관리</span></a><?php }  ?>
+    	<a href="<?php echo G5_BBS_URL."/poll_result.php?po_id=$po_id&amp;skin_dir=".urlencode($skin_dir); ?>" target="_blank" onclick="poll_result(this.href); return false;">결과보기</a>
     </header>
-    <div class="poll_con">
+    <div>
         <p><?php echo $po['po_subject'] ?></p>
         <ul>
             <?php for ($i=1; $i<=9 && $po["po_poll{$i}"]; $i++) {  ?>
-            <li class="chk_box">
+            <li>
 	        	<input type="radio" name="gb_poll" value="<?php echo $i ?>" id="gb_poll_<?php echo $i ?>">
 	        	<label for="gb_poll_<?php echo $i ?>">
 	        		<span></span>
@@ -29,7 +29,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
             <?php }  ?>
         </ul>
         <div id="poll_btn">
-            <button type="submit" class="btn_poll">투표하기</button>
+            <button type="submit">투표하기</button>
         </div>
     </div>
 </section>

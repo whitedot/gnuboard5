@@ -14,7 +14,7 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
     <header>
         <h2 id="bo_v_title">
             <?php
-            echo '<span class="bo_v_cate">'.$view['category'].'</span> '; // 분류 출력 끝
+            echo '<span>'.$view['category'].'</span> '; // 분류 출력 끝
             ?>
             <?php
             echo $view['subject']; // 글제목 출력
@@ -24,16 +24,16 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 
     <section id="bo_v_info">
         <h2>페이지 정보</h2>
-        <span class="sr-only">작성자</span><strong><?php echo $view['name'] ?></strong>
-        <span class="sr-only">작성일</span><strong class="bo_date"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $view['datetime']; ?></strong>
+        <span>작성자</span><strong><?php echo $view['name'] ?></strong>
+        <span>작성일</span><strong><i aria-hidden="true"></i> <?php echo $view['datetime']; ?></strong>
         <?php if($view['email'] || $view['hp']) { ?>
             <?php if($view['email']) { ?>
-            <span class="sr-only">이메일</span>
-            <strong><i class="fa fa-envelope-o" aria-hidden="true"></i> <?php echo $view['email']; ?></strong>
+            <span>이메일</span>
+            <strong><i aria-hidden="true"></i> <?php echo $view['email']; ?></strong>
             <?php } ?>
             <?php if($view['hp']) { ?>
-            <span class="sr-only">휴대폰</span>
-            <strong><i class="fa fa-phone" aria-hidden="true"></i> <?php echo $view['hp']; ?></strong>
+            <span>휴대폰</span>
+            <strong><i aria-hidden="true"></i> <?php echo $view['hp']; ?></strong>
             <?php } ?>
         <?php } ?>
         
@@ -43,15 +43,15 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 	        ob_start();
 			?>
 
-	        <ul class="bo_v_com">
-				<li><a href="<?php echo $list_href ?>" class="btn_b01 btn" title="목록"><i class="fa fa-list" aria-hidden="true"></i><span class="sr-only">목록</span></a></li>
-	            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">글쓰기</span></a></li><?php } ?>
+	        <ul>
+				<li><a href="<?php echo $list_href ?>" title="목록"><i aria-hidden="true"></i><span>목록</span></a></li>
+	            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" title="글쓰기"><i aria-hidden="true"></i><span>글쓰기</span></a></li><?php } ?>
                 <?php if ($update_href || $delete_href) { ?>
 	        	<li>
-	        		<button type="button" class="btn_more_opt btn_b01 btn" title="게시판 읽기 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sr-only">게시판 읽기 옵션</span></button>
+	        		<button type="button" class="btn_more_opt" title="게시판 읽기 옵션"><i aria-hidden="true"></i><span>게시판 읽기 옵션</span></button>
 	        		<ul class="more_opt">
-	        			<?php if ($update_href) { ?><li><a href="<?php echo $update_href ?>" class="btn_b01 btn" title="수정">수정<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li><?php } ?>
-	            		<?php if ($delete_href) { ?><li><a href="<?php echo $delete_href ?>" class="btn_b01 btn" onclick="del(this.href); return false;" title="삭제">삭제<i class="fa fa-trash-o" aria-hidden="true"></i></a></li><?php } ?>
+	        			<?php if ($update_href) { ?><li><a href="<?php echo $update_href ?>" title="수정">수정<i aria-hidden="true"></i></a></li><?php } ?>
+	            		<?php if ($delete_href) { ?><li><a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;" title="삭제">삭제<i aria-hidden="true"></i></a></li><?php } ?>
 	        		</ul>
 	        	</li>
                 <?php } ?>
@@ -92,7 +92,7 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
         <!-- } 본문 내용 끝 -->
 
         <?php if($view['qa_type']) { ?>
-        <div id="bo_v_addq"><a href="<?php echo $rewrite_href; ?>" class="btn_b01">추가질문</a></div>
+        <div id="bo_v_addq"><a href="<?php echo $rewrite_href; ?>">추가질문</a></div>
         <?php } ?>
 
         <?php if($view['download_count']) { ?>
@@ -106,7 +106,7 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
             for ($i=0; $i<$view['download_count']; $i++) {
              ?>
                 <li>
-                    <i class="fa fa-download" aria-hidden="true"></i>
+                    <i aria-hidden="true"></i>
                     <a href="<?php echo $view['download_href'][$i];  ?>" class="view_file_download" download>
                         <strong><?php echo $view['download_source'][$i] ?></strong>
                     </a>
@@ -121,9 +121,9 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
     </section>
     
     <?php if ($prev_href || $next_href) { ?>
-    <ul class="bo_v_nb">
-        <?php if ($prev_href) { ?><li><a href="<?php echo $prev_href ?>" class="btn_b01 btn"><i class="fa fa-chevron-left" aria-hidden="true"></i> 이전글</a></li><?php } ?>
-        <?php if ($next_href) { ?><li><a href="<?php echo $next_href ?>" class="btn_b01 btn">다음글 <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li><?php } ?>
+    <ul>
+        <?php if ($prev_href) { ?><li><a href="<?php echo $prev_href ?>"><i aria-hidden="true"></i> 이전글</a></li><?php } ?>
+        <?php if ($next_href) { ?><li><a href="<?php echo $next_href ?>">다음글 <i aria-hidden="true"></i></a></li><?php } ?>
     </ul>
     <?php } ?>
 
@@ -141,7 +141,7 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
     <section id="bo_v_rel">
         <h2>연관질문</h2>
 
-        <div class="tbl_head01 tbl_wrap">
+        <div>
             <table>
             <thead>
             <tr>
@@ -156,14 +156,14 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
             ?>
             <tr>
                 <td>
-                    <span class="bo_cate_link"><?php echo get_text($rel_list[$i]['category']); ?></span>
+                    <span><?php echo get_text($rel_list[$i]['category']); ?></span>
 
-                    <a href="<?php echo $rel_list[$i]['view_href']; ?>" class="bo_tit">
+                    <a href="<?php echo $rel_list[$i]['view_href']; ?>">
                         <?php echo $rel_list[$i]['subject']; ?>
                     </a>
                 </td>
-                <td class="td_date"><?php echo $rel_list[$i]['date']; ?></td>
-                <td class="td_stat"><span class="<?php echo ($rel_list[$i]['qa_status'] ? 'txt_done' : 'txt_rdy'); ?>"><?php echo ($rel_list[$i]['qa_status'] ? '<i class="fa fa-check-circle" aria-hidden="true"></i> 답변완료' : '<i class="fa fa-times-circle" aria-hidden="true"></i> 답변대기'); ?></span></td>
+                <td><?php echo $rel_list[$i]['date']; ?></td>
+                <td><span class="<?php echo ($rel_list[$i]['qa_status'] ? 'txt_done' : 'txt_rdy'); ?>"><?php echo ($rel_list[$i]['qa_status'] ? '<i aria-hidden="true"></i> 답변완료' : '<i aria-hidden="true"></i> 답변대기'); ?></span></td>
             </tr>
             <?php
             }

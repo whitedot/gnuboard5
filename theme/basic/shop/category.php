@@ -25,10 +25,10 @@ $mshop_categories = get_shop_category_array(true);
 
         $mshop_ca_row1 = $cate1['text'];
         if($i == 0)
-            echo '<ul class="cate">'.PHP_EOL;
+            echo '<ul>'.PHP_EOL;
     ?>
-        <li class="cate_li_1">
-            <a href="<?php echo $mshop_ca_row1['url']; ?>" class="cate_li_1_a"><?php echo get_text($mshop_ca_row1['ca_name']); ?></a>
+        <li>
+            <a href="<?php echo $mshop_ca_row1['url']; ?>"><?php echo get_text($mshop_ca_row1['ca_name']); ?></a>
             <?php
             $j=0;
             foreach($cate1 as $key=>$cate2){
@@ -36,9 +36,9 @@ $mshop_categories = get_shop_category_array(true);
                 
                 $mshop_ca_row2 = $cate2['text'];
                 if($j == 0)
-                    echo '<ul class="sub_cate sub_cate1">'.PHP_EOL;
+                    echo '<ul>'.PHP_EOL;
             ?>
-                <li class="cate_li_2">
+                <li>
                     <a href="<?php echo $mshop_ca_row2['url']; ?>"><?php echo get_text($mshop_ca_row2['ca_name']); ?></a>
                 </li>
             <?php
@@ -56,9 +56,9 @@ $mshop_categories = get_shop_category_array(true);
     if($i > 0)
         echo '</ul>'.PHP_EOL;
     else
-        echo '<p class="no-cate">등록된 분류가 없습니다.</p>'.PHP_EOL;
+        echo '<p>등록된 분류가 없습니다.</p>'.PHP_EOL;
     ?>
-    <button type="button" class="close_btn"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">카테고리 닫기</span></button>
+    <button type="button" class="close_btn"><i aria-hidden="true"></i><span>카테고리 닫기</span></button>
 </div>
 <div id="category_all_bg"></div>
 <script>

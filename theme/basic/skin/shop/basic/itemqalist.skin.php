@@ -11,7 +11,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 <form method="get" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
 <div id="sqa_sch">
-    <label for="sfl" class="sr-only">검색항목 필수</label>
+    <label for="sfl">검색항목 필수</label>
     <select name="sfl" id="sfl" required>
         <option value="">선택</option>
         <option value="b.it_name"    <?php echo get_selected($sfl, "b.it_name", true); ?>>상품명</option>
@@ -21,10 +21,10 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         <option value="a.iq_name"    <?php echo get_selected($sfl, "a.iq_name"); ?>>작성자명</option>
         <option value="a.mb_id"      <?php echo get_selected($sfl, "a.mb_id"); ?>>작성자아이디</option>
     </select>
-	<div class="sch_wr">
-    	<label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    	<input type="text" name="stx" value="<?php echo $stx; ?>" id="stx" required class="sch_input">
-    	<button type="submit" value="검색" class="sch_btn"><i class="fa fa-search" aria-hidden="true"></i><span class="sr-only">검색</span></button>
+	<div>
+    	<label for="stx">검색어<strong> 필수</strong></label>
+    	<input type="text" name="stx" value="<?php echo $stx; ?>" id="stx" required>
+    	<button type="submit" value="검색"><i aria-hidden="true"></i><span>검색</span></button>
     </div>
     <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>">전체보기</a>
 </div>
@@ -42,7 +42,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
         $is_secret = false;
         if($row['iq_secret']) {
-            $iq_subject .= ' <i class="fa fa-lock" aria-hidden="true"></i>';
+            $iq_subject .= ' <i aria-hidden="true"></i>';
 
             if($is_admin || $member['mb_id' ] == $row['mb_id']) {
                 $iq_question = get_view_thumbnail(conv_content($row['iq_question'], 1), $thumbnail_width);
@@ -72,40 +72,40 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         if ($i == 0) echo '<ol>';
     ?>
     <li>
-        <div class="sqa_img">
+        <div>
             <a href="<?php echo $it_href; ?>">
                 <?php echo get_it_image($row['it_id'], 50, 50); ?>
                 <span><?php echo $row['it_name']; ?></span>
             </a>
         </div>
 
-        <section class="sqa_section">
+        <section>
             <h2><?php echo $iq_subject; ?></h2>
 			<span class="<?php echo $iq_style; ?>"><?php echo $iq_stats; ?></span>
 			
-            <dl class="sqa_dl">
-                <dt class="sr-only">작성자</dt>
-                <dd><i class="fa fa-user" aria-hidden="true"></i> <?php echo $row['iq_name']; ?></dd>
-                <dt class="sr-only">작성일</dt>
-                <dd><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo substr($row['iq_time'],0,10); ?></dd>
+            <dl>
+                <dt>작성자</dt>
+                <dd><i aria-hidden="true"></i> <?php echo $row['iq_name']; ?></dd>
+                <dt>작성일</dt>
+                <dd><i aria-hidden="true"></i> <?php echo substr($row['iq_time'],0,10); ?></dd>
             </dl>
 
-            <div id="sqa_con_<?php echo $i; ?>" class="sqa_con" style="display:none;">
-                <div class="sit_qa_qaq">
-                    <strong class="sr-only">문의내용</strong>
-                    <span class="qa_alp">Q</span>
+            <div id="sqa_con_<?php echo $i; ?>" style="display:none;">
+                <div>
+                    <strong>문의내용</strong>
+                    <span>Q</span>
                     <?php echo $iq_question; // 상품 문의 내용 ?>
                 </div>
                 <?php if(!$is_secret) { ?>
-                <div class="sit_qa_qaa">
-                    <strong class="sr-only">답변</strong>
-                    <span class="qa_alp">A</span>
+                <div>
+                    <strong>답변</strong>
+                    <span>A</span>
                     <?php echo $iq_answer; ?>
                 </div>
                 <?php } ?>
             </div>
 
-            <div class="sqa_con_btn"><button class="sqa_con_<?php echo $i; ?>">내용보기 <i class="fa fa-caret-down" aria-hidden="true"></i></button></div>
+            <div class="sqa_con_btn"><button class="<?php echo $i; ?>">내용보기 <i aria-hidden="true"></i></button></div>
         </section>
 
     </li>

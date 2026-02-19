@@ -5,8 +5,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 ?>
 
-<div class="lat">
-    <strong class="lat_title"><i class="fa fa-list-ul" aria-hidden="true"></i> <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=<?php echo $bo_table ?>"><?php echo $bo_subject ?></a></strong>
+<div>
+    <strong><i aria-hidden="true"></i> <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=<?php echo $bo_table ?>"><?php echo $bo_subject ?></a></strong>
     <ul>
     <?php for ($i=0; $i<count($list); $i++) {  ?>
         <li>

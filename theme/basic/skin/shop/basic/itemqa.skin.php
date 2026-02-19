@@ -12,8 +12,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <h3>등록된 상품문의</h3>
 
     <div id="sit_qa_wbtn">
-        <a href="<?php echo $itemqa_form; ?>" class="btn02 itemqa_form">상품문의 쓰기<span class="sr-only">새 창</span></a>
-        <a href="<?php echo $itemqa_list; ?>" id="itemqa_list" class="btn01">더보기</a>
+        <a href="<?php echo $itemqa_form; ?>" class="itemqa_form">상품문의 쓰기<span>새 창</span></a>
+        <a href="<?php echo $itemqa_list; ?>" id="itemqa_list">더보기</a>
     </div>
 
     <?php
@@ -62,33 +62,33 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         if ($i == 0) echo '<ol id="sit_qa_ol">';
     ?>
 
-        <li class="sit_qa_li">
+        <li>
             <button type="button" class="sit_qa_li_title"><span class="<?php echo $iq_style; ?>"><?php echo $iq_stats; ?></span><?php echo $iq_subject; ?></button>
-            <dl class="sit_qa_dl">
+            <dl>
                 <dt>작성자/작성일</dt>
-                <dd><?php echo $iq_name; ?><span class="st_bg"></span><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $iq_time; ?></dd>
+                <dd><?php echo $iq_name; ?><span></span><i aria-hidden="true"></i> <?php echo $iq_time; ?></dd>
             </dl>
 
             <div id="sit_qa_con_<?php echo $i; ?>" class="sit_qa_con">
-                <div class="sit_qa_p">
-                    <div class="sit_qa_qaq">
-                        <strong class="sr-only">문의내용</strong>
-                        <span class="qa_alp">Q</span>
+                <div>
+                    <div>
+                        <strong>문의내용</strong>
+                        <span>Q</span>
                         <?php echo $iq_question; // 상품 문의 내용 ?>
                     </div>
                     <?php if(!$is_secret) { ?>
-                    <div class="sit_qa_qaa">
-                        <strong class="sr-only">답변</strong>
-                        <span class="qa_alp">A</span>
+                    <div>
+                        <strong>답변</strong>
+                        <span>A</span>
                         <?php echo $iq_answer; ?>
                     </div>
                     <?php } ?>
                 </div>
 
                 <?php if ($is_admin || ($row['mb_id'] == $member['mb_id'] && !$is_answer)) { ?>
-                <div class="sit_qa_cmd">
-                    <a href="<?php echo $itemqa_form."&amp;iq_id={$row['iq_id']}&amp;w=u"; ?>" class="itemqa_form btn01" onclick="return false;">수정</a>
-                    <a href="<?php echo $itemqa_formupdate."&amp;iq_id={$row['iq_id']}&amp;w=d&amp;hash={$hash}"; ?>" class="itemqa_delete btn01">삭제</a>
+                <div>
+                    <a href="<?php echo $itemqa_form."&amp;iq_id={$row['iq_id']}&amp;w=u"; ?>" class="itemqa_form" onclick="return false;">수정</a>
+                    <a href="<?php echo $itemqa_formupdate."&amp;iq_id={$row['iq_id']}&amp;w=d&amp;hash={$hash}"; ?>" class="itemqa_delete">삭제</a>
                 </div>
                 <?php } ?>
             </div>
@@ -100,7 +100,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
     if ($i > 0) echo '</ol>';
 
-    if (!$i) echo '<p class="sit_empty">상품문의가 없습니다.</p>';
+    if (!$i) echo '<p>상품문의가 없습니다.</p>';
     ?>
 </section>
 

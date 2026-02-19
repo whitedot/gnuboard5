@@ -40,7 +40,7 @@ foreach((array) $list as $row){
         }
     }
 	
-    echo "<li class=\"sct_li ".implode(' ', $classes)."\" data-css=\"nocss\" style=\"height:auto\">\n";
+    echo "<li class=\"sct_li ".implode(' ', $classes)."\" data-css=\"nocss\">\n";
 	echo "<div class=\"sct_img\">\n";
 
     if ($this->href) {
@@ -66,7 +66,7 @@ foreach((array) $list as $row){
 	if ($this->view_it_icon) {
         // 품절
         if ($is_soldout) {
-            echo '<span class="shop_icon_soldout"><span class="soldout_txt">SOLD OUT</span></span>';
+            echo '<span><span>SOLD OUT</span></span>';
         }
     }
     echo "</div>\n";

@@ -8,7 +8,7 @@ global $is_admin;
 ?>
 
 <!-- 접속자집계 시작 { -->
-<section id="visit" class="ft_cnt">
+<section id="visit">
     <h2>접속자집계</h2>
     <dl>
         <dt><span></span> 오늘</dt>
@@ -20,6 +20,6 @@ global $is_admin;
         <dt><span></span> 전체</dt>
         <dd><strong><?php echo number_format($visit[4]) ?></strong></dd>
     </dl>
-    <?php if ($is_admin == "super") {  ?><a href="<?php echo G5_ADMIN_URL ?>/visit_list.php" class="btn_admin btn"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sr-only">관리자</span></a><?php } ?>
+    <?php if ($is_admin == "super") {  ?><a href="<?php echo G5_ADMIN_URL ?>/visit_list.php"><i></i><span>관리자</span></a><?php } ?>
 </section>
 <!-- } 접속자집계 끝 -->

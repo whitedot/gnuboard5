@@ -11,14 +11,14 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 <section id="sit_use_list">
     <h3>등록된 사용후기</h3>
 
-    <div class="sit_use_top">
+    <div>
         <?php if ($star_score) { ?>
         <h4>구매고객 총평점 <span>(총 <strong><?php echo $total_count; ?></strong> 건 상품평 기준)</span></h4>
-        <img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $star_score?>.png" alt="" class="sit_star">
+        <img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $star_score?>.png" alt="">
         <?php } ?>
         <div id="sit_use_wbtn">
-            <a href="<?php echo $itemuse_form; ?>" class="btn02 itemuse_form">사용후기 쓰기<span class="sr-only"> 새 창</span></a>
-            <a href="<?php echo $itemuse_list; ?>" class="btn01 itemuse_list">더보기</a>
+            <a href="<?php echo $itemuse_form; ?>" class="itemuse_form">사용후기 쓰기<span> 새 창</span></a>
+            <a href="<?php echo $itemuse_list; ?>">더보기</a>
         </div>
     </div>
     
@@ -42,40 +42,40 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         if ($i == 0) echo '<ol id="sit_use_ol">';
     ?>
 
-        <li class="sit_use_li">
-			<span class="sit_thum"><?php echo get_itemuselist_thumbnail($row['it_id'], $row['is_content'], 100, 100); ?></span> 
-            <dl class="sit_use_dl">
+        <li>
+			<span><?php echo get_itemuselist_thumbnail($row['it_id'], $row['is_content'], 100, 100); ?></span> 
+            <dl>
                 <dt>평점<dt>
-                <dd class="sit_use_star"><img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $is_star; ?>.png" alt="별<?php echo $is_star; ?>개" width="85"></dd>
+                <dd><img src="<?php echo G5_SHOP_URL; ?>/img/s_star<?php echo $is_star; ?>.png" alt="별<?php echo $is_star; ?>개" width="85"></dd>
                 <dt></dt>
-                <dd class="sit_use_tit"><?php echo $is_subject; ?></dd>
+                <dd><?php echo $is_subject; ?></dd>
                 <dt>작성자/작성일</dt>
-                <dd><?php echo $is_name; ?><span class="st_bg"></span><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $is_time; ?></dd>
+                <dd><?php echo $is_name; ?><span></span><i aria-hidden="true"></i> <?php echo $is_time; ?></dd>
             </dl>
-			<button type="button" class="sit_use_li_title">내용보기 <i class="fa fa-caret-down" aria-hidden="true"></i></button>
+			<button type="button" class="sit_use_li_title">내용보기 <i aria-hidden="true"></i></button>
 
             <div id="sit_use_con_<?php echo $i; ?>" class="sit_use_con">
-                <div class="sit_use_p">
+                <div>
                     <?php echo $is_content; // 사용후기 내용 ?> 
                 </div>
 
                 <?php if ($is_admin || $row['mb_id'] == $member['mb_id']) { ?>
-                <div class="sit_use_cmd">
-                    <a href="<?php echo $itemuse_form."&amp;is_id={$row['is_id']}&amp;w=u"; ?>" class="itemuse_form btn01" onclick="return false;">수정</a>
-                    <a href="<?php echo $itemuse_formupdate."&amp;is_id={$row['is_id']}&amp;w=d&amp;hash={$hash}"; ?>" class="itemuse_delete btn01">삭제</a>
+                <div>
+                    <a href="<?php echo $itemuse_form."&amp;is_id={$row['is_id']}&amp;w=u"; ?>" class="itemuse_form" onclick="return false;">수정</a>
+                    <a href="<?php echo $itemuse_formupdate."&amp;is_id={$row['is_id']}&amp;w=d&amp;hash={$hash}"; ?>" class="itemuse_delete">삭제</a>
                 </div>
                 <?php } ?>
 
                 <?php if( $is_reply_subject ){  //  사용후기 답변 내용이 있다면 ?>
-                <div class="sit_use_reply">
-                    <div class="use_reply_icon">답변</div>
-                    <div class="use_reply_tit">
+                <div>
+                    <div>답변</div>
+                    <div>
                         <?php echo $is_reply_subject; // 답변 제목 ?>
                     </div>
-                    <div class="use_reply_name">
+                    <div>
                         <?php echo $is_reply_name; // 답변자 이름 ?>
                     </div>
-                    <div class="use_reply_p">
+                    <div>
                         <?php echo $is_reply_content; // 답변 내용 ?>
                     </div>
                 </div>
@@ -87,7 +87,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
     if ($i > 0) echo '</ol>';
 
-    if (!$i) echo '<p class="sit_empty">사용후기가 없습니다.</p>';
+    if (!$i) echo '<p>사용후기가 없습니다.</p>';
     ?>
 </section>
 

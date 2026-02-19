@@ -10,7 +10,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 <!-- 전체 상품 사용후기 목록 시작 { -->
 <form method="get" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
 <div id="sps_sch">
-	<label for="sfl" class="sr-only">검색항목 필수</label>
+	<label for="sfl">검색항목 필수</label>
     <select name="sfl" id="sfl" required>
         <option value="">선택</option>
         <option value="b.it_name"   <?php echo get_selected($sfl, "b.it_name"); ?>>상품명</option>
@@ -20,10 +20,10 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         <option value="a.is_name"   <?php echo get_selected($sfl, "a.is_name"); ?>>작성자명</option>
         <option value="a.mb_id"     <?php echo get_selected($sfl, "a.mb_id"); ?>>작성자아이디</option>
     </select>
-    <div class="sch_wr">
-	    <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-	    <input type="text" name="stx" value="<?php echo $stx; ?>" id="stx" required class="sch_input">
-	    <button type="submit" value="검색" class="sch_btn"><i class="fa fa-search" aria-hidden="true"></i><span class="sr-only">검색</span></button>
+    <div>
+	    <label for="stx">검색어<strong> 필수</strong></label>
+	    <input type="text" name="stx" value="<?php echo $stx; ?>" id="stx" required>
+	    <button type="submit" value="검색"><i aria-hidden="true"></i><span>검색</span></button>
     </div>
     <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>">전체보기</a>
 </div>
@@ -47,65 +47,65 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         if ($i == 0) echo '<ol>';
     ?>
     <li>
-        <div class="sps_img">
-        	<div class="sps_img_inner">
+        <div>
+        	<div>
 	            <a href="<?php echo $it_href; ?>">
 	                <?php echo get_it_image($row['it_id'], 100, 100); ?>
 	                <span><?php echo $row2['it_name']; ?></span>
 	            </a>
-	            <button class="prd_detail" data-url="<?php echo G5_SHOP_URL.'/largeimage.php?it_id='.$row['it_id']; ?>"><i class="fa fa-camera" aria-hidden="true"></i><span class="sr-only">상품 이미지보기</span></button>
+	            <button class="prd_detail" data-url="<?php echo G5_SHOP_URL.'/largeimage.php?it_id='.$row['it_id']; ?>"><i aria-hidden="true"></i><span>상품 이미지보기</span></button>
 			</div>            
 		</div>
 
-        <div class="sps_section">
-        	<span class="sr-only">평가점수</span>
+        <div>
+        	<span>평가점수</span>
             <span><img src="<?php echo G5_URL; ?>/shop/img/s_star<?php echo $star; ?>.png" alt="별<?php echo $star; ?>개" width="80"></span>
                 
-            <span class="sps_pd_name"><?php echo get_text($row2['it_name']); ?></span>
-            <span class="sps_rv_tit"><?php echo get_text($row['is_subject']); ?></span>
-            <span class="sps_rv_thum"><?php echo get_itemuse_thumb($row['is_content'], 60, 60); ?></span>
+            <span><?php echo get_text($row2['it_name']); ?></span>
+            <span><?php echo get_text($row['is_subject']); ?></span>
+            <span><?php echo get_itemuse_thumb($row['is_content'], 60, 60); ?></span>
 
-	        <div class="sps_con_btn">
-	        	<dl class="sps_dl">
-	                <dt class="sr-only">작성자</dt>
-	                <dd><i class="fa fa-user" aria-hidden="true"></i> <?php echo $row['is_name']; ?></dd>
-	                <dt class="sr-only">작성일</dt>
-	                <dd><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo substr($row['is_time'],0,10); ?></dd>
+	        <div>
+	        	<dl>
+	                <dt>작성자</dt>
+	                <dd><i aria-hidden="true"></i> <?php echo $row['is_name']; ?></dd>
+	                <dt>작성일</dt>
+	                <dd><i aria-hidden="true"></i> <?php echo substr($row['is_time'],0,10); ?></dd>
 	            </dl>
 	            
-	        	<button class="sps_con_<?php echo $i; ?> review_detail">내용보기</button>
+	        	<button class="<?php echo $i; ?> review_detail">내용보기</button>
 	        	
 	        	<!-- 사용후기 자세히 시작 -->
 	            <div class="review_detail_cnt">
-	            	<div class="review_detail_in">
+	            	<div>
 	            		<h3>사용후기</h3>
-	            		<div class="review_cnt">
-	            			<div class="review_tp_cnt">
+	            		<div>
+	            			<div>
 	            				<span><?php echo get_text($row['is_subject']); ?></span>
-	            				<dl class="sps_dl">
-					                <dt class="sr-only">작성자</dt>
-					                <dd><i class="fa fa-user" aria-hidden="true"></i> <?php echo $row['is_name']; ?></dd>
-					                <dt class="sr-only">작성일</dt>
-					                <dd><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo substr($row['is_time'],0,10); ?></dd>
+	            				<dl>
+					                <dt>작성자</dt>
+					                <dd><i aria-hidden="true"></i> <?php echo $row['is_name']; ?></dd>
+					                <dt>작성일</dt>
+					                <dd><i aria-hidden="true"></i> <?php echo substr($row['is_time'],0,10); ?></dd>
 					            </dl>
 	            			</div>
-	            			<div class="review_summ">
+	            			<div>
 	            				<?php echo get_it_image($row['it_id'], 50, 50); ?>
 	            				<span><?php echo get_text($row2['it_name']); ?></span>
-	            				<span class="sr-only">평가점수</span><img src="<?php echo G5_URL; ?>/shop/img/s_star<?php echo $star; ?>.png" alt="별<?php echo $star; ?>개" width="80">
+	            				<span>평가점수</span><img src="<?php echo G5_URL; ?>/shop/img/s_star<?php echo $star; ?>.png" alt="별<?php echo $star; ?>개" width="80">
 	            			</div>
 	            			
-	            			<div id="sps_con_<?php echo $i; ?>" class="review_bt_cnt">
+	            			<div id="sps_con_<?php echo $i; ?>">
 				                <?php echo $is_content; // 사용후기 내용 ?>
 				                <?php
 				                if( !empty($row['is_reply_subject']) ){     //사용후기 답변이 있다면
 				                    $is_reply_content = get_view_thumbnail(conv_content($row['is_reply_content'], 1), $thumbnail_width);
 				                ?>
-				                <div class="sps_reply">
+				                <div>
 				                    <section>
-				                        <h2 class="is_use_reply"><?php echo get_text($row['is_reply_subject']); ?></h2>
-				                        <div class="sps_dl">
-				                            <i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $row['is_reply_name']; ?>
+				                        <h2><?php echo get_text($row['is_reply_subject']); ?></h2>
+				                        <div>
+				                            <i aria-hidden="true"></i> <?php echo $row['is_reply_name']; ?>
 				                        </div>
 				                        <div id="sps_con_<?php echo $i; ?>_reply">
 				                            <?php echo $is_reply_content; // 사용후기 답변 내용 ?>
@@ -115,7 +115,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 				                <?php } //end if ?>
 				            </div>
 	            		</div>
-	            		<button class="rd_cls"><span class="sr-only">후기 상세보기 팝업 닫기</span><i class="fa fa-times" aria-hidden="true"></i></button>
+	            		<button class="rd_cls"><span>후기 상세보기 팝업 닫기</span><i aria-hidden="true"></i></button>
 	            	</div>
 	            </div>
 	            <!-- 사용후기 자세히 끝 -->

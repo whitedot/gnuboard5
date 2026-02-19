@@ -8,8 +8,8 @@ $thumb_width = 210;
 $thumb_height = 150;
 ?>
 
-<div class="pic_lt">
-    <h2 class="lat_title"><a href="<?php echo get_pretty_url($bo_table); ?>"><?php echo $bo_subject ?></a></h2>
+<div>
+    <h2><a href="<?php echo get_pretty_url($bo_table); ?>"><?php echo $bo_subject ?></a></h2>
     <ul>
     <?php
     for ($i=0; $i<count($list); $i++) {
@@ -24,7 +24,7 @@ $thumb_height = 150;
     $img_content = '<img src="'.$img.'" alt="'.$thumb['alt'].'" >';
     ?>
         <li>
-            <a href="<?php echo $list[$i]['href'] ?>" class="lt_img"><?php echo $img_content; ?></a>
+            <a href="<?php echo $list[$i]['href'] ?>"><?php echo $img_content; ?></a>
             <?php
             if ($list[$i]['icon_secret']) echo "<i class=\"fa fa-lock\" aria-hidden=\"true\"></i><span class=\"sr-only\">비밀글</span> ";
 
@@ -55,13 +55,13 @@ $thumb_height = 150;
 
             ?>
 
-            <span class="lt_date"><?php echo $list[$i]['datetime2'] ?></span>
+            <span><?php echo $list[$i]['datetime2'] ?></span>
         </li>
     <?php }  ?>
     <?php if (count($list) == 0) { //게시물이 없을 때  ?>
-    <li class="empty_li">게시물이 없습니다.</li>
+    <li>게시물이 없습니다.</li>
     <?php }  ?>
     </ul>
-    <a href="<?php echo get_pretty_url($bo_table); ?>" class="lt_more"><span class="sr-only"><?php echo $bo_subject ?></span><i class="fa fa-plus" aria-hidden="true"></i><span class="sr-only"> 더보기</span></a>
+    <a href="<?php echo get_pretty_url($bo_table); ?>"><span><?php echo $bo_subject ?></span><i aria-hidden="true"></i><span> 더보기</span></a>
 
 </div>

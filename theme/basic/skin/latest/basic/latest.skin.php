@@ -6,11 +6,11 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 $list_count = (is_array($list) && $list) ? count($list) : 0;
 ?>
 
-<div class="lat">
-    <h2 class="lat_title"><a href="<?php echo get_pretty_url($bo_table); ?>"><?php echo $bo_subject ?></a></h2>
+<div>
+    <h2><a href="<?php echo get_pretty_url($bo_table); ?>"><?php echo $bo_subject ?></a></h2>
     <ul>
     <?php for ($i=0; $i<$list_count; $i++) {  ?>
-        <li class="basic_li">
+        <li>
             <?php
             if ($list[$i]['icon_secret']) echo "<i class=\"fa fa-lock\" aria-hidden=\"true\"></i><span class=\"sr-only\">비밀글</span> ";
 
@@ -35,16 +35,16 @@ $list_count = (is_array($list) && $list) ? count($list) : 0;
             <span class=\"lt_cmt\"><span class=\"sr-only\">댓글</span>".$list[$i]['comment_cnt']."</span>";
 
             ?>
-            <div class="lt_info">
-				<span class="lt_nick"><?php echo $list[$i]['name'] ?></span>
-            	<span class="lt_date"><?php echo $list[$i]['datetime2'] ?></span>              
+            <div>
+				<span><?php echo $list[$i]['name'] ?></span>
+            	<span><?php echo $list[$i]['datetime2'] ?></span>              
             </div>
         </li>
     <?php }  ?>
     <?php if ($list_count == 0) { //게시물이 없을 때  ?>
-    <li class="empty_li">게시물이 없습니다.</li>
+    <li>게시물이 없습니다.</li>
     <?php }  ?>
     </ul>
-    <a href="<?php echo get_pretty_url($bo_table); ?>" class="lt_more"><span class="sr-only"><?php echo $bo_subject ?></span>더보기</a>
+    <a href="<?php echo get_pretty_url($bo_table); ?>"><span><?php echo $bo_subject ?></span>더보기</a>
 
 </div>

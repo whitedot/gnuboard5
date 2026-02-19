@@ -32,15 +32,7 @@ foreach((array) $list as $row){
         }
     }
 
-    $list_top_pad = 20;
-    $list_right_pad = 10;
-    $list_bottom_pad = 20;
-    $list_left_pad = $this->img_width + 10;
-    $list_real_width = 360;
-    $list_width = $list_real_width - $list_right_pad - $list_left_pad;
-    $list_height = $this->img_height - $list_top_pad - $list_bottom_pad;
-
-    echo "<li class=\"sct_li{$sct_last}\" data-css=\"nocss\" style=\"padding:{$list_top_pad}px {$list_right_pad}px {$list_bottom_pad}px {$list_left_pad}px;width:{$list_width}px;height:{$list_height}px\">\n";
+    echo "<li class=\"sct_li{$sct_last}\" data-css=\"nocss\">\n";
 
     if ($this->href) {
         echo "<div class=\"sct_img\"><a href=\"{$item_link_href}\" class=\"sct_a\">\n";
@@ -103,8 +95,7 @@ foreach((array) $list as $row){
         echo "</div>\n";
     }
 
-    $arrow_left = $this->img_width - 10;
-    echo "<div class=\"sct_arw_toleft\" style=\"left:{$arrow_left}px\"></div>";
+    echo "<div class=\"sct_arw_toleft\"></div>";
 
     echo "</li>\n";
 }

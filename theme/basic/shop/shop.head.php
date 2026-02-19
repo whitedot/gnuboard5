@@ -26,7 +26,7 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
 	} ?>
      
 	<div id="tnb">
-    	<div class="inner">
+    	<div>
             <?php if(defined('G5_COMMUNITY_USE') && G5_COMMUNITY_USE) { ?>
     		<ul id="hd_define">
     			<li><a href="<?php echo G5_URL ?>/">커뮤니티</a></li>
@@ -39,7 +39,7 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
 	            <li><a href="<?php echo G5_SHOP_URL ?>/personalpay.php">개인결제</a></li>
 	            <li><a href="<?php echo G5_SHOP_URL ?>/itemuselist.php">사용후기</a></li> 
 	            <li><a href="<?php echo G5_SHOP_URL ?>/itemqalist.php">상품문의</a></li>
-				<li class="bd"><a href="<?php echo G5_SHOP_URL; ?>/couponzone.php">쿠폰존</a></li>
+				<li><a href="<?php echo G5_SHOP_URL; ?>/couponzone.php">쿠폰존</a></li>
 	        </ul>
 		</div>
 	</div>
@@ -48,13 +48,13 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
         	<a href="<?php echo G5_SHOP_URL; ?>/"><img src="<?php echo G5_DATA_URL; ?>/common/logo_img" alt="<?php echo $config['cf_title']; ?>"></a>
         </div>
 		
-		<div class="hd_sch_wr">
+		<div>
 	        <fieldset id="hd_sch">
 	            <legend>쇼핑몰 전체검색</legend>
 	            <form name="frmsearch1" action="<?php echo G5_SHOP_URL; ?>/search.php" onsubmit="return search_submit(this);">
-	            <label for="sch_str" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
+	            <label for="sch_str">검색어<strong> 필수</strong></label>
 	            <input type="text" name="q" value="<?php echo stripslashes(get_text(get_search_string($q))); ?>" id="sch_str" required placeholder="검색어를 입력해주세요">
-	            <button type="submit" id="sch_submit" value="검색"><i class="fa fa-search" aria-hidden="true"></i><span class="sr-only">검색</span></button>
+	            <button type="submit" id="sch_submit" value="검색"><i aria-hidden="true"></i><span>검색</span></button>
 	            </form>
 	            <script>
 	            function search_submit(f) {
@@ -78,17 +78,17 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
 			<li class="shop_login">
 				<?php echo outlogin('theme/shop_basic'); // 아웃로그인 ?>	
 			</li>
-			<li class="shop_cart"><a href="<?php echo G5_SHOP_URL; ?>/cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="sr-only">장바구니</span><span class="count"><?php echo get_boxcart_datas_count(); ?></span></a></li>
+			<li class="shop_cart"><a href="<?php echo G5_SHOP_URL; ?>/cart.php"><i aria-hidden="true"></i><span>장바구니</span><span class="count"><?php echo get_boxcart_datas_count(); ?></span></a></li>
             <?php } else { ?>
-            <li class="login"><a href="<?php echo G5_BBS_URL ?>/login.php?url=<?php echo $urlencode; ?>">로그인</a></li>
+            <li><a href="<?php echo G5_BBS_URL ?>/login.php?url=<?php echo $urlencode; ?>">로그인</a></li>
             <?php }  ?>
         </ul>
     </div>
 
     <div id="hd_menu">
-    	<button type="button" id="menu_open"><i class="fa fa-bars" aria-hidden="true"></i> 카테고리</button>
+    	<button type="button" id="menu_open"><i aria-hidden="true"></i> 카테고리</button>
 		<?php include_once(G5_THEME_SHOP_PATH.'/category.php'); // 분류 ?>
-		<ul class="hd_menu">
+		<ul>
             <li><a href="<?php echo shop_type_url(1); ?>">히트상품</a></li>
             <li><a href="<?php echo shop_type_url(2); ?>">추천상품</a></li>
             <li><a href="<?php echo shop_type_url(3); ?>">최신상품</a></li>
@@ -101,17 +101,17 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
         
 <div id="side_menu">
 	<ul id="quick">
-		<li><button class="btn_sm_cl1 btn_sm"><i class="fa fa-user-o" aria-hidden="true"></i><span class="qk_tit">마이메뉴</span></button></li>
-		<li><button class="btn_sm_cl2 btn_sm"><i class="fa fa-archive" aria-hidden="true"></i><span class="qk_tit">오늘 본 상품</span></button></li>
-		<li><button class="btn_sm_cl3 btn_sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="qk_tit">장바구니</span></button></li>
-		<li><button class="btn_sm_cl4 btn_sm"><i class="fa fa-heart-o" aria-hidden="true"></i><span class="qk_tit">위시리스트</span></button></li>
+		<li><button class="btn_sm_cl1 btn_sm"><i aria-hidden="true"></i><span>마이메뉴</span></button></li>
+		<li><button class="btn_sm_cl2 btn_sm"><i aria-hidden="true"></i><span>오늘 본 상품</span></button></li>
+		<li><button class="btn_sm_cl3 btn_sm"><i aria-hidden="true"></i><span>장바구니</span></button></li>
+		<li><button class="btn_sm_cl4 btn_sm"><i aria-hidden="true"></i><span>위시리스트</span></button></li>
     </ul>
-    <button type="button" id="top_btn"><i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sr-only">상단으로</span></button>
+    <button type="button" id="top_btn"><i aria-hidden="true"></i><span>상단으로</span></button>
     <div id="tabs_con">
 	    <div class="side_mn_wr1 qk_con">
 	    	<div class="qk_con_wr">
 	    		<?php echo outlogin('theme/shop_side'); // 아웃로그인 ?>
-		        <ul class="side_tnb">
+		        <ul>
 		        	<?php if ($is_member) { ?>
 					<li><a href="<?php echo G5_SHOP_URL; ?>/mypage.php">마이페이지</a></li>
 		            <?php } ?>
@@ -124,25 +124,25 @@ include_once(G5_LIB_PATH.'/latest.lib.php');
 		            <li><a href="<?php echo G5_SHOP_URL; ?>/couponzone.php">쿠폰존</a></li>
 		        </ul>
 	        	<?php // include_once(G5_SHOP_SKIN_PATH.'/boxcommunity.skin.php'); // 커뮤니티 ?>
-	    		<button type="button" class="con_close"><i class="fa fa-times-circle" aria-hidden="true"></i><span class="sr-only">나의정보 닫기</span></button>
+	    		<button type="button" class="con_close"><i aria-hidden="true"></i><span>나의정보 닫기</span></button>
 	    	</div>
 	    </div>
 	    <div class="side_mn_wr2 qk_con">
 	    	<div class="qk_con_wr">
 	        	<?php include(G5_SHOP_SKIN_PATH.'/boxtodayview.skin.php'); // 오늘 본 상품 ?>
-	    		<button type="button" class="con_close"><i class="fa fa-times-circle" aria-hidden="true"></i><span class="sr-only">오늘 본 상품 닫기</span></button>
+	    		<button type="button" class="con_close"><i aria-hidden="true"></i><span>오늘 본 상품 닫기</span></button>
 	    	</div>
 	    </div>
 	    <div class="side_mn_wr3 qk_con">
 	    	<div class="qk_con_wr">
 	        	<?php include_once(G5_SHOP_SKIN_PATH.'/boxcart.skin.php'); // 장바구니 ?>
-	    		<button type="button" class="con_close"><i class="fa fa-times-circle" aria-hidden="true"></i><span class="sr-only">장바구니 닫기</span></button>
+	    		<button type="button" class="con_close"><i aria-hidden="true"></i><span>장바구니 닫기</span></button>
 	    	</div>
 	    </div>
 	    <div class="side_mn_wr4 qk_con">
 	    	<div class="qk_con_wr">
 	        	<?php include_once(G5_SHOP_SKIN_PATH.'/boxwish.skin.php'); // 위시리스트 ?>
-	    		<button type="button" class="con_close"><i class="fa fa-times-circle" aria-hidden="true"></i><span class="sr-only">위시리스트 닫기</span></button>
+	    		<button type="button" class="con_close"><i aria-hidden="true"></i><span>위시리스트 닫기</span></button>
 	    	</div>
 	    </div>
     </div>
@@ -257,8 +257,8 @@ jQuery(function ($){
             <?php if ((!$bo_table || $w == 's' ) && !defined('_INDEX_')) { ?><div id="wrapper_title"><?php echo $g5['title'] ?></div><?php } ?>
             <!-- 글자크기 조정 display:none 되어 있음 시작 { -->
             <div id="text_size">
-                <button class="no_text_resize" onclick="font_resize('container', 'decrease');">작게</button>
-                <button class="no_text_resize" onclick="font_default('container');">기본</button>
-                <button class="no_text_resize" onclick="font_resize('container', 'increase');">크게</button>
+                <button onclick="font_resize('container', 'decrease');">작게</button>
+                <button onclick="font_default('container');">기본</button>
+                <button onclick="font_resize('container', 'increase');">크게</button>
             </div>
             <!-- } 글자크기 조정 display:none 되어 있음 끝 -->

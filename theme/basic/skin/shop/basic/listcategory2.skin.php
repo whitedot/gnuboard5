@@ -31,7 +31,7 @@ if (!$exists) {
 
         $str .= '<li>';
         if ($cnt) {
-            $str .= '<a href="'.shop_category_url($row['ca_id']).'" class="sct_ct_parent '.$sct_ct_here.'">'.$row['ca_name'].'</a>';
+            $str .= '<a href="'.shop_category_url($row['ca_id']).'">'.$row['ca_name'].'</a>';
             $sql2 = " select ca_id, ca_name from {$g5['g5_shop_category_table']} where ca_id like '{$row['ca_id']}%' and ca_use = '1' and length(ca_id) = $len4 order by ca_order, ca_id ";
             $result2 = sql_query($sql2);
             $k=0;
@@ -40,7 +40,7 @@ if (!$exists) {
                 $k++;
             }
         } else {
-            $str .= '<a href="'.shop_category_url($row['ca_id']).'" class="sct_ct_parent '.$sct_ct_here.'">'.$row['ca_name'].'</a>';
+            $str .= '<a href="'.shop_category_url($row['ca_id']).'">'.$row['ca_name'].'</a>';
         }
         $str .= '</li>';
         $exists = true;
@@ -53,7 +53,7 @@ if ($exists) {
 ?>
 
 <!-- 상품분류 2 시작 { -->
-<aside id="sct_ct_2" class="sct_ct">
+<aside id="sct_ct_2">
     <h2>현재 상품 분류와 관련된 분류</h2>
     <ul>
         <?php echo $str; ?>

@@ -33,7 +33,7 @@ foreach((array) $list as $row){
         }
     }
 
-    echo "<li class=\"sct_li {$sct_last}\" style=\"width:{$this->img_width}px\">\n";
+    echo "<li class=\"sct_li {$sct_last}\">\n";
 
     echo "<div class=\"sct_img\">\n";
 
@@ -52,7 +52,7 @@ foreach((array) $list as $row){
 	if ($this->view_it_icon) {
         // 품절
         if ($is_soldout) {
-            echo '<span class="shop_icon_soldout h160"><span class="soldout_txt">SOLD OUT</span></span>';
+            echo '<span><span>SOLD OUT</span></span>';
         }
     }
 

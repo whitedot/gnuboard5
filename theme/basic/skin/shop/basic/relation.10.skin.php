@@ -78,10 +78,9 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
     }
 
     if ($this->view_sns) {
-        $sns_top = $this->img_height + 10;
         $sns_url  = $item_link_href;
         $sns_title = get_text($row['it_name']).' | '.get_text($config['cf_title']);
-        echo "<div class=\"sct_sns\" style=\"top:{$sns_top}px\">";
+        echo "<div class=\"sct_sns\">";
         echo get_sns_share_link('facebook', $sns_url, $sns_title, G5_SHOP_SKIN_URL.'/img/sns_fb_s.png');
         echo get_sns_share_link('twitter', $sns_url, $sns_title, G5_SHOP_SKIN_URL.'/img/sns_twt_s.png');
         echo "</div>\n";

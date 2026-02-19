@@ -6,11 +6,11 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 ?>
 
 <!-- 회원가입약관 동의 시작 { -->
-<div class="register">
+<div>
 
     <form  name="fregister" id="fregister" action="<?php echo $register_action_url ?>" onsubmit="return fregister_submit(this);" method="POST" autocomplete="off">
 
-    <p><i class="fa fa-check-circle" aria-hidden="true"></i> 회원가입약관 및 개인정보 수집 및 이용의 내용에 동의하셔야 회원가입 하실 수 있습니다.</p>
+    <p><i aria-hidden="true"></i> 회원가입약관 및 개인정보 수집 및 이용의 내용에 동의하셔야 회원가입 하실 수 있습니다.</p>
     
     <?php
     // 소셜로그인 사용시 소셜로그인 버튼
@@ -19,13 +19,13 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <section id="fregister_term">
         <h2>(필수) 회원가입약관</h2>
         <textarea readonly><?php echo get_text($config['cf_stipulation']) ?></textarea>
-        <fieldset class="fregister_agree">
-            <input type="checkbox" name="agree" value="1" id="agree11" class="selec_chk">
-            <label for="agree11"><span></span><b class="sr-only">회원가입약관의 내용에 동의합니다.</b></label>
+        <fieldset>
+            <input type="checkbox" name="agree" value="1" id="agree11">
+            <label for="agree11"><span></span><b>회원가입약관의 내용에 동의합니다.</b></label>
         </fieldset>
     </section>
 
-    <section id="fregister_private" class="fregister_terms">
+    <section id="fregister_private">
         <h2>(필수) 개인정보 수집 및 이용</h2>
         <div>
             <table>
@@ -52,20 +52,20 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             </table>
         </div>
 
-        <fieldset class="fregister_agree">
-            <input type="checkbox" name="agree2" value="1" id="agree21" class="selec_chk">
-            <label for="agree21"><span></span><b class="sr-only">개인정보 수집 및 이용의 내용에 동의합니다.</b></label>
+        <fieldset>
+            <input type="checkbox" name="agree2" value="1" id="agree21">
+            <label for="agree21"><span></span><b>개인정보 수집 및 이용의 내용에 동의합니다.</b></label>
        </fieldset>
     </section>
 	
-	<div id="fregister_chkall" class="chk_all fregister_agree">
-        <input type="checkbox" name="chk_all" id="chk_all" class="selec_chk">
+	<div id="fregister_chkall">
+        <input type="checkbox" name="chk_all" id="chk_all">
         <label for="chk_all"><span></span>회원가입 약관에 모두 동의합니다</label>
     </div>
 	    
-    <div class="btn_confirm">
-    	<a href="<?php echo G5_URL ?>" class="btn_close">취소</a>
-        <button type="submit" class="btn_submit">회원가입</button>
+    <div>
+    	<a href="<?php echo G5_URL ?>">취소</a>
+        <button type="submit">회원가입</button>
     </div>
 
     </form>

@@ -32,29 +32,29 @@ if($is_item_view){
 
 ?>
 
-<div id="sct_location" class="<?php echo implode(' ', $location_class);?>"> <!-- class="view_location" --> <!-- view_location는 리스트 말고 상품보기에서만 표시 -->
-    <a href='<?php echo G5_SHOP_URL; ?>/' class="go_home"><span class="sr-only">메인으로</span><i class="fa fa-home" aria-hidden="true"></i></a>
-    <i class="dividing-line fa fa-angle-right" aria-hidden="true"></i>
+<div id="sct_location" class="<?php echo implode(' ', $location_class);?>"> <!-- --> <!-- view_location는 리스트 말고 상품보기에서만 표시 -->
+    <a href='<?php echo G5_SHOP_URL; ?>/'><span>메인으로</span><i aria-hidden="true"></i></a>
+    <i aria-hidden="true"></i>
     <?php if ( is_array($navi_datas) && $navi_datas ){ ?>
 
         <?php if( isset($navi_datas[0]) && $navi_datas[0] ){ ?>
-        <select class="shop_hover_selectbox category1">
+        <select class="shop_hover_selectbox">
             <?php foreach((array) $navi_datas[0] as $data ){ ?>
                 <option value="<?php echo $data['ca_id']; ?>" data-url="<?php echo $data['url']; ?>" <?php if($ca_ids['ca_id'] === $data['ca_id']) echo 'selected'; ?>><?php echo $data['ca_name']; ?></option>
             <?php } ?>
         </select>
         <?php } ?>
         <?php if( isset($navi_datas[1]) && $navi_datas[1] ){ ?>
-        <i class="dividing-line fa fa-angle-right" aria-hidden="true"></i>
-        <select class="shop_hover_selectbox category2">
+        <i aria-hidden="true"></i>
+        <select class="shop_hover_selectbox">
             <?php foreach((array) $navi_datas[1] as $data ){ ?>
                 <option value="<?php echo $data['ca_id']; ?>" data-url="<?php echo $data['url']; ?>" <?php if($ca_ids['ca_id2'] === $data['ca_id']) echo 'selected'; ?>><?php echo $data['ca_name']; ?></option>
             <?php } ?>
         </select>
         <?php } ?>
         <?php if( isset($navi_datas[2]) && $navi_datas[2] ){ ?>
-        <i class="dividing-line fa fa-angle-right" aria-hidden="true"></i>
-        <select class="shop_hover_selectbox category3">
+        <i aria-hidden="true"></i>
+        <select class="shop_hover_selectbox">
             <?php foreach((array) $navi_datas[2] as $data ){ ?>
                 <option value="<?php echo $data['ca_id']; ?>" data-url="<?php echo $data['url']; ?>" <?php if($ca_ids['ca_id3'] === $data['ca_id']) echo 'selected'; ?>><?php echo $data['ca_name']; ?></option>
             <?php } ?>

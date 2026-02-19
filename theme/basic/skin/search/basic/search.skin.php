@@ -13,7 +13,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
     <?php echo $group_select ?>
     <script>document.getElementById("gr_id").value = "<?php echo $gr_id ?>";</script>
 
-    <label for="sfl" class="sr-only">검색조건</label>
+    <label for="sfl">검색조건</label>
     <select name="sfl" id="sfl">
         <option value="wr_subject||wr_content"<?php echo get_selected($sfl, "wr_subject||wr_content") ?>>제목+내용</option>
         <option value="wr_subject"<?php echo get_selected($sfl, "wr_subject") ?>>제목</option>
@@ -22,10 +22,10 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         <option value="wr_name"<?php echo get_selected($sfl, "wr_name") ?>>이름</option>
     </select>
 
-    <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <span class="sch_wr">
-        <input type="text" name="stx" value="<?php echo $text_stx ?>" id="stx" required class="frm_input" size="40">
-        <button type="submit" class="btn_submit"><i class="fa fa-search" aria-hidden="true"></i> 검색</button>
+    <label for="stx">검색어<strong> 필수</strong></label>
+    <span>
+        <input type="text" name="stx" value="<?php echo $text_stx ?>" id="stx" required size="40">
+        <button type="submit"><i aria-hidden="true"></i> 검색</button>
     </span>
 
     <script>
@@ -59,7 +59,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
     }
     </script>
 
-	<div class="switch_field">
+	<div>
 		<input type="radio" value="and" <?php echo ($sop == "and") ? "checked" : ""; ?> id="sop_and" name="sop">
     	<label for="sop_and">AND</label>
 		<input type="radio" value="or" <?php echo ($sop == "or") ? "checked" : ""; ?> id="sop_or" name="sop" >
@@ -97,25 +97,25 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
     <?php
         } else {
      ?>
-    <div class="empty_list">검색된 자료가 하나도 없습니다.</div>
+    <div>검색된 자료가 하나도 없습니다.</div>
     <?php } }  ?>
 
     <hr>
 
-    <?php if ($stx && $board_count) { ?><section class="sch_res_list"><?php }  ?>
+    <?php if ($stx && $board_count) { ?><section><?php }  ?>
     <?php
     $k=0;
     for ($idx=$table_index, $k=0; $idx<count($search_table) && $k<$rows; $idx++) {
      ?>
-		<div class="search_board_result">
+		<div>
         <h2><a href="<?php echo get_pretty_url($search_table[$idx], '', $search_query); ?>"><?php echo $bo_subject[$idx] ?> 게시판 내 결과</a></h2>
-		<a href="<?php echo get_pretty_url($search_table[$idx], '', $search_query); ?>" class="sch_more">더보기</a>
+		<a href="<?php echo get_pretty_url($search_table[$idx], '', $search_query); ?>">더보기</a>
         <ul>
         <?php
         for ($i=0; $i<count($list[$idx]) && $k<$rows; $i++, $k++) {
             if ($list[$idx][$i]['wr_is_comment'])
             {
-                $comment_def = '<span class="cmt_def"><i class="fa fa-commenting-o" aria-hidden="true"></i><span class="sr-only">댓글</span></span> ';
+                $comment_def = '<span><i aria-hidden="true"></i><span>댓글</span></span> ';
                 $comment_href = '#c_'.$list[$idx][$i]['wr_id'];
             }
             else
@@ -126,14 +126,14 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
          ?>
 
             <li>
-                <div class="sch_tit">
-                    <a href="<?php echo $list[$idx][$i]['href'] ?><?php echo $comment_href ?>" class="sch_res_title"><?php echo $comment_def ?><?php echo $list[$idx][$i]['subject'] ?></a>
-                    <a href="<?php echo $list[$idx][$i]['href'] ?><?php echo $comment_href ?>" target="_blank" class="pop_a"><i class="fa fa-window-restore" aria-hidden="true"></i><span class="sr-only">새창</span></a>
+                <div>
+                    <a href="<?php echo $list[$idx][$i]['href'] ?><?php echo $comment_href ?>"><?php echo $comment_def ?><?php echo $list[$idx][$i]['subject'] ?></a>
+                    <a href="<?php echo $list[$idx][$i]['href'] ?><?php echo $comment_href ?>" target="_blank"><i aria-hidden="true"></i><span>새창</span></a>
                 </div>
                 <p><?php echo $list[$idx][$i]['content'] ?></p>
-                <div class="sch_info">
+                <div>
                     <?php echo $list[$idx][$i]['name'] ?>
-                    <span class="sch_datetime"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $list[$idx][$i]['wr_datetime'] ?></span>
+                    <span><i aria-hidden="true"></i> <?php echo $list[$idx][$i]['wr_datetime'] ?></span>
                 </div>
             </li>
         <?php }  ?>

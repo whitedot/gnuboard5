@@ -26,41 +26,41 @@ for($k=0; $cp=sql_fetch_array($res); $k++) {
     <section id="smb_my_ov">
         <h2>회원정보 개요</h2>
         
-        <div class="smb_me">
-	        <strong class="my_ov_name"><?php echo get_member_profile_img($member['mb_id']); ?><br><?php echo $member['mb_name']; ?></strong><br>
-	        <a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=register_form.php" class="smb_info">정보수정</a>
+        <div>
+	        <strong><?php echo get_member_profile_img($member['mb_id']); ?><br><?php echo $member['mb_name']; ?></strong><br>
+	        <a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=register_form.php">정보수정</a>
 	        <a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a>
         </div>
         
         <ul id="smb_private">
 	    	<li>
 	            <a href="<?php echo G5_BBS_URL ?>/point.php" target="_blank" class="win_point">
-					<i class="fa fa-database" aria-hidden="true"></i>포인트
+					<i aria-hidden="true"></i>포인트
 					<strong><?php echo number_format($member['mb_point']); ?></strong>
 	            </a>
 	        </li>
 	        <li>
 	        	<a href="<?php echo G5_SHOP_URL ?>/coupon.php" target="_blank" class="win_coupon">
-	        		<i class="fa fa-ticket" aria-hidden="true"></i>쿠폰
+	        		<i aria-hidden="true"></i>쿠폰
 	        		<strong><?php echo number_format($cp_count); ?></strong>
 	        	</a>
 	        </li>
 	        <li>
 	            <a href="<?php echo G5_BBS_URL ?>/memo.php" target="_blank" class="win_memo">
-	            	<i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">안 읽은 </span>쪽지
+	            	<i aria-hidden="true"></i><span>안 읽은 </span>쪽지
 	                <strong><?php echo $memo_not_read ?></strong>
 	            </a>
 	        </li>
 	        <li>
 	            <a href="<?php echo G5_BBS_URL ?>/scrap.php" target="_blank" class="win_scrap">
-	            	<i class="fa fa-thumb-tack" aria-hidden="true"></i>스크랩
-	            	<strong class="scrap"><?php echo number_format($member['mb_scrap_cnt']); ?></strong>
+	            	<i aria-hidden="true"></i>스크랩
+	            	<strong><?php echo number_format($member['mb_scrap_cnt']); ?></strong>
 	            </a>
 	        </li>
 	    </ul>
 	    
         <h3>내정보</h3>
-        <dl class="op_area">
+        <dl>
             <dt>연락처</dt>
             <dd><?php echo ($member['mb_tel'] ? $member['mb_tel'] : '미등록'); ?></dd>
             <dt>E-Mail</dt>
@@ -73,7 +73,7 @@ for($k=0; $cp=sql_fetch_array($res); $k++) {
             <dd id="smb_my_ovaddd"><?php echo sprintf("(%s%s)", $member['mb_zip1'], $member['mb_zip2']).' '.print_address($member['mb_addr1'], $member['mb_addr2'], $member['mb_addr3'], $member['mb_addr_jibeon']); ?></dd>
         </dl>
         
-        <a href="<?php echo G5_BBS_URL; ?>/member_confirm.php?url=member_leave.php" onclick="return member_leave();" class="withdrawal">회원탈퇴</a>
+        <a href="<?php echo G5_BBS_URL; ?>/member_confirm.php?url=member_leave.php" onclick="return member_leave();">회원탈퇴</a>
     </section>
     <!-- } 회원정보 개요 끝 -->
 
@@ -89,7 +89,7 @@ for($k=0; $cp=sql_fetch_array($res); $k++) {
 	        include G5_SHOP_PATH.'/orderinquiry.sub.php';
 	        ?>
 	
-	        <div class="smb_my_more">
+	        <div>
 	            <a href="./orderinquiry.php">더보기</a>
 	        </div>
 	    </section>
@@ -122,12 +122,12 @@ for($k=0; $cp=sql_fetch_array($res); $k++) {
                 ?>
 
                 <li>
-                    <div class="smb_my_chk">
+                    <div>
                         <?php if(is_soldout($row['it_id'])) { //품절검사 ?> 품절
                         <?php } else { //품절이 아니면 체크할수 있도록한다 ?>
-                        <div class="chk_box">
-                            <input type="checkbox" name="chk_it_id[<?php echo $i; ?>]" value="1" id="chk_it_id_<?php echo $i; ?>" onclick="out_cd_check(this, '<?php echo $out_cd; ?>');" class="selec_chk">
-                            <label for="chk_it_id_<?php echo $i; ?>"><span></span><b class="sr-only"><?php echo $row['it_name']; ?></b></label>
+                        <div>
+                            <input type="checkbox" name="chk_it_id[<?php echo $i; ?>]" value="1" id="chk_it_id_<?php echo $i; ?>" onclick="out_cd_check(this, '<?php echo $out_cd; ?>');">
+                            <label for="chk_it_id_<?php echo $i; ?>"><span></span><b><?php echo $row['it_name']; ?></b></label>
                         </div>
                         <?php } ?>
                         <input type="hidden" name="it_id[<?php echo $i; ?>]" value="<?php echo $row['it_id']; ?>">
@@ -136,28 +136,28 @@ for($k=0; $cp=sql_fetch_array($res); $k++) {
                         <input type="hidden" name="io_value[<?php echo $row['it_id']; ?>][0]" value="<?php echo $row['it_name']; ?>">
                         <input type="hidden" name="ct_qty[<?php echo $row['it_id']; ?>][0]" value="1">
                     </div>
-                    <div class="smb_my_img"><?php echo $image; ?></div>
-                    <div class="smb_my_tit"><a href="<?php echo shop_item_url($row['it_id']); ?>"><?php echo stripslashes($row['it_name']); ?></a></div>
-                    <div class="smb_my_price"><?php echo display_price(get_price($row), $row['it_tel_inq']); ?></div>
-                    <div class="smb_my_date"><?php echo $row['wi_time']; ?></div>
-                    <a href="./wishupdate.php?w=d&amp;wi_id=<?php echo $row['wi_id']; ?>" class="wish_del"><i class="fa fa-trash" aria-hidden="true"></i><span class="sr-only">삭제</span></a>
+                    <div><?php echo $image; ?></div>
+                    <div><a href="<?php echo shop_item_url($row['it_id']); ?>"><?php echo stripslashes($row['it_name']); ?></a></div>
+                    <div><?php echo display_price(get_price($row), $row['it_tel_inq']); ?></div>
+                    <div><?php echo $row['wi_time']; ?></div>
+                    <a href="./wishupdate.php?w=d&amp;wi_id=<?php echo $row['wi_id']; ?>"><i aria-hidden="true"></i><span>삭제</span></a>
                 </li>
 
                 <?php
                 }
 
                 if ($i == 0)
-                    echo '<li class="empty_li">보관 내역이 없습니다.</li>';
+                    echo '<li>보관 내역이 없습니다.</li>';
                 ?>
                 </ul>
         
-                <div class="smb_my_more">
+                <div>
                     <a href="./wishlist.php">더보기</a>
                 </div>
                 
                 <div id="smb_ws_act">
-                    <button type="submit" class="btn01" onclick="return fwishlist_check(document.fwishlist,'');">장바구니</button>
-                    <button type="submit" class="btn02" onclick="return fwishlist_check(document.fwishlist,'direct_buy');">주문하기</button>
+                    <button type="submit" onclick="return fwishlist_check(document.fwishlist,'');">장바구니</button>
+                    <button type="submit" onclick="return fwishlist_check(document.fwishlist,'direct_buy');">주문하기</button>
                 </div>
             </form>
 	    </section>

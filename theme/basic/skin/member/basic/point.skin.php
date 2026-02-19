@@ -5,17 +5,17 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 ?>
 
-<div id="point" class="new_win">
+<div id="point">
     <h1 id="win_title"><?php echo $g5['title'] ?></h1>
 
-    <div class="new_win_con2">
-        <ul class="point_all">
-        	<li class="full_li">
+    <div>
+        <ul>
+        	<li>
         		보유포인트
         		<span><?php echo number_format($member['mb_point']); ?></span>
         	</li>
 		</ul>
-        <ul class="point_list">
+        <ul>
             <?php
             $sum_point1 = $sum_point2 = $sum_point3 = 0;
 
@@ -39,12 +39,12 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                     $expr = ' txt_expired';
             ?>
             <li class="<?php echo $point_use_class; ?>">
-                <div class="point_top">
-                    <span class="point_tit"><?php echo $po_content; ?></span>
-                    <span class="point_num"><?php if ($point1) echo $point1; else echo $point2; ?></span>
+                <div>
+                    <span><?php echo $po_content; ?></span>
+                    <span><?php if ($point1) echo $point1; else echo $point2; ?></span>
                 </div>
-                <span class="point_date1"><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $row['po_datetime']; ?></span>
-                <span class="point_date<?php echo $expr; ?>">
+                <span><i aria-hidden="true"></i> <?php echo $row['po_datetime']; ?></span>
+                <span class="<?php echo $expr; ?>">
                     <?php if ($row['po_expired'] == 1) { ?>
                     만료 <?php echo substr(str_replace('-', '', $row['po_expire_date']), 2); ?>
                     <?php } else echo $row['po_expire_date'] == '9999-12-31' ? '&nbsp;' : $row['po_expire_date']; ?>
@@ -55,7 +55,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             }   // end foreach
 
             if ($i == 0)
-                echo '<li class="empty_li">자료가 없습니다.</li>';
+                echo '<li>자료가 없습니다.</li>';
             else {
                 if ($sum_point1 > 0)
                     $sum_point1 = "+" . number_format($sum_point1);
@@ -63,7 +63,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             }
             ?>
 
-            <li class="point_status">
+            <li>
                 소계
                 <span><?php echo $sum_point1; ?></span>
                 <span><?php echo $sum_point2; ?></span>
@@ -73,5 +73,5 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
     <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME'].'?'.$qstr.'&amp;page='); ?>
 
-    <button type="button" onclick="javascript:window.close();" class="btn_close">창닫기</button>
+    <button type="button" onclick="javascript:window.close();">창닫기</button>
 </div>

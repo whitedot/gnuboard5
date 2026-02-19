@@ -29,15 +29,15 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	<div id="sit_tab">
 	    <ul class="tab_tit">
 	        <li><button type="button" id="btn_sit_inf" rel="#sit_inf" class="selected">상품정보</button></li>
-	        <li><button type="button" id="btn_sit_use" rel="#sit_use">사용후기 <span class="item_use_count"><?php echo $item_use_count; ?></span></button></li>
-	        <li><button type="button" id="btn_sit_qa" rel="#sit_qa">상품문의  <span class="item_qa_count"><?php echo $item_qa_count; ?></span></button></li>
+	        <li><button type="button" id="btn_sit_use" rel="#sit_use">사용후기 <span><?php echo $item_use_count; ?></span></button></li>
+	        <li><button type="button" id="btn_sit_qa" rel="#sit_qa">상품문의  <span><?php echo $item_qa_count; ?></span></button></li>
 	        <li><button type="button" id="btn_sit_dvex" rel="#sit_dex">배송/교환</button></li>
 	    </ul>
 	    <ul class="tab_con">
 	
 	        <!-- 상품 정보 시작 { -->
 	        <li id="sit_inf">
-	            <h2 class="contents_tit"><span>상품 정보</span></h2>
+	            <h2><span>상품 정보</span></h2>
 	
 	            <?php if ($it['it_explan']) { // 상품 상세설명 ?>
 	            <h3>상품 상세설명</h3>
@@ -131,14 +131,14 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	    });
 	});
 	</script>
-	<div id="sit_buy" class="fix">
-		<div class="sit_buy_inner">
+	<div id="sit_buy">
+		<div>
 	        <?php if($option_item) {    // 선택옵션이 있다면 ?>
 	        <!-- 선택옵션 시작 { -->
 	        <section class="sit_side_option">
 	            <h3>선택옵션</h3>
 	            <?php // 선택옵션
-	            echo str_replace(array('class="get_item_options"', 'id="it_option_', 'class="it_option"'), array('class="get_side_item_options"', 'id="it_side_option_', 'class="it_side_option"'), $option_item);
+	            echo str_replace(array('class="get_item_options"', 'id="it_option_', 'class="it_option"'), array('', 'id="it_side_option_', 'class="it_side_option"'), $option_item);
 	            ?>
 	        </section>
 	        <!-- } 선택옵션 끝 -->
@@ -162,15 +162,15 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	            <ul class="sit_opt_added">
                     <?php if( !$option_item ){ ?>
                     <li>
-                        <div class="opt_name">
-                            <span class="sit_opt_subj"><?php echo $it['it_name']; ?></span>
+                        <div>
+                            <span><?php echo $it['it_name']; ?></span>
                         </div>
-                        <div class="opt_count">
-                            <label for="ct_qty_<?php echo $i; ?>" class="sr-only">수량</label>
-                            <button type="button" class="sit_qty_minus"><i class="fa fa-minus" aria-hidden="true"></i><span class="sr-only">감소</span></button>
-                            <input type="text" name="ct_copy_qty[<?php echo $it_id; ?>][]" value="<?php echo $it['it_buy_min_qty']; ?>" id="ct_qty_<?php echo $i; ?>" class="num_input" size="5">
-                            <button type="button" class="sit_qty_plus"><i class="fa fa-plus" aria-hidden="true"></i><span class="sr-only">증가</span></button>
-                            <span class="sit_opt_prc">+0원</span>
+                        <div>
+                            <label for="ct_qty_<?php echo $i; ?>">수량</label>
+                            <button type="button" class="sit_qty_minus"><i aria-hidden="true"></i><span>감소</span></button>
+                            <input type="text" name="ct_copy_qty[<?php echo $it_id; ?>][]" value="<?php echo $it['it_buy_min_qty']; ?>" id="ct_qty_<?php echo $i; ?>" size="5">
+                            <button type="button" class="sit_qty_plus"><i aria-hidden="true"></i><span>증가</span></button>
+                            <span>+0원</span>
                         </div>
                     </li>
                     <?php } ?>

@@ -15,15 +15,15 @@ if ($is_admin) $colspan++;
     <legend>상세검색</legend>
     <form name="fnew" method="get">
     <?php echo $group_select ?>
-    <label for="view" class="sr-only">검색대상</label>
+    <label for="view">검색대상</label>
     <select name="view" id="view">
         <option value="">전체게시물
         <option value="w">원글만
         <option value="c">코멘트만
     </select>
-    <label for="mb_id" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" required class="frm_input" size="40">
-    <button type="submit" class="btn_submit"><i class="fa fa-search" aria-hidden="true"></i> 검색</button>
+    <label for="mb_id">검색어<strong> 필수</strong></label>
+    <input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" required size="40">
+    <button type="submit"><i aria-hidden="true"></i> 검색</button>
     <p>회원 아이디만 검색 가능</p>
     </form>
     <script>
@@ -50,20 +50,20 @@ if ($is_admin) $colspan++;
 <input type="hidden" name="pressed"  value="">
 
 <?php if ($is_admin) { ?>
-<div class="admin_new_btn">
-    <button type="submit" onclick="document.pressed=this.title" title="선택삭제" class="btn_b01 btn"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="sr-only">선택삭제</span></button>
+<div>
+    <button type="submit" onclick="document.pressed=this.title" title="선택삭제"><i aria-hidden="true"></i><span>선택삭제</span></button>
 </div>
 <?php } ?>
-<div class="tbl_head01 tbl_wrap">
+<div>
     <table>
     <thead>
     <tr>
         <?php if ($is_admin) { ?>
-        <th scope="col" class="chk_box">
-        	<input type="checkbox" id="all_chk" class="selec_chk">
+        <th scope="col">
+        	<input type="checkbox" id="all_chk">
             <label for="all_chk">
             	<span></span>
-				<b class="sr-only">목록 전체</b>
+				<b>목록 전체</b>
             </label>
         </th>
         <?php } ?>
@@ -85,26 +85,26 @@ if ($is_admin) $colspan++;
     ?>
     <tr>
         <?php if ($is_admin) { ?>
-        <td class="td_chk chk_box">
-            <input type="checkbox" name="chk_bn_id[]" value="<?php echo $i; ?>" id="chk_bn_id_<?php echo $i; ?>" class="selec_chk">
+        <td>
+            <input type="checkbox" name="chk_bn_id[]" value="<?php echo $i; ?>" id="chk_bn_id_<?php echo $i; ?>">
             <label for="chk_bn_id_<?php echo $i; ?>">
             	<span></span>
-            	<b class="sr-only"><?php echo $num?>번</b>
+            	<b><?php echo $num?>번</b>
             </label>
             <input type="hidden" name="bo_table[<?php echo $i; ?>]" value="<?php echo $list[$i]['bo_table']; ?>">
             <input type="hidden" name="wr_id[<?php echo $i; ?>]" value="<?php echo $list[$i]['wr_id']; ?>">
         </td>
         <?php } ?>
-        <td class="td_group"><a href="./new.php?gr_id=<?php echo $list[$i]['gr_id'] ?>"><?php echo $gr_subject ?></a></td>
-        <td class="td_board"><a href="<?php echo get_pretty_url($list[$i]['bo_table']); ?>"><?php echo $bo_subject ?></a></td>
-        <td><a href="<?php echo $list[$i]['href'] ?>" class="new_tit"><?php echo $list[$i]['comment'] ?><?php echo $wr_subject ?></a></td>
-        <td class="td_name"><?php echo $list[$i]['name'] ?></td>
-        <td class="td_date"><?php echo $list[$i]['datetime2'] ?></td>
+        <td><a href="./new.php?gr_id=<?php echo $list[$i]['gr_id'] ?>"><?php echo $gr_subject ?></a></td>
+        <td><a href="<?php echo get_pretty_url($list[$i]['bo_table']); ?>"><?php echo $bo_subject ?></a></td>
+        <td><a href="<?php echo $list[$i]['href'] ?>"><?php echo $list[$i]['comment'] ?><?php echo $wr_subject ?></a></td>
+        <td><?php echo $list[$i]['name'] ?></td>
+        <td><?php echo $list[$i]['datetime2'] ?></td>
     </tr>
     <?php } ?>
 
     <?php if ($i == 0)
-        echo '<tr><td colspan="'.$colspan.'" class="empty_table">게시물이 없습니다.</td></tr>';
+        echo '<tr><td colspan="'.$colspan.'">게시물이 없습니다.</td></tr>';
     ?>
     </tbody>
     </table>
@@ -113,8 +113,8 @@ if ($is_admin) $colspan++;
 <?php echo $write_pages ?>
 
 <?php if ($is_admin) { ?>
-<div class="admin_new_btn">
-    <button type="submit" onclick="document.pressed=this.title" title="선택삭제" class="btn_b01 btn"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="sr-only">선택삭제</span></button>
+<div>
+    <button type="submit" onclick="document.pressed=this.title" title="선택삭제"><i aria-hidden="true"></i><span>선택삭제</span></button>
 </div>
 <?php } ?>
 </form>

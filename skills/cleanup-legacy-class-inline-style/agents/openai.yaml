@@ -1,0 +1,5 @@
+interface:
+  display_name: "Legacy Attr Cleanup"
+  short_description: "Remove legacy class/style with JS-safe exceptions."
+  default_prompt: "Use $cleanup-legacy-class-inline-style to remove legacy class and inline style attributes while preserving JS/UI-kit dependencies."
+

@@ -3,21 +3,21 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 ?>
 
 <section id="bo_v_ans">
-    <h2><span class="bo_v_reply">답변</span> <?php echo get_text($answer['qa_subject']); ?></h2>
+    <h2><span>답변</span> <?php echo get_text($answer['qa_subject']); ?></h2>
     <header>
 	    <div id="ans_datetime">
-	        <i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $answer['qa_datetime']; ?>
+	        <i aria-hidden="true"></i> <?php echo $answer['qa_datetime']; ?>
 	    </div>
 	    
         <?php if ( $answer_update_href || $answer_delete_href ){ ?>
 	    <div id="ans_add">
-	    	<button type="button" class="btn_more_add btn_more_opt btn_b01 btn" title="답변 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sr-only">답변 옵션</span></button>
+	    	<button type="button" class="btn_more_add btn_more_opt" title="답변 옵션"><i aria-hidden="true"></i><span>답변 옵션</span></button>
 			<ul class="more_add">
 				<?php if($answer_update_href) { ?>
-				<li><a href="<?php echo $answer_update_href; ?>" class="btn_b01 btn" title="답변수정">답변수정</a></li>
+				<li><a href="<?php echo $answer_update_href; ?>" title="답변수정">답변수정</a></li>
 				<?php } ?>
 				<?php if($answer_delete_href) { ?>
-				<li><a href="<?php echo $answer_delete_href; ?>" class="btn_b01 btn" onclick="del(this.href); return false;" title="답변삭제">답변삭제</a></li>
+				<li><a href="<?php echo $answer_delete_href; ?>" onclick="del(this.href); return false;" title="답변삭제">답변삭제</a></li>
 				<?php } ?>	
 			</ul>
 			<script>
@@ -56,7 +56,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
             for ($i=0; $i<$answer['download_count']; $i++) {
              ?>
                 <li>
-                    <i class="fa fa-download" aria-hidden="true"></i>
+                    <i aria-hidden="true"></i>
                     <a href="<?php echo $answer['download_href'][$i];  ?>" class="view_file_download" download>
                         <strong><?php echo $answer['download_source'][$i] ?></strong>
                     </a>
@@ -71,6 +71,6 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
     </div>
 
 </section>
-<div class="bo_v_btn">
-	<a href="<?php echo $rewrite_href; ?>" class="add_qa" title="추가질문">추가질문</a>  
+<div>
+	<a href="<?php echo $rewrite_href; ?>" title="추가질문">추가질문</a>  
 </div>

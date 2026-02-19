@@ -6,9 +6,9 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 
 $max_width = $max_height = 0;
-$bn_first_class = ' class="bn_first"';
+$bn_first_class = '';
 $bn_slide_btn = '';
-$bn_sl = ' class="bn_sl"';
+$bn_sl = '';
 $main_banners = array();
 
 for ($i=0; $row=sql_fetch_array($result); $i++)
@@ -16,7 +16,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     $main_banners[] = $row;
 
     // 테두리 있는지
-    $bn_border  = ($row['bn_border']) ? ' class="sbn_border"' : '';;
+    $bn_border  = ($row['bn_border']) ? '' : '';;
     // 새창 띄우기인지
     $bn_new_win = ($row['bn_new_win']) ? ' target="_blank"' : '';
 
@@ -37,7 +37,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
         if($max_height < $size[1])
             $max_height = $size[1];
 
-        $item_html .= '<div class="item">';
+        $item_html .= '<div>';
         if ($row['bn_url'][0] == '#')
             $banner .= '<a href="'.$row['bn_url'].'">';
         else if ($row['bn_url'] && $row['bn_url'] != 'http://') {
@@ -49,8 +49,8 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
         $item_html .= '</div>';
     }
     
-    $banner_style = $max_height ? 'style="min-height:'.($max_height + 25).'px"' : '';
-    if ($i==0) echo '<div id="main_bn"><div class="main_image_area"><div class="main_banner_owl owl-carousel">'.PHP_EOL;
+    $banner_style = $max_height ? '' : '';
+    if ($i==0) echo '<div id="main_bn"><div><div>'.PHP_EOL;
     
     echo $item_html;
 }
@@ -58,17 +58,17 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
 if ($i > 0) {
     echo '</div>'.PHP_EOL;
 	
-	echo '<div class="btn_wr"><a href="#" class="pager-prev"><i class="fa fa-angle-left"></i></a><div id="slide-counter"></div><a href="#" class="pager-next"><i class="fa fa-angle-right"></i></a> </div>'.PHP_EOL;
+	echo '<div><a href="#"><i></i></a><div id="slide-counter"></div><a href="#"><i></i></a> </div>'.PHP_EOL;
 
     echo '</div>'.PHP_EOL;
     
-    echo '<div class="main_owl_pager">'.PHP_EOL;
-        echo '<div class="owl_pager">
-    <ul class="carousel-custom-dots owl-dots">';
+    echo '<div>'.PHP_EOL;
+        echo '<div>
+    <ul>';
 		$k = 0;
 		foreach( $main_banners as $row ){
             $alt_title = $row['bn_alt'] ? cut_str(get_text($row['bn_alt']), 12, '') : '&nbsp;';
-			echo '<li class="owl-dot"><a data-slide-index="'.$k.'" href="#">'.$alt_title.'</a></li>'.PHP_EOL;
+			echo '<li><a data-slide-index="'.$k.'" href="#">'.$alt_title.'</a></li>'.PHP_EOL;
 			$k++;
 			}
 		

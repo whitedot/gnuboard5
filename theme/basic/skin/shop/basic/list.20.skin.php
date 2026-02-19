@@ -32,7 +32,7 @@ foreach((array) $list as $row){
         }
     }
 
-    echo "<li class=\"sct_li{$sct_last}\" data-css=\"nocss\" style=\"width:{$this->img_width}px\">\n";
+    echo "<li class=\"sct_li{$sct_last}\" data-css=\"nocss\">\n";
 
     if ($this->href) {
         echo "<div class=\"sct_img\"><a href=\"{$item_link_href}\" class=\"sct_a\">\n";

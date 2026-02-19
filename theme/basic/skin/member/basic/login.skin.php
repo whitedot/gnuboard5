@@ -6,30 +6,30 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 ?>
 
 <!-- 로그인 시작 { -->
-<div id="mb_login" class="mbskin">
-    <div class="mbskin_box">
+<div id="mb_login">
+    <div>
         <h1><?php echo $g5['title'] ?></h1>
-        <div class="mb_log_cate">
-            <h2><span class="sr-only">회원</span>로그인</h2>
-            <a href="<?php echo G5_BBS_URL ?>/register.php" class="join">회원가입</a>
+        <div>
+            <h2><span>회원</span>로그인</h2>
+            <a href="<?php echo G5_BBS_URL ?>/register.php">회원가입</a>
         </div>
         <form name="flogin" action="<?php echo $login_action_url ?>" onsubmit="return flogin_submit(this);" method="post">
         <input type="hidden" name="url" value="<?php echo $login_url ?>">
         
         <fieldset id="login_fs">
             <legend>회원로그인</legend>
-            <label for="login_id" class="sr-only">회원아이디<strong class="sr-only"> 필수</strong></label>
-            <input type="text" name="mb_id" id="login_id" required class="frm_input required" size="20" maxLength="20" placeholder="아이디">
-            <label for="login_pw" class="sr-only">비밀번호<strong class="sr-only"> 필수</strong></label>
-            <input type="password" name="mb_password" id="login_pw" required class="frm_input required" size="20" maxLength="20" placeholder="비밀번호">
-            <button type="submit" class="btn_submit">로그인</button>
+            <label for="login_id">회원아이디<strong> 필수</strong></label>
+            <input type="text" name="mb_id" id="login_id" required size="20" maxLength="20" placeholder="아이디">
+            <label for="login_pw">비밀번호<strong> 필수</strong></label>
+            <input type="password" name="mb_password" id="login_pw" required size="20" maxLength="20" placeholder="비밀번호">
+            <button type="submit">로그인</button>
             
             <div id="login_info">
-                <div class="login_if_auto chk_box">
-                    <input type="checkbox" name="auto_login" id="login_auto_login" class="selec_chk">
+                <div>
+                    <input type="checkbox" name="auto_login" id="login_auto_login">
                     <label for="login_auto_login"><span></span> 자동로그인</label>  
                 </div>
-                <div class="login_if_lpl">
+                <div>
                     <a href="<?php echo G5_BBS_URL ?>/password_lost.php">ID/PW 찾기</a>  
                 </div>
             </div>
@@ -51,13 +51,13 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             <?php echo conv_content($default['de_guest_privacy'], $config['cf_editor']); ?>
         </div>
 		
-		<div class="chk_box">
-			<input type="checkbox" id="agree" value="1" class="selec_chk">
+		<div>
+			<input type="checkbox" id="agree" value="1">
         	<label for="agree"><span></span> 개인정보수집에 대한 내용을 읽었으며 이에 동의합니다.</label>
 		</div>
 		
-        <div class="btn_confirm">
-            <a href="javascript:guest_submit(document.flogin);" class="btn_submit">비회원으로 구매하기</a>
+        <div>
+            <a href="javascript:guest_submit(document.flogin);">비회원으로 구매하기</a>
         </div>
 
         <script>
@@ -86,11 +86,11 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
             <form name="forderinquiry" method="post" action="<?php echo urldecode($url); ?>" autocomplete="off">
 
-            <label for="od_id" class="od_id sr-only">주문서번호<strong class="sr-only"> 필수</strong></label>
-            <input type="text" name="od_id" value="<?php echo get_text($od_id); ?>" id="od_id" required class="frm_input required" size="20" placeholder="주문서번호">
-            <label for="od_pwd" class="od_pwd sr-only">비밀번호 <strong>필수</strong></label>
-            <input type="password" name="od_pwd" size="20" id="od_pwd" required class="frm_input required" placeholder="비밀번호">
-            <button type="submit" class="btn_submit">확인</button>
+            <label for="od_id">주문서번호<strong> 필수</strong></label>
+            <input type="text" name="od_id" value="<?php echo get_text($od_id); ?>" id="od_id" required size="20" placeholder="주문서번호">
+            <label for="od_pwd">비밀번호 <strong>필수</strong></label>
+            <input type="password" name="od_pwd" size="20" id="od_pwd" required placeholder="비밀번호">
+            <button type="submit">확인</button>
 
             </form>
         </fieldset>

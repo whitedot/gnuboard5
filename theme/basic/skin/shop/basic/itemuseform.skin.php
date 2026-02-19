@@ -6,7 +6,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 ?>
 
 <!-- 사용후기 쓰기 시작 { -->
-<div id="sit_use_write" class="new_win">
+<div id="sit_use_write">
     <h1 id="win_title">사용후기 쓰기</h1>
 
     <form name="fitemuse" method="post" action="<?php echo G5_SHOP_URL;?>/itemuseformupdate.php" onsubmit="return fitemuse_submit(this);" autocomplete="off">
@@ -14,19 +14,19 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <input type="hidden" name="it_id" value="<?php echo $it_id; ?>">
     <input type="hidden" name="is_id" value="<?php echo $is_id; ?>">
 
-    <div class="new_win_con form_01">
+    <div>
         <ul>
             <li>
-                <label for="is_subject" class="sr-only">제목<strong> 필수</strong></label>
-                <input type="text" name="is_subject" value="<?php echo get_text($use['is_subject']); ?>" id="is_subject" required class="required frm_input full_input"  maxlength="250" placeholder="제목">
+                <label for="is_subject">제목<strong> 필수</strong></label>
+                <input type="text" name="is_subject" value="<?php echo get_text($use['is_subject']); ?>" id="is_subject" required  maxlength="250" placeholder="제목">
             </li>
             <li>
-                <strong  class="sr-only">내용</strong>
+                <strong>내용</strong>
                 <?php echo $editor_html; ?>
             </li>
             <li>
-                <span class="sr-only">평점</span>
-                <ul id="sit_use_write_star" class="chk_box">
+                <span>평점</span>
+                <ul id="sit_use_write_star">
                     <li>
                         <input type="radio" name="is_score" value="5" id="is_score5" <?php echo ($is_score==5)?'checked="checked"':''; ?>>
                         <label for="is_score5"><span></span>매우만족</label>
@@ -56,9 +56,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             </li>
         </ul>
 
-        <div class="win_btn">
-            <button type="submit" class="btn_submit">작성완료</button>
-            <button type="button" onclick="self.close();" class="btn_close">닫기</button>
+        <div>
+            <button type="submit">작성완료</button>
+            <button type="button" onclick="self.close();">닫기</button>
         </div>
     </div>
     </form>

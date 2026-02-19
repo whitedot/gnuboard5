@@ -17,15 +17,15 @@ if(sql_num_rows($hresult)) {
     <?php
     for ($i=0; $row=sql_fetch_array($hresult); $i++)
     {
-        echo '<li class="ev_li"><div class="ev_li_wr">';
+        echo '<li><div>';
         $href = G5_SHOP_URL.'/event.php?ev_id='.$row['ev_id'];
 
         $event_img = G5_DATA_PATH.'/event/'.$row['ev_id'].'_m'; // 이벤트 이미지
 
         if (file_exists($event_img)) { // 이벤트 이미지가 있다면 이미지 출력
-            echo '<a href="'.$href.'" class="sev_img"><img src="'.G5_DATA_URL.'/event/'.$row['ev_id'].'_m" alt="'.$row['ev_subject'].'"></a>'.PHP_EOL;
+            echo '<a href="'.$href.'"><img src="'.G5_DATA_URL.'/event/'.$row['ev_id'].'_m" alt="'.$row['ev_subject'].'"></a>'.PHP_EOL;
         } else { // 없다면 텍스트 출력
-            echo '<a href="'.$href.'" class="sev_text">';
+            echo '<a href="'.$href.'">';
             if ($row['ev_subject_strong']) echo '<strong>';
             echo $row['ev_subject'];
             if ($row['ev_subject_strong']) echo '</strong>';
@@ -41,28 +41,28 @@ if(sql_num_rows($hresult)) {
         $result2 = sql_query($sql2);
         for($k=1; $row2=sql_fetch_array($result2); $k++) {
             if($k == 1) {
-                echo '<ul class="ev_prd">'.PHP_EOL;
+                echo '<ul>'.PHP_EOL;
             }
 
             $item_href = shop_item_url($row2['it_id']);
 
-            echo '<li class="ev_prd_'.$k.'">'.PHP_EOL;
-            echo '<span class="ev_prd_img">'.get_it_image($row2['it_id'], 110, 110, get_text($row2['it_name'])).'</span>'.PHP_EOL;
-            echo '<div class="ev_txt_wr"><a href="'.$item_href.'" class="ev_prd_tit">'.get_text(cut_str($row2['it_name'], 30)).'</a>'.PHP_EOL;
-            echo '<span class="ev_prd_price">'.display_price(get_price($row2), $row2['it_tel_inq']).'</span></div>'.PHP_EOL;
+            echo '<li>'.PHP_EOL;
+            echo '<span>'.get_it_image($row2['it_id'], 110, 110, get_text($row2['it_name'])).'</span>'.PHP_EOL;
+            echo '<div><a href="'.$item_href.'">'.get_text(cut_str($row2['it_name'], 30)).'</a>'.PHP_EOL;
+            echo '<span>'.display_price(get_price($row2), $row2['it_tel_inq']).'</span></div>'.PHP_EOL;
             echo '</li>'.PHP_EOL;
         }
         if($k > 1) {
-            echo '<li><a href="'.$href.'" class="sev_more">더보기</a></li>'.PHP_EOL;
+            echo '<li><a href="'.$href.'">더보기</a></li>'.PHP_EOL;
             echo '</ul>'.PHP_EOL;
         }
 
         if($k == 1) {
-            echo '<ul class="ev_prd">'.PHP_EOL;
-            echo '<li class="no_prd">등록된 상품이 없습니다.</li>'.PHP_EOL;
+            echo '<ul>'.PHP_EOL;
+            echo '<li>등록된 상품이 없습니다.</li>'.PHP_EOL;
             echo '</ul>'.PHP_EOL;
         }
-		//echo '<a href="'.$href.'" class="sev_more">더보기</a>'.PHP_EOL;
+		//echo '<a href="'.$href.'">더보기</a>'.PHP_EOL;
         echo '</div>'.PHP_EOL;
         echo '</li>'.PHP_EOL;
 

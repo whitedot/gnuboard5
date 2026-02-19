@@ -25,15 +25,15 @@ if(G5_COMMUNITY_USE === false) {
 <div id="ft">
 
     <div id="ft_wr">
-        <div id="ft_link" class="ft_cnt">
+        <div id="ft_link">
             <a href="<?php echo get_pretty_url('content', 'company'); ?>">회사소개</a>
             <a href="<?php echo get_pretty_url('content', 'privacy'); ?>">개인정보처리방침</a>
             <a href="<?php echo get_pretty_url('content', 'provision'); ?>">서비스이용약관</a>
             <a href="<?php echo get_device_change_url(); ?>">모바일버전</a>
         </div>
-        <div id="ft_company" class="ft_cnt">
+        <div id="ft_company">
         	<h2>사이트 정보</h2>
-	        <p class="ft_info">
+	        <p>
 	        	회사명 : 회사명 / 대표 : 대표자명<br>
 				주소  : OO도 OO시 OO구 OO동 123-45<br>
 				사업자 등록번호  : 123-45-67890<br>
@@ -57,7 +57,7 @@ if(G5_COMMUNITY_USE === false) {
     
     
     <button type="button" id="top_btn">
-    	<i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sr-only">상단으로</span>
+    	<i aria-hidden="true"></i><span>상단으로</span>
     </button>
     <script>
     $(function() {

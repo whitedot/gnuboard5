@@ -56,13 +56,13 @@ foreach((array) $list as $row){
 
         $sale_per = round( (((int) $row['it_cust_price'] - get_price($row))/$row['it_cust_price']) * 100 , 1).'%';
 
-        echo '<span class="sct_disc">'.$sale_per.'</span>'.PHP_EOL;
+        echo '<span>'.$sale_per.'</span>'.PHP_EOL;
     }
     
 	if ($this->view_it_icon) {
         // 품절
         if (is_soldout($row['it_id'], true)) {
-            echo '<span class="shop_icon_soldout"><span class="soldout_txt">SOLD OUT</span></span>';
+            echo '<span><span>SOLD OUT</span></span>';
         }
     }
     echo "</div>\n";

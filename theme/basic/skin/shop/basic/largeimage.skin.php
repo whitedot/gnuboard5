@@ -5,7 +5,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 ?>
 
-<div id="sit_pvi_nw" class="new_win">
+<div id="sit_pvi_nw">
     <h1 id="win_title">상품 이미지 새창 보기</h1>
     <div id="sit_pvi_nwbig">
         <?php
@@ -34,8 +34,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         echo '</ul>';
     }
     ?>
-    <div class="win_btn">
-        <button type="button" onclick="javascript:window.close();" class="btn_close">창닫기</button>
+    <div>
+        <button type="button" onclick="javascript:window.close();">창닫기</button>
     </div>
 </div>
 

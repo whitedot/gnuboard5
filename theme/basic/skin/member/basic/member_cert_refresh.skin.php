@@ -7,7 +7,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     add_javascript('<script src="'.G5_JS_URL.'/certify.js?v='.G5_JS_VER.'"></script>', 0);
 ?>
 <!-- 기존 회원 본인인증 시작 { -->
-<div class="member_cert_refresh">
+<div>
     <form name="fcertrefreshform" id="member_cert_refresh" action="<?php echo $action_url ?>" onsubmit="return fcertrefreshform_submit(this);" method="POST" autocomplete="off">
     <input type="hidden" name="w" value="<?php echo $w ?>">
 	<input type="hidden" name="url" value="<?php echo $urlencode ?>">
@@ -19,7 +19,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
         <section id="member_cert_refresh_private">
             <h2>(필수) 추가 개인정보처리방침 안내</h2>
             <div>
-                <div class="tbl_head01 tbl_wrap">
+                <div>
                     <table>
                         <caption>추가 개인정보처리방침 안내</caption>
                         <thead>
@@ -40,26 +40,26 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
                 </div>
             </div>
 
-            <fieldset class="member_cert_refresh_agree">
-                <input type="checkbox" name="agree2" value="1" id="agree21" class="selec_chk">
-                <label for="agree21"><span></span><b class="sr-only">추가 개인정보처리방침에 동의합니다.</b></label>
+            <fieldset>
+                <input type="checkbox" name="agree2" value="1" id="agree21">
+                <label for="agree21"><span></span><b>추가 개인정보처리방침에 동의합니다.</b></label>
             </fieldset>
         </section>
 
-        <section id="find_info" class="new_win">
+        <section id="find_info">
             <h2>인증수단 선택하기</h2>
             
-            <div class="find_btn">
+            <div>
             <?php
             if ($config['cf_cert_use']) {
-                echo '<div class="cert_btn">';
+                echo '<div>';
                 if ($config['cf_cert_simple']) {
-                    echo '<button type="button" id="win_sa_kakao_cert" class="btn_submit win_sa_cert" data-type="">간편인증</button>' . PHP_EOL;
+                    echo '<button type="button" id="win_sa_kakao_cert" class="win_sa_cert" data-type="">간편인증</button>' . PHP_EOL;
                 }
                 if ($config['cf_cert_hp'])
-                    echo '<button type="button" id="win_hp_cert" class="btn_submit">휴대폰 본인확인</button>' . PHP_EOL;
+                    echo '<button type="button" id="win_hp_cert">휴대폰 본인확인</button>' . PHP_EOL;
                 if ($config['cf_cert_ipin'])
-                    echo '<button type="button" id="win_ipin_cert" class="btn_submit">아이핀 본인확인</button>' . PHP_EOL;
+                    echo '<button type="button" id="win_ipin_cert">아이핀 본인확인</button>' . PHP_EOL;
                 echo '</div>';
                 echo '<noscript>본인확인을 위해서는 자바스크립트 사용이 가능해야합니다.</noscript>' . PHP_EOL;
             }

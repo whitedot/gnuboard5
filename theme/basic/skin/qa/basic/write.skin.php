@@ -29,11 +29,11 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     echo $option_hidden;
     ?>
 
-    <div class="form_01">
+    <div>
         <ul>
             <?php if ($category_option) { ?>
-            <li class="bo_w_select write_div">
-                <label for="qa_category" class="sr-only">분류<strong>필수</strong></label>
+            <li>
+                <label for="qa_category">분류<strong>필수</strong></label>
                 <select name="qa_category" id="qa_category" required >
                     <option value="">분류를 선택하세요</option>
                     <?php echo $category_option ?>
@@ -42,32 +42,32 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             <?php } ?>
 
             <?php if ($is_email) { ?>
-            <li class="bo_w_mail chk_box">
-                <label for="qa_email" class="sr-only">이메일</label>
-                <input type="text" name="qa_email" value="<?php echo get_text($write['qa_email']); ?>" id="qa_email" <?php echo $req_email; ?> class="<?php echo $req_email.' '; ?>frm_input full_input email" size="50" maxlength="100" placeholder="이메일">
-                <input type="checkbox" name="qa_email_recv" id="qa_email_recv" value="1" <?php if($write['qa_email_recv']) echo 'checked="checked"'; ?> class="selec_chk">
-                <label for="qa_email_recv" class="frm_info"><span></span>답변받기</label>
+            <li>
+                <label for="qa_email">이메일</label>
+                <input type="text" name="qa_email" value="<?php echo get_text($write['qa_email']); ?>" id="qa_email" <?php echo $req_email; ?> class="<?php echo $req_email.' '; ?>" size="50" maxlength="100" placeholder="이메일">
+                <input type="checkbox" name="qa_email_recv" id="qa_email_recv" value="1" <?php if($write['qa_email_recv']) echo 'checked="checked"'; ?>>
+                <label for="qa_email_recv"><span></span>답변받기</label>
             </li/>
             <?php } ?>
 
             <?php if ($is_hp) { ?>
-            <li class="bo_w_hp chk_box">
-                <label for="qa_hp" class="sr-only">휴대폰</label>
-                <input type="text" name="qa_hp" value="<?php echo get_text($write['qa_hp']); ?>" id="qa_hp" <?php echo $req_hp; ?> class="<?php echo $req_hp.' '; ?>frm_input full_input" size="30" placeholder="휴대폰">
+            <li>
+                <label for="qa_hp">휴대폰</label>
+                <input type="text" name="qa_hp" value="<?php echo get_text($write['qa_hp']); ?>" id="qa_hp" <?php echo $req_hp; ?> class="<?php echo $req_hp.' '; ?>" size="30" placeholder="휴대폰">
                 <?php if($qaconfig['qa_use_sms']) { ?>
-                <input type="checkbox" name="qa_sms_recv" id="qa_sms_recv" value="1" <?php if($write['qa_sms_recv']) echo 'checked="checked"'; ?>  class="selec_chk">
-                <label for="qa_sms_recv" class="frm_info"><span></span>답변등록 SMS알림 수신</label>
+                <input type="checkbox" name="qa_sms_recv" id="qa_sms_recv" value="1" <?php if($write['qa_sms_recv']) echo 'checked="checked"'; ?>>
+                <label for="qa_sms_recv"><span></span>답변등록 SMS알림 수신</label>
                 <?php } ?>
             </li>
             <?php } ?>
 
-            <li class="bo_w_sbj">
-                <label for="qa_subject" class="sr-only">제목<strong class="sr-only">필수</strong></label>
-				<input type="text" name="qa_subject" value="<?php echo get_text($write['qa_subject']); ?>" id="qa_subject" required class="frm_input full_input required" size="50" maxlength="255" placeholder="제목">        
+            <li>
+                <label for="qa_subject">제목<strong>필수</strong></label>
+				<input type="text" name="qa_subject" value="<?php echo get_text($write['qa_subject']); ?>" id="qa_subject" required size="50" maxlength="255" placeholder="제목">        
             </li>
 
-            <li class="qa_content_wrap <?php echo $is_dhtml_editor ? $config['cf_editor'] : ''; ?>">
-                <label for="qa_content" class="sr-only">내용<strong class="sr-only">필수</strong></label>
+            <li class="<?php echo $is_dhtml_editor ? $config['cf_editor'] : ''; ?>">
+                <label for="qa_content">내용<strong>필수</strong></label>
                     <?php echo $editor_html; // 에디터 사용시는 에디터로, 아니면 textarea 로 노출 ?>
                 
             </li>
@@ -79,20 +79,20 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             </li>
             <?php } ?>
 
-            <li class="bo_w_flie">
-                <div class="file_wr">
-                    <label for="bf_file_1" class="lb_icon"><i class="fa fa-download" aria-hidden="true"></i><span class="sr-only"> 파일 #1</span></label>
-                    <input type="file" name="bf_file[1]" id="bf_file_1" title="파일첨부 1 :  용량 <?php echo $upload_max_filesize; ?> 이하만 업로드 가능" class="frm_file">
+            <li>
+                <div>
+                    <label for="bf_file_1"><i aria-hidden="true"></i><span> 파일 #1</span></label>
+                    <input type="file" name="bf_file[1]" id="bf_file_1" title="파일첨부 1 :  용량 <?php echo $upload_max_filesize; ?> 이하만 업로드 가능">
                     <?php if($w == 'u' && $write['qa_file1']) { ?>
                     <input type="checkbox" id="bf_file_del1" name="bf_file_del[1]" value="1"> <label for="bf_file_del1"><?php echo $write['qa_source1']; ?> 파일 삭제</label>
                     <?php } ?>
                 </div>
             </li>
 
-            <li class="bo_w_flie">
-                <div class="file_wr">
-                    <label for="bf_file_2" class="lb_icon"><i class="fa fa-download" aria-hidden="true"></i><span class="sr-only"> 파일 #2</span></label>
-                    <input type="file" name="bf_file[2]" id="bf_file_2" title="파일첨부 2 :  용량 <?php echo $upload_max_filesize; ?> 이하만 업로드 가능" class="frm_file">
+            <li>
+                <div>
+                    <label for="bf_file_2"><i aria-hidden="true"></i><span> 파일 #2</span></label>
+                    <input type="file" name="bf_file[2]" id="bf_file_2" title="파일첨부 2 :  용량 <?php echo $upload_max_filesize; ?> 이하만 업로드 가능">
                     <?php if($w == 'u' && $write['qa_file2']) { ?>
                     <input type="checkbox" id="bf_file_del2" name="bf_file_del[2]" value="1"> <label for="bf_file_del2"><?php echo $write['qa_source2']; ?> 파일 삭제</label>
                     <?php } ?>
@@ -101,9 +101,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         </ul>
     </div>
     
-    <div class="btn_confirm write_div">
-        <a href="<?php echo $list_href; ?>" class="btn_cancel btn">취소</a>
-        <button type="submit" id="btn_submit" accesskey="s" class="btn_submit btn">작성완료</button>
+    <div>
+        <a href="<?php echo $list_href; ?>">취소</a>
+        <button type="submit" id="btn_submit" accesskey="s">작성완료</button>
     </div>
     
     </form>
