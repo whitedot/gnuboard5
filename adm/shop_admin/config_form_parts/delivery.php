@@ -2,11 +2,11 @@
     <h2 >배송설정</h2>
      <?php echo $pg_anchor; ?>
 
-    <div class="form-card table-shell">
+    <div>
         <table>
         <caption>배송설정 입력</caption>
         <colgroup>
-            <col class="col-4">
+            <col>
             <col>
         </colgroup>
         <tbody>
@@ -33,13 +33,13 @@
             <th scope="row"><label for="de_send_cost_limit">배송비상한가</label></th>
             <td>
                 <?php echo help("배송비유형이 '금액별차등'일 경우에만 해당되며 배송비상한가를 여러개 두고자 하는 경우는 <b>;</b> 로 구분합니다.\n\n예를 들어 20000원 미만일 경우 4000원, 30000원 미만일 경우 3000원 으로 사용할 경우에는 배송비상한가를 20000;30000 으로 입력하고 배송비를 4000;3000 으로 입력합니다."); ?>
-                <input type="text" name="de_send_cost_limit" value="<?php echo get_sanitize_input($default['de_send_cost_limit']); ?>" size="40" class="form-input" id="de_send_cost_limit"> 원
+                <input type="text" name="de_send_cost_limit" value="<?php echo get_sanitize_input($default['de_send_cost_limit']); ?>" size="40" id="de_send_cost_limit"> 원
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="de_send_cost_list">배송비</label></th>
             <td>
-                <input type="text" name="de_send_cost_list" value="<?php echo get_sanitize_input($default['de_send_cost_list']); ?>" size="40" class="form-input" id="de_send_cost_list"> 원
+                <input type="text" name="de_send_cost_list" value="<?php echo get_sanitize_input($default['de_send_cost_list']); ?>" size="40" id="de_send_cost_list"> 원
             </td>
         </tr>
         <tr>
@@ -56,7 +56,7 @@
              <th scope="row"><label for="de_hope_date_after">희망배송일지정</label></th>
             <td>
                 <?php echo help("오늘을 포함하여 설정한 날 이후부터 일주일 동안을 달력 형식으로 노출하여 선택할수 있도록 합니다."); ?>
-                <input type="text" name="de_hope_date_after" value="<?php echo get_sanitize_input($default['de_hope_date_after']); ?>" id="de_hope_date_after" class="form-input" size="5"> 일
+                <input type="text" name="de_hope_date_after" value="<?php echo get_sanitize_input($default['de_hope_date_after']); ?>" id="de_hope_date_after" size="5"> 일
             </td>
         </tr>
         <tr>

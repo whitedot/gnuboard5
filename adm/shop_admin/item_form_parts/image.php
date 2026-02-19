@@ -1,12 +1,12 @@
 <section id="anc_sitfrm_img">
-    <h2 class="section-title">이미지</h2>
+    <h2>이미지</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="form-card table-shell">
+    <div>
         <table>
         <caption>이미지 업로드</caption>
         <colgroup>
-            <col class="col-4">
+            <col>
             <col>
         </colgroup>
         <tbody>
@@ -21,9 +21,9 @@
 
                 if($it_img_exists) {
                     $thumb = get_it_thumbnail($it['it_img'.$i], 25, 25);
-                    $img_tag = run_replace('shop_item_image_tag', '<img src="'.G5_DATA_URL.'/item/'.$it['it_img'.$i].'" class="shop_item_preview_image" >', $it, $i);
+                    $img_tag = run_replace('shop_item_image_tag', '<img src="'.G5_DATA_URL.'/item/'.$it['it_img'.$i].'" >', $it, $i);
                 ?>
-                <label for="it_img<?php echo $i; ?>_del"><span class="sr-only">이미지 <?php echo $i; ?> </span>파일삭제</label>
+                <label for="it_img<?php echo $i; ?>_del"><span>이미지 <?php echo $i; ?> </span>파일삭제</label>
                 <input type="checkbox" name="it_img<?php echo $i; ?>_del" id="it_img<?php echo $i; ?>_del" value="1">
                 <span class="sit_wimg_limg<?php echo $i; ?>"><?php echo $thumb; ?></span>
                 <div id="limg<?php echo $i; ?>" class="banner_or_img">

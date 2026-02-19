@@ -42,14 +42,14 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 $colspan = 9;
 ?>
 
-<div class="local_ov">
-    <span class="summary-chip"><span class="summary-label">전체 </span><span class="summary-value"> <?php echo number_format($total_count) ?> 개</span></span>
+<div>
+    <span><span>전체 </span><span> <?php echo number_format($total_count) ?> 개</span></span>
 </div>
-<form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
+<form name="fsearch" id="fsearch" method="get">
 
-<label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required form-input">
-<input type="submit" class="btn btn-sm border-default-300" value="검색">
+<label for="stx">검색어<strong> 필수</strong></label>
+<input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required">
+<input type="submit" value="검색">
 </form>
 
 
@@ -58,13 +58,13 @@ $colspan = 9;
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 <input type="hidden" name="token" value="">
 
-<div class="table-card table-shell card">
+<div>
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall" class="sr-only">쿠폰 전체</label>
+            <label for="chkall">쿠폰 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">쿠폰이름</th>
@@ -120,19 +120,19 @@ $colspan = 9;
     ?>
 
     <tr class="<?php echo $bg; ?>">
-        <td class="cell-chk">
+        <td>
             <input type="hidden" id="cz_id_<?php echo $i; ?>" name="cz_id[<?php echo $i; ?>]" value="<?php echo $row['cz_id']; ?>">
             <input type="checkbox" id="chk_<?php echo $i; ?>" name="chk[]" value="<?php echo $i; ?>" title="내역선택">
         </td>
-        <td class="cell-left"><?php echo get_text($row['cz_subject']); ?></td>
-        <td class="cell-type"><?php echo $cz_type; ?></td>
-        <td class="cell-type"><?php echo $cp_method; ?></td>
-        <td class="cell-odrnum2"><?php echo $cp_price; ?></td>
-        <td  class="cell-type">다운로드 후 <?php echo $row['cz_period']; ?>일</td>
-        <td class="cell-num"><?php echo number_format($row['cz_download']); ?></td>
-        <td class="cell-datetime"><?php echo substr($row['cz_start'], 2, 8); ?> ~ <?php echo substr($row['cz_end'], 2, 8); ?></td>
-        <td class="cell-mng cell-mng-s">
-            <a href="./couponzoneform.php?w=u&amp;cz_id=<?php echo $row['cz_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn-tertiary"><span class="sr-only"><?php echo get_text($row['cz_subject']); ?> </span>수정</a>
+        <td><?php echo get_text($row['cz_subject']); ?></td>
+        <td><?php echo $cz_type; ?></td>
+        <td><?php echo $cp_method; ?></td>
+        <td><?php echo $cp_price; ?></td>
+        <td>다운로드 후 <?php echo $row['cz_period']; ?>일</td>
+        <td><?php echo number_format($row['cz_download']); ?></td>
+        <td><?php echo substr($row['cz_start'], 2, 8); ?> ~ <?php echo substr($row['cz_end'], 2, 8); ?></td>
+        <td>
+            <a href="./couponzoneform.php?w=u&amp;cz_id=<?php echo $row['cz_id']; ?>&amp;<?php echo $qstr; ?>"><span><?php echo get_text($row['cz_subject']); ?> </span>수정</a>
         </td>
     </tr>
 
@@ -140,15 +140,15 @@ $colspan = 9;
     }
 
     if ($i == 0)
-        echo '<tr><td colspan="'.$colspan.'" class="table-empty">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="'.$colspan.'">자료가 없습니다.</td></tr>';
     ?>
     </tbody>
     </table>
 </div>
 
-<div class="action-bar">
-     <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
-   <a href="./couponzoneform.php" id="coupon_add" class="btn btn-primary">쿠폰 추가</a>
+<div>
+     <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
+   <a href="./couponzoneform.php" id="coupon_add">쿠폰 추가</a>
 </div>
 
 </form>

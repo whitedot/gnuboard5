@@ -37,14 +37,14 @@ require_once './admin.head.php';
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <div class="form-card table-shell">
+    <div>
 
         <table>
             <caption><?php echo $g5['title']; ?></caption>
             <tbody>
                 <tr>
-                    <th scope="row"><label for="po_subject">투표 제목<strong class="sr-only">필수</strong></label></th>
-                    <td><input type="text" name="po_subject" value="<?php echo get_sanitize_input($po['po_subject']); ?>" id="po_subject" required class="required form-input" size="80" maxlength="125"></td>
+                    <th scope="row"><label for="po_subject">투표 제목<strong>필수</strong></label></th>
+                    <td><input type="text" name="po_subject" value="<?php echo get_sanitize_input($po['po_subject']); ?>" id="po_subject" required class="required" size="80" maxlength="125"></td>
                 </tr>
 
                 <?php
@@ -53,7 +53,7 @@ require_once './admin.head.php';
                     $sound_only = '';
                     if ($i == 1 || $i == 2) {
                         $required = 'required';
-                        $sound_only = '<strong class="sr-only">필수</strong>';
+                        $sound_only = '<strong>필수</strong>';
                     }
 
                     $po_poll = isset($po['po_poll' . $i]) ? get_text($po['po_poll' . $i]) : '';
@@ -63,9 +63,9 @@ require_once './admin.head.php';
                     <tr>
                         <th scope="row"><label for="po_poll<?php echo $i ?>">항목 <?php echo $i ?><?php echo $sound_only ?></label></th>
                         <td>
-                            <input type="text" name="po_poll<?php echo $i ?>" value="<?php echo $po_poll ?>" id="po_poll<?php echo $i ?>" <?php echo $required ?> class="form-input <?php echo $required ?>" maxlength="125">
+                            <input type="text" name="po_poll<?php echo $i ?>" value="<?php echo $po_poll ?>" id="po_poll<?php echo $i ?>" <?php echo $required ?> class="<?php echo $required ?>" maxlength="125">
                             <label for="po_cnt<?php echo $i ?>">항목 <?php echo $i ?> 투표수</label>
-                            <input type="text" name="po_cnt<?php echo $i ?>" value="<?php echo $po_cnt; ?>" id="po_cnt<?php echo $i ?>" class="form-input" size="3">
+                            <input type="text" name="po_cnt<?php echo $i ?>" value="<?php echo $po_cnt; ?>" id="po_cnt<?php echo $i ?>" size="3">
                         </td>
                     </tr>
 
@@ -75,7 +75,7 @@ require_once './admin.head.php';
                     <th scope="row"><label for="po_etc">기타의견</label></th>
                     <td>
                         <?php echo help('기타 의견을 남길 수 있도록 하려면, 간단한 질문을 입력하세요.') ?>
-                        <input type="text" name="po_etc" value="<?php echo get_text($po['po_etc']) ?>" id="po_etc" class="form-input" size="80" maxlength="125">
+                        <input type="text" name="po_etc" value="<?php echo get_text($po['po_etc']) ?>" id="po_etc" size="80" maxlength="125">
                     </td>
                 </tr>
                 <tr>
@@ -89,7 +89,7 @@ require_once './admin.head.php';
                     <th scope="row"><label for="po_point">포인트</label></th>
                     <td>
                         <?php echo help('투표에 참여한 회원에게 포인트를 부여합니다.') ?>
-                        <input type="text" name="po_point" value="<?php echo $po['po_point'] ?>" id="po_point" class="form-input"> 점
+                        <input type="text" name="po_point" value="<?php echo $po['po_point'] ?>" id="po_point"> 점
                     </td>
                 </tr>
 
@@ -116,9 +116,9 @@ require_once './admin.head.php';
 
     </div>
 
-    <div class="action-bar">
-        <a href="./poll_list.php?<?php echo $qstr ?>" class="btn-secondary btn">목록</a>
-        <input type="submit" value="확인" class="btn-primary btn" accesskey="s">
+    <div>
+        <a href="./poll_list.php?<?php echo $qstr ?>">목록</a>
+        <input type="submit" value="확인" accesskey="s">
     </div>
 
 </form>

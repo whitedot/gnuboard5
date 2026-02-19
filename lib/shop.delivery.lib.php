@@ -161,7 +161,7 @@ function get_item_sendcost2($it_id, $price, $qty)
 }
 
 // 배송조회버튼 생성
-function get_delivery_inquiry($company, $invoice, $class='')
+function get_delivery_inquiry($company, $invoice, $link_class='')
 {
     if(!$company || !$invoice)
         return '';
@@ -178,8 +178,8 @@ function get_delivery_inquiry($company, $invoice, $class='')
     $str = '';
     if(isset($com) && $com && isset($url) && $url) {
         $str .= '<a href="'.$url.$invoice.'" target="_blank"';
-        if($class)
-            $str .= ' class="'.$class.'"';
+        if($link_class)
+            $str .= '';
         $str .='>배송조회</a>';
         if($tel)
             $str .= ' (문의전화: '.$tel.')';

@@ -36,7 +36,7 @@ $sql = " select *
 $result = sql_query($sql);
 ?>
 
-<div class="table-card table-shell card">
+<div>
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -92,18 +92,18 @@ $result = sql_query($sql);
         $bg = 'bg'.($i%2);
     ?>
     <tr class="<?php echo $bg; ?>">
-        <td class="cell-category"><?php echo $ip ?></td>
+        <td><?php echo $ip ?></td>
         <td><?php echo $link ?><?php echo $title ?><?php echo $link2 ?></td>
-        <td class="cell-category cell-category1"><?php echo $brow ?></td>
-        <td class="cell-category cell-category3"><?php echo $os ?></td>
-        <td class="cell-category cell-category2"><?php echo $device; ?></td>
-        <td class="cell-datetime"><?php echo $row['vi_date'] ?> <?php echo $row['vi_time'] ?></td>
+        <td><?php echo $brow ?></td>
+        <td><?php echo $os ?></td>
+        <td><?php echo $device; ?></td>
+        <td><?php echo $row['vi_date'] ?> <?php echo $row['vi_time'] ?></td>
     </tr>
 
     <?php
     }
     if ($i == 0)
-        echo '<tr><td colspan="'.$colspan.'" class="table-empty">자료가 없거나 관리자에 의해 삭제되었습니다.</td></tr>';
+        echo '<tr><td colspan="'.$colspan.'">자료가 없거나 관리자에 의해 삭제되었습니다.</td></tr>';
     ?>
     </tbody>
     </table>

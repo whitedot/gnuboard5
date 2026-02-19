@@ -22,7 +22,7 @@ require_once './admin.head.php';
 $colspan = 7;
 ?>
 
-<div class="hint-text">
+<div>
     <p>
         <b>테스트</b>는 등록된 최고관리자의 이메일로 테스트 메일을 발송합니다.<br>
         현재 등록된 메일은 총 <?php echo $total_count ?>건입니다.<br>
@@ -32,7 +32,7 @@ $colspan = 7;
 
 
 <form name="fmaillist" id="fmaillist" action="./mail_delete.php" method="post">
-    <div class="table-card table-shell card">
+    <div>
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -49,7 +49,7 @@ $colspan = 7;
             <tbody>
                 <?php
                 for ($i = 0; $row = sql_fetch_array($result); $i++) {
-                    $s_vie = '<a href="./mail_preview.php?ma_id=' . $row['ma_id'] . '" target="_blank" class="btn btn-tertiary">미리보기</a>';
+                    $s_vie = '<a href="./mail_preview.php?ma_id=' . $row['ma_id'] . '" target="_blank">미리보기</a>';
 
                     $num = number_format($total_count - ($page - 1) * $config['cf_page_rows'] - $i);
 
@@ -57,30 +57,30 @@ $colspan = 7;
                 ?>
 
                     <tr class="<?php echo $bg; ?>">
-                        <td class="cell-chk">
-                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $row['ma_subject']; ?> 메일</label>
+                        <td>
+                            <label for="chk_<?php echo $i; ?>"><?php echo $row['ma_subject']; ?> 메일</label>
                             <input type="checkbox" id="chk_<?php echo $i ?>" name="chk[]" value="<?php echo $row['ma_id'] ?>">
                         </td>
-                        <td class="cell-num-c"><?php echo $num ?></td>
-                        <td class="cell-left"><a href="./mail_form.php?w=u&amp;ma_id=<?php echo $row['ma_id'] ?>"><?php echo $row['ma_subject'] ?></a></td>
-                        <td class="cell-datetime"><?php echo $row['ma_time'] ?></td>
-                        <td class="cell-test"><a href="./mail_test.php?ma_id=<?php echo $row['ma_id'] ?>">테스트</a></td>
-                        <td class="cell-send"><a href="./mail_select_form.php?ma_id=<?php echo $row['ma_id'] ?>">보내기</a></td>
-                        <td class="cell-mng"><?php echo $s_vie ?></td>
+                        <td><?php echo $num ?></td>
+                        <td><a href="./mail_form.php?w=u&amp;ma_id=<?php echo $row['ma_id'] ?>"><?php echo $row['ma_subject'] ?></a></td>
+                        <td><?php echo $row['ma_time'] ?></td>
+                        <td><a href="./mail_test.php?ma_id=<?php echo $row['ma_id'] ?>">테스트</a></td>
+                        <td><a href="./mail_select_form.php?ma_id=<?php echo $row['ma_id'] ?>">보내기</a></td>
+                        <td><?php echo $s_vie ?></td>
                     </tr>
 
                 <?php
                 }
                 if (!$i) {
-                    echo "<tr><td colspan=\"" . $colspan . "\" class=\"table-empty\">자료가 없습니다.</td></tr>";
+                    echo "<tr><td colspan=\"" . $colspan . "\">자료가 없습니다.</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
     </div>
-    <div class="action-bar">
-        <input type="submit" value="선택삭제" class="btn btn-secondary">
-        <a href="./mail_form.php" id="mail_add" class="btn btn-primary">메일내용추가</a>
+    <div>
+        <input type="submit" value="선택삭제">
+        <a href="./mail_form.php" id="mail_add">메일내용추가</a>
     </div>
 </form>
 

@@ -12,7 +12,7 @@ $g5['title'] = $board['bo_subject'] . ' 게시판 썸네일 삭제';
 require_once './admin.head.php';
 ?>
 
-<div class="hint-box">
+<div>
     <p>
         완료 메세지가 나오기 전에 프로그램의 실행을 중지하지 마십시오.
     </p>
@@ -41,13 +41,13 @@ if (is_dir($dir)) {
     }
 
     echo '<li>완료됨</li></ul>' . PHP_EOL;
-    echo '<div class="hint-box"><p><strong>썸네일 ' . $cnt . '건의 삭제 완료됐습니다.</strong></p></div>' . PHP_EOL;
+    echo '<div><p><strong>썸네일 ' . $cnt . '건의 삭제 완료됐습니다.</strong></p></div>' . PHP_EOL;
 } else {
     echo '<p>첨부파일 디렉토리가 존재하지 않습니다.</p>';
 }
 ?>
 
-<div class="action-bar"><a href="./board_form.php?w=u&amp;bo_table=<?php echo $bo_table; ?>&amp;<?php echo $qstr; ?>">게시판 수정으로 돌아가기</a></div>
+<div><a href="./board_form.php?w=u&amp;bo_table=<?php echo $bo_table; ?>&amp;<?php echo $qstr; ?>">게시판 수정으로 돌아가기</a></div>
 
 <?php
 require_once './admin.tail.php';

@@ -16,7 +16,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
 ?>
 
 <h2>파일 업로드</h2>
-<div class="hint-text">
+<div>
     <p>
         엑셀에 저장된 휴대폰번호 목록을 데이터베이스에 저장할 수 있습니다.
     </p>
@@ -39,7 +39,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
 <form name="upload_form" method="post" enctype="multipart/form-data" id="sms5_fileup_frm">
 <div>
     <label for="upload_bg_no">그룹선택</label>
-    <select class="form-select" name="upload_bg_no" id="upload_bg_no">
+    <select name="upload_bg_no" id="upload_bg_no">
         <option value=""></option>
         <option value="1"> <?php echo $no_group['bg_name']?> (<?php echo number_format($no_group['bg_count'])?>) </option>
         <?php for ($i=0; $i<count($group); $i++) { ?>
@@ -52,29 +52,29 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
     <label for="csv">파일선택</label>
     <input type="file" name="csv" id="csv" onchange="document.getElementById('upload_info').style.display='none';">
     <span id="upload_button">
-        <input type="button" value="파일전송" onclick="upload();" class="btn btn-sm border-default-300">
+        <input type="button" value="파일전송" onclick="upload();">
     </span>
-    <span id="uploading" class="sms_fileup_hide">
+    <span id="uploading">
         파일을 업로드 중입니다. 잠시만 기다려주세요.
     </span>
 
-    <div id="upload_info" class="sms_fileup_hide"></div>
-    <div id="register" class="sch_last sms_fileup_hide">
+    <div id="upload_info"></div>
+    <div id="register">
         휴대폰번호를 DB에 저장중 입니다. 잠시만 기다려주세요.
     </div>
 </div>
 </form>
 
 <h2>파일 다운로드</h2>
-<div class="hint-text">
+<div>
     <p>
         저장된 휴대폰번호 목록을 엑셀(xls) 파일로 다운로드 할 수 있습니다.<br>
         다운로드 할 휴대폰번호 그룹을 선택해주세요.
     </p>
 </div>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
-    <p class="sms5_bkfile_p">
+<div>
+    <p>
         <input type="checkbox" value="1" id="no_hp">
         <label for="no_hp">휴대폰 번호 없는 회원 포함</label><br>
         <input type="checkbox" value="1" id="hyphen">
@@ -82,7 +82,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
     </p>
 
     <label for="download_bg_no">그룹선택</label>
-    <select class="form-select" name="download_bg_no" id="download_bg_no">
+    <select name="download_bg_no" id="download_bg_no">
         <option value=""> </option>
         <option value="all"> 전체 </option>
         <option value="1"> <?php echo $no_group['bg_name']?> (<?php echo number_format($no_group['bg_count'])?>) </option>
@@ -90,7 +90,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
         <option value="<?php echo $group[$i]['bg_no']?>"> <?php echo $group[$i]['bg_name']?> (<?php echo number_format($group[$i]['bg_count'])?>) </option>
         <?php } ?>
     </select>
-    <button type="button" onclick="download()" class="btn-primary btn">다운로드</button>
+    <button type="button" onclick="download()">다운로드</button>
 </div>
 
 <script>

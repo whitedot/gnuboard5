@@ -105,21 +105,21 @@ function message($subject, $content, $align="left", $width="450")
 {
     $str = "
         <table width=\"$width\" cellpadding=\"4\" align=\"center\">
-            <tr><td class=\"line\" height=\"1\"></td></tr>
+            <tr><td height=\"1\"></td></tr>
             <tr>
                 <td align=\"center\">$subject</td>
             </tr>
-            <tr><td class=\"line\" height=\"1\"></td></tr>
+            <tr><td height=\"1\"></td></tr>
             <tr>
                 <td>
                     <table width=\"100%\" cellpadding=\"8\" cellspacing=\"0\">
                         <tr>
-                            <td class=\"leading\" align=\"$align\">$content</td>
+                            <td align=\"$align\">$content</td>
                         </tr>
                     </table>
                 </td>
             </tr>
-            <tr><td class=\"line\" height=\"1\"></td></tr>
+            <tr><td height=\"1\"></td></tr>
         </table>
         <br>
         ";
@@ -371,7 +371,7 @@ function get_sns_share_link($sns, $url, $title, $img)
             break;
         case 'kakaotalk':
             if($config['cf_kakao_js_apikey'])
-                $str = '<a href="javascript:kakaolink_send(\''.str_replace('+', ' ', urlencode($title)).'\', \''.urlencode($url).'\');" class="share-kakaotalk"><img src="'.$img.'" alt="카카오톡 링크보내기"></a>';
+                $str = '<a href="javascript:kakaolink_send(\''.str_replace('+', ' ', urlencode($title)).'\', \''.urlencode($url).'\');"><img src="'.$img.'" alt="카카오톡 링크보내기"></a>';
             break;
     }
 

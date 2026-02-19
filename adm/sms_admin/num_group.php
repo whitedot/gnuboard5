@@ -73,35 +73,35 @@ function num_group_submit(f)
 
 </script>
 
-<div class="sch_last">
-    <span class="summary-chip"><span class="summary-label">건수</span><span class="summary-value"> <?php echo $total_count; ?>건 </span></span>
+<div>
+    <span><span>건수</span><span> <?php echo $total_count; ?>건 </span></span>
 </div>
 
-<form name="group<?php echo isset($res['bg_no']) ? $res['bg_no'] : ''; ?>" method="get" action="./num_group_update.php" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
+<form name="group<?php echo isset($res['bg_no']) ? $res['bg_no'] : ''; ?>" method="get" action="./num_group_update.php">
 <input type="hidden" name="bg_no" value="<?php echo isset($res['bg_no']) ? $res['bg_no'] : ''; ?>">
 
 <div>
-    <label for="bg_name" class="sr-only">그룹추가<strong class="sr-only"> 필수</strong></label>
-    <input type="text" id="bg_name" name="bg_name" required class="required form-input">
-    <input type="submit" value="그룹추가" class="btn btn-sm border-default-300">
+    <label for="bg_name">그룹추가<strong> 필수</strong></label>
+    <input type="text" id="bg_name" name="bg_name" required class="required">
+    <input type="submit" value="그룹추가">
 </div>
 
 </form>
 
-<div class="hint-text">
+<div>
     <p>그룹명순으로 정렬됩니다.</p>
 </div>
 
 <form name="group_hp_form" id="group_hp_form" method="post" action="./num_group_update.php" onsubmit="return num_group_submit(this);">
 <input type="hidden" name="w" value="u">
 
-<div class="table-card table-shell card">
+<div>
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall" class="sr-only">그룹 전체</label>
+            <label for="chkall">그룹 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">그룹명</th>
@@ -119,22 +119,22 @@ function num_group_submit(f)
     <tr>
         <td></td>
         <td><?php echo $no_group['bg_name']?></td>
-        <td class="cell-num"><?php echo number_format($no_group['bg_count'])?></td>
-        <td class="cell-num"><?php echo number_format($no_group['bg_member'])?></td>
-        <td class="cell-num"><?php echo number_format($no_group['bg_nomember'])?></td>
-        <td class="cell-num"><?php echo number_format($no_group['bg_receipt'])?></td>
-        <td class="cell-num"><?php echo number_format($no_group['bg_reject'])?></td>
-        <td class="cell-mng">
-            <label for="select_bg_no_999" class="sr-only">이동할 그룹</label>
-            <select class="form-select" name="select_bg_no_999" id="select_bg_no_999" onchange="move(<?php echo $no_group['bg_no']?>, '<?php echo $no_group['bg_name']?>', this);" >
+        <td><?php echo number_format($no_group['bg_count'])?></td>
+        <td><?php echo number_format($no_group['bg_member'])?></td>
+        <td><?php echo number_format($no_group['bg_nomember'])?></td>
+        <td><?php echo number_format($no_group['bg_receipt'])?></td>
+        <td><?php echo number_format($no_group['bg_reject'])?></td>
+        <td>
+            <label for="select_bg_no_999">이동할 그룹</label>
+            <select name="select_bg_no_999" id="select_bg_no_999" onchange="move(<?php echo $no_group['bg_no']?>, '<?php echo $no_group['bg_name']?>', this);" >
                 <option value=""></option>
                 <?php for ($i=0; $i<count($group); $i++) { ?>
                 <option value="<?php echo $group[$i]['bg_no']?>"> <?php echo get_sanitize_input($group[$i]['bg_name']); ?> </option>
                 <?php } ?>
             </select>
         </td>
-        <td class="cell-mng">
-            <a href="./num_book.php?bg_no=1" class="btn btn-tertiary">보기</a>
+        <td>
+            <a href="./num_book.php?bg_no=1">보기</a>
         </td>
     </tr>
     <!-- 미분류 끝 -->
@@ -143,23 +143,23 @@ function num_group_submit(f)
     $bg = 'bg'.(($i + 1)%2);
     ?>
     <tr class="<?php echo $bg; ?>">
-        <td class="cell-mng">
+        <td>
             <input type="hidden" name="bg_no[<?php echo $i ?>]" value="<?php echo $group[$i]['bg_no']?>" id="bg_no_<?php echo $i ?>">
-            <label for="chk_<?php echo $i ?>" class="sr-only">그룹명</label>
+            <label for="chk_<?php echo $i ?>">그룹명</label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
         </td>
         <td>
-            <label for="bg_name_<?php echo $i; ?>" class="sr-only">그룹명</label>
-            <input type="text" name="bg_name[<?php echo $i; ?>]" value="<?php echo get_sanitize_input($group[$i]['bg_name']); ?>" id="bg_name_<?php echo $i; ?>" class="form-input">
+            <label for="bg_name_<?php echo $i; ?>">그룹명</label>
+            <input type="text" name="bg_name[<?php echo $i; ?>]" value="<?php echo get_sanitize_input($group[$i]['bg_name']); ?>" id="bg_name_<?php echo $i; ?>">
         </td>
-        <td class="cell-num"><?php echo number_format($group[$i]['bg_count'])?></td>
-        <td class="cell-num"><?php echo number_format($group[$i]['bg_member'])?></td>
-        <td class="cell-num"><?php echo number_format($group[$i]['bg_nomember'])?></td>
-        <td class="cell-num"><?php echo number_format($group[$i]['bg_receipt'])?></td>
-        <td class="cell-num"><?php echo number_format($group[$i]['bg_reject'])?></td>
-        <td class="cell-mbstat">
-            <label for="select_bg_no_<?php echo $i; ?>" class="sr-only">이동할 그룹</label>
-            <select class="form-select" name="select_bg_no[<?php echo $i ?>]" id="select_bg_no_<?php echo $i; ?>" onchange="move(<?php echo $group[$i]['bg_no']?>, '<?php echo $group[$i]['bg_name']?>', this);" >
+        <td><?php echo number_format($group[$i]['bg_count'])?></td>
+        <td><?php echo number_format($group[$i]['bg_member'])?></td>
+        <td><?php echo number_format($group[$i]['bg_nomember'])?></td>
+        <td><?php echo number_format($group[$i]['bg_receipt'])?></td>
+        <td><?php echo number_format($group[$i]['bg_reject'])?></td>
+        <td>
+            <label for="select_bg_no_<?php echo $i; ?>">이동할 그룹</label>
+            <select name="select_bg_no[<?php echo $i ?>]" id="select_bg_no_<?php echo $i; ?>" onchange="move(<?php echo $group[$i]['bg_no']?>, '<?php echo $group[$i]['bg_name']?>', this);" >
                 <option value=""></option>
                 <option value="<?php echo $no_group['bg_no']?>"><?php echo $no_group['bg_name']?></option>
                 <?php for ($j=0; $j<count($group); $j++) { ?>
@@ -168,8 +168,8 @@ function num_group_submit(f)
                 <?php } ?>
             </select>
         </td>
-        <td class="cell-mng">
-            <a href="./num_book.php?bg_no=<?php echo $group[$i]['bg_no']?>" class="btn btn-tertiary">보기</a>
+        <td>
+            <a href="./num_book.php?bg_no=<?php echo $group[$i]['bg_no']?>">보기</a>
         </td>
     </tr>
     <?php } ?>
@@ -177,10 +177,10 @@ function num_group_submit(f)
     </table>
 </div>
 
-<div class="action-bar">
-    <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value" class="btn-secondary btn">
-    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn-secondary btn">
-    <input type="submit" name="act_button" value="선택비우기" onclick="document.pressed=this.value" class="btn-secondary btn">
+<div>
+    <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value">
+    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
+    <input type="submit" name="act_button" value="선택비우기" onclick="document.pressed=this.value">
 </div>
 
 </form>

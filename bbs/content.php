@@ -81,20 +81,20 @@ $content_skin_url  = get_skin_url('content', $co['co_skin']);
 $skin_file = $content_skin_path.'/content.skin.php';
 
 if ($is_admin)
-    echo run_replace('content_admin_button_html', '<div class="ctt_admin"><a href="'.G5_ADMIN_URL.'/contentform.php?w=u&amp;co_id='.$co_id.'" class="btn_admin btn"><span class="sr-only">내용 수정</span><i class="fa fa-cog fa-spin fa-fw"></i></a></div>', $co);
+    echo run_replace('content_admin_button_html', '<div><a href="'.G5_ADMIN_URL.'/contentform.php?w=u&amp;co_id='.$co_id.'"><span>내용 수정</span><i></i></a></div>', $co);
 ?>
 
 <?php
 if(is_file($skin_file)) {
     $himg = G5_DATA_PATH.'/content/'.$co_id.'_h';
     if (file_exists($himg)) // 상단 이미지
-        echo run_replace('content_head_image_html', '<div id="ctt_himg" class="ctt_img"><img src="'.G5_DATA_URL.'/content/'.$co_id.'_h" alt=""></div>', $co);
+        echo run_replace('content_head_image_html', '<div id="ctt_himg"><img src="'.G5_DATA_URL.'/content/'.$co_id.'_h" alt=""></div>', $co);
 
     include($skin_file);
 
     $timg = G5_DATA_PATH.'/content/'.$co_id.'_t';
     if (file_exists($timg)) // 하단 이미지
-        echo run_replace('content_tail_image_html', '<div id="ctt_timg" class="ctt_img"><img src="'.G5_DATA_URL.'/content/'.$co_id.'_t" alt=""></div>', $co);
+        echo run_replace('content_tail_image_html', '<div id="ctt_timg"><img src="'.G5_DATA_URL.'/content/'.$co_id.'_t" alt=""></div>', $co);
 } else {
     echo '<p>'.str_replace(G5_PATH.'/', '', $skin_file).'이 존재하지 않습니다.</p>';
 }

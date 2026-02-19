@@ -1,19 +1,19 @@
 <?php if($od['od_test']) { ?>
-<div class="od_test_caution">주의) 이 주문은 테스트용으로 실제 결제가 이루어지지 않았으므로 절대 배송하시면 안됩니다.</div>
+<div>주의) 이 주문은 테스트용으로 실제 결제가 이루어지지 않았으므로 절대 배송하시면 안됩니다.</div>
 <?php } ?>
 <?php if($od['od_pg'] === 'inicis' && !$od['od_test']) {
     $sql = "select P_TID from {$g5['g5_shop_inicis_log_table']} where oid = '$od_id' and P_STATUS = 'cancel' ";
     $tmp_row = sql_fetch($sql);
     if(isset($tmp_row['P_TID']) && $tmp_row['P_TID']){
 ?>
-<div class="od_test_caution">주의) 이 주문은 결제취소된 내역이 있습니다. 이니시스 관리자 상점에서 반드시 재확인을 해 주세요.</div>
+<div>주의) 이 주문은 결제취소된 내역이 있습니다. 이니시스 관리자 상점에서 반드시 재확인을 해 주세요.</div>
 <?php 
     }   //end if
 }   //end if
 ?>
 
 <section id="anc_sodr_pay">
-    <h2 class="section-title">주문결제 내역</h2>
+    <h2>주문결제 내역</h2>
     <?php echo $pg_anchor; ?>
 
     <?php
@@ -39,8 +39,8 @@
         $s_receipt_way .= "+포인트";
     ?>
 
-    <div class="table-card table-shell">
-        <strong class="sodr_nonpay">미수금 <?php echo display_price($od['od_misu']); ?></strong>
+    <div>
+        <strong>미수금 <?php echo display_price($od['od_misu']); ?></strong>
 
         <table>
         <caption>주문결제 내역</caption>
@@ -59,13 +59,13 @@
         <tbody>
         <tr>
             <td><?php echo $od['od_id']; ?></td>
-            <td class="cell-paybybig"><?php echo $s_receipt_way; ?></td>
-            <td class="cell-numbig cell-numsum"><?php echo display_price($amount['order']); ?></td>
-            <td class="cell-numbig"><?php echo display_price($od['od_send_cost'] + $od['od_send_cost2']); ?></td>
-            <td class="cell-numbig"><?php echo display_point($od['od_receipt_point']); ?></td>
-            <td class="cell-numbig cell-numincome"><?php echo number_format($amount['receipt']); ?>원</td>
-            <td class="cell-numbig cell-numcoupon"><?php echo display_price($amount['coupon']); ?></td>
-            <td class="cell-numbig cell-numcancel"><?php echo number_format($amount['cancel']); ?>원</td>
+            <td><?php echo $s_receipt_way; ?></td>
+            <td><?php echo display_price($amount['order']); ?></td>
+            <td><?php echo display_price($od['od_send_cost'] + $od['od_send_cost2']); ?></td>
+            <td><?php echo display_point($od['od_receipt_point']); ?></td>
+            <td><?php echo number_format($amount['receipt']); ?>원</td>
+            <td><?php echo display_price($amount['coupon']); ?></td>
+            <td><?php echo number_format($amount['cancel']); ?>원</td>
         </tr>
         </tbody>
         </table>

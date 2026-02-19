@@ -13,7 +13,7 @@ $g5['title'] = "문자 보내기";
 include_once(G5_ADMIN_PATH.'/admin.head.php');
 ?>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
+<div>
     회원정보 최근 업데이트 : <?php echo isset($sms5['cf_datetime']) ? $sms5['cf_datetime'] : ''; ?>
 </div>
 
@@ -32,82 +32,82 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
         <input type="hidden" name="send_list" value="">
 
         <h2>보낼내용</h2>
-        <div class="sms5_box write_wrap">
-            <span class="box_ico"></span>
+        <div>
+            <span></span>
             <label for="wr_message" id="wr_message_lbl">내용</label>
-            <textarea name="wr_message" id="wr_message" class="box_txt box_square" onkeyup="byte_check('wr_message', 'sms_bytes');" accesskey="m"></textarea>
+            <textarea name="wr_message" id="wr_message" class="box_txt" onkeyup="byte_check('wr_message', 'sms_bytes');" accesskey="m"></textarea>
 
             <div id="sms_byte"><span id="sms_bytes">0</span> / <span id="sms_max_bytes"><?php echo ($config['cf_sms_type'] == 'LMS' ? 90 : 80); ?></span> byte</div>
 
             <button type="button" id="write_sc_btn" class="write_scemo_btn">특수<br>기호</button>
             <div id="write_sc" class="write_scemo">
-                <span class="scemo_ico"></span>
-                <div class="scemo_list">
-                    <button type="button" class="scemo_add" onclick="javascript:add('■')">■</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('□')">□</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('▣')">▣</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('◈')">◈</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('◆')">◆</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('◇')">◇</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('♥')">♥</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('♡')">♡</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('●')">●</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('○')">○</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('▲')">▲</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('▼')">▼</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('▶')">▶</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('▷')">▷</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('◀')">◀</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('◁')">◁</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('☎')">☎</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('☏')">☏</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('♠')">♠</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('♤')">♤</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('♣')">♣</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('♧')">♧</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('★')">★</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('☆')">☆</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('☞')">☞</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('☜')">☜</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('▒')">▒</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('⊙')">⊙</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('㈜')">㈜</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('№')">№</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('㉿')">㉿</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('♨')">♨</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('™')">™</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('℡')">℡</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('∑')">∑</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('∏')">∏</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('♬')">♬</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('♪')">♪</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('♩')">♩</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('♭')">♭</button>
+                <span></span>
+                <div>
+                    <button type="button" onclick="javascript:add('■')">■</button>
+                    <button type="button" onclick="javascript:add('□')">□</button>
+                    <button type="button" onclick="javascript:add('▣')">▣</button>
+                    <button type="button" onclick="javascript:add('◈')">◈</button>
+                    <button type="button" onclick="javascript:add('◆')">◆</button>
+                    <button type="button" onclick="javascript:add('◇')">◇</button>
+                    <button type="button" onclick="javascript:add('♥')">♥</button>
+                    <button type="button" onclick="javascript:add('♡')">♡</button>
+                    <button type="button" onclick="javascript:add('●')">●</button>
+                    <button type="button" onclick="javascript:add('○')">○</button>
+                    <button type="button" onclick="javascript:add('▲')">▲</button>
+                    <button type="button" onclick="javascript:add('▼')">▼</button>
+                    <button type="button" onclick="javascript:add('▶')">▶</button>
+                    <button type="button" onclick="javascript:add('▷')">▷</button>
+                    <button type="button" onclick="javascript:add('◀')">◀</button>
+                    <button type="button" onclick="javascript:add('◁')">◁</button>
+                    <button type="button" onclick="javascript:add('☎')">☎</button>
+                    <button type="button" onclick="javascript:add('☏')">☏</button>
+                    <button type="button" onclick="javascript:add('♠')">♠</button>
+                    <button type="button" onclick="javascript:add('♤')">♤</button>
+                    <button type="button" onclick="javascript:add('♣')">♣</button>
+                    <button type="button" onclick="javascript:add('♧')">♧</button>
+                    <button type="button" onclick="javascript:add('★')">★</button>
+                    <button type="button" onclick="javascript:add('☆')">☆</button>
+                    <button type="button" onclick="javascript:add('☞')">☞</button>
+                    <button type="button" onclick="javascript:add('☜')">☜</button>
+                    <button type="button" onclick="javascript:add('▒')">▒</button>
+                    <button type="button" onclick="javascript:add('⊙')">⊙</button>
+                    <button type="button" onclick="javascript:add('㈜')">㈜</button>
+                    <button type="button" onclick="javascript:add('№')">№</button>
+                    <button type="button" onclick="javascript:add('㉿')">㉿</button>
+                    <button type="button" onclick="javascript:add('♨')">♨</button>
+                    <button type="button" onclick="javascript:add('™')">™</button>
+                    <button type="button" onclick="javascript:add('℡')">℡</button>
+                    <button type="button" onclick="javascript:add('∑')">∑</button>
+                    <button type="button" onclick="javascript:add('∏')">∏</button>
+                    <button type="button" onclick="javascript:add('♬')">♬</button>
+                    <button type="button" onclick="javascript:add('♪')">♪</button>
+                    <button type="button" onclick="javascript:add('♩')">♩</button>
+                    <button type="button" onclick="javascript:add('♭')">♭</button>
                 </div>
-                <div class="scemo_cls"><button type="button" class="scemo_cls_btn">닫기</button></div>
+                <div><button type="button" class="scemo_cls_btn">닫기</button></div>
             </div>
             <button type="button" id="write_emo_btn" class="write_scemo_btn">이모<br>티콘</button>
             <div id="write_emo" class="write_scemo">
-                <span class="scemo_ico"></span>
-                <div class="scemo_list">
-                    <button type="button" class="scemo_add" onclick="javascript:add('*^^*')">*^^*</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('♡.♡')">♡.♡</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('@_@')">@_@</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('☞_☜')">☞_☜</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('ㅠ ㅠ')">ㅠ ㅠ</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('Θ.Θ')">Θ.Θ</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('^_~♥')">^_~♥</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('~o~')">~o~</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('★.★')">★.★</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('(!.!)')">(!.!)</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('⊙.⊙')">⊙.⊙</button>
-                    <button type="button" class="scemo_add" onclick="javascript:add('q.p')">q.p</button>
-                    <button type="button" class="scemo_add emo_long" onclick="javascript:add('┏( \'\')┛')">┏( \'\')┛</button>
-                    <button type="button" class="scemo_add emo_long" onclick="javascript:add('@)-)--')">@)-)--')</button>
-                    <button type="button" class="scemo_add emo_long" onclick="javascript:add('↖(^-^)↗')">↖(^-^)↗</button>
-                    <button type="button" class="scemo_add emo_long" onclick="javascript:add('(*^-^*)')">(*^-^*)</button>
+                <span></span>
+                <div>
+                    <button type="button" onclick="javascript:add('*^^*')">*^^*</button>
+                    <button type="button" onclick="javascript:add('♡.♡')">♡.♡</button>
+                    <button type="button" onclick="javascript:add('@_@')">@_@</button>
+                    <button type="button" onclick="javascript:add('☞_☜')">☞_☜</button>
+                    <button type="button" onclick="javascript:add('ㅠ ㅠ')">ㅠ ㅠ</button>
+                    <button type="button" onclick="javascript:add('Θ.Θ')">Θ.Θ</button>
+                    <button type="button" onclick="javascript:add('^_~♥')">^_~♥</button>
+                    <button type="button" onclick="javascript:add('~o~')">~o~</button>
+                    <button type="button" onclick="javascript:add('★.★')">★.★</button>
+                    <button type="button" onclick="javascript:add('(!.!)')">(!.!)</button>
+                    <button type="button" onclick="javascript:add('⊙.⊙')">⊙.⊙</button>
+                    <button type="button" onclick="javascript:add('q.p')">q.p</button>
+                    <button type="button" onclick="javascript:add('┏( \'\')┛')">┏( \'\')┛</button>
+                    <button type="button" onclick="javascript:add('@)-)--')">@)-)--')</button>
+                    <button type="button" onclick="javascript:add('↖(^-^)↗')">↖(^-^)↗</button>
+                    <button type="button" onclick="javascript:add('(*^-^*)')">(*^-^*)</button>
                 </div>
-                <div class="scemo_cls"><button type="button" class="scemo_cls_btn">닫기</button></div>
+                <div><button type="button" class="scemo_cls_btn">닫기</button></div>
             </div>
 
         </div>
@@ -117,58 +117,58 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
         </div>
 
         <div id="write_reply">
-            <label for="wr_reply">회신<strong class="sr-only"> 필수</strong></label>
-            <input type="text" name="wr_reply" value="<?php echo isset($sms5['cf_phone']) ? get_sanitize_input($sms5['cf_phone']) : ''; ?>" id="wr_reply" required class="form-input required" size="17" maxlength="20" readonly="readonly">
+            <label for="wr_reply">회신<strong> 필수</strong></label>
+            <input type="text" name="wr_reply" value="<?php echo isset($sms5['cf_phone']) ? get_sanitize_input($sms5['cf_phone']) : ''; ?>" id="wr_reply" required class="required" size="17" maxlength="20" readonly="readonly">
         </div>
 
-        <div id="write_recv" class="write_inner">
+        <div id="write_recv">
             <h2>받는사람</h2>
-            <button type="button" class="write_floater write_floater_btn" onclick="hp_list_del()">선택삭제</button>
+            <button type="button" onclick="hp_list_del()">선택삭제</button>
 
-            <label for="hp_list" class="sr-only">받는사람들</label>
-            <select class="form-select" name="hp_list" id="hp_list" size="5"></select>
+            <label for="hp_list">받는사람들</label>
+            <select name="hp_list" id="hp_list" size="5"></select>
 
             <div id="recv_add">
-                <label for="hp_name" class="sr-only">이름</label>
-                <input type="text" name="hp_name" id="hp_name" class="form-input" size="11" maxlength="20" onkeypress="if(event.keyCode==13) document.getElementById('hp_number').focus();" placeholder="이름"><br>
-                <label for="hp_number" class="sr-only">번호</label>
-                <input type="text" name="hp_number" id="hp_number" class="form-input" size="11" maxlength="20" onkeypress="if(event.keyCode==13) hp_add()" placeholder="번호">
+                <label for="hp_name">이름</label>
+                <input type="text" name="hp_name" id="hp_name" size="11" maxlength="20" onkeypress="if(event.keyCode==13) document.getElementById('hp_number').focus();" placeholder="이름"><br>
+                <label for="hp_number">번호</label>
+                <input type="text" name="hp_number" id="hp_number" size="11" maxlength="20" onkeypress="if(event.keyCode==13) hp_add()" placeholder="번호">
                 <button type="button" onclick="hp_add()">추가</button><br>
             </div>
         </div>
 
-        <div id="write_rsv" class="write_inner">
+        <div id="write_rsv">
             <h2>예약전송</h2>
 
-            <div class="write_floater">
-                <label for="wr_booking"><span class="sr-only">예약전송 </span>사용</label>
+            <div>
+                <label for="wr_booking"><span>예약전송 </span>사용</label>
                 <input type="checkbox" name="wr_booking" id="wr_booking" onclick="booking(this.checked)">
             </div>
 
-            <select class="form-select" name="wr_by" id="wr_by" disabled>
+            <select name="wr_by" id="wr_by" disabled>
                 <option value="<?php echo date('Y')?>"><?php echo date('Y')?></option>
                 <option value="<?php echo date('Y')+1?>"><?php echo date('Y')+1?></option>
             </select>
             <label for="wr_by">년</label><br>
-            <select class="form-select" name="wr_bm" id="wr_bm" disabled>
+            <select name="wr_bm" id="wr_bm" disabled>
                 <?php for ($i=1; $i<=12; $i++) { ?>
                 <option value="<?php echo sprintf("%02d",$i)?>"<?php echo get_selected(date('m'), $i); ?>><?php echo sprintf("%02d",$i)?></option>
             <?php } ?>
             </select>
             <label for="wr_bm">월</label>
-            <select class="form-select" name="wr_bd" id="wr_bd" disabled>
+            <select name="wr_bd" id="wr_bd" disabled>
                 <?php for ($i=1; $i<=31; $i++) { ?>
                 <option value="<?php echo sprintf("%02d",$i)?>"<?php echo get_selected(date('d'), $i); ?>><?php echo sprintf("%02d",$i)?></option>
                 <?php } ?>
             </select>
             <label for="wr_bd">일</label><br>
-                <select class="form-select" name="wr_bh" id="wr_bh" disabled>
+                <select name="wr_bh" id="wr_bh" disabled>
                 <?php for ($i=0; $i<24; $i++) { ?>
                 <option value="<?php echo sprintf("%02d",$i)?>"<?php echo get_selected(date('H')+1, $i); ?>><?php echo sprintf("%02d",$i)?></option>
                 <?php } ?>
             </select>
             <label for="wr_bh">시</label>
-            <select class="form-select" name="wr_bi" id="wr_bi" disabled>
+            <select name="wr_bi" id="wr_bi" disabled>
                 <?php for ($i=0; $i<=59; $i+=5) { ?>
                 <option value="<?php echo sprintf("%02d",$i)?>"><?php echo sprintf("%02d",$i)?></option>
                 <?php } ?>
@@ -176,8 +176,8 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
             <label for="wr_bi">분</label>
         </div>
 
-        <div class="action-bar">
-            <input type="submit" value="전송" class="btn btn-sm border-default-300">
+        <div>
+            <input type="submit" value="전송">
             <!-- <input type="submit" value="전송" onclick="send()"> -->
         </div>
         </form>
@@ -186,9 +186,9 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
     <div id="send_book">
         <h2>휴대폰번호 목록</h2>
         <div id="book_tab">
-            <a href="#book_group" id="book_group" class="btn btn-secondary">그룹</a>
-            <a href="#book_person" id="book_person" class="btn btn-secondary">개인</a>
-            <a href="#book_level" id="book_level" class="btn btn-secondary">권한</a>
+            <a href="#book_group" id="book_group">그룹</a>
+            <a href="#book_person" id="book_person">개인</a>
+            <a href="#book_level" id="book_level">권한</a>
         </div>
 
         <div id="num_book"></div>
@@ -823,11 +823,11 @@ var sms_obj={
 <?php } else { //아이코드 사용설정이 안되어 있다면... ?>
 
 <section>
-    <h2 class="section-title">SMS 문자전송 서비스를 사용할 수 없습니다.</h2>
-    <div class="hint-text">
+    <h2>SMS 문자전송 서비스를 사용할 수 없습니다.</h2>
+    <div>
         <p>
             SMS 를 사용하지 않고 있기 때문에, 문자 전송을 할 수 없습니다.<br>
-            SMS 사용 설정은 <a href="../config_form.php#anc_cf_sms" class="btn-inline">환경설정 &gt; 기본환경설정 &gt; SMS설정</a> 에서 SMS 사용을 아이코드로 변경해 주셔야 사용하실수 있습니다.
+            SMS 사용 설정은 <a href="../config_form.php#anc_cf_sms">환경설정 &gt; 기본환경설정 &gt; SMS설정</a> 에서 SMS 사용을 아이코드로 변경해 주셔야 사용하실수 있습니다.
         </p>
     </div>
 </section>

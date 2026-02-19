@@ -24,42 +24,42 @@ $colspan = 14;
 
 <h2>회원 엑셀 생성</h2>
 
-<div class="hint-text">
+<div>
     <p><b>회원수 <?php echo number_format(MEMBER_EXPORT_PAGE_SIZE);?>건 초과 시</b> <?php echo number_format(MEMBER_EXPORT_PAGE_SIZE);?>건 단위로 분리 저장되며, <b>엑셀 생성 최대 건수는 <?php echo number_format(MEMBER_EXPORT_MAX_SIZE);?>건</b>입니다. 초과 시 조건 추가 설정 후 재시도하시기 바랍니다.</p>
     <p><b>수신동의 확인 대상은 만료일까지 1달 미만인 회원</b>을 기준으로 필터링됩니다.</p>
 
     <br>
     <p>파일 생성 시 서버에 임시 생성된 파일 중 <b>오늘 날짜를 제외 한 파일은 자동 삭제</b>되며, 수동 삭제 필요 시 <a href="<?php echo G5_ADMIN_URL;?>/member_list_file_delete.php"><b>회원관리파일 일괄삭제</b></a>에서 진행하시기 바랍니다.</p>
-    <p>회원 정보 수정은 <a href="<?php echo G5_ADMIN_URL;?>/member_list.php" class="link"><b>회원 관리</b></a>에서 진행하실 수 있습니다.</p>
+    <p>회원 정보 수정은 <a href="<?php echo G5_ADMIN_URL;?>/member_list.php"><b>회원 관리</b></a>에서 진행하실 수 있습니다.</p>
 </div>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
-    <span class="summary-chip">
-        <span class="summary-label">총건수 </span>
+<div>
+    <span>
+        <span>총건수 </span>
         <?php if($total_error != "") { ?>
-        <span class="summary-value"> <?php echo $total_error ?></span>
+        <span> <?php echo $total_error ?></span>
         <?php } else {?>
-        <span class="summary-value"> <?php echo number_format($total_count) ?>건</span>
+        <span> <?php echo number_format($total_count) ?>건</span>
         <?php } ?>
     </span>
 </div>
 
 <!-- 회원 검색 필터링 폼 -->
-<form id="fsearch" name="fsearch" class="member_list_data" method="get">
+<form id="fsearch" name="fsearch" method="get">
     <input type="hidden" name="token" value="<?php echo get_token(); ?>">
     <fieldset>
-        <legend class="sr-only">회원 검색 필터링</legend>
-        <div class="sch_table">
+        <legend>회원 검색 필터링</legend>
+        <div>
 
             <!-- 검색어 적용 -->
-            <div class="sch_row">
-                <div class="label">
+            <div>
+                <div>
                     <label>
                         <input type="checkbox" name="use_stx" value="1" <?php echo isset($_GET['use_stx']) ? 'checked' : ''; ?>>
                         검색어 적용
                     </label>
                 </div>
-                <div class="field">
+                <div>
                     <select name="sfl">
                         <?php
                             // 검색어 옵션 : [정의] get_export_config() - adm/member_list_exel.lib.php;
@@ -70,7 +70,7 @@ $colspan = 14;
                         ?>
                     </select>
                     <input type="text" name="stx" value="<?php echo htmlspecialchars(isset($_GET['stx']) ? $_GET['stx'] : ''); ?>" placeholder="검색어 입력">
-                    <span class="radio_group">
+                    <span>
                         <label><input type="radio" name="stx_cond" value="like" <?php echo (isset($_GET['stx_cond']) ? $_GET['stx_cond'] : 'like') === 'like' ? 'checked' : ''; ?>> 포함</label>
                         <label><input type="radio" name="stx_cond" value="equal" <?php echo (isset($_GET['stx_cond']) ? $_GET['stx_cond'] : '') === 'equal' ? 'checked' : ''; ?>> 일치</label>
                     </span>
@@ -78,11 +78,11 @@ $colspan = 14;
             </div>
 
             <!-- 레벨 적용 -->
-            <div class="sch_row">
-                <div class="label">
+            <div>
+                <div>
                     <label><input type="checkbox" name="use_level" value="1" <?php echo isset($_GET['use_level']) ? 'checked' : ''; ?>> 레벨 적용</label>
                 </div>
-                <div class="field">
+                <div>
                     <select name="level_start">
                         <?php for ($i = 1; $i <= 10; $i++): ?>
                             <option value="<?php echo $i; ?>" <?php echo (isset($_GET['level_start']) && $_GET['level_start'] == $i) ? 'selected' : ''; ?>><?php echo $i; ?></option>
@@ -97,24 +97,24 @@ $colspan = 14;
             </div>
 
             <!-- 가입기간 적용 -->
-            <div class="sch_row">
-                <div class="label">
+            <div>
+                <div>
                     <label><input type="checkbox" name="use_date" value="1" <?php echo isset($_GET['use_date']) ? 'checked' : ''; ?>> 가입기간 적용</label>
                 </div>
-                <div class="field">
+                <div>
                     <input type="date" name="date_start" max="9999-12-31" value="<?php echo htmlspecialchars(isset($_GET['date_start']) ? $_GET['date_start'] : ''); ?>"> ~
                     <input type="date" name="date_end" max="9999-12-31" value="<?php echo htmlspecialchars(isset($_GET['date_end']) ? $_GET['date_end'] : ''); ?>">
                 </div>
             </div>
 
             <!-- 포인트 적용 -->
-            <div class="sch_row">
-                <div class="label">
+            <div>
+                <div>
                     <label><input type="checkbox" name="use_point" value="1" <?php echo isset($_GET['use_point']) ? 'checked' : ''; ?>> 포인트 적용</label>
                 </div>
-                <div class="field">
+                <div>
                     <input type="number" name="point" value="<?php echo htmlspecialchars(isset($_GET['point']) ? $_GET['point'] : ''); ?>" placeholder="포인트 입력">
-                    <span class="radio_group">
+                    <span>
                         <label><input type="radio" name="point_cond" value="gte" <?php echo (isset($_GET['point_cond']) ? $_GET['point_cond'] : 'gte') === 'gte' ? 'checked' : ''; ?>> 이상</label>
                         <label><input type="radio" name="point_cond" value="lte" <?php echo (isset($_GET['point_cond']) ? $_GET['point_cond'] : '') === 'lte' ? 'checked' : ''; ?>> 이하</label>
                         <label><input type="radio" name="point_cond" value="eq" <?php echo (isset($_GET['point_cond']) ? $_GET['point_cond'] : '') === 'eq' ? 'checked' : ''; ?>> 일치</label>
@@ -123,12 +123,12 @@ $colspan = 14;
             </div>
 
             <!-- 차단회원 조건 -->
-            <div class="sch_row">
-                <div class="label">
+            <div>
+                <div>
                     <label><input type="checkbox" name="use_intercept" value="1" <?php echo isset($_GET['use_intercept']) ? 'checked' : ''; ?>> 차단회원</label>
                 </div>
-                <div class="field">
-                    <select name="intercept" id="intercept" class="form-select">
+                <div>
+                    <select name="intercept" id="intercept">
                         <?php
                             // 차단회원 옵션 : [정의] get_export_config() - adm/member_list_exel.lib.php
                             foreach (get_export_config('intercept_list') as $val => $label) {
@@ -141,8 +141,8 @@ $colspan = 14;
             </div>
 
             <!-- 휴대폰 번호 조건 - 초기세팅(설정에 휴대폰번호가 보이기/필수입력이면 기본값 checked로 설정) -->
-            <div class="sch_row">
-                <div class="label">
+            <div>
+                <div>
                     <label>
                         <?php $use_hp_checked = isset($_GET['token']) ? (isset($_GET['use_hp_exist']) ? 'checked' : '') : (($config['cf_use_hp'] || $config['cf_req_hp']) ? 'checked' : '');?>
                         <input type="checkbox" name="use_hp_exist" value="1" <?php echo $use_hp_checked; ?>> 휴대폰 번호 있는 경우만
@@ -151,24 +151,24 @@ $colspan = 14;
             </div>
 
             <!-- 정보수신동의 조건 -->
-            <div class="sch_row">
-                <div class="label">
+            <div>
+                <div>
                     <label><input type="checkbox" name="ad_range_only" value="1" <?php echo isset($_GET['ad_range_only']) ? 'checked' : ''; ?>> 정보수신동의에 동의한 경우만</label>
                 </div>
                 <!-- 안내 문구 -->
-                <div class="field">
-                    <p class="sch_notice">「정보통신망이용촉진및정보보호등에관한법률」에 따라 <b>광고성 정보 수신동의 여부</b>를 <b>매2년</b>마다 확인해야 합니다.</p>
+                <div>
+                    <p>「정보통신망이용촉진및정보보호등에관한법률」에 따라 <b>광고성 정보 수신동의 여부</b>를 <b>매2년</b>마다 확인해야 합니다.</p>
                 </div>
             </div>
 
-            <div class="sch_row <?php echo isset($_GET['ad_range_only']) ? '' : 'is-hidden'; ?>">
+            <div class="<?php echo isset($_GET['ad_range_only']) ? '' : 'is-hidden'; ?>">
                 <div class="ad_range_wrap">
-                    <div class="ad_range_box">
-                        <div class="label">
+                    <div>
+                        <div>
                             <label for="ad_range_type">회원범위</label>
                         </div>
-                        <div class="field">
-                            <select name="ad_range_type" id="ad_range_type" class="form-select">
+                        <div>
+                            <select name="ad_range_type" id="ad_range_type">
                                 <?php 
                                     foreach (get_export_config('ad_range_list') as $val => $label) {
                                         $selected = ((isset($_GET['ad_range_type']) ? $_GET['ad_range_type'] : '') === $val) ? 'selected' : '';
@@ -179,8 +179,8 @@ $colspan = 14;
 
                             <div class="ad_range_wrap">
                                 <!-- 기간 직접 입력 -->
-                                <div class="ad_range_box <?php echo isset($_GET['ad_range_only']) && (isset($_GET['ad_range_type']) ? $_GET['ad_range_type'] : '') == 'custom_period' ? '' : 'is-hidden'; ?>">
-                                    <div class="field">
+                                <div class="<?php echo isset($_GET['ad_range_only']) && (isset($_GET['ad_range_type']) ? $_GET['ad_range_type'] : '') == 'custom_period' ? '' : 'is-hidden'; ?>">
+                                    <div>
                                         <input type="date" name="agree_date_start" max="9999-12-31" value="<?php echo htmlspecialchars(isset($_GET['agree_date_start']) ? $_GET['agree_date_start'] : date('Y-m-d', strtotime('-1 month'))); ?>"> ~
                                         <input type="date" name="agree_date_end" max="9999-12-31" value="<?php echo htmlspecialchars(isset($_GET['agree_date_end']) ? $_GET['agree_date_end'] : date('Y-m-d')); ?>">
                                         <p>* 광고성 정보 수신(<b>이메일 또는 SMS/카카오톡</b>) 동의일자 기준</p>
@@ -199,7 +199,7 @@ $colspan = 14;
                                     ];
 
                                     if (isset($_GET['ad_range_only'], $_GET['ad_range_type']) && isset($ad_range_text[$_GET['ad_range_type']])) {
-                                        echo '<div class="ad_range_box"><p>' . $ad_range_text[$_GET['ad_range_type']] . '</p></div>';
+                                        echo '<div><p>' . $ad_range_text[$_GET['ad_range_type']] . '</p></div>';
                                     }
                                 ?>
                             </div>
@@ -210,12 +210,12 @@ $colspan = 14;
             </div>
 
             <!-- 채널 체크박스 -->
-            <div class="sch_row <?php echo isset($_GET['ad_range_only']) && in_array($_GET['ad_range_type'], ['month_confirm', 'custom_period']) ? '' : 'is-hidden'; ?>">
+            <div class="<?php echo isset($_GET['ad_range_only']) && in_array($_GET['ad_range_type'], ['month_confirm', 'custom_period']) ? '' : 'is-hidden'; ?>">
                 <div class="ad_range_wrap">
-                    <div class="ad_range_box">
-                        <div class="label">
+                    <div>
+                        <div>
                         </div>
-                        <div class="field">
+                        <div>
                             <?php $ad_mailling_checked = isset($_GET['token']) ? (isset($_GET['ad_mailling']) ? 'checked' : '') : 'checked';?>
                             <?php $ad_sms_checked = isset($_GET['token']) ? (isset($_GET['ad_sms']) ? 'checked' : '') : 'checked';?>
                             <label><input type="checkbox" name="ad_mailling" value="1" <?php echo $ad_mailling_checked; ?>> 광고성 이메일 수신</label>
@@ -225,9 +225,9 @@ $colspan = 14;
                 </div>
             </div>
 
-            <div class="sch_btn">
+            <div>
                 <button type="button" id="btnExcelDownload">엑셀파일 다운로드</button>
-                <button type="button" class="btn_reset" onclick="location.href='?'">초기화</button>
+                <button type="button" onclick="location.href='?'">초기화</button>
             </div>
         </div>
     </fieldset>

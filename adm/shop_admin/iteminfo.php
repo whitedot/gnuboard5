@@ -18,13 +18,13 @@ if(isset($it['it_id']) && $it['it_id']) {
 }
 ?>
 
-<div class="form-card table-shell">
+<div>
     <table>
     <caption>상품요약정보 입력</caption>
     <colgroup>
-        <col class="col-4">
         <col>
-        <col class="col-3">
+        <col>
+        <col>
     </colgroup>
     <tbody>
     <?php
@@ -53,10 +53,10 @@ if(isset($it['it_id']) && $it['it_id']) {
         <td>
             <input type="hidden" name="ii_article[]" value="<?php echo $el_name; ?>">
             <?php if ($el_example != "") echo help($el_example); ?>
-            <input type="text" name="ii_value[]" value="<?php echo get_text($el_value); ?>" id="ii_article_<?php echo $el_name; ?>" required class="form-input required" />
+            <input type="text" name="ii_value[]" value="<?php echo get_text($el_value); ?>" id="ii_article_<?php echo $el_name; ?>" required class="required" />
         </td>
         <?php if ($el_no == 0) { ?>
-        <td rowspan="<?php echo $el_length; ?>" class="cell-grpset">
+        <td rowspan="<?php echo $el_length; ?>">
             <input type="checkbox" name="chk_ca_it_info" value="1" id="chk_ca_it_info">
             <label for="chk_ca_it_info">분류적용</label>
             <input type="checkbox" name="chk_all_it_info" value="1" id="chk_all_it_info">

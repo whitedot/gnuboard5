@@ -23,7 +23,7 @@ include_once('./_head.php');
 include_once(G5_LIB_PATH.'/latest.lib.php');
 ?>
 
-<div class="latest_wr">
+<div>
 
 <!-- 메인화면 최신글 시작 -->
 <?php
@@ -42,7 +42,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
     if ($i%3 !== 0) $lt_style = "margin-left:2%";
     else $lt_style = "";
 ?>
-    <div style="float:left;<?php echo $lt_style ?>"  class="lt_wr">
+    <div>
     <?php
     // 이 함수가 바로 최신글을 추출하는 역할을 합니다.
     // 사용방법 : latest(스킨, 게시판아이디, 출력라인, 글자수);

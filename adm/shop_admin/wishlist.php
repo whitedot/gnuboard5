@@ -49,20 +49,20 @@ $result = sql_query($sql);
 
 $qstr1 = $qstr.'&amp;fr_date='.$fr_date.'&amp;to_date='.$to_date.'&amp;sel_ca_id='.$sel_ca_id;
 
-$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목록</a>';
+$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 ?>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
+<div>
     <?php echo $listall; ?>
-    <span class="summary-chip"><span class="summary-label">전체 </span><span class="summary-value"> <?php echo $total_count; ?>건</span></span>
+    <span><span>전체 </span><span> <?php echo $total_count; ?>건</span></span>
 </div>
 
-<form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
+<form name="flist">
 <input type="hidden" name="doc" value="<?php echo get_sanitize_input($doc); ?>">
 <input type="hidden" name="page" value="<?php echo get_sanitize_input($page); ?>">
 
-<label for="sel_ca_id" class="sr-only">검색대상</label>
-<select class="form-select" name="sel_ca_id" id="sel_ca_id">
+<label for="sel_ca_id">검색대상</label>
+<select name="sel_ca_id" id="sel_ca_id">
     <option value=''>전체분류</option>
     <?php
     $sql1 = " select ca_id, ca_name from {$g5['g5_shop_category_table']} order by ca_order, ca_id ";
@@ -76,16 +76,16 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목�
     ?>
 </select>
 
-<label for="fr_date" class="sr-only">시작일</label>
-<input type="text" name="fr_date" value="<?php echo $fr_date; ?>" id="fr_date" required class="required form-input" size="8" maxlength="8">
+<label for="fr_date">시작일</label>
+<input type="text" name="fr_date" value="<?php echo $fr_date; ?>" id="fr_date" required class="required" size="8" maxlength="8">
 ~
-<label for="to_date" class="sr-only">종료일</label>
-<input type="text" name="to_date" value="<?php echo $to_date; ?>" id="to_date" required class="required form-input" size="8" maxlength="8">
-<input type="submit" value="검색" class="btn btn-sm border-default-300">
+<label for="to_date">종료일</label>
+<input type="text" name="to_date" value="<?php echo $to_date; ?>" id="to_date" required class="required" size="8" maxlength="8">
+<input type="submit" value="검색">
 
 </form>
 
-<div class="table-card table-shell card">
+<div>
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <thead>
@@ -108,17 +108,17 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목�
         $bg = 'bg'.($i%2);
     ?>
     <tr class="<?php echo $bg; ?>">
-        <td class="cell-num"><?php echo $num; ?></td>
-        <td class="cell-left">
+        <td><?php echo $num; ?></td>
+        <td>
             <a href="<?php echo $href; ?>"><?php echo get_it_image($row['it_id'], 50, 50); ?> <?php echo cut_str($row['it_name'],30); ?></a>
         </td>
-        <td class="cell-num"><?php echo $row['it_id_cnt']; ?></td>
+        <td><?php echo $row['it_id_cnt']; ?></td>
     </tr>
     <?php
     }
 
     if ($i == 0) {
-        echo '<tr><td colspan="3" class="table-empty">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="3">자료가 없습니다.</td></tr>';
     }
     ?>
     </tbody>
@@ -127,7 +127,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목�
 
 <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr1&amp;page="); ?>
 
-<div class="hint-text">
+<div>
     <p>고객님들이 보관함에 가장 많이 넣은 순으로 순위를 출력합니다.</p>
 </div>
 

@@ -67,32 +67,32 @@ function grouplist_submit(f)
 
 </script>
 
-<form name="group<?php echo isset($res['fg_no']) ? $res['fg_no'] : ''; ?>" method="post" action="./form_group_update.php" class="local_sch03 local_sch">
+<form name="group<?php echo isset($res['fg_no']) ? $res['fg_no'] : ''; ?>" method="post" action="./form_group_update.php">
 <input type="hidden" name="fg_no" value="<?php echo isset($res['fg_no']) ? $res['fg_no'] : ''; ?>">
 <div>
-    <label for="fg_name">그룹명<strong class="sr-only"> 필수</strong></label>
-    <input type="text" id="fg_name" name="fg_name" required class="required form-input">
-    <input type="submit" value="추가" class="btn btn-sm border-default-300">
+    <label for="fg_name">그룹명<strong> 필수</strong></label>
+    <input type="text" id="fg_name" name="fg_name" required class="required">
+    <input type="submit" value="추가">
 </div>
-<div class="sch_last">
-    <span class="count_add01">건수 : <?php echo $total_count ?></span>
+<div>
+    <span>건수 : <?php echo $total_count ?></span>
 </div>
 </form>
 
-<div class="hint-text">
+<div>
     <p>그룹명순으로 정렬됩니다.</p>
 </div>
 
 <form name="group<?php echo isset($group[$i]['fg_no']) ? $group[$i]['fg_no'] : ''; ?>" method="post" action="./form_group_update.php" onsubmit="return grouplist_submit(this);">
 <input type="hidden" name="w" value="u">
 
-<div class="table-card table-shell card">
+<div>
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall" class="sr-only">그룹 전체</label>
+            <label for="chkall">그룹 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">그룹명</th>
@@ -110,17 +110,17 @@ function grouplist_submit(f)
         <td></td>
         <td>미분류</td>
         <td><?php echo number_format($res['cnt'])?></td>
-        <td class="cell-mng">
-            <label for="select_fg_no_999" class="sr-only">그룹명</label>
-            <select class="form-select" name="select_fg_no_999" id="select_fg_no_999" onchange="move(0, '미분류', this);">
+        <td>
+            <label for="select_fg_no_999">그룹명</label>
+            <select name="select_fg_no_999" id="select_fg_no_999" onchange="move(0, '미분류', this);">
                 <option value=""></option>
                 <?php for ($i=0; $i<count($group); $i++) { ?>
                 <option value="<?php echo $group[$i]['fg_no']?>"> <?php echo $group[$i]['fg_name']?> </option>
                 <?php } ?>
             </select>
         </td>
-        <td class="cell-mng cell-mng-s">
-            <a href="./form_list.php?fg_no=0" class="btn btn-tertiary">보기</a>
+        <td>
+            <a href="./form_list.php?fg_no=0">보기</a>
             <!-- <button type="button" onclick="empty('no');">비우기</button> -->
         </td>
     </tr>
@@ -129,23 +129,23 @@ function grouplist_submit(f)
         $bg = 'bg'.(($i + 1)%2);
     ?>
     <tr class="<?php echo $bg; ?>">
-        <td class="cell-mng">
+        <td>
             <input type="hidden" name="fg_no[<?php echo $i ?>]" value="<?php echo $group[$i]['fg_no']?>" id="fg_no_<?php echo $i ?>">
-            <label for="chk_<?php echo $i ?>" class="sr-only"><?php echo $group[$i]['fg_name']?></label>
+            <label for="chk_<?php echo $i ?>"><?php echo $group[$i]['fg_name']?></label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
         </td>
-        <td class="cell-left">
-            <label for="fg_name_<?php echo $i; ?>" class="sr-only">그룹명</label>
-            <input type="text" name="fg_name[<?php echo $i; ?>]" value="<?php echo get_sanitize_input($group[$i]['fg_name']); ?>" id="fg_name_<?php echo $i; ?>" class="form-input">
+        <td>
+            <label for="fg_name_<?php echo $i; ?>">그룹명</label>
+            <input type="text" name="fg_name[<?php echo $i; ?>]" value="<?php echo get_sanitize_input($group[$i]['fg_name']); ?>" id="fg_name_<?php echo $i; ?>">
             <input type="checkbox" name="fg_member[<?php echo $i; ?>]" value="1" id="fg_member_<?php echo $i; ?>" <?php if ($group[$i]['fg_member']) echo 'checked';?>>
             <label for="fg_member_<?php echo $i; ?>">회원</label>
         </td>
         <td >
             <?php echo number_format($group[$i]['fg_count'])?>
         </td>
-        <td class="cell-mng">
-            <label for="select_fg_no_<?php echo $i; ?>" class="sr-only">그룹명</label>
-            <select class="form-select" name="select_fg_no[<?php echo $i; ?>]" id="select_fg_no_<?php echo $i; ?>" onchange="move(<?php echo $group[$i]['fg_no']?>, '<?php echo $group[$i]['fg_name']?>', this);">
+        <td>
+            <label for="select_fg_no_<?php echo $i; ?>">그룹명</label>
+            <select name="select_fg_no[<?php echo $i; ?>]" id="select_fg_no_<?php echo $i; ?>" onchange="move(<?php echo $group[$i]['fg_no']?>, '<?php echo $group[$i]['fg_name']?>', this);">
                 <option value=''></option>
                 <option value='0'>미분류</option>
                 <?php for ($j=0; $j<count($group); $j++) { ?>
@@ -154,8 +154,8 @@ function grouplist_submit(f)
                 <?php } ?>
             </select>
         </td>
-        <td class="cell-mng cell-mng-s">
-            <a href="./form_list.php?fg_no=<?php echo $group[$i]['fg_no']?>" class="btn btn-tertiary">보기</a>
+        <td>
+            <a href="./form_list.php?fg_no=<?php echo $group[$i]['fg_no']?>">보기</a>
         </td>
     </tr>
     <?php } ?>
@@ -164,10 +164,10 @@ function grouplist_submit(f)
     
 </div>
 
-<div class="action-bar">
-    <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value" class="btn btn-secondary">
-    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
-    <input type="submit" name="act_button" value="선택비우기" onclick="document.pressed=this.value" class="btn btn-secondary">
+<div>
+    <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value">
+    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
+    <input type="submit" name="act_button" value="선택비우기" onclick="document.pressed=this.value">
 </div>
 
 </form>

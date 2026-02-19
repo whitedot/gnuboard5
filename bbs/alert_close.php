@@ -33,10 +33,10 @@ setTimeout(function() {
 <noscript>
 <div id="validation_check">
     <h1><?php echo $header2 ?></h1>
-    <p class="cbg">
+    <p>
         <?php echo $msg2 ?>
     </p>
-    <p class="cbg">
+    <p>
         <?php echo $msg3 ?>
     </p>
 

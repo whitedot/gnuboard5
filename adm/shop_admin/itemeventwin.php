@@ -11,10 +11,10 @@ $g5['title'] = $ev['ev_subject'].' 이벤트상품';
 include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 ?>
 
-<div class="new_win">
+<div>
     <h1><?php echo $g5['title']; ?></h1>
 
-    <div class="table-card table-shell">
+    <div>
         <table>
         <caption><?php echo $g5['title']; ?> 입력</caption>
         <thead>
@@ -42,19 +42,19 @@ include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
                     <?php echo cut_str(stripslashes($row['it_name']), 60, "&#133"); ?>
                 </a>
             </td>
-            <td class="cell-boolean"><?php echo ($row['it_use']?"사용":"미사용"); ?></td>
+            <td><?php echo ($row['it_use']?"사용":"미사용"); ?></td>
             <td class="cell-mngsmall"><a href="javascript:del('./itemeventwindel.php?ev_id=<?php echo $ev_id; ?>&amp;it_id=<?php echo $row['it_id']; ?>');">삭제</a></td>
         <tr>
         <?php
         }
         if ($i == 0)
-            echo '<tr><td colspan="3" class="table-empty">자료가 없습니다.</td></tr>';
+            echo '<tr><td colspan="3">자료가 없습니다.</td></tr>';
         ?>
         </tbody>
         </table>
     </div>
 
-    <div class="btn_win01 action-bar-popup">
+    <div>
         <button type="button" onclick="javascript:window.close()">창 닫기</button>
     </div>
 

@@ -133,7 +133,7 @@ switch ($day) {
 ?>
 <div id="wr_cont">
     <form>
-    <select class="form-select" name="bo_table">
+    <select name="bo_table">
     <option value="">전체게시판</option>
     <?php
     $sql = " select bo_table, bo_subject from {$g5['board_table']} order by bo_count_write desc ";
@@ -147,7 +147,7 @@ switch ($day) {
     ?>
     </select>
 
-    <select class="form-select" name="period">
+    <select name="period">
     <?php
     foreach($period_array as $key=>$value) {
         echo "<option value=\"{$key}\"";
@@ -158,16 +158,16 @@ switch ($day) {
     ?>
     </select>
 
-    <select class="form-select" name="graph">
+    <select name="graph">
     <option value="line" <?php echo ($graph == 'line' ? 'selected="selected"' : ''); ?>>선그래프</option>
     <option value="bar" <?php echo ($graph == 'bar' ? 'selected="selected"' : ''); ?>>막대그래프</option>
     </select>
 
-    <input type="submit" class="btn btn-sm border-default-300" value="확인">
+    <input type="submit" value="확인">
     </form>
     <ul id="grp_color">
         <li><span></span>글 수</li>
-        <li class="color2"><span></span>댓글 수</li>
+        <li><span></span>댓글 수</li>
     </ul>
 </div>
 <br>
@@ -177,7 +177,7 @@ if (empty($line1) || empty($line2)) {
     echo "<h5>그래프를 만들 데이터가 없습니다.</h5>\n";
 } else {
 ?>
-<div id="chart1" style="height:500px; width:100%;"></div>
+<div id="chart1"></div>
 <script>
 $(document).ready(function(){
     var line1 = [<?php echo implode(',', $line1); ?>];

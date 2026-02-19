@@ -225,7 +225,7 @@ function bad_tag_convert($code)
 }
 
 function _callback_bad_tag_convert($matches){
-    return "<div class=\"embedx\">보안문제로 인하여 관리자 아이디로는 embed 또는 object 태그를 볼 수 없습니다. 확인하시려면 관리권한이 없는 다른 아이디로 접속하세요.</div>";
+    return "<div>보안문제로 인하여 관리자 아이디로는 embed 또는 object 태그를 볼 수 없습니다. 확인하시려면 관리권한이 없는 다른 아이디로 접속하세요.</div>";
 }
 
 function normalize_utf8_string($string) {

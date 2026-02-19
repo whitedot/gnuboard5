@@ -216,7 +216,7 @@ function get_view_thumbnail($contents, $thumb_width=0)
             if(strpos($img_tag, G5_DATA_DIR.'/'.G5_EDITOR_DIR) && preg_match("/\.({$config['cf_image_extension']})$/i", $filename)) {
                 $imgurl = str_replace(G5_URL, "", $src);
                 $attr_href = run_replace('thumb_view_image_href', G5_BBS_URL.'/view_image.php?fn='.urlencode($imgurl), $filename, '', $width, $height, $alt);
-                $thumb_tag = '<a href="'.$attr_href.'" target="_blank" class="view_image">'.$thumb_tag.'</a>';
+                $thumb_tag = '<a href="'.$attr_href.'" target="_blank">'.$thumb_tag.'</a>';
             }
 
             $contents = str_replace($img_tag, $thumb_tag, $contents);

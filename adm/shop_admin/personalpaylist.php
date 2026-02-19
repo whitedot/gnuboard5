@@ -54,19 +54,19 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 $colspan = 10;
 ?>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
-   <span class="summary-chip"><span class="summary-label">전체 </span><span class="summary-value"> <?php echo number_format($total_count) ?>건 </span></span>
+<div>
+   <span><span>전체 </span><span> <?php echo number_format($total_count) ?>건 </span></span>
 </div>
 
-<form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
-    <select class="form-select" name="sfl" title="검색대상">
+<form name="fsearch" id="fsearch" method="get">
+    <select name="sfl" title="검색대상">
         <option value="pp_id"<?php echo get_selected($sfl, "pp_id"); ?>>개인결제번호</option>
         <option value="pp_name"<?php echo get_selected($sfl, "pp_name"); ?>>이름</option>
         <option value="od_id"<?php echo get_selected($sfl, "od_id"); ?>>주문번호</option>
     </select>
-    <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required form-input">
-    <input type="submit" class="btn btn-sm border-default-300" value="검색">
+    <label for="stx">검색어<strong> 필수</strong></label>
+    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required">
+    <input type="submit" value="검색">
 </form>
 
 
@@ -79,13 +79,13 @@ $colspan = 10;
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 <input type="hidden" name="token" value="">
 
-<div class="table-card table-shell card">
+<div>
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall" class="sr-only">개인결제 전체</label>
+            <label for="chkall">개인결제 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">제목</th>
@@ -111,21 +111,21 @@ $colspan = 10;
     ?>
 
     <tr class="<?php echo $bg; ?>">
-        <td class="cell-chk">
+        <td>
             <input type="hidden" id="pp_id_<?php echo $i; ?>" name="pp_id[<?php echo $i; ?>]" value="<?php echo $row['pp_id']; ?>">
             <input type="checkbox" id="chk_<?php echo $i; ?>" name="chk[]" value="<?php echo $i; ?>" title="내역선택">
         </td>
-        <td class="cell-left"><?php echo get_text($row['pp_name']); ?></td>
-        <td class="cell-odrnum3"><?php echo $od_id; ?></td>
-        <td class="cell-numsum"><?php echo number_format($row['pp_price']); ?></td>
-        <td class="cell-numincome"><?php echo number_format($row['pp_receipt_price']); ?></td>
-        <td class="cell-numrdy"><?php echo number_format($row['pp_price'] - $row['pp_receipt_price']); ?></td>
-        <td class="cell-payby"><?php echo $row['pp_settle_case']; ?></td>
-        <td class="cell-date"><?php echo is_null_time($row['pp_receipt_time']) ? '' : substr($row['pp_receipt_time'], 2, 8); ?></td>
-        <td class="cell-boolean"><?php echo $row['pp_use'] ? '예' : '아니오'; ?></td>
-        <td class="cell-mng cell-mng-m">
-            <a href="./personalpayform.php?w=u&amp;pp_id=<?php echo $row['pp_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn-tertiary"><span class="sr-only"><?php echo $row['pp_id']; ?> </span>수정</a>
-            <a href="./personalpaycopy.php?pp_id=<?php echo $row['pp_id']; ?>" class="personalpaycopy btn btn-secondary"><span class="sr-only"><?php echo $row['pp_id']; ?> </span>복사</a>
+        <td><?php echo get_text($row['pp_name']); ?></td>
+        <td><?php echo $od_id; ?></td>
+        <td><?php echo number_format($row['pp_price']); ?></td>
+        <td><?php echo number_format($row['pp_receipt_price']); ?></td>
+        <td><?php echo number_format($row['pp_price'] - $row['pp_receipt_price']); ?></td>
+        <td><?php echo $row['pp_settle_case']; ?></td>
+        <td><?php echo is_null_time($row['pp_receipt_time']) ? '' : substr($row['pp_receipt_time'], 2, 8); ?></td>
+        <td><?php echo $row['pp_use'] ? '예' : '아니오'; ?></td>
+        <td>
+            <a href="./personalpayform.php?w=u&amp;pp_id=<?php echo $row['pp_id']; ?>&amp;<?php echo $qstr; ?>"><span><?php echo $row['pp_id']; ?> </span>수정</a>
+            <a href="./personalpaycopy.php?pp_id=<?php echo $row['pp_id']; ?>" class="personalpaycopy"><span><?php echo $row['pp_id']; ?> </span>복사</a>
         </td>
     </tr>
 
@@ -133,15 +133,15 @@ $colspan = 10;
     }
 
     if ($i == 0)
-        echo '<tr><td colspan="'.$colspan.'" class="table-empty">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="'.$colspan.'">자료가 없습니다.</td></tr>';
     ?>
     </tbody>
     </table>
 </div>
 
-<div class="action-bar">
-    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
-    <a href="./personalpayform.php" id="personalpay_add" class="btn btn-primary">개인결제 추가</a>
+<div>
+    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
+    <a href="./personalpayform.php" id="personalpay_add">개인결제 추가</a>
 </div>
 
 </form>

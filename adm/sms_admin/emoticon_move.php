@@ -22,7 +22,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
 }
 ?>
 
-<div id="copymove" class="new_win">
+<div id="copymove">
     <h1 id="win_title"><?php echo $g5['title'] ?></h1>
 
     <form name="fboardmoveall" method="post" action="./emoticon_move_update.php" onsubmit="return fboardmoveall_submit(this);">
@@ -30,7 +30,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     <input type="hidden" name="fo_no_list" value="<?php echo $fo_no_list ?>">
     <input type="hidden" name="url" value="<?php echo clean_xss_tags(strip_tags($_SERVER['HTTP_REFERER'])); ?>">
 
-    <div class="table-card table-shell card">
+    <div>
         <table>
         <caption>이동할 그룹을 한개 이상 선택하여 주십시오.</caption>
         <thead>
@@ -42,7 +42,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
         <tbody>
         <?php for ($i=0; $i<count($list); $i++) { ?>
         <tr>
-            <td class="cell-chk">
+            <td>
                 <input type="radio" value="<?php echo $list[$i]['fg_no'] ?>" id="chk<?php echo $i ?>" name="chk_fg_no[]">
             </td>
             <td>
@@ -55,8 +55,8 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     </div>
 
     <div class="win_btn">
-        <input type="submit" value="이동" id="btn-primary" class="btn btn-sm border-default-300">
-        <button type="button" class="btn_cancel">창닫기</button>
+        <input type="submit" value="이동" id="btn-primary">
+        <button type="button">창닫기</button>
     </div>
     </form>
 

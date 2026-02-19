@@ -112,12 +112,12 @@ $msg .= '<p>회원정보를 휴대폰번호 DB로 업데이트 하였습니다.<
 $msg .= '<dl id="sms_mbup">';
 $msg .= '<dt>총 회원 수</dt><dd>'.number_format($count).'명</dd>';
 $msg .= '<dt>삭제된 회원</dt><dd>'.number_format($leave).'명</dd>';
-$msg .= '<dt><span style="gray">휴대폰번호 없음</span></dt><dd>'.number_format($hp_empty).' 명</dd>';
-$msg .= '<dt><span style="color:blue;">휴대폰번호 정상</span></dt><dd>'.number_format($hp_yes).' 명</span>&nbsp;';
-$msg .= '(<span style="color:blue;">수신</span>'.number_format($receipt).' 명';
+$msg .= '<dt><span>휴대폰번호 없음</span></dt><dd>'.number_format($hp_empty).' 명</dd>';
+$msg .= '<dt><span>휴대폰번호 정상</span></dt><dd>'.number_format($hp_yes).' 명</span>&nbsp;';
+$msg .= '(<span>수신</span>'.number_format($receipt).' 명';
 $msg .= ' / ';
-$msg .= '<span style="color:red;">거부</span>'.number_format($hp_yes-$receipt).' 명)</dd>';
-$msg .= '<dt><span style="color:red;">휴대폰번호 오류</span></dt><dd>'.number_format($hp_no).' 명</span></dd>';
+$msg .= '<span>거부</span>'.number_format($hp_yes-$receipt).' 명)</dd>';
+$msg .= '<dt><span>휴대폰번호 오류</span></dt><dd>'.number_format($hp_no).' 명</span></dd>';
 $msg .= '</dl>';
 $msg .= '<p>프로그램의 실행을 끝마치셔도 좋습니다.</p>';
 

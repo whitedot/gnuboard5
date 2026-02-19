@@ -59,11 +59,11 @@ if (!auth_check_menu($auth, '200100', 'r', true)) {
 
     <section>
         <h2>신규가입회원 <?php echo $new_member_rows ?>건 목록</h2>
-        <div class="hint-box">
+        <div>
             총회원수 <?php echo number_format($total_count) ?>명 중 차단 <?php echo number_format($intercept_count) ?>명, 탈퇴 : <?php echo number_format($leave_count) ?>명
         </div>
 
-        <div class="table-card table-shell">
+        <div>
             <table>
                 <caption>신규가입회원</caption>
                 <thead>
@@ -108,30 +108,30 @@ if (!auth_check_menu($auth, '200100', 'r', true)) {
                         $mb_id = $row['mb_id'];
                         ?>
                         <tr>
-                            <td class="cell-mbid"><?php echo $mb_id ?></td>
-                            <td class="cell-mbname"><?php echo get_text($row['mb_name']); ?></td>
-                            <td class="cell-mbname sv_use">
+                            <td><?php echo $mb_id ?></td>
+                            <td><?php echo get_text($row['mb_name']); ?></td>
+                            <td>
                                 <div><?php echo $mb_nick ?></div>
                             </td>
-                            <td class="cell-num"><?php echo $row['mb_level'] ?></td>
+                            <td><?php echo $row['mb_level'] ?></td>
                             <td><a href="./point_list.php?sfl=mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo number_format($row['mb_point']) ?></a></td>
-                            <td class="cell-boolean"><?php echo $row['mb_mailling'] ? '예' : '아니오'; ?></td>
-                            <td class="cell-boolean"><?php echo $row['mb_open'] ? '예' : '아니오'; ?></td>
-                            <td class="cell-boolean"><?php echo preg_match('/[1-9]/', $row['mb_email_certify']) ? '예' : '아니오'; ?></td>
-                            <td class="cell-boolean"><?php echo $row['mb_intercept_date'] ? '예' : '아니오'; ?></td>
-                            <td class="cell-category"><?php echo $group ?></td>
+                            <td><?php echo $row['mb_mailling'] ? '예' : '아니오'; ?></td>
+                            <td><?php echo $row['mb_open'] ? '예' : '아니오'; ?></td>
+                            <td><?php echo preg_match('/[1-9]/', $row['mb_email_certify']) ? '예' : '아니오'; ?></td>
+                            <td><?php echo $row['mb_intercept_date'] ? '예' : '아니오'; ?></td>
+                            <td><?php echo $group ?></td>
                         </tr>
                         <?php
                     }
                     if ($i == 0) {
-                        echo '<tr><td colspan="' . $colspan . '" class="table-empty">자료가 없습니다.</td></tr>';
+                        echo '<tr><td colspan="' . $colspan . '">자료가 없습니다.</td></tr>';
                     }
                     ?>
                 </tbody>
             </table>
         </div>
 
-        <div class="action-inline">
+        <div>
             <a href="./member_list.php">회원 전체보기</a>
         </div>
     </section>
@@ -165,7 +165,7 @@ if (!auth_check_menu($auth, '300100', 'r', true)) {
     <section>
         <h2>최근게시물</h2>
 
-        <div class="table-card table-shell">
+        <div>
             <table>
                 <caption>최근게시물</caption>
                 <thead>
@@ -219,26 +219,26 @@ if (!auth_check_menu($auth, '300100', 'r', true)) {
                         ?>
 
                         <tr>
-                            <td class="cell-category"><a href="<?php echo G5_BBS_URL ?>/new.php?gr_id=<?php echo $row['gr_id'] ?>"><?php echo cut_str($row['gr_subject'], 10) ?></a></td>
-                            <td class="cell-category"><a href="<?php echo get_pretty_url($row['bo_table']) ?>"><?php echo cut_str($row['bo_subject'], 20) ?></a></td>
+                            <td><a href="<?php echo G5_BBS_URL ?>/new.php?gr_id=<?php echo $row['gr_id'] ?>"><?php echo cut_str($row['gr_subject'], 10) ?></a></td>
+                            <td><a href="<?php echo get_pretty_url($row['bo_table']) ?>"><?php echo cut_str($row['bo_subject'], 20) ?></a></td>
                             <td><a href="<?php echo get_pretty_url($row['bo_table'], $row2['wr_id']); ?><?php echo $comment_link ?>"><?php echo $comment ?><?php echo conv_subject($row2['wr_subject'], 100) ?></a></td>
-                            <td class="cell-mbname">
+                            <td>
                                 <div><?php echo $name ?></div>
                             </td>
-                            <td class="cell-datetime"><?php echo $datetime ?></td>
+                            <td><?php echo $datetime ?></td>
                         </tr>
 
                         <?php
                     }
                     if ($i == 0) {
-                        echo '<tr><td colspan="' . $colspan . '" class="table-empty">자료가 없습니다.</td></tr>';
+                        echo '<tr><td colspan="' . $colspan . '">자료가 없습니다.</td></tr>';
                     }
                     ?>
                 </tbody>
             </table>
         </div>
 
-        <div class="action-inline">
+        <div>
             <a href="<?php echo G5_BBS_URL ?>/new.php">최근게시물 더보기</a>
         </div>
     </section>
@@ -264,11 +264,11 @@ if (!auth_check_menu($auth, '200200', 'r', true)) {
 
     <section>
         <h2>최근 포인트 발생내역</h2>
-        <div class="hint-box">
+        <div>
             전체 <?php echo number_format($total_count) ?> 건 중 <?php echo $new_point_rows ?>건 목록
         </div>
 
-        <div class="table-card table-shell">
+        <div>
             <table>
                 <caption>최근 포인트 발생내역</caption>
                 <thead>
@@ -301,29 +301,29 @@ if (!auth_check_menu($auth, '200200', 'r', true)) {
                         ?>
 
                         <tr>
-                            <td class="cell-mbid"><a href="./point_list.php?sfl=mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo $row['mb_id'] ?></a></td>
-                            <td class="cell-mbname"><?php echo get_text($row2['mb_name']); ?></td>
-                            <td class="cell-name sv_use">
+                            <td><a href="./point_list.php?sfl=mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo $row['mb_id'] ?></a></td>
+                            <td><?php echo get_text($row2['mb_name']); ?></td>
+                            <td>
                                 <div><?php echo $mb_nick ?></div>
                             </td>
-                            <td class="cell-datetime"><?php echo $row['po_datetime'] ?></td>
+                            <td><?php echo $row['po_datetime'] ?></td>
                             <td><?php echo $link1 . $row['po_content'] . $link2 ?></td>
-                            <td class="cell-numbig"><?php echo number_format($row['po_point']) ?></td>
-                            <td class="cell-numbig"><?php echo number_format($row['po_mb_point']) ?></td>
+                            <td><?php echo number_format($row['po_point']) ?></td>
+                            <td><?php echo number_format($row['po_mb_point']) ?></td>
                         </tr>
 
                         <?php
                     }
 
                     if ($i == 0) {
-                        echo '<tr><td colspan="' . $colspan . '" class="table-empty">자료가 없습니다.</td></tr>';
+                        echo '<tr><td colspan="' . $colspan . '">자료가 없습니다.</td></tr>';
                     }
                     ?>
                 </tbody>
             </table>
         </div>
 
-        <div class="action-inline">
+        <div>
             <a href="./point_list.php">포인트내역 전체보기</a>
         </div>
     </section>

@@ -8,7 +8,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 function editor_html($id, $content)
 {
-    return "<textarea id=\"$id\" name=\"$id\" style=\"width:100%;\" maxlength=\"65536\">$content</textarea>";
+    return "<textarea id=\"$id\" name=\"$id\" maxlength=\"65536\">$content</textarea>";
 }
 
 

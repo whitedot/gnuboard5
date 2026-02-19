@@ -113,130 +113,130 @@ if (!isset($qaconfig['qa_include_head'])) {
 <form name="fqaconfigform" id="fqaconfigform" method="post" onsubmit="return fqaconfigform_submit(this);" autocomplete="off">
     <input type="hidden" name="token" value="" id="token">
 
-    <section id="anc_cf_qa_config" class="card">
-        <h2 class="section-title card-header"><span class="card-title">1:1문의 설정</span></h2>
-        <div class="card-body">
-            <div class="grid grid-cols-1 gap-4">
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_title" class="form-label py-2 mb-0!">타이틀<strong class="sr-only">필수</strong></label></div>
-                    <div class="lg:col-span-3">
-                        <input type="text" name="qa_title" value="<?php echo get_sanitize_input($qaconfig['qa_title']); ?>" id="qa_title" required class="required form-input" size="40">
-                        <a href="<?php echo G5_BBS_URL; ?>/qalist.php" class="btn btn-sm border-default-300">1:1문의 바로가기</a>
+    <section id="anc_cf_qa_config">
+        <h2><span>1:1문의 설정</span></h2>
+        <div>
+            <div>
+                <div>
+                    <div><label for="qa_title">타이틀<strong>필수</strong></label></div>
+                    <div>
+                        <input type="text" name="qa_title" value="<?php echo get_sanitize_input($qaconfig['qa_title']); ?>" id="qa_title" required class="required" size="40">
+                        <a href="<?php echo G5_BBS_URL; ?>/qalist.php">1:1문의 바로가기</a>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_category" class="form-label py-2 mb-0!">분류<strong class="sr-only">필수</strong></label></div>
-                    <div class="lg:col-span-3">
+                <div>
+                    <div><label for="qa_category">분류<strong>필수</strong></label></div>
+                    <div>
                         <?php echo help('분류와 분류 사이는 | 로 구분하세요. (예: 질문|답변) 첫자로 #은 입력하지 마세요. (예: #질문|#답변 [X])') ?>
-                        <input type="text" name="qa_category" value="<?php echo get_sanitize_input($qaconfig['qa_category']); ?>" id="qa_category" required class="required form-input" size="70">
+                        <input type="text" name="qa_category" value="<?php echo get_sanitize_input($qaconfig['qa_category']); ?>" id="qa_category" required class="required" size="70">
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_skin" class="form-label py-2 mb-0!">스킨 디렉토리<strong class="sr-only">필수</strong></label></div>
-                    <div class="lg:col-span-3"><?php echo get_skin_select('qa', 'qa_skin', 'qa_skin', $qaconfig['qa_skin'], 'required'); ?></div>
+                <div>
+                    <div><label for="qa_skin">스킨 디렉토리<strong>필수</strong></label></div>
+                    <div><?php echo get_skin_select('qa', 'qa_skin', 'qa_skin', $qaconfig['qa_skin'], 'required'); ?></div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><span class="form-label py-2 mb-0!">이메일 입력</span></div>
-                    <div class="lg:col-span-3">
-                        <input type="checkbox" name="qa_use_email" value="1" id="qa_use_email" class="form-checkbox" <?php echo $qaconfig['qa_use_email'] ? 'checked' : ''; ?>> <label for="qa_use_email">보이기</label>
-                        <input type="checkbox" name="qa_req_email" value="1" id="qa_req_email" class="form-checkbox" <?php echo $qaconfig['qa_req_email'] ? 'checked' : ''; ?>> <label for="qa_req_email">필수입력</label>
+                <div>
+                    <div><span>이메일 입력</span></div>
+                    <div>
+                        <input type="checkbox" name="qa_use_email" value="1" id="qa_use_email" <?php echo $qaconfig['qa_use_email'] ? 'checked' : ''; ?>> <label for="qa_use_email">보이기</label>
+                        <input type="checkbox" name="qa_req_email" value="1" id="qa_req_email" <?php echo $qaconfig['qa_req_email'] ? 'checked' : ''; ?>> <label for="qa_req_email">필수입력</label>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><span class="form-label py-2 mb-0!">휴대폰 입력</span></div>
-                    <div class="lg:col-span-3">
-                        <input type="checkbox" name="qa_use_hp" value="1" id="qa_use_hp" class="form-checkbox" <?php echo $qaconfig['qa_use_hp'] ? 'checked' : ''; ?>> <label for="qa_use_hp">보이기</label>
-                        <input type="checkbox" name="qa_req_hp" value="1" id="qa_req_hp" class="form-checkbox" <?php echo $qaconfig['qa_req_hp'] ? 'checked' : ''; ?>> <label for="qa_req_hp">필수입력</label>
+                <div>
+                    <div><span>휴대폰 입력</span></div>
+                    <div>
+                        <input type="checkbox" name="qa_use_hp" value="1" id="qa_use_hp" <?php echo $qaconfig['qa_use_hp'] ? 'checked' : ''; ?>> <label for="qa_use_hp">보이기</label>
+                        <input type="checkbox" name="qa_req_hp" value="1" id="qa_req_hp" <?php echo $qaconfig['qa_req_hp'] ? 'checked' : ''; ?>> <label for="qa_req_hp">필수입력</label>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_use_sms" class="form-label py-2 mb-0!">SMS 알림</label></div>
-                    <div class="lg:col-span-3">
+                <div>
+                    <div><label for="qa_use_sms">SMS 알림</label></div>
+                    <div>
                         <?php echo help('휴대폰 입력을 사용하실 경우 문의글 등록시 등록자가 답변등록시 SMS 알림 수신을 선택할 수 있도록 합니다.<br>SMS 알림을 사용하기 위해서는 기본환경설정 > <a href="' . G5_ADMIN_URL . '/config_form.php#anc_cf_sms">SMS 설정</a>을 하셔야 합니다.') ?>
-                        <select class="form-select" name="qa_use_sms" id="qa_use_sms">
+                        <select name="qa_use_sms" id="qa_use_sms">
                             <?php echo option_selected(0, $qaconfig['qa_use_sms'], '사용안함'); ?>
                             <?php echo option_selected(1, $qaconfig['qa_use_sms'], '사용함'); ?>
                         </select>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_send_number" class="form-label py-2 mb-0!">SMS 발신번호</label></div>
-                    <div class="lg:col-span-3">
+                <div>
+                    <div><label for="qa_send_number">SMS 발신번호</label></div>
+                    <div>
                         <?php echo help('SMS 알림 전송시 발신번호로 사용됩니다.'); ?>
-                        <input type="text" name="qa_send_number" value="<?php echo get_sanitize_input($qaconfig['qa_send_number']); ?>" id="qa_send_number" class="form-input" size="30">
+                        <input type="text" name="qa_send_number" value="<?php echo get_sanitize_input($qaconfig['qa_send_number']); ?>" id="qa_send_number" size="30">
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_admin_hp" class="form-label py-2 mb-0!">관리자 휴대폰번호</label></div>
-                    <div class="lg:col-span-3">
+                <div>
+                    <div><label for="qa_admin_hp">관리자 휴대폰번호</label></div>
+                    <div>
                         <?php echo help('관리자 휴대폰번호를 입력하시면 문의글 등록시 등록하신 번호로 SMS 알림이 전송됩니다.<br>SMS 알림을 사용하지 않으시면 알림이 전송되지 않습니다.'); ?>
-                        <input type="text" name="qa_admin_hp" value="<?php echo get_sanitize_input($qaconfig['qa_admin_hp']); ?>" id="qa_admin_hp" class="form-input" size="30">
+                        <input type="text" name="qa_admin_hp" value="<?php echo get_sanitize_input($qaconfig['qa_admin_hp']); ?>" id="qa_admin_hp" size="30">
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_admin_email" class="form-label py-2 mb-0!">관리자 이메일</label></div>
-                    <div class="lg:col-span-3">
+                <div>
+                    <div><label for="qa_admin_email">관리자 이메일</label></div>
+                    <div>
                         <?php echo help('관리자 이메일을 입력하시면 문의글 등록시 등록하신 이메일로 알림이 전송됩니다.'); ?>
-                        <input type="text" name="qa_admin_email" value="<?php echo get_sanitize_input($qaconfig['qa_admin_email']); ?>" id="qa_admin_email" class="form-input" size="50">
+                        <input type="text" name="qa_admin_email" value="<?php echo get_sanitize_input($qaconfig['qa_admin_email']); ?>" id="qa_admin_email" size="50">
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_use_editor" class="form-label py-2 mb-0!">DHTML 에디터 사용</label></div>
-                    <div class="lg:col-span-3">
+                <div>
+                    <div><label for="qa_use_editor">DHTML 에디터 사용</label></div>
+                    <div>
                         <?php echo help('글작성시 내용을 DHTML 에디터 기능으로 사용할 것인지 설정합니다. 스킨에 따라 적용되지 않을 수 있습니다.'); ?>
-                        <select class="form-select" name="qa_use_editor" id="qa_use_editor">
+                        <select name="qa_use_editor" id="qa_use_editor">
                             <?php echo option_selected(0, $qaconfig['qa_use_editor'], '사용안함'); ?>
                             <?php echo option_selected(1, $qaconfig['qa_use_editor'], '사용함'); ?>
                         </select>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_subject_len" class="form-label py-2 mb-0!">제목 길이<strong class="sr-only"> 필수</strong></label></div>
-                    <div class="lg:col-span-3">
+                <div>
+                    <div><label for="qa_subject_len">제목 길이<strong> 필수</strong></label></div>
+                    <div>
                         <?php echo help('목록에서의 제목 글자수') ?>
-                        <input type="text" name="qa_subject_len" value="<?php echo $qaconfig['qa_subject_len'] ?>" id="qa_subject_len" required class="required numeric form-input" size="4">
+                        <input type="text" name="qa_subject_len" value="<?php echo $qaconfig['qa_subject_len'] ?>" id="qa_subject_len" required class="required" size="4">
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_mobile_subject_len" class="form-label py-2 mb-0!">모바일 제목 길이<strong class="sr-only"> 필수</strong></label></div>
-                    <div class="lg:col-span-3">
+                <div>
+                    <div><label for="qa_mobile_subject_len">모바일 제목 길이<strong> 필수</strong></label></div>
+                    <div>
                         <?php echo help('목록에서의 제목 글자수') ?>
-                        <input type="text" name="qa_mobile_subject_len" value="<?php echo $qaconfig['qa_mobile_subject_len'] ?>" id="qa_mobile_subject_len" required class="required numeric form-input" size="4">
+                        <input type="text" name="qa_mobile_subject_len" value="<?php echo $qaconfig['qa_mobile_subject_len'] ?>" id="qa_mobile_subject_len" required class="required" size="4">
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_page_rows" class="form-label py-2 mb-0!">페이지당 목록 수<strong class="sr-only"> 필수</strong></label></div>
-                    <div class="lg:col-span-3"><input type="text" name="qa_page_rows" value="<?php echo $qaconfig['qa_page_rows'] ?>" id="qa_page_rows" required class="required numeric form-input" size="4"></div>
+                <div>
+                    <div><label for="qa_page_rows">페이지당 목록 수<strong> 필수</strong></label></div>
+                    <div><input type="text" name="qa_page_rows" value="<?php echo $qaconfig['qa_page_rows'] ?>" id="qa_page_rows" required class="required" size="4"></div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_mobile_page_rows" class="form-label py-2 mb-0!">모바일 페이지당 목록 수<strong class="sr-only"> 필수</strong></label></div>
-                    <div class="lg:col-span-3"><input type="text" name="qa_mobile_page_rows" value="<?php echo $qaconfig['qa_mobile_page_rows'] ?>" id="qa_mobile_page_rows" required class="required numeric form-input" size="4"></div>
+                <div>
+                    <div><label for="qa_mobile_page_rows">모바일 페이지당 목록 수<strong> 필수</strong></label></div>
+                    <div><input type="text" name="qa_mobile_page_rows" value="<?php echo $qaconfig['qa_mobile_page_rows'] ?>" id="qa_mobile_page_rows" required class="required" size="4"></div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_image_width" class="form-label py-2 mb-0!">이미지 폭 크기<strong class="sr-only"> 필수</strong></label></div>
-                    <div class="lg:col-span-3">
+                <div>
+                    <div><label for="qa_image_width">이미지 폭 크기<strong> 필수</strong></label></div>
+                    <div>
                         <?php echo help('게시판에서 출력되는 이미지의 폭 크기') ?>
-                        <input type="text" name="qa_image_width" value="<?php echo $qaconfig['qa_image_width'] ?>" id="qa_image_width" required class="required numeric form-input" size="4"> 픽셀
+                        <input type="text" name="qa_image_width" value="<?php echo $qaconfig['qa_image_width'] ?>" id="qa_image_width" required class="required" size="4"> 픽셀
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_upload_size" class="form-label py-2 mb-0!">파일 업로드 용량<strong class="sr-only"> 필수</strong></label></div>
-                    <div class="lg:col-span-3">
+                <div>
+                    <div><label for="qa_upload_size">파일 업로드 용량<strong> 필수</strong></label></div>
+                    <div>
                         <?php echo help('최대 ' . ini_get("upload_max_filesize") . ' 이하 업로드 가능, 1 MB = 1,048,576 bytes') ?>
-                        업로드 파일 한개당 <input type="text" name="qa_upload_size" value="<?php echo $qaconfig['qa_upload_size'] ?>" id="qa_upload_size" required class="required numeric form-input" size="10"> bytes 이하
+                        업로드 파일 한개당 <input type="text" name="qa_upload_size" value="<?php echo $qaconfig['qa_upload_size'] ?>" id="qa_upload_size" required class="required" size="10"> bytes 이하
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_include_head" class="form-label py-2 mb-0!">상단 파일 경로</label></div>
-                    <div class="lg:col-span-3"><input type="text" name="qa_include_head" value="<?php echo get_sanitize_input($qaconfig['qa_include_head']); ?>" id="qa_include_head" class="form-input" size="50"></div>
+                <div>
+                    <div><label for="qa_include_head">상단 파일 경로</label></div>
+                    <div><input type="text" name="qa_include_head" value="<?php echo get_sanitize_input($qaconfig['qa_include_head']); ?>" id="qa_include_head" size="50"></div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_include_tail" class="form-label py-2 mb-0!">하단 파일 경로</label></div>
-                    <div class="lg:col-span-3"><input type="text" name="qa_include_tail" value="<?php echo get_sanitize_input($qaconfig['qa_include_tail']); ?>" id="qa_include_tail" class="form-input" size="50"></div>
+                <div>
+                    <div><label for="qa_include_tail">하단 파일 경로</label></div>
+                    <div><input type="text" name="qa_include_tail" value="<?php echo get_sanitize_input($qaconfig['qa_include_tail']); ?>" id="qa_include_tail" size="50"></div>
                 </div>
-                <div id="admin_captcha_box" style="display:none;" class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><span class="form-label py-2 mb-0!">자동등록방지</span></div>
-                    <div class="lg:col-span-3">
+                <div id="admin_captcha_box" style="display:none;">
+                    <div><span>자동등록방지</span></div>
+                    <div>
                         <?php
                         echo help("파일 경로를 입력 또는 수정시 캡챠를 반드시 입력해야 합니다.");
                         require_once G5_CAPTCHA_PATH . '/captcha.lib.php';
@@ -249,24 +249,24 @@ if (!isset($qaconfig['qa_include_head'])) {
                         </script>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_content_head" class="form-label py-2 mb-0!">상단 내용</label></div>
-                    <div class="lg:col-span-3"><?php echo editor_html("qa_content_head", get_text(html_purifier($qaconfig['qa_content_head']), 0)); ?></div>
+                <div>
+                    <div><label for="qa_content_head">상단 내용</label></div>
+                    <div><?php echo editor_html("qa_content_head", get_text(html_purifier($qaconfig['qa_content_head']), 0)); ?></div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1"><label for="qa_content_tail" class="form-label py-2 mb-0!">하단 내용</label></div>
-                    <div class="lg:col-span-3"><?php echo editor_html("qa_content_tail", get_text(html_purifier($qaconfig['qa_content_tail']), 0)); ?></div>
+                <div>
+                    <div><label for="qa_content_tail">하단 내용</label></div>
+                    <div><?php echo editor_html("qa_content_tail", get_text(html_purifier($qaconfig['qa_content_tail']), 0)); ?></div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 pb-1">
-                    <div class="lg:col-span-1"><label for="qa_insert_content" class="form-label py-2 mb-0!">글쓰기 기본 내용</label></div>
-                    <div class="lg:col-span-3"><textarea id="qa_insert_content" name="qa_insert_content" rows="5" class="form-textarea min-h-24 w-full"><?php echo html_purifier($qaconfig['qa_insert_content']); ?></textarea></div>
+                <div>
+                    <div><label for="qa_insert_content">글쓰기 기본 내용</label></div>
+                    <div><textarea id="qa_insert_content" name="qa_insert_content" rows="5"><?php echo html_purifier($qaconfig['qa_insert_content']); ?></textarea></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="action-bar">
-        <input type="submit" value="확인" class="btn btn-sm border-default-300" accesskey="s">
+    <div>
+        <input type="submit" value="확인" accesskey="s">
     </div>
 
 </form>

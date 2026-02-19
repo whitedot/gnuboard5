@@ -41,7 +41,7 @@ function get_list($write_row, $board, $skin_url, $subject_len=40)
 
     $list['comment_cnt'] = '';
     if ($list['wr_comment'])
-        $list['comment_cnt'] = "<span class=\"cnt_cmt\">".$list['wr_comment']."</span>";
+        $list['comment_cnt'] = "<span>".$list['wr_comment']."</span>";
 
     // 당일인 경우 시간으로 표시함
     $list['datetime'] = substr($list['wr_datetime'],0,10);
@@ -65,7 +65,7 @@ function get_list($write_row, $board, $skin_url, $subject_len=40)
     if ($board['bo_use_sideview'])
         $list['name'] = get_sideview($list['mb_id'], $tmp_name2, $list['wr_email'], $list['wr_homepage']);
     else
-        $list['name'] = '<span class="'.($list['mb_id']?'sv_member':'sv_guest').'">'.$tmp_name.'</span>';
+        $list['name'] = '<span>'.$tmp_name.'</span>';
 
     $reply = $list['wr_reply'];
 
@@ -73,11 +73,11 @@ function get_list($write_row, $board, $skin_url, $subject_len=40)
 
     $list['icon_reply'] = '';
     if ($list['reply'])
-        $list['icon_reply'] = '<img src="'.$skin_url.'/img/icon_reply.gif" class="icon_reply" alt="답변글">';
+        $list['icon_reply'] = '<img src="'.$skin_url.'/img/icon_reply.gif" alt="답변글">';
 
     $list['icon_link'] = '';
     if ($list['wr_link1'] || $list['wr_link2'])
-        $list['icon_link'] = '<i class="fa fa-link" aria-hidden="true"></i> ';
+        $list['icon_link'] = '<i aria-hidden="true"></i> ';
 
     // 분류명 링크
     $list['ca_name_href'] = get_pretty_url($board['bo_table'], '', 'sca='.urlencode($list['ca_name']));
@@ -87,15 +87,15 @@ function get_list($write_row, $board, $skin_url, $subject_len=40)
 
     $list['icon_new'] = '';
     if ($board['bo_new'] && $list['wr_datetime'] >= date("Y-m-d H:i:s", G5_SERVER_TIME - ($board['bo_new'] * 3600)))
-        $list['icon_new'] = '<img src="'.$skin_url.'/img/icon_new.gif" class="title_icon" alt="새글"> ';
+        $list['icon_new'] = '<img src="'.$skin_url.'/img/icon_new.gif" alt="새글"> ';
 
     $list['icon_hot'] = '';
     if ($board['bo_hot'] && $list['wr_hit'] >= $board['bo_hot'])
-        $list['icon_hot'] = '<i class="fa fa-heart" aria-hidden="true"></i> ';
+        $list['icon_hot'] = '<i aria-hidden="true"></i> ';
 
     $list['icon_secret'] = '';
     if (strstr($list['wr_option'], 'secret'))
-        $list['icon_secret'] = '<i class="fa fa-lock" aria-hidden="true"></i> ';
+        $list['icon_secret'] = '<i aria-hidden="true"></i> ';
 
     // 링크
     for ($i=1; $i<=G5_LINK_COUNT; $i++) {
@@ -112,7 +112,7 @@ function get_list($write_row, $board, $skin_url, $subject_len=40)
     }
 
     if ($list['file']['count'])
-        $list['icon_file'] = '<i class="fa fa-download" aria-hidden="true"></i> ';
+        $list['icon_file'] = '<i aria-hidden="true"></i> ';
 
     return $list;
 }
@@ -153,7 +153,7 @@ function search_font($stx, $str)
     }
 
     // 지정된 검색 폰트의 색상, 배경색상으로 대체
-    $replace = "<b class=\"sch_word\">\\1</b>";
+    $replace = "<b>\\1</b>";
 
     return preg_replace("/($pattern)/i", $replace, $str);
 }

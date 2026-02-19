@@ -76,7 +76,7 @@ if ($w == '') {
 
     $required = 'required';
     $required_valid = 'alnum_';
-    $sound_only = '<strong class="sr-only">필수</strong>';
+    $sound_only = '<strong>필수</strong>';
 
     $board['bo_count_delete'] = 1;
     $board['bo_count_modify'] = 1;
@@ -131,7 +131,7 @@ if ($is_admin != 'super') {
 $g5['title'] = $html_title;
 require_once './admin.head.php';
 
-$pg_anchor = '<ul class="section-anchor">
+$pg_anchor = '<ul>
     <li><a href="#anc_bo_basic">기본 설정</a></li>
     <li><a href="#anc_bo_auth">권한 설정</a></li>
     <li><a href="#anc_bo_function">기능 설정</a></li>
@@ -168,13 +168,13 @@ include_once G5_ADMIN_PATH.'/board_form_parts/design.php';
 include_once G5_ADMIN_PATH.'/board_form_parts/point.php';
 ?>
 
-<div class="action-bar">
+<div>
     <?php if ($bo_table && $w) { ?>
-        <a href="./board_copy.php?bo_table=<?php echo $board['bo_table']; ?>" id="board_copy" target="win_board_copy" class="btn-secondary btn">게시판복사</a>
-        <a href="<?php echo get_pretty_url($board['bo_table']); ?>" class="btn-secondary btn">게시판 바로가기</a>
-        <a href="./board_thumbnail_delete.php?bo_table=<?php echo $board['bo_table'].'&amp;'.$qstr;?>" onclick="return delete_confirm2('게시판 썸네일 파일을 삭제하시겠습니까?');" class="btn-secondary btn">게시판 썸네일 삭제</a>
+        <a href="./board_copy.php?bo_table=<?php echo $board['bo_table']; ?>" id="board_copy" target="win_board_copy">게시판복사</a>
+        <a href="<?php echo get_pretty_url($board['bo_table']); ?>">게시판 바로가기</a>
+        <a href="./board_thumbnail_delete.php?bo_table=<?php echo $board['bo_table'].'&amp;'.$qstr;?>" onclick="return delete_confirm2('게시판 썸네일 파일을 삭제하시겠습니까?');">게시판 썸네일 삭제</a>
     <?php } ?>
-    <input type="submit" value="확인" class="btn-primary btn" accesskey="s">
+    <input type="submit" value="확인" accesskey="s">
 </div>
 
 </form>

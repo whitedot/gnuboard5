@@ -1,17 +1,17 @@
 <section id="anc_sitfrm_sendcost">
-    <h2 class="section-title">배송비</h2>
+    <h2>배송비</h2>
     <?php echo $pg_anchor; ?>
-    <div class="hint-box">
+    <div>
         <p>쇼핑몰설정 &gt; 배송비유형 설정보다 <strong>개별상품 배송비설정이 우선</strong> 적용됩니다.</p>
     </div>
 
-    <div class="form-card table-shell">
+    <div>
         <table>
         <caption>배송비 입력</caption>
         <colgroup>
-            <col class="col-4">
             <col>
-            <col class="col-3">
+            <col>
+            <col>
         </colgroup>
         <tbody>
             <tr>
@@ -26,7 +26,7 @@
                         <option value="4"<?php echo get_selected('4', $it['it_sc_type']); ?>>수량별 부과</option>
                     </select>
                 </td>
-                <td rowspan="4" id="sc_grp" class="cell-grpset">
+                <td rowspan="4" id="sc_grp">
                     <input type="checkbox" name="chk_ca_it_sendcost" value="1" id="chk_ca_it_sendcost">
                     <label for="chk_ca_it_sendcost">분류적용</label>
                     <input type="checkbox" name="chk_all_it_sendcost" value="1" id="chk_all_it_sendcost">
@@ -47,20 +47,20 @@
                 <th scope="row"><label for="it_sc_price">기본배송비</label></th>
                 <td>
                     <?php echo help("무료배송 이외의 설정에 적용되는 배송비 금액입니다."); ?>
-                    <input type="text" name="it_sc_price" value="<?php echo $it['it_sc_price']; ?>" id="it_sc_price" class="form-input" size="8"> 원
+                    <input type="text" name="it_sc_price" value="<?php echo $it['it_sc_price']; ?>" id="it_sc_price" size="8"> 원
                 </td>
             </tr>
             <tr id="sc_con_minimum">
                 <th scope="row"><label for="it_sc_minimum">배송비 상세조건</label></th>
                 <td>
-                    주문금액 <input type="text" name="it_sc_minimum" value="<?php echo $it['it_sc_minimum']; ?>" id="it_sc_minimum" class="form-input" size="8"> 이상 무료 배송
+                    주문금액 <input type="text" name="it_sc_minimum" value="<?php echo $it['it_sc_minimum']; ?>" id="it_sc_minimum" size="8"> 이상 무료 배송
                 </td>
             </tr>
             <tr id="sc_con_qty">
                 <th scope="row"><label for="it_sc_qty">배송비 상세조건</label></th>
                 <td>
                     <?php echo help("상품의 주문 수량에 따라 배송비가 부과됩니다. 예를 들어 기본배송비가 3,000원 수량을 3으로 설정했을 경우 상품의 주문수량이 5개이면 6,000원 배송비가 부과됩니다."); ?>
-                    주문수량 <input type="text" name="it_sc_qty" value="<?php echo $it['it_sc_qty']; ?>" id="it_sc_qty" class="form-input" size="8"> 마다 배송비 부과
+                    주문수량 <input type="text" name="it_sc_qty" value="<?php echo $it['it_sc_qty']; ?>" id="it_sc_qty" size="8"> 마다 배송비 부과
                 </td>
             </tr>
         </tbody>

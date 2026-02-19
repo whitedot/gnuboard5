@@ -42,7 +42,7 @@ if($popup == 'yes') { // 팝업창일 때
 
     if($od['od_misu'] > 0)
         $pp['pp_price'] = $od['od_misu'];
-    $wrp_tag_st = '<div class="new_win">'.PHP_EOL.'<h1 id="new_win_title">'.$html_title.'</h1>';
+    $wrp_tag_st = '<div>'.PHP_EOL.'<h1 id="new_win_title">'.$html_title.'</h1>';
     $wrp_tag_end = '</div>';
 
     echo '<script>
@@ -54,7 +54,7 @@ if($popup == 'yes') { // 팝업창일 때
 else { // 현재페이지일 때
     include_once (G5_ADMIN_PATH.'/admin.head.php');
 }
-$pg_anchor = '<ul class="section-anchor">
+$pg_anchor = '<ul>
 <li><a href="#anc_spp_info">주문 정보</a></li>
 <li><a href="#anc_spp_pay">결제 정보</a></li>
 </ul>';
@@ -76,31 +76,31 @@ $pg_anchor = '<ul class="section-anchor">
 <?php echo $wrp_tag_st; ?>
 
     <section id="anc_spp_info">
-        <h2 class="section-title">주문 정보</h2>
+        <h2>주문 정보</h2>
         <?php if($popup != 'yes') echo $pg_anchor; ?>
-        <div class="hint-box">
+        <div>
             <p>주문 관련 기본 정보입니다.</p>
         </div>
 
-        <div class="form-card table-shell">
+        <div>
             <table>
             <caption>주문 정보 목록</caption>
             <colgroup>
-                <col class="col-4">
+                <col>
                 <col>
             </colgroup>
             <tbody>
             <tr>
                 <th scope="row"><label for="pp_name">이름</label></th>
-                <td><input type="text" name="pp_name" value="<?php echo get_text($pp['pp_name']); ?>" id="pp_name" required class="required form-input"></td>
+                <td><input type="text" name="pp_name" value="<?php echo get_text($pp['pp_name']); ?>" id="pp_name" required class="required"></td>
             </tr>
             <tr>
                 <th scope="row"><label for="pp_price">주문금액</label></th>
-                <td><input type="text" name="pp_price" value="<?php echo $pp['pp_price']; ?>" id="pp_price" required class="required form-input" size="15"> 원</td>
+                <td><input type="text" name="pp_price" value="<?php echo $pp['pp_price']; ?>" id="pp_price" required class="required" size="15"> 원</td>
             </tr>
             <tr>
                 <th scope="row"><label for="od_id">주문번호</label></th>
-                <td><input type="text" name="od_id" value="<?php echo $pp['od_id'] ? $pp['od_id'] : ''; ?>" id="od_id" class="form-input" size="20"></td>
+                <td><input type="text" name="od_id" value="<?php echo $pp['od_id'] ? $pp['od_id'] : ''; ?>" id="od_id" size="20"></td>
             </tr>
             <tr>
                 <th scope="row"><label for="pp_content">내용</label></th>
@@ -114,25 +114,25 @@ $pg_anchor = '<ul class="section-anchor">
 
 
     <?php if($popup != 'yes') { ?>
-    <section id="anc_spp_pay" class="cbox">
-        <h2 class="section-title">결제 정보</h2>
+    <section id="anc_spp_pay">
+        <h2>결제 정보</h2>
         <?php echo $pg_anchor; ?>
-        <div class="hint-box">
+        <div>
             <p>결제 관련 정보입니다.</p>
         </div>
 
-        <div class="form-card table-shell">
+        <div>
             <table>
             <caption>결제 정보 목록</caption>
             <colgroup>
-                <col class="col-4">
+                <col>
                 <col>
             </colgroup>
             <tbody>
             <?php if($popup != 'yes') { ?>
             <tr>
                 <th scope="row"><label for="pp_receipt_price">결제금액</label></th>
-                <td><input type="text" name="pp_receipt_price" value="<?php echo $pp['pp_receipt_price'] ? $pp['pp_receipt_price'] : ''; ?>" id="pp_receipt_price" class="form-input" size="15"> 원</td>
+                <td><input type="text" name="pp_receipt_price" value="<?php echo $pp['pp_receipt_price'] ? $pp['pp_receipt_price'] : ''; ?>" id="pp_receipt_price" size="15"> 원</td>
             </tr>
             <tr>
                 <th scope="row"><label for="pp_settle_case">결제방법</label></th>
@@ -152,7 +152,7 @@ $pg_anchor = '<ul class="section-anchor">
                 <td>
                     <input type="checkbox" name="pp_receipt_chk" id="pp_receipt_chk" value="<?php echo date("Y-m-d H:i:s", G5_SERVER_TIME); ?>" onclick="if (this.checked == true) this.form.pp_receipt_time.value=this.form.pp_receipt_chk.value; else this.form.pp_receipt_time.value = this.form.pp_receipt_time.defaultValue;">
                     <label for="pp_receipt_chk">현재 시간으로 설정</label><br>
-                    <input type="text" name="pp_receipt_time" value="<?php echo is_null_time($pp['pp_receipt_time']) ? "" : $pp['pp_receipt_time']; ?>" id="pp_receipt_time" class="form-input" maxlength="19">
+                    <input type="text" name="pp_receipt_time" value="<?php echo is_null_time($pp['pp_receipt_time']) ? "" : $pp['pp_receipt_time']; ?>" id="pp_receipt_time" maxlength="19">
                 </td>
             </tr>
             <?php
@@ -236,14 +236,14 @@ $pg_anchor = '<ul class="section-anchor">
     $btn_class = (isset($popup) && $popup === 'yes') ? 'action-bar-popup' : 'action-bar';
     ?>
     <div class="<?php echo $btn_class; ?>">
-        <input type="submit" value="확인" class="btn-primary btn" accesskey="s">
+        <input type="submit" value="확인" accesskey="s">
         <?php if($popup == 'yes') { ?>
-        <button type="button" onclick="self.close();" class="btn btn-secondary">닫기</button>
+        <button type="button" onclick="self.close();">닫기</button>
         <?php } else { ?>
-        <a href="./personalpaylist.php?<?php echo $qstr; ?>" class="btn btn-secondary">목록</a>
+        <a href="./personalpaylist.php?<?php echo $qstr; ?>">목록</a>
         <?php } ?>
         <?php if($w == 'u') { ?>
-        <a href="./personalpayformupdate.php?w=d&amp;pp_id=<?php echo $pp['pp_id']; ?>" onclick="return delete_confirm(this);" class="btn btn-secondary">삭제</a>
+        <a href="./personalpayformupdate.php?w=d&amp;pp_id=<?php echo $pp['pp_id']; ?>" onclick="return delete_confirm(this);">삭제</a>
         <?php } ?>
     </div>
 

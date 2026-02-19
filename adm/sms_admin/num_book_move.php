@@ -26,7 +26,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
 }
 ?>
 
-<div id="copymove" class="new_win">
+<div id="copymove">
     <h1 id="win_title"><?php echo $g5['title'] ?></h1>
 
     <form name="fboardmoveall" method="post" action="./number_move_update.php" onsubmit="return fboardmoveall_submit(this);">
@@ -34,15 +34,15 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     <input type="hidden" name="bk_no_list" value="<?php echo get_sanitize_input($bk_no_list); ?>">
     <input type="hidden" name="act" value="<?php echo get_sanitize_input($act); ?>">
     <input type="hidden" name="url" value="<?php echo clean_xss_tags(strip_tags($_SERVER['HTTP_REFERER'])); ?>">
-    <div class="new_win_con"> 
-        <div class="table-card table-shell card">
+    <div> 
+        <div>
             <table>
             <caption><?php echo $act ?>할 그룹을 한개 이상 선택하여 주십시오.</caption>
             <thead>
             <tr>
                 <th scope="col">
                     <?php if ( $inputbox_type == "checkbox" ){ //복사일때만 ?>
-                    <label for="chkall" class="sr-only">그룹 전체</label>
+                    <label for="chkall">그룹 전체</label>
                     <input type="checkbox" id="chkall" onclick="if (this.checked) all_checked(true); else all_checked(false);">
                     <?php } ?>
                 </th>
@@ -52,8 +52,8 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
             <tbody>
             <?php for ($i=0; $i<count($list); $i++) { ?>
             <tr>
-                <td class="cell-chk">
-                    <label for="chk<?php echo $i ?>" class="sr-only"><?php echo $list[$i]['bg_name'] ?></label>
+                <td>
+                    <label for="chk<?php echo $i ?>"><?php echo $list[$i]['bg_name'] ?></label>
                     <input type="<?php echo $inputbox_type; ?>" value="<?php echo $list[$i]['bg_no'] ?>" id="chk<?php echo $i ?>" name="chk_bg_no[]">
                 </td>
                 <td>
@@ -68,8 +68,8 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
         </div>
     </div>
     <div class="win_btn">
-        <input type="submit" value="<?php echo $act ?>" id="btn-primary" class="btn btn-sm border-default-300">
-        <button type="button" class="btn_cancel btn">창닫기</button>
+        <input type="submit" value="<?php echo $act ?>" id="btn-primary">
+        <button type="button">창닫기</button>
     </div>
     </form>
 

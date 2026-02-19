@@ -154,27 +154,27 @@ $g5['title'] = '엑셀 배송일괄처리 결과';
 include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 ?>
 
-<div class="new_win">
+<div>
     <h1><?php echo $g5['title']; ?></h1>
 
-    <div class="hint-box">
+    <div>
         <p>배송일괄처리를 완료했습니다.</p>
     </div>
 
     <dl id="excelfile_result">
         <dt>총배송건수</dt>
         <dd><?php echo number_format($total_count); ?></dd>
-        <dt class="result_done">완료건수</dt>
-        <dd class="result_done"><?php echo number_format($succ_count); ?></dd>
-        <dt class="result_fail">실패건수</dt>
-        <dd class="result_fail"><?php echo number_format($fail_count); ?></dd>
+        <dt>완료건수</dt>
+        <dd><?php echo number_format($succ_count); ?></dd>
+        <dt>실패건수</dt>
+        <dd><?php echo number_format($fail_count); ?></dd>
         <?php if($fail_count > 0) { ?>
         <dt>실패주문코드</dt>
         <dd><?php echo implode(', ', $fail_od_id); ?></dd>
         <?php } ?>
     </dl>
 
-    <div class="action-bar">
+    <div>
         <button type="button" onclick="window.close();">창닫기</button>
     </div>
 

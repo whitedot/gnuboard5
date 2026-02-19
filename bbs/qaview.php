@@ -150,7 +150,7 @@ if(is_file($skin_file)) {
         for ($i=1; $i<=2; $i++) {
             if(preg_match("/\.({$config['cf_image_extension']})$/i", $answer['qa_file'.$i])) {
                 $attr_href = run_replace('thumb_view_image_href', G5_BBS_URL.'/view_image.php?fn='.urlencode('/'.G5_DATA_DIR.'/qa/'.$answer['qa_file'.$i]), '/'.G5_DATA_DIR.'/qa/'.$answer['qa_file'.$i], '', '', '', '');
-                $answer['img_file'][] = '<a href="'.$attr_href.'" target="_blank" class="view_image"><img src="'.G5_DATA_URL.'/qa/'.$answer['qa_file'.$i].'"></a>';
+                $answer['img_file'][] = '<a href="'.$attr_href.'" target="_blank"><img src="'.G5_DATA_URL.'/qa/'.$answer['qa_file'.$i].'"></a>';
                 $answer['img_count']++;
                 continue;
             }
@@ -189,7 +189,7 @@ if(is_file($skin_file)) {
     for ($i=1; $i<=2; $i++) {
         if(preg_match("/\.({$config['cf_image_extension']})$/i", $view['qa_file'.$i])) {
             $attr_href = run_replace('thumb_view_image_href', G5_BBS_URL.'/view_image.php?fn='.urlencode('/'.G5_DATA_DIR.'/qa/'.$view['qa_file'.$i]), '/'.G5_DATA_DIR.'/qa/'.$view['qa_file'.$i], '', '', '', '');
-            $view['img_file'][] = '<a href="'.$attr_href.'" target="_blank" class="view_image"><img src="'.G5_DATA_URL.'/qa/'.$view['qa_file'.$i].'"></a>';
+            $view['img_file'][] = '<a href="'.$attr_href.'" target="_blank"><img src="'.G5_DATA_URL.'/qa/'.$view['qa_file'.$i].'"></a>';
             $view['img_count']++;
             continue;
         }

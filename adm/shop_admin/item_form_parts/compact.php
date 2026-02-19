@@ -1,7 +1,7 @@
 <section id="anc_sitfrm_compact">
-    <h2 class="section-title">상품요약정보</h2>
+    <h2>상품요약정보</h2>
     <?php echo $pg_anchor; ?>
-    <div class="hint-box">
+    <div>
         <p><strong>전자상거래 등에서의 상품 등의 정보제공에 관한 고시</strong>에 따라 총 35개 상품군에 대해 상품 특성 등을 양식에 따라 입력할 수 있습니다.</p>
     </div>
 

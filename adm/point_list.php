@@ -49,7 +49,7 @@ $sql = " select po.*, mb.mb_name, mb.mb_nick, mb.mb_email, mb.mb_homepage, mb.mb
             limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 
-$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="summary-all">전체목록</a>';
+$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '">전체목록</a>';
 
 $mb = array();
 if ($sfl == 'mb_id' && $stx) {
@@ -73,28 +73,28 @@ if (strstr($sfl, "mb_id")) {
 }
 ?>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
+<div>
     <?php echo $listall ?>
-    <span class="summary-chip"><span class="summary-label">전체 </span><span class="summary-value"> <?php echo number_format($total_count) ?> 건 </span></span>
+    <span><span>전체 </span><span> <?php echo number_format($total_count) ?> 건 </span></span>
     <?php
     if (isset($mb['mb_id']) && $mb['mb_id']) {
-        echo '&nbsp;<span class="summary-chip"><span class="summary-label">' . $mb['mb_id'] . ' 님 포인트 합계 </span><span class="summary-value"> ' . number_format($mb['mb_point']) . '점</span></span>';
+        echo '&nbsp;<span><span>' . $mb['mb_id'] . ' 님 포인트 합계 </span><span> ' . number_format($mb['mb_point']) . '점</span></span>';
     } else {
         $row2 = sql_fetch(" select sum(po_point) as sum_point from {$g5['point_table']} ");
-        echo '&nbsp;<span class="summary-chip"><span class="summary-label">전체 합계</span><span class="summary-value">' . number_format($row2['sum_point']) . '점 </span></span>';
+        echo '&nbsp;<span><span>전체 합계</span><span>' . number_format($row2['sum_point']) . '점 </span></span>';
     }
     ?>
 </div>
 
-<form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
-    <label for="sfl" class="sr-only">검색대상</label>
-    <select class="form-select" name="sfl" id="sfl" class="form-select">
+<form name="fsearch" id="fsearch" method="get">
+    <label for="sfl">검색대상</label>
+    <select name="sfl" id="sfl">
         <option value="mb_id" <?php echo get_selected($sfl, "mb_id"); ?>>회원아이디</option>
         <option value="po_content" <?php echo get_selected($sfl, "po_content"); ?>>내용</option>
     </select>
-    <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required form-input">
-    <input type="submit" class="btn btn-sm border-default-300" value="검색">
+    <label for="stx">검색어<strong> 필수</strong></label>
+    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required">
+    <input type="submit" value="검색">
 </form>
 
 <form name="fpointlist" id="fpointlist" method="post" action="./point_list_delete.php" onsubmit="return fpointlist_submit(this);">
@@ -105,13 +105,13 @@ if (strstr($sfl, "mb_id")) {
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <div class="table-card table-shell card">
+    <div>
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall" class="sr-only">포인트 내역 전체</label>
+                        <label for="chkall">포인트 내역 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col"><?php echo subject_sort_link('mb_id') ?>회원아이디</a></th>
@@ -144,43 +144,43 @@ if (strstr($sfl, "mb_id")) {
                 ?>
 
                     <tr class="<?php echo $bg; ?>">
-                        <td class="cell-chk">
+                        <td>
                             <input type="hidden" name="mb_id[<?php echo $i ?>]" value="<?php echo $row['mb_id'] ?>" id="mb_id_<?php echo $i ?>">
                             <input type="hidden" name="po_id[<?php echo $i ?>]" value="<?php echo $row['po_id'] ?>" id="po_id_<?php echo $i ?>">
-                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $row['po_content'] ?> 내역</label>
+                            <label for="chk_<?php echo $i; ?>"><?php echo $row['po_content'] ?> 내역</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
                         </td>
-                        <td class="cell-left"><a href="?sfl=mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo $row['mb_id'] ?></a></td>
-                        <td class="cell-left"><?php echo get_text($row['mb_name']); ?></td>
-                        <td class="cell-left sv_use">
+                        <td><a href="?sfl=mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo $row['mb_id'] ?></a></td>
+                        <td><?php echo get_text($row['mb_name']); ?></td>
+                        <td>
                             <div><?php echo $mb_nick ?></div>
                         </td>
-                        <td class="cell-left"><?php echo $link1 ?><?php echo $row['po_content'] ?><?php echo $link2 ?></td>
-                        <td class="cell-num cell-pt"><?php echo number_format($row['po_point']) ?></td>
-                        <td class="cell-datetime"><?php echo $row['po_datetime'] ?></td>
-                        <td class="cell-datetime2<?php echo $expr; ?>">
+                        <td><?php echo $link1 ?><?php echo $row['po_content'] ?><?php echo $link2 ?></td>
+                        <td><?php echo number_format($row['po_point']) ?></td>
+                        <td><?php echo $row['po_datetime'] ?></td>
+                        <td class="<?php echo $expr; ?>">
                             <?php if ($row['po_expired'] == 1) { ?>
                                 만료<?php echo substr(str_replace('-', '', $row['po_expire_date']), 2); ?>
                             <?php } else {
                                 echo $row['po_expire_date'] == '9999-12-31' ? '&nbsp;' : $row['po_expire_date'];
                             } ?>
                         </td>
-                        <td class="cell-num cell-pt"><?php echo number_format($row['po_mb_point']) ?></td>
+                        <td><?php echo number_format($row['po_mb_point']) ?></td>
                     </tr>
 
                 <?php
                 }
 
                 if ($i == 0) {
-                    echo '<tr><td colspan="' . $colspan . '" class="table-empty">자료가 없습니다.</td></tr>';
+                    echo '<tr><td colspan="' . $colspan . '">자료가 없습니다.</td></tr>';
                 }
                 ?>
             </tbody>
         </table>
     </div>
 
-    <div class="action-bar">
-        <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
+    <div>
+        <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
     </div>
 
 </form>
@@ -188,7 +188,7 @@ if (strstr($sfl, "mb_id")) {
 <?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page="); ?>
 
 <section id="point_mng">
-    <h2 class="section-title">개별회원 포인트 증감 설정</h2>
+    <h2>개별회원 포인트 증감 설정</h2>
 
     <form name="fpointlist2" method="post" id="fpointlist2" action="./point_update.php" autocomplete="off">
         <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
@@ -198,37 +198,37 @@ if (strstr($sfl, "mb_id")) {
         <input type="hidden" name="page" value="<?php echo $page ?>">
         <input type="hidden" name="token" value="<?php echo isset($token) ? $token : ''; ?>">
 
-        <div class="card">
+        <div>
             <table>
                 <colgroup>
-                    <col class="col-4">
+                    <col>
                     <col>
                 </colgroup>
                 <tbody>
                     <tr>
-                        <th scope="row"><label for="mb_id">회원아이디<strong class="sr-only">필수</strong></label></th>
-                        <td><input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" class="required form-input" required></td>
+                        <th scope="row"><label for="mb_id">회원아이디<strong>필수</strong></label></th>
+                        <td><input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" class="required" required></td>
                     </tr>
                     <tr>
-                        <th scope="row"><label for="po_content">포인트 내용<strong class="sr-only">필수</strong></label></th>
-                        <td><input type="text" name="po_content" id="po_content" required class="required form-input" size="80"></td>
+                        <th scope="row"><label for="po_content">포인트 내용<strong>필수</strong></label></th>
+                        <td><input type="text" name="po_content" id="po_content" required class="required" size="80"></td>
                     </tr>
                     <tr>
-                        <th scope="row"><label for="po_point">포인트<strong class="sr-only">필수</strong></label></th>
-                        <td><input type="text" name="po_point" id="po_point" required class="required form-input"></td>
+                        <th scope="row"><label for="po_point">포인트<strong>필수</strong></label></th>
+                        <td><input type="text" name="po_point" id="po_point" required class="required"></td>
                     </tr>
                     <?php if ($config['cf_point_term'] > 0) { ?>
                         <tr>
                             <th scope="row"><label for="po_expire_term">포인트 유효기간</label></th>
-                            <td><input type="text" name="po_expire_term" value="<?php echo $po_expire_term; ?>" id="po_expire_term" class="form-input" size="5"> 일</td>
+                            <td><input type="text" name="po_expire_term" value="<?php echo $po_expire_term; ?>" id="po_expire_term" size="5"> 일</td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
         </div>
 
-        <div class="action-bar">
-            <input type="submit" value="확인" class="btn btn-sm border-default-300">
+        <div>
+            <input type="submit" value="확인">
         </div>
 
     </form>

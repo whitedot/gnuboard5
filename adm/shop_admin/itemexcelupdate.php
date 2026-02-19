@@ -169,10 +169,10 @@ $g5['title'] = '상품 엑셀일괄등록 결과';
 include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 ?>
 
-<div class="new_win">
+<div>
     <h1><?php echo $g5['title']; ?></h1>
 
-    <div class="hint-box">
+    <div>
         <p>상품등록을 완료했습니다.</p>
     </div>
 
@@ -195,7 +195,7 @@ include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
         <?php } ?>
     </dl>
 
-    <div class="btn_win01 action-bar-popup">
+    <div>
         <button type="button" onclick="window.close();">창닫기</button>
     </div>
 

@@ -50,11 +50,11 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca;
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 
 
-<div class="form-card table-shell">
+<div>
     <table>
     <caption><?php echo $g5['title']; ?> 수정</caption>
     <colgroup>
-        <col class="col-4">
+        <col>
         <col>
     </colgroup>
     <tbody>
@@ -72,7 +72,7 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca;
     </tr>
     <tr>
         <th scope="row"><label for="is_subject">제목</label></th>
-        <td><input type="text" name="is_subject" required class="required form-input" id="is_subject" size="100"
+        <td><input type="text" name="is_subject" required class="required" id="is_subject" size="100"
         value="<?php echo get_text($is['is_subject']); ?>"></td>
     </tr>
     <tr>
@@ -81,7 +81,7 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca;
     </tr>
     <tr>
         <th scope="row"><label for="is_reply_subject">답변 제목</label></th>
-        <td><input type="text" name="is_reply_subject" class="form-input" id="is_reply_subject" size="100"
+        <td><input type="text" name="is_reply_subject" id="is_reply_subject" size="100"
         value="<?php echo get_text($is['is_reply_subject']); ?>"></td>
     </tr>
     <tr>
@@ -101,9 +101,9 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca;
     </table>
 </div>
 
-<div class="action-bar">
-    <a href="./itemuselist.php?<?php echo $qstr; ?>" class="btn-secondary btn">목록</a>
-    <input type="submit" value="확인" class="btn-primary btn" accesskey="s">
+<div>
+    <a href="./itemuselist.php?<?php echo $qstr; ?>">목록</a>
+    <input type="submit" value="확인" accesskey="s">
 </div>
 </form>
 

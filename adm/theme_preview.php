@@ -129,7 +129,7 @@ if($conf['cf_theme'] != $theme) {
     else
         $set_default_skin = 'false';
 
-    $btn_active = '<li><button type="button" class="theme_sl theme_active" data-theme="'.$theme.'" '.'data-name="'.$name.'" data-set_default_skin="'.$set_default_skin.'">테마적용</button></li>';
+    $btn_active = '<li><button type="button" data-theme="'.$theme.'" '.'data-name="'.$name.'" data-set_default_skin="'.$set_default_skin.'">테마적용</button></li>';
 } else {
     $btn_active = '';
 }

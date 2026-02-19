@@ -12,8 +12,8 @@ $fg_no = isset($_REQUEST['fg_no']) ? (int) $_REQUEST['fg_no'] : 0;
 ?>
 
 <form name="emo_frm">
-    <label for="emo_sel" class="sr-only">이모티콘 그룹</label>
-    <select class="form-select" name="fg_no" id="emo_sel">
+    <label for="emo_sel">이모티콘 그룹</label>
+    <select name="fg_no" id="emo_sel">
         <option value=""<?php echo get_selected('', $fg_no); ?>> 전체 </option>
         <option value="0"<?php echo get_selected('0', $fg_no); ?>> 미분류 (<?php echo number_format($no_count)?>) </option>
         <?php for($i=0; $i<count($group); $i++) {?>
@@ -29,19 +29,19 @@ $fg_no = isset($_REQUEST['fg_no']) ? (int) $_REQUEST['fg_no'] : 0;
 <input type="hidden" name="fg_no" value="<?php echo $fg_no?>">
 <input type="hidden" name="page" id="hidden_page" >
 <input type="hidden" name="fg_no" id="hidden_fg_no" >
-<label for="st" class="sr-only">검색대상</label>
-<select class="form-select" name="st" id="st">
+<label for="st">검색대상</label>
+<select name="st" id="st">
     <option value="all"<?php echo get_selected('all', $st); ?>>제목 + 이모티콘</option>
     <option value="name"<?php echo get_selected('name', $st); ?>>제목</option>
     <option value="content"<?php echo get_selected('content', $st); ?>>이모티콘</option>
 </select>
-<label for="sv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="sv" value="<?php echo $sv?>" id="sv" required class="form-input required" size="15">
-<input type="submit" value="검색" class="btn btn-sm border-default-300">
+<label for="sv">검색어<strong> 필수</strong></label>
+<input type="text" name="sv" value="<?php echo $sv?>" id="sv" required class="required" size="15">
+<input type="submit" value="검색">
 </form>
 
-<nav class="pg_wrap">
-    <span class="pg" id="emo_pg"></span>
+<nav>
+    <span id="emo_pg"></span>
 </nav>
 
 <script src="<?php echo G5_JS_URL?>/jquery.sms_paging.js"></script>

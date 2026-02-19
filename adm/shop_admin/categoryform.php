@@ -93,7 +93,7 @@ else if ($w == "u")
 $g5['title'] = $html_title;
 include_once (G5_ADMIN_PATH.'/admin.head.php');
 
-$pg_anchor ='<ul class="section-anchor">
+$pg_anchor ='<ul>
 <li><a href="#anc_scatefrm_basic">필수입력</a></li>
 <li><a href="#anc_scatefrm_optional">선택입력</a></li>
 <li><a href="#anc_scatefrm_extra">여분필드</a></li>';
@@ -122,14 +122,14 @@ else {
 <input type="hidden" name="ca_explan_html" value="<?php echo $ca['ca_explan_html']; ?>">
 
 <section id="anc_scatefrm_basic">
-    <h2 class="section-title">필수입력</h2>
+    <h2>필수입력</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="form-card table-shell">
+    <div>
         <table>
         <caption>분류 추가 필수입력</caption>
         <colgroup>
-            <col class="col-4">
+            <col>
             <col>
         </colgroup>
         <tbody>
@@ -138,32 +138,32 @@ else {
             <td>
             <?php if ($w == "") { ?>
                 <?php echo help("자동으로 보여지는 분류코드를 사용하시길 권해드리지만 직접 입력한 값으로도 사용할 수 있습니다.\n분류코드는 나중에 수정이 되지 않으므로 신중하게 결정하여 사용하십시오.\n\n분류코드는 2자리씩 10자리를 사용하여 5단계를 표현할 수 있습니다.\n0~z까지 입력이 가능하며 한 분류당 최대 1296가지를 표현할 수 있습니다.\n그러므로 총 3656158440062976가지의 분류를 사용할 수 있습니다."); ?>
-                <input type="text" name="ca_id" value="<?php echo $subid; ?>" id="ca_id" required class="required form-input" size="<?php echo $sublen; ?>" maxlength="<?php echo $sublen; ?>">
+                <input type="text" name="ca_id" value="<?php echo $subid; ?>" id="ca_id" required class="required" size="<?php echo $sublen; ?>" maxlength="<?php echo $sublen; ?>">
             <?php } else { ?>
                 <input type="hidden" name="ca_id" value="<?php echo $ca['ca_id']; ?>">
-                <span class="frm_ca_id"><?php echo $ca['ca_id']; ?></span>
-                <a href="<?php echo shop_category_url($ca_id); ?>" class="btn-inline">미리보기</a>
-                <a href="./categoryform.php?ca_id=<?php echo $ca_id; ?>&amp;<?php echo $qstr; ?>" class="btn-inline">하위분류 추가</a>
-                <a href="./itemlist.php?sca=<?php echo $ca['ca_id']; ?>" class="btn-inline">상품리스트</a>
+                <span><?php echo $ca['ca_id']; ?></span>
+                <a href="<?php echo shop_category_url($ca_id); ?>">미리보기</a>
+                <a href="./categoryform.php?ca_id=<?php echo $ca_id; ?>&amp;<?php echo $qstr; ?>">하위분류 추가</a>
+                <a href="./itemlist.php?sca=<?php echo $ca['ca_id']; ?>">상품리스트</a>
             <?php } ?>
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="ca_name">분류명</label></th>
-            <td><input type="text" name="ca_name" value="<?php echo $ca['ca_name']; ?>" id="ca_name" size="38" required class="required form-input"></td>
+            <td><input type="text" name="ca_name" value="<?php echo $ca['ca_name']; ?>" id="ca_name" size="38" required class="required"></td>
         </tr>
         <tr>
             <th scope="row"><label for="ca_order">출력순서</label></th>
             <td>
                 <?php echo help("숫자가 작을 수록 상위에 출력됩니다. 음수 입력도 가능하며 입력 가능 범위는 -2147483648 부터 2147483647 까지입니다.\n<b>입력하지 않으면 자동으로 출력됩니다.</b>"); ?>
-                <input type="text" name="ca_order" value="<?php echo $ca['ca_order']; ?>" id="ca_order" class="form-input" size="12">
+                <input type="text" name="ca_order" value="<?php echo $ca['ca_order']; ?>" id="ca_order" size="12">
             </td>
         </tr>
         <tr>
             <th scope="row"><?php if ($is_admin == 'super') { ?><label for="ca_mb_id"><?php } ?>관리 회원아이디<?php if ($is_admin == 'super') { ?></label><?php } ?></th>
             <td>
                 <?php if ($is_admin == 'super') { ?>
-                    <input type="text" name="ca_mb_id" value="<?php echo get_sanitize_input($ca['ca_mb_id']); ?>" id="ca_mb_id" class="form-input" maxlength="20">
+                    <input type="text" name="ca_mb_id" value="<?php echo get_sanitize_input($ca['ca_mb_id']); ?>" id="ca_mb_id" maxlength="20">
                 <?php } else { ?>
                     <input type="hidden" name="ca_mb_id" value="<?php echo get_sanitize_input($ca['ca_mb_id']); ?>">
                     <?php echo $ca['ca_mb_id']; ?>
@@ -207,42 +207,42 @@ else {
             <th scope="row"><label for="ca_img_width">출력이미지 폭</label></th>
             <td>
                 <?php echo help("쇼핑몰환경설정 &gt; 이미지(소) 넓이가 기본값으로 설정됩니다.\n".G5_SHOP_URL."/list.php에서 출력되는 이미지의 폭입니다."); ?>
-                <input type="text" name="ca_img_width" value="<?php echo $ca['ca_img_width']; ?>" id="ca_img_width" required class="required form-input" size="5" > 픽셀
+                <input type="text" name="ca_img_width" value="<?php echo $ca['ca_img_width']; ?>" id="ca_img_width" required class="required" size="5" > 픽셀
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="ca_img_height">출력이미지 높이</label></th>
             <td>
                 <?php echo help("쇼핑몰환경설정 &gt; 이미지(소) 높이가 기본값으로 설정됩니다.\n".G5_SHOP_URL."/list.php에서 출력되는 이미지의 높이입니다."); ?>
-                <input type="text" name="ca_img_height"  value="<?php echo $ca['ca_img_height']; ?>" id="ca_img_height" required class="required form-input" size="5" > 픽셀
+                <input type="text" name="ca_img_height"  value="<?php echo $ca['ca_img_height']; ?>" id="ca_img_height" required class="required" size="5" > 픽셀
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="ca_list_mod">1줄당 이미지 수</label></th>
             <td>
                 <?php echo help("한 줄에 설정한 값만큼의 상품을 출력하지만 스킨에 따라 한 줄에 하나의 상품만 출력할 수도 있습니다."); ?>
-                <input type="text" name="ca_list_mod" size="3" value="<?php echo $ca['ca_list_mod']; ?>" id="ca_list_mod" required class="required form-input"> 개
+                <input type="text" name="ca_list_mod" size="3" value="<?php echo $ca['ca_list_mod']; ?>" id="ca_list_mod" required class="required"> 개
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="ca_list_row">이미지 줄 수</label></th>
             <td>
                 <?php echo help("한 페이지에 출력할 이미지 줄 수를 설정합니다.\n한 페이지에서 표시하는 상품수는 (1줄당 이미지 수 x 줄 수) 입니다."); ?>
-                <input type="text" name="ca_list_row" value='<?php echo $ca['ca_list_row']; ?>' id="ca_list_row" required class="required form-input" size="3"> 줄
+                <input type="text" name="ca_list_row" value='<?php echo $ca['ca_list_row']; ?>' id="ca_list_row" required class="required" size="3"> 줄
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="ca_stock_qty">재고수량</label></th>
             <td>
                 <?php echo help("상품의 기본재고 수량을 설정합니다.\n재고를 사용하지 않는다면 숫자를 크게 입력하여 주십시오. 예) 999999"); ?>
-                <input type="text" name="ca_stock_qty" size="10" value="<?php echo $ca['ca_stock_qty']; ?>" id="ca_stock_qty" class="form-input"> 개
+                <input type="text" name="ca_stock_qty" size="10" value="<?php echo $ca['ca_stock_qty']; ?>" id="ca_stock_qty"> 개
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="ca_sell_email">판매자 E-mail</label></th>
             <td>
                 <?php echo help("운영자와 판매자가 다른 경우에 사용합니다.\n이 분류에 속한 상품을 등록할 경우에 기본값으로 입력됩니다."); ?>
-                <input type="text" name="ca_sell_email" size="40" value="<?php echo get_sanitize_input($ca['ca_sell_email']); ?>" id="ca_sell_email" class="form-input">
+                <input type="text" name="ca_sell_email" size="40" value="<?php echo get_sanitize_input($ca['ca_sell_email']); ?>" id="ca_sell_email">
             </td>
         </tr>
         <tr>
@@ -264,19 +264,19 @@ else {
         </tbody>
         </table>
     </div>
-    <button type="button" class="shop_category btn-secondary btn">테마설정 가져오기</button>
+    <button type="button" class="shop_category">테마설정 가져오기</button>
 </section>
 
 
 <section id="anc_scatefrm_optional">
-    <h2 class="section-title">선택 입력</h2>
+    <h2>선택 입력</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="form-card table-shell">
+    <div>
         <table>
         <caption>분류 추가 선택입력</caption>
         <colgroup>
-            <col class="col-4">
+            <col>
             <col>
         </colgroup>
         <tbody>
@@ -284,14 +284,14 @@ else {
             <th scope="row"><label for="ca_include_head">상단파일경로</label></th>
             <td>
                 <?php echo help("입력하지 않으면 기본 상단 파일을 사용합니다.<br>상단 내용과 달리 PHP 코드를 사용할 수 있습니다."); ?>
-                <input type="text" name="ca_include_head" value="<?php echo $ca['ca_include_head']; ?>" id="ca_include_head" class="form-input" size="60">
+                <input type="text" name="ca_include_head" value="<?php echo $ca['ca_include_head']; ?>" id="ca_include_head" size="60">
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="ca_include_tail">하단 파일 경로</label></th>
             <td>
                 <?php echo help("입력하지 않으면 기본 하단 파일을 사용합니다.<br>하단 내용과 달리 PHP 코드를 사용할 수 있습니다."); ?>
-                <input type="text" name="ca_include_tail" value="<?php echo $ca['ca_include_tail']; ?>" id="ca_include_tail" class="form-input" size="60">
+                <input type="text" name="ca_include_tail" value="<?php echo $ca['ca_include_tail']; ?>" id="ca_include_tail" size="60">
             </td>
         </tr>
         <tr id="admin_captcha_box" style="display:none;">
@@ -348,21 +348,21 @@ else {
     <h2>여분필드 설정</h2>
     <?php echo $pg_anchor ?>
 
-    <div class="form-card table-shell">
+    <div>
         <table>
         <colgroup>
-            <col class="col-3">
+            <col>
             <col>
         </colgroup>
         <tbody>
         <?php for ($i=1; $i<=10; $i++) { ?>
         <tr>
             <th scope="row">여분필드<?php echo $i ?></th>
-            <td class="cell-extra">
+            <td>
                 <label for="ca_<?php echo $i ?>_subj">여분필드 <?php echo $i ?> 제목</label>
-                <input type="text" name="ca_<?php echo $i ?>_subj" id="ca_<?php echo $i ?>_subj" value="<?php echo get_text($ca['ca_'.$i.'_subj']) ?>" class="form-input">
+                <input type="text" name="ca_<?php echo $i ?>_subj" id="ca_<?php echo $i ?>_subj" value="<?php echo get_text($ca['ca_'.$i.'_subj']) ?>">
                 <label for="ca_<?php echo $i ?>">여분필드 <?php echo $i ?> 값</label>
-                <input type="text" name="ca_<?php echo $i ?>" value="<?php echo get_text($ca['ca_'.$i]) ?>" id="ca_<?php echo $i ?>" class="form-input">
+                <input type="text" name="ca_<?php echo $i ?>" value="<?php echo get_text($ca['ca_'.$i]) ?>" id="ca_<?php echo $i ?>">
             </td>
         </tr>
         <?php } ?>
@@ -374,14 +374,14 @@ else {
 
 <?php if ($w == "u") { ?>
 <section id="frm_etc">
-    <h2 class="section-title">기타설정</h2>
+    <h2>기타설정</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="form-card table-shell">
+    <div>
         <table>
         <caption>분류 추가 기타설정</caption>
         <colgroup>
-            <col class="col-4">
+            <col>
             <col>
         </colgroup>
         <tbody>
@@ -399,9 +399,9 @@ else {
 </section>
 
 <?php } ?>
-<div class="action-bar">
-    <input type="submit" value="확인" class="btn-primary btn" accesskey="s">
-    <a href="./categorylist.php?<?php echo $qstr; ?>" class="btn-secondary btn">목록</a>
+<div>
+    <input type="submit" value="확인" accesskey="s">
+    <a href="./categorylist.php?<?php echo $qstr; ?>">목록</a>
 </div>
 </form>
 

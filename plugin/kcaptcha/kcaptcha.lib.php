@@ -239,25 +239,25 @@ class KCAPTCHA{
 
 
 // 캡챠 HTML 코드 출력
-function captcha_html($class="captcha")
+function captcha_html($captcha_class="captcha")
 {
     if(is_mobile())
-        $class .= ' m_captcha';
+        $captcha_class .= ' m_captcha';
 
     $html = "\n".'<script>var g5_captcha_url  = "'.G5_CAPTCHA_URL.'";</script>';
     //$html .= "\n".'<script>var g5_captcha_path = "'.G5_CAPTCHA_PATH.'";</script>';
     $html .= "\n".'<script src="'.G5_CAPTCHA_URL.'/kcaptcha.js"></script>';
-    $html .= "\n".'<fieldset id="captcha" class="'.$class.'">';
+    $html .= "\n".'<fieldset id="captcha">';
     $html .= "\n".'<legend><label for="captcha_key">자동등록방지</label></legend>';
     if (is_mobile()) $html .= '<audio id="captcha_audio" controls></audio>';
     //$html .= "\n".'<img src="#" alt="" id="captcha_img">';
     $html .= "\n".'<img src="'.G5_CAPTCHA_URL.'/img/dot.gif" alt="" id="captcha_img">';
-    $html .= '<input type="text" name="captcha_key" id="captcha_key" required class="captcha_box required" size="6" maxlength="6">';
+    $html .= '<input type="text" name="captcha_key" id="captcha_key" required size="6" maxlength="6">';
     if (!is_mobile()) $html .= "\n".'<button type="button" id="captcha_mp3"><span></span>숫자음성듣기</button>';
     $html .= "\n".'<button type="button" id="captcha_reload"><span></span>새로고침</button>';
     $html .= "\n".'<span id="captcha_info">자동등록방지 숫자를 순서대로 입력하세요.</span>';
     $html .= "\n".'</fieldset>';
-    return run_replace('kcaptcha_captcha_html', $html, $class);
+    return run_replace('kcaptcha_captcha_html', $html, $captcha_class);
 }
 
 

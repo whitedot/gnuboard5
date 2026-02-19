@@ -31,14 +31,14 @@ $od_misu = abs($od['od_misu']);
 <form name="forderpartcancel" method="post" action="./orderpartcancelupdate.php" onsubmit="return form_check(this);">
 <input type="hidden" name="od_id" value="<?php echo $od_id; ?>">
 
-<div class="new_win">
+<div>
     <h1><?php echo $od['od_settle_case']; ?> 부분취소</h1>
 
-    <div class="form-card table-shell">
+    <div>
         <table>
         <caption><?php echo $g5['title']; ?> 입력</caption>
         <colgroup>
-            <col class="col-4">
+            <col>
             <col>
         </colgroup>
         <tbody>
@@ -49,22 +49,22 @@ $od_misu = abs($od['od_misu']);
         </tr>
         <tr>
             <th scope="row"><label for="mod_tax_mny">과세 취소금액</label></th>
-            <td><input type="text" name="mod_tax_mny" value="" id="mod_tax_mny" class="form-input"> 원</td>
+            <td><input type="text" name="mod_tax_mny" value="" id="mod_tax_mny"> 원</td>
         </tr>
         <tr>
             <th scope="row"><label for="mod_free_mny">비과세 취소금액</label></th>
-            <td><input type="text" name="mod_free_mny" value="" id="mod_free_mny" class="form-input"> 원</td>
+            <td><input type="text" name="mod_free_mny" value="" id="mod_free_mny"> 원</td>
         </tr>
         <tr>
             <th scope="row"><label for="mod_memo">요청사유</label></th>
-            <td><input type="text" name="mod_memo" id="mod_memo" required class="required form-input" size="50"></td>
+            <td><input type="text" name="mod_memo" id="mod_memo" required class="required" size="50"></td>
         </tr>
         </tbody>
         </table>
     </div>
 
-    <div class="action-bar">
-        <input type="submit" value="확인" class="btn-primary" accesskey="s">
+    <div>
+        <input type="submit" value="확인" accesskey="s">
         <button type="button" onclick="self.close();">닫기</button>
     </div>
 </div>

@@ -1,15 +1,15 @@
 <section id="anc_sitfrm_cate">
-    <h2 class="section-title">상품분류</h2>
+    <h2>상품분류</h2>
     <?php echo $pg_anchor; ?>
-    <div class="hint-box">
+    <div>
         <p>기본분류는 반드시 선택하셔야 합니다. 하나의 상품에 최대 3개의 다른 분류를 지정할 수 있습니다.</p>
     </div>
 
-    <div class="form-card table-shell">
+    <div>
         <table>
         <caption>상품분류 입력</caption>
         <colgroup>
-            <col class="col-4">
+            <col>
             <col>
         </colgroup>
         <tbody>

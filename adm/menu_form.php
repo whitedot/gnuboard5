@@ -21,12 +21,12 @@ if ($new == 'new' || !$code) {
 
 ?>
 
-<div id="menu_frm" class="new_win">
+<div id="menu_frm">
     <h1><?php echo $g5['title']; ?></h1>
 
-    <form name="fmenuform" id="fmenuform" class="new_win_con">
+    <form name="fmenuform" id="fmenuform">
 
-        <div class="new_win_desc">
+        <div>
             <label for="me_type">대상선택</label>
             <select name="me_type" id="me_type">
                 <option value="">직접입력</option>

@@ -54,7 +54,7 @@ $list_text = "";
 
 if( !$total_count ){
     $list_text .="
-    <li class=\"empty_list\">
+    <li>
         데이터가 없습니다.
     </li>
     ";
@@ -69,11 +69,11 @@ while($res = sql_fetch_array($qry))
 
     $res['fo_content'] = html_purifier($res['fo_content']);
     $list_text .="
-    <li class=\"screen_list sms5_box\">
-        <span class=\"box_ico\"></span>
-        <textarea readonly class=\"sms_textarea box_txt box_square\" onclick=\"emoticon_list.go({$res['fo_no']})\">{$res['fo_content']}</textarea>
+    <li>
+        <span></span>
+        <textarea readonly class=\"box_txt\" onclick=\"emoticon_list.go({$res['fo_no']})\">{$res['fo_content']}</textarea>
         <textarea id=\"fo_contents_{$res['fo_no']}\" style=\"display:none\">{$res['fo_content']}</textarea>
-        <strong class=\"emo_tit\">".cut_str($res['fo_name'],20)."</strong>
+        <strong>".cut_str($res['fo_name'],20)."</strong>
     </li>
     ";
 }

@@ -9,7 +9,7 @@ $g5['title'] = '썸네일 일괄삭제';
 include_once('./admin.head.php');
 ?>
 
-<div class="hint-text">
+<div>
     <p>
         완료 메세지가 나오기 전에 프로그램의 실행을 중지하지 마십시오.
     </p>
@@ -44,7 +44,7 @@ if (empty($directory)) {
 }
 
 $cnt=0;
-echo '<div class="card p-4 mb-base"><ul>'.PHP_EOL;
+echo '<div><ul>'.PHP_EOL;
 
 foreach($directory as $dir) {
     $files = glob($dir.'/thumb-*');
@@ -64,7 +64,7 @@ foreach($directory as $dir) {
 }
 
 echo '<li>완료됨</li></ul></div>'.PHP_EOL;
-echo '<div class="hint-text"><p><strong>썸네일 '.$cnt.'건의 삭제 완료됐습니다.</strong><br>프로그램의 실행을 끝마치셔도 좋습니다.</p></div>'.PHP_EOL;
+echo '<div><p><strong>썸네일 '.$cnt.'건의 삭제 완료됐습니다.</strong><br>프로그램의 실행을 끝마치셔도 좋습니다.</p></div>'.PHP_EOL;
 ?>
 
 <?php

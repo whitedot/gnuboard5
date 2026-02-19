@@ -27,19 +27,19 @@ if (!defined('_GNUBOARD_')) exit;
         </style>
 	</head>
 	<body>
-        <div class="error-container">
+        <div>
             <h4>Error : <?php echo isset($code) ? $code : ''; ?></h4>
-            <div class="alert alert-danger" role="alert">
-              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-              <span class="sr-only">Error:</span>
+            <div role="alert">
+              <span aria-hidden="true"></span>
+              <span>Error:</span>
               <?php echo $get_error; ?>
             </div>
-            <div class="bs-callout bs-callout-danger" id="callout-images-ie-rounded-corners">
+            <div id="callout-images-ie-rounded-corners">
                 <?php if(isset($code) && ($code <= 0 && $code > 10) ){ ?>
                 <p>잠시후에 다시 시도해 주세요.</p>
                 <?php } ?>
-                <a href="<?php echo G5_URL; ?>" class="btn btn-primary go_home">홈으로</a>
-                <a href="<?php echo G5_URL; ?>" class="btn btn-default close" style="display:none">이 페이지 닫기</a>
+                <a href="<?php echo G5_URL; ?>" class="btn go_home">홈으로</a>
+                <a href="<?php echo G5_URL; ?>" class="btn close" style="display:none">이 페이지 닫기</a>
             </div>
         </div>
 	</body>

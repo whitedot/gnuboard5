@@ -1,12 +1,12 @@
 <section id="anc_mb_history">
-    <h2 class="section-title">인증 및 활동 내역</h2>
-    <div class="form-card table-shell">
+    <h2>인증 및 활동 내역</h2>
+    <div>
         <table>
             <caption>인증 및 활동 내역</caption>
             <colgroup>
-                <col class="col-4">
                 <col>
-                <col class="col-4">
+                <col>
+                <col>
                 <col>
             </colgroup>
             <tbody>
@@ -86,13 +86,13 @@
                 <tr>
                     <th scope="row"><label for="mb_leave_date">탈퇴일자</label></th>
                     <td>
-                        <input type="text" name="mb_leave_date" value="<?php echo $mb['mb_leave_date'] ?>" id="mb_leave_date" class="form-input" maxlength="8">
+                        <input type="text" name="mb_leave_date" value="<?php echo $mb['mb_leave_date'] ?>" id="mb_leave_date" maxlength="8">
                         <input type="checkbox" value="<?php echo date("Ymd"); ?>" id="mb_leave_date_set_today" onclick="if (this.form.mb_leave_date.value==this.form.mb_leave_date.defaultValue) { this.form.mb_leave_date.value=this.value; } else { this.form.mb_leave_date.value=this.form.mb_leave_date.defaultValue; }">
                         <label for="mb_leave_date_set_today">탈퇴일을 오늘로 지정</label>
                     </td>
                     <th scope="row">접근차단일자</th>
                     <td>
-                        <input type="text" name="mb_intercept_date" value="<?php echo $mb['mb_intercept_date'] ?>" id="mb_intercept_date" class="form-input" maxlength="8">
+                        <input type="text" name="mb_intercept_date" value="<?php echo $mb['mb_intercept_date'] ?>" id="mb_intercept_date" maxlength="8">
                         <input type="checkbox" value="<?php echo date("Ymd"); ?>" id="mb_intercept_date_set_today" onclick="if (this.form.mb_intercept_date.value==this.form.mb_intercept_date.defaultValue) { this.form.mb_intercept_date.value=this.value; } else { this.form.mb_intercept_date.value=this.form.mb_intercept_date.defaultValue; }">
                         <label for="mb_intercept_date_set_today">접근차단일을 오늘로 지정</label>
                     </td>
@@ -105,8 +105,8 @@
                         <tr>
                             <th>소셜계정목록</th>
                             <td colspan="3">
-                                <ul class="social_link_box">
-                                    <li class="social_login_container">
+                                <ul>
+                                    <li>
                                         <h4>연결된 소셜 계정 목록</h4>
                                         <?php foreach ($my_social_accounts as $account) {     //반복문
                                             if (empty($account)) {
@@ -117,16 +117,16 @@
                                             $provider_name = social_get_provider_service_name($provider);
                                         ?>
                                             <div class="account_provider" data-mpno="social_<?php echo $account['mp_no']; ?>">
-                                                <div class="sns-wrap-32 sns-wrap-over">
-                                                    <span class="sns-icon sns-<?php echo $provider; ?>" title="<?php echo $provider_name; ?>">
-                                                        <span class="ico"></span>
-                                                        <span class="txt"><?php echo $provider_name; ?></span>
+                                                <div>
+                                                    <span class="<?php echo $provider; ?>" title="<?php echo $provider_name; ?>">
+                                                        <span></span>
+                                                        <span><?php echo $provider_name; ?></span>
                                                     </span>
 
-                                                    <span class="provider_name"><?php echo $provider_name;   //서비스이름 ?> ( <?php echo $account['displayname']; ?> )</span>
+                                                    <span><?php echo $provider_name;   //서비스이름 ?> ( <?php echo $account['displayname']; ?> )</span>
                                                     <span class="account_hidden" style="display:none"><?php echo $account['mb_id']; ?></span>
                                                 </div>
-                                                <div class="btn_info"><a href="<?php echo G5_SOCIAL_LOGIN_URL . '/unlink.php?mp_no=' . $account['mp_no'] ?>" class="social_unlink" data-provider="<?php echo $account['mp_no']; ?>">연동해제</a> <span class="sr-only"><?php echo substr($account['mp_register_day'], 2, 14); ?></span></div>
+                                                <div><a href="<?php echo G5_SOCIAL_LOGIN_URL . '/unlink.php?mp_no=' . $account['mp_no'] ?>" class="social_unlink" data-provider="<?php echo $account['mp_no']; ?>">연동해제</a> <span><?php echo substr($account['mp_register_day'], 2, 14); ?></span></div>
                                             </div>
                                         <?php } //end foreach ?>
                                     </li>

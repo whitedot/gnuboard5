@@ -1,11 +1,11 @@
-<section id="anc_sitfrm_event" class="srel">
-    <h2 class="section-title">관련이벤트</h2>
+<section id="anc_sitfrm_event">
+    <h2>관련이벤트</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="compare_wrap">
-        <section class="compare_left">
+    <div>
+        <section>
             <h3>등록된 전체이벤트 목록</h3>
-            <div id="event_list" class="srel_list srel_noneimg">
+            <div id="event_list">
                 <?php
                 $sql = " select ev_id, ev_subject from {$g5['g5_shop_event_table']} order by ev_id desc ";
                 $result = sql_query($sql);
@@ -15,8 +15,8 @@
                 ?>
                     <li>
                         <input type="hidden" name="ev_id[]" value="<?php echo $row['ev_id']; ?>">
-                        <div class="list_item"><?php echo get_text($row['ev_subject']); ?></div>
-                        <div class="list_item_btn"><button type="button" class="add_event btn-inline">추가</button></div>
+                        <div><?php echo get_text($row['ev_subject']); ?></div>
+                        <div><button type="button" class="add_event">추가</button></div>
                     </li>
                 <?php
                 }
@@ -72,9 +72,9 @@
             </script>
         </section>
 
-        <section class="compare_right">
+        <section>
             <h3>선택된 관련이벤트 목록</h3>
-            <div id="reg_event_list" class="srel_sel srel_noneimg">
+            <div id="reg_event_list">
                 <?php
                 $str = "";
                 $comma = "";
@@ -93,8 +93,8 @@
                 ?>
                     <li>
                         <input type="hidden" name="ev_id[]" value="<?php echo $row['ev_id']; ?>">
-                        <div class="list_item"><?php echo get_text($row['ev_subject']); ?></div>
-                        <div class="list_item_btn"><button type="button" class="del_event btn-inline">삭제</button></div>
+                        <div><?php echo get_text($row['ev_subject']); ?></div>
+                        <div><button type="button" class="del_event">삭제</button></div>
                     </li>
                 <?php
                 }

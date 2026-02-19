@@ -1,12 +1,12 @@
 <section id ="anc_scf_payment">
-    <h2 class="section-title">결제설정</h2>
+    <h2>결제설정</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="form-card table-shell">
+    <div>
         <table>
         <caption>결제설정 입력</caption>
         <colgroup>
-            <col class="col-4">
+            <col>
             <col>
         </colgroup>
         <tbody>
@@ -134,7 +134,7 @@
             $transfer_checked = 'checked="checked"';
         }
         ?>
-        <tr id="de_taxsave_types" class="de_taxsave_types">
+        <tr id="de_taxsave_types">
             <th scope="row">현금영수증<br>적용수단</th>
             <td>
                 <?php echo help("현금영수증 발급 사용일 경우 해당됩니다.<br>현금 영수증 발급은 무통장입금, 가상계좌, 실시간계좌에만 적용됩니다.<br>아래 체크된 수단에 한해서 회원이 직접 주문 보기 페이지에서 현금영수증을 발급 받을수 있습니다.<br>!!! 만약 PG사 상점관리자에서 가상계좌 또는 실시간계좌이체가 자동으로 현금영수증이 발급되는 경우이면, 아래 가상계좌와 실시간계좌이체 체크박스를 해제하여 사용해 주세요.( 중복으로 발급되는 것을 막기 위함입니다. )", 50); ?>
@@ -154,14 +154,14 @@
             <th scope="row"><label for="de_settle_min_point">결제 최소포인트</label></th>
             <td>
                 <?php echo help("회원의 포인트가 설정값 이상일 경우만 주문시 결제에 사용할 수 있습니다.\n포인트 사용을 하지 않는 경우에는 의미가 없습니다."); ?>
-                <input type="text" name="de_settle_min_point" value="<?php echo get_sanitize_input($default['de_settle_min_point']); ?>" id="de_settle_min_point" class="form-input" size="10"> 점
+                <input type="text" name="de_settle_min_point" value="<?php echo get_sanitize_input($default['de_settle_min_point']); ?>" id="de_settle_min_point" size="10"> 점
             </td>
         </tr>
         <tr>
             <th scope="row"><label for="de_settle_max_point">최대 결제포인트</label></th>
             <td>
                 <?php echo help("주문 결제시 최대로 사용할 수 있는 포인트를 설정합니다.\n포인트 사용을 하지 않는 경우에는 의미가 없습니다."); ?>
-                <input type="text" name="de_settle_max_point" value="<?php echo get_sanitize_input($default['de_settle_max_point']); ?>" id="de_settle_max_point" class="form-input" size="10"> 점
+                <input type="text" name="de_settle_max_point" value="<?php echo get_sanitize_input($default['de_settle_max_point']); ?>" id="de_settle_max_point" size="10"> 점
             </td>
         </tr>
         <tr>
@@ -189,7 +189,7 @@
             <th scope="row"><label for="de_point_days">주문완료 포인트</label></th>
             <td>
                 <?php echo help("주문자가 회원일 경우에만 주문완료시 포인트를 지급합니다. 주문취소, 반품 등을 고려하여 포인트를 지급할 적당한 기간을 입력하십시오. (기본값은 7일)\n0일로 설정하는 경우에는 주문완료와 동시에 포인트를 지급합니다."); ?>
-                주문 완료 <input type="text" name="de_point_days" value="<?php echo get_sanitize_input($default['de_point_days']); ?>" id="de_point_days" class="form-input" size="2"> 일 이후에 포인트를 지급
+                주문 완료 <input type="text" name="de_point_days" value="<?php echo get_sanitize_input($default['de_point_days']); ?>" id="de_point_days" size="2"> 일 이후에 포인트를 지급
             </td>
         </tr>
         <tr>
@@ -209,18 +209,18 @@
         <tr class="pg_info_fld kcp_info_fld" id="kcp_info_anchor">
             <th scope="row">
                 <label for="de_kcp_mid">KCP SITE CODE</label><br>
-                <a href="http://sir.kr/main/service/p_pg.php" target="_blank" id="scf_kcpreg" class="kcp_btn">NHN KCP 신청하기</a>
+                <a href="http://sir.kr/main/service/p_pg.php" target="_blank" id="scf_kcpreg">NHN KCP 신청하기</a>
             </th>
             <td>
                 <?php echo help("NHN KCP 에서 받은 SR 로 시작하는 영대문자, 숫자 혼용 총 5자리 중 SR 을 제외한 나머지 3자리 SITE CODE 를 입력하세요.\n만약, 사이트코드가 SR로 시작하지 않는다면 NHN KCP에 사이트코드 변경 요청을 하십시오. 예) SR9A3"); ?>
-                <span class="sitecode">SR</span> <input type="text" name="de_kcp_mid" value="<?php echo get_sanitize_input($default['de_kcp_mid']); ?>" id="de_kcp_mid" class="form-input code_input" size="2" maxlength="3"> 영대문자, 숫자 혼용 3자리
+                <span>SR</span> <input type="text" name="de_kcp_mid" value="<?php echo get_sanitize_input($default['de_kcp_mid']); ?>" id="de_kcp_mid" size="2" maxlength="3"> 영대문자, 숫자 혼용 3자리
             </td>
         </tr>
         <tr class="pg_info_fld kcp_info_fld">
             <th scope="row"><label for="de_kcp_site_key">NHN KCP SITE KEY</label></th>
             <td>
                 <?php echo help("25자리 영대소문자와 숫자 - 그리고 _ 로 이루어 집니다. SITE KEY 발급 NHN KCP 전화: 1544-8660\n예) 1Q9YRV83gz6TukH8PjH0xFf__"); ?>
-                <input type="text" name="de_kcp_site_key" value="<?php echo get_sanitize_input($default['de_kcp_site_key']); ?>" id="de_kcp_site_key" class="form-input" size="36" maxlength="25">
+                <input type="text" name="de_kcp_site_key" value="<?php echo get_sanitize_input($default['de_kcp_site_key']); ?>" id="de_kcp_site_key" size="36" maxlength="25">
             </td>
         </tr>
         <tr class="pg_info_fld kcp_info_fld">
@@ -247,79 +247,79 @@
                 <input type="checkbox" id="used_nhnkcp_naverpay_point" name="de_easy_pays[]" value="used_nhnkcp_naverpay_point" <?php if(stripos($default['de_easy_pay_services'], 'used_nhnkcp_naverpay_point') !== false){ echo 'checked="checked"'; } ?> > <label for="used_nhnkcp_naverpay_point">NAVERPAY POINT (네이버페이 포인트 사용)</label><br>
             </td>
         </tr>
-        <tr class="pg_info_fld lg_info_fld" id="lg_info_anchor">
+        <tr class="pg_info_fld" id="lg_info_anchor">
             <th scope="row">
                 <label for="cf_lg_mid">토스페이먼츠 상점아이디</label><br>
-                <a href="http://sir.kr/main/service/lg_pg.php" target="_blank" id="scf_lgreg" class="lg_btn">토스페이먼츠 신청하기</a>
+                <a href="http://sir.kr/main/service/lg_pg.php" target="_blank" id="scf_lgreg">토스페이먼츠 신청하기</a>
             </th>
             <td>
                 <?php echo help("토스페이먼츠에서 받은 si_ 로 시작하는 상점 ID를 입력하세요.\n만약, 상점 ID가 si_로 시작하지 않는다면 토스페이먼츠에 사이트코드 변경 요청을 하십시오. 예) si_lguplus\n<a href=\"".G5_ADMIN_URL."/config_form.php#anc_cf_cert\">기본환경설정 &gt; 본인확인</a> 설정의 토스페이먼츠 상점아이디와 동일합니다."); ?>
-                <span class="sitecode">si_</span> <input type="text" name="cf_lg_mid" value="<?php echo get_sanitize_input($config['cf_lg_mid']); ?>" id="cf_lg_mid" class="form-input code_input" size="10" maxlength="20"> 영문자, 숫자 혼용
+                <span>si_</span> <input type="text" name="cf_lg_mid" value="<?php echo get_sanitize_input($config['cf_lg_mid']); ?>" id="cf_lg_mid" size="10" maxlength="20"> 영문자, 숫자 혼용
             </td>
         </tr>
-        <tr class="pg_info_fld lg_info_fld">
+        <tr class="pg_info_fld">
             <th scope="row"><label for="cf_lg_mert_key">토스페이먼츠(구버전) MERT KEY</label></th>
             <td>
                 <?php echo help("토스페이먼츠(구버전) 상점 MertKey는 상점관리자 -> 개발자센터 -> API키 -> 머트 키에서 확인하실 수 있습니다.\n예) 95160cce09854ef44d2edb2bfb05f9f3"); ?>
-                <input type="text" name="cf_lg_mert_key" value="<?php echo get_sanitize_input($config['cf_lg_mert_key']); ?>" id="cf_lg_mert_key" class="form-input" size="36" maxlength="50">
+                <input type="text" name="cf_lg_mert_key" value="<?php echo get_sanitize_input($config['cf_lg_mert_key']); ?>" id="cf_lg_mert_key" size="36" maxlength="50">
             </td>
         </tr>
-        <tr class="pg_info_fld lg_info_fld_v2">
+        <tr class="pg_info_fld">
             <th scope="row"><label for="cf_toss_client_key">토스페이먼츠 API Client Key</label></th>
             <td>
                 <?php echo help("토스페이먼츠 API 클라이언트 키는 상점관리자 -> 개발자센터 -> API키 -> 클라이언트 키에서 확인하실 수 있습니다. 예) live_ck_tosspayment\n실결제용 [라이브] 키와 테스트용 [테스트] 키는 서로 다르므로, <b>테스트로 결제시에는 [테스트] 키</b>로 변경하여 사용해주시기 바랍니다. 예) 테스트 키: test_ck_tosspayment"); ?>
-                <input type="text" name="cf_toss_client_key" value="<?php echo get_sanitize_input($config['cf_toss_client_key']); ?>" id="cf_toss_client_key" class="form-input" size="40" maxlength="50">
+                <input type="text" name="cf_toss_client_key" value="<?php echo get_sanitize_input($config['cf_toss_client_key']); ?>" id="cf_toss_client_key" size="40" maxlength="50">
             </td>
         </tr>
-        <tr class="pg_info_fld lg_info_fld_v2">
+        <tr class="pg_info_fld">
             <th scope="row"><label for="cf_toss_secret_key">토스페이먼츠 API Secret Key</label></th>
             <td>
                 <?php echo help("토스페이먼츠 API 시크릿 키는 상점관리자 -> 개발자센터 -> API키 -> 시크릿 키에서 확인하실 수 있습니다. 예) live_sk_tosspayment\n실결제용 [라이브] 키와 테스트용 [테스트] 키는 서로 다르므로, <b>테스트로 결제시에는 [테스트] 키</b>로 변경하여 사용해주시기 바랍니다. 예) 테스트 키: test_sk_tosspayment"); ?>
-                <input type="text" name="cf_toss_secret_key" value="<?php echo get_sanitize_input($config['cf_toss_secret_key']); ?>" id="cf_toss_secret_key" class="form-input" size="40" maxlength="50">
+                <input type="text" name="cf_toss_secret_key" value="<?php echo get_sanitize_input($config['cf_toss_secret_key']); ?>" id="cf_toss_secret_key" size="40" maxlength="50">
             </td>
         </tr>
-        <tr class="pg_info_fld inicis_info_fld" id="inicis_info_anchor">
+        <tr class="pg_info_fld" id="inicis_info_anchor">
             <th scope="row">
                 <label for="de_inicis_mid">KG이니시스 상점아이디</label><br>
-                <a href="http://sir.kr/main/service/inicis_pg.php" target="_blank" id="scf_kgreg" class="kg_btn">KG이니시스 신청하기</a>
+                <a href="http://sir.kr/main/service/inicis_pg.php" target="_blank" id="scf_kgreg">KG이니시스 신청하기</a>
             </th>
             <td>
                 <?php echo help("KG이니시스로 부터 발급 받으신 상점아이디(MID) 10자리 중 SIR 을 제외한 나머지 7자리를 입력 합니다.\n만약, 상점아이디가 SIR로 시작하지 않는다면 계약담당자에게 변경 요청을 해주시기 바랍니다. (Tel. 02-3430-5858) 예) SIRpaytest"); ?>
-                <span class="sitecode">SIR</span> <input type="text" name="de_inicis_mid" value="<?php echo $default['de_inicis_mid']; ?>" id="de_inicis_mid" class="form-input code_input" size="10" maxlength="10"> 영문소문자(숫자포함 가능)
+                <span>SIR</span> <input type="text" name="de_inicis_mid" value="<?php echo $default['de_inicis_mid']; ?>" id="de_inicis_mid" size="10" maxlength="10"> 영문소문자(숫자포함 가능)
             </td>
         </tr>
-        <tr class="pg_info_fld inicis_info_fld">
+        <tr class="pg_info_fld">
             <th scope="row"><label for="de_inicis_sign_key">KG이니시스 웹결제 사인키</label></th>
             <td>
                 <?php echo help("KG이니시스에서 발급받은 웹결제 사인키를 입력합니다.\n<a href='https://iniweb.inicis.com/' target='_blank'>KG이니시스 가맹점관리자</a> > 상점정보 > 계약정보 > 부가정보의 웹결제 signkey생성 조회 버튼 클릭, 팝업창에서 생성 버튼 클릭 후 해당 값을 입력합니다."); ?>
-                <input type="text" name="de_inicis_sign_key" value="<?php echo get_sanitize_input($default['de_inicis_sign_key']); ?>" id="de_inicis_sign_key" class="form-input" size="40" maxlength="50">
+                <input type="text" name="de_inicis_sign_key" value="<?php echo get_sanitize_input($default['de_inicis_sign_key']); ?>" id="de_inicis_sign_key" size="40" maxlength="50">
             </td>
         </tr>
-        <tr class="pg_info_fld inicis_info_fld">
+        <tr class="pg_info_fld">
             <th scope="row"><label for="de_inicis_iniapi_key">KG이니시스 INIAPI KEY</label></th>
             <td>
                 <?php echo help("<a href='https://iniweb.inicis.com/' target='_blank'>KG이니시스 가맹점관리자</a> > 상점정보 > 계약정보 > 부가정보 > INIAPI key 생성 조회 하여 KEY를 여기에 입력합니다.\n이 항목은 영카트 주문에서 kg이니시스 PG 결제 취소, 부분취소, 에스크로 배송등록, 현금영수증 발급에 필요합니다."); ?>
-                <input type="text" name="de_inicis_iniapi_key" value="<?php echo get_sanitize_input($default['de_inicis_iniapi_key']); ?>" id="de_inicis_iniapi_key" class="form-input" size="30" maxlength="30">
+                <input type="text" name="de_inicis_iniapi_key" value="<?php echo get_sanitize_input($default['de_inicis_iniapi_key']); ?>" id="de_inicis_iniapi_key" size="30" maxlength="30">
             </td>
         </tr>
-        <tr class="pg_info_fld inicis_info_fld">
+        <tr class="pg_info_fld">
             <th scope="row"><label for="de_inicis_iniapi_iv">KG이니시스 INIAPI IV</label></th>
             <td>
                 <?php echo help("<a href='https://iniweb.inicis.com/' target='_blank'>KG이니시스 가맹점관리자</a> > 상점정보 > 계약정보 > 부가정보 > INIAPI IV 생성 조회 하여 KEY를 여기에 입력합니다.\n이 항목은 영카트 주문에서 kg이니시스 현금영수증 발급에 필요합니다."); ?>
-                <input type="text" name="de_inicis_iniapi_iv" value="<?php echo get_sanitize_input($default['de_inicis_iniapi_iv']); ?>" id="de_inicis_iniapi_iv" class="form-input" size="30" maxlength="30">
+                <input type="text" name="de_inicis_iniapi_iv" value="<?php echo get_sanitize_input($default['de_inicis_iniapi_iv']); ?>" id="de_inicis_iniapi_iv" size="30" maxlength="30">
             </td>
         </tr>
-        <tr class="pg_info_fld inicis_info_fld">
+        <tr class="pg_info_fld">
             <th scope="row">
                 <label for="de_samsung_pay_use">KG이니시스 삼성페이 사용</label>
-                <a href="http://sir.kr/main/service/samsungpay.php" target="_blank" class="kg_btn">삼성페이 서비스신청하기</a>
+                <a href="http://sir.kr/main/service/samsungpay.php" target="_blank">삼성페이 서비스신청하기</a>
             </th>
             <td>
                 <?php echo help("KG이니시스와 별도로 <strong>삼성페이 사용 계약을 하신 경우</strong>에만 체크해주세요. (모바일 주문서 결제수단에 삼성페이가 노출됩니다.) <br >실결제시 반드시 결제대행사 KG이니시스 항목에 상점 아이디와 웹결제 사인키를 입력해 주세요.", 50); ?>
                 <input type="checkbox" name="de_samsung_pay_use" value="1" id="de_samsung_pay_use"<?php echo $default['de_samsung_pay_use']?' checked':''; ?>> <label for="de_samsung_pay_use">사용</label>
             </td>
         </tr>
-        <tr class="pg_info_fld inicis_info_fld">
+        <tr class="pg_info_fld">
             <th scope="row">
                 <label for="de_inicis_lpay_use">KG이니시스 L.pay 사용</label>
             </th>
@@ -328,7 +328,7 @@
                 <input type="checkbox" name="de_inicis_lpay_use" value="1" id="de_inicis_lpay_use"<?php echo $default['de_inicis_lpay_use']?' checked':''; ?>> <label for="de_inicis_lpay_use">사용</label>
             </td>
         </tr>
-        <tr class="pg_info_fld inicis_info_fld">
+        <tr class="pg_info_fld">
             <th scope="row">
                 <label for="de_inicis_kakaopay_use">KG이니시스 카카오페이 사용</label>
             </th>
@@ -337,7 +337,7 @@
                 <input type="checkbox" name="de_inicis_kakaopay_use" value="1" id="de_inicis_kakaopay_use"<?php echo $default['de_inicis_kakaopay_use']?' checked':''; ?>> <label for="de_inicis_kakaopay_use">사용</label>
             </td>
         </tr>
-        <tr class="pg_info_fld inicis_info_fld">
+        <tr class="pg_info_fld">
             <th scope="row">
                 <label for="de_inicis_cartpoint_use">KG이니시스 신용카드 포인트 결제</label>
             </th>
@@ -346,31 +346,31 @@
                 <input type="checkbox" name="de_inicis_cartpoint_use" value="1" id="de_inicis_cartpoint_use"<?php echo $default['de_inicis_cartpoint_use']?' checked':''; ?>> <label for="de_inicis_cartpoint_use">사용</label>
             </td>
         </tr>
-        <tr class="kakao_info_fld">
+        <tr>
             <th scope="row">
                 <label for="de_kakaopay_mid">카카오페이 상점아이디<br>( KG이니시스 )</label>
-                <a href="http://sir.kr/main/service/kakaopay.php?kk=yc5" target="_blank" class="kakao_btn">카카오페이 서비스신청하기</a>
+                <a href="http://sir.kr/main/service/kakaopay.php?kk=yc5" target="_blank">카카오페이 서비스신청하기</a>
             </th>
             <td>
                 <?php echo help("KG이니시스로 부터 카카오페이 간편결제만 사용용도로 발급 받으신 상점아이디(MID) 10자리 중 SIRK 을 제외한 나머지 6자리를 입력 합니다."); ?>
-                <span class="sitecode">SIRK</span> <input type="text" name="de_kakaopay_mid" value="<?php echo get_sanitize_input($default['de_kakaopay_mid']); ?>" id="de_kakaopay_mid" class="form-input code_input" size="10" maxlength="7">
+                <span>SIRK</span> <input type="text" name="de_kakaopay_mid" value="<?php echo get_sanitize_input($default['de_kakaopay_mid']); ?>" id="de_kakaopay_mid" size="10" maxlength="7">
             </td>
         </tr>
-        <tr class="kakao_info_fld">
+        <tr>
             <th scope="row"><label for="de_kakaopay_key">카카오페이 상점키<br>( KG이니시스 )</label></th>
             <td>
                 <?php echo help("SIRK****** 아이디로 KG이니시스에서 발급받은 웹결제 사인키를 입력합니다.\nKG이니시스 상점관리자 > 상점정보 > 계약정보 > 부가정보의 웹결제 signkey생성 조회 버튼 클릭, 팝업창에서 생성 버튼 클릭 후 해당 값을 입력합니다."); ?>
-                <input type="text" name="de_kakaopay_key" value="<?php echo get_sanitize_input($default['de_kakaopay_key']); ?>" id="de_kakaopay_key" class="form-input" size="100">
+                <input type="text" name="de_kakaopay_key" value="<?php echo get_sanitize_input($default['de_kakaopay_key']); ?>" id="de_kakaopay_key" size="100">
             </td>
         </tr>
-        <tr class="kakao_info_fld">
+        <tr>
             <th scope="row"><label for="de_kakaopay_cancelpwd">카카오페이 키패스워드<br>( KG이니시스 )</label></th>
             <td>
                 <?php echo help("SIRK****** 아이디로 KG이니시스에서 발급받은 4자리 상점 키패스워드를 입력합니다.\nKG이니시스 상점관리자 패스워드와 관련이 없습니다.\n키패스워드 값을 확인하시려면 상점측에 발급된 키파일 안의 readme.txt 파일을 참조해 주십시오"); ?>
-                <input type="text" name="de_kakaopay_cancelpwd" value="<?php echo get_sanitize_input($default['de_kakaopay_cancelpwd']); ?>" id="de_kakaopay_cancelpwd" class="form-input" size="20">
+                <input type="text" name="de_kakaopay_cancelpwd" value="<?php echo get_sanitize_input($default['de_kakaopay_cancelpwd']); ?>" id="de_kakaopay_cancelpwd" size="20">
             </td>
         </tr>
-        <tr class="kakao_info_fld">
+        <tr>
             <th scope="row">
                 <label for="de_kakaopay_enckey">KG이니시스<br>카카오페이 사용</label>
             </th>
@@ -379,31 +379,31 @@
                 <input type="checkbox" name="de_kakaopay_enckey" value="1" id="de_kakaopay_enckey"<?php echo $default['de_kakaopay_enckey']?' checked':''; ?>> <label for="de_kakaopay_enckey">사용</label>
             </td>
         </tr>
-        <tr class="kakao_info_fld" style="display:none">
+        <tr style="display:none">
             <th scope="row"><label for="de_kakaopay_hashkey">카카오페이 상점 HashKey</label></th>
             <td>
                 <?php echo help("카카오페이로 부터 발급 받으신 상점 인증 전용 HashKey를 입력합니다."); ?>
-                <input type="text" name="de_kakaopay_hashkey" value="<?php echo get_sanitize_input($default['de_kakaopay_hashkey']); ?>" id="de_kakaopay_hashkey" class="form-input" size="20">
+                <input type="text" name="de_kakaopay_hashkey" value="<?php echo get_sanitize_input($default['de_kakaopay_hashkey']); ?>" id="de_kakaopay_hashkey" size="20">
             </td>
         </tr>
 
-        <tr class="pg_info_fld nicepay_info_fld" id="nicepay_info_anchor">
-            <th scope="row"><label for="de_nicepay_mid">NICEPAY MID</label><br><a href="http://sir.kr/main/service/nicepayments_pg.php" target="_blank" id="scf_nicepay_reg" class="nicepay_btn">NICEPAY 신청하기</a></th>
+        <tr class="pg_info_fld" id="nicepay_info_anchor">
+            <th scope="row"><label for="de_nicepay_mid">NICEPAY MID</label><br><a href="http://sir.kr/main/service/nicepayments_pg.php" target="_blank" id="scf_nicepay_reg">NICEPAY 신청하기</a></th>
             <td>
-                <span class="frm_info">NICEPAY로 부터 발급 받으신 상점MID를 SR 을 제외한 나머지 자리를 입력 합니다.<br>NICEPAY 상점관리자 > 가맹점정보 > KEY관리에서 확인 할수 있습니다.<br>만약, 상점아이디가 SR로 시작하지 않는다면 계약담당자에게 변경 요청을 해주시기 바랍니다. 예) SRpaytestm</span>
-                <span class="sitecode">SR</span>
-                <input type="text" name="de_nicepay_mid" value="<?php echo get_sanitize_input($default['de_nicepay_mid']); ?>" id="de_nicepay_mid" class="form-input" size="12" maxlength="12">
+                <span>NICEPAY로 부터 발급 받으신 상점MID를 SR 을 제외한 나머지 자리를 입력 합니다.<br>NICEPAY 상점관리자 > 가맹점정보 > KEY관리에서 확인 할수 있습니다.<br>만약, 상점아이디가 SR로 시작하지 않는다면 계약담당자에게 변경 요청을 해주시기 바랍니다. 예) SRpaytestm</span>
+                <span>SR</span>
+                <input type="text" name="de_nicepay_mid" value="<?php echo get_sanitize_input($default['de_nicepay_mid']); ?>" id="de_nicepay_mid" size="12" maxlength="12">
                 영문소문자(숫자포함 가능)
             </td>
         </tr>
-        <tr class="pg_info_fld nicepay_info_fld">
+        <tr class="pg_info_fld">
             <th scope="row"><label for="de_nicepay_key">NICEPAY KEY</label></th>
             <td>
-                <input type="text" name="de_nicepay_key" value="<?php echo get_sanitize_input($default['de_nicepay_key']); ?>" id="de_nicepay_key" class="form-input" size="100" maxlength="100">
+                <input type="text" name="de_nicepay_key" value="<?php echo get_sanitize_input($default['de_nicepay_key']); ?>" id="de_nicepay_key" size="100" maxlength="100">
             </td>
         </tr>
 
-        <tr class="pg_info_fld nicepay_info_fld">
+        <tr class="pg_info_fld">
             <th scope="row"><label for="de_nicepay_easy_pays">NICEPAY 간편결제</label></th>
             <td>
                 <?php echo help("체크시 NICEPAY 간편결제들을 활성화 합니다.\nNICEPAY > 간편결제는 테스트결제가 되지 않습니다. 실결제에만 정상작동 합니다.\n애플페이는 IOS 기기에 모바일결제만 가능합니다."); ?>
@@ -419,35 +419,35 @@
         </tr>
 
         <?php if (defined('G5_SHOP_DIRECT_NAVERPAY') && G5_SHOP_DIRECT_NAVERPAY) { ?>
-        <tr class="naver_info_fld">
+        <tr>
             <th scope="row">
                 <label for="de_naverpay_mid">네이버페이 가맹점 아이디</label>
-                <a href="http://sir.kr/main/service/naverpay.php" target="_blank" class="naver_btn">네이버페이 서비스신청하기</a>
+                <a href="http://sir.kr/main/service/naverpay.php" target="_blank">네이버페이 서비스신청하기</a>
             </th>
             <td>
                 <?php echo help("네이버페이 가맹점 아이디를 입력합니다."); ?>
-                <input type="text" name="de_naverpay_mid" value="<?php echo get_sanitize_input($default['de_naverpay_mid']); ?>" id="de_naverpay_mid" class="form-input" size="20" maxlength="50">
+                <input type="text" name="de_naverpay_mid" value="<?php echo get_sanitize_input($default['de_naverpay_mid']); ?>" id="de_naverpay_mid" size="20" maxlength="50">
              </td>
         </tr>
-        <tr class="naver_info_fld">
+        <tr>
             <th scope="row">
                 <label for="de_naverpay_cert_key">네이버페이 가맹점 인증키</label>
             </th>
             <td>
                 <?php echo help("네이버페이 가맹점 인증키를 입력합니다."); ?>
-                <input type="text" name="de_naverpay_cert_key" value="<?php echo get_sanitize_input($default['de_naverpay_cert_key']); ?>" id="de_naverpay_cert_key" class="form-input" size="50" maxlength="100">
+                <input type="text" name="de_naverpay_cert_key" value="<?php echo get_sanitize_input($default['de_naverpay_cert_key']); ?>" id="de_naverpay_cert_key" size="50" maxlength="100">
              </td>
         </tr>
-        <tr class="naver_info_fld">
+        <tr>
             <th scope="row">
                 <label for="de_naverpay_button_key">네이버페이 버튼 인증키</label>
             </th>
             <td>
                 <?php echo help("네이버페이 버튼 인증키를 입력합니다."); ?>
-                <input type="text" name="de_naverpay_button_key" value="<?php echo get_sanitize_input($default['de_naverpay_button_key']); ?>" id="de_naverpay_button_key" class="form-input" size="50" maxlength="100">
+                <input type="text" name="de_naverpay_button_key" value="<?php echo get_sanitize_input($default['de_naverpay_button_key']); ?>" id="de_naverpay_button_key" size="50" maxlength="100">
              </td>
         </tr>
-        <tr class="naver_info_fld">
+        <tr>
             <th scope="row"><label for="de_naverpay_test">네이버페이 결제테스트</label></th>
             <td>
                 <?php echo help("네이버페이 결제테스트 여부를 설정합니다. 검수 과정 중에는 <strong>예</strong>로 설정해야 하며 최종 승인 후 <strong>아니오</strong>로 설정합니다."); ?>
@@ -457,29 +457,29 @@
                 </select>
             </td>
         </tr>
-        <tr class="naver_info_fld">
+        <tr>
             <th scope="row">
                 <label for="de_naverpay_mb_id">네이버페이 결제테스트 아이디</label>
             </th>
             <td>
                 <?php echo help("네이버페이 결제테스트를 위한 테스트 회원 아이디를 입력합니다. 네이버페이 검수 과정에서 필요합니다."); ?>
-                <input type="text" name="de_naverpay_mb_id" value="<?php echo get_sanitize_input($default['de_naverpay_mb_id']); ?>" id="de_naverpay_mb_id" class="form-input" size="20" maxlength="20">
+                <input type="text" name="de_naverpay_mb_id" value="<?php echo get_sanitize_input($default['de_naverpay_mb_id']); ?>" id="de_naverpay_mb_id" size="20" maxlength="20">
              </td>
         </tr>
-        <tr class="naver_info_fld">
+        <tr>
             <th scope="row">네이버페이 상품정보 XML URL</th>
             <td>
                 <?php echo help("네이버페이에 상품정보를 XML 데이터로 제공하는 페이지입니다. 검수과정에서 아래의 URL 정보를 제공해야 합니다."); ?>
                 <?php echo G5_SHOP_URL; ?>/naverpay/naverpay_item.php
              </td>
         </tr>
-        <tr class="naver_info_fld">
+        <tr>
             <th scope="row">
                 <label for="de_naverpay_sendcost">네이버페이 추가배송비 안내</label>
             </th>
             <td>
                 <?php echo help("네이버페이를 통한 결제 때 구매자에게 보여질 추가배송비 내용을 입력합니다.<br>예) 제주도 3,000원 추가, 제주도 외 도서·산간 지역 5,000원 추가"); ?>
-                <input type="text" name="de_naverpay_sendcost" value="<?php echo get_sanitize_input($default['de_naverpay_sendcost']); ?>" id="de_naverpay_sendcost" class="form-input" size="70">
+                <input type="text" name="de_naverpay_sendcost" value="<?php echo get_sanitize_input($default['de_naverpay_sendcost']); ?>" id="de_naverpay_sendcost" size="70">
              </td>
         </tr>
         <?php } // defined('G5_SHOP_DIRECT_NAVERPAY') ?>
@@ -501,19 +501,19 @@
                 <label for="de_card_test1">실결제 </label>
                 <input type="radio" name="de_card_test" value="1" <?php echo $default['de_card_test']==1?"checked":""; ?> id="de_card_test2">
                 <label for="de_card_test2">테스트결제</label>
-                <div class="scf_cardtest kcp_cardtest">
-                    <a href="http://admin.kcp.co.kr/" target="_blank" class="btn-inline">실결제 관리자</a>
-                    <a href="http://testadmin8.kcp.co.kr/" target="_blank" class="btn-inline">테스트 관리자</a>
+                <div class="scf_cardtest">
+                    <a href="http://admin.kcp.co.kr/" target="_blank">실결제 관리자</a>
+                    <a href="http://testadmin8.kcp.co.kr/" target="_blank">테스트 관리자</a>
                 </div>
-                <div class="scf_cardtest lg_cardtest">
-                    <a href="https://app.tosspayments.com/" target="_blank" class="btn-inline">실결제 관리자</a>
-                    <a href="https://pgweb.tosspayments.com/tmert" target="_blank" class="btn-inline">테스트 관리자</a>
+                <div class="scf_cardtest">
+                    <a href="https://app.tosspayments.com/" target="_blank">실결제 관리자</a>
+                    <a href="https://pgweb.tosspayments.com/tmert" target="_blank">테스트 관리자</a>
                 </div>
-                <div class="scf_cardtest toss_cardtest">
-                    <a href="https://app.tosspayments.com/" target="_blank" class="btn-inline">상점 관리자</a>
+                <div class="scf_cardtest">
+                    <a href="https://app.tosspayments.com/" target="_blank">상점 관리자</a>
                 </div>
-                <div class="scf_cardtest inicis_cardtest">
-                    <a href="https://iniweb.inicis.com/" target="_blank" class="btn-inline">상점 관리자</a>
+                <div class="scf_cardtest">
+                    <a href="https://iniweb.inicis.com/" target="_blank">상점 관리자</a>
                 </div>
                 <div id="scf_cardtest_tip">
                     <strong>일반결제 사용시 테스트 결제</strong>

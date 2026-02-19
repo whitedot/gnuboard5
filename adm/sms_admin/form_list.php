@@ -107,14 +107,14 @@ function multi_update(sel)
 }
 </script>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
-    <span class="summary-chip"><span class="summary-label">건수</span><span class="summary-value"><?php echo number_format($total_count);?>건</span></span> 
+<div>
+    <span><span>건수</span><span><?php echo number_format($total_count);?>건</span></span> 
 </div>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5 sms_preset_sch">
+<div>
     <form>
-    <label for="fg_no" class="sr-only">그룹명</label>
-    <select class="form-select" name="fg_no" id="fg_no" onchange="location.href='<?php echo $_SERVER['SCRIPT_NAME']?>?fg_no='+this.value;">
+    <label for="fg_no">그룹명</label>
+    <select name="fg_no" id="fg_no" onchange="location.href='<?php echo $_SERVER['SCRIPT_NAME']?>?fg_no='+this.value;">
         <option value="" <?php echo $fg_no?'':'selected'?>> 전체 </option>
         <option value="0" <?php echo $fg_no=='0'?'selected':''?>> 미분류 (<?php echo number_format($no_count)?>) </option>
         <?php for($i=0; $i<count($group); $i++) {?>
@@ -125,15 +125,15 @@ function multi_update(sel)
 
     <form name="search_form" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']?>">
     <input type="hidden" name="fg_no" value="<?php echo $fg_no;?>">
-    <label for="st" class="sr-only">검색대상</label>
-    <select class="form-select" name="st" id="st">
+    <label for="st">검색대상</label>
+    <select name="st" id="st">
         <option value="all"<?php echo get_selected('all', $st); ?>>제목 + 이모티콘</option>
         <option value="name"<?php echo get_selected('name', $st); ?>>제목</option>
         <option value="content"<?php echo get_selected('content', $st); ?>>이모티콘</option>
     </select>
-    <label for="sv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="sv" value="<?php echo get_text($sv) ;?>" id="sv" required class="form-input required" >
-    <input type="submit" value="검색" class="btn btn-sm border-default-300">
+    <label for="sv">검색어<strong> 필수</strong></label>
+    <input type="text" name="sv" value="<?php echo get_text($sv) ;?>" id="sv" required class="required" >
+    <input type="submit" value="검색">
     </form>
 </div>
 
@@ -149,7 +149,7 @@ function multi_update(sel)
 <input type="hidden" name="fg_no" value="<?php echo $fg_no; ?>">
 <input type="hidden" name="sw" value="">
 <input type="hidden" name="atype" value="del">
-<ul id="sms5_preset" class="sms5_box">
+<ul id="sms5_preset">
     <?php
     $count = 1;
     $qry = sql_query("select * from {$g5['sms5_form_table']} where 1 $sql_group $sql_search order by fo_no desc limit $page_start, $page_size");
@@ -167,23 +167,23 @@ function multi_update(sel)
             else if ($li_i == 12) $li_i = 1;
         }
     ?>
-    <li class="li_<?php echo $li_i; ?> sms5_box">
-        <span class="box_ico"></span>
-        <div class="li_chk">
-            <label for="fo_no_<?php echo $i; ?>" class="sr-only"><?php echo $group_name?>의 <?php echo cut_str($res['fo_name'],10)?></label>
+    <li class="<?php echo $li_i; ?>">
+        <span></span>
+        <div>
+            <label for="fo_no_<?php echo $i; ?>"><?php echo $group_name?>의 <?php echo cut_str($res['fo_name'],10)?></label>
             <input type="checkbox" name="fo_no[]" value="<?php echo $res['fo_no']?>" id="fo_no_<?php echo $i; ?>">
         </div>
-        <div class="li_preview">
-            <textarea readonly class="box_txt box_square"><?php echo html_purifier($res['fo_content']); ?></textarea>
+        <div>
+            <textarea readonly class="box_txt"><?php echo html_purifier($res['fo_content']); ?></textarea>
         </div>
-        <div class="li_info">
-            <span class="sr-only">그룹 </span><b><?php echo $group_name?></b><br>
-            <span class="sr-only">제목 </span><?php echo cut_str($res['fo_name'],10)?><br>
+        <div>
+            <span>그룹 </span><b><?php echo $group_name?></b><br>
+            <span>제목 </span><?php echo cut_str($res['fo_name'],10)?><br>
         </div>
-        <div class="li_date">
-            <span class="sr-only">등록 </span><?php echo date('Y-m-d', strtotime($res['fo_datetime']))?>
+        <div>
+            <span>등록 </span><?php echo date('Y-m-d', strtotime($res['fo_datetime']))?>
         </div>
-        <div class="li_cmd">
+        <div>
             <a href="./form_write.php?w=u&amp;fo_no=<?php echo $res['fo_no']?>&amp;page=<?php echo $page;?>&amp;fg_no=<?php echo $fg_no;?>&amp;st=<?php echo get_text($st);?>&amp;sv=<?php echo get_text($sv);?>">수정</a>
             <a href="javascript:void(book_del('<?php echo $res['fo_no']?>'));">삭제</a>
             <a href="./sms_write.php?fo_no=<?php echo $res['fo_no']?>">보내기</a>
@@ -192,10 +192,10 @@ function multi_update(sel)
     <?php } ?>
 </ul>
 
-<div class="action-bar" >
-    <input type="submit" name="act_button" value="선택이동" onclick="document.pressed=this.value" class="btn btn-secondary">
-    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
-    <a href="./form_write.php?page=<?php echo $page?>&amp;fg_no=<?php echo $fg_no?>" class="btn btn-primary">이모티콘 추가</a>
+<div >
+    <input type="submit" name="act_button" value="선택이동" onclick="document.pressed=this.value">
+    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
+    <a href="./form_write.php?page=<?php echo $page?>&amp;fg_no=<?php echo $fg_no?>">이모티콘 추가</a>
 </div>
 
 </form>

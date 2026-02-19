@@ -492,7 +492,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
             // Writing PDF?
             if ($this->isPdf) {
                 if (is_null($this->sheetIndex) && $sheetId + 1 < $this->phpExcel->getSheetCount()) {
-                    $html .= '<div style="page-break-before:always" />';
+                    $html .= '<div />';
                 }
             }
 
@@ -532,10 +532,10 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
             // Loop all sheets
             $sheetId = 0;
 
-            $html .= '<ul class="navigation">' . PHP_EOL;
+            $html .= '<ul>' . PHP_EOL;
 
             foreach ($sheets as $sheet) {
-                $html .= '  <li class="sheet' . $sheetId . '"><a href="#sheet' . $sheetId . '">' . $sheet->getTitle() . '</a></li>' . PHP_EOL;
+                $html .= '  <li><a href="#sheet' . $sheetId . '">' . $sheet->getTitle() . '</a></li>' . PHP_EOL;
                 ++$sheetId;
             }
 
@@ -649,10 +649,8 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
                         }
                     }
 
-                    $html .= '<div style="position: relative;">';
-                    $html .= '<img style="position: absolute; z-index: 1; left: ' .
-                        $drawing->getOffsetX() . 'px; top: ' . $drawing->getOffsetY() . 'px; width: ' .
-                        $drawing->getWidth() . 'px; height: ' . $drawing->getHeight() . 'px;" src="' .
+                    $html .= '<div>';
+                    $html .= '<img src="' .
                         $imageData . '" border="0" />';
                     $html .= '</div>';
                 }
@@ -671,7 +669,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
                 //  max-width: 100% ensures that image doesnt overflow containing cell
                 //  width: X sets width of supplied image.
                 //  As a result, images bigger than cell will be contained and images smaller will not get stretched
-                $html .= '<img src="'.$dataUri.'" style="max-width:100%;width:'.$drawing->getWidth().'px;" />';
+                $html .= '<img src="'.$dataUri.'" />';
             }
         }
 
@@ -711,8 +709,8 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
                         $base64 = chunk_split(base64_encode($picture));
                         $imageData = 'data:'.$imageDetails['mime'].';base64,' . $base64;
 
-                        $html .= '<div style="position: relative;">';
-                        $html .= '<img style="position: absolute; z-index: 1; left: ' . $chartCoordinates['xOffset'] . 'px; top: ' . $chartCoordinates['yOffset'] . 'px; width: ' . $imageDetails[0] . 'px; height: ' . $imageDetails[1] . 'px;" src="' . $imageData . '" border="0" />' . PHP_EOL;
+                        $html .= '<div>';
+                        $html .= '<img src="' . $imageData . '" border="0" />' . PHP_EOL;
                         $html .= '</div>';
 
                         unlink($chartFileName);
@@ -1088,15 +1086,15 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
             
         if (!$this->useInlineCss) {
             $gridlines = $pSheet->getShowGridlines() ? ' gridlines' : '';
-            $html .= '    <table border="0" cellpadding="0" cellspacing="0" id="sheet' . $sheetIndex . '" class="sheet' . $sheetIndex . $gridlines . '">' . PHP_EOL;
+            $html .= '    <table border="0" cellpadding="0" cellspacing="0" id="sheet' . $sheetIndex . '">' . PHP_EOL;
         } else {
             $style = isset($this->cssStyles['table']) ?
                 $this->assembleCSS($this->cssStyles['table']) : '';
 
             if ($this->isPdf && $pSheet->getShowGridlines()) {
-                $html .= '    <table border="1" cellpadding="1" id="sheet' . $sheetIndex . '" cellspacing="1" style="' . $style . '">' . PHP_EOL;
+                $html .= '    <table border="1" cellpadding="1" id="sheet' . $sheetIndex . '" cellspacing="1">' . PHP_EOL;
             } else {
-                $html .= '    <table border="0" cellpadding="1" id="sheet' . $sheetIndex . '" cellspacing="0" style="' . $style . '">' . PHP_EOL;
+                $html .= '    <table border="0" cellpadding="1" id="sheet' . $sheetIndex . '" cellspacing="0">' . PHP_EOL;
             }
         }
 
@@ -1106,11 +1104,11 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
         while ($i++ < $highestColumnIndex) {
             if (!$this->isPdf) {
                 if (!$this->useInlineCss) {
-                    $html .= '        <col class="col' . $i . '">' . PHP_EOL;
+                    $html .= '        <col>' . PHP_EOL;
                 } else {
                     $style = isset($this->cssStyles['table.sheet' . $sheetIndex . ' col.col' . $i]) ?
                         $this->assembleCSS($this->cssStyles['table.sheet' . $sheetIndex . ' col.col' . $i]) : '';
-                    $html .= '        <col style="' . $style . '">' . PHP_EOL;
+                    $html .= '        <col>' . PHP_EOL;
                 }
             }
         }
@@ -1158,7 +1156,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
                     $html .= $this->generateTableFooter();
 
                     // insert page break
-                    $html .= '<div style="page-break-before:always" />';
+                    $html .= '<div />';
 
                     // open table again: <table> + <col> etc.
                     $html .= $this->generateTableHeader($pSheet);
@@ -1167,12 +1165,12 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 
             // Write row start
             if (!$this->useInlineCss) {
-                $html .= '          <tr class="row' . $pRow . '">' . PHP_EOL;
+                $html .= '          <tr>' . PHP_EOL;
             } else {
                 $style = isset($this->cssStyles['table.sheet' . $sheetIndex . ' tr.row' . $pRow])
                     ? $this->assembleCSS($this->cssStyles['table.sheet' . $sheetIndex . ' tr.row' . $pRow]) : '';
 
-                $html .= '          <tr style="' . $style . '">' . PHP_EOL;
+                $html .= '          <tr>' . PHP_EOL;
             }
 
             // Write cells
@@ -1214,7 +1212,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
                         foreach ($elements as $element) {
                             // Rich text start?
                             if ($element instanceof PHPExcel_RichText_Run) {
-                                $cellData .= '<span style="' . $this->assembleCSS($this->createCSSStyleFont($element->getFont())) . '">';
+                                $cellData .= '<span>';
 
                                 if ($element->getFont()->getSuperScript()) {
                                     $cellData .= '<sup>';
@@ -1320,11 +1318,11 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
                     // Column start
                     $html .= '            <' . $cellType;
                     if (!$this->useInlineCss) {
-                        $html .= ' class="' . $cssClass . '"';
+                        $html .= '';
                     } else {
                         //** Necessary redundant code for the sake of PHPExcel_Writer_PDF **
                         // We must explicitly write the width of the <td> element because TCPDF
-                        // does not recognize e.g. <col style="width:42pt">
+                        // does not recognize e.g. <col>
                         $width = 0;
                         $i = $colNum - 1;
                         $e = $colNum + $colSpan - 1;
@@ -1336,14 +1334,14 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
                         $cssClass['width'] = $width . 'pt';
 
                         // We must also explicitly write the height of the <td> element because TCPDF
-                        // does not recognize e.g. <tr style="height:50pt">
+                        // does not recognize e.g. <tr>
                         if (isset($this->cssStyles['table.sheet' . $sheetIndex . ' tr.row' . $pRow]['height'])) {
                             $height = $this->cssStyles['table.sheet' . $sheetIndex . ' tr.row' . $pRow]['height'];
                             $cssClass['height'] = $height;
                         }
                         //** end of redundant code **
 
-                        $html .= ' style="' . $this->assembleCSS($cssClass) . '"';
+                        $html .= '';
                     }
                     if ($colSpan > 1) {
                         $html .= ' colspan="' . $colSpan . '"';
@@ -1490,7 +1488,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 
         // color span tag
         if ($color !== null) {
-            $value = '<span style="color:' . $color . '">' . $value . '</span>';
+            $value = '<span>' . $value . '</span>';
         }
 
         return $value;

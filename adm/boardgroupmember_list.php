@@ -57,15 +57,15 @@ require_once './admin.head.php';
 $colspan = 7;
 ?>
 
-<form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
+<form name="fsearch" id="fsearch" method="get">
     <input type="hidden" name="gr_id" value="<?php echo $gr_id ?>">
-    <label for="sfl" class="sr-only">검색대상</label>
-    <select class="form-select" name="sfl" id="sfl">
+    <label for="sfl">검색대상</label>
+    <select name="sfl" id="sfl">
         <option value="a.mb_id" <?php echo get_selected($sfl, "a.mb_id") ?>>회원아이디</option>
     </select>
-    <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required form-input">
-    <input type="submit" value="검색" class="btn btn-sm border-default-300">
+    <label for="stx">검색어<strong> 필수</strong></label>
+    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required">
+    <input type="submit" value="검색">
 </form>
 
 <form name="fboardgroupmember" id="fboardgroupmember" action="./boardgroupmember_update.php" onsubmit="return fboardgroupmember_submit(this);" method="post">
@@ -78,13 +78,13 @@ $colspan = 7;
     <input type="hidden" name="gr_id" value="<?php echo $gr_id ?>">
     <input type="hidden" name="w" value="ld">
 
-    <div class="table-card table-shell">
+    <div>
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall" class="sr-only">접근가능회원 전체</label>
+                        <label for="chkall">접근가능회원 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col">그룹</th>
@@ -111,29 +111,29 @@ $colspan = 7;
                     $bg = 'bg' . ($i % 2);
                 ?>
                     <tr class="<?php echo $bg; ?>">
-                        <td class="cell-chk">
-                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $row['mb_nick'] ?> 회원</label>
+                        <td>
+                            <label for="chk_<?php echo $i; ?>"><?php echo $row['mb_nick'] ?> 회원</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $row['gm_id'] ?>" id="chk_<?php echo $i ?>">
                         </td>
-                        <td class="cell-grid"><?php echo $group ?></td>
-                        <td class="cell-mbid"><?php echo $row['mb_id'] ?></td>
-                        <td class="cell-mbname"><?php echo get_text($row['mb_name']); ?></td>
-                        <td class="cell-name sv_use"><?php echo $mb_nick ?></td>
-                        <td class="cell-datetime"><?php echo substr($row['mb_today_login'], 2, 8) ?></td>
-                        <td class="cell-datetime"><?php echo $row['gm_datetime'] ?></td>
+                        <td><?php echo $group ?></td>
+                        <td><?php echo $row['mb_id'] ?></td>
+                        <td><?php echo get_text($row['mb_name']); ?></td>
+                        <td><?php echo $mb_nick ?></td>
+                        <td><?php echo substr($row['mb_today_login'], 2, 8) ?></td>
+                        <td><?php echo $row['gm_datetime'] ?></td>
                     </tr>
                 <?php
                 }
 
                 if ($i == 0) {
-                    echo '<tr><td colspan="' . $colspan . '" class="table-empty">자료가 없습니다.</td></tr>';
+                    echo '<tr><td colspan="' . $colspan . '">자료가 없습니다.</td></tr>';
                 }
                 ?>
             </tbody>
         </table>
     </div>
 
-    <div class="action-inline">
+    <div>
         <input type="submit" name="" value="선택삭제">
     </div>
 </form>

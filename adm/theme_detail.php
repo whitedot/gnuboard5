@@ -20,24 +20,24 @@ else
     $screenshot = '<img src="'.G5_ADMIN_URL.'/img/theme_img.jpg" alt="">';
 
 if($info['theme_uri']) {
-    $name = '<a href="'.set_http($info['theme_uri']).'" target="_blank" class="thdt_home">'.$name.'</a>';
+    $name = '<a href="'.set_http($info['theme_uri']).'" target="_blank">'.$name.'</a>';
 }
 
 $maker = get_text($info['maker']);
 if($info['maker_uri']) {
-    $maker = '<a href="'.set_http($info['maker_uri']).'" target="_blank" class="thdt_home">'.$maker.'</a>';
+    $maker = '<a href="'.set_http($info['maker_uri']).'" target="_blank">'.$maker.'</a>';
 }
 
 $license = get_text($info['license']);
 if($info['license_uri']) {
-    $license = '<a href="'.set_http($info['license_uri']).'" target="_blank" class="thdt_home">'.$license.'</a>';
+    $license = '<a href="'.set_http($info['license_uri']).'" target="_blank">'.$license.'</a>';
 }
 ?>
 
 <div id="theme_detail">
     <h2><?php echo $name; ?></h2>
-    <div class="theme_dt_img"><?php echo $screenshot; ?></div>
-    <div class="theme_dt_if">
+    <div><?php echo $screenshot; ?></div>
+    <div>
         <p><?php echo get_text($info['detail']); ?></p>
         <table>
             <tr>
@@ -53,8 +53,8 @@ if($info['license_uri']) {
                 <td><?php echo $license; ?></td>
             </tr>
         </table>
-        <div class="theme_dt_btn">
-        <a href="./theme_preview.php?theme=<?php echo $theme; ?>" class="theme_pr btn-tertiary" target="theme_preview">미리보기</a>
+        <div>
+        <a href="./theme_preview.php?theme=<?php echo $theme; ?>" target="theme_preview">미리보기</a>
         <button type="button" class="close_btn">닫기</button>
         </div>
     </div>

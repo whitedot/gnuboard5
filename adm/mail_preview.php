@@ -10,7 +10,7 @@ $ma_id = isset($_REQUEST['ma_id']) ? (int) $_REQUEST['ma_id'] : 0;
 $se = sql_fetch("select ma_subject, ma_content from {$g5['mail_table']} where ma_id = '{$ma_id}' ");
 
 $subject = $se['ma_subject'];
-$content = conv_content($se['ma_content'], 1) . "<hr size=0><p><span style='font-size:9pt; font-family:굴림'>▶ 더 이상 정보 수신을 원치 않으시면 [<a href='" . G5_BBS_URL . "/email_stop.php?mb_id=***&amp;mb_md5=***' target='_blank'>수신거부</a>] 해 주십시오.</span></p>";
+$content = conv_content($se['ma_content'], 1) . "<hr size=0><p><span>▶ 더 이상 정보 수신을 원치 않으시면 [<a href='" . G5_BBS_URL . "/email_stop.php?mb_id=***&amp;mb_md5=***' target='_blank'>수신거부</a>] 해 주십시오.</span></p>";
 ?>
 
 <!doctype html>

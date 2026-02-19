@@ -44,7 +44,7 @@ if($file_exists = run_replace('exists_view_image', $file_exists, $filepath, $edi
 
     $img_attr = ($width && $height) ? 'width="'.$width.'" height="'.$height.'"' : '';
 
-    $img = '<img src="'.$fileurl.'" alt="" '.$img_attr.' class="draggable" style="position:relative;top:0;left:0;cursor:move;">';
+    $img = '<img src="'.$fileurl.'" alt="" '.$img_attr.' class="draggable">';
 } else {
     alert_close('파일이 존재하지 않습니다.');
 }

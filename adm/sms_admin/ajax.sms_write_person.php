@@ -75,12 +75,12 @@ $group = array();
 $qry = sql_query("select * from {$g5['sms5_book_group_table']} where bg_no>1 order by bg_name");
 while ($res = sql_fetch_array($qry)) array_push($group, $res);
 ?>
-<div class="table-card table-shell card">
+<div>
     <table>
     <thead>
     <tr>
         <th scope="col">
-            <label for="all_checked" class="sr-only">회원 전체</label>
+            <label for="all_checked">회원 전체</label>
             <input type="checkbox" id="all_checked" onclick="sms_obj.book_all_checked(this.checked)">
         </th>
         <th scope="col">이름</th>
@@ -92,7 +92,7 @@ while ($res = sql_fetch_array($qry)) array_push($group, $res);
     <tbody>
     <?php if (!$total_count) { ?>
     <tr>
-        <td colspan="<?php echo $colspan?>" class="cell-mbstat">데이터가 없습니다.</td>
+        <td colspan="<?php echo $colspan?>">데이터가 없습니다.</td>
     </tr>
     <?php
     }
@@ -109,38 +109,38 @@ while ($res = sql_fetch_array($qry)) array_push($group, $res);
             $group_name = $tmp['bg_name'];
     ?>
     <tr class="<?php echo $bg; ?>">
-        <td class="cell-chk">
-            <label for="bk_no_<?php echo $res['bk_no']; ?>" class="sr-only"><?php echo get_text($res['bk_name']) ?></label>
+        <td>
+            <label for="bk_no_<?php echo $res['bk_no']; ?>"><?php echo get_text($res['bk_name']) ?></label>
             <input type="checkbox" name="bk_no" value="<?php echo $res['bk_no']?>" id="bk_no_<?php echo $res['bk_no']; ?>">
         </td>
-        <!-- <td class="cell-name"><?php echo $group_name?></td> -->
-        <td class="cell-mbname"><?php echo get_text($res['bk_name']) ?></td>
+        <!-- <td><?php echo $group_name?></td> -->
+        <td><?php echo get_text($res['bk_name']) ?></td>
         <td><?php echo $res['bk_hp']?></td>
-        <!-- <td class="cell-boolean"><?php echo $res['bk_receipt'] ? '수신' : '거부'?></td> -->
-        <!-- <td class="cell-boolean"><?php echo $res['bk_receipt'] ? '예' : ''?></td> -->
-        <td class="cell-boolean"><?php echo $res['mb_id'] ? '회원' : '비회원'?></td>
-        <td class="cell-mngsmall"><button type="button" class="btn-inline" onclick="sms_obj.person_add(<?php echo $res['bk_no']?>, '<?php echo get_text($res['bk_name']) ?>', '<?php echo $res['bk_hp']?>')">추가</button></td>
+        <!-- <td><?php echo $res['bk_receipt'] ? '수신' : '거부'?></td> -->
+        <!-- <td><?php echo $res['bk_receipt'] ? '예' : ''?></td> -->
+        <td><?php echo $res['mb_id'] ? '회원' : '비회원'?></td>
+        <td class="cell-mngsmall"><button type="button" onclick="sms_obj.person_add(<?php echo $res['bk_no']?>, '<?php echo get_text($res['bk_name']) ?>', '<?php echo $res['bk_hp']?>')">추가</button></td>
     </tr>
     <?php } ?>
     </tbody>
     </table>
 </div>
 
-<div class="action-inline">
-    <button type="button" onclick="sms_obj.person_multi_add()" class="btn btn02">선택추가</button>
-    <button type="button" onclick="sms_obj.triggerclick('#book_group')"  class="btn btn02">그룹목록</button>
+<div>
+    <button type="button" onclick="sms_obj.person_multi_add()">선택추가</button>
+    <button type="button" onclick="sms_obj.triggerclick('#book_group')">그룹목록</button>
 </div>
 
-<nav class="pg_wrap">
-    <span class="pg" id="person_pg"></span>
+<nav>
+    <span id="person_pg"></span>
 </nav>
 
 <form name="search_form" id="sms_person_form" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']?>">
 <input type="hidden" name="total_pg" value="<?php echo $total_page?>">
 <input type="hidden" name="page" value="<?php echo $page?>">
 
-<label for="bg_no" class="sr-only">그룹</label>
-<select class="form-select" name="bg_no" id="bg_no">
+<label for="bg_no">그룹</label>
+<select name="bg_no" id="bg_no">
     <option value=""<?php echo get_selected('', $bg_no); ?>> 전체 </option>
     <option value="1"<?php echo get_selected(1, $bg_no); ?>> <?php echo $no_group['bg_name']?> (<?php echo number_format($no_group['bg_receipt'])?> 명) </option>
     <?php for($i=0; $i<count($group); $i++) {?>
@@ -148,16 +148,16 @@ while ($res = sql_fetch_array($qry)) array_push($group, $res);
     <?php } ?>
 </select>
 
-<label for="stt" class="sr-only">검색대상</label>
-<select class="form-select" name="st" id="stt">
+<label for="stt">검색대상</label>
+<select name="st" id="stt">
     <option value="all"<?php echo get_selected('all', $st); ?>>이름 + 번호</option>
     <option value="name"<?php echo get_selected('name', $st); ?>>이름</option>
     <option value="hp"<?php echo get_selected('hp', $st); ?>>번호</option>
 </select>
 
-<label for="svv" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" size="15" name="sv" value="<?php echo $sv?>" id="svv" required class="required form-input">
-<input type="submit" value="검색" class="btn btn-sm border-default-300">
+<label for="svv">검색어<strong> 필수</strong></label>
+<input type="text" size="15" name="sv" value="<?php echo $sv?>" id="svv" required class="required">
+<input type="submit" value="검색">
 </form>
 
 <!--

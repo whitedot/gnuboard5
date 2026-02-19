@@ -1,12 +1,12 @@
 <section id="anc_mb_consent">
-    <h2 class="section-title">수신 및 공개 설정</h2>
-    <div class="form-card table-shell">
+    <h2>수신 및 공개 설정</h2>
+    <div>
         <table>
             <caption>수신 및 공개 설정</caption>
             <colgroup>
-                <col class="col-4">
                 <col>
-                <col class="col-4">
+                <col>
+                <col>
                 <col>
             </colgroup>
             <tbody>
@@ -61,7 +61,7 @@
                 <tr>
                     <th scope="row">약관동의 변경내역</th>
                     <td colspan="3">
-                        <section id="sodr_request_log_wrap" class="ad_agree_log">
+                        <section id="sodr_request_log_wrap">
                             <div>
                                 <?php echo conv_content($mb['mb_agree_log'], 0); ?>
                             </div>

@@ -36,7 +36,7 @@ if ($sql) {
             $bbs_subject_title = ($type == 'board') ? '게시판제목' : '제목';
             ?>
 
-<div class="table-card table-shell">
+<div>
     <table>
         <thead>
             <tr>
@@ -77,7 +77,7 @@ if ($sql) {
             <td class="cell-mngsmall">
                 <input type="hidden" name="subject[]" value="<?php echo preg_replace('/[\'\"]/', '', $row['subject']); ?>">
                 <input type="hidden" name="link[]" value="<?php echo $link; ?>">
-                <button type="button" class="add_select btn btn-tertiary"><span class="sr-only"><?php echo $row['subject']; ?> </span>선택</button>
+                <button type="button" class="add_select"><span><?php echo $row['subject']; ?> </span>선택</button>
             </td>
         </tr>
 
@@ -87,39 +87,39 @@ if ($sql) {
     </table>
 </div>
 
-<div class="hint-box menu_exists_tip" style="display:none">
+<div class="menu_exists_tip" style="display:none">
     <p>* <strong>빨간색</strong>의 제목은 이미 메뉴에 연결되어 경우 표시됩니다.</p>
 </div>
 
-<div class="btn_win02 action-bar-popup">
-    <button type="button" class="btn-secondary btn" onclick="window.close();">창닫기</button>
+<div>
+    <button type="button" onclick="window.close();">창닫기</button>
 </div>
 
 <?php } else { ?>
-<div class="form-card table-shell">
+<div>
     <table>
         <colgroup>
-            <col class="col-2">
+            <col>
             <col>
         </colgroup>
         <tbody>
             <tr>
-                <th scope="row"><label for="me_name">메뉴<strong class="sr-only"> 필수</strong></label></th>
-                <td><input type="text" name="me_name" id="me_name" required class="form-input required"></td>
+                <th scope="row"><label for="me_name">메뉴<strong> 필수</strong></label></th>
+                <td><input type="text" name="me_name" id="me_name" required class="required"></td>
             </tr>
             <tr>
-                <th scope="row"><label for="me_link">링크<strong class="sr-only"> 필수</strong></label></th>
+                <th scope="row"><label for="me_link">링크<strong> 필수</strong></label></th>
                 <td>
                     <?php echo help('링크는 http://를 포함해서 입력해 주세요.'); ?>
-                    <input type="text" name="me_link" id="me_link" required class="form-input w-full required">
+                    <input type="text" name="me_link" id="me_link" required class="required">
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
 
-<div class="btn_win02 action-bar-popup">
-    <button type="button" id="add_manual" class="btn-primary btn">추가</button>
-    <button type="button" class="btn-secondary btn" onclick="window.close();">창닫기</button>
+<div>
+    <button type="button" id="add_manual">추가</button>
+    <button type="button" onclick="window.close();">창닫기</button>
 </div>
 <?php } // end if;

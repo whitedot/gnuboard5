@@ -19,7 +19,7 @@ function print_r2($var)
     $str = ob_get_contents();
     ob_end_clean();
     $str = str_replace(" ", "&nbsp;", $str);
-    echo nl2br("<span style='font-family:Tahoma, 굴림; font-size:9pt;'>$str</span>");
+    echo nl2br("<span>$str</span>");
 }
 
 // 메타태그를 이용한 URL 이동

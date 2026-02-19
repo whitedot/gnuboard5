@@ -66,7 +66,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
 
     $list2[$i]['del'] = '';
     if ($is_admin == 'super' || ($row['mb_id'] == $member['mb_id'] && $row['mb_id']))
-        $list2[$i]['del'] = '<a href="'.G5_BBS_URL.'/poll_etc_update.php?w=d&amp;pc_id='.$row['pc_id'].'&amp;po_id='.$po_id.'&amp;skin_dir='.$skin_dir.'" class="poll_delete">';
+        $list2[$i]['del'] = '<a href="'.G5_BBS_URL.'/poll_etc_update.php?w=d&amp;pc_id='.$row['pc_id'].'&amp;po_id='.$po_id.'&amp;skin_dir='.$skin_dir.'">';
 }
 
 // 기타의견 입력
@@ -77,7 +77,7 @@ if ($po['po_etc']) {
     if ($member['mb_id'])
         $name = '<b>'.$member['mb_nick'].'</b> <input type="hidden" name="pc_name" value="'.$member['mb_nick'].'">';
     else
-        $name = '<input type="text" name="pc_name" size="10" class="input" required>';
+        $name = '<input type="text" name="pc_name" size="10" required>';
 }
 
 $list3 = array();

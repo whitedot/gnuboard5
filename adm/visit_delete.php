@@ -18,14 +18,14 @@ if (!$min_year) {
 }
 ?>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
+<div>
     접속자 로그를 삭제할 년도와 방법을 선택해주십시오.
 </div>
 
-<form name="fvisitdelete" class="visit_del" method="post" action="./visit_delete_update.php" onsubmit="return form_submit(this);">
+<form name="fvisitdelete" method="post" action="./visit_delete_update.php" onsubmit="return form_submit(this);">
     <div>
-        <label for="year" class="sr-only">년도선택</label>
-        <select name="year" id="year" class="form-select">
+        <label for="year">년도선택</label>
+        <select name="year" id="year">
             <option value="">년도선택</option>
             <?php
             for($year=$min_year; $year<=$now_year; $year++) {
@@ -35,8 +35,8 @@ if (!$min_year) {
             }
             ?>
         </select> 년
-        <label for="month" class="sr-only">월선택</label>
-        <select name="month" id="month" class="form-select">
+        <label for="month">월선택</label>
+        <select name="month" id="month">
             <option value="">월선택</option>
             <?php
             for($i=1; $i<=12; $i++) {
@@ -46,16 +46,16 @@ if (!$min_year) {
             }
             ?>
         </select> 월
-        <label for="method" class="sr-only">삭제방법선택</label>
-        <select name="method" id="method" class="form-select">
+        <label for="method">삭제방법선택</label>
+        <select name="method" id="method">
             <option value="before">선택년월 이전 자료삭제</option>
             <option value="specific">선택년월의 자료삭제</option>
         </select>
     </div>
-    <div class="visit_del_bt">
-        <label for="pass">관리자 비밀번호<strong class="sr-only"> 필수</strong></label>
-        <input type="password" name="pass" id="pass" class="form-input required">
-        <input type="submit" value="확인" class="btn btn-sm border-default-300">
+    <div>
+        <label for="pass">관리자 비밀번호<strong> 필수</strong></label>
+        <input type="password" name="pass" id="pass" class="required">
+        <input type="submit" value="확인">
     </div>
 </form>
 

@@ -7,7 +7,7 @@ $max_limit = 7; // 몇행 출력할 것인지?
 $g5['title'] = ' 쇼핑몰현황';
 include_once (G5_ADMIN_PATH.'/admin.head.php');
 
-$pg_anchor = '<ul class="section-anchor sidx_anchor">
+$pg_anchor = '<ul>
 <li><a href="#anc_sidx_ord">주문현황</a></li>
 <li><a href="#anc_sidx_rdy">입금완료미배송내역</a></li>
 <li><a href="#anc_sidx_wait">미입금주문내역</a></li>
@@ -113,7 +113,7 @@ function get_max_value($arr)
 }
 ?>
 <?php if (! auth_check_menu($auth, '400400', 'r', true)) { ?>
-<div class="sidx">
+<div>
     <section id="anc_sidx_ord">
         <h2>주문현황</h2>
         <?php echo $pg_anchor; ?>
@@ -175,11 +175,11 @@ function get_max_value($arr)
                     $k = 10 - $i;
                     $li_bg = 'bg'.($i%2);
                 ?>
-                <li class="<?php echo $li_bg; ?>" style="z-index:<?php echo $k; ?>">
-                    <div class="graph order" title="<?php echo $order_title; ?>">
+                <li class="<?php echo $li_bg; ?>">
+                    <div class="order" title="<?php echo $order_title; ?>">
 
                     </div>
-                    <div class="graph cancel" title="<?php echo $cancel_title; ?>">
+                    <div class="cancel" title="<?php echo $cancel_title; ?>">
 
                     </div>
                 </li>
@@ -208,11 +208,11 @@ function get_max_value($arr)
             <h2>처리할 주문</h2>
             <?php echo $pg_anchor; ?>
 
-            <div id="sidx_take_act" class="table-card table-shell">
+            <div id="sidx_take_act">
                 <table>
                 <thead>
                 <tr>
-                    <th scope="col" class="cell-mng">상태변경</th>
+                    <th scope="col">상태변경</th>
                     <th scope="col">건수</th>
                     <th scope="col">금액</th>
                 </tr>
@@ -223,32 +223,32 @@ function get_max_value($arr)
                     $info = get_order_status_sum('주문');
                     ?>
                     <th scope="row">주문 -&gt; 입금</th>
-                    <td class="cell-num"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="cell-price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
+                    <td><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
+                    <td><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
                 </tr>
                 <tr>
                     <?php
                     $info = get_order_status_sum('입금');
                     ?>
                     <th scope="row">입금 -&gt; 준비</th>
-                    <td class="cell-num"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="cell-price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
+                    <td><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
+                    <td><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
                 </tr>
                 <tr>
                     <?php
                     $info = get_order_status_sum('준비');
                     ?>
                     <th scope="row">준비 -&gt; 배송</th>
-                    <td class="cell-num"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="cell-price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
+                    <td><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
+                    <td><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
                 </tr>
                 <tr>
                     <?php
                     $info = get_order_status_sum('배송');
                     ?>
                     <th scope="row">배송 -&gt; 완료</th>
-                    <td class="cell-num"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
-                    <td class="cell-price"><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
+                    <td><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['count']); ?></a></td>
+                    <td><a href="<?php echo $info['href']; ?>"><?php echo number_format($info['price']); ?></a></td>
                 </tr>
                 </tbody>
                 </table>
@@ -285,7 +285,7 @@ function get_max_value($arr)
                 $userinfo = get_icode_userinfo($config['cf_icode_id'], $config['cf_icode_pw']);
             }
             ?>
-            <div id="sidx_stock" class="table-card table-shell">
+            <div id="sidx_stock">
                 <table>
                 <thead>
                 <tr>
@@ -296,9 +296,9 @@ function get_max_value($arr)
                 </thead>
                 <tbody>
                 <tr>
-                    <td class="cell-num2"><a href="./itemstocklist.php"><?php echo number_format($item_noti); ?></a></td>
-                    <td class="cell-num2"><a href="./optionstocklist.php"><?php echo number_format($option_noti); ?></a></td>
-                    <td class="cell-price"><?php echo display_price(intval($userinfo['coin'])); ?></td>
+                    <td><a href="./itemstocklist.php"><?php echo number_format($item_noti); ?></a></td>
+                    <td><a href="./optionstocklist.php"><?php echo number_format($option_noti); ?></a></td>
+                    <td><?php echo display_price(intval($userinfo['coin'])); ?></td>
                 </tr>
                 </tbody>
                 </table>
@@ -311,7 +311,7 @@ function get_max_value($arr)
     <h2>결제수단별 주문현황</h2>
     <?php echo $pg_anchor; ?>
 
-    <div id="sidx_settle" class="table-card table-shell">
+    <div id="sidx_settle">
         <table>
         <thead>
         <tr>
@@ -349,7 +349,7 @@ function get_max_value($arr)
             $val_cnt++;
         ?>
         <tr>
-            <th scope="row" id="th_val_<?php echo $val_cnt; ?>" class="cell-category"><?php echo $val; ?></th>
+            <th scope="row" id="th_val_<?php echo $val_cnt; ?>"><?php echo $val; ?></th>
             <?php
             foreach($info_key as $date)
             {
@@ -428,12 +428,12 @@ function graph_draw()
 
 <?php } //endif ?>
 <?php if ($is_admin === 'super') { ?>
-<div class="sidx sidx_cs">
+<div>
     <section id="anc_sidx_oneq">
         <h2>1:1문의</h2>
         <?php echo $pg_anchor; ?>
 
-        <div class="ul_01 ul_wrap">
+        <div>
             <ul>
                 <?php
                 $sql = " select * from {$g5['qa_content_table']}
@@ -450,20 +450,20 @@ function graph_draw()
                     $name = get_sideview($row['mb_id'], get_text($row['qa_name']), $row1['mb_email'], $row1['mb_homepage']);
                 ?>
                 <li>
-                    <span class="oneq_cate oneq_span"><?php echo get_text($row['qa_category']); ?></span>
-                    <a href="<?php echo G5_BBS_URL; ?>/qaview.php?qa_id=<?php echo $row['qa_id']; ?>" target="_blank" class="oneq_link"><?php echo conv_subject($row['qa_subject'],40); ?></a>
+                    <span><?php echo get_text($row['qa_category']); ?></span>
+                    <a href="<?php echo G5_BBS_URL; ?>/qaview.php?qa_id=<?php echo $row['qa_id']; ?>" target="_blank"><?php echo conv_subject($row['qa_subject'],40); ?></a>
                     <?php echo $name; ?>
                 </li>
                 <?php
                 }
 
                 if ($i == 0)
-                    echo '<li class="empty_list">자료가 없습니다.</li>';
+                    echo '<li>자료가 없습니다.</li>';
                 ?>
             </ul>
         </div>
 
-        <div class="action-inline">
+        <div>
             <a href="<?php echo G5_BBS_URL; ?>/qalist.php" target="_blank">1:1문의 더보기</a>
         </div>
     </section>
@@ -472,7 +472,7 @@ function graph_draw()
         <h2>상품문의</h2>
         <?php echo $pg_anchor; ?>
 
-        <div class="ul_01 ul_wrap">
+        <div>
             <ul>
                 <?php
                 $sql = " select * from {$g5['g5_shop_item_qa_table']}
@@ -488,19 +488,19 @@ function graph_draw()
                     $name = get_sideview($row['mb_id'], get_text($row['iq_name']), $row1['mb_email'], $row1['mb_homepage']);
                 ?>
                 <li>
-                    <a href="./itemqaform.php?w=u&amp;iq_id=<?php echo $row['iq_id']; ?>" class="qna_link"><?php echo conv_subject($row['iq_subject'],40); ?></a>
+                    <a href="./itemqaform.php?w=u&amp;iq_id=<?php echo $row['iq_id']; ?>"><?php echo conv_subject($row['iq_subject'],40); ?></a>
                     <?php echo $name; ?>
                 </li>
                 <?php
                 }
 
                 if ($i == 0)
-                    echo '<li class="empty_list">자료가 없습니다.</li>';
+                    echo '<li>자료가 없습니다.</li>';
                 ?>
             </ul>
         </div>
 
-        <div class="action-inline">
+        <div>
             <a href="./itemqalist.php?sort1=iq_answer&amp;sort2=asc">상품문의 더보기</a>
         </div>
     </section>
@@ -509,7 +509,7 @@ function graph_draw()
         <h2>사용후기</h2>
         <?php echo $pg_anchor; ?>
 
-        <div class="ul_01 ul_wrap">
+        <div>
             <ul>
             <?php
             $sql = " select * from {$g5['g5_shop_item_use_table']}
@@ -525,17 +525,17 @@ function graph_draw()
                 $name = get_sideview($row['mb_id'], get_text($row['is_name']), $row1['mb_email'], $row1['mb_homepage']);
             ?>
                 <li>
-                    <a href="./itemuseform.php?w=u&amp;is_id=<?php echo $row['is_id']; ?>" class="ps_link"><?php echo conv_subject($row['is_subject'],40); ?></a>
+                    <a href="./itemuseform.php?w=u&amp;is_id=<?php echo $row['is_id']; ?>"><?php echo conv_subject($row['is_subject'],40); ?></a>
                     <?php echo $name; ?>
                 </li>
             <?php
             }
-            if ($i == 0) echo '<li class="empty_list">자료가 없습니다.</li>';
+            if ($i == 0) echo '<li>자료가 없습니다.</li>';
             ?>
             </ul>
         </div>
 
-        <div class="action-inline">
+        <div>
             <a href="./itemuselist.php?sort1=is_confirm&amp;sort2=asc">사용후기 더보기</a>
         </div>
     </section>

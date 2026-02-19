@@ -73,11 +73,11 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 <input type="hidden" name="ev_id" value="<?php echo $ev_id; ?>">
 <input type="hidden" name="ev_item" value="">
 
-<div class="form-card table-shell">
+<div>
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <colgroup>
-        <col class="col-4">
+        <col>
         <col>
     </colgroup>
     <tbody>
@@ -85,9 +85,9 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
     <tr>
         <th>이벤트번호</th>
         <td>
-            <span class="frm_ev_id"><?php echo $ev_id; ?></span>
-            <a href="<?php echo G5_SHOP_URL; ?>/event.php?ev_id=<?php echo $ev['ev_id']; ?>" class="btn-inline">이벤트바로가기</a>
-            <button type="button" class="btn-inline shop_event">테마설정 가져오기</button>
+            <span><?php echo $ev_id; ?></span>
+            <a href="<?php echo G5_SHOP_URL; ?>/event.php?ev_id=<?php echo $ev['ev_id']; ?>">이벤트바로가기</a>
+            <button type="button" class="shop_event">테마설정 가져오기</button>
         </td>
     </tr>
     <?php } ?>
@@ -103,27 +103,27 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
     <tr>
         <th scope="row"><label for="ev_img_width">출력이미지 폭</label></th>
         <td>
-              <input type="text" name="ev_img_width" value="<?php echo $ev['ev_img_width']; ?>" id="ev_img_width" required class="required form-input" size="5"> 픽셀
+              <input type="text" name="ev_img_width" value="<?php echo $ev['ev_img_width']; ?>" id="ev_img_width" required class="required" size="5"> 픽셀
         </td>
     </tr>
     <tr>
         <th scope="row"><label for="ev_img_height">출력이미지 높이</label></th>
         <td>
-          <input type="text" name="ev_img_height" value="<?php echo $ev['ev_img_height']; ?>" id="ev_img_height" required class="required form-input" size="5"> 픽셀
+          <input type="text" name="ev_img_height" value="<?php echo $ev['ev_img_height']; ?>" id="ev_img_height" required class="required" size="5"> 픽셀
         </td>
     </tr>
     <tr>
         <th scope="row"><label for="ev_list_mod">1줄당 이미지 수</label></th>
         <td>
             <?php echo help("1행에 설정한 값만큼의 상품을 출력합니다. 스킨 설정에 따라 1행에 하나의 상품만 출력할 수도 있습니다."); ?>
-            <input type="text" name="ev_list_mod" value="<?php echo $ev['ev_list_mod']; ?>" id="ev_list_mod" required class="required form-input" size="3"> 개
+            <input type="text" name="ev_list_mod" value="<?php echo $ev['ev_list_mod']; ?>" id="ev_list_mod" required class="required" size="3"> 개
         </td>
     </tr>
     <tr>
         <th scope="row"><label for="ev_list_row">이미지 줄 수</label></th>
         <td>
             <?php echo help("한 페이지에 출력할 이미지 줄 수를 설정합니다.\n한 페이지에 표시되는 상품수는 (1줄당 이미지 수 x 줄 수) 입니다."); ?>
-            <input type="text" name="ev_list_row" value="<?php echo $ev['ev_list_row']; ?>" id="ev_list_row" required class="required form-input" size="3"> 줄
+            <input type="text" name="ev_list_row" value="<?php echo $ev['ev_list_row']; ?>" id="ev_list_row" required class="required" size="3"> 줄
         </td>
     </tr>
     <tr>
@@ -139,7 +139,7 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
     <tr>
         <th scope="row"><label for="ev_subject">이벤트제목</label></th>
         <td>
-            <input type="text" name="ev_subject" value="<?php echo htmlspecialchars2($ev['ev_subject']); ?>" id="ev_subject" required class="required form-input"  size="60">
+            <input type="text" name="ev_subject" value="<?php echo htmlspecialchars2($ev['ev_subject']); ?>" id="ev_subject" required class="required"  size="60">
             <input type="checkbox" name="ev_subject_strong" value="1" id="ev_subject_strong" <?php if($ev['ev_subject_strong']) echo 'checked="checked"'; ?>>
             <label for="ev_subject_strong">제목 강조</label>
         </td>
@@ -172,28 +172,28 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
     </tr>
     <tr>
         <th scope="row">관련상품</th>
-        <td id="sev_it_rel" class="compare_wrap srel">
+        <td id="sev_it_rel">
 
-            <section class="compare_left">
+            <section>
                 <h3>상품검색</h3>
-                <span class="srel_pad">
+                <span>
                     <select name="ca_id" id="sch_ca_id">
                         <option value="">분류선택</option>
                         <?php echo $category_select; ?>
                     </select>
-                    <label for="sch_name" class="sr-only">상품명</label>
-                    <input type="text" name="sch_name" id="sch_name" class="form-input" size="15">
-                    <button type="button" id="btn_search_item" class="btn-inline">검색</button>
+                    <label for="sch_name">상품명</label>
+                    <input type="text" name="sch_name" id="sch_name" size="15">
+                    <button type="button" id="btn_search_item">검색</button>
                 </span>
-                <div id="sch_item_list" class="srel_list">
+                <div id="sch_item_list">
                     <p>상품의 분류를 선택하시거나 상품명을 입력하신 후 검색하여 주십시오.</p>
                 </div>
             </section>
 
-            <section class="compare_right">
+            <section>
                 <h3>등록된 상품</h3>
-                <span class="srel_pad"></span>
-                <div id="reg_item_list" class="srel_sel">
+                <span></span>
+                <div id="reg_item_list">
                     <?php
                     if( $res_item ) {
                     for($i=0; $row=sql_fetch_array($res_item); $i++) {
@@ -204,8 +204,8 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
                     ?>
                         <li>
                             <input type="hidden" name="it_id[]" value="<?php echo $row['it_id']; ?>">
-                            <div class="list_item"><?php echo $it_name; ?></div>
-                            <div class="list_item_btn"><button type="button" class="del_item btn-inline">삭제</button></div>
+                            <div><?php echo $it_name; ?></div>
+                            <div><button type="button" class="del_item">삭제</button></div>
                         </li>
                     <?php
                     }   // end for
@@ -286,9 +286,9 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
     </table>
 </div>
 
-<div class="action-bar">
-    <a href="./itemevent.php" class="btn btn-secondary">목록</a>
-    <input type="submit" value="확인" class="btn-primary btn" accesskey="s">
+<div>
+    <a href="./itemevent.php">목록</a>
+    <input type="submit" value="확인" accesskey="s">
 </div>
 </form>
 

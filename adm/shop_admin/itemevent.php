@@ -18,16 +18,16 @@ $sql = "select * $sql_common order by ev_id desc ";
 $result = sql_query($sql);
 ?>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
-       <span class="summary-chip"><span class="summary-label">전체 이벤트</span><span class="summary-value"> <?php echo $total_count; ?>건</span></span>  
+<div>
+       <span><span>전체 이벤트</span><span> <?php echo $total_count; ?>건</span></span>  
 </div>
 
 
-<div class="action-bar">
-    <a href="./itemeventform.php" class="btn btn-primary">이벤트 추가</a>
+<div>
+    <a href="./itemeventform.php">이벤트 추가</a>
 </div>
 
-<div class="table-card table-shell card">
+<div>
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -56,14 +56,14 @@ $result = sql_query($sql);
     ?>
 
     <tr>
-        <td class="cell-num"><?php echo $row['ev_id']; ?></td>
-        <td class="cell-left"><?php echo $subject; ?></td>
-        <td class="cell-num"><?php echo $href; ?><?php echo $ev['cnt']; ?><?php echo $href_close; ?></td>
-        <td class="cell-boolean"><?php echo $row['ev_use'] ? '<span class="txt_true">예</span>' : '<span class="txt_false">아니오</span>'; ?></td>
-        <td class="cell-mng cell-mng-l">
-            <a href="./itemeventform.php?w=u&amp;ev_id=<?php echo $row['ev_id']; ?>" class="btn btn-tertiary">수정</a>
-            <a href="<?php echo G5_SHOP_URL; ?>/event.php?ev_id=<?php echo $row['ev_id']; ?>" class="btn btn-secondary">보기</a>
-            <a href="./itemeventformupdate.php?w=d&amp;ev_id=<?php echo $row['ev_id']; ?>" onclick="return delete_confirm(this);" class="btn btn-secondary">삭제</a>
+        <td><?php echo $row['ev_id']; ?></td>
+        <td><?php echo $subject; ?></td>
+        <td><?php echo $href; ?><?php echo $ev['cnt']; ?><?php echo $href_close; ?></td>
+        <td><?php echo $row['ev_use'] ? '<span>예</span>' : '<span>아니오</span>'; ?></td>
+        <td>
+            <a href="./itemeventform.php?w=u&amp;ev_id=<?php echo $row['ev_id']; ?>">수정</a>
+            <a href="<?php echo G5_SHOP_URL; ?>/event.php?ev_id=<?php echo $row['ev_id']; ?>">보기</a>
+            <a href="./itemeventformupdate.php?w=d&amp;ev_id=<?php echo $row['ev_id']; ?>" onclick="return delete_confirm(this);">삭제</a>
         </td>
     </tr>
 
@@ -71,7 +71,7 @@ $result = sql_query($sql);
     }
 
     if ($i == 0) {
-        echo '<tr><td colspan="5" class="table-empty">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="5">자료가 없습니다.</td></tr>';
     }
     ?>
     </tbody>

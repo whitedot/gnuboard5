@@ -85,7 +85,7 @@ require_once './admin.head.php';
     <input type="hidden" name="token" value="">
     <input type="hidden" name="ma_id" value="<?php echo get_text($ma_id); ?>">
 
-    <div class="table-card table-shell">
+    <div>
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -112,10 +112,10 @@ require_once './admin.head.php';
                     $bg = 'bg' . ($i % 2);
                     ?>
                     <tr class="<?php echo $bg; ?>">
-                        <td class="cell-num"><?php echo $i ?></td>
-                        <td class="cell-mbid"><?php echo $row['mb_id'] ?></td>
-                        <td class="cell-mbname"><?php echo get_text($row['mb_name']); ?></td>
-                        <td class="cell-mbname"><?php echo $row['mb_nick'] ?></td>
+                        <td><?php echo $i ?></td>
+                        <td><?php echo $row['mb_id'] ?></td>
+                        <td><?php echo get_text($row['mb_name']); ?></td>
+                        <td><?php echo $row['mb_nick'] ?></td>
                         <td><?php echo $row['mb_email'] ?></td>
                     </tr>
                 <?php } ?>
@@ -124,8 +124,8 @@ require_once './admin.head.php';
         <textarea name="ma_list" style="display:none"><?php echo html_purifier($ma_list); ?></textarea>
     </div>
 
-    <div class="action-bar">
-        <input type="submit" value="메일보내기" class="btn btn-sm border-default-300">
+    <div>
+        <input type="submit" value="메일보내기">
         <a href="./mail_select_form.php?ma_id=<?php echo $ma_id ?>">뒤로</a>
     </div>
 

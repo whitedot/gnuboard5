@@ -21,13 +21,13 @@ $colspan = 4;
     <input type="hidden" name="mb_id" value="<?php echo $mb['mb_id'] ?>" id="mb_id">
     <input type="hidden" name="token" value="" id="token">
 
-    <div class="local_ov01 local_ov">
-        <span class="summary-chip"><span class="summary-label"> 아이디</span><span class="summary-value"><?php echo $mb['mb_id'] ?></span></span>
-        <span class="summary-chip"><span class="summary-label"> 이름</span><span class="summary-value"><?php echo get_text($mb['mb_name']); ?></span></span>
-        <span class="summary-chip"><span class="summary-label"> 닉네임</span><span class="summary-value"><?php echo $mb['mb_nick'] ?></span></span>
+    <div>
+        <span><span> 아이디</span><span><?php echo $mb['mb_id'] ?></span></span>
+        <span><span> 이름</span><span><?php echo get_text($mb['mb_name']); ?></span></span>
+        <span><span> 닉네임</span><span><?php echo $mb['mb_nick'] ?></span></span>
     </div>
 
-    <div class="local_cmd01 local_cmd">
+    <div>
         <label for="gr_id">그룹지정</label>
         <select name="gr_id" id="gr_id">
             <option value="">접근가능 그룹을 선택하세요.</option>
@@ -45,7 +45,7 @@ $colspan = 4;
             }
             ?>
         </select>
-        <input type="submit" value="선택" class="btn-primary btn" accesskey="s">
+        <input type="submit" value="선택" accesskey="s">
     </div>
 </form>
 
@@ -59,13 +59,13 @@ $colspan = 4;
     <input type="hidden" name="mb_id" value="<?php echo $mb['mb_id'] ?>" id="mb_id">
     <input type="hidden" name="w" value="d" id="w">
 
-    <div class="table-card table-shell">
+    <div>
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall" class="sr-only">접근가능그룹 전체</label>
+                        <label for="chkall">접근가능그룹 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col">그룹아이디</th>
@@ -86,27 +86,27 @@ $colspan = 4;
                 for ($i = 0; $row = sql_fetch_array($result); $i++) {
                 ?>
                     <tr>
-                        <td class="cell-chk">
-                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $row['gr_subject'] ?> 그룹</label>
+                        <td>
+                            <label for="chk_<?php echo $i; ?>"><?php echo $row['gr_subject'] ?> 그룹</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $row['gm_id'] ?>" id="chk_<?php echo $i ?>">
                         </td>
-                        <td class="cell-grid"><a href="<?php echo G5_BBS_URL; ?>/group.php?gr_id=<?php echo $row['gr_id'] ?>"><?php echo $row['gr_id'] ?></a></td>
-                        <td class="cell-category"><?php echo $row['gr_subject'] ?></td>
-                        <td class="cell-datetime"><?php echo $row['gm_datetime'] ?></td>
+                        <td><a href="<?php echo G5_BBS_URL; ?>/group.php?gr_id=<?php echo $row['gr_id'] ?>"><?php echo $row['gr_id'] ?></a></td>
+                        <td><?php echo $row['gr_subject'] ?></td>
+                        <td><?php echo $row['gm_datetime'] ?></td>
                     </tr>
                 <?php
                 }
 
                 if ($i == 0) {
-                    echo '<tr><td colspan="' . $colspan . '" class="table-empty">접근가능한 그룹이 없습니다.</td></tr>';
+                    echo '<tr><td colspan="' . $colspan . '">접근가능한 그룹이 없습니다.</td></tr>';
                 }
                 ?>
             </tbody>
         </table>
     </div>
 
-    <div class="action-inline">
-        <input type="submit" name="" value="선택삭제" class="btn btn-secondary">
+    <div>
+        <input type="submit" name="" value="선택삭제">
     </div>
 </form>
 

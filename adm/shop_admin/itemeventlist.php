@@ -60,7 +60,7 @@ $result = sql_query($sql);
 $qstr1 = 'ev_id='.$ev_id.'&amp;sel_ca_id='.$sel_ca_id.'&amp;sel_field='.$sel_field.'&amp;search='.$search;
 $qstr  = $qstr1.'&amp;sort1='.$sort1.'&amp;sort2='.$sort2.'&amp;page='.$page;
 
-$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목록</a>';
+$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 
 // 이벤트제목
 if($ev_id) {
@@ -69,15 +69,15 @@ if($ev_id) {
 }
 ?>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
+<div>
     <?php echo $listall; ?>
-    <span class="summary-chip"><span class="summary-label">전체 이벤트</span><span class="summary-value"> <?php echo $total_count; ?>건</span></span>  
+    <span><span>전체 이벤트</span><span> <?php echo $total_count; ?>건</span></span>  
 </div>
 
-<form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" autocomplete="off">
+<form name="flist" autocomplete="off">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
-<label for="ev_id" class="sr-only">이벤트</label>
-<select class="form-select" name="ev_id" id="ev_id" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
+<label for="ev_id">이벤트</label>
+<select name="ev_id" id="ev_id" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
     <?php
     // 이벤트 옵션처리
     $event_option = "<option value=''>이벤트를 선택하세요</option>";
@@ -88,16 +88,16 @@ if($ev_id) {
     echo $event_option;
     ?>
 </select>
-<input type="submit" value="이동" class="btn btn-sm border-default-300">
+<input type="submit" value="이동">
 
 </form>
 
-<form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" autocomplete="off">
+<form name="flist" autocomplete="off">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 <input type="hidden" name="ev_id" value="<?php echo $ev_id; ?>">
 
-<label for="sel_ca_id" class="sr-only">분류선택</label>
-<select class="form-select" name="sel_ca_id" id="sel_ca_id">
+<label for="sel_ca_id">분류선택</label>
+<select name="sel_ca_id" id="sel_ca_id">
     <option value=''>전체분류</option>
     <?php
     $sql1 = " select ca_id, ca_name from {$g5['g5_shop_category_table']} order by ca_order, ca_id ";
@@ -112,19 +112,19 @@ if($ev_id) {
     ?>
 </select>
 
-<label for="sel_field" class="sr-only">검색대상</label>
-<select class="form-select" name="sel_field" id="sel_field">
+<label for="sel_field">검색대상</label>
+<select name="sel_field" id="sel_field">
     <option value="it_name" <?php echo get_selected($sel_field, 'it_name'); ?>>상품명</option>
     <option value="a.it_id" <?php echo get_selected($sel_field, 'a.it_id'); ?>>상품코드</option>
 </select>
 
-<label for="search" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="search" value="<?php echo $search; ?>" id="search" required class="form-input required">
-<input type="submit" value="검색" class="btn btn-sm border-default-300">
+<label for="search">검색어<strong> 필수</strong></label>
+<input type="text" name="search" value="<?php echo $search; ?>" id="search" required class="required">
+<input type="submit" value="검색">
 
 </form>
 
-<div class="hint-text">
+<div>
     <p>상품을 이벤트별로 일괄 처리합니다. <?php echo ($ev_title ? '현재 선택된 이벤트는 '.$ev_title.'입니다.' : '이벤트를 선택해 주세요.'); ?></p>
 </div>
 
@@ -137,7 +137,7 @@ if($ev_id) {
 <input type="hidden" name="sort1" value="<?php echo $sort1; ?>">
 <input type="hidden" name="sort2" value="<?php echo $sort2; ?>">
 
-<div class="table-card table-shell card">
+<div>
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -160,38 +160,38 @@ if($ev_id) {
     ?>
 
     <tr class="<?php echo $bg; ?>">
-        <td class="cell-chk2">
+        <td>
             <input type="hidden" name="it_id[<?php echo $i; ?>]" value="<?php echo $row['it_id']; ?>">
-            <label for="ev_chk_<?php echo $i; ?>" class="sr-only">이벤트 사용</label>
+            <label for="ev_chk_<?php echo $i; ?>">이벤트 사용</label>
             <input type="checkbox" name="ev_chk[<?php echo $i; ?>]" value="1" id="ev_chk_<?php echo $i; ?>" <?php echo ($row['ev_id'] ? "checked" : ""); ?>>
         </td>
-        <td class="cell-num"><a href="<?php echo $href; ?>"><?php echo $row['it_id']; ?></a></td>
-        <td class="cell-left"><a href="<?php echo $href; ?>"><?php echo get_it_image($row['it_id'], 50, 50); ?> <?php echo cut_str(stripslashes($row['it_name']), 60, "&#133"); ?></a></td>
+        <td><a href="<?php echo $href; ?>"><?php echo $row['it_id']; ?></a></td>
+        <td><a href="<?php echo $href; ?>"><?php echo get_it_image($row['it_id'], 50, 50); ?> <?php echo cut_str(stripslashes($row['it_name']), 60, "&#133"); ?></a></td>
     </tr>
 
     <?php
     }
 
     if ($i == 0)
-        echo '<tr><td colspan="4" class="table-empty">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="4">자료가 없습니다.</td></tr>';
     ?>
     </tbody>
     </table>
 </div>
 
-<div class="hint-text">
+<div>
     <p>
         <?php if ($ev_title) { ?>
          현재 선택된 이벤트는 <strong><?php echo $ev_title; ?></strong>입니다.<br>
          선택된 이벤트의 상품 수정 내용을 반영하시려면 일괄수정 버튼을 누르십시오.
         <?php } else { ?>
         이벤트를 선택하지 않으셨습니다. <strong>수정 내용을 반영하기 전에 이벤트를 선택해주십시오.</strong><br>
-        <a href="#ev_id" class="sr-only">이벤트 선택</a>
+        <a href="#ev_id">이벤트 선택</a>
         <?php } ?>
     </p>
 </div>
-<div class="action-bar">
-    <input type="submit" value="일괄수정" class="btn btn-sm border-default-300" accesskey="s">
+<div>
+    <input type="submit" value="일괄수정" accesskey="s">
 </div>
 
 </form>

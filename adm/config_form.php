@@ -42,25 +42,25 @@ require_once './admin.head.php';
 
 $pg_anchor = '';
 $pg_anchor_menu = '
-<nav class="rounded-xl border border-default-300 bg-card shadow-sm">
-    <div class="flex items-center justify-between border-b border-default-300 px-5 py-3.5">
-        <h3 class="card-title">환경설정 바로가기</h3>
+<nav>
+    <div>
+        <h3>환경설정 바로가기</h3>
     </div>
-    <div class="p-5">
-        <ul class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-1 gap-2.5">
-            <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_basic">기본</a></li>
-            <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_board">게시판</a></li>
-            <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_join">회원</a></li>
-            <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_cert">본인확인</a></li>
-            <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_url">URL</a></li>
-            <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_mail">메일</a></li>
-            <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_article_mail">글작성 메일</a></li>
-            <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_join_mail">가입 메일</a></li>
-            <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_vote_mail">투표 메일</a></li>
-            <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_sns">SNS</a></li>
-            <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_lay">레이아웃</a></li>
-            <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_sms">SMS</a></li>
-            <li><a class="btn btn-sm border-default-300 justify-start w-full" href="#anc_cf_extra">여분필드</a></li>
+    <div>
+        <ul>
+            <li><a href="#anc_cf_basic">기본</a></li>
+            <li><a href="#anc_cf_board">게시판</a></li>
+            <li><a href="#anc_cf_join">회원</a></li>
+            <li><a href="#anc_cf_cert">본인확인</a></li>
+            <li><a href="#anc_cf_url">URL</a></li>
+            <li><a href="#anc_cf_mail">메일</a></li>
+            <li><a href="#anc_cf_article_mail">글작성 메일</a></li>
+            <li><a href="#anc_cf_join_mail">가입 메일</a></li>
+            <li><a href="#anc_cf_vote_mail">투표 메일</a></li>
+            <li><a href="#anc_cf_sns">SNS</a></li>
+            <li><a href="#anc_cf_lay">레이아웃</a></li>
+            <li><a href="#anc_cf_sms">SMS</a></li>
+            <li><a href="#anc_cf_extra">여분필드</a></li>
         </ul>
     </div>
 </nav>';
@@ -78,15 +78,15 @@ if ($config['cf_sms_use'] && $config['cf_icode_id'] && $config['cf_icode_pw']) {
 }
 ?>
 
-<form name="fconfigform" id="fconfigform" method="post" onsubmit="return fconfigform_submit(this);" class="space-y-base">
+<form name="fconfigform" id="fconfigform" method="post" onsubmit="return fconfigform_submit(this);">
     <input type="hidden" name="token" value="" id="token">
 
-    <div class="grid grid-cols-1 xl:grid-cols-12 gap-base">
-        <aside class="xl:col-span-3 xl:sticky xl:top-20 xl:self-start">
+    <div>
+        <aside>
             <?php echo $pg_anchor_menu; ?>
         </aside>
 
-        <div class="config-form-content xl:col-span-9 space-y-base">
+        <div>
             <?php
             include_once G5_ADMIN_PATH.'/config_form_parts/basic.php';
             include_once G5_ADMIN_PATH.'/config_form_parts/board.php';
@@ -99,11 +99,11 @@ if ($config['cf_sms_use'] && $config['cf_icode_id'] && $config['cf_icode_pw']) {
             include_once G5_ADMIN_PATH.'/config_form_parts/sms.php';
             ?>
 
-            <div id="config_captcha_wrap" class="hidden rounded-xl border border-default-300 bg-card shadow-sm">
-                <div class="flex items-center justify-between border-b border-default-300 px-5 py-3.5">
-                    <h2 class="card-title">캡차 입력</h2>
+            <div id="config_captcha_wrap" class="hidden">
+                <div>
+                    <h2>캡차 입력</h2>
                 </div>
-                <div class="p-5">
+                <div>
                     <?php
                     require_once G5_CAPTCHA_PATH . '/captcha.lib.php';
                     $captcha_html = captcha_html();
@@ -115,8 +115,8 @@ if ($config['cf_sms_use'] && $config['cf_icode_id'] && $config['cf_icode_pw']) {
         </div>
     </div>
 
-    <div class="sticky bottom-4 z-30 flex justify-end gap-2.5">
-        <input type="submit" value="저장" class="btn bg-primary hover:bg-primary-hover text-white" accesskey="s">
+    <div>
+        <input type="submit" value="저장" accesskey="s">
     </div>
 </form>
 

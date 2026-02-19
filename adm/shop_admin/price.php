@@ -6,7 +6,7 @@ auth_check_menu($auth, $sub_menu, "r");
 
 $g5['title'] = '가격비교사이트';
 include_once (G5_ADMIN_PATH.'/admin.head.php');
-$pg_anchor = '<ul class="section-anchor">
+$pg_anchor = '<ul>
 <li><a href="#anc_pricecompare_info">가격비교사이트 연동 안내</a></li>
 <li><a href="#anc_pricecompare_engine">사이트별 엔진페이지 URL</a></li>
 </ul>';
@@ -16,7 +16,7 @@ $pg_anchor = '<ul class="section-anchor">
     <h2>가격비교사이트 연동 안내</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="hint-text">
+    <div>
         <ol>
             <li>가격비교사이트는 네이버 지식쇼핑, 다음 쇼핑하우 등이 있습니다.</li>
             <li>앞서 나열한 가격비교사이트 중 희망하시는 사이트에 입점합니다.</li>
@@ -29,10 +29,10 @@ $pg_anchor = '<ul class="section-anchor">
     <h2>사이트별 엔진페이지 URL</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="hint-text">
+    <div>
         <p>사이트 명을 클릭하시면 해당 사이트로 이동합니다.</p>
 
-        <dl class="price_engine">
+        <dl>
             <dt><a href="http://shopping.naver.com/" target="_blank">네이버쇼핑</a></dt>
             <dd>
                 <ul>

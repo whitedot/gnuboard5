@@ -8,10 +8,10 @@ $g5['title'] = '엑셀 배송일괄처리';
 include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 ?>
 
-<div class="new_win">
+<div>
     <h1><?php echo $g5['title']; ?></h1>
 
-    <div class="hint-box">
+    <div>
         <p>
             엑셀파일을 이용하여 배송정보를 일괄등록할 수 있습니다.<br>
             형식은 <strong>배송처리용 엑셀파일</strong>을 다운로드하여 배송 정보를 입력하시면 됩니다.<br>
@@ -41,8 +41,8 @@ include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
         <label for="od_send_escrow">에스크로배송등록</label>
     </div>
 
-    <div class="action-bar">
-        <input type="submit" value="배송정보 등록" class="btn-primary">
+    <div>
+        <input type="submit" value="배송정보 등록">
         <button type="button" onclick="window.close();">닫기</button>
     </div>
 

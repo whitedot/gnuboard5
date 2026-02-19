@@ -1,8 +1,8 @@
-<section id="anc_sitfrm_relation" class="srel">
-    <h2 class="section-title">관련상품</h2>
+<section id="anc_sitfrm_relation">
+    <h2>관련상품</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="hint-box">
+    <div>
         <p>
             등록된 전체상품 목록에서 상품분류를 선택하면 해당 상품 리스트가 연이어 나타납니다.<br>
             상품리스트에서 관련 상품으로 추가하시면 선택된 관련상품 목록에 <strong>함께</strong> 추가됩니다.<br>
@@ -10,11 +10,11 @@
         </p>
     </div>
 
-    <div class="compare_wrap">
-        <section class="compare_left">
+    <div>
+        <section>
             <h3>등록된 전체상품 목록</h3>
-            <label for="sch_relation" class="sr-only">상품분류</label>
-            <span class="srel_pad">
+            <label for="sch_relation">상품분류</label>
+            <span>
                 <select id="sch_relation">
                     <option value=''>분류별 상품</option>
                     <?php
@@ -35,11 +35,11 @@
                         }
                     ?>
                 </select>
-                <label for="sch_name" class="sr-only">상품명</label>
-                <input type="text" name="sch_name" id="sch_name" class="form-input" size="15">
-                <button type="button" id="btn_search_item" class="btn-inline">검색</button>
+                <label for="sch_name">상품명</label>
+                <input type="text" name="sch_name" id="sch_name" size="15">
+                <button type="button" id="btn_search_item">검색</button>
             </span>
-            <div id="relation" class="srel_list">
+            <div id="relation">
                 <p>상품의 분류를 선택하시거나 상품명을 입력하신 후 검색하여 주십시오.</p>
             </div>
             <script>
@@ -105,10 +105,10 @@
             </script>
         </section>
 
-        <section class="compare_right">
+        <section>
             <h3>선택된 관련상품 목록</h3>
-            <span class="srel_pad"></span>
-            <div id="reg_relation" class="srel_sel">
+            <span></span>
+            <div id="reg_relation">
                 <?php
                 $str = array();
                 $sql = " select b.ca_id, b.it_id, b.it_name, b.it_price
@@ -126,8 +126,8 @@
                 ?>
                     <li>
                         <input type="hidden" name="re_it_id[]" value="<?php echo $row['it_id']; ?>">
-                        <div class="list_item"><?php echo $it_name; ?></div>
-                        <div class="list_item_btn"><button type="button" class="del_item btn-inline">삭제</button></div>
+                        <div><?php echo $it_name; ?></div>
+                        <div><button type="button" class="del_item">삭제</button></div>
                     </li>
                 <?php
                     $str[] = $row['it_id'];

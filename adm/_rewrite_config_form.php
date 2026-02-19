@@ -35,11 +35,11 @@ $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 ?>
 <section id="anc_cf_url">
-    <h2 class="section-title">짧은 주소 설정</h2>
+    <h2>짧은 주소 설정</h2>
     <?php echo $pg_anchor ?>
-    <div class="hint-text">
+    <div>
         <p>
-            게시판과 컨텐츠 페이지에 짧은 URL 을 사용합니다. <a href="https://sir.kr/manual/g5/286" class="btn btn-tertiary" target="_blank" style="margin-left:10px">설정 관련 메뉴얼 보기</a>
+            게시판과 컨텐츠 페이지에 짧은 URL 을 사용합니다. <a href="https://sir.kr/manual/g5/286" target="_blank">설정 관련 메뉴얼 보기</a>
             <?php if ($is_use_apache && !$is_use_nginx) { ?>
                 <?php if (!$is_apache_rewrite) { ?>
                     <br><strong>Apache 서버인 경우 rewrite_module 이 비활성화 되어 있으면 짧은 주소를 사용할수 없습니다.</strong>
@@ -50,17 +50,17 @@ $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
         </p>
     </div>
 
-    <div class="server_config_views">
+    <div>
         <?php if ($is_use_apache) { ?>
-            <button type="button" data-remodal-target="modal_apache" class="btn btn-tertiary">Apache 설정 코드 보기</button>
+            <button type="button" data-remodal-target="modal_apache">Apache 설정 코드 보기</button>
         <?php } ?>
         <?php if ($is_use_nginx) { ?>
-            <button type="button" data-remodal-target="modal_nginx" class="btn btn-tertiary">Nginx 설정 코드 보기</button>
+            <button type="button" data-remodal-target="modal_nginx">Nginx 설정 코드 보기</button>
         <?php } ?>
     </div>
 
-    <div class="card">
-            <div class="grid grid-cols-1 gap-4">
+    <div>
+            <div>
                 <?php
                 $short_url_arrs = array(
                     '0' => array('label' => '사용안함', 'url' => G5_URL . '/board.php?bo_table=free&wr_id=123'),
@@ -70,41 +70,41 @@ $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
                 foreach ($short_url_arrs as $k => $v) {
                     $checked = ((int) $config['cf_bbs_rewrite'] === (int) $k) ? 'checked' : '';
                 ?>
-                                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                                            <div class="lg:col-span-1"><input name="cf_bbs_rewrite" id="cf_bbs_rewrite_<?php echo $k; ?>" type="radio" value="<?php echo $k; ?>" <?php echo $checked; ?>><label for="cf_bbs_rewrite_<?php echo $k; ?>" class="rules_label form-label py-2 mb-0!"><?php echo $v['label']; ?></label>                    </div>
-                                            <div class="lg:col-span-1"><?php echo $v['url']; ?>                    </div>
+                                    <div>
+                                            <div><input name="cf_bbs_rewrite" id="cf_bbs_rewrite_<?php echo $k; ?>" type="radio" value="<?php echo $k; ?>" <?php echo $checked; ?>><label for="cf_bbs_rewrite_<?php echo $k; ?>"><?php echo $v['label']; ?></label>                    </div>
+                                            <div><?php echo $v['url']; ?>                    </div>
                                     </div>
                 <?php } //end foreach ?>
                         </div>
         </div>
 
-    <div class="server_rewrite_info">
-        <div class="is_rewrite remodal" data-remodal-id="modal_apache" role="dialog" aria-labelledby="modalApache" aria-describedby="modal1Desc">
+    <div>
+        <div data-remodal-id="modal_apache" role="dialog" aria-labelledby="modalApache" aria-describedby="modal1Desc">
 
-            <button type="button" class="connect-close" data-remodal-action="close">
-                <i class="fa fa-close"></i>
-                <span class="txt">닫기</span>
+            <button type="button" data-remodal-action="close">
+                <i></i>
+                <span>닫기</span>
             </button>
 
-            <h4 class="copy_title">.htaccess 파일에 적용할 코드입니다.
+            <h4>.htaccess 파일에 적용할 코드입니다.
                 <?php if (!$is_apache_rewrite) { ?>
-                    <br><span class="info-warning">Apache 서버인 경우 rewrite_module 이 비활성화 되어 있으면 짧은 주소를 사용할수 없습니다.</span>
+                    <br><span>Apache 서버인 경우 rewrite_module 이 비활성화 되어 있으면 짧은 주소를 사용할수 없습니다.</span>
                 <?php } elseif (!$is_write_file && $is_apache_need_rules) { ?>
-                    <br><span class="info-warning">자동으로 .htaccess 파일을 수정 할수 있는 권한이 없습니다.<br>.htaccess 파일이 없다면 생성 후에, 아래 코드가 없으면 코드를 복사하여 붙여넣기 해 주세요.</span>
+                    <br><span>자동으로 .htaccess 파일을 수정 할수 있는 권한이 없습니다.<br>.htaccess 파일이 없다면 생성 후에, 아래 코드가 없으면 코드를 복사하여 붙여넣기 해 주세요.</span>
                 <?php } elseif (!$is_apache_need_rules) { ?>
-                    <br><span class="info-success">정상적으로 적용된 상태입니다.</span>
+                    <br><span>정상적으로 적용된 상태입니다.</span>
                 <?php } ?>
             </h4>
             <textarea readonly="readonly" rows="10"><?php echo get_mod_rewrite_rules(true); ?></textarea>
         </div>
 
-        <div class="is_rewrite remodal" data-remodal-id="modal_nginx" role="dialog" aria-labelledby="modalNginx" aria-describedby="modal2Desc">
+        <div data-remodal-id="modal_nginx" role="dialog" aria-labelledby="modalNginx" aria-describedby="modal2Desc">
 
-            <button type="button" class="connect-close" data-remodal-action="close">
-                <i class="fa fa-close"></i>
-                <span class="txt">닫기</span>
+            <button type="button" data-remodal-action="close">
+                <i></i>
+                <span>닫기</span>
             </button>
-            <h4 class="copy_title">아래 코드를 복사하여 nginx 설정 파일에 적용해 주세요.</h4>
+            <h4>아래 코드를 복사하여 nginx 설정 파일에 적용해 주세요.</h4>
             <textarea readonly="readonly" rows="10"><?php echo get_nginx_conf_rules(true); ?></textarea>
             </div>
         </div>

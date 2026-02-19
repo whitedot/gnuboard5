@@ -38,11 +38,11 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 <input type="hidden" name="fa_id" value="<?php echo $fa_id; ?>">
 <input type="hidden" name="token" value="">
 
-<div class="form-card table-shell">
+<div>
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <colgroup>
-        <col class="col-4">
+        <col>
         <col>
     </colgroup>
     <tbody>
@@ -50,8 +50,8 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
         <th scope="row"><label for="fa_order">출력순서</label></th>
         <td>
             <?php echo help('숫자가 작을수록 FAQ 페이지에서 먼저 출력됩니다.'); ?>
-            <input type="text" name="fa_order" value="<?php echo $fa['fa_order']; ?>" id="fa_order" class="form-input" maxlength="10" size="10">
-            <?php if ($w == 'u') { ?><a href="<?php echo G5_BBS_URL; ?>/faq.php?fm_id=<?php echo $fm_id; ?>" class="btn-inline">내용보기</a><?php } ?>
+            <input type="text" name="fa_order" value="<?php echo $fa['fa_order']; ?>" id="fa_order" maxlength="10" size="10">
+            <?php if ($w == 'u') { ?><a href="<?php echo G5_BBS_URL; ?>/faq.php?fm_id=<?php echo $fm_id; ?>">내용보기</a><?php } ?>
         </td>
     </tr>
     <tr>
@@ -66,9 +66,9 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
     </table>
 </div>
 
-<div class="action-bar">
-    <input type="submit" value="확인" class="btn-primary btn" accesskey="s">
-    <a href="./faqlist.php?fm_id=<?php echo $fm_id; ?>" class="btn btn-secondary">목록</a>
+<div>
+    <input type="submit" value="확인" accesskey="s">
+    <a href="./faqlist.php?fm_id=<?php echo $fm_id; ?>">목록</a>
 </div>
 
 </form>

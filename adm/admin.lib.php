@@ -322,7 +322,7 @@ function help($help = "")
 {
     global $g5;
 
-    $str  = '<span class="frm_info">' . str_replace("\n", "<br>", $help) . '</span>';
+    $str  = '<span>' . str_replace("\n", "<br>", $help) . '</span>';
 
     return $str;
 }

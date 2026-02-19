@@ -46,7 +46,7 @@ $sql = " select *
             limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 
-$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="summary-all btn_ov02">전체목록</a>';
+$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '">전체목록</a>';
 
 $g5['title'] = "관리권한설정";
 require_once './admin.head.php';
@@ -54,17 +54,17 @@ require_once './admin.head.php';
 $colspan = 5;
 ?>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
+<div>
     <?php echo $listall ?>
-    <span class="summary-chip"><span class="summary-label">설정된 관리권한</span><span class="summary-value"><?php echo number_format($total_count) ?>건</span></span>
+    <span><span>설정된 관리권한</span><span><?php echo number_format($total_count) ?>건</span></span>
 </div>
 
-<form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
+<form name="fsearch" id="fsearch" method="get">
     <input type="hidden" name="sfl" value="a.mb_id" id="sfl">
 
-    <label for="stx" class="sr-only">회원아이디<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required form-input">
-    <input type="submit" value="검색" id="fsearch_submit" class="btn btn-sm border-default-300">
+    <label for="stx">회원아이디<strong> 필수</strong></label>
+    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required">
+    <input type="submit" value="검색" id="fsearch_submit">
 
 </form>
 
@@ -76,13 +76,13 @@ $colspan = 5;
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <div class="table-card table-shell">
+    <div>
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall" class="sr-only">현재 페이지 회원 전체</label>
+                        <label for="chkall">현재 페이지 회원 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col"><?php echo subject_sort_link('a.mb_id') ?>회원아이디</a></th>
@@ -117,34 +117,34 @@ $colspan = 5;
                     $bg = 'bg' . ($i % 2);
                 ?>
                     <tr class="<?php echo $bg; ?>">
-                        <td class="cell-chk">
+                        <td>
                             <input type="hidden" name="au_menu[<?php echo $i ?>]" value="<?php echo $row['au_menu'] ?>">
                             <input type="hidden" name="mb_id[<?php echo $i ?>]" value="<?php echo $row['mb_id'] ?>">
-                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $row['mb_nick'] ?>님 권한</label>
+                            <label for="chk_<?php echo $i; ?>"><?php echo $row['mb_nick'] ?>님 권한</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
                         </td>
-                        <td class="cell-mbid"><a href="?sfl=a.mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo $row['mb_id'] ?></a></td>
-                        <td class="cell-auth-mbnick"><?php echo $mb_nick ?></td>
-                        <td class="cell-menu">
+                        <td><a href="?sfl=a.mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo $row['mb_id'] ?></a></td>
+                        <td><?php echo $mb_nick ?></td>
+                        <td>
                             <?php echo $row['au_menu'] ?>
                             <?php echo $auth_menu[$row['au_menu']] ?>
                         </td>
-                        <td class="cell-auth"><?php echo $row['au_auth'] ?></td>
+                        <td><?php echo $row['au_auth'] ?></td>
                     </tr>
                 <?php
                     $count++;
                 }
 
                 if ($count == 0) {
-                    echo '<tr><td colspan="' . $colspan . '" class="table-empty">자료가 없습니다.</td></tr>';
+                    echo '<tr><td colspan="' . $colspan . '">자료가 없습니다.</td></tr>';
                 }
                 ?>
             </tbody>
         </table>
     </div>
 
-    <div class="action-inline">
-        <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
+    <div>
+        <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
     </div>
 
     <?php
@@ -173,32 +173,32 @@ echo $pagelist;
     <input type="hidden" name="token" value="">
 
     <section id="add_admin">
-        <h2 class="section-title">관리권한 추가</h2>
+        <h2>관리권한 추가</h2>
 
-        <div class="hint-text">
+        <div>
             <p>
                 다음 양식에서 회원에게 관리권한을 부여하실 수 있습니다.<br>
                 권한 <strong>r</strong>은 읽기권한, <strong>w</strong>는 쓰기권한, <strong>d</strong>는 삭제권한입니다.
             </p>
         </div>
 
-        <div class="card">
-            <div class="grid grid-cols-1 gap-4">
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1">
-                        <label for="mb_id" class="form-label py-2 mb-0!">회원아이디<strong class="sr-only">필수</strong></label>
+        <div>
+            <div>
+                <div>
+                    <div>
+                        <label for="mb_id">회원아이디<strong>필수</strong></label>
                     </div>
-                    <div class="lg:col-span-3">
-                        <strong id="msg_mb_id" class="msg_sound_only"></strong>
-                        <input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" required class="required form-input">
+                    <div>
+                        <strong id="msg_mb_id"></strong>
+                        <input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" required class="required">
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1">
-                        <label for="au_menu" class="form-label py-2 mb-0!">접근가능메뉴<strong class="sr-only">필수</strong></label>
+                <div>
+                    <div>
+                        <label for="au_menu">접근가능메뉴<strong>필수</strong></label>
                     </div>
-                    <div class="lg:col-span-3">
-                        <select class="form-select" id="au_menu" name="au_menu" required class="required form-select">
+                    <div>
+                        <select id="au_menu" name="au_menu" required class="required">
                             <option value=''>선택하세요</option>
                             <?php
                             foreach ($auth_menu as $key => $value) {
@@ -210,24 +210,24 @@ echo $pagelist;
                         </select>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1">
-                        <span class="form-label py-2 mb-0!">권한지정</span>
+                <div>
+                    <div>
+                        <span>권한지정</span>
                     </div>
-                    <div class="lg:col-span-3">
-                        <input type="checkbox" name="r" value="r" id="r" checked class="form-checkbox">
+                    <div>
+                        <input type="checkbox" name="r" value="r" id="r" checked>
                         <label for="r">r (읽기)</label>
-                        <input type="checkbox" name="w" value="w" id="w" class="form-checkbox">
+                        <input type="checkbox" name="w" value="w" id="w">
                         <label for="w">w (쓰기)</label>
-                        <input type="checkbox" name="d" value="d" id="d" class="form-checkbox">
+                        <input type="checkbox" name="d" value="d" id="d">
                         <label for="d">d (삭제)</label>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6 border-b border-dashed border-default-300 pb-4">
-                    <div class="lg:col-span-1">
-                        <span class="form-label py-2 mb-0!">자동등록방지</span>
+                <div>
+                    <div>
+                        <span>자동등록방지</span>
                     </div>
-                    <div class="lg:col-span-3">
+                    <div>
                         <?php
                         require_once G5_CAPTCHA_PATH . '/captcha.lib.php';
                         $captcha_html = captcha_html();
@@ -239,8 +239,8 @@ echo $pagelist;
             </div>
         </div>
 
-        <div class="action-bar">
-            <input type="submit" value="추가" class="btn btn-sm border-default-300">
+        <div>
+            <input type="submit" value="추가">
         </div>
     </section>
 

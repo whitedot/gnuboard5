@@ -21,7 +21,7 @@ if ($board['bo_use_category']) {
         $category_msg = '';
         if ($category==$sca) { // 현재 선택된 카테고리라면
             $category_option .= ' id="bo_cate_on"';
-            $category_msg = '<span class="sr-only">열린 분류 </span>';
+            $category_msg = '<span>열린 분류 </span>';
         }
         $category_option .= '>'.$category_msg.$category.'</a></li>';
     }
@@ -231,14 +231,14 @@ if ($is_search_bbs) {
     if (isset($min_spt) && $prev_spt >= $min_spt) {
         $qstr1 = preg_replace($patterns, '', $qstr);
         $prev_part_href = get_pretty_url($bo_table,0,$qstr1.'&amp;spt='.$prev_spt.'&amp;page=1');
-        $write_pages = page_insertbefore($write_pages, '<a href="'.$prev_part_href.'" class="pg_page pg_search pg_prev">이전검색</a>');
+        $write_pages = page_insertbefore($write_pages, '<a href="'.$prev_part_href.'">이전검색</a>');
     }
 
     $next_spt = $spt + $config['cf_search_part'];
     if ($next_spt < 0) {
         $qstr1 = preg_replace($patterns, '', $qstr);
         $next_part_href = get_pretty_url($bo_table,0,$qstr1.'&amp;spt='.$next_spt.'&amp;page=1');
-        $write_pages = page_insertafter($write_pages, '<a href="'.$next_part_href.'" class="pg_page pg_search pg_next">다음검색</a>');
+        $write_pages = page_insertafter($write_pages, '<a href="'.$next_part_href.'">다음검색</a>');
     }
 }
 

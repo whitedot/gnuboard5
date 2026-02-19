@@ -45,7 +45,7 @@ if (str_replace('-', '', G5_TIME_YMD) !== get_session('adm_auth_update')) {
     $site_url = preg_replace('/^www\./', '', strtolower($_SERVER['SERVER_NAME']));
     $to_email = 'gnuboard@' . $site_url;
 
-    mailer($config['cf_admin_email_name'], $to_email, $config['cf_admin_email'], '[' . $config['cf_title'] . '] 관리권한설정 알림', '<p><b>[' . $config['cf_title'] . '] 관리권한설정 변경 안내</b></p><p style="padding-top:1em">회원 아이디 ' . $mb['mb_id'] . ' 에 관리권한이 추가 되었습니다.</p><p style="padding-top:1em">' . G5_TIME_YMDHIS . '</p><p style="padding-top:1em"><a href="' . G5_URL . '" target="_blank">' . $config['cf_title'] . '</a></p>', 1);
+    mailer($config['cf_admin_email_name'], $to_email, $config['cf_admin_email'], '[' . $config['cf_title'] . '] 관리권한설정 알림', '<p><b>[' . $config['cf_title'] . '] 관리권한설정 변경 안내</b></p><p>회원 아이디 ' . $mb['mb_id'] . ' 에 관리권한이 추가 되었습니다.</p><p>' . G5_TIME_YMDHIS . '</p><p><a href="' . G5_URL . '" target="_blank">' . $config['cf_title'] . '</a></p>', 1);
 
     set_session('adm_auth_update', str_replace('-', '', G5_TIME_YMD));
 }

@@ -46,42 +46,42 @@ if ($page < 1) { $page = 1; } // 페이지가 없으면 첫 페이지 (1 페이�
 $from_record = ($page - 1) * $rows; // 시작 열을 구함
 ?>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
-    <span class="summary-chip"><span class="summary-label"> <?php echo ($sql_search) ? '검색' : '등록'; ?>된 배너 </span><span class="summary-value"> <?php echo $total_count; ?>개</span></span>
+<div>
+    <span><span> <?php echo ($sql_search) ? '검색' : '등록'; ?>된 배너 </span><span> <?php echo $total_count; ?>개</span></span>
 
-    <form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
+    <form name="flist">
     <input type="hidden" name="page" value="<?php echo $page; ?>">
 
-    <label for="bn_position" class="sr-only">검색</label>
-    <select class="form-select" name="bn_position" id="bn_position">
+    <label for="bn_position">검색</label>
+    <select name="bn_position" id="bn_position">
         <option value=""<?php echo get_selected($bn_position, '', true); ?>>위치 전체</option>
         <option value="메인"<?php echo get_selected($bn_position, '메인', true); ?>>메인</option>
         <option value="왼쪽"<?php echo get_selected($bn_position, '왼쪽', true); ?>>왼쪽</option>
     </select>
 
-    <select class="form-select" name="bn_device" id="bn_device">
+    <select name="bn_device" id="bn_device">
         <option value="both"<?php echo get_selected($bn_device, 'both', true); ?>>PC와 모바일</option>
         <option value="pc"<?php echo get_selected($bn_device, 'pc'); ?>>PC</option>
         <option value="mobile"<?php echo get_selected($bn_device, 'mobile'); ?>>모바일</option>
     </select>
 
-    <select class="form-select" name="bn_time" id="bn_time">
+    <select name="bn_time" id="bn_time">
         <option value=""<?php echo get_selected($bn_time, '', true); ?>>배너 시간 전체</option>
         <option value="ing"<?php echo get_selected($bn_time, 'ing'); ?>>진행중인 배너</option>
         <option value="end"<?php echo get_selected($bn_time, 'end'); ?>>종료된 배너</option>
     </select>
 
-    <input type="submit" value="검색" class="btn btn-sm border-default-300">
+    <input type="submit" value="검색">
 
     </form>
 
 </div>
 
-<div class="action-bar">
-    <a href="./bannerform.php" class="btn-primary btn">배너추가</a>
+<div>
+    <a href="./bannerform.php">배너추가</a>
 </div>
 
-<div class="table-card table-shell card">
+<div>
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -143,29 +143,29 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
     ?>
 
     <tr class="<?php echo $bg; ?>">
-        <td headers="th_id" rowspan="2" class="cell-num"><?php echo $row['bn_id']; ?></td>
+        <td headers="th_id" rowspan="2"><?php echo $row['bn_id']; ?></td>
         <td headers="th_dvc"><?php echo $bn_device; ?></td>
         <td headers="th_loc"><?php echo $row['bn_position']; ?></td>
-        <td headers="th_st" class="cell-datetime"><?php echo $bn_begin_time; ?></td>
-        <td headers="th_end" class="cell-datetime"><?php echo $bn_end_time; ?></td>
-        <td headers="th_odr" class="cell-num"><?php echo $row['bn_order']; ?></td>
-        <td headers="th_hit" class="cell-num"><?php echo $row['bn_hit']; ?></td>
-        <td headers="th_mng" class="cell-mng cell-mns-m">
-            <a href="./bannerform.php?w=u&amp;bn_id=<?php echo $row['bn_id']; ?>" class="btn btn-tertiary">수정</a>
-            <a href="./bannerformupdate.php?w=d&amp;bn_id=<?php echo $row['bn_id']; ?>" onclick="return delete_confirm(this);" class="btn btn-secondary">삭제</a>
+        <td headers="th_st"><?php echo $bn_begin_time; ?></td>
+        <td headers="th_end"><?php echo $bn_end_time; ?></td>
+        <td headers="th_odr"><?php echo $row['bn_order']; ?></td>
+        <td headers="th_hit"><?php echo $row['bn_hit']; ?></td>
+        <td headers="th_mng">
+            <a href="./bannerform.php?w=u&amp;bn_id=<?php echo $row['bn_id']; ?>">수정</a>
+            <a href="./bannerformupdate.php?w=d&amp;bn_id=<?php echo $row['bn_id']; ?>" onclick="return delete_confirm(this);">삭제</a>
         </td>
     </tr>
     <tr class="<?php echo $bg; ?>">
-        <td headers="th_img" colspan="7" class="cell-img-view sbn_img">
+        <td headers="th_img" colspan="7" class="cell-img-view">
             <div class="sbn_image"><?php echo $bn_img; ?></div>
-            <button type="button" class="sbn_img_view btn-inline">이미지확인</button>
+            <button type="button" class="sbn_img_view">이미지확인</button>
         </td>
     </tr>
 
     <?php
     }
     if ($i == 0) {
-    echo '<tr><td colspan="8" class="table-empty">자료가 없습니다.</td></tr>';
+    echo '<tr><td colspan="8">자료가 없습니다.</td></tr>';
     }
     ?>
     </tbody>

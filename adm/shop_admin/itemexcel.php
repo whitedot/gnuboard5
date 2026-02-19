@@ -8,10 +8,10 @@ $g5['title'] = '엑셀파일로 상품 일괄 등록';
 include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 ?>
 
-<div class="new_win">
+<div>
     <h1><?php echo $g5['title']; ?></h1>
 
-    <div class="hint-box">
+    <div>
         <p>
             엑셀파일을 이용하여 상품을 일괄등록할 수 있습니다.<br>
             형식은 <strong>상품일괄등록용 엑셀파일</strong>을 다운로드하여 상품 정보를 입력하시면 됩니다.<br>
@@ -31,9 +31,9 @@ include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
         <input type="file" name="excelfile" id="excelfile">
     </div>
 
-    <div class="win_btn action-bar">
-        <input type="submit" value="상품 엑셀파일 등록" class="btn-primary btn">
-        <button type="button" onclick="window.close();" class="btn_close btn">닫기</button>
+    <div class="win_btn">
+        <input type="submit" value="상품 엑셀파일 등록">
+        <button type="button" onclick="window.close();">닫기</button>
     </div>
 
     </form>

@@ -48,13 +48,13 @@ $sql = "select * $sql_common order by nw_id desc ";
 $result = sql_query($sql);
 ?>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5"><span class="btn btn-sm border-default-300"><span class="summary-label">전체 </span><span class="summary-value"> <?php echo $total_count; ?>건</span></span></div>
+<div><span><span>전체 </span><span> <?php echo $total_count; ?>건</span></span></div>
 
-<div class="action-bar">
-    <a href="./newwinform.php" class="btn btn-sm border-default-300">새창관리추가</a>
+<div>
+    <a href="./newwinform.php">새창관리추가</a>
 </div>
 
-<div class="table-card table-shell card">
+<div>
     <table>
         <caption><?php echo $g5['title']; ?> 목록</caption>
         <thead>
@@ -90,26 +90,26 @@ $result = sql_query($sql);
                 }
             ?>
                 <tr class="<?php echo $bg; ?>">
-                    <td class="cell-num"><?php echo $row['nw_id']; ?></td>
-                    <td class="cell-left"><?php echo $row['nw_subject']; ?></td>
-                    <td class="cell-device"><?php echo $nw_device; ?></td>
-                    <td class="cell-datetime"><?php echo substr($row['nw_begin_time'], 2, 14); ?></td>
-                    <td class="cell-datetime"><?php echo substr($row['nw_end_time'], 2, 14); ?></td>
-                    <td class="cell-num"><?php echo $row['nw_disable_hours']; ?>시간</td>
-                    <td class="cell-num"><?php echo $row['nw_left']; ?>px</td>
-                    <td class="cell-num"><?php echo $row['nw_top']; ?>px</td>
-                    <td class="cell-num"><?php echo $row['nw_width']; ?>px</td>
-                    <td class="cell-num"><?php echo $row['nw_height']; ?>px</td>
-                    <td class="cell-mng cell-mng-m">
-                        <a href="./newwinform.php?w=u&amp;nw_id=<?php echo $row['nw_id']; ?>" class="btn btn-tertiary"><span class="sr-only"><?php echo $row['nw_subject']; ?> </span>수정</a>
-                        <a href="./newwinformupdate.php?w=d&amp;nw_id=<?php echo $row['nw_id']; ?>" onclick="return delete_confirm(this);" class="btn btn-secondary"><span class="sr-only"><?php echo $row['nw_subject']; ?> </span>삭제</a>
+                    <td><?php echo $row['nw_id']; ?></td>
+                    <td><?php echo $row['nw_subject']; ?></td>
+                    <td><?php echo $nw_device; ?></td>
+                    <td><?php echo substr($row['nw_begin_time'], 2, 14); ?></td>
+                    <td><?php echo substr($row['nw_end_time'], 2, 14); ?></td>
+                    <td><?php echo $row['nw_disable_hours']; ?>시간</td>
+                    <td><?php echo $row['nw_left']; ?>px</td>
+                    <td><?php echo $row['nw_top']; ?>px</td>
+                    <td><?php echo $row['nw_width']; ?>px</td>
+                    <td><?php echo $row['nw_height']; ?>px</td>
+                    <td>
+                        <a href="./newwinform.php?w=u&amp;nw_id=<?php echo $row['nw_id']; ?>"><span><?php echo $row['nw_subject']; ?> </span>수정</a>
+                        <a href="./newwinformupdate.php?w=d&amp;nw_id=<?php echo $row['nw_id']; ?>" onclick="return delete_confirm(this);"><span><?php echo $row['nw_subject']; ?> </span>삭제</a>
                     </td>
                 </tr>
             <?php
             }
 
             if ($i == 0) {
-                echo '<tr><td colspan="11" class="table-empty">자료가 한건도 없습니다.</td></tr>';
+                echo '<tr><td colspan="11">자료가 한건도 없습니다.</td></tr>';
             }
             ?>
         </tbody>

@@ -59,7 +59,7 @@ history.back();
 <noscript>
 <div id="validation_check">
     <h1><?php echo $header2 ?></h1>
-    <p class="cbg">
+    <p>
         <?php echo $msg2 ?>
     </p>
     <?php if($post) { ?>
@@ -83,7 +83,7 @@ history.back();
     <input type="submit" value="돌아가기">
     </form>
     <?php } else { ?>
-    <div class="btn_confirm">
+    <div>
         <a href="<?php echo $url ?>">돌아가기</a>
     </div>
     <?php } ?>

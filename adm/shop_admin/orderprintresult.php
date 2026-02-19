@@ -285,7 +285,7 @@ if (sql_num_rows($result) == 0)
 }
 ?>
 
-<div id="sodr_print_pop" class="new_win">
+<div id="sodr_print_pop">
     <h1>
         <?php
         if ($case == 1)
@@ -324,7 +324,7 @@ if (sql_num_rows($result) == 0)
         $od_shop_memo = ($row1['od_shop_memo']) ? get_text(stripslashes($row1['od_shop_memo'])) : '';
     ?>
     <!-- 반복시작 - 지운아빠 2013-04-18 -->
-    <div class="sodr_print_pop_list">
+    <div>
         <h2>주문번호 <?php echo $row1['od_id']; ?></h2>
         <h3>보내는 사람 : <?php echo get_text($row1['od_name']); ?></h3>
 
@@ -337,7 +337,7 @@ if (sql_num_rows($result) == 0)
             <dd><?php echo get_text($row1['od_tel']); ?></dd>
         </dl>
         <?php if ($samesamesame) { ?>
-        <p class="sodr_print_pop_same">보내는 사람과 받는 사람이 동일합니다.</p>
+        <p>보내는 사람과 받는 사람이 동일합니다.</p>
         <?php } else { ?>
         <h3>받는 사람 : <?php echo get_text($row1['od_b_name']); ?></h3>
         <dl>
@@ -351,7 +351,7 @@ if (sql_num_rows($result) == 0)
         <?php } ?>
 
         <h3>주문 목록</h3>
-        <div class="table-card">
+        <div>
             <table>
             <caption>주문 목록</caption>
             <thead>
@@ -438,10 +438,10 @@ if (sql_num_rows($result) == 0)
             ?>
             <tr>
                 <td><?php echo $it_name; ?></td>
-                <td class="cell-num"><?php echo number_format($it_price); ?></td>
-                <td class="cell-cntsmall"><?php echo $fontqty1; ?><?php echo number_format($row2['ct_qty']); ?><?php echo $fontqty2; ?></td>
-                <td class="cell-num cell-numsum"><?php echo number_format($row2_tot_price); ?></td>
-                <td class="cell-sendcost-by"><?php echo $ct_send_cost; ?></td>
+                <td><?php echo number_format($it_price); ?></td>
+                <td><?php echo $fontqty1; ?><?php echo number_format($row2['ct_qty']); ?><?php echo $fontqty2; ?></td>
+                <td><?php echo number_format($row2_tot_price); ?></td>
+                <td><?php echo $ct_send_cost; ?></td>
             </tr>
             <?php
                 $cnt++;
@@ -449,17 +449,17 @@ if (sql_num_rows($result) == 0)
             ?>
             <tr>
                 <td>배송비</td>
-                <td class="cell-num"><?php echo number_format($row1['od_send_cost']); ?></td>
-                <td class="cell-cntsmall"><?php echo $fontqty1; ?>1<?php echo $fontqty2; ?></td>
-                <td class="cell-num cell-numsum"><?php echo number_format($row1['od_send_cost']); ?></td>
-                <td class="cell-sendcost-by"></td>
+                <td><?php echo number_format($row1['od_send_cost']); ?></td>
+                <td><?php echo $fontqty1; ?>1<?php echo $fontqty2; ?></td>
+                <td><?php echo number_format($row1['od_send_cost']); ?></td>
+                <td></td>
             </tr>
             <tr>
                 <td>추가 배송비</td>
-                <td class="cell-num"><?php echo number_format($row1['od_send_cost2']); ?></td>
-                <td class="cell-cntsmall"><?php echo $fontqty1; ?>1<?php echo $fontqty2; ?></td>
-                <td class="cell-num cell-numsum"><?php echo number_format($row1['od_send_cost2']); ?></td>
-                <td class="cell-sendcost-by"></td>
+                <td><?php echo number_format($row1['od_send_cost2']); ?></td>
+                <td><?php echo $fontqty1; ?>1<?php echo $fontqty2; ?></td>
+                <td><?php echo number_format($row1['od_send_cost2']); ?></td>
+                <td></td>
             </tr>
             </tbody>
             <tfoot>

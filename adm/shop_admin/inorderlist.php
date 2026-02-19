@@ -51,17 +51,17 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 $colspan = 10;
 ?>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
-   <span class="summary-chip"><span class="summary-label">전체 </span><span class="summary-value">  <?php echo number_format($total_count) ?> 건 </span></span> 
+<div>
+   <span><span>전체 </span><span>  <?php echo number_format($total_count) ?> 건 </span></span> 
 </div>
 
-<form name="fsearch" id="fsearch" class="card p-4 mb-base flex flex-wrap items-center gap-2.5" method="get">
-    <select class="form-select" name="sfl" title="검색대상">
+<form name="fsearch" id="fsearch" method="get">
+    <select name="sfl" title="검색대상">
         <option value="od_id"<?php echo get_selected($sfl, "od_id"); ?>>주문번호</option>
     </select>
-    <label for="stx" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required form-input">
-    <input type="submit" class="btn btn-sm border-default-300" value="검색">
+    <label for="stx">검색어<strong> 필수</strong></label>
+    <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required">
+    <input type="submit" value="검색">
 </form>
 
 <form name="finorderlist" id="finorderlist" method="post" action="./inorderlistdelete.php" onsubmit="return finorderlist_submit(this);">
@@ -72,13 +72,13 @@ $colspan = 10;
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 <input type="hidden" name="token" value="">
 
-<div class="table-card table-shell card" id="inorderlist">
+<div id="inorderlist">
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall" class="sr-only">미완료주문 전체</label>
+            <label for="chkall">미완료주문 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col"><?php echo subject_sort_link('od_id') ?>주문번호</a></th>
@@ -117,21 +117,21 @@ $colspan = 10;
     ?>
 
     <tr class="<?php echo $bg; ?>">
-        <td class="cell-chk">
+        <td>
             <input type="hidden" id="od_id_<?php echo $i; ?>" name="od_id[<?php echo $i; ?>]" value="<?php echo $row['od_id']; ?>">
             <input type="checkbox" id="chk_<?php echo $i; ?>" name="chk[]" value="<?php echo $i; ?>" title="내역선택">
         </td>
-        <td class="cell-odrnum2"><?php echo $row['od_id']; ?></td>
-        <td class="cell-center"><?php echo $pg; ?></td>
-        <td class="cell-name"><?php echo get_text($data['od_name']); ?></td>
-        <td class="cell-center"><?php echo get_text($data['od_tel']); ?></td>
-        <td class="cell-name"><?php echo get_text($data['od_b_name']); ?></td>
-        <td class="cell-price"><?php echo number_format($ct['price']); ?></td>
-        <td class="cell-center"><?php echo $data['od_settle_case']; ?></td>
-        <td class="cell-time"><?php echo $row['dt_time']; ?></td>
-        <td class="cell-mng cell-mng-m">
-            <a href="./inorderform.php?od_id=<?php echo $row['od_id']; ?>&amp;<?php echo $qstr; ?>" class="btn btn-tertiary"><span class="sr-only"><?php echo $row['od_id']; ?> </span>보기</a>
-            <a href="./inorderformupdate.php?w=d&amp;od_id=<?php echo $row['od_id']; ?>&amp;<?php echo $qstr; ?>" onclick="return delete_confirm(this);" class="btn btn-secondary"><span class="sr-only"><?php echo $row['od_id']; ?> </span>삭제</a>
+        <td><?php echo $row['od_id']; ?></td>
+        <td><?php echo $pg; ?></td>
+        <td><?php echo get_text($data['od_name']); ?></td>
+        <td><?php echo get_text($data['od_tel']); ?></td>
+        <td><?php echo get_text($data['od_b_name']); ?></td>
+        <td><?php echo number_format($ct['price']); ?></td>
+        <td><?php echo $data['od_settle_case']; ?></td>
+        <td><?php echo $row['dt_time']; ?></td>
+        <td>
+            <a href="./inorderform.php?od_id=<?php echo $row['od_id']; ?>&amp;<?php echo $qstr; ?>"><span><?php echo $row['od_id']; ?> </span>보기</a>
+            <a href="./inorderformupdate.php?w=d&amp;od_id=<?php echo $row['od_id']; ?>&amp;<?php echo $qstr; ?>" onclick="return delete_confirm(this);"><span><?php echo $row['od_id']; ?> </span>삭제</a>
         </td>
     </tr>
 
@@ -139,14 +139,14 @@ $colspan = 10;
     }
 
     if ($i == 0)
-        echo '<tr><td colspan="'.$colspan.'" class="table-empty">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="'.$colspan.'">자료가 없습니다.</td></tr>';
     ?>
     </tbody>
     </table>
 </div>
 
-<div class="action-bar">
-    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
+<div>
+    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
 </div>
 
 </form>

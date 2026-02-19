@@ -51,30 +51,30 @@ $result = sql_query($sql);
 $qstr1 = 'sel_field='.$sel_field.'&amp;search='.$search;
 $qstr = $qstr1.'&amp;sort1='.$sort1.'&amp;sort2='.$sort2.'&amp;page='.$page;
 
-$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목록</a>';
+$listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 ?>
 
-<div class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
+<div>
     <?php echo $listall; ?>
-     <span class="summary-chip"><span class="summary-label">전체 </span><span class="summary-value"> <?php echo number_format($total_count); ?>건</span></span>  
-     <span class="summary-chip"><span class="summary-label">미전송 </span><span class="summary-value"><?php echo number_format($unsend_count); ?>건</span></span>  
+     <span><span>전체 </span><span> <?php echo number_format($total_count); ?>건</span></span>  
+     <span><span>미전송 </span><span><?php echo number_format($unsend_count); ?>건</span></span>  
 </div>
 
-<form name="flist" class="card p-4 mb-base flex flex-wrap items-center gap-2.5">
+<form name="flist">
 <input type="hidden" name="doc" value="<?php echo get_sanitize_input($doc); ?>">
 <input type="hidden" name="sort1" value="<?php echo get_sanitize_input($sort1); ?>">
 <input type="hidden" name="sort2" value="<?php echo get_sanitize_input($sort2); ?>">
 <input type="hidden" name="page" value="<?php echo get_sanitize_input($page); ?>">
 
-<label for="sel_field" class="sr-only">검색대상</label>
-<select class="form-select" name="sel_field" id="sel_field">
+<label for="sel_field">검색대상</label>
+<select name="sel_field" id="sel_field">
     <option value="it_id" <?php echo get_selected($sel_field, 'it_id'); ?>>상품코드</option>
     <option value="ss_hp" <?php echo get_selected($sel_field, 'ss_hp'); ?>>휴대폰번호</option>
 </select>
 
-<label for="search" class="sr-only">검색어<strong class="sr-only"> 필수</strong></label>
-<input type="text" name="search" id="search" value="<?php echo $search; ?>" required class="form-input required">
-<input type="submit" value="검색" class="btn btn-sm border-default-300">
+<label for="search">검색어<strong> 필수</strong></label>
+<input type="text" name="search" id="search" value="<?php echo $search; ?>" required class="required">
+<input type="submit" value="검색">
 
 </form>
 
@@ -85,13 +85,13 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목�
 <input type="hidden" name="search" value="<?php echo $search; ?>">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 
-<div class="table-card table-shell card">
+<div>
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall" class="sr-only">알림요청 전체</label>
+            <label for="chkall">알림요청 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">상품명</th>
@@ -118,32 +118,32 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="summary-all">전체목�
 
     ?>
     <tr class="<?php echo $bg; ?>">
-        <td class="cell-chk">
-            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $it_name; ?> 알림요청</label>
+        <td>
+            <label for="chk_<?php echo $i; ?>"><?php echo $it_name; ?> 알림요청</label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i; ?>">
             <input type="hidden" name="ss_id[<?php echo $i; ?>]" value="<?php echo $row['ss_id']; ?>">
         </td>
-        <td class="cell-left"><?php echo $it_name; ?></td>
-        <td class="cell-telbig"><?php echo $row['ss_hp']; ?></td>
-        <td class="cell-stat"><?php echo ($row['ss_send'] ? '전송완료' : '전송전'); ?></td>
-        <td class="cell-datetime"><?php echo (is_null_time($row['ss_send_time']) ? '' : $row['ss_send_time']); ?></td>
-        <td class="cell-datetime"><?php echo (is_null_time($row['ss_datetime']) ? '' : $row['ss_datetime']); ?></td>
+        <td><?php echo $it_name; ?></td>
+        <td><?php echo $row['ss_hp']; ?></td>
+        <td><?php echo ($row['ss_send'] ? '전송완료' : '전송전'); ?></td>
+        <td><?php echo (is_null_time($row['ss_send_time']) ? '' : $row['ss_send_time']); ?></td>
+        <td><?php echo (is_null_time($row['ss_datetime']) ? '' : $row['ss_datetime']); ?></td>
     </tr>
     <?php
     }
     if (!$i)
-        echo '<tr><td colspan="6" class="table-empty"><span>자료가 없습니다.</span></td></tr>';
+        echo '<tr><td colspan="6"><span>자료가 없습니다.</span></td></tr>';
     ?>
     </tbody>
     </table>
 </div>
 
     
-<div class="action-bar">
+<div>
     <?php if ($is_admin == 'super') { ?>
-    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-secondary">
+    <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
     <?php } ?>
-    <input type="submit" name="act_button" value="선택SMS전송" class="btn btn-sm border-default-300" onclick="document.pressed=this.value">
+    <input type="submit" name="act_button" value="선택SMS전송" onclick="document.pressed=this.value">
 </div>
 </form>
 

@@ -176,7 +176,7 @@ $order_price   = $tot_od_price + $od_send_cost + $od_send_cost2 - $tot_sc_cp_pri
 $sql = " select it_id, it_name, ct_notax, ct_send_cost, it_sc_type $sql_common group by it_id order by ct_id ";
 $result = sql_query($sql);
 
-$pg_anchor = '<ul class="section-anchor">
+$pg_anchor = '<ul>
 <li><a href="#anc_sodr_list">주문상품 목록</a></li>
 <li><a href="#anc_sodr_orderer">주문하신 분</a></li>
 <li><a href="#anc_sodr_taker">받으시는 분</a></li>
@@ -184,9 +184,9 @@ $pg_anchor = '<ul class="section-anchor">
 ?>
 
 <section id="anc_sodr_list">
-    <h2 class="section-title">주문상품 목록</h2>
+    <h2>주문상품 목록</h2>
     <?php echo $pg_anchor; ?>
-    <div class="hint-box">
+    <div>
         <p>
             주문일시 <strong><?php echo substr($od['dt_time'],0,16); ?> (<?php echo get_yoil($od['dt_time']); ?>)</strong>
             |
@@ -194,7 +194,7 @@ $pg_anchor = '<ul class="section-anchor">
         </p>
     </div>
 
-    <div class="table-card table-shell">
+    <div>
         <table>
         <caption>주문 상품 목록</caption>
         <thead>
@@ -273,12 +273,12 @@ $pg_anchor = '<ul class="section-anchor">
                 <?php } ?>
                 <td><?php echo $opt['ct_option']; ?></td>
                 <td class="cell-mngsmall"><?php echo $opt['ct_status']; ?></td>
-                <td class="cell-num"><?php echo number_format($opt['ct_qty']); ?></td>
-                <td class="cell-num"><?php echo number_format($opt_price); ?></td>
-                <td class="cell-num"><?php echo number_format($ct_price['stotal']); ?></td>
-                <td class="cell-num"><?php echo number_format($opt_cp_price); ?></td>
-                <td class="cell-num"><?php echo number_format($ct_point['stotal']); ?></td>
-                <td class="cell-sendcost-by"><?php echo $ct_send_cost; ?></td>
+                <td><?php echo number_format($opt['ct_qty']); ?></td>
+                <td><?php echo number_format($opt_price); ?></td>
+                <td><?php echo number_format($ct_price['stotal']); ?></td>
+                <td><?php echo number_format($opt_cp_price); ?></td>
+                <td><?php echo number_format($ct_point['stotal']); ?></td>
+                <td><?php echo $ct_send_cost; ?></td>
                 <td class="cell-mngsmall"><?php echo get_yn($opt['ct_point_use']); ?></td>
                 <td class="cell-mngsmall"><?php echo get_yn($opt['ct_stock_use']); ?></td>
             </tr>
@@ -294,7 +294,7 @@ $pg_anchor = '<ul class="section-anchor">
 </section>
 
 <section id="anc_sodr_pay">
-    <h2 class="section-title">주문결제 내역</h2>
+    <h2>주문결제 내역</h2>
     <?php echo $pg_anchor; ?>
 
     <?php
@@ -337,7 +337,7 @@ $pg_anchor = '<ul class="section-anchor">
         $s_receipt_way .= "+포인트";
     ?>
 
-    <div class="table-card table-shell">
+    <div>
         <form name="frmorderform" method="post" action="./inorderformupdate.php" onsubmit="return form_submit(this);">
         <input type="hidden" name="od_id" value="<?php echo $od_id; ?>">
         <input type="hidden" name="sst" value="<?php echo $sst; ?>">
@@ -346,7 +346,7 @@ $pg_anchor = '<ul class="section-anchor">
         <input type="hidden" name="stx" value="<?php echo $stx; ?>">
         <input type="hidden" name="page" value="<?php echo $page; ?>">
 
-        <strong class="sodr_nonpay">미수금 <?php echo display_price($amount['misu']); ?></strong>
+        <strong>미수금 <?php echo display_price($amount['misu']); ?></strong>
 
         <table>
         <caption>주문결제 내역</caption>
@@ -365,19 +365,19 @@ $pg_anchor = '<ul class="section-anchor">
         <tbody>
         <tr>
             <td><?php echo $od['od_id']; ?></td>
-            <td class="cell-paybybig"><?php echo $s_receipt_way; ?></td>
-            <td class="cell-numbig cell-numsum"><?php echo display_price($amount['order']); ?></td>
-            <td class="cell-numbig"><?php echo display_price($od_send_cost + $od_send_cost2); ?></td>
-            <td class="cell-numbig"><?php echo display_point($od_temp_point); ?></td>
-            <td class="cell-numbig cell-numincome"><?php echo number_format($amount['receipt']); ?>원</td>
-            <td class="cell-numbig cell-numcoupon"><?php echo display_price($amount['coupon']); ?></td>
-            <td class="cell-numbig cell-numcancel"><?php echo number_format($amount['cancel']); ?>원</td>
+            <td><?php echo $s_receipt_way; ?></td>
+            <td><?php echo display_price($amount['order']); ?></td>
+            <td><?php echo display_price($od_send_cost + $od_send_cost2); ?></td>
+            <td><?php echo display_point($od_temp_point); ?></td>
+            <td><?php echo number_format($amount['receipt']); ?>원</td>
+            <td><?php echo display_price($amount['coupon']); ?></td>
+            <td><?php echo number_format($amount['cancel']); ?>원</td>
         </tr>
         </tbody>
         </table>
 
-        <div class="action-bar">
-            <input type="submit" value="주문 복구" class="btn-primary">
+        <div>
+            <input type="submit" value="주문 복구">
         </div>
         </form>
     </div>
@@ -410,11 +410,11 @@ $pg_anchor = '<ul class="section-anchor">
 
         if( $tmps ) {
     ?>
-    <h2 class="section-title">이니시스 결제 로그</h2>
-    <div class="hint-box">
+    <h2>이니시스 결제 로그</h2>
+    <div>
         <p>실결제로 결제된 경우 반드시 이니시스 상점 관리자에서 해당 결제건을 확인 후에 주문을 처리해 주세요.</p>
     </div>
-    <div class="table-card table-shell">
+    <div>
         <table>
         <caption>이니시스 결제 로그</caption>
         <tbody>
@@ -454,36 +454,36 @@ $pg_anchor = '<ul class="section-anchor">
     }     //end if inicis
     ?>
 
-    <h2 class="section-title">주문자/배송지 정보</h2>
+    <h2>주문자/배송지 정보</h2>
     <?php echo $pg_anchor; ?>
 
-    <div class="compare_wrap">
+    <div>
 
-        <section id="anc_sodr_orderer" class="compare_left">
+        <section id="anc_sodr_orderer">
             <h3>주문하신 분</h3>
 
-            <div class="form-card">
+            <div>
                 <table>
                 <caption>주문자/배송지 정보</caption>
                 <colgroup>
-                    <col class="col-4">
+                    <col>
                     <col>
                 </colgroup>
                 <tbody>
                 <tr>
-                    <th scope="row"><span class="sr-only">주문하신 분 </span>이름</th>
+                    <th scope="row"><span>주문하신 분 </span>이름</th>
                     <td><?php echo get_text($data['od_name']); ?></td>
                 </tr>
                 <tr>
-                    <th scope="row"><span class="sr-only">주문하신 분 </span>전화번호</th>
+                    <th scope="row"><span>주문하신 분 </span>전화번호</th>
                     <td><?php echo get_text($data['od_tel']); ?></td>
                 </tr>
                 <tr>
-                    <th scope="row"><span class="sr-only">주문하신 분 </span>핸드폰</th>
+                    <th scope="row"><span>주문하신 분 </span>핸드폰</th>
                     <td><?php echo get_text($data['od_hp']); ?></td>
                 </tr>
                 <tr>
-                    <th scope="row"><span class="sr-only">주문하시는 분 </span>주소</th>
+                    <th scope="row"><span>주문하시는 분 </span>주소</th>
                     <td>
                         <span><?php echo $data['od_zip']; ?></span>
                         <span><?php echo get_text($data['od_addr1']); ?></span>
@@ -492,7 +492,7 @@ $pg_anchor = '<ul class="section-anchor">
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><span class="sr-only">주문하신 분 </span>E-mail</th>
+                    <th scope="row"><span>주문하신 분 </span>E-mail</th>
                     <td><?php echo get_text($data['od_email']); ?></td>
                 </tr>
                 </tbody>
@@ -500,31 +500,31 @@ $pg_anchor = '<ul class="section-anchor">
             </div>
         </section>
 
-        <section id="anc_sodr_taker" class="compare_right">
+        <section id="anc_sodr_taker">
             <h3>받으시는 분</h3>
 
-            <div class="form-card">
+            <div>
                 <table>
                 <caption>받으시는 분 정보</caption>
                 <colgroup>
-                    <col class="col-4">
+                    <col>
                     <col>
                 </colgroup>
                 <tbody>
                 <tr>
-                    <th scope="row"><span class="sr-only">받으시는 분 </span>이름</th>
+                    <th scope="row"><span>받으시는 분 </span>이름</th>
                     <td><?php echo get_text($data['od_b_name']); ?></td>
                 </tr>
                 <tr>
-                    <th scope="row"><span class="sr-only">받으시는 분 </span>전화번호</th>
+                    <th scope="row"><span>받으시는 분 </span>전화번호</th>
                     <td><?php echo get_text($data['od_b_tel']); ?></td>
                 </tr>
                 <tr>
-                    <th scope="row"><span class="sr-only">받으시는 분 </span>핸드폰</th>
+                    <th scope="row"><span>받으시는 분 </span>핸드폰</th>
                     <td><?php echo get_text($data['od_b_hp']); ?></td>
                 </tr>
                 <tr>
-                    <th scope="row"><span class="sr-only">받으시는 분 </span>주소</th>
+                    <th scope="row"><span>받으시는 분 </span>주소</th>
                     <td>
                         <span><?php echo $data['od_b_zip']; ?></span>
                         <span><?php echo get_text($data['od_b_addr1']); ?></span>

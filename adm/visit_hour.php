@@ -31,7 +31,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
 }
 ?>
 
-<div class="table-card table-shell">
+<div>
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -63,19 +63,19 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
             $bg = 'bg'.($i%2);
     ?>
     <tr class="<?php echo $bg; ?>">
-        <td class="cell-category"><?php echo $hour ?></td>
+        <td><?php echo $hour ?></td>
         <td>
-            <div class="visit_bar">
-                <span style="width:<?php echo $s_rate ?>%"></span>
+            <div>
+                <span></span>
             </div>
         </td>
-        <td class="cell-num-c3"><?php echo number_format($count) ?></td>
-        <td class="cell-num"><?php echo $s_rate ?></td>
+        <td><?php echo number_format($count) ?></td>
+        <td><?php echo $s_rate ?></td>
     </tr>
     <?php
         }
     } else {
-        echo '<tr><td colspan="'.$colspan.'" class="table-empty">자료가 없습니다.</td></tr>';
+        echo '<tr><td colspan="'.$colspan.'">자료가 없습니다.</td></tr>';
     }
     ?>
     </tbody>

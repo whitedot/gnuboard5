@@ -39,7 +39,7 @@ if ($w == '') {
     $required_mb_id = 'required';
     $required_mb_id_class = 'required alnum_';
     $required_mb_password = 'required';
-    $sound_only = '<strong class="sr-only">필수</strong>';
+    $sound_only = '<strong>필수</strong>';
 
     $mb['mb_mailling'] = 1;
     $mb['mb_sms'] = 1;
@@ -147,7 +147,7 @@ require_once './admin.head.php';
 // add_javascript('js 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 
-$pg_anchor = '<ul class="section-anchor">
+$pg_anchor = '<ul>
     <li><a href="#anc_mb_basic">기본 정보</a></li>
     <li><a href="#anc_mb_contact">연락처 및 주소</a></li>
     <li><a href="#anc_mb_media">아이콘 및 이미지</a></li>
@@ -189,9 +189,9 @@ $pg_anchor = '<ul class="section-anchor">
     include_once G5_ADMIN_PATH.'/member_form_parts/history.php';
     ?>
 
-    <div class="action-bar">
-        <a href="./member_list.php?<?php echo $qstr ?>" class="btn btn-secondary">목록</a>
-        <input type="submit" value="확인" class="btn-primary btn" accesskey='s'>
+    <div>
+        <a href="./member_list.php?<?php echo $qstr ?>">목록</a>
+        <input type="submit" value="확인" accesskey='s'>
     </div>
 </form>
 

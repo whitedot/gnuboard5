@@ -11,7 +11,7 @@ function get_paging($write_pages, $cur_page, $total_page, $url, $add="")
 
     $str = '';
     if ($cur_page > 1) {
-        $str .= '<a href="'.$url.'1'.$add.'" class="pg_page pg_start">처음</a>'.PHP_EOL;
+        $str .= '<a href="'.$url.'1'.$add.'">처음</a>'.PHP_EOL;
     }
 
     $start_page = ( ( (int)( ($cur_page - 1 ) / $write_pages ) ) * $write_pages ) + 1;
@@ -19,25 +19,25 @@ function get_paging($write_pages, $cur_page, $total_page, $url, $add="")
 
     if ($end_page >= $total_page) $end_page = $total_page;
 
-    if ($start_page > 1) $str .= '<a href="'.$url.($start_page-1).$add.'" class="pg_page pg_prev">이전</a>'.PHP_EOL;
+    if ($start_page > 1) $str .= '<a href="'.$url.($start_page-1).$add.'">이전</a>'.PHP_EOL;
 
     if ($total_page > 1) {
         for ($k=$start_page;$k<=$end_page;$k++) {
             if ($cur_page != $k)
-                $str .= '<a href="'.$url.$k.$add.'" class="pg_page">'.$k.'<span class="sound_only">페이지</span></a>'.PHP_EOL;
+                $str .= '<a href="'.$url.$k.$add.'">'.$k.'<span>페이지</span></a>'.PHP_EOL;
             else
-                $str .= '<span class="sound_only">열린</span><strong class="pg_current">'.$k.'</strong><span class="sound_only">페이지</span>'.PHP_EOL;
+                $str .= '<span>열린</span><strong>'.$k.'</strong><span>페이지</span>'.PHP_EOL;
         }
     }
 
-    if ($total_page > $end_page) $str .= '<a href="'.$url.($end_page+1).$add.'" class="pg_page pg_next">다음</a>'.PHP_EOL;
+    if ($total_page > $end_page) $str .= '<a href="'.$url.($end_page+1).$add.'">다음</a>'.PHP_EOL;
 
     if ($cur_page < $total_page) {
-        $str .= '<a href="'.$url.$total_page.$add.'" class="pg_page pg_end">맨끝</a>'.PHP_EOL;
+        $str .= '<a href="'.$url.$total_page.$add.'">맨끝</a>'.PHP_EOL;
     }
 
     if ($str)
-        return "<nav class=\"pg_wrap\"><span class=\"pg\">{$str}</span></nav>";
+        return "<nav><span>{$str}</span></nav>";
     else
         return "";
 }
@@ -46,7 +46,7 @@ function get_paging($write_pages, $cur_page, $total_page, $url, $add="")
 function page_insertbefore($paging_html, $insert_html)
 {
     if(!$paging_html)
-        $paging_html = '<nav class="pg_wrap"><span class="pg"></span></nav>';
+        $paging_html = '<nav><span></span></nav>';
 
     return preg_replace("/^(<nav[^>]+><span[^>]+>)/", '$1'.$insert_html.PHP_EOL, $paging_html);
 }
@@ -55,7 +55,7 @@ function page_insertbefore($paging_html, $insert_html)
 function page_insertafter($paging_html, $insert_html)
 {
     if(!$paging_html)
-        $paging_html = '<nav class="pg_wrap"><span class="pg"></span></nav>';
+        $paging_html = '<nav><span></span></nav>';
 
     if(preg_match("#".PHP_EOL."</span></nav>#", $paging_html))
         $php_eol = '';
@@ -308,32 +308,32 @@ function get_sideview($mb_id, $name, $email='', $homepage='', $bo_table='')
         return $name;
     }
 
-    $tmp_name = "<span class=\"sv_wrap hs-dropdown relative inline-flex [--placement:bottom-left]\">";
-    $tmp_name .= "<button type=\"button\" class=\"sv_member hs-dropdown-toggle inline-flex items-center gap-1 text-inherit hover:underline focus:outline-none\" aria-haspopup=\"menu\" aria-expanded=\"false\">";
+    $tmp_name = "<span class=\"sv_wrap hs-dropdown [--placement:bottom-left]\">";
+    $tmp_name .= "<button type=\"button\" class=\"sv_member hs-dropdown-toggle\" aria-haspopup=\"menu\" aria-expanded=\"false\">";
     $tmp_name .= $name;
-    $tmp_name .= "<span class=\"sr-only\">메뉴 열기</span>";
+    $tmp_name .= "<span>메뉴 열기</span>";
     $tmp_name .= "</button>";
     $tmp_name .= "<div class=\"sv hs-dropdown-menu\" role=\"menu\" aria-orientation=\"vertical\">";
 
-    $tmp_name .= "<a href=\"".G5_BBS_URL."/memo_form.php?me_recv_mb_id=".$mb_id."\" class=\"dropdown-item win_memo\">쪽지보내기</a>";
+    $tmp_name .= "<a href=\"".G5_BBS_URL."/memo_form.php?me_recv_mb_id=".$mb_id."\" class=\"win_memo\">쪽지보내기</a>";
 
     if ($email) {
-        $tmp_name .= "<a href=\"".G5_BBS_URL."/formmail.php?mb_id=".$mb_id."&name=".urlencode($name)."&email=".$email."\" class=\"dropdown-item win_email\">메일보내기</a>";
+        $tmp_name .= "<a href=\"".G5_BBS_URL."/formmail.php?mb_id=".$mb_id."&name=".urlencode($name)."&email=".$email."\" class=\"win_email\">메일보내기</a>";
     }
 
     if ($homepage) {
-        $tmp_name .= "<a href=\"".$homepage."\" class=\"dropdown-item\" target=\"_blank\" rel=\"noopener\">홈페이지</a>";
+        $tmp_name .= "<a href=\"".$homepage."\" target=\"_blank\" rel=\"noopener\">홈페이지</a>";
     }
 
-    $tmp_name .= "<a href=\"".G5_BBS_URL."/profile.php?mb_id=".$mb_id."\" class=\"dropdown-item win_profile\">자기소개</a>";
+    $tmp_name .= "<a href=\"".G5_BBS_URL."/profile.php?mb_id=".$mb_id."\" class=\"win_profile\">자기소개</a>";
 
     if ($bo_table) {
-        $tmp_name .= "<a href=\"".G5_BBS_URL."/board.php?bo_table=".$bo_table."&sca=&sfl=mb_id,1&stx=".$mb_id."\" class=\"dropdown-item\">전체게시물</a>";
+        $tmp_name .= "<a href=\"".G5_BBS_URL."/board.php?bo_table=".$bo_table."&sca=&sfl=mb_id,1&stx=".$mb_id."\">전체게시물</a>";
     }
 
     if (is_admin($mb_id)) {
-        $tmp_name .= "<a href=\"".G5_ADMIN_URL."/member_form.php?w=u&mb_id=".$mb_id."\" class=\"dropdown-item\" target=\"_blank\" rel=\"noopener\">회원정보변경</a>";
-        $tmp_name .= "<a href=\"".G5_ADMIN_URL."/point_list.php?sfl=mb_id&stx=".$mb_id."\" class=\"dropdown-item\" target=\"_blank\" rel=\"noopener\">포인트내역</a>";
+        $tmp_name .= "<a href=\"".G5_ADMIN_URL."/member_form.php?w=u&mb_id=".$mb_id."\" target=\"_blank\" rel=\"noopener\">회원정보변경</a>";
+        $tmp_name .= "<a href=\"".G5_ADMIN_URL."/point_list.php?sfl=mb_id&stx=".$mb_id."\" target=\"_blank\" rel=\"noopener\">포인트내역</a>";
     }
 
     $tmp_name .= "</div></span>";

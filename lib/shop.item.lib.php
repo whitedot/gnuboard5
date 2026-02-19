@@ -548,10 +548,10 @@ function get_item_options($it_id, $subject, $is_div='', $is_first_option_title='
 
                 if($is_div === 'div') {
                     $str .= '<div class="get_item_options">'.PHP_EOL;
-                    $str .= '<label for="it_option_'.$seq.'" class="label-title">'.$subj[$i].'</label>'.PHP_EOL;
+                    $str .= '<label for="it_option_'.$seq.'">'.$subj[$i].'</label>'.PHP_EOL;
                 } else {
                     $str .= '<tr>'.PHP_EOL;
-                    $str .= '<th><label for="it_option_'.$seq.'" class="label-title">'.$subj[$i].'</label></th>'.PHP_EOL;
+                    $str .= '<th><label for="it_option_'.$seq.'">'.$subj[$i].'</label></th>'.PHP_EOL;
                 }
 
                 $select = '<select id="it_option_'.$seq.'" class="it_option"'.$disabled.'>'.PHP_EOL;
@@ -665,7 +665,7 @@ function get_item_supply($it_id, $subject, $is_div='', $is_first_option_title=''
             $seq = $i + 1;
             if($is_div === 'div') {
                 $str .= '<div class="get_item_supply">'.PHP_EOL;
-                $str .= '<label for="it_supply_'.$seq.'" class="label-title">'.$subj[$i].'</label>'.PHP_EOL;
+                $str .= '<label for="it_supply_'.$seq.'">'.$subj[$i].'</label>'.PHP_EOL;
             } else {
                 $str .= '<tr>'.PHP_EOL;
                 $str .= '<th><label for="it_supply_'.$seq.'">'.$subj[$i].'</label></th>'.PHP_EOL;
@@ -684,10 +684,10 @@ function get_item_supply($it_id, $subject, $is_div='', $is_first_option_title=''
             $select .= '</select>'.PHP_EOL;
             
             if($is_div === 'div') {
-                $str .= '<span class="td_sit_sel">'.$select.'</span>'.PHP_EOL;
+                $str .= '<span>'.$select.'</span>'.PHP_EOL;
                 $str .= '</div>'.PHP_EOL;
             } else {
-                $str .= '<td class="td_sit_sel">'.$select.'</td>'.PHP_EOL;
+                $str .= '<td>'.$select.'</td>'.PHP_EOL;
                 $str .= '</tr>'.PHP_EOL;
             }
         }
@@ -735,8 +735,8 @@ function relation_item($it_id, $width, $height, $rows=3)
 
     for($i=0; $row=sql_fetch_array($result); $i++) {
         if($i == 0) {
-            $str .= '<span class="sr-only">관련 상품 시작</span>';
-            $str .= '<ul class="sct_rel_ul">';
+            $str .= '<span>관련 상품 시작</span>';
+            $str .= '<ul>';
         }
 
         $it_name = get_text($row['it_name']); // 상품명
@@ -746,11 +746,11 @@ function relation_item($it_id, $width, $height, $rows=3)
 
         $img = get_it_image($row['it_id'], $width, $height);
 
-        $str .= '<li class="sct_rel_li"><a href="'.get_pretty_url('shop', $row['it_id']).'" class="sct_rel_a">'.$img.'</a></li>';
+        $str .= '<li><a href="'.get_pretty_url('shop', $row['it_id']).'">'.$img.'</a></li>';
     }
 
     if($i > 0)
-        $str .= '</ul><span class="sr-only">관련 상품 끝</span>';
+        $str .= '</ul><span>관련 상품 끝</span>';
 
     return $str;
 }
@@ -761,22 +761,22 @@ function item_icon($it)
 {
     global $g5;
 
-    $icon = '<span class="sit_icon">';
+    $icon = '<span>';
 
     if ($it['it_type1'])
-        $icon .= '<span class="shop_icon shop_icon_1">히트</span>';
+        $icon .= '<span>히트</span>';
 
     if ($it['it_type2'])
-        $icon .= '<span class="shop_icon shop_icon_2">추천</span>';
+        $icon .= '<span>추천</span>';
 
     if ($it['it_type3'])
-        $icon .= '<span class="shop_icon shop_icon_3">최신</span>';
+        $icon .= '<span>최신</span>';
 
     if ($it['it_type4'])
-        $icon .= '<span class="shop_icon shop_icon_4">인기</span>';
+        $icon .= '<span>인기</span>';
 
     if ($it['it_type5'])
-        $icon .= '<span class="shop_icon shop_icon_5">할인</span>';
+        $icon .= '<span>할인</span>';
 
 
     // 쿠폰상품
@@ -791,7 +791,7 @@ function item_icon($it)
                       ) ";
     $row = sql_fetch($sql);
     if($row['cnt'])
-        $icon .= '<span class="shop_icon shop_icon_coupon">쿠폰</span>';
+        $icon .= '<span>쿠폰</span>';
 
     $icon .= '</span>';
 

@@ -1,20 +1,20 @@
 <section id="anc_mb_contact">
-    <h2 class="section-title">연락처 및 주소</h2>
-    <div class="form-card table-shell">
+    <h2>연락처 및 주소</h2>
+    <div>
         <table>
             <caption>연락처 및 주소</caption>
             <colgroup>
-                <col class="col-4">
                 <col>
-                <col class="col-4">
+                <col>
+                <col>
                 <col>
             </colgroup>
             <tbody>
                 <tr>
                     <th scope="row"><label for="mb_hp">휴대폰번호</label></th>
-                    <td><input type="text" name="mb_hp" value="<?php echo $mb['mb_hp'] ?>" id="mb_hp" class="form-input" size="15" maxlength="20"></td>
+                    <td><input type="text" name="mb_hp" value="<?php echo $mb['mb_hp'] ?>" id="mb_hp" size="15" maxlength="20"></td>
                     <th scope="row"><label for="mb_tel">전화번호</label></th>
-                    <td><input type="text" name="mb_tel" value="<?php echo $mb['mb_tel'] ?>" id="mb_tel" class="form-input" size="15" maxlength="20"></td>
+                    <td><input type="text" name="mb_tel" value="<?php echo $mb['mb_tel'] ?>" id="mb_tel" size="15" maxlength="20"></td>
                 </tr>
                 <tr>
                     <th scope="row">본인확인방법</th>
@@ -45,16 +45,16 @@
                 </tr>
                 <tr>
                     <th scope="row">주소</th>
-                    <td colspan="3" class="cell-addr-line">
-                        <label for="mb_zip" class="sr-only">우편번호</label>
-                        <input type="text" name="mb_zip" value="<?php echo $mb['mb_zip1'] . $mb['mb_zip2']; ?>" id="mb_zip" class="form-input readonly" size="5" maxlength="6">
-                        <button type="button" class="btn-inline" onclick="win_zip('fmember', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon');">주소 검색</button><br>
-                        <input type="text" name="mb_addr1" value="<?php echo $mb['mb_addr1'] ?>" id="mb_addr1" class="form-input readonly" size="60">
+                    <td colspan="3">
+                        <label for="mb_zip">우편번호</label>
+                        <input type="text" name="mb_zip" value="<?php echo $mb['mb_zip1'] . $mb['mb_zip2']; ?>" id="mb_zip" size="5" maxlength="6">
+                        <button type="button" onclick="win_zip('fmember', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon');">주소 검색</button><br>
+                        <input type="text" name="mb_addr1" value="<?php echo $mb['mb_addr1'] ?>" id="mb_addr1" size="60">
                         <label for="mb_addr1">기본주소</label><br>
-                        <input type="text" name="mb_addr2" value="<?php echo $mb['mb_addr2'] ?>" id="mb_addr2" class="form-input" size="60">
+                        <input type="text" name="mb_addr2" value="<?php echo $mb['mb_addr2'] ?>" id="mb_addr2" size="60">
                         <label for="mb_addr2">상세주소</label>
                         <br>
-                        <input type="text" name="mb_addr3" value="<?php echo $mb['mb_addr3'] ?>" id="mb_addr3" class="form-input" size="60">
+                        <input type="text" name="mb_addr3" value="<?php echo $mb['mb_addr3'] ?>" id="mb_addr3" size="60">
                         <label for="mb_addr3">참고항목</label>
                         <input type="hidden" name="mb_addr_jibeon" value="<?php echo $mb['mb_addr_jibeon']; ?>"><br>
                     </td>
