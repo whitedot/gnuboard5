@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $sub_menu = "100100";
 require_once './_common.php';
 
