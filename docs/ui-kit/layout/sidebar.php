@@ -11,7 +11,7 @@ function is_active($pages) {
 ?>
 <aside class="ui-sidebar" id="ui-sidebar">
     <div class="ui-sidebar-logo">
-        <span class="text-2xl font-bold ui-guide-title">G5AI</span>
+        <span class="text-2xl font-bold ui-guide-title">G5 AIF</span>
     </div>
     
     <nav class="mt-4">
@@ -107,7 +107,7 @@ function is_active($pages) {
             <button
                 id="theme-toggle"
                 type="button"
-                class="btn btn-sm bg-light hover:bg-light-hover text-default-700 ui-theme-toggle"
+                class="btn btn-sm btn-solid-light text-default-700 ui-theme-toggle"
                 aria-label="다크 모드로 전환"
                 title="다크 모드로 전환"
                 aria-pressed="false">
