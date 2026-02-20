@@ -7,19 +7,131 @@
         border-radius: 1rem;
         background: var(--color-default-100);
         padding: 1rem;
-        overflow-x: auto;
+        overflow: visible;
+    }
+
+    .admin-layout-kit {
+        --admin-ui-topbar-height: 4.25rem;
+        display: flex;
+        min-height: 42rem;
+        border: 1px solid var(--color-default-300);
+        border-radius: 1rem;
+        background: var(--color-card);
+        position: relative;
+    }
+
+    .admin-content-kit {
+        flex: 1;
+        min-width: 0;
+        background: var(--color-default-100);
+        border-left: 1px solid var(--color-default-300);
+        border-radius: 0 1rem 1rem 0;
+        overflow: hidden;
+    }
+
+    .admin-content-topbar {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        min-height: var(--admin-ui-topbar-height);
+        padding: 0 1rem;
+        border-bottom: 1px solid var(--color-default-300);
+        background: var(--color-card);
+    }
+
+    .admin-mobile-open-btn {
+        display: none;
+        height: 2rem;
+        width: 2rem;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--color-default-300);
+        border-radius: 0.5rem;
+        color: var(--color-default-600);
+        background: var(--color-default-100);
+    }
+
+    .admin-content-breadcrumb {
+        display: flex;
+        min-width: 0;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: var(--color-default-500);
+    }
+
+    .admin-content-breadcrumb strong {
+        font-weight: 600;
+        color: var(--color-default-900);
+    }
+
+    .admin-content-body {
+        padding: 1rem;
+        display: grid;
+        gap: 1rem;
+    }
+
+    .admin-metric-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+    }
+
+    .admin-metric-card {
+        border: 1px solid var(--color-default-300);
+        border-radius: 0.75rem;
+        background: var(--color-card);
+        padding: 0.875rem;
+    }
+
+    .admin-metric-card small {
+        display: block;
+        font-size: 0.75rem;
+        color: var(--color-default-500);
+    }
+
+    .admin-metric-card strong {
+        display: block;
+        margin-top: 0.375rem;
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--color-default-900);
+    }
+
+    .admin-content-card {
+        border: 1px solid var(--color-default-300);
+        border-radius: 0.75rem;
+        background: var(--color-card);
+        padding: 1rem;
+    }
+
+    .admin-content-card h5 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--color-default-900);
+        margin-bottom: 0.5rem;
+    }
+
+    .admin-content-card p {
+        font-size: 0.875rem;
+        color: var(--color-default-600);
+        line-height: 1.6;
+    }
+
+    .admin-mobile-backdrop {
+        display: none;
     }
 
     .admin-sidebar-kit {
         width: 19rem;
         min-height: 42rem;
+        flex-shrink: 0;
         display: flex;
         flex-direction: column;
-        border: 1px solid var(--color-default-300);
-        border-radius: 1rem;
         background: var(--color-card);
         box-shadow: var(--shadow-sm);
         overflow: hidden;
+        transition: width 0.25s ease;
     }
 
     .admin-sidebar-kit > h2 {
@@ -27,8 +139,32 @@
         align-items: center;
         justify-content: space-between;
         gap: 0.75rem;
+        min-height: var(--admin-ui-topbar-height);
         border-bottom: 1px solid var(--color-default-300);
-        padding: 1.25rem;
+        padding: 0 1.25rem;
+    }
+
+    .admin-sidebar-kit .admin-sidebar-toggle {
+        display: inline-flex;
+        height: 2rem;
+        width: 2rem;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--color-default-300);
+        border-radius: 0.5rem;
+        color: var(--color-default-600);
+        background: var(--color-default-100);
+        transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .admin-sidebar-kit .admin-sidebar-toggle:hover {
+        background: var(--color-default-200);
+        color: var(--color-default-800);
+    }
+
+    .admin-sidebar-kit .admin-sidebar-toggle > span {
+        display: inline-block;
+        transition: transform 0.15s ease;
     }
 
     .admin-sidebar-kit > h2 > a {
@@ -42,6 +178,7 @@
         display: inline-flex;
         height: 2.5rem;
         width: 2.5rem;
+        flex-shrink: 0;
         align-items: center;
         justify-content: center;
         border-radius: 0.75rem;
@@ -141,12 +278,40 @@
         transition: color 0.15s ease;
     }
 
+    .admin-sidebar-kit .admin-nav-trigger-main {
+        display: flex;
+        min-width: 0;
+        align-items: center;
+        gap: 0.625rem;
+    }
+
+    .admin-sidebar-kit .admin-nav-item-icon {
+        width: 1rem;
+        height: 1rem;
+        flex-shrink: 0;
+        color: var(--color-default-500);
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: color 0.15s ease;
+    }
+
     .admin-sidebar-kit .admin-nav-item > .admin-nav-trigger:hover {
         color: var(--color-default-900);
     }
 
+    .admin-sidebar-kit .admin-nav-item > .admin-nav-trigger:hover .admin-nav-item-icon {
+        color: var(--color-default-700);
+    }
+
     .admin-sidebar-kit .admin-nav-item.is-open > .admin-nav-trigger {
         color: var(--color-default-900);
+    }
+
+    .admin-sidebar-kit .admin-nav-item.is-open > .admin-nav-trigger .admin-nav-item-icon {
+        color: var(--color-default-700);
     }
 
     .admin-sidebar-kit .admin-nav-item.is-open > .admin-nav-trigger .admin-nav-trigger-label {
@@ -232,6 +397,33 @@
         color: var(--color-default-900);
     }
 
+    .admin-sidebar-kit .admin-nav-third-list {
+        margin-top: 0.125rem;
+        margin-left: 0.75rem;
+        display: grid;
+        gap: 0.125rem;
+        border-left: 1px solid var(--color-default-300);
+        padding-left: 0.75rem;
+    }
+
+    .admin-sidebar-kit .admin-nav-third-item > a {
+        display: block;
+        border-radius: 0.375rem;
+        padding: 0.125rem 0.375rem;
+        font-size: 0.75rem;
+        color: var(--color-default-500);
+        transition: color 0.15s ease;
+    }
+
+    .admin-sidebar-kit .admin-nav-third-item > a:hover {
+        color: var(--color-default-900);
+    }
+
+    .admin-sidebar-kit .admin-nav-third-item.is-current > a {
+        color: var(--color-primary);
+        font-weight: 600;
+    }
+
     .admin-sidebar-kit .admin-nav-sub-item.is-current > a {
         color: var(--color-primary);
         font-weight: 600;
@@ -301,10 +493,266 @@
         color: var(--color-default-700);
     }
 
+    .admin-sidebar-kit.is-condensed {
+        width: 5.5rem;
+        overflow: visible;
+    }
+
+    .admin-sidebar-kit.is-condensed > h2 {
+        position: relative;
+        justify-content: center;
+        padding-inline: 0.75rem;
+    }
+
+    .admin-sidebar-kit.is-condensed > h2 > a {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .admin-sidebar-kit.is-condensed .admin-sidebar-toggle {
+        position: absolute;
+        right: -0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        flex-shrink: 0;
+        height: 1.75rem;
+        width: 1.75rem;
+        border-radius: 9999px;
+        box-shadow: var(--shadow-sm);
+        z-index: 130;
+    }
+
+    .admin-sidebar-kit.is-condensed .admin-sidebar-toggle > span {
+        transform: rotate(180deg);
+    }
+
+    .admin-sidebar-kit.is-condensed > h2 > a > span:last-child,
+    .admin-sidebar-kit.is-condensed .gnb_label,
+    .admin-sidebar-kit.is-condensed .admin-nav-trigger-label,
+    .admin-sidebar-kit.is-condensed .gnb_profile_meta,
+    .admin-sidebar-kit.is-condensed .gnb_profile_logout {
+        display: none;
+    }
+
+    .admin-sidebar-kit.is-condensed .admin-nav-item > .admin-nav-trigger,
+    .admin-sidebar-kit.is-condensed .gnb_profile {
+        justify-content: center;
+    }
+
+    .admin-sidebar-kit.is-condensed .admin-nav-trigger-main {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .admin-sidebar-kit.is-condensed .admin-nav-caret {
+        display: none;
+    }
+
+    .admin-sidebar-kit.is-condensed .gnb_profile {
+        border-top: 0;
+        padding: 0.5rem 0 1rem;
+    }
+
+    .admin-sidebar-kit.is-condensed .admin-nav-item {
+        position: relative;
+    }
+
+    .admin-sidebar-kit.is-condensed .admin-nav-panel {
+        display: block !important;
+        position: absolute;
+        left: calc(100% + 0.5rem);
+        top: 0;
+        z-index: 120;
+        min-width: 15rem;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateX(0.35rem);
+        transition: opacity 150ms ease, transform 150ms ease, visibility 150ms ease;
+    }
+
+    .admin-sidebar-kit.is-condensed .admin-nav-item:hover > .admin-nav-panel,
+    .admin-sidebar-kit.is-condensed .admin-nav-item:focus-within > .admin-nav-panel {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(0);
+    }
+
+    .admin-sidebar-kit.is-condensed .admin-nav-panel > .admin-nav-sub-list {
+        border: 1px solid var(--color-default-300);
+        border-radius: 0.75rem;
+        background: var(--color-card);
+        box-shadow: var(--shadow-sm);
+        padding: 0.75rem;
+    }
+
+    .admin-sidebar-kit.is-condensed .admin-nav-sub-item::before,
+    .admin-sidebar-kit.is-condensed .admin-nav-sub-item::after {
+        display: none;
+    }
+
+    .admin-sidebar-kit.is-condensed .admin-nav-sub-item > a {
+        border-radius: 0.5rem;
+        padding: 0.375rem 0.75rem;
+    }
+
+    .admin-sidebar-kit.is-condensed .admin-nav-third-list {
+        margin-left: 0.5rem;
+        padding-left: 0.625rem;
+    }
+
+    .admin-sidebar-kit.is-condensed .gnb_menu_scroll_wrap,
+    .admin-sidebar-kit.is-condensed .gnb_menu_scroll {
+        overflow: visible;
+    }
+
+    .admin-sidebar-kit.is-condensed .gnb_scrollbar {
+        display: none;
+    }
+
     @media (max-width: 640px) {
-        .admin-sidebar-kit {
-            width: 100%;
-            min-height: 36rem;
+        .admin-metric-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 960px) {
+        .admin-layout-kit {
+            min-height: 40rem;
+            overflow: hidden;
+        }
+
+        .admin-content-kit {
+            border-left: 0;
+            border-radius: 1rem;
+        }
+
+        .admin-mobile-open-btn {
+            display: inline-flex;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit {
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 17rem;
+            z-index: 30;
+            transform: translateX(-100%);
+            transition: transform 0.2s ease;
+            overflow: hidden;
+        }
+
+        .admin-layout-kit.is-mobile-open .admin-sidebar-kit {
+            transform: translateX(0);
+        }
+
+        .admin-layout-kit .admin-mobile-backdrop {
+            display: block;
+            position: absolute;
+            inset: 0;
+            border-radius: 1rem;
+            background: rgba(15, 23, 42, 0.35);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            z-index: 20;
+        }
+
+        .admin-layout-kit.is-mobile-open .admin-mobile-backdrop {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit .admin-sidebar-toggle {
+            display: none;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed {
+            width: 17rem;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed > h2 {
+            justify-content: space-between;
+            padding-inline: 1.25rem;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed > h2 > a {
+            width: auto;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed > h2 > a > span:last-child,
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .gnb_label,
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .admin-nav-trigger-label,
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .gnb_profile_meta,
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .gnb_profile_logout,
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .admin-nav-caret {
+            display: inline;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .gnb_label,
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .gnb_profile_meta {
+            display: block;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .gnb_profile_logout {
+            display: inline-flex;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .admin-nav-caret {
+            display: inline-flex;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .admin-nav-item > .admin-nav-trigger,
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .gnb_profile {
+            justify-content: space-between;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .admin-nav-trigger-main {
+            width: auto;
+            justify-content: flex-start;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .admin-nav-panel {
+            position: static;
+            min-width: 0;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: none;
+            z-index: auto;
+            transition: none;
+            margin-left: 0.5rem;
+            padding-left: 1.25rem;
+            padding-bottom: 0.25rem;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .admin-nav-panel.hidden {
+            display: none !important;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .admin-nav-panel > .admin-nav-sub-list {
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            padding: 0.25rem 0;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .admin-nav-sub-item::before,
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .admin-nav-sub-item::after {
+            display: block;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .admin-nav-sub-item > a {
+            padding: 0.375rem 0.5rem;
+            border-radius: 0.375rem;
+        }
+
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .gnb_menu_scroll_wrap,
+        .admin-layout-kit .admin-sidebar-kit.is-condensed .gnb_menu_scroll {
+            overflow: auto;
         }
     }
 </style>
@@ -317,16 +765,20 @@
             </div>
             <div class="card-body">
                 <p class="mb-4 text-default-400">
-                    현재 관리자 사이드메뉴 스타일(2단계 트리 라인, 아코디언, 커스텀 스크롤바 표시 방식)을 그대로 옮긴 UI 샘플입니다.
+                    현재 관리자 사이드메뉴 스타일(2단계 트리 라인, 아코디언, 커스텀 스크롤바 표시 방식)과 기본환경설정 하위 3단계 메뉴 표현을 옮긴 UI 샘플입니다.
                 </p>
 
                 <div class="sidebar-demo-shell">
-                    <aside class="admin-sidebar-kit" aria-label="관리자 사이드바 데모">
+                    <div class="admin-layout-kit" data-admin-layout>
+                    <aside class="admin-sidebar-kit" id="ui-sidebar-demo" aria-label="관리자 사이드바 데모">
                         <h2>
                             <a href="#">
                                 <span>A</span>
                                 <span>G5 AIF</span>
                             </a>
+                            <button type="button" class="admin-sidebar-toggle" aria-label="사이드바 축소/확장" aria-pressed="false">
+                                <span>&lt;</span>
+                            </button>
                         </h2>
 
                         <div class="gnb_menu_scroll_wrap">
@@ -336,12 +788,24 @@
                                 <ul class="admin-nav-list" data-admin-nav-root>
                                     <li class="admin-nav-item is-open">
                                         <button type="button" class="admin-nav-trigger" aria-expanded="true">
-                                            <span class="admin-nav-trigger-label">환경설정</span>
+                                            <span class="admin-nav-trigger-main">
+                                                <svg class="admin-nav-item-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                                    <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065"></path>
+                                                    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                                                </svg>
+                                                <span class="admin-nav-trigger-label">환경설정</span>
+                                            </span>
                                             <span class="admin-nav-caret" aria-hidden="true">⌄</span>
                                         </button>
                                         <div class="admin-nav-panel">
                                             <ul class="admin-nav-sub-list">
-                                                <li class="admin-nav-sub-item is-current"><a href="#">기본환경설정</a></li>
+                                                <li class="admin-nav-sub-item is-current">
+                                                    <a href="#">기본환경설정</a>
+                                                    <ul class="admin-nav-third-list">
+                                                        <li class="admin-nav-third-item is-current"><a href="#">사이트 기본설정</a></li>
+                                                        <li class="admin-nav-third-item"><a href="#">결제 기본설정</a></li>
+                                                    </ul>
+                                                </li>
                                                 <li class="admin-nav-sub-item"><a href="#">권한설정</a></li>
                                                 <li class="admin-nav-sub-item"><a href="#">테마설정</a></li>
                                                 <li class="admin-nav-sub-item"><a href="#">메뉴설정</a></li>
@@ -363,7 +827,15 @@
 
                                     <li class="admin-nav-item">
                                         <button type="button" class="admin-nav-trigger" aria-expanded="false">
-                                            <span class="admin-nav-trigger-label">회원관리</span>
+                                            <span class="admin-nav-trigger-main">
+                                                <svg class="admin-nav-item-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                                    <path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                                                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                                    <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+                                                </svg>
+                                                <span class="admin-nav-trigger-label">회원관리</span>
+                                            </span>
                                             <span class="admin-nav-caret" aria-hidden="true">⌄</span>
                                         </button>
                                         <div class="admin-nav-panel hidden">
@@ -377,7 +849,15 @@
 
                                     <li class="admin-nav-item">
                                         <button type="button" class="admin-nav-trigger" aria-expanded="false">
-                                            <span class="admin-nav-trigger-label">게시판관리</span>
+                                            <span class="admin-nav-trigger-main">
+                                                <svg class="admin-nav-item-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                                    <path d="M3 6a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2l0 -12"></path>
+                                                    <path d="M7 8h10"></path>
+                                                    <path d="M7 12h10"></path>
+                                                    <path d="M7 16h10"></path>
+                                                </svg>
+                                                <span class="admin-nav-trigger-label">게시판관리</span>
+                                            </span>
                                             <span class="admin-nav-caret" aria-hidden="true">⌄</span>
                                         </button>
                                         <div class="admin-nav-panel hidden">
@@ -404,6 +884,44 @@
                             <a href="#" class="gnb_profile_logout" aria-label="로그아웃">↗</a>
                         </div>
                     </aside>
+
+                    <button type="button" class="admin-mobile-backdrop" data-admin-mobile-backdrop aria-label="사이드바 닫기"></button>
+
+                    <section class="admin-content-kit" aria-label="컨테이너 상호작용 데모">
+                        <div class="admin-content-topbar">
+                            <button type="button" class="admin-mobile-open-btn" data-admin-mobile-open aria-controls="ui-sidebar-demo" aria-expanded="false">☰</button>
+                            <div class="admin-content-breadcrumb">
+                                <span>대시보드</span>
+                                <span>/</span>
+                                <strong>환경설정</strong>
+                            </div>
+                        </div>
+                        <div class="admin-content-body">
+                            <div class="admin-metric-grid">
+                                <article class="admin-metric-card">
+                                    <small>이번주 처리</small>
+                                    <strong>128건</strong>
+                                </article>
+                                <article class="admin-metric-card">
+                                    <small>미처리 건수</small>
+                                    <strong>17건</strong>
+                                </article>
+                                <article class="admin-metric-card">
+                                    <small>대기 문의</small>
+                                    <strong>9건</strong>
+                                </article>
+                            </div>
+                            <article class="admin-content-card">
+                                <h5>반응형 상호작용 데모</h5>
+                                <p>
+                                    데스크톱에서는 사이드바를 접으면 콘텐츠 영역이 즉시 넓어지고,
+                                    모바일에서는 상단 메뉴 버튼으로 사이드바를 오버레이 형태로 열고 닫습니다.
+                                    배경(backdrop)을 누르면 사이드바가 닫히는 흐름까지 함께 테스트할 수 있습니다.
+                                </p>
+                            </article>
+                        </div>
+                    </section>
+                    </div>
                 </div>
             </div>
         </div>
@@ -455,6 +973,109 @@
                 });
 
                 setNavItemState(activeItem, willOpen);
+            });
+        });
+
+        var mobileMedia = window.matchMedia("(max-width: 960px)");
+        var adminLayouts = document.querySelectorAll("[data-admin-layout]");
+
+        function syncCondensedState(sidebar) {
+            var toggleBtn = sidebar.querySelector(".admin-sidebar-toggle");
+            if (!toggleBtn) {
+                return;
+            }
+
+            var condensed = sidebar.classList.contains("is-condensed");
+            toggleBtn.setAttribute("aria-pressed", condensed ? "true" : "false");
+        }
+
+        function setMobileOpen(layout, opened) {
+            layout.classList.toggle("is-mobile-open", opened);
+
+            var openBtn = layout.querySelector("[data-admin-mobile-open]");
+            if (openBtn) {
+                openBtn.setAttribute("aria-expanded", opened ? "true" : "false");
+            }
+        }
+
+        function closeMobileOnDesktop(layout) {
+            if (!mobileMedia.matches) {
+                setMobileOpen(layout, false);
+            }
+        }
+
+        adminLayouts.forEach(function (layout) {
+            var sidebar = layout.querySelector(".admin-sidebar-kit");
+            if (!sidebar) {
+                return;
+            }
+
+            var toggleBtn = sidebar.querySelector(".admin-sidebar-toggle");
+            var openBtn = layout.querySelector("[data-admin-mobile-open]");
+            var backdropBtn = layout.querySelector("[data-admin-mobile-backdrop]");
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener("click", function () {
+                    if (mobileMedia.matches) {
+                        setMobileOpen(layout, false);
+                        return;
+                    }
+
+                    sidebar.classList.toggle("is-condensed");
+                    syncCondensedState(sidebar);
+                });
+
+                syncCondensedState(sidebar);
+            }
+
+            if (openBtn) {
+                openBtn.addEventListener("click", function () {
+                    var willOpen = !layout.classList.contains("is-mobile-open");
+                    setMobileOpen(layout, willOpen);
+                });
+            }
+
+            if (backdropBtn) {
+                backdropBtn.addEventListener("click", function () {
+                    setMobileOpen(layout, false);
+                });
+            }
+
+            sidebar.addEventListener("click", function (event) {
+                if (!mobileMedia.matches) {
+                    return;
+                }
+
+                var link = event.target.closest("a");
+                if (!link || !sidebar.contains(link)) {
+                    return;
+                }
+
+                setMobileOpen(layout, false);
+            });
+
+            closeMobileOnDesktop(layout);
+
+            var onMediaChange = function () {
+                closeMobileOnDesktop(layout);
+            };
+
+            if (typeof mobileMedia.addEventListener === "function") {
+                mobileMedia.addEventListener("change", onMediaChange);
+            } else if (typeof mobileMedia.addListener === "function") {
+                mobileMedia.addListener(onMediaChange);
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key !== "Escape") {
+                return;
+            }
+
+            adminLayouts.forEach(function (layout) {
+                if (layout.classList.contains("is-mobile-open")) {
+                    setMobileOpen(layout, false);
+                }
             });
         });
 
