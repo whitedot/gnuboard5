@@ -387,14 +387,14 @@
     }
 
     [data-theme="dark"] .btn-solid-light {
-        @apply text-default-100;
+        @apply text-default-900;
         background-color: color-mix(in oklab, var(--color-light-hover) 22%, transparent);
     }
 
     [data-theme="dark"] .btn-solid-light:hover,
     [data-theme="dark"] .btn-solid-light:focus,
     [data-theme="dark"] .btn-solid-light:focus-visible {
-        @apply text-default-50;
+        @apply text-default-950;
         background-color: color-mix(in oklab, var(--color-light-hover) 30%, transparent);
     }
 
@@ -404,12 +404,12 @@
     [data-theme="dark"] .btn-soft-dark,
     [data-theme="dark"] .btn-ghost-dark,
     [data-theme="dark"] .btn-surface {
-        @apply text-default-100;
+        @apply text-default-900;
     }
 
     [data-theme="dark"] .btn-outline-light:hover,
     [data-theme="dark"] .btn-outline-light:focus-visible {
-        @apply text-default-50;
+        @apply text-default-950;
     }
 
     .btn[class*="size-"] {
