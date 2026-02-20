@@ -155,6 +155,10 @@ if ($admin_site_title === '') {
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
             </symbol>
+            <symbol id="admin-menu-icon-user" viewBox="0 0 24 24">
+                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+            </symbol>
             <symbol id="admin-menu-icon-board" viewBox="0 0 24 24">
                 <path d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1"></path>
                 <path d="M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1"></path>
@@ -173,6 +177,12 @@ if ($admin_site_title === '') {
             </symbol>
             <symbol id="admin-menu-icon-message" viewBox="0 0 24 24">
                 <path d="M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1"></path>
+            </symbol>
+            <symbol id="admin-menu-icon-article" viewBox="0 0 24 24">
+                <path d="M3 6a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2l0 -12"></path>
+                <path d="M7 8h10"></path>
+                <path d="M7 12h10"></path>
+                <path d="M7 16h10"></path>
             </symbol>
             <symbol id="admin-menu-icon-folder" viewBox="0 0 24 24">
                 <path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2"></path>
@@ -285,21 +295,32 @@ if ($admin_site_title === '') {
         </div>
 
         <div class="hd_top_right">
-            <label class="hd_search">
-                <span>⌕</span>
-                <input type="search" placeholder="Search anything..." aria-label="관리자 메뉴 검색">
-            </label>
-
             <div id="tnb">
                 <ul>
                     <li class="tnb_li"><button type="button" id="admin_theme_toggle" aria-pressed="false">Dark</button></li>
                     <?php if (defined('G5_USE_SHOP') && G5_USE_SHOP) { ?>
-                        <li class="tnb_li"><a href="<?php echo G5_SHOP_URL; ?>/" target="_blank" title="쇼핑몰 바로가기">쇼핑몰</a></li>
+                        <li class="tnb_li">
+                            <a class="tnb_icon_btn" href="<?php echo G5_SHOP_URL; ?>/" target="_blank" title="쇼핑몰 바로가기" aria-label="쇼핑몰 바로가기">
+                                <svg class="admin-shell-control-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                    <use href="#admin-menu-icon-shop"></use>
+                                </svg>
+                            </a>
+                        </li>
                     <?php } ?>
-                    <li class="tnb_li"><a href="<?php echo G5_URL; ?>/" target="_blank" title="커뮤니티 바로가기">커뮤니티</a></li>
+                    <li class="tnb_li">
+                        <a class="tnb_icon_btn" href="<?php echo G5_URL; ?>/" target="_blank" title="커뮤니티 바로가기" aria-label="커뮤니티 바로가기">
+                            <svg class="admin-shell-control-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                <use href="#admin-menu-icon-article"></use>
+                            </svg>
+                        </a>
+                    </li>
                     <li class="tnb_li"><a href="<?php echo G5_ADMIN_URL; ?>/service.php">부가서비스</a></li>
                     <li class="tnb_li relative">
-                        <button type="button" class="tnb_mb_btn">관리자</button>
+                        <button type="button" class="tnb_mb_btn tnb_icon_btn" aria-label="관리자 메뉴" title="관리자 메뉴">
+                            <svg class="admin-shell-control-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                <use href="#admin-menu-icon-user"></use>
+                            </svg>
+                        </button>
                         <ul class="tnb_mb_area hidden">
                             <li><a href="<?php echo G5_ADMIN_URL; ?>/member_form.php?w=u&amp;mb_id=<?php echo $member['mb_id']; ?>">관리자정보</a></li>
                             <li id="tnb_logout"><a href="<?php echo G5_BBS_URL; ?>/logout.php">로그아웃</a></li>

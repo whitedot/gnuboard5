@@ -515,14 +515,6 @@
         @apply flex items-center gap-2;
     }
 
-    #hd_top .hd_search {
-        @apply hidden items-center gap-2 rounded-xl border border-default-300 bg-default-100 px-3 py-2 text-sm text-default-500 lg:flex;
-    }
-
-    #hd_top .hd_search input {
-        @apply w-64 bg-transparent text-sm text-default-700 outline-none placeholder:text-default-400;
-    }
-
     #tnb > ul {
         @apply flex items-center gap-2;
     }
@@ -534,6 +526,11 @@
     #tnb .tnb_li > a,
     #tnb .tnb_li > button {
         @apply inline-flex h-9 items-center rounded-lg border border-default-300 bg-card px-3 text-sm font-medium text-default-700 transition hover:bg-default-100;
+    }
+
+    #tnb .tnb_li > a.tnb_icon_btn,
+    #tnb .tnb_li > button.tnb_icon_btn {
+        @apply w-9 justify-center px-0;
     }
 
     #tnb .tnb_mb_area {
