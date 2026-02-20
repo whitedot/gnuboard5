@@ -176,6 +176,16 @@ if ($admin_site_title === '') {
             <symbol id="admin-menu-icon-folder" viewBox="0 0 24 24">
                 <path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             </symbol>
+            <symbol id="admin-menu-icon-sidebar-toggle" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                <path d="M9 3v18"></path>
+                <path d="m16 15-3-3 3-3"></path>
+            </symbol>
+            <symbol id="admin-menu-icon-menu" viewBox="0 0 24 24">
+                <path d="M4 7h16"></path>
+                <path d="M4 12h16"></path>
+                <path d="M4 17h16"></path>
+            </symbol>
         </svg>
 
         <h2>
@@ -184,7 +194,11 @@ if ($admin_site_title === '') {
                 <span><?php echo $admin_site_title; ?></span>
             </a>
             <button type="button" id="btn_gnb" class="<?php echo $adm_menu_cookie['btn_gnb']; ?>" aria-label="사이드바 축소/확장" aria-pressed="false">
-                <span>&lt;</span>
+                <span aria-hidden="true">
+                    <svg class="admin-shell-control-icon" focusable="false" viewBox="0 0 24 24">
+                        <use href="#admin-menu-icon-sidebar-toggle"></use>
+                    </svg>
+                </span>
             </button>
         </h2>
 
@@ -250,7 +264,11 @@ if ($admin_site_title === '') {
 <div id="wrapper">
     <div id="hd_top">
         <div class="hd_top_left">
-            <button type="button" id="btn_gnb_mobile" aria-controls="gnb" aria-expanded="false">☰</button>
+            <button type="button" id="btn_gnb_mobile" aria-controls="gnb" aria-expanded="false" aria-label="메뉴 열기">
+                <svg class="admin-shell-control-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                    <use href="#admin-menu-icon-menu"></use>
+                </svg>
+            </button>
             <div class="hd_breadcrumb">
                 <span>대시보드</span>
                 <span>/</span>

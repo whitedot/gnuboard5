@@ -269,11 +269,26 @@
     }
 
     #btn_gnb span {
-        @apply inline-block transition-transform;
+        @apply inline-flex transition-transform;
     }
 
     #btn_gnb.btn_gnb_open span {
         @apply rotate-180;
+    }
+
+    .admin-shell-control-icon {
+        width: 1rem;
+        height: 1rem;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    #btn_gnb_mobile .admin-shell-control-icon {
+        width: 1.1rem;
+        height: 1.1rem;
     }
 
     #gnb .gnb_menu_scroll_wrap {
