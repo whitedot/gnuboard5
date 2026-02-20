@@ -12,12 +12,15 @@ $print_version = ($is_admin == 'super') ? 'Version ' . G5_GNUBOARD_VER : '';
     </p>
 </noscript>
 </div>
-<footer id="ft">
-    <p>
-        Copyright &copy; <?php echo $_SERVER['HTTP_HOST']; ?>. All rights reserved. <?php echo $print_version; ?><br>
-        <button type="button" class="scroll_top"><span>TOP</span></button>
-    </p>
-</footer>
+    </div>
+
+    <footer id="ft">
+        <p>
+            <span>Copyright &copy; <?php echo $_SERVER['HTTP_HOST']; ?>. All rights reserved. <?php echo $print_version; ?></span>
+            <button type="button" class="scroll_top"><span>TOP</span></button>
+        </p>
+    </footer>
+</div>
 
 <div id="adminPopupContainer">
     <div id="popupOverlay" class="is-hidden hidden" onclick="PopupManager.close('popupOverlay')">
@@ -39,7 +42,7 @@ $print_version = ($is_admin == 'super') ? 'Version ' . G5_GNUBOARD_VER : '';
         $("body,html").animate({
             scrollTop: 0
         }, 400);
-    })
+    });
 </script>
 
 <script src="<?php echo G5_ADMIN_URL ?>/admin.js?ver=<?php echo G5_JS_VER; ?>"></script>
