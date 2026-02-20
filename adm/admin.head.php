@@ -27,6 +27,21 @@ function print_menu1($key, $no = '')
     return print_menu2($key, $no);
 }
 
+function admin_menu_icon_id($menu_code)
+{
+    $prefix = substr((string) $menu_code, 0, 3);
+    $map = array(
+        '100' => 'settings',
+        '200' => 'users',
+        '300' => 'board',
+        '400' => 'shop',
+        '500' => 'stats',
+        '900' => 'message',
+    );
+
+    return isset($map[$prefix]) ? $map[$prefix] : 'folder';
+}
+
 function print_menu2($key, $no = '')
 {
     global $menu, $auth_menu, $is_admin, $auth, $sub_menu;
@@ -62,8 +77,10 @@ $adm_menu_cookie = array(
     'gnb'       => '',
     'btn_gnb'   => '',
 );
+$admin_sidebar_collapsed = false;
 
 if (!empty($_COOKIE['g5_admin_btn_gnb'])) {
+    $admin_sidebar_collapsed = true;
     $adm_menu_cookie['container'] = 'container-small';
     $adm_menu_cookie['gnb'] = 'gnb_small';
     $adm_menu_cookie['btn_gnb'] = 'btn_gnb_open';
@@ -80,6 +97,11 @@ if ($admin_profile_seed !== '') {
     } else {
         $admin_profile_initial = substr($admin_profile_seed, 0, 1);
     }
+}
+
+$admin_site_title = get_text((string) ($config['cf_title'] ?? ''));
+if ($admin_site_title === '') {
+    $admin_site_title = 'G5 AIF';
 }
 ?>
 
@@ -103,16 +125,63 @@ if ($admin_profile_seed !== '') {
     }
 </script>
 
+<?php if ($admin_sidebar_collapsed) { ?>
+<script>
+    (function() {
+        if (window.matchMedia("(max-width: 1023px)").matches) {
+            return;
+        }
+        if (document.body) {
+            document.body.classList.add("admin-sidebar-condensed");
+        }
+    })();
+</script>
+<?php } ?>
+
 <div id="to_content"><a href="#container">본문 바로가기</a></div>
 
 <header id="hd">
     <h1 class="sr-only"><?php echo $config['cf_title']; ?></h1>
 
     <nav id="gnb" class="<?php echo $adm_menu_cookie['gnb']; ?>" aria-label="관리자 메뉴">
+        <svg class="admin-nav-icon-sprite" aria-hidden="true" focusable="false">
+            <symbol id="admin-menu-icon-settings" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1 1 0 0 0 .2 1.1l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1 1 0 0 0-1.1-.2 1 1 0 0 0-.6.9V20a2 2 0 1 1-4 0v-.2a1 1 0 0 0-.6-.9 1 1 0 0 0-1.1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1 1 0 0 0 .2-1.1 1 1 0 0 0-.9-.6H4a2 2 0 1 1 0-4h.2a1 1 0 0 0 .9-.6 1 1 0 0 0-.2-1.1l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1 1 0 0 0 1.1.2 1 1 0 0 0 .6-.9V4a2 2 0 1 1 4 0v.2a1 1 0 0 0 .6.9 1 1 0 0 0 1.1-.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1 1 0 0 0-.2 1.1 1 1 0 0 0 .9.6H20a2 2 0 1 1 0 4h-.2a1 1 0 0 0-.9.6z"></path>
+            </symbol>
+            <symbol id="admin-menu-icon-users" viewBox="0 0 24 24">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </symbol>
+            <symbol id="admin-menu-icon-board" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                <path d="M9 4v16"></path>
+                <path d="M9 10h12"></path>
+            </symbol>
+            <symbol id="admin-menu-icon-shop" viewBox="0 0 24 24">
+                <path d="M6 7h12l-1 13H7L6 7z"></path>
+                <path d="M9 7V5a3 3 0 0 1 6 0v2"></path>
+            </symbol>
+            <symbol id="admin-menu-icon-stats" viewBox="0 0 24 24">
+                <path d="M3 3v18h18"></path>
+                <path d="M8 14v4"></path>
+                <path d="M12 10v8"></path>
+                <path d="M16 6v12"></path>
+            </symbol>
+            <symbol id="admin-menu-icon-message" viewBox="0 0 24 24">
+                <path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </symbol>
+            <symbol id="admin-menu-icon-folder" viewBox="0 0 24 24">
+                <path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            </symbol>
+        </svg>
+
         <h2>
             <a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>">
                 <span><?php echo $admin_profile_initial; ?></span>
-                <span>G5 AIF</span>
+                <span><?php echo $admin_site_title; ?></span>
             </a>
             <button type="button" id="btn_gnb" class="<?php echo $adm_menu_cookie['btn_gnb']; ?>" aria-label="사이드바 축소/확장" aria-pressed="false">
                 <span>&lt;</span>
@@ -121,8 +190,6 @@ if ($admin_profile_seed !== '') {
 
         <div class="gnb_menu_scroll_wrap">
             <div class="gnb_menu_scroll" id="gnbMenuScroll">
-                <p class="gnb_label">MAIN MENU</p>
-
                 <ul class="admin-nav-list" id="adminNavList">
                     <?php
                     foreach ($amenu as $key => $value) {
@@ -140,10 +207,17 @@ if ($admin_profile_seed !== '') {
                         }
 
                         $button_title = $menu['menu' . $key][0][1];
+                        $menu_code = (string) $menu['menu' . $key][0][0];
+                        $menu_icon_id = admin_menu_icon_id($menu_code);
                     ?>
                         <li class="admin-nav-item<?php echo $current_class; ?>">
                             <button type="button" class="admin-nav-trigger" title="<?php echo $button_title; ?>" aria-expanded="<?php echo $expanded; ?>">
-                                <span class="admin-nav-trigger-label"><?php echo $button_title; ?></span>
+                                <span class="admin-nav-trigger-main">
+                                    <svg class="admin-nav-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                        <use href="#admin-menu-icon-<?php echo $menu_icon_id; ?>"></use>
+                                    </svg>
+                                    <span class="admin-nav-trigger-label"><?php echo $button_title; ?></span>
+                                </span>
                                 <span class="admin-nav-caret" aria-hidden="true">⌄</span>
                             </button>
                             <div class="admin-nav-panel<?php echo $opened_utility; ?>">
@@ -178,7 +252,7 @@ if ($admin_profile_seed !== '') {
         <div class="hd_top_left">
             <button type="button" id="btn_gnb_mobile" aria-controls="gnb" aria-expanded="false">☰</button>
             <div class="hd_breadcrumb">
-                <span>Main Menu</span>
+                <span>대시보드</span>
                 <span>/</span>
                 <strong><?php echo $g5['title']; ?></strong>
             </div>
@@ -218,6 +292,11 @@ if ($admin_profile_seed !== '') {
 <script>
     jQuery(function($) {
         var menu_cookie_key = 'g5_admin_btn_gnb';
+        var mobileQuery = window.matchMedia("(max-width: 1023px)");
+
+        function isMobileViewport() {
+            return mobileQuery.matches;
+        }
 
         $(".tnb_mb_btn").click(function() {
             $(".tnb_mb_area").toggleClass("hidden");
@@ -231,19 +310,15 @@ if ($admin_profile_seed !== '') {
 
         function syncDesktopSidebarState() {
             var collapsed = $("#gnb").hasClass("gnb_small");
-            $("body").toggleClass("admin-sidebar-condensed", collapsed);
-            $("#container").toggleClass("container-small", collapsed);
+            var desktopCollapsed = !isMobileViewport() && collapsed;
+            $("body").toggleClass("admin-sidebar-condensed", desktopCollapsed);
+            $("#container").toggleClass("container-small", desktopCollapsed);
             $("#btn_gnb")
-                .toggleClass("btn_gnb_open", collapsed)
-                .attr("aria-pressed", collapsed ? "true" : "false");
+                .toggleClass("btn_gnb_open", desktopCollapsed)
+                .attr("aria-pressed", desktopCollapsed ? "true" : "false");
         }
 
-        syncDesktopSidebarState();
-
-        $("#btn_gnb").click(function() {
-            var $this = $(this);
-            var nextCollapsed = !$this.hasClass("btn_gnb_open");
-
+        function setDesktopCollapsed(nextCollapsed) {
             try {
                 if (nextCollapsed) {
                     set_cookie(menu_cookie_key, 1, 60 * 60 * 24 * 365);
@@ -254,21 +329,39 @@ if ($admin_profile_seed !== '') {
 
             $("#gnb").toggleClass("gnb_small", nextCollapsed);
             syncDesktopSidebarState();
+        }
+
+        syncDesktopSidebarState();
+
+        $("#btn_gnb").click(function() {
+            var nextCollapsed = !$("#gnb").hasClass("gnb_small");
+            setDesktopCollapsed(nextCollapsed);
         });
 
         function setMobileSidebar(opened) {
-            if (window.innerWidth >= 1024) {
+            if (!isMobileViewport()) {
                 return;
             }
 
             $("body").toggleClass("admin-sidebar-open", opened);
+            $("body").toggleClass("overflow-hidden", opened);
             $("#btn_gnb_mobile").attr("aria-expanded", opened ? "true" : "false");
             $("#adminSidebarBackdrop").toggleClass("hidden", !opened);
         }
 
-        $("#btn_gnb_mobile").click(function() {
-            var opened = !$("body").hasClass("admin-sidebar-open");
-            setMobileSidebar(opened);
+        $("#btn_gnb_mobile").click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (isMobileViewport()) {
+                var opened = !$("body").hasClass("admin-sidebar-open");
+                setMobileSidebar(opened);
+                return;
+            }
+
+            if ($("#gnb").hasClass("gnb_small")) {
+                setDesktopCollapsed(false);
+            }
         });
 
         $("#adminSidebarBackdrop").click(function() {
@@ -276,8 +369,8 @@ if ($admin_profile_seed !== '') {
         });
 
         $(window).on("resize", function() {
-            if (window.innerWidth >= 1024) {
-                $("body").removeClass("admin-sidebar-open");
+            if (!isMobileViewport()) {
+                $("body").removeClass("admin-sidebar-open overflow-hidden");
                 $("#btn_gnb_mobile").attr("aria-expanded", "false");
                 $("#adminSidebarBackdrop").addClass("hidden");
             }
@@ -286,7 +379,7 @@ if ($admin_profile_seed !== '') {
         }).trigger("resize");
 
         $("#gnb").on("click", "a", function() {
-            if (window.innerWidth < 1024) {
+            if (isMobileViewport()) {
                 setMobileSidebar(false);
             }
         });
@@ -442,4 +535,3 @@ if ($admin_profile_seed !== '') {
 
     });
 </script>
-

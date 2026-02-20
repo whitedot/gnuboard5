@@ -221,6 +221,10 @@
 }
 
 @layer components {
+    :root {
+        --admin-shell-bar-height: 4.25rem;
+    }
+
     #to_content a {
         position: absolute;
         left: -9999px;
@@ -235,7 +239,7 @@
     }
 
     #hd {
-        @apply fixed inset-y-0 left-0 z-40;
+        @apply fixed inset-y-0 left-0 z-50;
         width: 19rem;
     }
 
@@ -244,7 +248,8 @@
     }
 
     #gnb > h2 {
-        @apply flex items-center justify-between gap-3 border-b border-default-300 px-5 py-5;
+        @apply flex items-center justify-between gap-3 border-b border-default-300 px-5 py-0;
+        min-height: var(--admin-shell-bar-height);
     }
 
     #gnb > h2 > a {
@@ -313,16 +318,48 @@
         @apply mb-3 px-2 text-xs font-semibold tracking-wide text-default-400;
     }
 
+    #gnb .admin-nav-icon-sprite {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+    }
+
     #gnb .admin-nav-list {
         @apply space-y-1.5;
+    }
+
+    #gnb .admin-nav-trigger-main {
+        @apply flex min-w-0 items-center gap-2.5;
+    }
+
+    #gnb .admin-nav-icon {
+        width: 1rem;
+        height: 1rem;
+        flex-shrink: 0;
+        color: var(--color-default-500);
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: color 140ms ease;
     }
 
     #gnb .admin-nav-item > .admin-nav-trigger {
         @apply flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-sm font-medium text-default-700 transition-colors hover:text-slate-900 dark:hover:text-default-900;
     }
 
+    #gnb .admin-nav-item > .admin-nav-trigger:hover .admin-nav-icon {
+        color: var(--color-default-700);
+    }
+
     #gnb .admin-nav-item.is-open > .admin-nav-trigger {
         @apply text-slate-900 dark:text-default-900;
+    }
+
+    #gnb .admin-nav-item.is-open > .admin-nav-trigger .admin-nav-icon {
+        color: var(--color-default-700);
     }
 
     #gnb .admin-nav-item.is-open > .admin-nav-trigger .admin-nav-trigger-label {
@@ -342,7 +379,7 @@
     }
 
     #gnb .admin-nav-panel > .admin-nav-sub-list {
-        @apply space-y-1 py-1;
+        @apply space-y-0.5 py-0.5;
     }
 
     #gnb .admin-nav-sub-item {
@@ -388,7 +425,7 @@
     }
 
     #gnb .admin-nav-sub-item > a {
-        @apply block rounded-md px-2 py-1.5 text-sm text-default-600 transition-colors hover:text-slate-900 dark:hover:text-default-900;
+        @apply block rounded-md px-2 py-1 text-sm text-default-600 transition-colors hover:text-slate-900 dark:hover:text-default-900;
     }
 
     #gnb .admin-nav-sub-item.is-current > a {
@@ -429,7 +466,8 @@
     }
 
     #hd_top {
-        @apply sticky top-0 z-20 flex items-center justify-between gap-4 border-b border-default-300 bg-card/95 px-4 py-3 backdrop-blur lg:px-8;
+        @apply sticky top-0 z-20 flex items-center justify-between gap-4 border-b border-default-300 bg-card/95 px-4 py-0 backdrop-blur lg:px-8;
+        min-height: var(--admin-shell-bar-height);
     }
 
     #hd_top .hd_top_left {
@@ -546,14 +584,22 @@
     }
 
     body.admin-sidebar-condensed #gnb > h2 {
-        @apply px-3;
+        @apply relative justify-center px-3;
+    }
+
+    body.admin-sidebar-condensed #gnb > h2 > a {
+        @apply justify-center;
+    }
+
+    body.admin-sidebar-condensed #gnb #btn_gnb {
+        @apply hidden;
     }
 
     body.admin-sidebar-condensed #gnb > h2 > a > span:last-child,
     body.admin-sidebar-condensed #gnb .gnb_label,
     body.admin-sidebar-condensed #gnb .admin-nav-trigger-label,
-    body.admin-sidebar-condensed #gnb .admin-nav-panel,
-    body.admin-sidebar-condensed #gnb .gnb_profile_meta {
+    body.admin-sidebar-condensed #gnb .gnb_profile_meta,
+    body.admin-sidebar-condensed #gnb .gnb_profile_logout {
         @apply hidden;
     }
 
@@ -562,12 +608,81 @@
         @apply justify-center;
     }
 
+    body.admin-sidebar-condensed #gnb .gnb_profile {
+        @apply border-t-0 px-0 pb-4 pt-2;
+    }
+
     body.admin-sidebar-condensed #gnb .admin-nav-caret {
         @apply hidden;
     }
 
+    body.admin-sidebar-condensed #gnb .admin-nav-item {
+        position: relative;
+    }
+
+    body.admin-sidebar-condensed #gnb .admin-nav-trigger-main {
+        @apply w-full justify-center;
+    }
+
+    body.admin-sidebar-condensed #gnb .admin-nav-icon {
+        color: var(--color-default-600);
+    }
+
+    body.admin-sidebar-condensed #gnb .admin-nav-item:hover > .admin-nav-trigger .admin-nav-icon,
+    body.admin-sidebar-condensed #gnb .admin-nav-item:focus-within > .admin-nav-trigger .admin-nav-icon {
+        color: var(--color-primary);
+    }
+
+    body.admin-sidebar-condensed #gnb .admin-nav-panel {
+        display: block !important;
+        position: absolute;
+        left: calc(100% + 0.5rem);
+        top: 0;
+        z-index: 120;
+        min-width: 15rem;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateX(0.35rem);
+        transition: opacity 150ms ease, transform 150ms ease, visibility 150ms ease;
+    }
+
+    body.admin-sidebar-condensed #gnb .admin-nav-item:hover > .admin-nav-panel,
+    body.admin-sidebar-condensed #gnb .admin-nav-item:focus-within > .admin-nav-panel {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(0);
+    }
+
+    body.admin-sidebar-condensed #gnb .admin-nav-panel > .admin-nav-sub-list {
+        @apply rounded-xl border border-default-300 bg-card p-3 shadow-sm;
+    }
+
+    body.admin-sidebar-condensed #gnb .admin-nav-sub-item::before,
+    body.admin-sidebar-condensed #gnb .admin-nav-sub-item::after {
+        display: none;
+    }
+
+    body.admin-sidebar-condensed #gnb .admin-nav-sub-item > a {
+        @apply rounded-lg px-3 py-1.5;
+    }
+
+    body.admin-sidebar-condensed #gnb .gnb_menu_scroll_wrap,
+    body.admin-sidebar-condensed #gnb .gnb_menu_scroll {
+        overflow: visible;
+    }
+
     body.admin-sidebar-condensed #gnb .gnb_scrollbar {
         display: none;
+    }
+
+    @media (min-width: 1024px) {
+        body.admin-sidebar-condensed #btn_gnb_mobile {
+            @apply inline-flex;
+        }
     }
 
     @media (max-width: 1023px) {
@@ -575,8 +690,22 @@
             width: 19rem;
         }
 
+        body:not(.admin-sidebar-open) #hd {
+            pointer-events: none;
+        }
+
+        body.admin-sidebar-open #hd {
+            pointer-events: auto;
+        }
+
         #gnb {
+            position: fixed;
+            inset: 0 auto 0 0;
+            width: 19rem;
+            z-index: 50;
+            pointer-events: auto;
             transform: translateX(-100%);
+            @apply shadow-xl;
         }
 
         body.admin-sidebar-open #gnb {
@@ -588,8 +717,9 @@
             padding-left: 0;
         }
 
-        #gnb {
-            @apply shadow-xl;
+        #adminSidebarBackdrop {
+            z-index: 40;
+            pointer-events: auto;
         }
 
         #gnb .gnb_scrollbar {
