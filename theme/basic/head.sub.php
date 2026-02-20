@@ -42,6 +42,10 @@ if($config['cf_add_meta'])
 $common_css_path = G5_THEME_CSS_PATH.'/common.css';
 $common_css_ver = is_file($common_css_path) ? filemtime($common_css_path) : G5_CSS_VER;
 echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_THEME_CSS_URL.'/common.css?ver='.$common_css_ver, G5_THEME_URL).'">'.PHP_EOL;
+
+$theme_css_path = G5_THEME_CSS_PATH.'/theme.css';
+$theme_css_ver = is_file($theme_css_path) ? filemtime($theme_css_path) : G5_CSS_VER;
+echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_THEME_CSS_URL.'/theme.css?ver='.$theme_css_ver, G5_THEME_URL).'">'.PHP_EOL;
 ?>
 <script>
 // 자바스크립트에서 사용하는 전역변수 선언

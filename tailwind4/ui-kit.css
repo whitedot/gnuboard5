@@ -1,0 +1,4 @@
+@reference "./common.css";
+@import "tailwindcss/utilities" source(none);
+
+@source "../docs/ui-kit/**/*.php";

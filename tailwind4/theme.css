@@ -1,0 +1,16 @@
+@reference "./common.css";
+@import "tailwindcss/utilities" source(none);
+
+@source "../index.php";
+@source "../head.php";
+@source "../head.sub.php";
+@source "../tail.php";
+@source "../tail.sub.php";
+@source "../bbs/**/*.php";
+@source "../mobile/**/*.php";
+@source "../skin/**/*.php";
+@source "../shop/**/*.php";
+@source "../lib/**/*.php";
+@source "../plugin/**/*.php";
+@source "../extend/**/*.php";
+@source "../theme/basic/**/*.php";
