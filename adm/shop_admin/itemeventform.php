@@ -73,7 +73,7 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 <input type="hidden" name="ev_id" value="<?php echo $ev_id; ?>">
 <input type="hidden" name="ev_item" value="">
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <colgroup>
@@ -204,8 +204,8 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
                     ?>
                         <li>
                             <input type="hidden" name="it_id[]" value="<?php echo $row['it_id']; ?>">
-                            <div><?php echo $it_name; ?></div>
-                            <div><button type="button" class="del_item">삭제</button></div>
+                            <?php echo $it_name; ?>
+                            <button type="button" class="del_item">삭제</button>
                         </li>
                     <?php
                     }   // end for
@@ -284,7 +284,7 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
     </tr>
     </tbody>
     </table>
-</div>
+
 
 <div>
     <a href="./itemevent.php">목록</a>

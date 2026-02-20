@@ -59,10 +59,10 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca.'&amp;save_stx='.$stx;
 $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 ?>
 
-<div>
+
     <?php echo $listall; ?>
     <span><span> 전체 문의내역</span><span> <?php echo $total_count; ?>건</span></span>
-</div>
+
 
 <form name="flist">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
@@ -142,15 +142,15 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
         <td>
             <a href="#" class="qa_href" onclick="return false;" target="<?php echo $i; ?>"><?php echo get_text($row['iq_subject']); ?> <span>열기</span></a>
             <div id="qa_div<?php echo $i; ?>" class="qa_div" style="display:none;">
-                <div>
+                
                     <strong>문의내용</strong>
                     
                     <?php echo $iq_question; ?>
-                </div>
-                <div>
+                
+                
                 <strong>답변</strong>
                 <?php echo $iq_answer; ?>
-                </div>
+                
             </div>
         </td>
         <td><?php echo $name; ?></td>
@@ -169,9 +169,9 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
     </table>
 </div>
 
-<div>
+
     <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
-</div>
+
 </form>
 
 <?php echo get_paging($config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page="); ?>

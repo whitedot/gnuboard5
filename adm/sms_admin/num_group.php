@@ -73,9 +73,9 @@ function num_group_submit(f)
 
 </script>
 
-<div>
+
     <span><span>건수</span><span> <?php echo $total_count; ?>건 </span></span>
-</div>
+
 
 <form name="group<?php echo isset($res['bg_no']) ? $res['bg_no'] : ''; ?>" method="get" action="./num_group_update.php">
 <input type="hidden" name="bg_no" value="<?php echo isset($res['bg_no']) ? $res['bg_no'] : ''; ?>">
@@ -88,14 +88,14 @@ function num_group_submit(f)
 
 </form>
 
-<div>
+
     <p>그룹명순으로 정렬됩니다.</p>
-</div>
+
 
 <form name="group_hp_form" id="group_hp_form" method="post" action="./num_group_update.php" onsubmit="return num_group_submit(this);">
 <input type="hidden" name="w" value="u">
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -175,7 +175,7 @@ function num_group_submit(f)
     <?php } ?>
     </tbody>
     </table>
-</div>
+
 
 <div>
     <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value">

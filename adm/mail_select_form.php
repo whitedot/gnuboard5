@@ -64,7 +64,7 @@ require_once './admin.head.php';
 <form name="frmsendmailselectform" id="frmsendmailselectform" action="./mail_select_list.php" method="post" autocomplete="off">
     <input type="hidden" name="ma_id" value="<?php echo $ma_id ?>">
 
-    <div>
+    
         <table>
             <caption><?php echo $g5['title']; ?> 대상선택</caption>
             <tbody>
@@ -127,7 +127,7 @@ require_once './admin.head.php';
                 </tr>
             </tbody>
         </table>
-    </div>
+    
 
     <div>
         <input type="submit" value="확인">

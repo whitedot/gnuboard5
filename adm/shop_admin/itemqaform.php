@@ -32,11 +32,11 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca;
 <input type="hidden" name="stx" value="<?php echo $stx; ?>">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 
-<div>
-    <p>상품에 대한 문의에 답변하실 수 있습니다. 상품 문의 내용의 수정도 가능합니다.</p>
-</div>
 
-<div>
+    <p>상품에 대한 문의에 답변하실 수 있습니다. 상품 문의 내용의 수정도 가능합니다.</p>
+
+
+
     <table>
     <caption><?php echo $g5['title']; ?> 수정</caption>
     <colgroup>
@@ -75,7 +75,7 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca;
     </tr>
     </tbody>
     </table>
-</div>
+
 
 <div>
     <a href="./itemqalist.php?<?php echo $qstr; ?>">목록</a>

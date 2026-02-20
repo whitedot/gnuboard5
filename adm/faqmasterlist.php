@@ -78,19 +78,19 @@ $result = sql_query($sql);
     <span><span> 전체 FAQ </span><span> <?php echo $total_count; ?>건</span></span>
 </div>
 
-<div>
+
     <ol>
         <li>FAQ는 무제한으로 등록할 수 있습니다</li>
         <li><strong>FAQ추가</strong>를 눌러 FAQ Master를 생성합니다. (하나의 FAQ 타이틀 생성 : 자주하시는 질문, 이용안내..등 )</li>
         <li>생성한 FAQ Master 의 <strong>제목</strong>을 눌러 세부 내용을 관리할 수 있습니다.</li>
     </ol>
-</div>
 
-<div>
+
+
     <a href="./faqmasterform.php">FAQ추가</a>
-</div>
 
-<div>
+
+
     <table>
         <caption><?php echo $g5['title']; ?> 목록</caption>
         <thead>
@@ -129,7 +129,7 @@ $result = sql_query($sql);
             ?>
         </tbody>
     </table>
-</div>
+
 
 <?php echo get_paging($config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page="); ?>
 

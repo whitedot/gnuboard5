@@ -79,10 +79,10 @@ $qstr  = $qstr.'&amp;sca='.$sca.'&amp;page='.$page.'&amp;save_stx='.$stx;
 $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 ?>
 
-<div>
+
     <?php echo $listall; ?>
         <span><span>전체 상품</span><span>  <?php echo $total_count; ?>개</span></span>
-</div>
+
 
 <form name="flist">
 <input type="hidden" name="doc" value="<?php echo get_sanitize_input($doc); ?>">
@@ -184,9 +184,9 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
     </table>
 </div>
 
-<div>
+
     <input type="submit" value="일괄수정">
-</div>
+
 </form>
 
 <?php echo get_paging($config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page="); ?>

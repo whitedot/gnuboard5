@@ -26,10 +26,10 @@ include_once('./admin.head.php');
 ?>
 
 <script src="<?php echo G5_ADMIN_URL; ?>/theme.js"></script>
-<div>
+
     <span><span>설치된 테마</span><span>  <?php echo number_format($total_count); ?></span></span>
 
-</div>
+
 
 <?php if($total_count > 0) { ?>
 <ul id="theme_list">
@@ -56,12 +56,12 @@ include_once('./admin.head.php');
         }
     ?>
     <li>
-        <div>
+        
             <?php echo $screenshot; ?>
-            <div>
+            
                 <p><?php echo get_text($info['theme_name']); ?></p>
-            </div>
-        </div>
+            
+        
         <?php echo $btn_active; ?>
         <a href="./theme_preview.php?theme=<?php echo $theme[$i]; ?>" target="theme_preview">미리보기</a>
         <button type="button" data-theme="<?php echo $theme[$i]; ?>">상세보기</button>

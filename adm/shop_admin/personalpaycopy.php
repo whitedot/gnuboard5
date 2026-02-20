@@ -20,7 +20,7 @@ if(!$row['pp_id'])
     <form name="fpersonalpaycopy" method="post" action="./personalpaycopyupdate.php" onsubmit="return form_check(this);">
     <input type="hidden" name="pp_id" value="<?php echo $pp_id; ?>">
 
-     <div>
+     
         <table>
         <caption><?php echo $g5['title']; ?></caption>
         <tbody>
@@ -38,7 +38,7 @@ if(!$row['pp_id'])
         </tr>
         </tbody>
         </table>
-    </div>
+    
 
     <div>
         <input type="submit" value="복사하기">

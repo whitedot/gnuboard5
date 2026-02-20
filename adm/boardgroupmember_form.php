@@ -59,7 +59,7 @@ $colspan = 4;
     <input type="hidden" name="mb_id" value="<?php echo $mb['mb_id'] ?>" id="mb_id">
     <input type="hidden" name="w" value="d" id="w">
 
-    <div>
+    
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -103,11 +103,11 @@ $colspan = 4;
                 ?>
             </tbody>
         </table>
-    </div>
+    
 
-    <div>
+    
         <input type="submit" name="" value="선택삭제">
-    </div>
+    
 </form>
 
 <script>

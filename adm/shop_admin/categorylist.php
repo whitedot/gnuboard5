@@ -54,10 +54,10 @@ $result = sql_query($sql);
 $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 ?>
 
-<div>
+
     <?php echo $listall; ?>
     <span><span>생성된  분류 수</span><span>  <?php echo number_format($total_count); ?>개</span></span>
-</div>
+
 
 <form name="flist">
 <input type="hidden" name="page" value="<?php echo $page; ?>">

@@ -20,7 +20,7 @@
         <section id="anc_sodr_chk">
             <h3>결제상세정보 확인</h3>
 
-            <div>
+            
                 <table>
                 <caption>결제상세정보</caption>
                 <colgroup>
@@ -296,13 +296,13 @@
                 ?>
                 </tbody>
                 </table>
-            </div>
+            
         </section>
 
         <section id="anc_sodr_paymo">
             <h3>결제상세정보 수정</h3>
 
-            <div>
+            
                 <table>
                 <caption>결제상세정보 수정</caption>
                 <colgroup>
@@ -493,7 +493,7 @@
 
                 </tbody>
                 </table>
-            </div>
+            
         </section>
 
     </div>

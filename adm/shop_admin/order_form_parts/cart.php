@@ -26,7 +26,7 @@
     <input type="hidden" name="page" value="<?php echo $page;?>">
     <input type="hidden" name="pg_cancel" value="0">
 
-    <div>
+    
         <table>
         <caption>주문 상품 목록</caption>
         <thead>
@@ -143,9 +143,9 @@
         ?>
         </tbody>
         </table>
-    </div>
+    
 
-    <div>
+    
         <p>
             <input type="hidden" name="chk_cnt" value="<?php echo $chk_cnt; ?>">
             <strong>주문 및 장바구니 상태 변경</strong>
@@ -158,7 +158,7 @@
             <input type="submit" name="ct_status" value="반품" onclick="document.pressed=this.value">
             <input type="submit" name="ct_status" value="품절" onclick="document.pressed=this.value">
         </p>
-    </div>
+    
 
     <div>
         <p>주문, 입금, 준비, 배송, 완료는 장바구니와 주문서 상태를 모두 변경하지만, 취소, 반품, 품절은 장바구니의 상태만 변경하며, 주문서 상태는 변경하지 않습니다.</p>
@@ -170,9 +170,9 @@
     <?php if ($od['od_mod_history']) { ?>
     <section id="sodr_qty_log">
         <h3>주문 수량변경 및 주문 전체취소 처리 내역</h3>
-        <div>
+        
             <?php echo conv_content($od['od_mod_history'], 0); ?>
-        </div>
+        
     </section>
     <?php } ?>
 

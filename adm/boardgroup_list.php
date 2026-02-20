@@ -53,10 +53,10 @@ require_once './admin.head.php';
 $colspan = 10;
 ?>
 
-<div>
+
     <?php echo $listall ?>
     <span><span>전체그룹</span><span> <?php echo number_format($total_count) ?>개</span></span>
-</div>
+
 
 <form name="fsearch" id="fsearch" method="get">
     <label for="sfl">검색대상</label>
@@ -170,12 +170,12 @@ $colspan = 10;
     </div>
 </form>
 
-<div>
+
     <p>
         접근사용 옵션을 설정하시면 관리자가 지정한 회원만 해당 그룹에 접근할 수 있습니다.<br>
         접근사용 옵션은 해당 그룹에 속한 모든 게시판에 적용됩니다.
     </p>
-</div>
+
 
 <?php
 $pagelist = get_paging($config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME'] . '?' . $qstr . '&amp;page=');

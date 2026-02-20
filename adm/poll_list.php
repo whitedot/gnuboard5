@@ -52,10 +52,10 @@ require_once './admin.head.php';
 $colspan = 8;
 ?>
 
-<div>
+
     <?php echo $listall ?>
     <span><span>투표수</span><span> <?php echo number_format($total_count) ?>개</span></span>
-</div>
+
 
 <form name="fsearch" id="fsearch" method="get">
     <div>
@@ -78,7 +78,7 @@ $colspan = 8;
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <div>
+    
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -132,7 +132,7 @@ $colspan = 8;
                 ?>
             </tbody>
         </table>
-    </div>
+    
 
     <div>
         <input type="submit" value="선택삭제">

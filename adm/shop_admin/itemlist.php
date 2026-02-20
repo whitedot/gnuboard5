@@ -82,10 +82,10 @@ $qstr  = $qstr.'&amp;sca='.$sca.'&amp;page='.$page.'&amp;save_stx='.$stx;
 $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 ?>
 
-<div>
+
     <?php echo $listall; ?>
     <span><span>등록된 상품</span><span> <?php echo $total_count; ?>건</span></span>
-</div>
+
 
 <form name="flist">
 <input type="hidden" name="save_stx" value="<?php echo $stx; ?>">

@@ -48,7 +48,7 @@ $qstr1 = 'mb_name='.urlencode($mb_name);
         <input type="text" name="mb_name" id="mb_name" value="<?php echo get_text($mb_name); ?>" size="20">
         <input type="submit" value="검색">
     </div>
-    <div>
+    
         <table>
         <caption>검색결과</caption>
         <thead>
@@ -75,7 +75,7 @@ $qstr1 = 'mb_name='.urlencode($mb_name);
         ?>
         </tbody>
         </table>
-    </div>
+    
     </form>
 
     <?php echo get_paging($config['cf_write_pages'], $page, $total_page, '?'.$qstr1.'&amp;page='); ?>

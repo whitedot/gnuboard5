@@ -77,11 +77,11 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
 
 </div>
 
-<div>
-    <a href="./bannerform.php">배너추가</a>
-</div>
 
-<div>
+    <a href="./bannerform.php">배너추가</a>
+
+
+
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -171,7 +171,7 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
     </tbody>
     </table>
 
-</div>
+
 
 <?php echo get_paging($config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page="); ?>
 

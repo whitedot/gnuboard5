@@ -1,6 +1,6 @@
 <section id="anc_mb_basic">
     <h2>기본 정보</h2>
-    <div>
+    
         <table>
             <caption>기본 정보</caption>
             <colgroup>
@@ -51,5 +51,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    
 </section>

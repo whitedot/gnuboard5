@@ -62,10 +62,10 @@ $qstr1 = $qstr.'&amp;fr_date='.$fr_date.'&amp;to_date='.$to_date.'&amp;sel_ca_id
 $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 ?>
 
-<div>
+
     <?php echo $listall; ?>
     <span><span>등록상품 </span><span> <?php echo $total_count; ?>건 </span></span> 
-</div>
+
 
 <form name="flist">
 <input type="hidden" name="doc" value="<?php echo get_sanitize_input($doc); ?>">
@@ -97,16 +97,16 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 
 </form>
 
-<div>
+
     <p>판매량을 합산하여 상품판매순위를 집계합니다.</p>
-</div>
+
 
 <div>
     <a href="./itemstocklist.php">상품재고관리</a>
     <a href="./itemlist.php">상품등록</a>
 </div>
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -158,7 +158,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
     ?>
     </tbody>
     </table>
-</div>
+
 
 <?php echo get_paging($config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr1&amp;page="); ?>
 

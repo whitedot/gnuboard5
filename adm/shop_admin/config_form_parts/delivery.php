@@ -2,7 +2,7 @@
     <h2 >배송설정</h2>
      <?php echo $pg_anchor; ?>
 
-    <div>
+    
         <table>
         <caption>배송설정 입력</caption>
         <colgroup>
@@ -69,5 +69,5 @@
         </tr>
         </tbody>
         </table>
-    </div>
+    
 </section>

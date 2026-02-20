@@ -35,12 +35,12 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
 
 ?>
 <?php if (!($config['cf_icode_pw'] || $config['cf_icode_token_key'])) { ?>
-<div>
+
     <p>
         SMS 기능을 사용하시려면 먼저 아이코드에 서비스 신청을 하셔야 합니다.<br>
         <a href="http://icodekorea.com/res/join_company_fix_a.php?sellid=sir2" target="_blank">아이코드 서비스 신청하기</a>
     </p>
-</div>
+
 <?php } ?>
 
 <?php
@@ -49,7 +49,7 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
 <form name="fconfig" method="post" action="./config_update.php" enctype="multipart/form-data" >
 <input type="hidden" name="cf_icode_server_ip" value="<?php echo $config['cf_icode_server_ip']?>">
 <input type="hidden" name="cf_sms_use" value="<?php echo $config['cf_sms_use']?>">
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <colgroup>
@@ -125,23 +125,23 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
     </tr>
     </tbody>
     </table>
-</div>
 
-<div>
+
+
     <input type="submit" value="확인" accesskey="s">
-</div>
+
 </form>
 
 <?php } else { ?>
 
 <section>
     <h2>SMS 문자전송 서비스를 사용할 수 없습니다.</h2>
-    <div>
+    
         <p>
             SMS 를 사용하지 않고 있기 때문에, 문자 전송을 할 수 없습니다.<br>
             SMS 사용 설정은 <a href="../config_form.php#anc_cf_sms">환경설정 &gt; 기본환경설정 &gt; SMS설정</a> 에서 SMS 사용을 아이코드로 변경해 주셔야 사용하실수 있습니다.
         </p>
-    </div>
+    
 </section>
 
 <?php } ?>

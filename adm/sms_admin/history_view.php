@@ -114,7 +114,7 @@ function all_send()
 
     <?php if ($write['wr_re_total'] && !$wr_renum) { ?>
     <h2>전송실패 문자 재전송 내역</h2>
-    <div>
+    
     <table>
     <thead>
     <tr>
@@ -154,7 +154,7 @@ function all_send()
     <?php } ?>
     </tbody>
     </table>
-    </div>
+    
     <?php } ?>
 
     <?php

@@ -2,7 +2,7 @@
     <h2>상세설명설정</h2>
     <?php echo $pg_anchor; ?>
 
-    <div>
+    
         <table>
         <caption>상세설명설정</caption>
         <colgroup>
@@ -33,5 +33,5 @@
         </tr>
         </tbody>
         </table>
-    </div>
+    
 </section>

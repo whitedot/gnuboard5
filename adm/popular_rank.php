@@ -57,10 +57,10 @@ $colspan = 3;
     });
 </script>
 
-<div>
+
     <?php echo $listall ?>
     <span><span>건수</span><span> <?php echo number_format($total_count) ?>개</span></span>
-</div>
+
 
 <form name="fsearch" id="fsearch" method="get">
     <div>
@@ -82,7 +82,7 @@ $colspan = 3;
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="<?php echo isset($token) ? $token : ''; ?>">
 
-    <div>
+    
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -112,7 +112,7 @@ $colspan = 3;
                 ?>
             </tbody>
         </table>
-    </div>
+    
 
 </form>
 

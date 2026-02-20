@@ -34,8 +34,8 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
     <input type="hidden" name="bk_no_list" value="<?php echo get_sanitize_input($bk_no_list); ?>">
     <input type="hidden" name="act" value="<?php echo get_sanitize_input($act); ?>">
     <input type="hidden" name="url" value="<?php echo clean_xss_tags(strip_tags($_SERVER['HTTP_REFERER'])); ?>">
-    <div> 
-        <div>
+     
+        
             <table>
             <caption><?php echo $act ?>할 그룹을 한개 이상 선택하여 주십시오.</caption>
             <thead>
@@ -65,8 +65,8 @@ for ($i=0; $row=sql_fetch_array($result); $i++)
             <?php } ?>
             </tbody>
             </table>
-        </div>
-    </div>
+        
+    
     <div class="win_btn">
         <input type="submit" value="<?php echo $act ?>" id="btn-primary">
         <button type="button">창닫기</button>

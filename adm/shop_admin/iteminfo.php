@@ -18,7 +18,7 @@ if(isset($it['it_id']) && $it['it_id']) {
 }
 ?>
 
-<div>
+
     <table>
     <caption>상품요약정보 입력</caption>
     <colgroup>
@@ -70,4 +70,3 @@ if(isset($it['it_id']) && $it['it_id']) {
     ?>
     </tbody>
     </table>
-</div>

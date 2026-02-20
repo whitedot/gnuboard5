@@ -74,19 +74,19 @@ function grouplist_submit(f)
     <input type="text" id="fg_name" name="fg_name" required class="required">
     <input type="submit" value="추가">
 </div>
-<div>
+
     <span>건수 : <?php echo $total_count ?></span>
-</div>
+
 </form>
 
-<div>
+
     <p>그룹명순으로 정렬됩니다.</p>
-</div>
+
 
 <form name="group<?php echo isset($group[$i]['fg_no']) ? $group[$i]['fg_no'] : ''; ?>" method="post" action="./form_group_update.php" onsubmit="return grouplist_submit(this);">
 <input type="hidden" name="w" value="u">
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -162,7 +162,7 @@ function grouplist_submit(f)
     </tbody>
     </table>
     
-</div>
+
 
 <div>
     <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value">

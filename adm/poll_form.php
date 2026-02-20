@@ -37,7 +37,7 @@ require_once './admin.head.php';
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <div>
+    
 
         <table>
             <caption><?php echo $g5['title']; ?></caption>
@@ -114,7 +114,7 @@ require_once './admin.head.php';
             </tbody>
         </table>
 
-    </div>
+    
 
     <div>
         <a href="./poll_list.php?<?php echo $qstr ?>">목록</a>

@@ -54,10 +54,10 @@ require_once './admin.head.php';
 $colspan = 5;
 ?>
 
-<div>
+
     <?php echo $listall ?>
     <span><span>설정된 관리권한</span><span><?php echo number_format($total_count) ?>건</span></span>
-</div>
+
 
 <form name="fsearch" id="fsearch" method="get">
     <input type="hidden" name="sfl" value="a.mb_id" id="sfl">
@@ -143,9 +143,9 @@ $colspan = 5;
         </table>
     </div>
 
-    <div>
+    
         <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
-    </div>
+    
 
     <?php
     //if (isset($stx))
@@ -175,29 +175,29 @@ echo $pagelist;
     <section id="add_admin">
         <h2>관리권한 추가</h2>
 
-        <div>
+        
             <p>
                 다음 양식에서 회원에게 관리권한을 부여하실 수 있습니다.<br>
                 권한 <strong>r</strong>은 읽기권한, <strong>w</strong>는 쓰기권한, <strong>d</strong>는 삭제권한입니다.
             </p>
-        </div>
+        
 
-        <div>
+        
             <div>
                 <div>
-                    <div>
+                    
                         <label for="mb_id">회원아이디<strong>필수</strong></label>
-                    </div>
+                    
                     <div>
                         <strong id="msg_mb_id"></strong>
                         <input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" required class="required">
                     </div>
                 </div>
                 <div>
-                    <div>
+                    
                         <label for="au_menu">접근가능메뉴<strong>필수</strong></label>
-                    </div>
-                    <div>
+                    
+                    
                         <select id="au_menu" name="au_menu" required class="required">
                             <option value=''>선택하세요</option>
                             <?php
@@ -208,12 +208,12 @@ echo $pagelist;
                             }
                             ?>
                         </select>
-                    </div>
+                    
                 </div>
                 <div>
-                    <div>
+                    
                         <span>권한지정</span>
-                    </div>
+                    
                     <div>
                         <input type="checkbox" name="r" value="r" id="r" checked>
                         <label for="r">r (읽기)</label>
@@ -223,25 +223,25 @@ echo $pagelist;
                         <label for="d">d (삭제)</label>
                     </div>
                 </div>
-                <div>
-                    <div>
+                
+                    
                         <span>자동등록방지</span>
-                    </div>
-                    <div>
+                    
+                    
                         <?php
                         require_once G5_CAPTCHA_PATH . '/captcha.lib.php';
                         $captcha_html = captcha_html();
                         $captcha_js   = chk_captcha_js();
                         echo $captcha_html;
                         ?>
-                    </div>
-                </div>
+                    
+                
             </div>
-        </div>
+        
 
-        <div>
+        
             <input type="submit" value="추가">
-        </div>
+        
     </section>
 
 </form>

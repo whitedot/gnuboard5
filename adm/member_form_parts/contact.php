@@ -1,6 +1,6 @@
 <section id="anc_mb_contact">
     <h2>연락처 및 주소</h2>
-    <div>
+    
         <table>
             <caption>연락처 및 주소</caption>
             <colgroup>
@@ -61,5 +61,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    
 </section>

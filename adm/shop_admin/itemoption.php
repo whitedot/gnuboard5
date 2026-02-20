@@ -50,7 +50,7 @@ if(isset($it['it_id']) && $it['it_id']) {
 if($po_run) {
 ?>
 
-<div>
+
     <table>
     <caption>옵션 목록</caption>
     <thead>
@@ -193,11 +193,11 @@ if($po_run) {
     ?>
     </tbody>
     </table>
-</div>
 
-<div>
+
+
     <input type="button" value="선택삭제" id="sel_option_delete">
-</div>
+
 
 <fieldset>
     <legend>옵션 일괄 적용</legend>

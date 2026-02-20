@@ -62,7 +62,7 @@ include_once(G5_ADMIN_PATH."/admin.head.php");
 <input type="hidden" name="mb_id" id="mb_id" value="<?php echo $write['mb_id']?>">
 <input type="hidden" name="get_bg_no" value="<?php echo get_sanitize_input($bg_no); ?>">
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <colgroup>
@@ -138,7 +138,7 @@ include_once(G5_ADMIN_PATH."/admin.head.php");
     </tr>
     </tbody>
 </table>
-</div>
+
 
 <div>
     <input type="submit" value="확인" accesskey="s" onclick="return book_submit();">

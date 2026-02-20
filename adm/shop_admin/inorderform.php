@@ -186,15 +186,15 @@ $pg_anchor = '<ul>
 <section id="anc_sodr_list">
     <h2>주문상품 목록</h2>
     <?php echo $pg_anchor; ?>
-    <div>
+    
         <p>
             주문일시 <strong><?php echo substr($od['dt_time'],0,16); ?> (<?php echo get_yoil($od['dt_time']); ?>)</strong>
             |
             주문합계 <strong><?php echo number_format($order_price); ?></strong>원
         </p>
-    </div>
+    
 
-    <div>
+    
         <table>
         <caption>주문 상품 목록</caption>
         <thead>
@@ -290,7 +290,7 @@ $pg_anchor = '<ul>
         ?>
         </tbody>
         </table>
-    </div>
+    
 </section>
 
 <section id="anc_sodr_pay">
@@ -337,7 +337,7 @@ $pg_anchor = '<ul>
         $s_receipt_way .= "+포인트";
     ?>
 
-    <div>
+    
         <form name="frmorderform" method="post" action="./inorderformupdate.php" onsubmit="return form_submit(this);">
         <input type="hidden" name="od_id" value="<?php echo $od_id; ?>">
         <input type="hidden" name="sst" value="<?php echo $sst; ?>">
@@ -376,11 +376,11 @@ $pg_anchor = '<ul>
         </tbody>
         </table>
 
-        <div>
+        
             <input type="submit" value="주문 복구">
-        </div>
+        
         </form>
-    </div>
+    
 </section>
 
 <section>
@@ -411,10 +411,10 @@ $pg_anchor = '<ul>
         if( $tmps ) {
     ?>
     <h2>이니시스 결제 로그</h2>
-    <div>
+    
         <p>실결제로 결제된 경우 반드시 이니시스 상점 관리자에서 해당 결제건을 확인 후에 주문을 처리해 주세요.</p>
-    </div>
-    <div>
+    
+    
         <table>
         <caption>이니시스 결제 로그</caption>
         <tbody>
@@ -448,7 +448,7 @@ $pg_anchor = '<ul>
         <?php }     //end foreach ?>
         </tbody>
         </table>
-    </div>
+    
     <?php
         }   //end if tmps
     }     //end if inicis
@@ -462,7 +462,7 @@ $pg_anchor = '<ul>
         <section id="anc_sodr_orderer">
             <h3>주문하신 분</h3>
 
-            <div>
+            
                 <table>
                 <caption>주문자/배송지 정보</caption>
                 <colgroup>
@@ -497,13 +497,13 @@ $pg_anchor = '<ul>
                 </tr>
                 </tbody>
                 </table>
-            </div>
+            
         </section>
 
         <section id="anc_sodr_taker">
             <h3>받으시는 분</h3>
 
-            <div>
+            
                 <table>
                 <caption>받으시는 분 정보</caption>
                 <colgroup>
@@ -545,7 +545,7 @@ $pg_anchor = '<ul>
                 </tr>
                 </tbody>
                 </table>
-            </div>
+            
         </section>
     </div>
 </section>

@@ -27,16 +27,16 @@ $g5['title'] = $html_title;
 require_once './admin.head.php';
 ?>
 
-<div>
+
     <p>메일 내용에 {이름} , {닉네임} , {회원아이디} , {이메일} 처럼 내용에 삽입하면 해당 내용에 맞게 변환하여 메일을 발송합니다.</p>
-</div>
+
 
 <form name="fmailform" id="fmailform" action="./mail_update.php" onsubmit="return fmailform_check(this);" method="post">
     <input type="hidden" name="w" value="<?php echo $w ?>" id="w">
     <input type="hidden" name="ma_id" value="<?php echo $ma['ma_id'] ?>" id="ma_id">
     <input type="hidden" name="token" value="" id="token">
 
-    <div>
+    
         <table>
             <caption><?php echo $g5['title']; ?></caption>
             <colgroup>
@@ -54,11 +54,11 @@ require_once './admin.head.php';
                 </tr>
             </tbody>
         </table>
-    </div>
+    
 
-    <div>
+    
         <input type="submit" accesskey="s" value="확인">
-    </div>
+    
 </form>
 
 <script>

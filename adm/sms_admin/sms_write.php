@@ -84,7 +84,7 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
                     <button type="button" onclick="javascript:add('♩')">♩</button>
                     <button type="button" onclick="javascript:add('♭')">♭</button>
                 </div>
-                <div><button type="button" class="scemo_cls_btn">닫기</button></div>
+                <button type="button" class="scemo_cls_btn">닫기</button>
             </div>
             <button type="button" id="write_emo_btn" class="write_scemo_btn">이모<br>티콘</button>
             <div id="write_emo" class="write_scemo">
@@ -107,7 +107,7 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
                     <button type="button" onclick="javascript:add('↖(^-^)↗')">↖(^-^)↗</button>
                     <button type="button" onclick="javascript:add('(*^-^*)')">(*^-^*)</button>
                 </div>
-                <div><button type="button" class="scemo_cls_btn">닫기</button></div>
+                <button type="button" class="scemo_cls_btn">닫기</button>
             </div>
 
         </div>
@@ -176,10 +176,10 @@ if ($config['cf_sms_use'] == 'icode') { // 아이코드 사용
             <label for="wr_bi">분</label>
         </div>
 
-        <div>
+        
             <input type="submit" value="전송">
             <!-- <input type="submit" value="전송" onclick="send()"> -->
-        </div>
+        
         </form>
     </div>
 
@@ -824,12 +824,12 @@ var sms_obj={
 
 <section>
     <h2>SMS 문자전송 서비스를 사용할 수 없습니다.</h2>
-    <div>
+    
         <p>
             SMS 를 사용하지 않고 있기 때문에, 문자 전송을 할 수 없습니다.<br>
             SMS 사용 설정은 <a href="../config_form.php#anc_cf_sms">환경설정 &gt; 기본환경설정 &gt; SMS설정</a> 에서 SMS 사용을 아이코드로 변경해 주셔야 사용하실수 있습니다.
         </p>
-    </div>
+    
 </section>
 
 <?php } ?>

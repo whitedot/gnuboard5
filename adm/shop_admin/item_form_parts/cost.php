@@ -224,9 +224,9 @@
                     </tr>
                     </tbody>
                     </table>
-                    <div>
+                    
                         <button type="button" id="option_table_create">옵션목록생성</button>
-                    </div>
+                    
                 </div>
                 <div id="sit_option_frm"><?php include_once(G5_ADMIN_PATH.'/shop_admin/itemoption.php'); ?></div>
 
@@ -397,9 +397,9 @@
                     </tbody>
                     </table>
                     <div id="sit_option_addfrm_btn"><button type="button" id="add_supply_row">옵션추가</button></div>
-                    <div>
+                    
                         <button type="button" id="supply_table_create">옵션목록생성</button>
-                    </div>
+                    
                 </div>
                 <div id="sit_option_addfrm"><?php include_once(G5_ADMIN_PATH.'/shop_admin/itemsupply.php'); ?></div>
 

@@ -63,7 +63,7 @@ if (!auth_check_menu($auth, '200100', 'r', true)) {
             총회원수 <?php echo number_format($total_count) ?>명 중 차단 <?php echo number_format($intercept_count) ?>명, 탈퇴 : <?php echo number_format($leave_count) ?>명
         </div>
 
-        <div>
+        
             <table>
                 <caption>신규가입회원</caption>
                 <thead>
@@ -111,7 +111,7 @@ if (!auth_check_menu($auth, '200100', 'r', true)) {
                             <td><?php echo $mb_id ?></td>
                             <td><?php echo get_text($row['mb_name']); ?></td>
                             <td>
-                                <div><?php echo $mb_nick ?></div>
+                                <?php echo $mb_nick ?>
                             </td>
                             <td><?php echo $row['mb_level'] ?></td>
                             <td><a href="./point_list.php?sfl=mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo number_format($row['mb_point']) ?></a></td>
@@ -129,11 +129,11 @@ if (!auth_check_menu($auth, '200100', 'r', true)) {
                     ?>
                 </tbody>
             </table>
-        </div>
+        
 
-        <div>
+        
             <a href="./member_list.php">회원 전체보기</a>
-        </div>
+        
     </section>
 
     <?php
@@ -165,7 +165,7 @@ if (!auth_check_menu($auth, '300100', 'r', true)) {
     <section>
         <h2>최근게시물</h2>
 
-        <div>
+        
             <table>
                 <caption>최근게시물</caption>
                 <thead>
@@ -223,7 +223,7 @@ if (!auth_check_menu($auth, '300100', 'r', true)) {
                             <td><a href="<?php echo get_pretty_url($row['bo_table']) ?>"><?php echo cut_str($row['bo_subject'], 20) ?></a></td>
                             <td><a href="<?php echo get_pretty_url($row['bo_table'], $row2['wr_id']); ?><?php echo $comment_link ?>"><?php echo $comment ?><?php echo conv_subject($row2['wr_subject'], 100) ?></a></td>
                             <td>
-                                <div><?php echo $name ?></div>
+                                <?php echo $name ?>
                             </td>
                             <td><?php echo $datetime ?></td>
                         </tr>
@@ -236,11 +236,11 @@ if (!auth_check_menu($auth, '300100', 'r', true)) {
                     ?>
                 </tbody>
             </table>
-        </div>
+        
 
-        <div>
+        
             <a href="<?php echo G5_BBS_URL ?>/new.php">최근게시물 더보기</a>
-        </div>
+        
     </section>
 
     <?php
@@ -268,7 +268,7 @@ if (!auth_check_menu($auth, '200200', 'r', true)) {
             전체 <?php echo number_format($total_count) ?> 건 중 <?php echo $new_point_rows ?>건 목록
         </div>
 
-        <div>
+        
             <table>
                 <caption>최근 포인트 발생내역</caption>
                 <thead>
@@ -304,7 +304,7 @@ if (!auth_check_menu($auth, '200200', 'r', true)) {
                             <td><a href="./point_list.php?sfl=mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo $row['mb_id'] ?></a></td>
                             <td><?php echo get_text($row2['mb_name']); ?></td>
                             <td>
-                                <div><?php echo $mb_nick ?></div>
+                                <?php echo $mb_nick ?>
                             </td>
                             <td><?php echo $row['po_datetime'] ?></td>
                             <td><?php echo $link1 . $row['po_content'] . $link2 ?></td>
@@ -321,11 +321,11 @@ if (!auth_check_menu($auth, '200200', 'r', true)) {
                     ?>
                 </tbody>
             </table>
-        </div>
+        
 
-        <div>
+        
             <a href="./point_list.php">포인트내역 전체보기</a>
-        </div>
+        
     </section>
 
     <?php

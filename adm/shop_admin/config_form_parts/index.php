@@ -1,14 +1,14 @@
 <section id="anc_scf_index">
     <h2>쇼핑몰 초기화면</h2>
     <?php echo $pg_anchor; ?>
-    <div>
+    
         <p>
             상품관리에서 선택한 상품의 타입대로 쇼핑몰 초기화면에 출력합니다. (상품 타입 히트/추천/최신/인기/할인)<br>
             각 타입별로 선택된 상품이 없으면 쇼핑몰 초기화면에 출력하지 않습니다.
         </p>
-    </div>
+    
 
-    <div>
+    
         <table>
         <caption>쇼핑몰 초기화면 설정</caption>
         <colgroup>
@@ -113,7 +113,7 @@
         </tr>
         </tbody>
         </table>
-    </div>
+    
 </section>
 
 <button type="button" class="shop_pc_index">테마설정 가져오기</button>

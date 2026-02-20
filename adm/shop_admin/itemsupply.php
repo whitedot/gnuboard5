@@ -23,7 +23,7 @@ if(isset($it['it_id']) && $it['it_id']) {
 
 if($ps_run) {
 ?>
-<div>
+
     <table>
     <caption>추가옵션 목록</caption>
     <thead>
@@ -151,11 +151,11 @@ if($ps_run) {
     ?>
     </tbody>
     </table>
-</div>
 
-<div>
+
+
     <button type="button" id="sel_supply_delete">선택삭제</button>
-</div>
+
 
 <fieldset>
     <?php echo help('전체 추가 옵션의 상품금액, 재고/통보수량 및 사용여부를 일괄 적용할 수 있습니다.  단, 체크된 수정항목만 일괄 적용됩니다.'); ?>

@@ -2,13 +2,13 @@
     <h2>관련상품</h2>
     <?php echo $pg_anchor; ?>
 
-    <div>
+    
         <p>
             등록된 전체상품 목록에서 상품분류를 선택하면 해당 상품 리스트가 연이어 나타납니다.<br>
             상품리스트에서 관련 상품으로 추가하시면 선택된 관련상품 목록에 <strong>함께</strong> 추가됩니다.<br>
             예를 들어, A 상품에 B 상품을 관련상품으로 등록하면 B 상품에도 A 상품이 관련상품으로 자동 추가되며, <strong>확인 버튼을 누르셔야 정상 반영됩니다.</strong>
         </p>
-    </div>
+    
 
     <div>
         <section>
@@ -126,8 +126,8 @@
                 ?>
                     <li>
                         <input type="hidden" name="re_it_id[]" value="<?php echo $row['it_id']; ?>">
-                        <div><?php echo $it_name; ?></div>
-                        <div><button type="button" class="del_item">삭제</button></div>
+                        <?php echo $it_name; ?>
+                        <button type="button" class="del_item">삭제</button>
                     </li>
                 <?php
                     $str[] = $row['it_id'];

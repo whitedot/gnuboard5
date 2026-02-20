@@ -15,8 +15,8 @@
                 ?>
                     <li>
                         <input type="hidden" name="ev_id[]" value="<?php echo $row['ev_id']; ?>">
-                        <div><?php echo get_text($row['ev_subject']); ?></div>
-                        <div><button type="button" class="add_event">추가</button></div>
+                        <?php echo get_text($row['ev_subject']); ?>
+                        <button type="button" class="add_event">추가</button>
                     </li>
                 <?php
                 }
@@ -93,8 +93,8 @@
                 ?>
                     <li>
                         <input type="hidden" name="ev_id[]" value="<?php echo $row['ev_id']; ?>">
-                        <div><?php echo get_text($row['ev_subject']); ?></div>
-                        <div><button type="button" class="del_event">삭제</button></div>
+                        <?php echo get_text($row['ev_subject']); ?>
+                        <button type="button" class="del_event">삭제</button>
                     </li>
                 <?php
                 }

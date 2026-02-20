@@ -38,7 +38,7 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 <input type="hidden" name="fa_id" value="<?php echo $fa_id; ?>">
 <input type="hidden" name="token" value="">
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <colgroup>
@@ -64,7 +64,7 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
     </tr>
     </tbody>
     </table>
-</div>
+
 
 <div>
     <input type="submit" value="확인" accesskey="s">

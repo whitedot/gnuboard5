@@ -53,7 +53,7 @@ $sql = " select od_id,
 $result = sql_query($sql);
 ?>
 
-<div>
+
 
     <table>
     <caption><?php echo $g5['title']; ?></caption>
@@ -155,7 +155,7 @@ $result = sql_query($sql);
     </tr>
     </tfoot>
     </table>
-</div>
+
 
 
 <?php

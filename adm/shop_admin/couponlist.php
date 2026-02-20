@@ -50,9 +50,9 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 
 $colspan = 9;
 ?>
-<div>
+
     <span><span>전체 </span><span> <?php echo number_format($total_count) ?> 개</span></span>
-</div>
+
 <form name="fsearch" id="fsearch" method="get">
 
 <select name="sfl" title="검색대상">
@@ -139,7 +139,7 @@ $colspan = 9;
         <td><?php echo $row['cp_id']; ?></td>
         <td><?php echo $row['cp_subject']; ?></td>
         <td><?php echo $cp_target; ?></td>
-        <td><div><?php echo $row['mb_id']; ?></div></td>
+        <td><?php echo $row['mb_id']; ?></td>
         <td><?php echo substr($row['cp_start'], 2, 8); ?> ~ <?php echo substr($row['cp_end'], 2, 8); ?></td>
         <td><?php echo number_format($used_count); ?></td>
         <td>

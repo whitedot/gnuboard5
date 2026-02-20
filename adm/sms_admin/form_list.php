@@ -107,9 +107,9 @@ function multi_update(sel)
 }
 </script>
 
-<div>
+
     <span><span>건수</span><span><?php echo number_format($total_count);?>건</span></span> 
-</div>
+
 
 <div>
     <form>
@@ -173,16 +173,16 @@ function multi_update(sel)
             <label for="fo_no_<?php echo $i; ?>"><?php echo $group_name?>의 <?php echo cut_str($res['fo_name'],10)?></label>
             <input type="checkbox" name="fo_no[]" value="<?php echo $res['fo_no']?>" id="fo_no_<?php echo $i; ?>">
         </div>
-        <div>
+        
             <textarea readonly class="box_txt"><?php echo html_purifier($res['fo_content']); ?></textarea>
-        </div>
+        
         <div>
             <span>그룹 </span><b><?php echo $group_name?></b><br>
             <span>제목 </span><?php echo cut_str($res['fo_name'],10)?><br>
         </div>
-        <div>
+        
             <span>등록 </span><?php echo date('Y-m-d', strtotime($res['fo_datetime']))?>
-        </div>
+        
         <div>
             <a href="./form_write.php?w=u&amp;fo_no=<?php echo $res['fo_no']?>&amp;page=<?php echo $page;?>&amp;fg_no=<?php echo $fg_no;?>&amp;st=<?php echo get_text($st);?>&amp;sv=<?php echo get_text($sv);?>">수정</a>
             <a href="javascript:void(book_del('<?php echo $res['fo_no']?>'));">삭제</a>

@@ -50,7 +50,7 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca;
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?> 수정</caption>
     <colgroup>
@@ -99,7 +99,7 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca;
     </tr>
     </tbody>
     </table>
-</div>
+
 
 <div>
     <a href="./itemuselist.php?<?php echo $qstr; ?>">목록</a>

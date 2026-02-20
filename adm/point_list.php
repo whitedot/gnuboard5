@@ -73,7 +73,7 @@ if (strstr($sfl, "mb_id")) {
 }
 ?>
 
-<div>
+
     <?php echo $listall ?>
     <span><span>전체 </span><span> <?php echo number_format($total_count) ?> 건 </span></span>
     <?php
@@ -84,7 +84,7 @@ if (strstr($sfl, "mb_id")) {
         echo '&nbsp;<span><span>전체 합계</span><span>' . number_format($row2['sum_point']) . '점 </span></span>';
     }
     ?>
-</div>
+
 
 <form name="fsearch" id="fsearch" method="get">
     <label for="sfl">검색대상</label>
@@ -153,7 +153,7 @@ if (strstr($sfl, "mb_id")) {
                         <td><a href="?sfl=mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo $row['mb_id'] ?></a></td>
                         <td><?php echo get_text($row['mb_name']); ?></td>
                         <td>
-                            <div><?php echo $mb_nick ?></div>
+                            <?php echo $mb_nick ?>
                         </td>
                         <td><?php echo $link1 ?><?php echo $row['po_content'] ?><?php echo $link2 ?></td>
                         <td><?php echo number_format($row['po_point']) ?></td>
@@ -179,9 +179,9 @@ if (strstr($sfl, "mb_id")) {
         </table>
     </div>
 
-    <div>
+    
         <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
-    </div>
+    
 
 </form>
 
@@ -198,7 +198,7 @@ if (strstr($sfl, "mb_id")) {
         <input type="hidden" name="page" value="<?php echo $page ?>">
         <input type="hidden" name="token" value="<?php echo isset($token) ? $token : ''; ?>">
 
-        <div>
+        
             <table>
                 <colgroup>
                     <col>
@@ -225,11 +225,11 @@ if (strstr($sfl, "mb_id")) {
                     <?php } ?>
                 </tbody>
             </table>
-        </div>
+        
 
-        <div>
+        
             <input type="submit" value="확인">
-        </div>
+        
 
     </form>
 

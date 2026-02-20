@@ -37,9 +37,9 @@ $colspan = 6;
 $sub_menu_info = '';
 ?>
 
-<div>
+
     <p><strong>주의!</strong> 메뉴설정 작업 후 반드시 <strong>확인</strong>을 누르셔야 저장됩니다.</p>
-</div>
+
 
 <form name="fmenulist" id="fmenulist" method="post" action="./menu_list_update.php" onsubmit="return fmenulist_submit(this);">
     <input type="hidden" name="token" value="">

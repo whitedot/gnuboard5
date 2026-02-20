@@ -22,17 +22,17 @@ require_once './admin.head.php';
 $colspan = 7;
 ?>
 
-<div>
+
     <p>
         <b>테스트</b>는 등록된 최고관리자의 이메일로 테스트 메일을 발송합니다.<br>
         현재 등록된 메일은 총 <?php echo $total_count ?>건입니다.<br>
         <strong>주의) 수신자가 동의하지 않은 대량 메일 발송에는 적합하지 않습니다. 수십건 단위로 발송해 주십시오.</strong>
     </p>
-</div>
+
 
 
 <form name="fmaillist" id="fmaillist" action="./mail_delete.php" method="post">
-    <div>
+    
         <table>
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
@@ -77,7 +77,7 @@ $colspan = 7;
                 ?>
             </tbody>
         </table>
-    </div>
+    
     <div>
         <input type="submit" value="선택삭제">
         <a href="./mail_form.php" id="mail_add">메일내용추가</a>

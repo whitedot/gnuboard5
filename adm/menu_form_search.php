@@ -36,7 +36,7 @@ if ($sql) {
             $bbs_subject_title = ($type == 'board') ? '게시판제목' : '제목';
             ?>
 
-<div>
+
     <table>
         <thead>
             <tr>
@@ -85,18 +85,18 @@ if ($sql) {
 
         </tbody>
     </table>
-</div>
+
 
 <div class="menu_exists_tip" style="display:none">
     <p>* <strong>빨간색</strong>의 제목은 이미 메뉴에 연결되어 경우 표시됩니다.</p>
 </div>
 
-<div>
+
     <button type="button" onclick="window.close();">창닫기</button>
-</div>
+
 
 <?php } else { ?>
-<div>
+
     <table>
         <colgroup>
             <col>
@@ -116,7 +116,7 @@ if ($sql) {
             </tr>
         </tbody>
     </table>
-</div>
+
 
 <div>
     <button type="button" id="add_manual">추가</button>

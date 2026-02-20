@@ -59,11 +59,11 @@ $result = sql_query($sql);
     <span><span>전체 내용</span><span> <?php echo $total_count; ?>건</span></span>
 </div>
 
-<div>
-    <a href="./contentform.php">내용 추가</a>
-</div>
 
-<div>
+    <a href="./contentform.php">내용 추가</a>
+
+
+
     <table>
         <caption><?php echo $g5['title']; ?> 목록</caption>
         <thead>
@@ -94,7 +94,7 @@ $result = sql_query($sql);
             ?>
         </tbody>
     </table>
-</div>
+
 
 <?php echo get_paging($config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page="); ?>
 

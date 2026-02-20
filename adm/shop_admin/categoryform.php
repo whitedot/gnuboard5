@@ -125,7 +125,7 @@ else {
     <h2>필수입력</h2>
     <?php echo $pg_anchor; ?>
 
-    <div>
+    
         <table>
         <caption>분류 추가 필수입력</caption>
         <colgroup>
@@ -263,7 +263,7 @@ else {
         </tr>
         </tbody>
         </table>
-    </div>
+    
     <button type="button" class="shop_category">테마설정 가져오기</button>
 </section>
 
@@ -334,7 +334,7 @@ else {
     <h2>여분필드 설정</h2>
     <?php echo $pg_anchor ?>
 
-    <div>
+    
         <table>
         <colgroup>
             <col>
@@ -354,7 +354,7 @@ else {
         <?php } ?>
         </tbody>
         </table>
-    </div>
+    
 </section>
 
 
@@ -363,7 +363,7 @@ else {
     <h2>기타설정</h2>
     <?php echo $pg_anchor; ?>
 
-    <div>
+    
         <table>
         <caption>분류 추가 기타설정</caption>
         <colgroup>
@@ -381,7 +381,7 @@ else {
         </tr>
         </tbody>
         </table>
-    </div>
+    
 </section>
 
 <?php } ?>

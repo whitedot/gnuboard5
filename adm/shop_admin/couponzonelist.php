@@ -42,9 +42,9 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 $colspan = 9;
 ?>
 
-<div>
+
     <span><span>전체 </span><span> <?php echo number_format($total_count) ?> 개</span></span>
-</div>
+
 <form name="fsearch" id="fsearch" method="get">
 
 <label for="stx">검색어<strong> 필수</strong></label>
@@ -58,7 +58,7 @@ $colspan = 9;
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 <input type="hidden" name="token" value="">
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <thead>
@@ -144,7 +144,7 @@ $colspan = 9;
     ?>
     </tbody>
     </table>
-</div>
+
 
 <div>
      <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">

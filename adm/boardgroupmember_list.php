@@ -133,9 +133,9 @@ $colspan = 7;
         </table>
     </div>
 
-    <div>
+    
         <input type="submit" name="" value="선택삭제">
-    </div>
+    
 </form>
 
 <?php

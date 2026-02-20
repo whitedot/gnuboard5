@@ -1,11 +1,11 @@
 <section id="anc_sitfrm_sendcost">
     <h2>배송비</h2>
     <?php echo $pg_anchor; ?>
-    <div>
+    
         <p>쇼핑몰설정 &gt; 배송비유형 설정보다 <strong>개별상품 배송비설정이 우선</strong> 적용됩니다.</p>
-    </div>
+    
 
-    <div>
+    
         <table>
         <caption>배송비 입력</caption>
         <colgroup>
@@ -65,7 +65,7 @@
             </tr>
         </tbody>
         </table>
-    </div>
+    
 
     <script>
     $(function() {

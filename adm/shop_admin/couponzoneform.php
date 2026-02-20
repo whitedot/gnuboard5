@@ -56,7 +56,7 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
 <input type="hidden" name="stx" value="<?php echo $stx; ?>">
 <input type="hidden" name="page" value="<?php echo $page;?>">
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <colgroup>
@@ -191,7 +191,7 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
     </tr>
     </tbody>
     </table>
-</div>
+
 
 <div>
     <a href="./couponzonelist.php?<?php echo $qstr; ?>">목록</a>

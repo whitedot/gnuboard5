@@ -1,11 +1,11 @@
 <section id="anc_scf_skin">
     <h2>스킨설정</h2>
     <?php echo $pg_anchor; ?>
-    <div>
+    
         <p>상품 분류리스트, 상품상세보기 등 에서 사용할 스킨을 설정합니다.</p>
-    </div>
+    
 
-    <div>
+    
         <table>
         <caption>스킨설정</caption>
         <colgroup>
@@ -21,7 +21,7 @@
         </tr>
         </tbody>
         </table>
-    </div>
+    
 </section>
 
 <button type="button" class="get_shop_skin">테마 스킨설정 가져오기</button>

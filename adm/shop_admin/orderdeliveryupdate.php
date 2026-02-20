@@ -157,9 +157,9 @@ include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 <div>
     <h1><?php echo $g5['title']; ?></h1>
 
-    <div>
+    
         <p>배송일괄처리를 완료했습니다.</p>
-    </div>
+    
 
     <dl id="excelfile_result">
         <dt>총배송건수</dt>
@@ -174,9 +174,9 @@ include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
         <?php } ?>
     </dl>
 
-    <div>
+    
         <button type="button" onclick="window.close();">창닫기</button>
-    </div>
+    
 
 </div>
 

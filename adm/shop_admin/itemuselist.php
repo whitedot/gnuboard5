@@ -61,10 +61,10 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca.'&amp;save_stx='.$stx;
 $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 ?>
 
-<div>
+
     <?php echo $listall; ?>
     <span><span> 전체 후기내역</span><span>  <?php echo $total_count; ?>건</span></span>
-</div>
+
 
 <form name="flist">
 <input type="hidden" name="page" value="<?php echo $page; ?>">

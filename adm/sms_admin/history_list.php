@@ -37,7 +37,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
 
 </form>
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -89,7 +89,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
     <?php } ?>
     </tbody>
     </table>
-</div>
+
 
 <?php echo get_paging($config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME']."?st=$st&amp;sv=$sv&amp;page="); ?>
 

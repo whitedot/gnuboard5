@@ -99,11 +99,11 @@ $colspan = 16;
 
 </form>
 
-<div>
+
     <p>
         회원자료 삭제 시 다른 회원이 기존 회원아이디를 사용하지 못하도록 회원아이디, 이름, 닉네임은 삭제하지 않고 영구 보관합니다.
     </p>
-</div>
+
 
 
 <form name="fmemberlist" id="fmemberlist" action="./member_list_update.php" onsubmit="return fmemberlist_submit(this);" method="post">
@@ -279,7 +279,7 @@ $colspan = 16;
                     <tr class="<?php echo $bg; ?>">
                         <td headers="mb_list_name"><?php echo get_text($row['mb_name']); ?></td>
                         <td headers="mb_list_nick">
-                            <div><?php echo $mb_nick ?></div>
+                            <?php echo $mb_nick ?>
                         </td>
 
                         <td headers="mb_list_sms">

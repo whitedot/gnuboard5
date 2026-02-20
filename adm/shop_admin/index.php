@@ -433,7 +433,7 @@ function graph_draw()
         <h2>1:1문의</h2>
         <?php echo $pg_anchor; ?>
 
-        <div>
+        
             <ul>
                 <?php
                 $sql = " select * from {$g5['qa_content_table']}
@@ -461,18 +461,18 @@ function graph_draw()
                     echo '<li>자료가 없습니다.</li>';
                 ?>
             </ul>
-        </div>
+        
 
-        <div>
+        
             <a href="<?php echo G5_BBS_URL; ?>/qalist.php" target="_blank">1:1문의 더보기</a>
-        </div>
+        
     </section>
 
     <section id="anc_sidx_qna">
         <h2>상품문의</h2>
         <?php echo $pg_anchor; ?>
 
-        <div>
+        
             <ul>
                 <?php
                 $sql = " select * from {$g5['g5_shop_item_qa_table']}
@@ -498,18 +498,18 @@ function graph_draw()
                     echo '<li>자료가 없습니다.</li>';
                 ?>
             </ul>
-        </div>
+        
 
-        <div>
+        
             <a href="./itemqalist.php?sort1=iq_answer&amp;sort2=asc">상품문의 더보기</a>
-        </div>
+        
     </section>
 
     <section id="anc_sidx_ps">
         <h2>사용후기</h2>
         <?php echo $pg_anchor; ?>
 
-        <div>
+        
             <ul>
             <?php
             $sql = " select * from {$g5['g5_shop_item_use_table']}
@@ -533,11 +533,11 @@ function graph_draw()
             if ($i == 0) echo '<li>자료가 없습니다.</li>';
             ?>
             </ul>
-        </div>
+        
 
-        <div>
+        
             <a href="./itemuselist.php?sort1=is_confirm&amp;sort2=asc">사용후기 더보기</a>
-        </div>
+        
     </section>
 </div>
 <?php

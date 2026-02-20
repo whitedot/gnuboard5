@@ -14,7 +14,7 @@ include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
 <div>
     <h1><?php echo $g5['title']; ?></h1>
 
-    <div>
+    
         <table>
         <caption><?php echo $g5['title']; ?> 입력</caption>
         <thead>
@@ -52,11 +52,11 @@ include_once(G5_ADMIN_PATH.'/head.sub.admin.php');
         ?>
         </tbody>
         </table>
-    </div>
+    
 
-    <div>
+    
         <button type="button" onclick="javascript:window.close()">창 닫기</button>
-    </div>
+    
 
 </div>
 

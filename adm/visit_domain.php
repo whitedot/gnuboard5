@@ -37,7 +37,7 @@ while ($row=sql_fetch_array($result)) {
 }
 ?>
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -92,9 +92,9 @@ while ($row=sql_fetch_array($result)) {
         <td><?php echo $no ?></td>
         <td><?php echo $link ?><?php echo $key ?><?php echo $link2 ?></td>
         <td>
-            <div>
+            
                 <span></span>
-            </div>
+            
         </td>
         <td><?php echo $count ?></td>
         <td><?php echo $s_rate ?></td>
@@ -107,7 +107,7 @@ while ($row=sql_fetch_array($result)) {
     ?>
     </tbody>
     </table>
-</div>
+
 
 <?php
 include_once('./admin.tail.php');

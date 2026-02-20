@@ -85,7 +85,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 <input type="hidden" name="search" value="<?php echo $search; ?>">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -136,7 +136,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
     ?>
     </tbody>
     </table>
-</div>
+
 
     
 <div>

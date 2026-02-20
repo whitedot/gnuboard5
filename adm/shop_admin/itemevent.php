@@ -18,16 +18,16 @@ $sql = "select * $sql_common order by ev_id desc ";
 $result = sql_query($sql);
 ?>
 
-<div>
+
        <span><span>전체 이벤트</span><span> <?php echo $total_count; ?>건</span></span>  
-</div>
 
 
-<div>
+
+
     <a href="./itemeventform.php">이벤트 추가</a>
-</div>
 
-<div>
+
+
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -76,7 +76,7 @@ $result = sql_query($sql);
     ?>
     </tbody>
     </table>
-</div>
+
 
 <script>
 function itemeventwin(ev_id)

@@ -9,11 +9,11 @@ $g5['title'] = '회원관리파일 일괄삭제';
 include_once(G5_ADMIN_PATH.'/admin.head.php');
 ?>
 
-<div>
+
     <p>
         완료 메세지가 나오기 전에 프로그램의 실행을 중지하지 마십시오.
     </p>
-</div>
+
 
 <?php
 flush();

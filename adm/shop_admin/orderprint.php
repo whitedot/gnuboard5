@@ -11,7 +11,7 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
 
 <div>
 
-    <div>
+    
         <form name="forderprint" action="./orderprintresult.php" onsubmit="return forderprintcheck(this);" autocomplete="off">
         <input type="hidden" name="case" value="1">
 
@@ -40,9 +40,9 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
         <input type="submit" value="출력 (새창)">
 
         </form>
-    </div>
+    
 
-    <div>
+    
 
         <form name="forderprint" action="./orderprintresult.php" onsubmit="return forderprintcheck(this);" autocomplete="off" >
         <input type="hidden" name="case" value="2">
@@ -72,17 +72,17 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
         <input type="submit" value="출력 (새창)">
 
         </form>
-    </div>
+    
 
 </div>
 
-<div>
+
     <a href="./orderlist.php">주문내역</a>
-</div>
 
-<div>
+
+
     <p>기간별 혹은 주문번호구간별 주문내역을 새창으로 출력할 수 있습니다.</p>
-</div>
+
 
 <script>
 $(function(){

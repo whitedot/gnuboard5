@@ -48,13 +48,13 @@ $sql = "select * $sql_common order by nw_id desc ";
 $result = sql_query($sql);
 ?>
 
-<div><span><span>전체 </span><span> <?php echo $total_count; ?>건</span></span></div>
+<span><span>전체 </span><span> <?php echo $total_count; ?>건</span></span>
 
-<div>
+
     <a href="./newwinform.php">새창관리추가</a>
-</div>
 
-<div>
+
+
     <table>
         <caption><?php echo $g5['title']; ?> 목록</caption>
         <thead>
@@ -114,7 +114,7 @@ $result = sql_query($sql);
             ?>
         </tbody>
     </table>
-</div>
+
 
 
 <?php

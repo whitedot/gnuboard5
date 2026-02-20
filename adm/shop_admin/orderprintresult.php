@@ -351,7 +351,7 @@ if (sql_num_rows($result) == 0)
         <?php } ?>
 
         <h3>주문 목록</h3>
-        <div>
+        
             <table>
             <caption>주문 목록</caption>
             <thead>
@@ -471,7 +471,7 @@ if (sql_num_rows($result) == 0)
             </tr>
             </tfoot>
             </table>
-        </div>
+        
         <?php
         $tot_tot_qty    += ($sub_tot_qty + 2);
         $tot_tot_price  += ($sub_tot_price + $row1['od_send_cost'] + $row1['od_send_cost2']);

@@ -1,7 +1,7 @@
 <section id="anc_sitfrm_ini">
     <h2>기본정보</h2>
     <?php echo $pg_anchor; ?>
-    <div>
+    
         <table>
         <caption>기본정보 입력</caption>
         <colgroup>
@@ -207,5 +207,5 @@
         </tr>
         </tbody>
         </table>
-    </div>
+    
 </section>

@@ -256,7 +256,7 @@ if( function_exists('pg_setting_check') ){
 <form name="forderlist" id="forderlist" onsubmit="return forderlist_submit(this);" method="post" autocomplete="off">
 <input type="hidden" name="search_od_status" value="<?php echo $od_status; ?>">
 
-<div>
+
     <table id="sodr_list">
     <caption>주문 내역 목록</caption>
     <thead>
@@ -449,7 +449,7 @@ if( function_exists('pg_setting_check') ){
     </tr>
     </tfoot>
     </table>
-</div>
+
 
 <div>
 <?php if (($od_status == '' || $od_status == '완료' || $od_status == '전체취소' || $od_status == '부분취소') == false) {
@@ -479,13 +479,13 @@ if( function_exists('pg_setting_check') ){
     <?php if ($od_status == '주문') { ?> <span>주문상태에서만 삭제가 가능합니다.</span> <input type="submit" value="선택삭제" onclick="document.pressed=this.value"><?php } ?>
 </div>
 
-<div>
+
 <p>
     &lt;무통장&gt;인 경우에만 &lt;주문&gt;에서 &lt;입금&gt;으로 변경됩니다. 가상계좌는 입금시 자동으로 &lt;입금&gt;처리됩니다.<br>
     &lt;준비&gt;에서 &lt;배송&gt;으로 변경시 &lt;에스크로배송등록&gt;을 체크하시면 에스크로 주문에 한해 PG사에 배송정보가 자동 등록됩니다.<br>
     <strong>주의!</strong> 주문번호를 클릭하여 나오는 주문상세내역의 주소를 외부에서 조회가 가능한곳에 올리지 마십시오.
 </p>
-</div>
+
 
 </form>
 

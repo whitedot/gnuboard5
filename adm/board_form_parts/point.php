@@ -2,7 +2,7 @@
     <h2>게시판 포인트 설정</h2>
     <?php echo $pg_anchor ?>
 
-    <div>
+    
         <table>
         <caption>게시판 포인트 설정</caption>
         <colgroup>
@@ -68,5 +68,5 @@
         </tr>
         </tbody>
         </table>
-    </div>
+    
 </section>

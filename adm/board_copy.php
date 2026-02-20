@@ -22,8 +22,8 @@ if (empty($bo_table)) {
     <form name="fboardcopy" id="fboardcopy" action="./board_copy_update.php" onsubmit="return fboardcopy_check(this);" method="post">
         <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>" id="bo_table">
         <input type="hidden" name="token" value="">
-        <div>
-            <div>
+        
+            
                 <table>
                     <caption><?php echo $g5['title']; ?></caption>
                     <tbody>
@@ -50,8 +50,8 @@ if (empty($bo_table)) {
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
+            
+        
         <div class="win_btn">
             <input type="submit" value="복사">
             <input type="button" value="창닫기" onclick="window.close();">

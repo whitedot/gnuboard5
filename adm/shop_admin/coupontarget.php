@@ -60,12 +60,12 @@ $qstr1 = 'sch_target='.$sch_target.'&amp;sch_word='.urlencode($sch_word);
 <div id="sch_target_frm">
     <h1>쿠폰 적용 <?php echo $html_title; ?>선택</h1>
 
-    <div>
+    
         <p>
             쿠폰을 적용할 <?php echo $t_desc1; ?> 선택하세요.<br>
             <?php echo $t_desc2; ?> 많을 경우에는 검색 기능을 이용하세요.
         </p>
-    </div>
+    
 
     <form name="ftarget" method="get">
     <input type="hidden" name="sch_target" value="<?php echo preg_replace('/[^a-zA-Z0-9]/', '', strip_tags($_GET['sch_target'])); ?>">
@@ -76,7 +76,7 @@ $qstr1 = 'sch_target='.$sch_target.'&amp;sch_word='.urlencode($sch_word);
         <input type="submit" value="검색">
     </div>
     
-    <div>
+    
         <table>
         <caption>검색결과</caption>
         <thead>
@@ -103,7 +103,7 @@ $qstr1 = 'sch_target='.$sch_target.'&amp;sch_word='.urlencode($sch_word);
         ?>
         </tbody>
         </table>
-    </div>
+    
     </form>
 
     <?php echo get_paging($config['cf_write_pages'], $page, $total_page, '?'.$qstr1.'&amp;page='); ?>

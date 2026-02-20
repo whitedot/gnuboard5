@@ -18,7 +18,7 @@ if(isset($sfl) && $sfl && !in_array($sfl, array('vi_ip','vi_date','vi_time','vi_
 }
 ?>
 
-<div>
+
     <form name="fvisit" method="get" onsubmit="return fvisit_submit(this);">
     <?php echo $listall?>
     <label for="sch_sort">검색분류</label>
@@ -31,9 +31,9 @@ if(isset($sfl) && $sfl && !in_array($sfl, array('vi_ip','vi_date','vi_time','vi_
     <input type="text" name="stx" size="20" value="<?php echo stripslashes($stx); ?>" id="sch_word">
     <input type="submit" value="검색">
     </form>
-</div>
 
-<div>
+
+
     <table>
     <thead>
     <tr>
@@ -119,7 +119,7 @@ if(isset($sfl) && $sfl && !in_array($sfl, array('vi_ip','vi_date','vi_time','vi_
     <?php if ($i == 0) echo '<tr><td colspan="'.$colspan.'">자료가 없습니다.</td></tr>'; ?>
     </tbody>
     </table>
-</div>
+
 
 <?php
 $domain = isset($domain) ? $domain : '';

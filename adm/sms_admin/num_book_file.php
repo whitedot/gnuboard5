@@ -66,12 +66,12 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
 </form>
 
 <h2>파일 다운로드</h2>
-<div>
+
     <p>
         저장된 휴대폰번호 목록을 엑셀(xls) 파일로 다운로드 할 수 있습니다.<br>
         다운로드 할 휴대폰번호 그룹을 선택해주세요.
     </p>
-</div>
+
 
 <div>
     <p>

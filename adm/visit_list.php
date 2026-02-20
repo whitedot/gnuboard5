@@ -36,7 +36,7 @@ $sql = " select *
 $result = sql_query($sql);
 ?>
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -107,7 +107,7 @@ $result = sql_query($sql);
     ?>
     </tbody>
     </table>
-</div>
+
 
 <?php
 if (isset($domain))

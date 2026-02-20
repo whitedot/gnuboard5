@@ -56,10 +56,10 @@ require_once './admin.head.php';
 $colspan = 15;
 ?>
 
-<div>
+
     <?php echo $listall ?>
     <span><span>생성된 게시판수</span><span> <?php echo number_format($total_count) ?>개</span></span>
-</div>
+
 
 <form name="fsearch" id="fsearch" method="get">
     <label for="sfl">검색대상</label>

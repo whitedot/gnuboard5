@@ -313,44 +313,86 @@
         @apply mb-3 px-2 text-xs font-semibold tracking-wide text-default-400;
     }
 
-    #gnb .gnb_ul {
-        @apply space-y-2;
+    #gnb .admin-nav-list {
+        @apply space-y-1.5;
     }
 
-    #gnb .gnb_li > .btn_op {
-        @apply flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm font-medium text-default-700 transition hover:bg-default-100 hover:text-slate-900;
+    #gnb .admin-nav-item > .admin-nav-trigger {
+        @apply flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-sm font-medium text-default-700 transition-colors hover:text-slate-900 dark:hover:text-default-900;
     }
 
-    #gnb .gnb_li.on > .btn_op {
-        @apply bg-default-100 text-slate-900;
+    #gnb .admin-nav-item.is-open > .admin-nav-trigger {
+        @apply text-slate-900 dark:text-default-900;
     }
 
-    #gnb .menu-mark {
-        @apply ml-3 text-xs font-semibold text-default-500;
+    #gnb .admin-nav-item.is-open > .admin-nav-trigger .admin-nav-trigger-label {
+        @apply font-semibold;
     }
 
-    #gnb .gnb_oparea_wr {
-        @apply px-2 pb-1;
+    #gnb .admin-nav-caret {
+        @apply ml-3 text-xs font-semibold text-default-500 transition-transform duration-150;
     }
 
-    #gnb .gnb_oparea_wr > div {
-        @apply rounded-xl border border-default-300 bg-default-100/80 p-3;
+    #gnb .admin-nav-item.is-open .admin-nav-caret {
+        @apply rotate-180;
     }
 
-    #gnb .gnb_oparea_wr h3 {
-        @apply mb-2 text-xs font-semibold tracking-wide text-default-500;
+    #gnb .admin-nav-panel {
+        @apply ml-2 pb-1 pl-5;
     }
 
-    #gnb .gnb_oparea_wr ul {
-        @apply space-y-1;
+    #gnb .admin-nav-panel > .admin-nav-sub-list {
+        @apply space-y-1 py-1;
     }
 
-    #gnb .gnb_oparea_wr li > a {
-        @apply block rounded-lg px-2 py-1.5 text-sm text-default-600 transition hover:bg-card hover:text-slate-900;
+    #gnb .admin-nav-sub-item {
+        @apply relative;
     }
 
-    #gnb .gnb_oparea_wr li.on > a {
-        @apply bg-card text-slate-900 shadow-sm;
+    #gnb .admin-nav-sub-item::before {
+        content: "";
+        position: absolute;
+        left: -0.85rem;
+        top: calc(-0.45rem - 8px);
+        bottom: calc(-0.45rem + 8px);
+        width: 1px;
+        background: color-mix(in oklab, var(--color-default-500) 45%, transparent);
+        pointer-events: none;
+    }
+
+    #gnb .admin-nav-sub-item:first-child::before {
+        top: calc(0.8rem - 8px);
+    }
+
+    #gnb .admin-nav-sub-item:last-child::before {
+        top: calc(-0.45rem - 8px);
+        bottom: auto;
+        height: 1.25rem;
+    }
+
+    #gnb .admin-nav-sub-item:only-child::before {
+        display: none;
+    }
+
+    #gnb .admin-nav-sub-item::after {
+        content: "";
+        position: absolute;
+        left: -0.85rem;
+        top: calc(0.8rem - 8px);
+        width: 0.8rem;
+        height: 0.8rem;
+        border-left: 1px solid color-mix(in oklab, var(--color-default-500) 45%, transparent);
+        border-bottom: 1px solid color-mix(in oklab, var(--color-default-500) 45%, transparent);
+        border-bottom-left-radius: 0.75rem;
+        pointer-events: none;
+    }
+
+    #gnb .admin-nav-sub-item > a {
+        @apply block rounded-md px-2 py-1.5 text-sm text-default-600 transition-colors hover:text-slate-900 dark:hover:text-default-900;
+    }
+
+    #gnb .admin-nav-sub-item.is-current > a {
+        @apply font-semibold text-primary;
     }
 
     #gnb .gnb_profile {
@@ -509,18 +551,18 @@
 
     body.admin-sidebar-condensed #gnb > h2 > a > span:last-child,
     body.admin-sidebar-condensed #gnb .gnb_label,
-    body.admin-sidebar-condensed #gnb .btn_op_title,
-    body.admin-sidebar-condensed #gnb .gnb_oparea_wr,
+    body.admin-sidebar-condensed #gnb .admin-nav-trigger-label,
+    body.admin-sidebar-condensed #gnb .admin-nav-panel,
     body.admin-sidebar-condensed #gnb .gnb_profile_meta {
         @apply hidden;
     }
 
-    body.admin-sidebar-condensed #gnb .gnb_li > .btn_op,
+    body.admin-sidebar-condensed #gnb .admin-nav-item > .admin-nav-trigger,
     body.admin-sidebar-condensed #gnb .gnb_profile {
         @apply justify-center;
     }
 
-    body.admin-sidebar-condensed #gnb .menu-mark {
+    body.admin-sidebar-condensed #gnb .admin-nav-caret {
         @apply hidden;
     }
 

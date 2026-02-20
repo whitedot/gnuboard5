@@ -29,7 +29,7 @@ $result = sql_query($sql);
 <section id="cart_list">
     <h2>주문상품 목록</h2>
 
-    <div>
+    
         <table>
         <caption>주문 상품 목록</caption>
         <thead>
@@ -130,5 +130,5 @@ $result = sql_query($sql);
         ?>
         </tbody>
         </table>
-    </div>
+    
 </section>

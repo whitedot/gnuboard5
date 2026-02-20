@@ -52,10 +52,10 @@ $qstr1 = $qstr.'&amp;fr_date='.$fr_date.'&amp;to_date='.$to_date.'&amp;sel_ca_id
 $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 ?>
 
-<div>
+
     <?php echo $listall; ?>
     <span><span>전체 </span><span> <?php echo $total_count; ?>건</span></span>
-</div>
+
 
 <form name="flist">
 <input type="hidden" name="doc" value="<?php echo get_sanitize_input($doc); ?>">
@@ -85,7 +85,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 
 </form>
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <thead>
@@ -123,13 +123,13 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
     ?>
     </tbody>
     </table>
-</div>
+
 
 <?php echo get_paging($config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr1&amp;page="); ?>
 
-<div>
+
     <p>고객님들이 보관함에 가장 많이 넣은 순으로 순위를 출력합니다.</p>
-</div>
+
 
 <script>
 $(function() {

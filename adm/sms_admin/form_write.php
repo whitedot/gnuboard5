@@ -35,7 +35,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
 <input type="hidden" name="fo_no" value="<?php echo $write['fo_no']; ?>">
 <input type="hidden" name="get_fg_no" value="<?php echo $fg_no?>">
 
-    <div>
+    
     <table>
     <caption><?php echo $g5['title'];?> 목록</caption>
     <colgroup>
@@ -116,7 +116,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
                         <button type="button" onclick="javascript:add('♩')">♩</button>
                         <button type="button" onclick="javascript:add('♭')">♭</button>
                     </div>
-                    <div><button type="button" class="scemo_cls_btn">닫기</button></div>
+                    <button type="button" class="scemo_cls_btn">닫기</button>
                 </div>
                 <button type="button" id="write_emo_btn" class="write_scemo_btn">이모<br>티콘</button>
                 <div id="write_emo" class="write_scemo">
@@ -139,7 +139,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
                         <button type="button" onclick="javascript:add('↖(^-^)↗')">↖(^-^)↗</button>
                         <button type="button" onclick="javascript:add('(*^-^*)')">(*^-^*)</button>
                     </div>
-                    <div><button type="button" class="scemo_cls_btn">닫기</button></div>
+                    <button type="button" class="scemo_cls_btn">닫기</button>
                 </div>
             </div>
 
@@ -153,7 +153,7 @@ include_once(G5_ADMIN_PATH.'/admin.head.php');
     <?php } ?>
     </tbody>
     </table>
-    </div>
+    
     <div>
         <input type="submit" value="확인" accesskey="s">
         <a href="./form_list.php?<?php echo clean_query_string($_SERVER['QUERY_STRING']); ?>">목록</a>

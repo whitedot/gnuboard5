@@ -1,6 +1,6 @@
 <section id="anc_mb_profile">
     <h2>프로필 및 메모</h2>
-    <div>
+    
         <table>
             <caption>프로필 및 메모</caption>
             <colgroup>
@@ -22,5 +22,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    
 </section>

@@ -16,13 +16,13 @@ $pg_anchor = '<ul>
     <h2>가격비교사이트 연동 안내</h2>
     <?php echo $pg_anchor; ?>
 
-    <div>
+    
         <ol>
             <li>가격비교사이트는 네이버 지식쇼핑, 다음 쇼핑하우 등이 있습니다.</li>
             <li>앞서 나열한 가격비교사이트 중 희망하시는 사이트에 입점합니다.</li>
             <li><strong>사이트별 엔진페이지 URL</strong>을 참고하여 해당 엔진페이지 URL 을 입점하신 사이트에 알려주시면 됩니다.</li>
         </ol>
-    </div>
+    
 </section>
 
 <section id="anc_pricecompare_engine">

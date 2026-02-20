@@ -29,7 +29,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
 }
 ?>
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -63,9 +63,9 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
     <tr class="<?php echo $bg; ?>">
         <td><?php echo $weekday[$i] ?></td>
         <td>
-            <div>
+            
                 <span></span>
-            </div>
+            
         </td>
         <td><?php echo $count ?></td>
         <td><?php echo $s_rate ?></td>
@@ -79,7 +79,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
     ?>
     </tbody>
     </table>
-</div>
+
 
 <?php
 include_once('./admin.tail.php');

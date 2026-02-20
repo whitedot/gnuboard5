@@ -1,14 +1,14 @@
 <section id="anc_scf_info">
     <h2>사업자정보</h2>
     <?php echo $pg_anchor; ?>
-    <div>
+    
         <p>
             사업자정보는 tail.php 와 content.php 에서 표시합니다.<br>
             대표전화번호는 SMS 발송번호로 사용되므로 사전등록된 발신번호와 일치해야 합니다.
         </p>
-    </div>
+    
 
-    <div>
+    
         <table>
         <caption>사업자정보 입력</caption>
         <colgroup>
@@ -76,5 +76,5 @@
         </tr>
         </tbody>
         </table>
-    </div>
+    
 </section>

@@ -16,7 +16,7 @@
         <section id="anc_sodr_orderer">
             <h3>주문하신 분</h3>
 
-            <div>
+            
                 <table>
                 <caption>주문자/배송지 정보</caption>
                 <colgroup>
@@ -63,13 +63,13 @@
                 </tr>
                 </tbody>
                 </table>
-            </div>
+            
         </section>
 
         <section id="anc_sodr_taker">
             <h3>받으시는 분</h3>
 
-            <div>
+            
                 <table>
                 <caption>받으시는 분 정보</caption>
                 <colgroup>
@@ -120,7 +120,7 @@
                 </tr>
                 </tbody>
                 </table>
-            </div>
+            
         </section>
 
     </div>

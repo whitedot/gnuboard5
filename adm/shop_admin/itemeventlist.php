@@ -69,10 +69,10 @@ if($ev_id) {
 }
 ?>
 
-<div>
+
     <?php echo $listall; ?>
     <span><span>전체 이벤트</span><span> <?php echo $total_count; ?>건</span></span>  
-</div>
+
 
 <form name="flist" autocomplete="off">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
@@ -124,9 +124,9 @@ if($ev_id) {
 
 </form>
 
-<div>
+
     <p>상품을 이벤트별로 일괄 처리합니다. <?php echo ($ev_title ? '현재 선택된 이벤트는 '.$ev_title.'입니다.' : '이벤트를 선택해 주세요.'); ?></p>
-</div>
+
 
 <form name="fitemeventlistupdate" method="post" action="./itemeventlistupdate.php" onsubmit="return fitemeventlistupdatecheck(this)">
 <input type="hidden" name="ev_id" value="<?php echo $ev_id; ?>">
@@ -137,7 +137,7 @@ if($ev_id) {
 <input type="hidden" name="sort1" value="<?php echo $sort1; ?>">
 <input type="hidden" name="sort2" value="<?php echo $sort2; ?>">
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -177,9 +177,9 @@ if($ev_id) {
     ?>
     </tbody>
     </table>
-</div>
 
-<div>
+
+
     <p>
         <?php if ($ev_title) { ?>
          현재 선택된 이벤트는 <strong><?php echo $ev_title; ?></strong>입니다.<br>
@@ -189,10 +189,10 @@ if($ev_id) {
         <a href="#ev_id">이벤트 선택</a>
         <?php } ?>
     </p>
-</div>
-<div>
+
+
     <input type="submit" value="일괄수정" accesskey="s">
-</div>
+
 
 </form>
 

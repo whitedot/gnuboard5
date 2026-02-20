@@ -12,7 +12,7 @@ $group = array();
 $qry = sql_query("select * from {$g5['sms5_book_group_table']} where bg_no>1 order by bg_name");
 while ($res = sql_fetch_array($qry)) array_push($group, $res);
 ?>
-<div>
+
     <table>
     <thead>
     <tr>
@@ -40,4 +40,3 @@ while ($res = sql_fetch_array($qry)) array_push($group, $res);
     <?php } ?>
     </tbody>
     </table>
-</div>

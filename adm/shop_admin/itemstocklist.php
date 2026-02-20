@@ -61,10 +61,10 @@ $qstr = $qstr1.'&amp;sort1='.$sort1.'&amp;sort2='.$sort2.'&amp;page='.$page;
 $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 ?>
 
-<div>
+
     <?php echo $listall; ?>
     <span><span>전체 상품</span><span>  <?php echo $total_count; ?>개</span></span>
-</div>
+
 
 <form name="flist">
 <input type="hidden" name="doc" value="<?php echo get_sanitize_input($doc); ?>">
@@ -99,9 +99,9 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 
 </form>
 
-<div>
+
     <p>재고수정의 수치를 수정하시면 창고재고의 수치가 변경됩니다.</p>
-</div>
+
 
 
 <form name="fitemstocklist" action="./itemstocklistupdate.php" method="post">
@@ -112,7 +112,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
 <input type="hidden" name="search" value="<?php echo $search; ?>">
 <input type="hidden" name="page" value="<?php echo $page; ?>">
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -202,7 +202,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
     ?>
     </tbody>
     </table>
-</div>
+
 
 <div>
     <a href="./optionstocklist.php">상품옵션재고</a>

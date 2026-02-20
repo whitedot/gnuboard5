@@ -150,7 +150,7 @@ function no_hp_click(val)
 <input type="hidden" name="atype" value="del">
 <input type="hidden" name="str_query" value="<?php echo clean_query_string($_SERVER['QUERY_STRING']); ?>" >
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>
@@ -207,7 +207,7 @@ function no_hp_click(val)
     <?php } ?>
     </tbody>
     </table>
-</div>
+
 <div>
     <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
     <input type="submit" name="act_button" value="수신허용" onclick="document.pressed=this.value">

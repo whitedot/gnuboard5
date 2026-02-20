@@ -58,7 +58,7 @@ function byte_check(el_cont, el_byte)
     <h2>SMS 설정</h2>
     <?php echo $pg_anchor; ?>
 
-    <div>
+    
         <table>
         <caption>SMS 설정</caption>
         <colgroup>
@@ -153,7 +153,7 @@ function byte_check(el_cont, el_byte)
         </tr>
          </tbody>
         </table>
-    </div>
+    
 
     <section id="scf_sms_pre">
         <h3>사전에 정의된 SMS프리셋</h3>
@@ -180,9 +180,9 @@ function byte_check(el_cont, el_byte)
                 <h4><?php echo $scf_sms_title[$i]; ?></h4>
                 <input type="checkbox" name="de_sms_use<?php echo $i; ?>" value="1" id="de_sms_use<?php echo $i; ?>" <?php echo ($default["de_sms_use".$i] ? " checked" : ""); ?>>
                 <label for="de_sms_use<?php echo $i; ?>"><span><?php echo $scf_sms_title[$i]; ?></span>사용</label>
-                <div>
+                
                     <textarea id="de_sms_cont<?php echo $i; ?>" name="de_sms_cont<?php echo $i; ?>" ONKEYUP="byte_check('de_sms_cont<?php echo $i; ?>', 'byte<?php echo $i; ?>');"><?php echo html_purifier($default['de_sms_cont'.$i]); ?></textarea>
-                </div>
+                
                 <span id="byte<?php echo $i; ?>">0 / 80 바이트</span>
             </section>
 

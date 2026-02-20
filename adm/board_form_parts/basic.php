@@ -2,7 +2,7 @@
     <h2>게시판 기본 설정</h2>
     <?php echo $pg_anchor ?>
 
-    <div>
+    
         <table>
         <caption>게시판 기본 설정</caption>
         <colgroup>
@@ -81,5 +81,5 @@
         <?php } ?>
         </tbody>
         </table>
-    </div>
+    
 </section>

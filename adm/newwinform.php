@@ -43,11 +43,11 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
     <input type="hidden" name="nw_id" value="<?php echo $nw_id; ?>">
     <input type="hidden" name="token" value="">
 
-    <div>
+    
         <p>초기화면 접속 시 자동으로 뜰 팝업레이어를 설정합니다.</p>
-    </div>
+    
 
-    <div>
+    
         <table>
             <caption><?php echo $g5['title']; ?></caption>
             <colgroup>
@@ -138,7 +138,7 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                 </tr>
             </tbody>
         </table>
-    </div>
+    
 
     <div>
         <a href="./newwinlist.php">목록</a>

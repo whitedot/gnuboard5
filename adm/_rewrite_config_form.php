@@ -37,7 +37,7 @@ $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
 <section id="anc_cf_url">
     <h2>짧은 주소 설정</h2>
     <?php echo $pg_anchor ?>
-    <div>
+    
         <p>
             게시판과 컨텐츠 페이지에 짧은 URL 을 사용합니다. <a href="https://sir.kr/manual/g5/286" target="_blank">설정 관련 메뉴얼 보기</a>
             <?php if ($is_use_apache && !$is_use_nginx) { ?>
@@ -48,7 +48,7 @@ $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
                 <?php } ?>
             <?php } ?>
         </p>
-    </div>
+    
 
     <div>
         <?php if ($is_use_apache) { ?>
@@ -59,8 +59,8 @@ $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
         <?php } ?>
     </div>
 
-    <div>
-            <div>
+    
+            
                 <?php
                 $short_url_arrs = array(
                     '0' => array('label' => '사용안함', 'url' => G5_URL . '/board.php?bo_table=free&wr_id=123'),
@@ -70,13 +70,13 @@ $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
                 foreach ($short_url_arrs as $k => $v) {
                     $checked = ((int) $config['cf_bbs_rewrite'] === (int) $k) ? 'checked' : '';
                 ?>
-                                    <div>
+                                    
                                             <div><input name="cf_bbs_rewrite" id="cf_bbs_rewrite_<?php echo $k; ?>" type="radio" value="<?php echo $k; ?>" <?php echo $checked; ?>><label for="cf_bbs_rewrite_<?php echo $k; ?>"><?php echo $v['label']; ?></label>                    </div>
-                                            <div><?php echo $v['url']; ?>                    </div>
-                                    </div>
+                                            <?php echo $v['url']; ?>                    
+                                    
                 <?php } //end foreach ?>
-                        </div>
-        </div>
+                        
+        
 
     <div>
         <div data-remodal-id="modal_apache" role="dialog" aria-labelledby="modalApache" aria-describedby="modal1Desc">

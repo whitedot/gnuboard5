@@ -36,7 +36,7 @@ if($info['license_uri']) {
 
 <div id="theme_detail">
     <h2><?php echo $name; ?></h2>
-    <div><?php echo $screenshot; ?></div>
+    <?php echo $screenshot; ?>
     <div>
         <p><?php echo get_text($info['detail']); ?></p>
         <table>

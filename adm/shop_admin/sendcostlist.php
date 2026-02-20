@@ -39,7 +39,7 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
     <input type="hidden" name="w" value="d">
     <input type="hidden" name="page" value="<?php echo $page; ?>">
     <input type="hidden" name="token" value="">
-    <div>
+    
         <table>
         <caption>추가배송비 내역</caption>
         <thead>
@@ -75,11 +75,11 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
         ?>
         </tbody>
         </table>
-    </div>
+    
 
-    <div>
+    
         <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
-    </div>
+    
 
     </form>
 </section>
@@ -92,7 +92,7 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
     <form name="fsendcost2" method="post" id="fsendcost2" action="./sendcostupdate.php" autocomplete="off">
     <input type="hidden" name="token" value="">
 
-    <div>
+    
         <table>
         <caption>추가배송비 등록</caption>
         <colgroup>
@@ -122,11 +122,11 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
         </tr>
         </tbody>
         </table>
-    </div>
+    
 
-    <div>
+    
         <input type="submit" value="확인">
-    </div>
+    
 
     </form>
 

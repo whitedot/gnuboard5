@@ -48,7 +48,7 @@ $sql = " select od_id,
 $result = sql_query($sql);
 ?>
 
-<div>
+
     <table>
     <caption><?php echo $g5['title']; ?></caption>
     <thead>
@@ -149,7 +149,7 @@ $result = sql_query($sql);
     </tr>
     </tfoot>
     </table>
-</div>
+
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');

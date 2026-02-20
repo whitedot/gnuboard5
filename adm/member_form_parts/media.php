@@ -1,6 +1,6 @@
 <section id="anc_mb_media">
     <h2>아이콘 및 이미지</h2>
-    <div>
+    
         <table>
             <caption>아이콘 및 이미지</caption>
             <colgroup>
@@ -42,5 +42,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    
 </section>

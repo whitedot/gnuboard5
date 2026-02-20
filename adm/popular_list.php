@@ -72,10 +72,10 @@ $colspan = 4;
     var list_delete_php = 'popular_list.php';
 </script>
 
-<div>
+
     <?php echo $listall ?>
     <span><span>건수</span><span> <?php echo number_format($total_count) ?>개</span></span>
-</div>
+
 
 <form name="fsearch" id="fsearch" method="get">
     <div>
@@ -140,9 +140,9 @@ $colspan = 4;
     </div>
 
     <?php if ($is_admin == 'super') { ?>
-        <div>
+        
             <button type="submit">선택삭제</button>
-        </div>
+        
     <?php } ?>
 
 </form>

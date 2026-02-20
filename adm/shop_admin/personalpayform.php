@@ -78,11 +78,11 @@ $pg_anchor = '<ul>
     <section id="anc_spp_info">
         <h2>주문 정보</h2>
         <?php if($popup != 'yes') echo $pg_anchor; ?>
-        <div>
+        
             <p>주문 관련 기본 정보입니다.</p>
-        </div>
+        
 
-        <div>
+        
             <table>
             <caption>주문 정보 목록</caption>
             <colgroup>
@@ -108,7 +108,7 @@ $pg_anchor = '<ul>
             </tr>
             </tbody>
             </table>
-        </div>
+        
     </section>
 
 
@@ -117,11 +117,11 @@ $pg_anchor = '<ul>
     <section id="anc_spp_pay">
         <h2>결제 정보</h2>
         <?php echo $pg_anchor; ?>
-        <div>
+        
             <p>결제 관련 정보입니다.</p>
-        </div>
+        
 
-        <div>
+        
             <table>
             <caption>결제 정보 목록</caption>
             <colgroup>
@@ -228,7 +228,7 @@ $pg_anchor = '<ul>
             </tr>
             </tbody>
             </table>
-        </div>
+        
     </section>
     <?php } ?>
 

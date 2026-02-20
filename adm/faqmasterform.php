@@ -33,7 +33,7 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
     <input type="hidden" name="fm_id" value="<?php echo $fm_id; ?>">
     <input type="hidden" name="token" value="">
 
-    <div>
+    
         <table>
             <caption><?php echo $g5['title']; ?></caption>
             <colgroup>
@@ -129,7 +129,7 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                 </tr>
             </tbody>
         </table>
-    </div>
+    
 
     <div>
         <a href="./faqmasterlist.php">목록</a>

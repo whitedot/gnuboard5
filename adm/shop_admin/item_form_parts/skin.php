@@ -1,11 +1,11 @@
 <section id="anc_sitfrm_skin">
     <h2>스킨설정</h2>
     <?php echo $pg_anchor; ?>
-    <div>
+    
         <p>상품상세보기에서 사용할 스킨을 설정합니다.</p>
-    </div>
+    
 
-    <div>
+    
         <table>
         <caption>스킨설정</caption>
       
@@ -24,5 +24,5 @@
         </tr>
         </tbody>
         </table>
-    </div>
+    
 </section>

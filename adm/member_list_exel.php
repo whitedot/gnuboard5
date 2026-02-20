@@ -33,7 +33,7 @@ $colspan = 14;
     <p>회원 정보 수정은 <a href="<?php echo G5_ADMIN_URL;?>/member_list.php"><b>회원 관리</b></a>에서 진행하실 수 있습니다.</p>
 </div>
 
-<div>
+
     <span>
         <span>총건수 </span>
         <?php if($total_error != "") { ?>
@@ -42,7 +42,7 @@ $colspan = 14;
         <span> <?php echo number_format($total_count) ?>건</span>
         <?php } ?>
     </span>
-</div>
+
 
 <!-- 회원 검색 필터링 폼 -->
 <form id="fsearch" name="fsearch" method="get">
@@ -53,12 +53,12 @@ $colspan = 14;
 
             <!-- 검색어 적용 -->
             <div>
-                <div>
+                
                     <label>
                         <input type="checkbox" name="use_stx" value="1" <?php echo isset($_GET['use_stx']) ? 'checked' : ''; ?>>
                         검색어 적용
                     </label>
-                </div>
+                
                 <div>
                     <select name="sfl">
                         <?php
@@ -79,9 +79,9 @@ $colspan = 14;
 
             <!-- 레벨 적용 -->
             <div>
-                <div>
+                
                     <label><input type="checkbox" name="use_level" value="1" <?php echo isset($_GET['use_level']) ? 'checked' : ''; ?>> 레벨 적용</label>
-                </div>
+                
                 <div>
                     <select name="level_start">
                         <?php for ($i = 1; $i <= 10; $i++): ?>
@@ -98,9 +98,9 @@ $colspan = 14;
 
             <!-- 가입기간 적용 -->
             <div>
-                <div>
+                
                     <label><input type="checkbox" name="use_date" value="1" <?php echo isset($_GET['use_date']) ? 'checked' : ''; ?>> 가입기간 적용</label>
-                </div>
+                
                 <div>
                     <input type="date" name="date_start" max="9999-12-31" value="<?php echo htmlspecialchars(isset($_GET['date_start']) ? $_GET['date_start'] : ''); ?>"> ~
                     <input type="date" name="date_end" max="9999-12-31" value="<?php echo htmlspecialchars(isset($_GET['date_end']) ? $_GET['date_end'] : ''); ?>">
@@ -109,9 +109,9 @@ $colspan = 14;
 
             <!-- 포인트 적용 -->
             <div>
-                <div>
+                
                     <label><input type="checkbox" name="use_point" value="1" <?php echo isset($_GET['use_point']) ? 'checked' : ''; ?>> 포인트 적용</label>
-                </div>
+                
                 <div>
                     <input type="number" name="point" value="<?php echo htmlspecialchars(isset($_GET['point']) ? $_GET['point'] : ''); ?>" placeholder="포인트 입력">
                     <span>
@@ -124,10 +124,10 @@ $colspan = 14;
 
             <!-- 차단회원 조건 -->
             <div>
-                <div>
+                
                     <label><input type="checkbox" name="use_intercept" value="1" <?php echo isset($_GET['use_intercept']) ? 'checked' : ''; ?>> 차단회원</label>
-                </div>
-                <div>
+                
+                
                     <select name="intercept" id="intercept">
                         <?php
                             // 차단회원 옵션 : [정의] get_export_config() - adm/member_list_exel.lib.php
@@ -137,36 +137,36 @@ $colspan = 14;
                             }
                         ?>
                     </select>
-                </div>
+                
             </div>
 
             <!-- 휴대폰 번호 조건 - 초기세팅(설정에 휴대폰번호가 보이기/필수입력이면 기본값 checked로 설정) -->
-            <div>
-                <div>
+            
+                
                     <label>
                         <?php $use_hp_checked = isset($_GET['token']) ? (isset($_GET['use_hp_exist']) ? 'checked' : '') : (($config['cf_use_hp'] || $config['cf_req_hp']) ? 'checked' : '');?>
                         <input type="checkbox" name="use_hp_exist" value="1" <?php echo $use_hp_checked; ?>> 휴대폰 번호 있는 경우만
                     </label>
-                </div>
-            </div>
+                
+            
 
             <!-- 정보수신동의 조건 -->
             <div>
-                <div>
+                
                     <label><input type="checkbox" name="ad_range_only" value="1" <?php echo isset($_GET['ad_range_only']) ? 'checked' : ''; ?>> 정보수신동의에 동의한 경우만</label>
-                </div>
+                
                 <!-- 안내 문구 -->
-                <div>
+                
                     <p>「정보통신망이용촉진및정보보호등에관한법률」에 따라 <b>광고성 정보 수신동의 여부</b>를 <b>매2년</b>마다 확인해야 합니다.</p>
-                </div>
+                
             </div>
 
             <div class="<?php echo isset($_GET['ad_range_only']) ? '' : 'is-hidden'; ?>">
                 <div class="ad_range_wrap">
                     <div>
-                        <div>
+                        
                             <label for="ad_range_type">회원범위</label>
-                        </div>
+                        
                         <div>
                             <select name="ad_range_type" id="ad_range_type">
                                 <?php 
@@ -212,16 +212,16 @@ $colspan = 14;
             <!-- 채널 체크박스 -->
             <div class="<?php echo isset($_GET['ad_range_only']) && in_array($_GET['ad_range_type'], ['month_confirm', 'custom_period']) ? '' : 'is-hidden'; ?>">
                 <div class="ad_range_wrap">
-                    <div>
-                        <div>
-                        </div>
+                    
+                        
+                        
                         <div>
                             <?php $ad_mailling_checked = isset($_GET['token']) ? (isset($_GET['ad_mailling']) ? 'checked' : '') : 'checked';?>
                             <?php $ad_sms_checked = isset($_GET['token']) ? (isset($_GET['ad_sms']) ? 'checked' : '') : 'checked';?>
                             <label><input type="checkbox" name="ad_mailling" value="1" <?php echo $ad_mailling_checked; ?>> 광고성 이메일 수신</label>
                             <label><input type="checkbox" name="ad_sms" value="1" <?php echo $ad_sms_checked; ?>> 광고성 SMS/카카오톡 수신</label>
                         </div>
-                    </div>
+                    
                 </div>
             </div>
 

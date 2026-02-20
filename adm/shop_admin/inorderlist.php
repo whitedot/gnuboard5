@@ -51,9 +51,9 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 $colspan = 10;
 ?>
 
-<div>
+
    <span><span>전체 </span><span>  <?php echo number_format($total_count) ?> 건 </span></span> 
-</div>
+
 
 <form name="fsearch" id="fsearch" method="get">
     <select name="sfl" title="검색대상">
@@ -145,9 +145,9 @@ $colspan = 10;
     </table>
 </div>
 
-<div>
+
     <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
-</div>
+
 
 </form>
 

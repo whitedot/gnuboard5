@@ -83,7 +83,7 @@ if ($config['cf_sms_use'] && $config['cf_icode_id'] && $config['cf_icode_pw']) {
             <?php echo $pg_anchor_menu; ?>
         </aside>
 
-        <div>
+        
             <?php
             include_once G5_ADMIN_PATH.'/config_form_parts/basic.php';
             include_once G5_ADMIN_PATH.'/config_form_parts/board.php';
@@ -97,24 +97,24 @@ if ($config['cf_sms_use'] && $config['cf_icode_id'] && $config['cf_icode_pw']) {
             ?>
 
             <div id="config_captcha_wrap" class="hidden">
-                <div>
+                
                     <h2>캡차 입력</h2>
-                </div>
-                <div>
+                
+                
                     <?php
                     require_once G5_CAPTCHA_PATH . '/captcha.lib.php';
                     $captcha_html = captcha_html();
                     $captcha_js   = chk_captcha_js();
                     echo $captcha_html;
                     ?>
-                </div>
+                
             </div>
-        </div>
+        
     </div>
 
-    <div>
+    
         <input type="submit" value="저장" accesskey="s">
-    </div>
+    
 </form>
 
 <?php

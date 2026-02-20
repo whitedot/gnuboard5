@@ -31,7 +31,7 @@ function print_menu2($key, $no = '')
 {
     global $menu, $auth_menu, $is_admin, $auth, $sub_menu;
 
-    $str = '<ul>';
+    $str = '<ul class="admin-nav-sub-list">';
 
     for ($i = 1; $i < count($menu[$key]); $i++) {
         if (!isset($menu[$key][$i])) {
@@ -44,10 +44,10 @@ function print_menu2($key, $no = '')
 
         $current_class = '';
         if ($menu[$key][$i][0] == $sub_menu) {
-            $current_class = ' on';
+            $current_class = ' is-current';
         }
 
-        $str .= '<li class="gnb_dep2' . $current_class . '" data-menu="' . $menu[$key][$i][0] . '"><a href="' . $menu[$key][$i][2] . '">' . $menu[$key][$i][1] . '</a></li>';
+        $str .= '<li class="admin-nav-sub-item' . $current_class . '" data-menu="' . $menu[$key][$i][0] . '"><a href="' . $menu[$key][$i][2] . '">' . $menu[$key][$i][1] . '</a></li>';
 
         $auth_menu[$menu[$key][$i][0]] = $menu[$key][$i][1];
     }
@@ -123,9 +123,8 @@ if ($admin_profile_seed !== '') {
             <div class="gnb_menu_scroll" id="gnbMenuScroll">
                 <p class="gnb_label">MAIN MENU</p>
 
-                <ul class="gnb_ul">
+                <ul class="admin-nav-list" id="adminNavList">
                     <?php
-                    $jj = 1;
                     foreach ($amenu as $key => $value) {
                         if (!isset($menu['menu' . $key][0][2]) || !$menu['menu' . $key][0][2]) {
                             continue;
@@ -133,29 +132,25 @@ if ($admin_profile_seed !== '') {
 
                         $current_class = '';
                         $opened_utility = ' hidden';
-                        $mark = '+';
+                        $expanded = 'false';
                         if (isset($sub_menu) && (substr($sub_menu, 0, 3) == substr($menu['menu' . $key][0][0], 0, 3))) {
-                            $current_class = ' on';
+                            $current_class = ' is-open';
                             $opened_utility = '';
-                            $mark = '-';
+                            $expanded = 'true';
                         }
 
                         $button_title = $menu['menu' . $key][0][1];
                     ?>
-                        <li class="gnb_li <?php echo $current_class; ?>">
-                            <button type="button" class="btn_op <?php echo $key; ?> <?php echo $jj; ?>" title="<?php echo $button_title; ?>">
-                                <span class="btn_op_title"><?php echo $button_title; ?></span>
-                                <span class="menu-mark"><?php echo $mark; ?></span>
+                        <li class="admin-nav-item<?php echo $current_class; ?>">
+                            <button type="button" class="admin-nav-trigger" title="<?php echo $button_title; ?>" aria-expanded="<?php echo $expanded; ?>">
+                                <span class="admin-nav-trigger-label"><?php echo $button_title; ?></span>
+                                <span class="admin-nav-caret" aria-hidden="true">⌄</span>
                             </button>
-                            <div class="gnb_oparea_wr <?php echo $opened_utility; ?>">
-                                <div>
-                                    <h3><?php echo $menu['menu' . $key][0][1]; ?></h3>
-                                    <?php echo print_menu1('menu' . $key, 1); ?>
-                                </div>
+                            <div class="admin-nav-panel<?php echo $opened_utility; ?>">
+                                <?php echo print_menu1('menu' . $key, 1); ?>
                             </div>
                         </li>
                     <?php
-                        $jj++;
                     }
                     ?>
                 </ul>
@@ -400,18 +395,50 @@ if ($admin_profile_seed !== '') {
             syncThemeUI();
         });
 
-        $(".gnb_ul li .btn_op").click(function() {
-            var $li = $(this).closest(".gnb_li");
-            var isOpened = !$li.find(".gnb_oparea_wr").hasClass("hidden");
+        var navRoot = document.getElementById("adminNavList");
+        function setNavItemState(item, opened) {
+            if (!item) {
+                return;
+            }
 
-            $li.siblings().removeClass("on").find(".gnb_oparea_wr").addClass("hidden");
-            $li.siblings().find(".menu-mark").text("+");
+            item.classList.toggle("is-open", opened);
 
-            $li.toggleClass("on", !isOpened);
-            $li.find(".gnb_oparea_wr").toggleClass("hidden", isOpened);
-            $li.find(".menu-mark").text(isOpened ? "+" : "-");
-            updateMenuScrollbar();
-        });
+            var panel = item.querySelector(".admin-nav-panel");
+            if (panel) {
+                panel.classList.toggle("hidden", !opened);
+            }
+
+            var trigger = item.querySelector(".admin-nav-trigger");
+            if (trigger) {
+                trigger.setAttribute("aria-expanded", opened ? "true" : "false");
+            }
+        }
+
+        if (navRoot) {
+            var navItems = Array.prototype.slice.call(navRoot.querySelectorAll(".admin-nav-item"));
+            navItems.forEach(function(item) {
+                setNavItemState(item, item.classList.contains("is-open"));
+            });
+
+            navRoot.addEventListener("click", function(event) {
+                var trigger = event.target.closest(".admin-nav-trigger");
+                if (!trigger || !navRoot.contains(trigger)) {
+                    return;
+                }
+
+                var activeItem = trigger.closest(".admin-nav-item");
+                if (!activeItem) {
+                    return;
+                }
+
+                var willOpen = !activeItem.classList.contains("is-open");
+                navItems.forEach(function(item) {
+                    setNavItemState(item, item === activeItem ? willOpen : false);
+                });
+
+                updateMenuScrollbar();
+            });
+        }
 
     });
 </script>

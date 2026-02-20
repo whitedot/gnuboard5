@@ -49,7 +49,7 @@ require_once './admin.head.php';
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <div>
+    
         <table>
             <caption><?php echo $g5['title']; ?></caption>
             <colgroup>
@@ -140,7 +140,7 @@ require_once './admin.head.php';
                 <?php } ?>
             </tbody>
         </table>
-    </div>
+    
 
     <div>
         <a href="./boardgroup_list.php?<?php echo $qstr ?>">목록</a>
@@ -149,12 +149,12 @@ require_once './admin.head.php';
 
 </form>
 
-<div>
+
     <p>
         게시판을 생성하시려면 1개 이상의 게시판그룹이 필요합니다.<br>
         게시판그룹을 이용하시면 더 효과적으로 게시판을 관리할 수 있습니다.
     </p>
-</div>
+
 
 <script>
     function fboardgroup_check(f) {
