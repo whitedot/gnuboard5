@@ -71,6 +71,6 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
     </div>
 
 </section>
-<div>
+
 	<a href="<?php echo $rewrite_href; ?>" title="추가질문">추가질문</a>  
-</div>
+

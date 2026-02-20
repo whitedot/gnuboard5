@@ -17,9 +17,9 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
             	<!-- *** 투표수가 가장 많은 것은 li이에 클래스 poll_1st를 붙여주세요 / 수정후 삭제 -->
             	<li>
                     <span>현재 가장 높은 득표율</span>   
-                    <div>
+                    
                         <span></span>
-                    </div>
+                    
                     <div>
                     	<strong>500 표</strong>
                     	<span>90 %</span>
@@ -30,9 +30,9 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
             	<?php for ($i=1; $i<=count($list); $i++) {  ?>
                 <li>
                     <span><?php echo $list[$i]['content'] ?></span>   
-                    <div>
+                    
                         <span></span>
-                    </div>
+                    
                     <div>
                     	<strong><?php echo $list[$i]['cnt'] ?> 표</strong>
                     	<span><?php echo number_format($list[$i]['rate'], 1) ?> %</span>
@@ -101,9 +101,9 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         </aside>
         <!-- } 설문조사 다른 결과 보기 끝 -->
 
-        <div>
+        
             <button type="button" onclick="window.close();">창닫기</button>
-        </div>
+        
     </div>
 </div>
 

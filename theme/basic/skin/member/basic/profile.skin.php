@@ -8,12 +8,12 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 <!-- 자기소개 시작 { -->
 <div id="profile">
     <h1 id="win_title"><?php echo $mb_nick ?>님의 프로필</h1>
-    <div>
+    
         <span>
             <?php echo get_member_profile_img($mb['mb_id']); ?>
         </span>
         <?php echo $mb_nick ?>
-    </div>
+    
     <div>
         <table>
         <tbody>
@@ -45,8 +45,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             <p><?php echo $mb_profile ?></p>
         </section>
     </div>
-    <div>
+    
         <button type="button" onclick="window.close();">창닫기</button>
-    </div>
+    
 </div>
 <!-- } 자기소개 끝 -->

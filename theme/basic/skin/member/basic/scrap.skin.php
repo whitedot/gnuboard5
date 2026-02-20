@@ -22,8 +22,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     </ul>
     <?php echo get_paging($config['cf_write_pages'], $page, $total_page, "?$qstr&amp;page="); ?>
 
-    <div>
+    
         <button type="button" onclick="window.close();">창닫기</button>
-    </div>
+    
 </div>
 <!-- } 스크랩 목록 끝 -->

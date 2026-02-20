@@ -10,7 +10,7 @@ if($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipin
 
 <!-- 회원정보 찾기 시작 { -->
 <div id="find_info" class="<?php if($config['cf_cert_use'] != 0 && $config['cf_cert_find'] != 0) { ?> <?php } ?>">
-    <div>
+    
         <form name="fpasswordlost" action="<?php echo $action_url ?>" onsubmit="return fpasswordlost_submit(this);" method="post" autocomplete="off">
         <input type="hidden" name="cert_no" value="">
         <h3>이메일로 찾기</h3>
@@ -24,11 +24,11 @@ if($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipin
         </fieldset>
         <?php echo captcha_html();  ?>
 
-        <div>
+        
             <button type="submit">인증메일 보내기</button>
-        </div>
+        
         </form>
-    </div>
+    
     <?php if($config['cf_cert_use'] != 0 && $config['cf_cert_find'] != 0) { ?> 
     <div>
         <h3>본인인증으로 찾기</h3>

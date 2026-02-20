@@ -30,7 +30,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
     echo $option_hidden;
     ?>
 
-    <div>
+    
         <ul>
             <?php if ($option) { ?>
             <li>
@@ -63,11 +63,11 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
                 </div>
             </li>
         </ul>
-    </div>
+    
 
-    <div>
+    
         <button type="submit" id="btn_submit" accesskey="s">답변등록</button>
-    </div>
+    
     </form>
 
     <script>

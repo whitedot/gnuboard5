@@ -18,7 +18,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             <li><a href="./memo_form.php">쪽지쓰기</a></li>
         </ul>
         
-        <div>
+        
             <ul>
 	            <?php
                 for ($i=0; $i<count($list); $i++) {
@@ -26,22 +26,22 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 $memo_preview = utf8_strcut(strip_tags($list[$i]['me_memo']), 30, '..');
                 ?>
 	            <li class="<?php echo $readed; ?>">
-	            	<div>
+	            	
 	            		<?php echo get_member_profile_img($list[$i]['mb_id']); ?>
 	            		<?php if (! $readed){ ?><span>안 읽은 쪽지</span><?php } ?>
-	            	</div>
+	            	
 	                <div>
 	                	<?php echo $list[$i]['name']; ?> <span><i aria-hidden="true"></i> <?php echo $list[$i]['send_datetime']; ?></span>
-						<div>
+						
 						    <a href="<?php echo $list[$i]['view_href']; ?>"><?php echo $memo_preview; ?></a>
-                        </div>
+                        
 					</div>	
 					<a href="<?php echo $list[$i]['del_href']; ?>" onclick="del(this.href); return false;"><i aria-hidden="true"></i> <span>삭제</span></a>
 	            </li>
 	            <?php } ?>
 	            <?php if ($i==0) { echo '<li>자료가 없습니다.</li>'; }  ?>
             </ul>
-        </div>
+        
 
         <!-- 페이지 -->
         <?php echo $write_pages; ?>
@@ -49,9 +49,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         <p><i aria-hidden="true"></i> 쪽지 보관일수는 최장 <strong><?php echo $config['cf_memo_del'] ?></strong>일 입니다.
         </p>
 
-        <div>
+        
             <button type="button" onclick="window.close();">창닫기</button>
-        </div>
+        
     </div>
 </div>
 <!-- } 쪽지 목록 끝 -->

@@ -50,11 +50,11 @@ if ($is_admin) $colspan++;
 <input type="hidden" name="pressed"  value="">
 
 <?php if ($is_admin) { ?>
-<div>
+
     <button type="submit" onclick="document.pressed=this.title" title="선택삭제"><i aria-hidden="true"></i><span>선택삭제</span></button>
-</div>
+
 <?php } ?>
-<div>
+
     <table>
     <thead>
     <tr>
@@ -108,14 +108,14 @@ if ($is_admin) $colspan++;
     ?>
     </tbody>
     </table>
-</div>
+
 
 <?php echo $write_pages ?>
 
 <?php if ($is_admin) { ?>
-<div>
+
     <button type="submit" onclick="document.pressed=this.title" title="선택삭제"><i aria-hidden="true"></i><span>선택삭제</span></button>
-</div>
+
 <?php } ?>
 </form>
 

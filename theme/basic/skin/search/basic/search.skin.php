@@ -131,10 +131,10 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
                     <a href="<?php echo $list[$idx][$i]['href'] ?><?php echo $comment_href ?>" target="_blank"><i aria-hidden="true"></i><span>새창</span></a>
                 </div>
                 <p><?php echo $list[$idx][$i]['content'] ?></p>
-                <div>
+                
                     <?php echo $list[$idx][$i]['name'] ?>
                     <span><i aria-hidden="true"></i> <?php echo $list[$idx][$i]['wr_datetime'] ?></span>
-                </div>
+                
             </li>
         <?php }  ?>
         </ul>

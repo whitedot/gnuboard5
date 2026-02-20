@@ -89,9 +89,9 @@ for($k=0; $cp=sql_fetch_array($res); $k++) {
 	        include G5_SHOP_PATH.'/orderinquiry.sub.php';
 	        ?>
 	
-	        <div>
+	        
 	            <a href="./orderinquiry.php">더보기</a>
-	        </div>
+	        
 	    </section>
 	    <!-- } 최근 주문내역 끝 -->
 	
@@ -136,10 +136,10 @@ for($k=0; $cp=sql_fetch_array($res); $k++) {
                         <input type="hidden" name="io_value[<?php echo $row['it_id']; ?>][0]" value="<?php echo $row['it_name']; ?>">
                         <input type="hidden" name="ct_qty[<?php echo $row['it_id']; ?>][0]" value="1">
                     </div>
-                    <div><?php echo $image; ?></div>
-                    <div><a href="<?php echo shop_item_url($row['it_id']); ?>"><?php echo stripslashes($row['it_name']); ?></a></div>
-                    <div><?php echo display_price(get_price($row), $row['it_tel_inq']); ?></div>
-                    <div><?php echo $row['wi_time']; ?></div>
+                    <?php echo $image; ?>
+                    <a href="<?php echo shop_item_url($row['it_id']); ?>"><?php echo stripslashes($row['it_name']); ?></a>
+                    <?php echo display_price(get_price($row), $row['it_tel_inq']); ?>
+                    <?php echo $row['wi_time']; ?>
                     <a href="./wishupdate.php?w=d&amp;wi_id=<?php echo $row['wi_id']; ?>"><i aria-hidden="true"></i><span>삭제</span></a>
                 </li>
 
@@ -151,9 +151,9 @@ for($k=0; $cp=sql_fetch_array($res); $k++) {
                 ?>
                 </ul>
         
-                <div>
+                
                     <a href="./wishlist.php">더보기</a>
-                </div>
+                
                 
                 <div id="smb_ws_act">
                     <button type="submit" onclick="return fwishlist_check(document.fwishlist,'');">장바구니</button>

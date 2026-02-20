@@ -32,7 +32,7 @@ if($od['od_pg'] == 'lg') {
         $result = sql_query($sql);
         ?>
         
-        <div>
+        
 			<table>
 	            <thead>
 	            <tr>
@@ -102,10 +102,10 @@ if($od['od_pg'] == 'lg') {
 	            <?php } ?>
 	            <tr>
 	                <td headers="th_itopt">
-	                	<div><?php echo $image; ?></div>
+	                	<?php echo $image; ?>
 	                	<div>
 		                	<a href="<?php echo shop_item_url($row['it_id']); ?>"><?php echo $row['it_name']; ?></a><br>
-		                	<div><?php echo get_text($opt['ct_option']); ?></div>
+		                	<?php echo get_text($opt['ct_option']); ?>
 	                	</div>
 	                </td>
 	                <td headers="th_itqty"><?php echo number_format($opt['ct_qty']); ?></td>
@@ -130,7 +130,7 @@ if($od['od_pg'] == 'lg') {
 	            ?>
 	            </tbody>
             </table>
-        </div>
+        
         
         <div id="sod_sts_wrap">
             <span>상품 상태 설명</span>
@@ -213,7 +213,7 @@ if($od['od_pg'] == 'lg') {
         <section id="sod_fin_orderer">
             <h3>주문하신 분</h3>
 
-            <div>
+            
                 <table>
 
                 <tbody>
@@ -239,13 +239,13 @@ if($od['od_pg'] == 'lg') {
                 </tr>
                 </tbody>
                 </table>
-            </div>
+            
         </section>
 
         <section id="sod_fin_receiver">
             <h3>받으시는 분</h3>
 
-            <div>
+            
                 <table>
           
                 <tbody>
@@ -285,13 +285,13 @@ if($od['od_pg'] == 'lg') {
                 <?php } ?>
                 </tbody>
                 </table>
-            </div>
+            
         </section>
 
         <section id="sod_fin_dvr">
             <h3>배송정보</h3>
 
-            <div>
+            
                 <table>
 	                <tbody>
 	                <?php if ($od['od_invoice'] && $od['od_delivery_company']) { ?>
@@ -314,7 +314,7 @@ if($od['od_pg'] == 'lg') {
 	                <?php } ?>
 	                </tbody>
                 </table>
-            </div>
+            
         </section>
     </div>
 
@@ -610,7 +610,7 @@ if($od['od_pg'] == 'lg') {
 	                </form>
 	                <button class="sod_cls_btn"><span>닫기</span><i aria-hidden="true"></i></button>
 		        </div>
-		        <div></div>
+		        
 			</div>
 			<script>	
 			$(function (){
@@ -637,7 +637,7 @@ if($od['od_pg'] == 'lg') {
     $deposit_no = trim($matchs[1]);
     ?>
     <p>관리자가 가상계좌 테스트를 한 경우에만 보입니다.</p>
-    <div>
+    
         <form method="post" action="http://devadmin.kcp.co.kr/Modules/Noti/TEST_Vcnt_Noti_Proc.jsp" target="_blank">
         <table>
         <caption>모의입금처리</caption>
@@ -668,7 +668,7 @@ if($od['od_pg'] == 'lg') {
             <input type="submit" value="입금통보 테스트">
         </div>
         </form>
-    </div>
+    
     <?php } ?>
 
 </div>

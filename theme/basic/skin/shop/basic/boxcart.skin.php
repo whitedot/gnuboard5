@@ -44,7 +44,7 @@ $cart_action_url = G5_SHOP_URL.'/cartupdate.php';
         echo '<li>장바구니 상품 없음</li>'.PHP_EOL;
     ?>
     </ul>
-    <?php if($i){ ?><div><button type="submit">구매하기</button></div><?php } ?>
+    <?php if($i){ ?><button type="submit">구매하기</button><?php } ?>
     <a href="<?php echo G5_SHOP_URL; ?>/cart.php">전체보기</a>
     </form>
 </aside>

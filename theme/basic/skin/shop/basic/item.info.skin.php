@@ -162,9 +162,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	            <ul class="sit_opt_added">
                     <?php if( !$option_item ){ ?>
                     <li>
-                        <div>
+                        
                             <span><?php echo $it['it_name']; ?></span>
-                        </div>
+                        
                         <div>
                             <label for="ct_qty_<?php echo $i; ?>">수량</label>
                             <button type="button" class="sit_qty_minus"><i aria-hidden="true"></i><span>감소</span></button>

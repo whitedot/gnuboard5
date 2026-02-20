@@ -79,7 +79,7 @@ if ($is_checkbox) $colspan++;
     <input type="hidden" name="page" value="<?php echo $page; ?>">
     <input type="hidden" name="token" value="<?php echo get_text($token); ?>">
             
-    <div>
+    
         <table>
         <caption><?php echo $board['bo_subject'] ?> 목록</caption>
         <thead>
@@ -135,12 +135,12 @@ if ($is_checkbox) $colspan++;
         <?php if ($i == 0) { echo '<tr><td colspan="'.$colspan.'">게시물이 없습니다.</td></tr>'; } ?>
         </tbody>
         </table>
-    </div>
+    
 	<!-- 페이지 -->
 	<?php echo $list_pages; ?>
 	<!-- 페이지 -->
 	
-    <div>
+    
         <ul>
         	<?php if ($is_checkbox) { ?>
             <li><button type="submit" name="btn_submit" value="선택삭제" title="선택삭제" onclick="document.pressed=this.value"><i aria-hidden="true"></i><span>선택삭제</span></button></li>
@@ -148,7 +148,7 @@ if ($is_checkbox) $colspan++;
             <?php if ($list_href) { ?><li><a href="<?php echo $list_href ?>" title="목록"><i aria-hidden="true"></i><span>목록</span></a></li><?php } ?>
             <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" title="문의등록"><i aria-hidden="true"></i><span>문의등록</span></a></li><?php } ?>
         </ul>
-    </div>
+    
     </form>
 </div>
 

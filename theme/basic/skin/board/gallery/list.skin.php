@@ -107,7 +107,7 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
                     </span>
                 </div>
                 <div>
-                    <div>
+                    
                         <a href="<?php echo $list[$i]['href'] ?>">
                         <?php
                         if ($list[$i]['is_notice']) { // 공지사항  ?>
@@ -125,7 +125,7 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
                         }
                          ?>
                         </a>
-                    </div>
+                    
                     <div>
                         <?php if ($is_category && $list[$i]['ca_name']) { ?>
                         <a href="<?php echo $list[$i]['ca_name_href'] ?>"><?php echo $list[$i]['ca_name'] ?></a>
@@ -170,7 +170,7 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
     <!-- 페이지 -->
 
     <?php if ($list_href || $is_checkbox || $write_href) { ?>
-    <div>
+    
         <?php if ($list_href || $write_href) { ?>
         <ul>
             <?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" title="관리자"><i></i><span>관리자</span></a></li><?php } ?>
@@ -178,7 +178,7 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
             <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" title="글쓰기"><i aria-hidden="true"></i><span>글쓰기</span></a></li><?php } ?>
         </ul>   
         <?php } ?>
-    </div>
+    
     <?php } ?> 
     </form>
 

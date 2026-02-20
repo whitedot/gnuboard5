@@ -29,9 +29,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                     <input type="checkbox" name="auto_login" id="login_auto_login">
                     <label for="login_auto_login"><span></span> 자동로그인</label>  
                 </div>
-                <div>
+                
                     <a href="<?php echo G5_BBS_URL ?>/password_lost.php">ID/PW 찾기</a>  
-                </div>
+                
             </div>
         </fieldset> 
         </form>
@@ -56,9 +56,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         	<label for="agree"><span></span> 개인정보수집에 대한 내용을 읽었으며 이에 동의합니다.</label>
 		</div>
 		
-        <div>
+        
             <a href="javascript:guest_submit(document.flogin);">비회원으로 구매하기</a>
-        </div>
+        
 
         <script>
         function guest_submit(f)

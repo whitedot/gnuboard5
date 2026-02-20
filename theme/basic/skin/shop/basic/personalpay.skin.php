@@ -23,8 +23,8 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
 ?>
     <li class="sct_li<?php echo $sct_last; ?>">
         <div class="sct_img"><a href="<?php echo $href; ?>"><img src="<?php echo G5_SHOP_SKIN_URL; ?>/img/personal.jpg" alt=""></a></div>
-        <div><a href="<?php echo $href; ?>"><?php echo get_text($row['pp_name']).'님 개인결제'; ?></a></div>
-        <div><?php echo display_price($row['pp_price']); ?></div>
+        <a href="<?php echo $href; ?>"><?php echo get_text($row['pp_name']).'님 개인결제'; ?></a>
+        <?php echo display_price($row['pp_price']); ?>
     </li>
 <?php
 }

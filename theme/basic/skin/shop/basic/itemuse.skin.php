@@ -55,9 +55,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 			<button type="button" class="sit_use_li_title">내용보기 <i aria-hidden="true"></i></button>
 
             <div id="sit_use_con_<?php echo $i; ?>" class="sit_use_con">
-                <div>
+                
                     <?php echo $is_content; // 사용후기 내용 ?> 
-                </div>
+                
 
                 <?php if ($is_admin || $row['mb_id'] == $member['mb_id']) { ?>
                 <div>
@@ -67,18 +67,18 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 <?php } ?>
 
                 <?php if( $is_reply_subject ){  //  사용후기 답변 내용이 있다면 ?>
-                <div>
+                
                     <div>답변</div>
-                    <div>
+                    
                         <?php echo $is_reply_subject; // 답변 제목 ?>
-                    </div>
-                    <div>
+                    
+                    
                         <?php echo $is_reply_name; // 답변자 이름 ?>
-                    </div>
-                    <div>
+                    
+                    
                         <?php echo $is_reply_content; // 답변 내용 ?>
-                    </div>
-                </div>
+                    
+                
                 <?php } //end if ?>
             </div>
         </li>

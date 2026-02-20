@@ -271,9 +271,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	                    <input type="hidden" name="io_value[<?php echo $it_id; ?>][]" value="<?php echo $it['it_name']; ?>">
 	                    <input type="hidden" class="io_price" value="0">
 	                    <input type="hidden" class="io_stock" value="<?php echo $it['it_stock_qty']; ?>">
-	                    <div>
+	                    
 	                        <span><?php echo $it['it_name']; ?></span>
-	                    </div>
+	                    
 	                    <div>
 	                        <label for="ct_qty_<?php echo $i; ?>">수량</label>
 							<button type="button" class="sit_qty_minus"><i aria-hidden="true"></i><span>감소</span></button>
@@ -311,7 +311,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	            <a href="javascript:popup_stocksms('<?php echo $it['it_id']; ?>');" id="sit_btn_alm">재입고알림</a>
 	            <?php } ?>
 	            <?php if ($naverpay_button_js) { ?>
-	            <div><?php echo $naverpay_request_js.$naverpay_button_js; ?></div>
+	            <?php echo $naverpay_request_js.$naverpay_button_js; ?>
 	            <?php } ?>
 	        </div>
 	

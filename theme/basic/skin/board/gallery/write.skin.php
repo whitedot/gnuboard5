@@ -103,7 +103,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             <div id="autosave_pop">
                 <strong>임시 저장된 글 목록</strong>
                 <ul></ul>
-                <div><button type="button" class="autosave_close">닫기</button></div>
+                <button type="button" class="autosave_close">닫기</button>
             </div>
             <?php } ?>
         </div>
@@ -153,9 +153,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 
     <?php if ($is_use_captcha) { //자동등록방지  ?>
-    <div>
+    
         <?php echo $captcha_html ?>
-    </div>
+    
     <?php } ?>
 
     <div>

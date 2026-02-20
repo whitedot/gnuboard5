@@ -72,12 +72,12 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         if ($i == 0) echo '<ol>';
     ?>
     <li>
-        <div>
+        
             <a href="<?php echo $it_href; ?>">
                 <?php echo get_it_image($row['it_id'], 50, 50); ?>
                 <span><?php echo $row['it_name']; ?></span>
             </a>
-        </div>
+        
 
         <section>
             <h2><?php echo $iq_subject; ?></h2>

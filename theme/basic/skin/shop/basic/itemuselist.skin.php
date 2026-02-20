@@ -47,7 +47,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         if ($i == 0) echo '<ol>';
     ?>
     <li>
-        <div>
+        
         	<div>
 	            <a href="<?php echo $it_href; ?>">
 	                <?php echo get_it_image($row['it_id'], 100, 100); ?>
@@ -55,7 +55,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 	            </a>
 	            <button class="prd_detail" data-url="<?php echo G5_SHOP_URL.'/largeimage.php?it_id='.$row['it_id']; ?>"><i aria-hidden="true"></i><span>상품 이미지보기</span></button>
 			</div>            
-		</div>
+		
 
         <div>
         	<span>평가점수</span>
@@ -101,17 +101,17 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 				                if( !empty($row['is_reply_subject']) ){     //사용후기 답변이 있다면
 				                    $is_reply_content = get_view_thumbnail(conv_content($row['is_reply_content'], 1), $thumbnail_width);
 				                ?>
-				                <div>
+				                
 				                    <section>
 				                        <h2><?php echo get_text($row['is_reply_subject']); ?></h2>
-				                        <div>
+				                        
 				                            <i aria-hidden="true"></i> <?php echo $row['is_reply_name']; ?>
-				                        </div>
+				                        
 				                        <div id="sps_con_<?php echo $i; ?>_reply">
 				                            <?php echo $is_reply_content; // 사용후기 답변 내용 ?>
 				                        </div>
 				                    </section>
-				                </div>
+				                
 				                <?php } //end if ?>
 				            </div>
 	            		</div>

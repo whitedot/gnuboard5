@@ -2,14 +2,14 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 ?>
 <?php if ($is_admin) {  //관리자이면 ?>
-    <div><a href="<?php echo G5_ADMIN_URL; ?>/shop_admin/configform.php#anc_scf_etc"><i></i><span>검색 설정</span></a></div>
+    <a href="<?php echo G5_ADMIN_URL; ?>/shop_admin/configform.php#anc_scf_etc"><i></i><span>검색 설정</span></a>
 <?php } ?>
 <!-- 검색 시작 { -->
 <div id="ssch">
 	<h2><strong><?php echo $q; ?></strong> 검색 결과<span>총 <?php echo $total_count; ?>건</span></h2>
     <!-- 상세검색 항목 시작 { -->
     <div id="ssch_frm">
-		<div>
+		
 	        <form name="frmdetailsearch">
 	        <input type="hidden" name="qsort" id="qsort" value="<?php echo $qsort ?>">
 	        <input type="hidden" name="qorder" id="qorder" value="<?php echo $qorder ?>">
@@ -37,7 +37,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	            <input type="text" name="qto" value="<?php echo $qto; ?>" id="ssch_qto" size="10"> 원
 	        </div>
         	</form>
-		</div>
+		
 		<!-- 검색된 분류 시작 { -->
 	    <div id="ssch_cate">
 	        <ul>
@@ -65,7 +65,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	    <!-- } 상세검색 항목 끝 -->
 	</div>	
     <!-- 검색결과 시작 { -->
-    <div>
+    
         <?php
         // 리스트 유형별로 출력
         if (isset($list) && is_object($list) && method_exists($list, 'run')) {
@@ -97,7 +97,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         $query_string .='&amp;qsort='.$qsort.'&amp;qorder='.$qorder;
         echo get_paging($config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME'].'?'.$query_string.'&amp;page=');
         ?>
-    </div>
+    
     <!-- } 검색결과 끝 -->
 </div>
 <!-- } 검색 끝 -->

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Redundant Div Wrap Cleanup"
+  short_description: "Remove unnecessary plain wrapper div blocks safely."
+  default_prompt: "Use $cleanup-redundant-div-wraps to remove redundant wrapper div elements left after class/style cleanup in PHP templates."

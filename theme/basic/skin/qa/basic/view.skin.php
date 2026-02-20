@@ -141,7 +141,7 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
     <section id="bo_v_rel">
         <h2>연관질문</h2>
 
-        <div>
+        
             <table>
             <thead>
             <tr>
@@ -170,7 +170,7 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
             ?>
             </tbody>
             </table>
-        </div>
+        
     </section>
     <?php } ?>
 

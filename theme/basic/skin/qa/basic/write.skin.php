@@ -29,7 +29,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     echo $option_hidden;
     ?>
 
-    <div>
+    
         <ul>
             <?php if ($category_option) { ?>
             <li>
@@ -99,7 +99,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </div>
             </li>
         </ul>
-    </div>
+    
     
     <div>
         <a href="<?php echo $list_href; ?>">취소</a>

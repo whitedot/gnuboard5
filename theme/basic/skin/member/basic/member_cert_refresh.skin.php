@@ -18,8 +18,8 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	<input type="hidden" name="cert_no" value="">
         <section id="member_cert_refresh_private">
             <h2>(필수) 추가 개인정보처리방침 안내</h2>
-            <div>
-                <div>
+            
+                
                     <table>
                         <caption>추가 개인정보처리방침 안내</caption>
                         <thead>
@@ -37,8 +37,8 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
                             </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
+                
+            
 
             <fieldset>
                 <input type="checkbox" name="agree2" value="1" id="agree21">
@@ -49,7 +49,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
         <section id="find_info">
             <h2>인증수단 선택하기</h2>
             
-            <div>
+            
             <?php
             if ($config['cf_cert_use']) {
                 echo '<div>';
@@ -64,7 +64,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
                 echo '<noscript>본인확인을 위해서는 자바스크립트 사용이 가능해야합니다.</noscript>' . PHP_EOL;
             }
             ?>
-            </div>
+            
         </section>
     </form>
 

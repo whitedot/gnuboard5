@@ -159,7 +159,7 @@ if ($is_nogood) $colspan++;
 	<!-- 페이지 -->
 	
     <?php if ($list_href || $is_checkbox || $write_href) { ?>
-    <div>
+    
         <?php if ($list_href || $write_href) { ?>
         <ul>
         	<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" title="관리자"><i></i><span>관리자</span></a></li><?php } ?>
@@ -167,7 +167,7 @@ if ($is_nogood) $colspan++;
             <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" title="글쓰기"><i aria-hidden="true"></i><span>글쓰기</span></a></li><?php } ?>
         </ul>	
         <?php } ?>
-    </div>
+    
     <?php } ?>   
     </form>
 

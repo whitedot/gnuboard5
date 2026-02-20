@@ -27,7 +27,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
     <section id="fregister_private">
         <h2>(필수) 개인정보 수집 및 이용</h2>
-        <div>
+        
             <table>
                 <caption>개인정보 수집 및 이용</caption>
                 <thead>
@@ -50,7 +50,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </tr>
                 </tbody>
             </table>
-        </div>
+        
 
         <fieldset>
             <input type="checkbox" name="agree2" value="1" id="agree21">

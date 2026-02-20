@@ -274,7 +274,7 @@ switch ($action) {
 
         ob_start();
         ?>
-        <div>
+        
             <form name="fcart" method="post" action="<?php echo $action_url; ?>">
             <input type="hidden" name="action" value="cart_update">
             <input type="hidden" name="it_id[]" value="<?php echo $it['it_id']; ?>">
@@ -301,7 +301,7 @@ switch ($action) {
 
                 <?php } ?>
             </form>
-        </div>
+        
         <?php
         $content = ob_get_contents();
         ob_end_clean();

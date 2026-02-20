@@ -29,9 +29,9 @@ if ((int) $total_po_cnt > 0){
                 ?>
                 <li class="<?php echo $poll_1st_class; ?>">
                     <span><?php echo $list[$i]['content'] ?></span>   
-                    <div>
+                    
                         <span></span>
-                    </div>
+                    
                     <div>
                     	<strong><?php echo $list[$i]['cnt'] ?> 표</strong>
                     	<span><?php echo number_format($list[$i]['rate'], 1) ?> %</span>
@@ -100,9 +100,9 @@ if ((int) $total_po_cnt > 0){
         </aside>
         <!-- } 설문조사 다른 결과 보기 끝 -->
 
-        <div>
+        
             <button type="button" onclick="window.close();">창닫기</button>
-        </div>
+        
     </div>
 </div>
 

@@ -30,7 +30,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 	?>
 
 	<article id="c_<?php echo $comment_id ?>" <?php if ($cmt_depth) { ?><?php } ?>>
-        <div><?php echo get_member_profile_img($list[$i]['mb_id']); ?></div>
+        <?php echo get_member_profile_img($list[$i]['mb_id']); ?>
         
         <div>
 
@@ -49,7 +49,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 	        </header>
 	
 	        <!-- 댓글 출력 -->
-	        <div>
+	        
 	            <p>
 	                <?php if (strstr($list[$i]['wr_option'], "secret")) { ?><img src="<?php echo $board_skin_url; ?>/img/icon_secret.gif" alt="비밀글"><?php } ?>
 	                <?php echo $comment ?>
@@ -67,7 +67,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 	                }
 				?>
 	            <?php } ?>
-	        </div>
+	        
 	        <span id="edit_<?php echo $comment_id ?>"></span><!-- 수정 -->
 	        <span id="reply_<?php echo $comment_id ?>"></span><!-- 답변 -->
 	

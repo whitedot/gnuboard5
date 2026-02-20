@@ -25,15 +25,15 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 
     <section id="bo_v_info">
         <h2>페이지 정보</h2>
-        <div>
-        	<div><?php echo get_member_profile_img($view['mb_id']) ?></div>
+        
+        	<?php echo get_member_profile_img($view['mb_id']) ?>
         	<div>
         		<span>작성자</span> <strong><?php echo $view['name'] ?><?php if ($is_ip_view) { echo "&nbsp;($ip)"; } ?></strong><br>
        		 	<span>댓글</span><strong><a href="#bo_vc"> <i aria-hidden="true"></i> <?php echo number_format($view['wr_comment']) ?>건</a></strong>
         		<span>조회</span><strong><i aria-hidden="true"></i> <?php echo number_format($view['wr_hit']) ?>회</strong>
         		<strong><span>작성일</span><i aria-hidden="true"></i> <?php echo date("y-m-d H:i", strtotime($view['wr_datetime'])) ?></strong>
     		</div>
-    	</div>
+    	
 
     	<!-- 게시물 상단 버튼 시작 { -->
 	    <div id="bo_v_top">
