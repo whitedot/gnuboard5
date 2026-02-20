@@ -52,6 +52,10 @@ function is_active($pages) {
             <i class="iconify ui-nav-icon" data-icon="tabler:layout-navbar"></i>
             Tabs
         </a>
+        <a href="ui-sidebar.php" class="ui-nav-link <?= is_active('ui-sidebar.php') ?>">
+            <i class="iconify ui-nav-icon" data-icon="tabler:menu-2"></i>
+            Sidebar
+        </a>
 
         <!-- FORMS -->
         <div class="ui-nav-section-title">Forms</div>
