@@ -146,45 +146,49 @@ if ($admin_site_title === '') {
     <nav id="gnb" class="<?php echo $adm_menu_cookie['gnb']; ?>" aria-label="관리자 메뉴">
         <svg class="admin-nav-icon-sprite" aria-hidden="true" focusable="false">
             <symbol id="admin-menu-icon-settings" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path d="M19.4 15a1 1 0 0 0 .2 1.1l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1 1 0 0 0-1.1-.2 1 1 0 0 0-.6.9V20a2 2 0 1 1-4 0v-.2a1 1 0 0 0-.6-.9 1 1 0 0 0-1.1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1 1 0 0 0 .2-1.1 1 1 0 0 0-.9-.6H4a2 2 0 1 1 0-4h.2a1 1 0 0 0 .9-.6 1 1 0 0 0-.2-1.1l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1 1 0 0 0 1.1.2 1 1 0 0 0 .6-.9V4a2 2 0 1 1 4 0v.2a1 1 0 0 0 .6.9 1 1 0 0 0 1.1-.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1 1 0 0 0-.2 1.1 1 1 0 0 0 .9.6H20a2 2 0 1 1 0 4h-.2a1 1 0 0 0-.9.6z"></path>
+                <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065"></path>
+                <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
             </symbol>
             <symbol id="admin-menu-icon-users" viewBox="0 0 24 24">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
             </symbol>
             <symbol id="admin-menu-icon-board" viewBox="0 0 24 24">
-                <rect x="3" y="4" width="18" height="16" rx="2"></rect>
-                <path d="M9 4v16"></path>
-                <path d="M9 10h12"></path>
+                <path d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1"></path>
+                <path d="M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1"></path>
+                <path d="M15 12h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1"></path>
+                <path d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1"></path>
             </symbol>
             <symbol id="admin-menu-icon-shop" viewBox="0 0 24 24">
-                <path d="M6 7h12l-1 13H7L6 7z"></path>
-                <path d="M9 7V5a3 3 0 0 1 6 0v2"></path>
+                <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304"></path>
+                <path d="M9 11v-5a3 3 0 0 1 6 0v5"></path>
             </symbol>
             <symbol id="admin-menu-icon-stats" viewBox="0 0 24 24">
-                <path d="M3 3v18h18"></path>
-                <path d="M8 14v4"></path>
-                <path d="M12 10v8"></path>
-                <path d="M16 6v12"></path>
+                <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"></path>
+                <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"></path>
+                <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"></path>
+                <path d="M4 20h14"></path>
             </symbol>
             <symbol id="admin-menu-icon-message" viewBox="0 0 24 24">
-                <path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <path d="M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1"></path>
             </symbol>
             <symbol id="admin-menu-icon-folder" viewBox="0 0 24 24">
-                <path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2"></path>
             </symbol>
             <symbol id="admin-menu-icon-sidebar-toggle" viewBox="0 0 24 24">
-                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-                <path d="M9 3v18"></path>
-                <path d="m16 15-3-3 3-3"></path>
+                <path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12"></path>
+                <path d="M9 4v16"></path>
+                <path d="M15 10l-2 2l2 2"></path>
             </symbol>
             <symbol id="admin-menu-icon-menu" viewBox="0 0 24 24">
-                <path d="M4 7h16"></path>
-                <path d="M4 12h16"></path>
-                <path d="M4 17h16"></path>
+                <path d="M4 6l16 0"></path>
+                <path d="M4 12l16 0"></path>
+                <path d="M4 18l16 0"></path>
+            </symbol>
+            <symbol id="admin-menu-icon-chevron-down" viewBox="0 0 24 24">
+                <path d="M6 9l6 6l6 -6"></path>
             </symbol>
         </svg>
 
@@ -232,7 +236,11 @@ if ($admin_site_title === '') {
                                     </svg>
                                     <span class="admin-nav-trigger-label"><?php echo $button_title; ?></span>
                                 </span>
-                                <span class="admin-nav-caret" aria-hidden="true">⌄</span>
+                                <span class="admin-nav-caret" aria-hidden="true">
+                                    <svg class="admin-nav-caret-icon" focusable="false" viewBox="0 0 24 24">
+                                        <use href="#admin-menu-icon-chevron-down"></use>
+                                    </svg>
+                                </span>
                             </button>
                             <div class="admin-nav-panel<?php echo $opened_utility; ?>">
                                 <?php echo print_menu1('menu' . $key, 1); ?>
