@@ -149,6 +149,11 @@ if ($admin_site_title === '') {
                 <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065"></path>
                 <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
             </symbol>
+            <symbol id="admin-menu-icon-admin-mode" viewBox="0 0 24 24">
+                <path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"></path>
+                <path d="M11 11a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                <path d="M12 12l0 2.5"></path>
+            </symbol>
             <symbol id="admin-menu-icon-users" viewBox="0 0 24 24">
                 <path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
                 <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
@@ -197,6 +202,15 @@ if ($admin_site_title === '') {
                 <path d="M4 12l16 0"></path>
                 <path d="M4 18l16 0"></path>
             </symbol>
+            <symbol id="admin-menu-icon-moon-stars" viewBox="0 0 24 24">
+                <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454l0 .008"></path>
+                <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path>
+                <path d="M19 11h2m-1 -1v2"></path>
+            </symbol>
+            <symbol id="admin-menu-icon-sun" viewBox="0 0 24 24">
+                <path d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+            </symbol>
             <symbol id="admin-menu-icon-chevron-down" viewBox="0 0 24 24">
                 <path d="M6 9l6 6l6 -6"></path>
             </symbol>
@@ -204,7 +218,11 @@ if ($admin_site_title === '') {
 
         <h2>
             <a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>">
-                <span><?php echo $admin_profile_initial; ?></span>
+                <span aria-hidden="true">
+                    <svg class="admin-shell-control-icon" focusable="false" viewBox="0 0 24 24">
+                        <use href="#admin-menu-icon-admin-mode"></use>
+                    </svg>
+                </span>
                 <span><?php echo $admin_site_title; ?></span>
             </a>
             <button type="button" id="btn_gnb" class="<?php echo $adm_menu_cookie['btn_gnb']; ?>" aria-label="사이드바 축소/확장" aria-pressed="false">
@@ -297,7 +315,13 @@ if ($admin_site_title === '') {
         <div class="hd_top_right">
             <div id="tnb">
                 <ul>
-                    <li class="tnb_li"><button type="button" id="admin_theme_toggle" aria-pressed="false">Dark</button></li>
+                    <li class="tnb_li">
+                        <button type="button" id="admin_theme_toggle" class="tnb_icon_btn" aria-pressed="false" aria-label="다크 모드 전환" title="다크 모드 전환">
+                            <svg class="admin-shell-control-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                <use id="admin_theme_toggle_icon_use" href="#admin-menu-icon-moon-stars"></use>
+                            </svg>
+                        </button>
+                    </li>
                     <?php if (defined('G5_USE_SHOP') && G5_USE_SHOP) { ?>
                         <li class="tnb_li">
                             <a class="tnb_icon_btn" href="<?php echo G5_SHOP_URL; ?>/" target="_blank" title="쇼핑몰 바로가기" aria-label="쇼핑몰 바로가기">
@@ -519,9 +543,15 @@ if ($admin_site_title === '') {
         var themeKey = "g5_admin_theme";
         function syncThemeUI() {
             var dark = document.documentElement.getAttribute("data-theme") === "dark";
+            var nextModeLabel = dark ? "라이트 모드" : "다크 모드";
+            var iconHref = dark ? "#admin-menu-icon-sun" : "#admin-menu-icon-moon-stars";
             $("#admin_theme_toggle")
-                .text(dark ? "Light" : "Dark")
-                .attr("aria-pressed", dark ? "true" : "false");
+                .attr("aria-pressed", dark ? "true" : "false")
+                .attr("aria-label", nextModeLabel + " 전환")
+                .attr("title", nextModeLabel + " 전환");
+            $("#admin_theme_toggle_icon_use")
+                .attr("href", iconHref)
+                .attr("xlink:href", iconHref);
         }
         syncThemeUI();
 

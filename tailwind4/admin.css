@@ -223,6 +223,8 @@
 @layer components {
     :root {
         --admin-shell-bar-height: 4.25rem;
+        --admin-sidebar-width: 17rem;
+        --admin-sidebar-collapsed-width: 5.5rem;
     }
 
     #to_content a {
@@ -240,7 +242,7 @@
 
     #hd {
         @apply fixed inset-y-0 left-0 z-50;
-        width: 19rem;
+        width: var(--admin-sidebar-width);
     }
 
     #gnb {
@@ -257,11 +259,16 @@
     }
 
     #gnb > h2 > a > span:first-child {
-        @apply flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-base font-semibold text-white;
+        @apply flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-sm font-semibold text-white;
+    }
+
+    #gnb > h2 > a > span:first-child .admin-shell-control-icon {
+        width: 1.1rem;
+        height: 1.1rem;
     }
 
     #gnb > h2 > a > span:last-child {
-        @apply truncate text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100;
+        @apply truncate text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100;
     }
 
     #btn_gnb {
@@ -287,8 +294,8 @@
     }
 
     #btn_gnb_mobile .admin-shell-control-icon {
-        width: 1.1rem;
-        height: 1.1rem;
+        width: 1rem;
+        height: 1rem;
     }
 
     #gnb .gnb_menu_scroll_wrap {
@@ -487,7 +494,7 @@
 
     #wrapper {
         @apply min-h-screen bg-default-100 transition-all duration-300;
-        padding-left: 19rem;
+        padding-left: var(--admin-sidebar-width);
     }
 
     #hd_top {
@@ -500,7 +507,7 @@
     }
 
     #btn_gnb_mobile {
-        @apply inline-flex h-9 w-9 items-center justify-center rounded-lg border border-default-300 bg-default-100 text-base text-default-600 lg:hidden;
+        @apply inline-flex h-8 w-8 items-center justify-center rounded-lg border border-default-300 bg-default-100 text-xs text-default-600 lg:hidden;
     }
 
     #hd_top .hd_breadcrumb {
@@ -598,11 +605,11 @@
     }
 
     body.admin-sidebar-condensed #hd {
-        width: 5.5rem;
+        width: var(--admin-sidebar-collapsed-width);
     }
 
     body.admin-sidebar-condensed #wrapper {
-        padding-left: 5.5rem;
+        padding-left: var(--admin-sidebar-collapsed-width);
     }
 
     body.admin-sidebar-condensed #gnb > h2 {
@@ -709,7 +716,7 @@
 
     @media (max-width: 1023px) {
         #hd {
-            width: 19rem;
+            width: var(--admin-sidebar-width);
         }
 
         body:not(.admin-sidebar-open) #hd {
@@ -723,7 +730,7 @@
         #gnb {
             position: fixed;
             inset: 0 auto 0 0;
-            width: 19rem;
+            width: var(--admin-sidebar-width);
             z-index: 50;
             pointer-events: auto;
             transform: translateX(-100%);
