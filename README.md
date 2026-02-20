@@ -1,5 +1,7 @@
 # 그누보드 5 / 영카트 리팩토링 프로젝트
 
+> UI Guide: [docs/ui-kit/](docs/ui-kit/)
+
 ## 1. 프로젝트 개요 (Project Overview)
 이 프로젝트는 그누보드 5(G5) 및 영카트 기반 시스템의 리팩토링 프로젝트입니다.
 

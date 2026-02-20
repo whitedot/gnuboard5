@@ -70,6 +70,16 @@
         --g2: var(--color-red-300);
         --g3: var(--color-yellow-200);
     }
+
+    [data-theme="dark"] .btn.bg-light {
+        background-color: color-mix(in oklab, var(--color-light-hover) 22%, transparent);
+    }
+
+    [data-theme="dark"] .btn.bg-light:hover,
+    [data-theme="dark"] .btn.bg-light:focus,
+    [data-theme="dark"] .btn.bg-light:focus-visible {
+        background-color: color-mix(in oklab, var(--color-light-hover) 30%, transparent);
+    }
 </style>
 
 <div class="container-fluid">
