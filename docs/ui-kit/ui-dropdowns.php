@@ -14,11 +14,11 @@
                                     토글로 전환할 수 있습니다.</p>
 
                                 <div class="flex flex-wrap items-center gap-2.5">
-                                    <div class="hs-dropdown relative inline-flex">
-                                        <button type="button" class="hs-dropdown-toggle btn bg-light text-dark"
+                                    <div class="dropdown hs-dropdown">
+                                        <button type="button" class="dropdown-toggle hs-dropdown-toggle btn btn-surface"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             옵션 선택
-                                            <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -28,13 +28,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="hs-dropdown relative inline-flex">
-                                        <a class="hs-dropdown-toggle btn bg-primary hover:bg-primary-hover text-white"
+                                    <div class="dropdown hs-dropdown">
+                                        <a class="dropdown-toggle hs-dropdown-toggle btn btn-solid-primary"
                                             href="#" role="button" id="dropdownMenuLink" aria-haspopup="true"
                                             aria-expanded="false">
                                             빠른 작업
-                                            <i
-                                                class="iconify tabler--chevron-down hs-dropdown-open:rotate-180 transition-transform text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-caret"></i>
                                         </a>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -44,12 +43,11 @@
                                         </div>
                                     </div>
 
-                                    <div class="hs-dropdown relative inline-flex [--trigger:hover]">
-                                        <button type="button" class="hs-dropdown-toggle btn bg-light text-dark"
+                                    <div class="dropdown hs-dropdown [--trigger:hover]">
+                                        <button type="button" class="dropdown-toggle hs-dropdown-toggle btn btn-surface"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             마우스 올리기
-                                            <i
-                                                class="iconify tabler--chevron-down hs-dropdown-open:rotate-180 transition-transform text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-caret"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="hover-dropdown">
@@ -74,11 +72,11 @@
                                     클래스를 사용하여 드롭다운 메뉴를 요소의 오른쪽에 배치하십시오.
                                 </p>
 
-                                <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
-                                    <button type="button" class="hs-dropdown-toggle btn bg-light text-dark"
+                                <div class="dropdown hs-dropdown [--placement:bottom-right]">
+                                    <button type="button" class="dropdown-toggle hs-dropdown-toggle btn btn-surface"
                                         aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                         오른쪽 정렬 메뉴
-                                        <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                        <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                     </button>
 
                                     <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -101,9 +99,9 @@
                                     커스텀 아이콘으로 시각적으로 향상된 토글을 만들 수 있습니다.</p>
 
                                 <div class="flex flex-wrap items-center gap-2.5">
-                                    <div class="hs-dropdown relative inline-flex">
+                                    <div class="dropdown hs-dropdown">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn bg-primary hover:bg-primary-hover text-white"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-solid-primary"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">화살표
                                             없음</button>
 
@@ -114,9 +112,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="hs-dropdown relative inline-flex">
+                                    <div class="dropdown hs-dropdown">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn border-primary hover:bg-primary text-primary flex items-center border hover:text-white"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-outline-primary"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             커스텀 아이콘
                                             <i data-icon="tabler:edit" class="iconify tabler--edit text-sm"></i>
@@ -143,14 +141,14 @@
                                     빠른 작업을 제공하고 드롭다운에서 추가 옵션을 제공합니다.</p>
 
                                 <div class="flex flex-wrap items-center gap-2.5">
-                                    <div class="inline-flex">
+                                    <div class="dropdown-split">
                                         <button type="button"
-                                            class="btn bg-primary hover:bg-primary-hover rounded-e-none text-white">기본(Primary)</button>
+                                            class="btn btn-solid-primary dropdown-split-main">기본(Primary)</button>
 
-                                        <div class="hs-dropdown relative inline-flex [--placement:bottom-left]">
+                                        <div class="dropdown hs-dropdown [--placement:bottom-left]">
                                             <button type="button"
-                                                class="hs-dropdown-toggle btn bg-primary/90 hover:bg-primary-hover rounded-s-none px-2 text-white">
-                                                <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                                class="dropdown-toggle hs-dropdown-toggle btn btn-solid-primary-muted dropdown-split-toggle">
+                                                <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                             </button>
 
                                             <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -163,14 +161,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="inline-flex">
+                                    <div class="dropdown-split">
                                         <button type="button"
-                                            class="btn bg-light hover:text-primary text-default-700 rounded-s-sm rounded-e-none">보조(Secondary)</button>
+                                            class="btn btn-subtle-light text-default-700 rounded-s-sm dropdown-split-main">보조(Secondary)</button>
 
-                                        <div class="hs-dropdown relative inline-flex [--placement:bottom-left]">
+                                        <div class="dropdown hs-dropdown [--placement:bottom-left]">
                                             <button type="button"
-                                                class="hs-dropdown-toggle btn bg-light hover:text-primary rounded-s-none px-2">
-                                                <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                                class="dropdown-toggle hs-dropdown-toggle btn btn-subtle-light dropdown-split-toggle">
+                                                <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                             </button>
 
                                             <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -183,14 +181,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="inline-flex">
+                                    <div class="dropdown-split">
                                         <button type="button"
-                                            class="btn bg-success/15 text-success hover:bg-success rounded-s-sm rounded-e-none hover:text-white">성공(Success)</button>
+                                            class="btn btn-soft-success rounded-s-sm dropdown-split-main">성공(Success)</button>
 
-                                        <div class="hs-dropdown relative inline-flex [--placement:bottom-left]">
+                                        <div class="dropdown hs-dropdown [--placement:bottom-left]">
                                             <button type="button"
-                                                class="hs-dropdown-toggle btn bg-success/15 text-success hover:bg-success rounded-s-none px-2 hover:text-white">
-                                                <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                                class="dropdown-toggle hs-dropdown-toggle btn btn-soft-success dropdown-split-toggle">
+                                                <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                             </button>
 
                                             <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -203,14 +201,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="inline-flex">
+                                    <div class="dropdown-split">
                                         <button type="button"
-                                            class="btn bg-info hover:bg-info-hover rounded-s-sm rounded-e-none text-white">정보(Info)</button>
+                                            class="btn btn-solid-info rounded-s-sm dropdown-split-main">정보(Info)</button>
 
-                                        <div class="hs-dropdown relative inline-flex [--placement:bottom-left]">
+                                        <div class="dropdown hs-dropdown [--placement:bottom-left]">
                                             <button type="button"
-                                                class="hs-dropdown-toggle btn bg-info/85 hover:bg-info-hover rounded-s-none px-2 text-white">
-                                                <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                                class="dropdown-toggle hs-dropdown-toggle btn btn-solid-info-muted dropdown-split-toggle">
+                                                <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                             </button>
 
                                             <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -237,12 +235,12 @@
                                     다양한 색상이나 스타일에 맞출 수 있습니다.</p>
 
                                 <div class="flex flex-wrap items-center gap-2.5">
-                                    <div class="hs-dropdown relative inline-flex">
+                                    <div class="dropdown hs-dropdown">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn bg-primary hover:bg-primary-hover text-white disabled:pointer-events-none disabled:opacity-50"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-solid-primary disabled:pointer-events-none disabled:opacity-50"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             기본(Primary)
-                                            <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -254,11 +252,11 @@
                                         </div>
                                     </div>
 
-                                    <div class="hs-dropdown relative inline-flex">
-                                        <button type="button" class="hs-dropdown-toggle btn bg-light text-default-700"
+                                    <div class="dropdown hs-dropdown">
+                                        <button type="button" class="dropdown-toggle hs-dropdown-toggle btn btn-surface-default"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             보조(Secondary)
-                                            <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -270,12 +268,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="hs-dropdown relative inline-flex">
+                                    <div class="dropdown hs-dropdown">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn bg-success hover:bg-info-hover text-white"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-solid-success-contrast"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             성공(Success)
-                                            <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -301,12 +299,12 @@
                                     크기의 버튼과 결합할 수 있습니다.</p>
 
                                 <div class="flex flex-wrap items-center gap-2.5">
-                                    <div class="hs-dropdown relative inline-flex">
+                                    <div class="dropdown hs-dropdown">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn bg-light text-default-700 px-6 py-2 text-lg"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-surface-default px-6 py-2 text-lg"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             큰 버튼
-                                            <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -318,15 +316,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="inline-flex">
+                                    <div class="dropdown-split">
                                         <button type="button"
                                             class="bg-light hover:text-primary text-default-700 relative rounded-s-sm px-6 py-2 text-lg">큰
                                             버튼</button>
 
-                                        <div class="hs-dropdown relative inline-flex [--placement:bottom-left]">
+                                        <div class="dropdown hs-dropdown [--placement:bottom-left]">
                                             <button type="button"
-                                                class="hs-dropdown-toggle bg-light hover:text-primary relative flex items-center justify-center rounded-e-sm px-4 py-2">
-                                                <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                                class="dropdown-toggle hs-dropdown-toggle bg-light hover:text-primary relative flex items-center justify-center rounded-e-sm px-4 py-2">
+                                                <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                             </button>
 
                                             <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -339,12 +337,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="hs-dropdown relative inline-flex">
+                                    <div class="dropdown hs-dropdown">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn btn-sm bg-light text-default-700"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-sm btn-surface-default"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             작은 버튼
-                                            <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -356,15 +354,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="inline-flex">
+                                    <div class="dropdown-split">
                                         <button type="button"
-                                            class="btn btn-sm bg-light text-default-700 hover:text-primary rounded-e-none">작은
+                                            class="btn btn-sm text-default-700 rounded-e-none btn-subtle-light">작은
                                             버튼</button>
 
-                                        <div class="hs-dropdown relative inline-flex [--placement:bottom-left]">
+                                        <div class="dropdown hs-dropdown [--placement:bottom-left]">
                                             <button type="button"
-                                                class="hs-dropdown-toggle btn btn-sm bg-light text-default-700 hover:text-primary rounded-s-none px-2">
-                                                <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                                class="dropdown-toggle hs-dropdown-toggle btn btn-sm text-default-700 btn-subtle-light dropdown-split-toggle">
+                                                <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                             </button>
 
                                             <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -396,11 +394,11 @@
                                 </p>
 
                                 <div class="flex flex-wrap items-center gap-2.5">
-                                    <div class="hs-dropdown relative inline-flex [--placement:top]">
-                                        <button type="button" class="hs-dropdown-toggle btn bg-light text-default-700"
+                                    <div class="dropdown hs-dropdown [--placement:top]">
+                                        <button type="button" class="dropdown-toggle hs-dropdown-toggle btn btn-surface-default"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             드롭업
-                                            <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
+                                            <i data-icon="tabler:chevron-up" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -412,15 +410,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="inline-flex">
+                                    <div class="dropdown-split">
                                         <button type="button"
-                                            class="btn bg-light text-default-700 hover:text-primary rounded-e-none">분할
+                                            class="btn text-default-700 rounded-e-none btn-subtle-light">분할
                                             드롭업</button>
 
-                                        <div class="hs-dropdown relative inline-flex [--placement:top-left]">
+                                        <div class="dropdown hs-dropdown [--placement:top-left]">
                                             <button type="button"
-                                                class="hs-dropdown-toggle btn bg-light/90 text-default-700 hover:text-primary rounded-s-none px-2">
-                                                <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                                class="dropdown-toggle hs-dropdown-toggle btn btn-surface-default-soft dropdown-split-toggle">
+                                                <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                             </button>
 
                                             <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -450,11 +448,11 @@
                                 </p>
 
                                 <div class="flex flex-wrap items-center gap-2.5">
-                                    <div class="hs-dropdown relative inline-flex [--placement:left-start]">
+                                    <div class="dropdown hs-dropdown [--placement:left-start]">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn bg-secondary hover:bg-secondary-hover text-white"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-solid-secondary"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                                            <i data-icon="tabler:chevron-left" class="iconify tabler--chevron-left text-base"></i>
+                                            <i data-icon="tabler:chevron-left" class="iconify dropdown-icon"></i>
                                             드롭스타트
                                         </button>
 
@@ -467,11 +465,11 @@
                                         </div>
                                     </div>
 
-                                    <div class="inline-flex">
-                                        <div class="hs-dropdown relative inline-flex [--placement:left-start]">
+                                    <div class="dropdown-split">
+                                        <div class="dropdown hs-dropdown [--placement:left-start]">
                                             <button type="button"
-                                                class="hs-dropdown-toggle btn sky-700 bg-secondary/90 hover:bg-secondary-hover rounded-e-none px-2 text-white">
-                                                <i data-icon="tabler:chevron-left" class="iconify tabler--chevron-left text-base"></i>
+                                                class="dropdown-toggle hs-dropdown-toggle btn sky-700 btn-solid-secondary-muted rounded-e-none px-2">
+                                                <i data-icon="tabler:chevron-left" class="iconify dropdown-icon"></i>
                                             </button>
 
                                             <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -484,7 +482,7 @@
                                         </div>
 
                                         <button type="button"
-                                            class="btn bg-secondary hover:bg-secondary-hover rounded-s-none text-white">분할
+                                            class="btn rounded-s-none btn-solid-secondary">분할
                                             드롭스타트</button>
                                     </div>
                                 </div>
@@ -505,12 +503,12 @@
                                 </p>
 
                                 <div class="flex flex-wrap items-center gap-2.5">
-                                    <div class="hs-dropdown relative inline-flex [--placement:right-end]">
+                                    <div class="dropdown hs-dropdown [--placement:right-end]">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn bg-primary hover:bg-primary-hover text-white"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-solid-primary"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             Dropend
-                                            <i data-icon="tabler:chevron-right" class="iconify tabler--chevron-right text-base"></i>
+                                            <i data-icon="tabler:chevron-right" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -522,15 +520,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="inline-flex">
+                                    <div class="dropdown-split">
                                         <button type="button"
                                             class="bg-primary hover:bg-primary-hover relative rounded-s-sm px-4 py-2 font-medium text-white">분할
                                             드롭스타트</button>
 
-                                        <div class="hs-dropdown relative inline-flex [--placement:right-end]">
+                                        <div class="dropdown hs-dropdown [--placement:right-end]">
                                             <button type="button"
-                                                class="hs-dropdown-toggle bg-primary/90 hover:bg-primary-hover relative flex items-center justify-center rounded-e-sm px-2 py-2 text-white">
-                                                <i data-icon="tabler:chevron-right" class="iconify tabler--chevron-right text-base"></i>
+                                                class="dropdown-toggle hs-dropdown-toggle bg-primary/90 hover:bg-primary-hover relative flex items-center justify-center rounded-e-sm px-2 py-2 text-white">
+                                                <i data-icon="tabler:chevron-right" class="iconify dropdown-icon"></i>
                                             </button>
 
                                             <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -559,12 +557,12 @@
                                     클래스를 사용하여 현재 선택되었거나 활성화된 옵션으로 강조하십시오.
                                 </p>
 
-                                <div class="hs-dropdown relative inline-flex [--placement:bottom-end]">
+                                <div class="dropdown hs-dropdown [--placement:bottom-end]">
                                     <button type="button"
-                                        class="hs-dropdown-toggle btn bg-secondary hover:bg-secondary-hover text-white"
+                                        class="dropdown-toggle hs-dropdown-toggle btn btn-solid-secondary"
                                         aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                         활성화된 항목
-                                        <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                        <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                     </button>
 
                                     <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -589,12 +587,12 @@
                                     클래스를 사용하여 메뉴 내에서 사용할 수 없거나 비활성화된 옵션을 나타내십시오.
                                 </p>
 
-                                <div class="hs-dropdown relative inline-flex [--placement:bottom-end]">
+                                <div class="dropdown hs-dropdown [--placement:bottom-end]">
                                     <button type="button"
-                                        class="hs-dropdown-toggle btn bg-primary hover:bg-primary-hover text-white"
+                                        class="dropdown-toggle hs-dropdown-toggle btn btn-solid-primary"
                                         aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                         비활성화됨
-                                        <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                        <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                     </button>
 
                                     <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -617,16 +615,16 @@
                                 </p>
 
                                 <div class="flex flex-wrap items-center gap-2.5">
-                                    <div class="hs-dropdown relative inline-flex [--placement:bottom-end]">
+                                    <div class="dropdown hs-dropdown [--placement:bottom-end]">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn bg-secondary hover:bg-primary-hover text-white"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-solid-secondary-contrast"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             헤더
-                                            <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
-                                            <h6 class="px-2.75 py-2 font-semibold">드롭다운 헤더</h6>
+                                            <h6 class="dropdown-header">드롭다운 헤더</h6>
                                             <a class="dropdown-item" href="#">작업</a>
                                             <a class="dropdown-item" href="#">다른 작업</a>
                                         </div>
@@ -649,11 +647,11 @@
                                 </p>
 
                                 <div class="flex flex-wrap items-center gap-2.5">
-                                    <div class="hs-dropdown relative inline-flex [--placement:bottom-end]">
-                                        <button type="button" class="hs-dropdown-toggle btn bg-dark text-white"
+                                    <div class="dropdown hs-dropdown [--placement:bottom-end]">
+                                        <button type="button" class="dropdown-toggle hs-dropdown-toggle btn btn-solid-dark"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             다크 드롭다운
-                                            <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div data-theme="dark" class="hs-dropdown-menu" role="menu"
@@ -684,12 +682,12 @@
                                 </p>
 
                                 <div class="flex flex-wrap items-center gap-2.5">
-                                    <div class="hs-dropdown relative inline-flex [--placement:bottom]">
+                                    <div class="dropdown hs-dropdown [--placement:bottom]">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn bg-secondary hover:bg-secondary-hover text-white"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-solid-secondary"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             중앙 드롭다운
-                                            <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -701,12 +699,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="hs-dropdown relative inline-flex [--placement:top]">
+                                    <div class="dropdown hs-dropdown [--placement:top]">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn bg-secondary hover:bg-secondary-hover text-white"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-solid-secondary"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             중앙 드롭업
-                                            <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
+                                            <i data-icon="tabler:chevron-up" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -731,12 +729,12 @@
                                 </p>
 
                                 <div class="flex flex-wrap items-center gap-2.5">
-                                    <div class="hs-dropdown relative inline-flex">
+                                    <div class="dropdown hs-dropdown">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn bg-secondary hover:bg-secondary-hover text-white"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-solid-secondary"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             기본 드롭다운
-                                            <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -746,12 +744,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="hs-dropdown relative inline-flex [--auto-close:inside]">
+                                    <div class="dropdown hs-dropdown [--auto-close:inside]">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn bg-secondary hover:bg-secondary-hover text-white"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-solid-secondary"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             내부 클릭 가능
-                                            <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -761,12 +759,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="hs-dropdown relative inline-flex [--auto-close:outside]">
+                                    <div class="dropdown hs-dropdown [--auto-close:outside]">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn bg-secondary hover:bg-secondary-hover text-white"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-solid-secondary"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             외부 클릭 가능
-                                            <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -776,12 +774,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="hs-dropdown relative inline-flex [--auto-close:false]">
+                                    <div class="dropdown hs-dropdown [--auto-close:false]">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn bg-secondary hover:bg-secondary-hover text-white"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-solid-secondary"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             수동 닫기
-                                            <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
@@ -803,12 +801,12 @@
                             <div class="card-body">
                                 <p class="text-default-400 mb-4">드롭다운 메뉴 내에 자유로운 형식의 텍스트를 배치하고 간격 유틸리티를 사용하세요. 메뉴 너비를
                                     제한하기 위해 추가적인 크기 조정 스타일이 필요할 수 있습니다.</p>
-                                <div class="hs-dropdown relative inline-flex [--placement:bottom-end]">
+                                <div class="dropdown hs-dropdown [--placement:bottom-end]">
                                     <button type="button"
-                                        class="hs-dropdown-toggle btn bg-primary hover:bg-primary-hover text-white"
+                                        class="dropdown-toggle hs-dropdown-toggle btn btn-solid-primary"
                                         aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                         텍스트 드롭다운
-                                        <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                        <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                     </button>
 
                                     <div class="hs-dropdown-menu w-44 p-4" role="menu" aria-orientation="vertical">
@@ -830,17 +828,17 @@
                                     여백을 주십시오.</p>
                                 <div class="flex flex-wrap items-center gap-2.5">
                                     <div
-                                        class="hs-dropdown relative inline-flex [--auto-close:inside] [--placement:bottom-end]">
+                                        class="dropdown hs-dropdown [--auto-close:inside] [--placement:bottom-end]">
                                         <button type="button"
-                                            class="hs-dropdown-toggle btn bg-secondary hover:bg-secondary-hover text-white"
+                                            class="dropdown-toggle hs-dropdown-toggle btn btn-solid-secondary"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             폼
-                                            <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down text-base"></i>
+                                            <i data-icon="tabler:chevron-down" class="iconify dropdown-icon"></i>
                                         </button>
 
                                         <div class="hs-dropdown-menu min-w-44" role="menu"
                                             aria-orientation="forms-dropdown-menu">
-                                            <form class="px-7.5 py-5">
+                                            <form class="dropdown-form">
                                                 <div class="mb-5">
                                                     <label class="form-label">이메일 주소</label>
                                                     <input class="form-input text-sm" type="email"
@@ -856,12 +854,12 @@
                                                 <div class="mb-4 flex items-center gap-2.5">
                                                     <input type="checkbox" class="form-checkbox shrink-0"
                                                         id="dropdownCheck" />
-                                                    <label for="dropdownCheck" class="text-default-500 ms-1 text-sm">로그인
+                                                    <label for="dropdownCheck" class="dropdown-note">로그인
                                                         상태 유지</label>
                                                 </div>
 
                                                 <button type="submit"
-                                                    class="btn bg-primary text-white hover:bg-primary-hover">로그인</button>
+                                                    class="btn btn-solid-primary">로그인</button>
                                             </form>
                                             <hr class="dropdown-divider" />
                                             <a class="dropdown-item" href="#">처음이신가요? 회원가입</a>

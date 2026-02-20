@@ -107,28 +107,28 @@
                                 <div class="card-body">
                                     <div class="grid md:grid-cols-2 gap-base">
                                         <div class="flex flex-wrap items-center gap-2">
-                                            <button class="btn btn-icon bg-primary">
+                                            <button class="btn btn-icon btn-solid-primary">
                                                 <div class="inline-block size-4 animate-spin rounded-full border-2 border-white border-t-transparent"
                                                     role="status" aria-label="loading">
                                                     <span class="sr-only">로딩 중...</span>
                                                 </div>
                                             </button>
 
-                                            <button class="btn btn-icon bg-primary rounded-full">
+                                            <button class="btn btn-icon btn-solid-primary btn-pill">
                                                 <div class="inline-block size-4 animate-spin rounded-full border-2 border-white border-t-transparent"
                                                     role="status" aria-label="loading">
                                                     <span class="sr-only">로딩 중...</span>
                                                 </div>
                                             </button>
 
-                                            <button class="btn bg-primary">
+                                            <button class="btn btn-solid-primary">
                                                 <div class="inline-block size-4 animate-spin rounded-full border-2 border-white border-t-transparent"
                                                     role="status" aria-label="loading">
                                                     <span class="sr-only">로딩 중...</span>
                                                 </div>
                                             </button>
 
-                                            <button class="btn bg-primary">
+                                            <button class="btn btn-solid-primary">
                                                 <div class="flex items-center gap-3">
                                                     <div class="inline-block size-4 animate-spin rounded-full border-2 border-white border-t-transparent"
                                                         role="status" aria-label="loading">
@@ -140,19 +140,19 @@
                                         </div>
 
                                         <div class="flex flex-wrap items-center gap-2">
-                                            <button class="btn btn-icon bg-primary">
+                                            <button class="btn btn-icon btn-solid-primary">
                                                 <span class="size-4 animate-grow rounded-full bg-white"></span>
                                             </button>
 
-                                            <button class="btn btn-icon bg-primary rounded-full">
+                                            <button class="btn btn-icon btn-solid-primary btn-pill">
                                                 <span class="size-4 animate-grow rounded-full bg-white"></span>
                                             </button>
 
-                                            <button class="btn bg-primary">
+                                            <button class="btn btn-solid-primary">
                                                 <span class="size-4 animate-grow rounded-full bg-white"></span>
                                             </button>
 
-                                            <button class="btn bg-primary">
+                                            <button class="btn btn-solid-primary">
                                                 <div class="flex items-center gap-3">
                                                     <span class="size-4 animate-grow rounded-full bg-white"></span>
                                                     <strong class="text-white">로딩 중...</strong>

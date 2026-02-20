@@ -34,9 +34,9 @@
                                                 </td>
                                                 <td class="flex gap-1.5">
                                                     <button
-                                                        class="btn btn-sm bg-primary text-white hover:bg-primary-hover">수정</button>
+                                                        class="btn btn-sm btn-solid-primary">수정</button>
                                                     <button
-                                                        class="btn btn-sm bg-danger text-white hover:bg-danger-hover">삭제</button>
+                                                        class="btn btn-sm btn-solid-danger">삭제</button>
                                                 </td>
                                             </tr>
 
@@ -51,9 +51,9 @@
                                                 </td>
                                                 <td class="flex gap-1.5">
                                                     <button
-                                                        class="btn btn-sm bg-primary text-white hover:bg-primary-hover">수정</button>
+                                                        class="btn btn-sm btn-solid-primary">수정</button>
                                                     <button
-                                                        class="btn btn-sm bg-danger text-white hover:bg-danger-hover">삭제</button>
+                                                        class="btn btn-sm btn-solid-danger">삭제</button>
                                                 </td>
                                             </tr>
 
@@ -69,9 +69,9 @@
                                                 </td>
                                                 <td class="flex gap-1.5">
                                                     <button
-                                                        class="btn btn-sm bg-primary text-white hover:bg-primary-hover">수정</button>
+                                                        class="btn btn-sm btn-solid-primary">수정</button>
                                                     <button
-                                                        class="btn btn-sm bg-danger text-white hover:bg-danger-hover">삭제</button>
+                                                        class="btn btn-sm btn-solid-danger">삭제</button>
                                                 </td>
                                             </tr>
 
@@ -86,9 +86,9 @@
                                                 </td>
                                                 <td class="flex gap-1.5">
                                                     <button
-                                                        class="btn btn-sm bg-primary text-white hover:bg-primary-hover">수정</button>
+                                                        class="btn btn-sm btn-solid-primary">수정</button>
                                                     <button
-                                                        class="btn btn-sm bg-danger text-white hover:bg-danger-hover">삭제</button>
+                                                        class="btn btn-sm btn-solid-danger">삭제</button>
                                                 </td>
                                             </tr>
 
@@ -103,9 +103,9 @@
                                                 </td>
                                                 <td class="flex gap-1.5">
                                                     <button
-                                                        class="btn btn-sm bg-primary text-white hover:bg-primary-hover">수정</button>
+                                                        class="btn btn-sm btn-solid-primary">수정</button>
                                                     <button
-                                                        class="btn btn-sm bg-danger text-white hover:bg-danger-hover">삭제</button>
+                                                        class="btn btn-sm btn-solid-danger">삭제</button>
                                                 </td>
                                             </tr>
                                         </tbody>

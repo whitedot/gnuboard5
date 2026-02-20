@@ -243,20 +243,20 @@
 
                                 <div class="flex flex-wrap gap-4">
                                     <button type="button"
-                                        class="btn bg-primary hover:bg-primary-hover relative text-white transition-all duration-300">
+                                        class="btn relative transition-all duration-300 btn-solid-primary">
                                         수신함
                                         <span class="badge bg-danger absolute -end-1 -top-1 rounded-full">99+</span>
                                     </button>
 
                                     <button type="button"
-                                        class="btn bg-primary hover:bg-primary-hover relative text-white transition-all duration-300">
+                                        class="btn relative transition-all duration-300 btn-solid-primary">
                                         프로필
                                         <span
                                             class="bg-danger absolute -end-1 -top-1 size-3 rounded-full border border-white px-0.75 py-0.5"></span>
                                     </button>
 
                                     <button type="button"
-                                        class="btn bg-success hover:bg-success-hover text-white transition-all duration-300">
+                                        class="btn btn-solid-success transition-all duration-300">
                                         알림
                                         <span class="badge bg-white text-black">4</span>
                                     </button>

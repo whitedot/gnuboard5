@@ -153,7 +153,7 @@
                                             <h4 class="text-danger mb-2 text-lg font-semibold">알림!</h4>
                                             <p class="mb-4">방금 프라이머리 알림 메시지를 모두 읽으셨습니다. 긴 텍스트는 레이아웃이 콘텐츠 간격을 얼마나 잘 처리하는지
                                                 보여주는 데 도움이 됩니다.</p>
-                                            <button type="button" class="btn bg-danger btn-sm text-white">확인함</button>
+                                            <button type="button" class="btn btn-sm btn-solid-danger">확인함</button>
                                         </div>
                                     </div>
                                 </div>

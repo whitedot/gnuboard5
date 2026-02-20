@@ -126,9 +126,9 @@
                                         </div>
 
                                         <div class="mt-3 flex items-center gap-1">
-                                            <button class="btn btn-sm bg-primary hover:bg-primary-hover text-white">작업
+                                            <button class="btn btn-sm btn-solid-primary">작업
                                                 수행</button>
-                                            <button class="btn btn-sm bg-secondary hover:bg-secondary-hover text-white"
+                                            <button class="btn btn-sm btn-solid-secondary"
                                                 aria-label="Close" data-hs-remove-element="#Custom-toast3">닫기</button>
                                         </div>
                                     </div>

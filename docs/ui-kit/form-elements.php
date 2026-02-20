@@ -523,7 +523,7 @@
                                                 <div class="input-group">
                                                     <input type="text" placeholder="수신자 이름" class="form-input" />
                                                     <button type="button"
-                                                        class="btn bg-dark text-white hover:bg-dark-hover">버튼</button>
+                                                        class="btn btn-solid-dark">버튼</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -606,7 +606,7 @@
                                                 <div class="input-group">
                                                     <div class="hs-dropdown relative inline-flex">
                                                         <button type="button"
-                                                            class="hs-dropdown-toggle btn bg-primary rounded-e-none text-white hover:bg-primary-hover"
+                                                            class="hs-dropdown-toggle btn rounded-e-none btn-solid-primary"
                                                             aria-haspopup="menu" aria-expanded="false"
                                                             aria-label="Dropdown">
                                                             드롭다운 <i
@@ -1270,7 +1270,7 @@
                                                 <div>
                                                     <input type="checkbox" id="toggleSingle" class="peer hidden" />
                                                     <label for="toggleSingle"
-                                                        class="btn border-primary text-primary peer-checked:bg-primary peer-checked:text-white">단일
+                                                        class="btn btn-choice-primary">단일
                                                         토글</label>
                                                 </div>
 
@@ -1279,17 +1279,17 @@
                                                     <div>
                                                         <input type="checkbox" id="toggle1" class="peer hidden" />
                                                         <label for="toggle1"
-                                                            class="btn rounded-e-none border-primary text-primary peer-checked:bg-primary peer-checked:text-white">하나</label>
+                                                            class="btn btn-choice-primary rounded-e-none">하나</label>
                                                     </div>
                                                     <div>
                                                         <input type="checkbox" id="toggle2" class="peer hidden" />
                                                         <label for="toggle2"
-                                                            class="btn rounded-none border-x-0 border-primary text-primary peer-checked:bg-primary peer-checked:text-white">둘</label>
+                                                            class="btn btn-choice-primary rounded-none border-x-0">둘</label>
                                                     </div>
                                                     <div>
                                                         <input type="checkbox" id="toggle3" class="peer hidden" />
                                                         <label for="toggle3"
-                                                            class="btn rounded-s-none border-primary text-primary peer-checked:bg-primary peer-checked:text-white">셋</label>
+                                                            class="btn btn-choice-primary rounded-s-none">셋</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1308,21 +1308,21 @@
                                                     <input type="radio" name="radiotoggle" id="radioLeft"
                                                         class="peer hidden" checked />
                                                     <label for="radioLeft"
-                                                        class="btn rounded-e-none border-secondary text-secondary peer-checked:bg-secondary peer-checked:text-white">왼쪽</label>
+                                                        class="btn btn-choice-secondary rounded-e-none">왼쪽</label>
                                                 </div>
 
                                                 <div>
                                                     <input type="radio" name="radiotoggle" id="radioMiddle"
                                                         class="peer hidden" />
                                                     <label for="radioMiddle"
-                                                        class="btn rounded-none border-x-0 border-secondary text-secondary peer-checked:bg-secondary peer-checked:text-white">가운데</label>
+                                                        class="btn btn-choice-secondary rounded-none border-x-0">가운데</label>
                                                 </div>
 
                                                 <div>
                                                     <input type="radio" name="radiotoggle" id="radioRight"
                                                         class="peer hidden" />
                                                     <label for="radioRight"
-                                                        class="btn rounded-s-none border-secondary text-secondary peer-checked:bg-secondary peer-checked:text-white">오른쪽</label>
+                                                        class="btn btn-choice-secondary rounded-s-none">오른쪽</label>
                                                 </div>
                                             </div>
                                         </div>

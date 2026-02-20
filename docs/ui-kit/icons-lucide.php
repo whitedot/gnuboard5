@@ -358,7 +358,7 @@
 
                             <div class="mt-3 text-center">
                                 <a href="https://tabler.io/icons" target="_blank"
-                                    class="btn bg-danger text-white hover:bg-danger-hover">모든 아이콘 보기</a>
+                                    class="btn btn-solid-danger">모든 아이콘 보기</a>
                             </div>
                         </div>
                         <!-- end card-body-->

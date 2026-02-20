@@ -13,7 +13,7 @@
                                     <div class="hs-tooltip inline-block [--placement:right] [--trigger:click]">
                                         <div class="hs-tooltip-toggle block text-center" tabindex="0">
                                             <button type="button"
-                                                class="btn bg-info hover:bg-info-hover text-white disabled:pointer-events-none disabled:opacity-50">지원
+                                                class="btn btn-solid-info disabled:pointer-events-none disabled:opacity-50">지원
                                                 정보 받기</button>
 
                                             <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible border-default-300 invisible absolute z-70 hidden w-70 rounded-md border bg-white text-start opacity-0 transition-opacity"
@@ -38,7 +38,7 @@
                                     <div class="hs-tooltip inline-block [--placement:right] [--trigger:hover]">
                                         <div class="hs-tooltip-toggle block text-center" tabindex="0">
                                             <button type="button"
-                                                class="btn bg-dark text-white disabled:pointer-events-none disabled:opacity-50">여기에
+                                                class="btn btn-solid-dark disabled:pointer-events-none disabled:opacity-50">여기에
                                                 마우스를 올리세요</button>
 
                                             <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible border-default-300 invisible absolute z-70 hidden w-70 rounded-md border bg-white text-start opacity-0 transition-opacity"
@@ -64,7 +64,7 @@
                                         <div class="hs-tooltip inline-block [--placement:right] [--trigger:click]">
                                             <div class="hs-tooltip-toggle block text-center" tabindex="0">
                                                 <button type="button"
-                                                    class="btn bg-primary hover:bg-primary-hover text-white disabled:pointer-events-none disabled:opacity-50">프라이머리
+                                                    class="btn btn-solid-primary disabled:pointer-events-none disabled:opacity-50">프라이머리
                                                     팝오버</button>
 
                                                 <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible invisible absolute z-70 hidden w-55 text-start text-white opacity-0 transition-opacity"
@@ -82,7 +82,7 @@
                                         <div class="hs-tooltip inline-block [--placement:right] [--trigger:click]">
                                             <div class="hs-tooltip-toggle block text-center" tabindex="0">
                                                 <button type="button"
-                                                    class="btn bg-success hover:bg-success-hover text-white disabled:pointer-events-none disabled:opacity-50">성공
+                                                    class="btn btn-solid-success disabled:pointer-events-none disabled:opacity-50">성공
                                                     팝오버</button>
 
                                                 <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible invisible absolute z-70 hidden w-55 text-start text-white opacity-0 transition-opacity"
@@ -100,7 +100,7 @@
                                         <div class="hs-tooltip inline-block [--placement:right] [--trigger:click]">
                                             <div class="hs-tooltip-toggle block text-center" tabindex="0">
                                                 <button type="button"
-                                                    class="btn bg-danger hover:bg-danger-hover text-white disabled:pointer-events-none disabled:opacity-50">위험
+                                                    class="btn btn-solid-danger disabled:pointer-events-none disabled:opacity-50">위험
                                                     팝오버</button>
 
                                                 <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible invisible absolute z-70 hidden w-55 text-start text-white opacity-0 transition-opacity"
@@ -118,7 +118,7 @@
                                         <div class="hs-tooltip inline-block [--placement:right] [--trigger:click]">
                                             <div class="hs-tooltip-toggle block text-center" tabindex="0">
                                                 <button type="button"
-                                                    class="btn bg-info hover:bg-info-hover text-white disabled:pointer-events-none disabled:opacity-50">정보
+                                                    class="btn btn-solid-info disabled:pointer-events-none disabled:opacity-50">정보
                                                     팝오버</button>
 
                                                 <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible invisible absolute z-70 hidden w-55 text-start text-white opacity-0 transition-opacity"
@@ -136,7 +136,7 @@
                                         <div class="hs-tooltip inline-block [--placement:right] [--trigger:click]">
                                             <div class="hs-tooltip-toggle block text-center" tabindex="0">
                                                 <button type="button"
-                                                    class="btn bg-dark text-white disabled:pointer-events-none disabled:opacity-50">다크
+                                                    class="btn btn-solid-dark disabled:pointer-events-none disabled:opacity-50">다크
                                                     팝오버</button>
 
                                                 <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible invisible absolute z-70 hidden w-55 text-start text-white opacity-0 transition-opacity"
@@ -154,7 +154,7 @@
                                         <div class="hs-tooltip inline-block [--placement:right] [--trigger:click]">
                                             <div class="hs-tooltip-toggle block text-center" tabindex="0">
                                                 <button type="button"
-                                                    class="btn bg-secondary hover:bg-secondary-hover text-white disabled:pointer-events-none disabled:opacity-50">세컨더리
+                                                    class="btn btn-solid-secondary disabled:pointer-events-none disabled:opacity-50">세컨더리
                                                     팝오버</button>
 
                                                 <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible invisible absolute z-70 hidden w-55 text-start text-white opacity-0 transition-opacity"
@@ -183,7 +183,7 @@
                                     <div class="hs-tooltip inline-block [--placement:right] [--trigger:click]">
                                         <div class="hs-tooltip-toggle block text-center" tabindex="0">
                                             <button type="button"
-                                                class="btn bg-primary hover:bg-primary-hover text-white disabled:pointer-events-none disabled:opacity-50">팁
+                                                class="btn btn-solid-primary disabled:pointer-events-none disabled:opacity-50">팁
                                                 보기</button>
 
                                             <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible border-default-300 invisible absolute z-70 hidden w-70 rounded-md border bg-white text-start opacity-0 transition-opacity"
@@ -209,7 +209,7 @@
                                         <div class="hs-tooltip inline-block [--placement:top] [--trigger:click]">
                                             <div class="hs-tooltip-toggle block text-center" tabindex="0">
                                                 <button type="button"
-                                                    class="btn bg-primary hover:bg-primary-hover text-white disabled:pointer-events-none disabled:opacity-50">상단
+                                                    class="btn btn-solid-primary disabled:pointer-events-none disabled:opacity-50">상단
                                                     팝오버</button>
 
                                                 <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible border-default-300 invisible absolute z-70 hidden w-70 rounded-md border bg-white text-start opacity-0 transition-opacity"
@@ -226,7 +226,7 @@
                                         <div class="hs-tooltip inline-block [--placement:bottom] [--trigger:click]">
                                             <div class="hs-tooltip-toggle block text-center" tabindex="0">
                                                 <button type="button"
-                                                    class="btn bg-primary hover:bg-primary-hover text-white disabled:pointer-events-none disabled:opacity-50">하단
+                                                    class="btn btn-solid-primary disabled:pointer-events-none disabled:opacity-50">하단
                                                     팝오버</button>
 
                                                 <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible border-default-300 invisible absolute z-70 hidden w-70 rounded-md border bg-white text-start opacity-0 transition-opacity"
@@ -243,7 +243,7 @@
                                         <div class="hs-tooltip inline-block [--placement:right] [--trigger:click]">
                                             <div class="hs-tooltip-toggle block text-center" tabindex="0">
                                                 <button type="button"
-                                                    class="btn bg-primary hover:bg-primary-hover text-white disabled:pointer-events-none disabled:opacity-50">우측
+                                                    class="btn btn-solid-primary disabled:pointer-events-none disabled:opacity-50">우측
                                                     팝오버</button>
 
                                                 <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible border-default-300 invisible absolute z-70 hidden w-70 rounded-md border bg-white text-start opacity-0 transition-opacity"
@@ -260,7 +260,7 @@
                                         <div class="hs-tooltip inline-block [--placement:left] [--trigger:click]">
                                             <div class="hs-tooltip-toggle block text-center" tabindex="0">
                                                 <button type="button"
-                                                    class="btn bg-primary hover:bg-primary-hover text-white disabled:pointer-events-none disabled:opacity-50">좌측
+                                                    class="btn btn-solid-primary disabled:pointer-events-none disabled:opacity-50">좌측
                                                     팝오버</button>
 
                                                 <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible border-default-300 invisible absolute z-70 hidden w-70 rounded-md border bg-white text-start opacity-0 transition-opacity"
@@ -286,7 +286,7 @@
                                     <div class="hs-tooltip inline-block [--placement:top] [--trigger:click]">
                                         <div class="hs-tooltip-toggle block text-center" tabindex="0">
                                             <button type="button"
-                                                class="btn bg-primary text-white disabled:pointer-events-none disabled:opacity-50"
+                                                class="btn btn-solid-primary disabled:pointer-events-none disabled:opacity-50"
                                                 disabled>비활성화된 버튼</button>
 
                                             <div class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible border-default-300 invisible absolute z-70 hidden w-70 rounded-md border bg-white p-5 text-start opacity-0 transition-opacity"

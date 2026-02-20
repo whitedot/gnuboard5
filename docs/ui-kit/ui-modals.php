@@ -14,29 +14,29 @@
                                     <!-- Standard modal content -->
                                     <div>
                                         <button type="button"
-                                            class="btn bg-primary hover:bg-primary-hover rounded text-white"
+                                            class="btn btn-solid-primary"
                                             aria-haspopup="dialog" aria-expanded="false" aria-controls="standard-modal"
                                             data-hs-overlay="#standard-modal">표준 모달</button>
 
                                         <div id="standard-modal"
-                                            class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
+                                            class="modal-overlay modal-overlay-fade hs-overlay hidden pointer-events-none opacity-0"
                                             role="dialog" tabindex="-1" aria-labelledby="standard-modal-label">
                                             <div
-                                                class="hs-overlay-animation-target m-3 sm:mx-auto sm:w-full sm:max-w-lg">
+                                                class="modal-dialog">
                                                 <div
-                                                    class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                                    class="modal-content">
                                                     <div
-                                                        class="border-default-300 flex items-center justify-between border-b p-6">
-                                                        <h3 id="standard-modal-label" class="text-base font-semibold">
+                                                        class="modal-header">
+                                                        <h3 id="standard-modal-label" class="modal-title">
                                                             모달 제목</h3>
-                                                        <button type="button" aria-label=" Close"
+                                                        <button type="button" class="modal-close" aria-label="Close"
                                                             data-hs-overlay="#standard-modal">
                                                             <span class="sr-only">닫기</span>
                                                             <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                         </button>
                                                     </div>
 
-                                                    <div class="overflow-y-auto card-body">
+                                                    <div class="modal-body">
                                                         <h5 class="mb-2">모달의 텍스트</h5>
                                                         <p class="mb-4">모달 본문에 들어갈 텍스트 예시입니다. 여기에 중요한 정보를 표시할 수 있습니다.
                                                         </p>
@@ -49,13 +49,13 @@
                                                     </div>
 
                                                     <div
-                                                        class="border-default-300 flex items-center justify-end border-t p-4">
+                                                        class="modal-footer">
                                                         <button type="button"
-                                                            class="btn bg-light hover:text-primary m-1"
+                                                            class="btn btn-subtle-light modal-action"
                                                             data-hs-overlay="#standard-modal">닫기</button>
 
                                                         <button type="button"
-                                                            class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
+                                                            class="btn btn-solid-primary modal-action">변경사항
                                                             저장</button>
                                                     </div>
                                                 </div>
@@ -65,29 +65,29 @@
 
                                     <!--  Modal content for the Large example -->
                                     <div>
-                                        <button type="button" class="btn bg-info hover:bg-info-500 rounded text-white"
+                                        <button type="button" class="btn btn-solid-info-strong"
                                             aria-haspopup="dialog" aria-expanded="false"
                                             aria-controls="bs-example-modal-lg"
                                             data-hs-overlay="#bs-example-modal-lg">대형 모달</button>
 
                                         <div id="bs-example-modal-lg"
-                                            class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
+                                            class="modal-overlay modal-overlay-fade hs-overlay hidden pointer-events-none opacity-0"
                                             role="dialog" tabindex="-1" aria-labelledby="bs-example-modal-lg-label">
                                             <div
-                                                class="hs-overlay-animation-target m-3 sm:mx-auto lg:w-full lg:max-w-3xl">
+                                                class="modal-dialog modal-dialog-lg">
                                                 <div
-                                                    class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                                    class="modal-content">
                                                     <div
-                                                        class="border-default-300 flex items-center justify-between border-b p-6">
+                                                        class="modal-header">
                                                         <h3 id="bs-example-modal-lg-label"
-                                                            class="text-base font-semibold">대형 모달</h3>
-                                                        <button type="button" aria-label=" Close"
+                                                            class="modal-title">대형 모달</h3>
+                                                        <button type="button" class="modal-close" aria-label="Close"
                                                             data-hs-overlay="#bs-example-modal-lg">
                                                             <span class="sr-only">닫기</span>
                                                             <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                         </button>
                                                     </div>
-                                                    <div class="overflow-y-auto card-body">내용...</div>
+                                                    <div class="modal-body">내용...</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -96,29 +96,29 @@
                                     <!--  Modal content for the Small example -->
                                     <div>
                                         <button type="button"
-                                            class="btn bg-success rounded text-white hover:bg-emerald-500"
+                                            class="btn btn-solid-success-strong"
                                             aria-haspopup="dialog" aria-expanded="false"
                                             aria-controls="bs-example-modal-sm"
                                             data-hs-overlay="#bs-example-modal-sm">소형 모달</button>
 
                                         <div id="bs-example-modal-sm"
-                                            class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
+                                            class="modal-overlay modal-overlay-fade hs-overlay hidden pointer-events-none opacity-0"
                                             role="dialog" tabindex="-1" aria-labelledby="bs-example-modal-sm-label">
-                                            <div class="m-3 sm:mx-auto lg:w-full lg:max-w-xs">
+                                            <div class="modal-dialog-sm">
                                                 <div
-                                                    class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                                    class="modal-content">
                                                     <div
-                                                        class="border-default-300 flex items-center justify-between border-b p-6">
+                                                        class="modal-header">
                                                         <h3 id="bs-example-modal-sm-label"
-                                                            class="text-base font-semibold">소형 모달</h3>
-                                                        <button type="button" aria-label=" Close"
+                                                            class="modal-title">소형 모달</h3>
+                                                        <button type="button" class="modal-close" aria-label="Close"
                                                             data-hs-overlay="#bs-example-modal-sm">
                                                             <span class="sr-only">닫기</span>
                                                             <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                         </button>
                                                     </div>
 
-                                                    <div class="overflow-y-auto card-body">내용...</div>
+                                                    <div class="modal-body">내용...</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -127,30 +127,30 @@
                                     <!-- Full width modal content -->
                                     <div>
                                         <button type="button"
-                                            class="btn bg-primary hover:bg-primary-hover rounded text-white"
+                                            class="btn btn-solid-primary"
                                             aria-haspopup="dialog" aria-expanded="false"
                                             aria-controls="full-width-modal" data-hs-overlay="#full-width-modal">전체 너비
                                             모달</button>
 
                                         <div id="full-width-modal"
-                                            class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
+                                            class="modal-overlay modal-overlay-fade hs-overlay hidden pointer-events-none opacity-0"
                                             role="dialog" tabindex="-1" aria-labelledby="full-width-modal-label">
                                             <div
-                                                class="hs-overlay-animation-target m-3 sm:mx-auto lg:w-full lg:max-w-full">
+                                                class="modal-dialog modal-dialog-full">
                                                 <div
-                                                    class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                                    class="modal-content">
                                                     <div
-                                                        class="border-default-300 flex items-center justify-between border-b p-6">
-                                                        <h3 id="full-width-modal-label" class="text-base font-semibold">
+                                                        class="modal-header">
+                                                        <h3 id="full-width-modal-label" class="modal-title">
                                                             모달 제목</h3>
-                                                        <button type="button" aria-label=" Close"
+                                                        <button type="button" class="modal-close" aria-label="Close"
                                                             data-hs-overlay="#full-width-modal">
                                                             <span class="sr-only">닫기</span>
                                                             <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                         </button>
                                                     </div>
 
-                                                    <div class="overflow-y-auto card-body">
+                                                    <div class="modal-body">
                                                         <h5 class="mb-2">모달의 텍스트</h5>
                                                         <p class="mb-4">전체 너비를 사용하는 모달입니다. 더 많은 정보를 한눈에 보여줄 때 유용합니다.</p>
                                                         <hr class="border-default-300 my-4" />
@@ -161,13 +161,13 @@
                                                     </div>
 
                                                     <div
-                                                        class="border-default-300 flex items-center justify-end border-t p-4">
+                                                        class="modal-footer">
                                                         <button type="button"
-                                                            class="btn bg-light hover:text-primary m-1"
+                                                            class="btn btn-subtle-light modal-action"
                                                             data-hs-overlay="#full-width-modal">닫기</button>
 
                                                         <button type="button"
-                                                            class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
+                                                            class="btn btn-solid-primary modal-action">변경사항
                                                             저장</button>
                                                     </div>
                                                 </div>
@@ -178,30 +178,30 @@
                                     <!-- Long Content Scroll Modal -->
                                     <div>
                                         <button type="button"
-                                            class="btn bg-secondary hover:bg-secondary-hover rounded text-white"
+                                            class="btn btn-solid-secondary"
                                             aria-haspopup="dialog" aria-expanded="false"
                                             aria-controls="scrollable-modal" data-hs-overlay="#scrollable-modal">스크롤 가능
                                             모달</button>
 
                                         <div id="scrollable-modal"
-                                            class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
+                                            class="modal-overlay modal-overlay-fade hs-overlay hidden pointer-events-none opacity-0"
                                             role="dialog" tabindex="-1" aria-labelledby="scrollable-modal-label">
                                             <div
-                                                class="hs-overlay-animation-target m-3 sm:mx-auto sm:w-full sm:max-w-lg">
+                                                class="modal-dialog">
                                                 <div
-                                                    class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                                    class="modal-content">
                                                     <div
-                                                        class="border-default-300 flex items-center justify-between border-b p-6">
-                                                        <h3 id="scrollable-modal-label" class="text-base font-semibold">
+                                                        class="modal-header">
+                                                        <h3 id="scrollable-modal-label" class="modal-title">
                                                             모달 제목</h3>
-                                                        <button type="button" aria-label=" Close"
+                                                        <button type="button" class="modal-close" aria-label="Close"
                                                             data-hs-overlay="#scrollable-modal">
                                                             <span class="sr-only">닫기</span>
                                                             <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                         </button>
                                                     </div>
 
-                                                    <div class="h-150 overflow-y-auto p-5">
+                                                    <div class="modal-body-scroll">
                                                         <p class="mb-4">긴 콘텐츠를 포함하는 스크롤 가능한 모달의 예시입니다. 본문에 많은 양의 텍스트나
                                                             리스트를 넣어야 할 때 사용합니다.</p>
                                                         <p class="mb-4">사용자가 스크롤을 내려서 전체 내용을 확인할 수 있으며, 헤더와 푸터는 고정되어 있어
@@ -226,13 +226,13 @@
                                                     </div>
 
                                                     <div
-                                                        class="border-default-300 flex items-center justify-end border-t p-4">
+                                                        class="modal-footer">
                                                         <button type="button"
-                                                            class="btn bg-secondary hover:bg-secondary-hover m-1 rounded text-white"
+                                                            class="btn btn-solid-secondary modal-action"
                                                             data-hs-overlay="#scrollable-modal">닫기</button>
 
                                                         <button type="button"
-                                                            class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
+                                                            class="btn btn-solid-primary modal-action">변경사항
                                                             저장</button>
                                                     </div>
                                                 </div>
@@ -258,39 +258,39 @@
                                 <!-- Top modal content -->
                                 <div>
                                     <button type="button"
-                                        class="btn bg-secondary hover:bg-secondary-hover rounded text-white"
+                                        class="btn btn-solid-secondary"
                                         aria-haspopup="dialog" aria-expanded="false" aria-controls="top-modal"
                                         data-hs-overlay="#top-modal">상단 모달</button>
 
                                     <div id="top-modal"
-                                        class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
+                                        class="modal-overlay modal-overlay-fade hs-overlay hidden pointer-events-none opacity-0"
                                         role="dialog" tabindex="-1" aria-labelledby="top-modal-label">
-                                        <div class="hs-overlay-animation-target m-3 sm:mx-auto sm:w-full sm:max-w-lg">
+                                        <div class="modal-dialog">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                                class="modal-content">
                                                 <div
-                                                    class="border-default-300 flex items-center justify-between border-b p-6">
-                                                    <h3 id="top-modal-label" class="text-base font-semibold">모달 제목</h3>
+                                                    class="modal-header">
+                                                    <h3 id="top-modal-label" class="modal-title">모달 제목</h3>
 
-                                                    <button type="button" aria-label=" Close"
+                                                    <button type="button" class="modal-close" aria-label="Close"
                                                         data-hs-overlay="#top-modal">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
                                                 </div>
 
-                                                <div class="overflow-y-auto card-body">
+                                                <div class="modal-body">
                                                     <h5 class="mb-2">모달의 텍스트</h5>
                                                     <p>상단에 위치하는 모달의 예시입니다. 알림이나 빠른 설정 사항을 보여주기에 적합합니다.</p>
                                                 </div>
 
                                                 <div
-                                                    class="border-default-300 flex items-center justify-end border-t p-4">
-                                                    <button type="button" class="btn bg-light hover:text-primary m-1"
+                                                    class="modal-footer">
+                                                    <button type="button" class="btn btn-subtle-light modal-action"
                                                         data-hs-overlay="#top-modal">닫기</button>
 
                                                     <button type="button"
-                                                        class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
+                                                        class="btn btn-solid-primary modal-action">변경사항
                                                         저장</button>
                                                 </div>
                                             </div>
@@ -301,41 +301,41 @@
                                 <!-- Bottom modal content -->
                                 <div>
                                     <button type="button"
-                                        class="btn bg-secondary hover:bg-secondary-hover rounded text-white"
+                                        class="btn btn-solid-secondary"
                                         aria-haspopup="dialog" aria-expanded="false" aria-controls="bottom-modal"
                                         data-hs-overlay="#bottom-modal">하단 모달</button>
 
                                     <div id="bottom-modal"
-                                        class="hs-overlay pointer-events-none fixed start-0 bottom-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto"
+                                        class="modal-overlay-bottom hs-overlay hidden pointer-events-none"
                                         role="dialog" tabindex="-1" aria-labelledby="bottom-modal-label">
                                         <div
-                                            class="hs-overlay-animation-target m-3 flex min-h-[calc(100%-56px)] items-end sm:mx-auto sm:w-full sm:max-w-lg">
+                                            class="modal-dialog-bottom">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                                class="modal-content">
                                                 <div
-                                                    class="border-default-300 flex items-center justify-between border-b p-6">
-                                                    <h3 id="bottom-modal-label" class="text-base font-semibold">
+                                                    class="modal-header">
+                                                    <h3 id="bottom-modal-label" class="modal-title">
                                                         모달 제목</h3>
 
-                                                    <button type="button" aria-label=" Close"
+                                                    <button type="button" class="modal-close" aria-label="Close"
                                                         data-hs-overlay="#bottom-modal">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
                                                 </div>
 
-                                                <div class="overflow-y-auto card-body">
+                                                <div class="modal-body">
                                                     <h5 class="mb-2">모달의 텍스트</h5>
                                                     <p>하단에 위치하는 모달의 예시입니다. 모바일 기기에서의 시트 스타일 UI를 구현할 때 많이 사용됩니다.</p>
                                                 </div>
 
                                                 <div
-                                                    class="border-default-300 flex items-center justify-end border-t p-4">
-                                                    <button type="button" class="btn bg-light hover:text-primary m-1"
+                                                    class="modal-footer">
+                                                    <button type="button" class="btn btn-subtle-light modal-action"
                                                         data-hs-overlay="#bottom-modal">닫기</button>
 
                                                     <button type="button"
-                                                        class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
+                                                        class="btn btn-solid-primary modal-action">변경사항
                                                         저장</button>
                                                 </div>
                                             </div>
@@ -346,41 +346,41 @@
                                 <!-- Center modal content -->
                                 <div>
                                     <button type="button"
-                                        class="btn bg-secondary hover:bg-secondary-hover rounded text-white"
+                                        class="btn btn-solid-secondary"
                                         aria-haspopup="dialog" aria-expanded="false" aria-controls="centermodal"
                                         data-hs-overlay="#centermodal">중앙 모달</button>
 
                                     <div id="centermodal"
-                                        class="hs-overlay pointer-events-none fixed start-0 bottom-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto"
+                                        class="modal-overlay-bottom hs-overlay hidden pointer-events-none"
                                         role="dialog" tabindex="-1" aria-labelledby="centermodal-label">
                                         <div
-                                            class="hs-overlay-animation-target m-3 flex min-h-[calc(100%-56px)] items-center sm:mx-auto sm:w-full sm:max-w-lg">
+                                            class="modal-dialog-center">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                                class="modal-content">
                                                 <div
-                                                    class="border-default-300 flex items-center justify-between border-b p-6">
-                                                    <h3 id="centermodal-label" class="text-base font-semibold">모달 제목
+                                                    class="modal-header">
+                                                    <h3 id="centermodal-label" class="modal-title">모달 제목
                                                     </h3>
 
-                                                    <button type="button" aria-label=" Close"
+                                                    <button type="button" class="modal-close" aria-label="Close"
                                                         data-hs-overlay="#centermodal">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
                                                 </div>
 
-                                                <div class="overflow-y-auto card-body">
+                                                <div class="modal-body">
                                                     <h5 class="mb-2">모달의 텍스트</h5>
                                                     <p>화면 중앙에 정렬되는 기본 스타일의 모달입니다. 가장 보편적으로 사용되는 모달 레이아웃입니다.</p>
                                                 </div>
 
                                                 <div
-                                                    class="border-default-300 flex items-center justify-end border-t p-4">
-                                                    <button type="button" class="btn bg-light hover:text-primary m-1"
+                                                    class="modal-footer">
+                                                    <button type="button" class="btn btn-subtle-light modal-action"
                                                         data-hs-overlay="#centermodal">닫기</button>
 
                                                     <button type="button"
-                                                        class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
+                                                        class="btn btn-solid-primary modal-action">변경사항
                                                         저장</button>
                                                 </div>
                                             </div>
@@ -404,37 +404,37 @@
                                 <!-- Modal Heading -->
                                 <div>
                                     <button type="button"
-                                        class="btn bg-primary hover:bg-primary-hover rounded text-white"
+                                        class="btn btn-solid-primary"
                                         aria-haspopup="dialog" aria-expanded="false" aria-controls="multiple-one"
                                         data-hs-overlay="#multiple-one">다중 모달 시작</button>
 
                                     <div id="multiple-one"
-                                        class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
+                                        class="modal-overlay modal-overlay-fade hs-overlay hidden pointer-events-none opacity-0"
                                         role="dialog" tabindex="-1" aria-labelledby="multiple-one-label">
-                                        <div class="hs-overlay-animation-target m-3 sm:mx-auto sm:w-full sm:max-w-lg">
+                                        <div class="modal-dialog">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                                class="modal-content">
                                                 <div
-                                                    class="border-default-300 flex items-center justify-between border-b p-6">
-                                                    <h3 id="multiple-one-label" class="text-base font-semibold">
+                                                    class="modal-header">
+                                                    <h3 id="multiple-one-label" class="modal-title">
                                                         첫 번째 모달 제목</h3>
 
-                                                    <button type="button" aria-label=" Close"
+                                                    <button type="button" class="modal-close" aria-label="Close"
                                                         data-hs-overlay="#multiple-one">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
                                                 </div>
 
-                                                <div class="overflow-y-auto card-body">
+                                                <div class="modal-body">
                                                     <h5 class="mb-2">단계별 안내</h5>
                                                     <p>연속된 모달을 통해 복잡한 과정을 단계별로 나눠서 설명할 수 있습니다.</p>
                                                 </div>
 
                                                 <div
-                                                    class="border-default-300 flex items-center justify-end border-t p-4">
+                                                    class="modal-footer">
                                                     <button type="button"
-                                                        class="btn bg-primary hover:bg-primary-hover rounded text-white"
+                                                        class="btn btn-solid-primary"
                                                         aria-haspopup="dialog" aria-expanded="false"
                                                         aria-controls="multiple-two" data-hs-overlay="#multiple-two">다음
                                                         단계</button>
@@ -444,32 +444,32 @@
                                     </div>
 
                                     <div id="multiple-two"
-                                        class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
+                                        class="modal-overlay modal-overlay-fade hs-overlay hidden pointer-events-none opacity-0"
                                         role="dialog" tabindex="-1" aria-labelledby="multiple-two-label">
                                         <div class="m-3 sm:mx-auto sm:w-full sm:max-w-lg">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                                class="modal-content">
                                                 <div
-                                                    class="border-default-300 flex items-center justify-between border-b p-6">
-                                                    <h3 id="multiple-two-label" class="text-base font-semibold">
+                                                    class="modal-header">
+                                                    <h3 id="multiple-two-label" class="modal-title">
                                                         두 번째 모달 제목</h3>
 
-                                                    <button type="button" aria-label=" Close"
+                                                    <button type="button" class="modal-close" aria-label="Close"
                                                         data-hs-overlay="#multiple-two">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
                                                 </div>
 
-                                                <div class="overflow-y-auto card-body">
+                                                <div class="modal-body">
                                                     <h5 class="mb-2">완료 단계</h5>
                                                     <p>모든 단계가 완료되었습니다. 최종 확인 후 닫기를 눌러주세요.</p>
                                                 </div>
 
                                                 <div
-                                                    class="border-default-300 flex items-center justify-end border-t p-4">
+                                                    class="modal-footer">
                                                     <button type="button"
-                                                        class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white"
+                                                        class="btn btn-solid-primary modal-action"
                                                         data-hs-overlay="#multiple-two">닫기</button>
                                                 </div>
                                             </div>
@@ -493,37 +493,37 @@
                             <div class="flex flex-wrap gap-2.5">
                                 <div>
                                     <button type="button"
-                                        class="btn bg-secondary hover:bg-secondary-hover rounded text-white"
+                                        class="btn btn-solid-secondary"
                                         aria-haspopup="dialog" aria-expanded="false" aria-controls="exampleModalToggle1"
                                         data-hs-overlay="#exampleModalToggle1">첫 번째 모달 열기</button>
 
                                     <div id="exampleModalToggle1"
-                                        class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
+                                        class="modal-overlay modal-overlay-fade hs-overlay hidden pointer-events-none opacity-0"
                                         role="dialog" tabindex="-1" aria-labelledby="exampleModalToggle1-label">
                                         <div
-                                            class="hs-overlay-animation-target m-3 flex min-h-[calc(100%-56px)] items-center sm:mx-auto sm:w-full sm:max-w-lg">
+                                            class="modal-dialog-center">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                                class="modal-content">
                                                 <div
-                                                    class="border-default-300 flex items-center justify-between border-b p-6">
-                                                    <h3 id="exampleModalToggle1-label" class="text-base font-semibold">
+                                                    class="modal-header">
+                                                    <h3 id="exampleModalToggle1-label" class="modal-title">
                                                         모달 1</h3>
 
-                                                    <button type="button" aria-label=" Close"
+                                                    <button type="button" class="modal-close" aria-label="Close"
                                                         data-hs-overlay="#exampleModalToggle1">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
                                                 </div>
 
-                                                <div class="overflow-y-auto card-body">
+                                                <div class="modal-body">
                                                     <p>아래 버튼을 사용하여 이 모달을 닫고 두 번째 모달을 표시합니다.</p>
                                                 </div>
 
                                                 <div
-                                                    class="border-default-300 flex items-center justify-end border-t p-4">
+                                                    class="modal-footer">
                                                     <button type="button"
-                                                        class="btn bg-primary hover:bg-primary-hover rounded text-white"
+                                                        class="btn btn-solid-primary"
                                                         aria-haspopup="dialog" aria-expanded="false"
                                                         aria-controls="exampleModalToggle2"
                                                         data-hs-overlay="#exampleModalToggle2">
@@ -535,32 +535,32 @@
                                     </div>
 
                                     <div id="exampleModalToggle2"
-                                        class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
+                                        class="modal-overlay modal-overlay-fade hs-overlay hidden pointer-events-none opacity-0"
                                         role="dialog" tabindex="-1" aria-labelledby="exampleModalToggle2-label">
                                         <div
-                                            class="hs-overlay-animation-target m-3 flex min-h-[calc(100%-56px)] items-center sm:mx-auto sm:w-full sm:max-w-lg">
+                                            class="modal-dialog-center">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                                class="modal-content">
                                                 <div
-                                                    class="border-default-300 flex items-center justify-between border-b p-6">
-                                                    <h3 id="exampleModalToggle2-label" class="text-base font-semibold">
+                                                    class="modal-header">
+                                                    <h3 id="exampleModalToggle2-label" class="modal-title">
                                                         모달 2</h3>
 
-                                                    <button type="button" aria-label=" Close"
+                                                    <button type="button" class="modal-close" aria-label="Close"
                                                         data-hs-overlay="#exampleModalToggle2">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
                                                 </div>
 
-                                                <div class="overflow-y-auto card-body">
+                                                <div class="modal-body">
                                                     <p>이 모달을 닫고 다시 첫 번째 모달로 돌아갑니다.</p>
                                                 </div>
 
                                                 <div
-                                                    class="border-default-300 flex items-center justify-end border-t p-4">
+                                                    class="modal-footer">
                                                     <button type="button"
-                                                        class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white"
+                                                        class="btn btn-solid-primary modal-action"
                                                         data-hs-overlay="#exampleModalToggle1">첫 번째로 돌아가기</button>
                                                 </div>
                                             </div>
@@ -579,44 +579,44 @@
                         </div>
 
                         <div class="card-body">
-                            <p class="text-defa mb-4">사용자의 뷰포트 전체를 덮는 모달을 띄우는 옵션입니다.</p>
+                            <p class="text-default-400 mb-4">사용자의 뷰포트 전체를 덮는 모달을 띄우는 옵션입니다.</p>
                             <div class="flex flex-wrap gap-2.5">
                                 <!-- Full Screen Modal -->
                                 <div>
                                     <button type="button"
-                                        class="btn bg-primary hover:bg-primary-hover rounded text-white"
+                                        class="btn btn-solid-primary"
                                         aria-haspopup="dialog" aria-expanded="false"
                                         aria-controls="fullscreeexampleModal"
                                         data-hs-overlay="#fullscreeexampleModal">전체 화면 모달</button>
 
                                     <div id="fullscreeexampleModal"
-                                        class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all"
+                                        class="modal-overlay modal-overlay-fade hs-overlay hidden pointer-events-none opacity-0"
                                         role="dialog" tabindex="-1" aria-labelledby="fullscreeexampleModal-label">
                                         <div
-                                            class="hs-overlay-animation-target h-full w-full max-h-full max-w-full">
+                                            class="modal-dialog-fluid">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex h-full w-full max-h-full flex-col rounded-none border-0 card">
+                                                class="modal-content-fullscreen">
                                                 <div
-                                                    class="border-default-300 flex items-center justify-between border-b p-6">
+                                                    class="modal-header">
                                                     <h3 id="fullscreeexampleModal-label"
-                                                        class="text-base font-semibold">전체 화면 모달</h3>
+                                                        class="modal-title">전체 화면 모달</h3>
 
-                                                    <button type="button" aria-label=" Close"
+                                                    <button type="button" class="modal-close" aria-label="Close"
                                                         data-hs-overlay="#fullscreeexampleModal">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
                                                 </div>
 
-                                                <div class="h-full overflow-y-auto p-5">내용...</div>
+                                                <div class="modal-body-fill">내용...</div>
 
                                                 <div
-                                                    class="border-default-300 flex items-center justify-end border-t p-4">
-                                                    <button type="button" class="btn bg-light hover:text-primary m-1"
+                                                    class="modal-footer">
+                                                    <button type="button" class="btn btn-subtle-light modal-action"
                                                         data-hs-overlay="#fullscreeexampleModal">닫기</button>
 
                                                     <button type="button"
-                                                        class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
+                                                        class="btn btn-solid-primary modal-action">변경사항
                                                         저장</button>
                                                 </div>
                                             </div>
@@ -627,7 +627,7 @@
                                 <!-- Full screen below sm -->
                                 <div>
                                     <button type="button"
-                                        class="btn bg-primary hover:bg-primary-hover rounded text-white"
+                                        class="btn btn-solid-primary"
                                         aria-haspopup="dialog" aria-expanded="false"
                                         aria-controls="exampleModalFullscreenSm"
                                         data-hs-overlay="#exampleModalFullscreenSm">
@@ -635,33 +635,33 @@
                                     </button>
 
                                     <div id="exampleModalFullscreenSm"
-                                        class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto"
+                                        class="modal-overlay hs-overlay hidden pointer-events-none"
                                         role="dialog" tabindex="-1" aria-labelledby="exampleModalFullscreenSm-label">
                                         <div
-                                            class="hs-overlay-open:mt-0 hs-overlay-animation-target hs-overlay-open:opacity-100 hs-overlay-open:duration-500 sm:hs-overlay-open:mt-10 mt-0 h-full w-full max-h-full max-w-full opacity-0 transition-all sm:mx-auto sm:mt-0 sm:h-auto sm:max-h-none sm:max-w-lg">
+                                            class="modal-dialog-responsive sm:hs-overlay-open:mt-10 sm:mx-auto sm:mt-0 sm:h-auto sm:max-h-none sm:max-w-lg">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex h-full w-full max-h-full max-w-full flex-col rounded-md border card">
+                                                class="modal-content-fluid rounded-md border">
                                                 <div
-                                                    class="border-default-300 flex items-center justify-between border-b p-6">
+                                                    class="modal-header">
                                                     <h3 id="exampleModalFullscreenSm-label"
-                                                        class="text-base font-semibold">sm 미만에서 전체 화면</h3>
+                                                        class="modal-title">sm 미만에서 전체 화면</h3>
 
-                                                    <button type="button" aria-label="Close"
+                                                    <button type="button" class="modal-close" aria-label="Close"
                                                         data-hs-overlay="#exampleModalFullscreenSm">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
                                                 </div>
 
-                                                <div class="h-full overflow-y-auto p-5">내용...</div>
+                                                <div class="modal-body-fill">내용...</div>
 
                                                 <div
-                                                    class="border-default-300 flex items-center justify-end border-t p-4">
-                                                    <button type="button" class="btn bg-light hover:text-primary m-1"
+                                                    class="modal-footer">
+                                                    <button type="button" class="btn btn-subtle-light modal-action"
                                                         data-hs-overlay="#exampleModalFullscreenSm">닫기</button>
 
                                                     <button type="button"
-                                                        class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
+                                                        class="btn btn-solid-primary modal-action">변경사항
                                                         저장</button>
                                                 </div>
                                             </div>
@@ -672,7 +672,7 @@
                                 <!-- Full screen below md -->
                                 <div>
                                     <button type="button"
-                                        class="btn bg-primary hover:bg-primary-hover rounded text-white"
+                                        class="btn btn-solid-primary"
                                         aria-haspopup="dialog" aria-expanded="false"
                                         aria-controls="exampleModalFullscreenMd"
                                         data-hs-overlay="#exampleModalFullscreenMd">
@@ -680,33 +680,33 @@
                                     </button>
 
                                     <div id="exampleModalFullscreenMd"
-                                        class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto"
+                                        class="modal-overlay hs-overlay hidden pointer-events-none"
                                         role="dialog" tabindex="-1" aria-labelledby="exampleModalFullscreenMd-label">
                                         <div
-                                            class="hs-overlay-open:mt-0 hs-overlay-animation-target hs-overlay-open:opacity-100 hs-overlay-open:duration-500 md:hs-overlay-open:mt-10 mt-0 h-full w-full max-h-full max-w-full opacity-0 transition-all md:mx-auto md:mt-0 md:h-auto md:max-h-none md:max-w-lg">
+                                            class="modal-dialog-responsive md:hs-overlay-open:mt-10 md:mx-auto md:mt-0 md:h-auto md:max-h-none md:max-w-lg">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex h-full w-full max-h-full max-w-full flex-col card md:h-auto md:max-h-none md:max-w-lg md:rounded-xl md:border md:shadow-2xs">
+                                                class="modal-content-fluid md:h-auto md:max-h-none md:max-w-lg md:rounded-xl md:border md:shadow-2xs">
                                                 <div
-                                                    class="border-default-300 flex items-center justify-between border-b p-6">
+                                                    class="modal-header">
                                                     <h3 id="exampleModalFullscreenMd-label"
-                                                        class="text-base font-semibold">md 미만에서 전체 화면</h3>
+                                                        class="modal-title">md 미만에서 전체 화면</h3>
 
-                                                    <button type="button" aria-label="Close"
+                                                    <button type="button" class="modal-close" aria-label="Close"
                                                         data-hs-overlay="#exampleModalFullscreenMd">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
                                                 </div>
 
-                                                <div class="h-full overflow-y-auto p-5">내용...</div>
+                                                <div class="modal-body-fill">내용...</div>
 
                                                 <div
-                                                    class="border-default-300 flex items-center justify-end border-t p-4">
-                                                    <button type="button" class="btn bg-light hover:text-primary m-1"
+                                                    class="modal-footer">
+                                                    <button type="button" class="btn btn-subtle-light modal-action"
                                                         data-hs-overlay="#exampleModalFullscreenMd">닫기</button>
 
                                                     <button type="button"
-                                                        class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
+                                                        class="btn btn-solid-primary modal-action">변경사항
                                                         저장</button>
                                                 </div>
                                             </div>
@@ -717,7 +717,7 @@
                                 <!-- Full screen below lg -->
                                 <div>
                                     <button type="button"
-                                        class="btn bg-primary hover:bg-primary-hover rounded text-white"
+                                        class="btn btn-solid-primary"
                                         aria-haspopup="dialog" aria-expanded="false"
                                         aria-controls="exampleModalFullscreenLg"
                                         data-hs-overlay="#exampleModalFullscreenLg">
@@ -725,33 +725,33 @@
                                     </button>
 
                                     <div id="exampleModalFullscreenLg"
-                                        class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto"
+                                        class="modal-overlay hs-overlay hidden pointer-events-none"
                                         role="dialog" tabindex="-1" aria-labelledby="exampleModalFullscreenLg-label">
                                         <div
-                                            class="hs-overlay-open:mt-0 hs-overlay-animation-target hs-overlay-open:opacity-100 hs-overlay-open:duration-500 lg:hs-overlay-open:mt-10 mt-0 h-full w-full max-h-full max-w-full opacity-0 transition-all lg:mx-auto lg:mt-0 lg:h-auto lg:max-h-none lg:max-w-lg">
+                                            class="modal-dialog-responsive lg:hs-overlay-open:mt-10 lg:mx-auto lg:mt-0 lg:h-auto lg:max-h-none lg:max-w-lg">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex h-full w-full max-h-full max-w-full flex-col card lg:h-auto lg:max-h-none lg:max-w-lg lg:rounded-xl lg:border lg:shadow-2xs">
+                                                class="modal-content-fluid lg:h-auto lg:max-h-none lg:max-w-lg lg:rounded-xl lg:border lg:shadow-2xs">
                                                 <div
-                                                    class="border-default-300 flex items-center justify-between border-b p-6">
+                                                    class="modal-header">
                                                     <h3 id="exampleModalFullscreenLg-label"
-                                                        class="text-base font-semibold">lg 미만에서 전체 화면</h3>
+                                                        class="modal-title">lg 미만에서 전체 화면</h3>
 
-                                                    <button type="button" aria-label="Close"
+                                                    <button type="button" class="modal-close" aria-label="Close"
                                                         data-hs-overlay="#exampleModalFullscreenLg">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
                                                 </div>
 
-                                                <div class="h-full overflow-y-auto p-5">내용...</div>
+                                                <div class="modal-body-fill">내용...</div>
 
                                                 <div
-                                                    class="border-default-300 flex items-center justify-end border-t p-4">
-                                                    <button type="button" class="btn bg-light hover:text-primary m-1"
+                                                    class="modal-footer">
+                                                    <button type="button" class="btn btn-subtle-light modal-action"
                                                         data-hs-overlay="#exampleModalFullscreenLg">닫기</button>
 
                                                     <button type="button"
-                                                        class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
+                                                        class="btn btn-solid-primary modal-action">변경사항
                                                         저장</button>
                                                 </div>
                                             </div>
@@ -762,7 +762,7 @@
                                 <!-- Full screen below xl -->
                                 <div>
                                     <button type="button"
-                                        class="btn bg-primary hover:bg-primary-hover rounded text-white"
+                                        class="btn btn-solid-primary"
                                         aria-haspopup="dialog" aria-expanded="false"
                                         aria-controls="exampleModalFullscreenXl"
                                         data-hs-overlay="#exampleModalFullscreenXl">
@@ -770,33 +770,33 @@
                                     </button>
 
                                     <div id="exampleModalFullscreenXl"
-                                        class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto"
+                                        class="modal-overlay hs-overlay hidden pointer-events-none"
                                         role="dialog" tabindex="-1" aria-labelledby="exampleModalFullscreenXl-label">
                                         <div
-                                            class="hs-overlay-open:mt-0 hs-overlay-animation-target hs-overlay-open:opacity-100 hs-overlay-open:duration-500 xl:hs-overlay-open:mt-10 mt-0 h-full w-full max-h-full max-w-full opacity-0 transition-all xl:mx-auto xl:mt-0 xl:h-auto xl:max-h-none xl:max-w-xl">
+                                            class="modal-dialog-responsive xl:hs-overlay-open:mt-10 xl:mx-auto xl:mt-0 xl:h-auto xl:max-h-none xl:max-w-xl">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex h-full w-full max-h-full max-w-full flex-col card xl:h-auto xl:max-h-none xl:max-w-lg xl:rounded-xl xl:border xl:shadow-2xs">
+                                                class="modal-content-fluid xl:h-auto xl:max-h-none xl:max-w-lg xl:rounded-xl xl:border xl:shadow-2xs">
                                                 <div
-                                                    class="border-default-300 flex items-center justify-between border-b p-6">
+                                                    class="modal-header">
                                                     <h3 id="exampleModalFullscreenXl-label"
-                                                        class="text-base font-semibold">xl 미만에서 전체 화면</h3>
+                                                        class="modal-title">xl 미만에서 전체 화면</h3>
 
-                                                    <button type="button" aria-label="Close"
+                                                    <button type="button" class="modal-close" aria-label="Close"
                                                         data-hs-overlay="#exampleModalFullscreenXl">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
                                                 </div>
 
-                                                <div class="h-full overflow-y-auto p-5">내용...</div>
+                                                <div class="modal-body-fill">내용...</div>
 
                                                 <div
-                                                    class="border-default-300 flex items-center justify-end border-t p-4">
-                                                    <button type="button" class="btn bg-light hover:text-primary m-1"
+                                                    class="modal-footer">
+                                                    <button type="button" class="btn btn-subtle-light modal-action"
                                                         data-hs-overlay="#exampleModalFullscreenXl">닫기</button>
 
                                                     <button type="button"
-                                                        class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
+                                                        class="btn btn-solid-primary modal-action">변경사항
                                                         저장</button>
                                                 </div>
                                             </div>
@@ -807,7 +807,7 @@
                                 <!-- Full screen below xxl -->
                                 <div>
                                     <button type="button"
-                                        class="btn bg-primary hover:bg-primary-hover rounded text-white"
+                                        class="btn btn-solid-primary"
                                         aria-haspopup="dialog" aria-expanded="false"
                                         aria-controls="exampleModalFullscreenXxl"
                                         data-hs-overlay="#exampleModalFullscreenXxl">
@@ -815,33 +815,33 @@
                                     </button>
 
                                     <div id="exampleModalFullscreenXxl"
-                                        class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto"
+                                        class="modal-overlay hs-overlay hidden pointer-events-none"
                                         role="dialog" tabindex="-1" aria-labelledby="exampleModalFullscreenXxl-label">
                                         <div
-                                            class="hs-overlay-open:mt-0 hs-overlay-animation-target hs-overlay-open:opacity-100 hs-overlay-open:duration-500 xl:hs-overlay-open:mt-10 mt-0 h-full w-full max-h-full max-w-full opacity-0 transition-all xl:mx-auto xl:mt-0 xl:h-auto xl:max-h-none xl:max-w-xl">
+                                            class="modal-dialog-responsive xl:hs-overlay-open:mt-10 xl:mx-auto xl:mt-0 xl:h-auto xl:max-h-none xl:max-w-xl">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex h-full w-full max-h-full max-w-full flex-col card xl:h-auto xl:max-h-none xl:max-w-lg xl:rounded-xl xl:border xl:shadow-2xs">
+                                                class="modal-content-fluid xl:h-auto xl:max-h-none xl:max-w-lg xl:rounded-xl xl:border xl:shadow-2xs">
                                                 <div
-                                                    class="border-default-300 flex items-center justify-between border-b p-6">
+                                                    class="modal-header">
                                                     <h3 id="exampleModalFullscreenXxl-label"
-                                                        class="text-base font-semibold">xxl 미만에서 전체 화면</h3>
+                                                        class="modal-title">xxl 미만에서 전체 화면</h3>
 
-                                                    <button type="button" aria-label="Close"
+                                                    <button type="button" class="modal-close" aria-label="Close"
                                                         data-hs-overlay="#exampleModalFullscreenXxl">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
                                                 </div>
 
-                                                <div class="h-full overflow-y-auto p-5">내용...</div>
+                                                <div class="modal-body-fill">내용...</div>
 
                                                 <div
-                                                    class="border-default-300 flex items-center justify-end border-t p-4">
-                                                    <button type="button" class="btn bg-light hover:text-primary m-1"
+                                                    class="modal-footer">
+                                                    <button type="button" class="btn btn-subtle-light modal-action"
                                                         data-hs-overlay="#exampleModalFullscreenXxl">닫기</button>
 
                                                     <button type="button"
-                                                        class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
+                                                        class="btn btn-solid-primary modal-action">변경사항
                                                         저장</button>
                                                 </div>
                                             </div>
@@ -864,39 +864,39 @@
                             <div class="flex flex-wrap gap-2.5">
                                 <!-- Static Backdrop modal -->
                                 <div>
-                                    <button type="button" class="btn bg-info hover:bg-info-hover rounded text-white"
+                                    <button type="button" class="btn btn-solid-info"
                                         aria-haspopup="dialog" aria-expanded="false" aria-controls="staticBackdrop"
                                         data-hs-overlay="#staticBackdrop">고정 배경 모달</button>
 
                                     <div id="staticBackdrop"
-                                        class="hs-overlay [--overlay-backdrop:static] hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto opacity-0 transition-all" data-hs-overlay-static="true"
+                                        class="modal-overlay modal-overlay-fade hs-overlay hidden pointer-events-none opacity-0 [--overlay-backdrop:static]" data-hs-overlay-static="true"
                                         role="dialog" tabindex="-1" aria-labelledby="staticBackdrop-label">
-                                        <div class="hs-overlay-animation-target m-3 sm:mx-auto sm:w-full sm:max-w-lg">
+                                        <div class="modal-dialog">
                                             <div
-                                                class="border-default-300 pointer-events-auto flex flex-col rounded-md border card">
+                                                class="modal-content">
                                                 <div
-                                                    class="border-default-300 flex items-center justify-between border-b p-6">
-                                                    <h3 id="staticBackdrop-label" class="text-base font-semibold">
+                                                    class="modal-header">
+                                                    <h3 id="staticBackdrop-label" class="modal-title">
                                                         모달 제목</h3>
 
-                                                    <button type="button" aria-label=" Close"
+                                                    <button type="button" class="modal-close" aria-label="Close"
                                                         data-hs-overlay="#staticBackdrop">
                                                         <span class="sr-only">닫기</span>
                                                         <i data-icon="tabler:x" class="iconify tabler--x text-xl"></i>
                                                     </button>
                                                 </div>
 
-                                                <div class="overflow-y-auto card-body">
+                                                <div class="modal-body">
                                                     <p>모달 외부를 클릭해도 닫히지 않습니다. ESC 키를 눌러도 닫히지 않도록 설정할 수 있습니다.</p>
                                                 </div>
 
-                                                <div class="border-default-300 flex items-center justify-end border-t p-4">
+                                                <div class="modal-footer">
                                                     <button type="button"
-                                                        class="btn bg-secondary hover:bg-secondary-hover m-1 rounded text-white"
+                                                        class="btn btn-solid-secondary modal-action"
                                                         data-hs-overlay="#staticBackdrop">닫기</button>
 
                                                     <button type="button"
-                                                        class="btn bg-primary hover:bg-primary-hover m-1 rounded text-white">변경사항
+                                                        class="btn btn-solid-primary modal-action">변경사항
                                                         저장</button>
                                                 </div>
                                             </div>

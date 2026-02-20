@@ -6,7 +6,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">내비게이션 바 예제</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary">
+                                <button class="btn size-6 text-dark btn-subtle-light btn-pill">
                                     <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
                                 </button>
                             </div>
@@ -108,7 +108,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">중첩된 내비게이션 예제</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary">
+                                <button class="btn size-6 text-dark btn-subtle-light btn-pill">
                                     <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
                                 </button>
                             </div>
@@ -237,7 +237,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">내비게이션 예제 (목록 그룹)</h4>
-                                <button class="btn size-6 rounded-full bg-light text-dark hover:text-primary">
+                                <button class="btn size-6 text-dark btn-subtle-light btn-pill">
                                     <i data-icon="tabler:chevron-up" class="iconify tabler--chevron-up text-base"></i>
                                 </button>
                             </div>

@@ -71,15 +71,6 @@
         --g3: var(--color-yellow-200);
     }
 
-    [data-theme="dark"] .btn.bg-light {
-        background-color: color-mix(in oklab, var(--color-light-hover) 22%, transparent);
-    }
-
-    [data-theme="dark"] .btn.bg-light:hover,
-    [data-theme="dark"] .btn.bg-light:focus,
-    [data-theme="dark"] .btn.bg-light:focus-visible {
-        background-color: color-mix(in oklab, var(--color-light-hover) 30%, transparent);
-    }
 </style>
 
 <div class="container-fluid">
@@ -93,24 +84,26 @@
                                 <p class="text-default-400 mb-4">
                                     <code>.btn</code> 클래스를 <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, 또는
                                     <code>&lt;input&gt;</code> 요소에 사용하여 스타일이 적용된 버튼을 빠르게 생성할 수 있습니다.
+                                    실무에서는 <code>.btn-solid-*</code>, <code>.btn-outline-*</code>, <code>.btn-soft-*</code>,
+                                    <code>.btn-ghost-*</code> 시맨틱 클래스를 권장합니다.
                                 </p>
 
                                 <div class="flex flex-wrap gap-2.5">
                                     <button type="button" class="btn border-default-300">기본</button>
                                     <button type="button"
-                                        class="btn bg-primary hover:bg-primary-hover text-white">프라이머리</button>
+                                        class="btn btn-solid-primary">프라이머리</button>
                                     <button type="button"
-                                        class="btn bg-secondary hover:bg-secondary-hover text-white">세컨더리</button>
+                                        class="btn btn-solid-secondary">세컨더리</button>
                                     <button type="button"
-                                        class="btn bg-success hover:bg-success-hover text-white">성공</button>
+                                        class="btn btn-solid-success">성공</button>
                                     <button type="button"
-                                        class="btn bg-danger hover:bg-danger-hover text-white">위험</button>
+                                        class="btn btn-solid-danger">위험</button>
                                     <button type="button"
-                                        class="btn bg-warning hover:bg-warning-hover text-white">경고</button>
-                                    <button type="button" class="btn bg-info hover:bg-info-hover text-white">정보</button>
+                                        class="btn btn-solid-warning">경고</button>
+                                    <button type="button" class="btn btn-solid-info">정보</button>
                                     <button type="button"
-                                        class="btn bg-light text-dark hover:bg-light-hover">라이트</button>
-                                    <button type="button" class="btn bg-dark hover:bg-dark-hover text-white">다크</button>
+                                        class="btn btn-solid-light">라이트</button>
+                                    <button type="button" class="btn btn-solid-dark">다크</button>
                                 </div>
                             </div>
                         </div>
@@ -129,23 +122,23 @@
                             </p>
 
                             <div class="flex flex-wrap gap-2.5">
-                                <button type="button" class="btn border-default-300 rounded-full">기본</button>
+                                <button type="button" class="btn border-default-300 btn-pill">기본</button>
                                 <button type="button"
-                                    class="btn bg-primary hover:bg-primary-hover rounded-full text-white">프라이머리</button>
+                                    class="btn btn-solid-primary btn-pill">프라이머리</button>
                                 <button type="button"
-                                    class="btn bg-secondary hover:bg-secondary-hover rounded-full text-white">세컨더리</button>
+                                    class="btn btn-solid-secondary btn-pill">세컨더리</button>
                                 <button type="button"
-                                    class="btn bg-success hover:bg-success-hover rounded-full text-white">성공</button>
+                                    class="btn btn-solid-success btn-pill">성공</button>
                                 <button type="button"
-                                    class="btn bg-danger hover:bg-danger-hover rounded-full text-white">위험</button>
+                                    class="btn btn-solid-danger btn-pill">위험</button>
                                 <button type="button"
-                                    class="btn bg-warning hover:bg-warning-hover rounded-full text-white">경고</button>
+                                    class="btn btn-solid-warning btn-pill">경고</button>
                                 <button type="button"
-                                    class="btn bg-info hover:bg-info-hover rounded-full text-white">정보</button>
+                                    class="btn btn-solid-info btn-pill">정보</button>
                                 <button type="button"
-                                    class="btn bg-light text-dark hover:bg-light-hover rounded-full">라이트</button>
+                                    class="btn btn-solid-light btn-pill">라이트</button>
                                 <button type="button"
-                                    class="btn bg-dark hover:bg-dark-hover rounded-full text-white">다크</button>
+                                    class="btn btn-solid-dark btn-pill">다크</button>
                             </div>
                         </div>
                         <!-- end card-body-->
@@ -159,26 +152,26 @@
 
                         <div class="card-body">
                             <p class="text-default-400 mb-4">
-                                <code>.border-*</code> 클래스를 사용하여 유색 테두리가 있는 버튼을 만듭니다.
+                                <code>.btn-outline-*</code> 클래스를 사용하여 유색 테두리가 있는 버튼을 만듭니다.
                             </p>
 
                             <div class="flex flex-wrap gap-2.5">
                                 <button type="button"
-                                    class="btn border-primary text-primary hover:bg-primary hover:text-white">프라이머리</button>
+                                    class="btn btn-outline-primary">프라이머리</button>
                                 <button type="button"
-                                    class="btn border-secondary text-secondary hover:bg-secondary hover:text-white">세컨더리</button>
+                                    class="btn btn-outline-secondary">세컨더리</button>
                                 <button type="button"
-                                    class="btn border-success text-success hover:bg-success hover:text-white">성공</button>
+                                    class="btn btn-outline-success">성공</button>
                                 <button type="button"
-                                    class="btn border-danger text-danger hover:bg-danger hover:text-white">위험</button>
+                                    class="btn btn-outline-danger">위험</button>
                                 <button type="button"
-                                    class="btn border-warning text-warning hover:bg-warning hover:text-white">경고</button>
+                                    class="btn btn-outline-warning">경고</button>
                                 <button type="button"
-                                    class="btn border-info text-info hover:bg-info hover:text-white">정보</button>
+                                    class="btn btn-outline-info">정보</button>
                                 <button type="button"
-                                    class="btn border-light text-dark hover:bg-light hover:text-dark">라이트</button>
+                                    class="btn btn-outline-light">라이트</button>
                                 <button type="button"
-                                    class="btn border-dark text-dark hover:bg-dark hover:text-white">다크</button>
+                                    class="btn btn-outline-dark">다크</button>
                             </div>
                         </div>
                         <!-- end card-body-->
@@ -197,21 +190,21 @@
 
                             <div class="flex flex-wrap gap-2.5">
                                 <button type="button"
-                                    class="btn border-primary text-primary hover:bg-primary rounded-full hover:text-white">프라이머리</button>
+                                    class="btn btn-outline-primary btn-pill">프라이머리</button>
                                 <button type="button"
-                                    class="btn border-secondary text-secondary hover:bg-secondary rounded-full hover:text-white">세컨더리</button>
+                                    class="btn btn-outline-secondary btn-pill">세컨더리</button>
                                 <button type="button"
-                                    class="btn border-success text-success hover:bg-success rounded-full hover:text-white">성공</button>
+                                    class="btn btn-outline-success btn-pill">성공</button>
                                 <button type="button"
-                                    class="btn border-danger text-danger hover:bg-danger rounded-full hover:text-white">위험</button>
+                                    class="btn btn-outline-danger btn-pill">위험</button>
                                 <button type="button"
-                                    class="btn border-warning text-warning hover:bg-warning rounded-full hover:text-white">경고</button>
+                                    class="btn btn-outline-warning btn-pill">경고</button>
                                 <button type="button"
-                                    class="btn border-info text-info hover:bg-info rounded-full hover:text-white">정보</button>
+                                    class="btn btn-outline-info btn-pill">정보</button>
                                 <button type="button"
-                                    class="btn border-light text-dark hover:bg-light hover:text-dark rounded-full">라이트</button>
+                                    class="btn btn-outline-light btn-pill">라이트</button>
                                 <button type="button"
-                                    class="btn border-dark text-dark hover:bg-dark rounded-full hover:text-white">다크</button>
+                                    class="btn btn-outline-dark btn-pill">다크</button>
                             </div>
                         </div>
                         <!-- end card-body-->
@@ -225,24 +218,24 @@
 
                         <div class="card-body">
                             <p class="text-default-400 mb-4">
-                                <code>.bg-*/15</code> 클래스를 사용하여 부드럽고 색조가 있는 배경색의 버튼을 만듭니다.
+                                <code>.btn-soft-*</code> 클래스를 사용하여 부드럽고 색조가 있는 배경색의 버튼을 만듭니다.
                             </p>
 
                             <div class="flex flex-wrap gap-2.5">
                                 <button type="button"
-                                    class="btn text-primary bg-primary/15 hover:bg-primary hover:text-white">프라이머리</button>
+                                    class="btn btn-soft-primary">프라이머리</button>
                                 <button type="button"
-                                    class="btn text-secondary bg-secondary/15 hover:bg-secondary hover:text-white">세컨더리</button>
+                                    class="btn btn-soft-secondary">세컨더리</button>
                                 <button type="button"
-                                    class="btn text-success bg-success/15 hover:bg-success hover:text-white">성공</button>
+                                    class="btn btn-soft-success">성공</button>
                                 <button type="button"
-                                    class="btn text-danger bg-danger/15 hover:bg-danger hover:text-white">위험</button>
+                                    class="btn btn-soft-danger">위험</button>
                                 <button type="button"
-                                    class="btn text-warning bg-warning/15 hover:bg-warning hover:text-white">경고</button>
+                                    class="btn btn-soft-warning">경고</button>
                                 <button type="button"
-                                    class="btn text-info bg-info/15 hover:bg-info hover:text-white">정보</button>
+                                    class="btn btn-soft-info">정보</button>
                                 <button type="button"
-                                    class="btn text-dark bg-dark/15 hover:bg-dark hover:text-white">다크</button>
+                                    class="btn btn-soft-dark">다크</button>
                             </div>
                         </div>
                         <!-- end card-body-->
@@ -256,24 +249,24 @@
 
                         <div class="card-body">
                             <p class="text-default-400 mb-4">
-                                <code>.bg-*/15</code>와 <code>.rounded-full</code>을 결합하여 부드러운 알약 모양의 버튼을 만듭니다.
+                                <code>.btn-soft-*</code>와 <code>.btn-pill</code>을 결합하여 부드러운 알약 모양의 버튼을 만듭니다.
                             </p>
 
                             <div class="flex flex-wrap gap-2.5">
                                 <button type="button"
-                                    class="btn text-primary bg-primary/15 hover:bg-primary rounded-full hover:text-white">프라이머리</button>
+                                    class="btn btn-soft-primary btn-pill">프라이머리</button>
                                 <button type="button"
-                                    class="btn text-secondary bg-secondary/15 hover:bg-secondary rounded-full hover:text-white">세컨더리</button>
+                                    class="btn btn-soft-secondary btn-pill">세컨더리</button>
                                 <button type="button"
-                                    class="btn text-success bg-success/15 hover:bg-success rounded-full hover:text-white">성공</button>
+                                    class="btn btn-soft-success btn-pill">성공</button>
                                 <button type="button"
-                                    class="btn text-danger bg-danger/15 hover:bg-danger rounded-full hover:text-white">위험</button>
+                                    class="btn btn-soft-danger btn-pill">위험</button>
                                 <button type="button"
-                                    class="btn text-warning bg-warning/15 hover:bg-warning rounded-full hover:text-white">경고</button>
+                                    class="btn btn-soft-warning btn-pill">경고</button>
                                 <button type="button"
-                                    class="btn text-info bg-info/15 hover:bg-info rounded-full hover:text-white">정보</button>
+                                    class="btn btn-soft-info btn-pill">정보</button>
                                 <button type="button"
-                                    class="btn text-dark bg-dark/15 hover:bg-dark rounded-full hover:text-white">다크</button>
+                                    class="btn btn-soft-dark btn-pill">다크</button>
                             </div>
                         </div>
                         <!-- end card-body-->
@@ -286,23 +279,23 @@
                         </div>
 
                         <div class="card-body">
-                            <p class="text-default-400 mb-4">배경을 투명하게 유지하고 호버 시 색상을 강조하려면 고스트 스타일 버튼을 사용하세요.</p>
+                            <p class="text-default-400 mb-4"><code>.btn-ghost-*</code> 클래스로 배경을 투명하게 유지하고 호버 시 색상을 강조할 수 있습니다.</p>
 
                             <div class="flex flex-wrap gap-2.5">
                                 <button type="button"
-                                    class="btn text-primary hover:bg-primary rounded hover:text-white">프라이머리</button>
+                                    class="btn btn-ghost-primary">프라이머리</button>
                                 <button type="button"
-                                    class="btn text-secondary hover:bg-secondary rounded hover:text-white">세컨더리</button>
+                                    class="btn btn-ghost-secondary">세컨더리</button>
                                 <button type="button"
-                                    class="btn text-success hover:bg-success rounded hover:text-white">성공</button>
+                                    class="btn btn-ghost-success">성공</button>
                                 <button type="button"
-                                    class="btn text-danger hover:bg-danger rounded hover:text-white">위험</button>
+                                    class="btn btn-ghost-danger">위험</button>
                                 <button type="button"
-                                    class="btn text-warning hover:bg-warning rounded hover:text-white">경고</button>
+                                    class="btn btn-ghost-warning">경고</button>
                                 <button type="button"
-                                    class="btn text-info hover:bg-info rounded hover:text-white">정보</button>
+                                    class="btn btn-ghost-info">정보</button>
                                 <button type="button"
-                                    class="btn text-dark hover:bg-dark rounded hover:text-white">다크</button>
+                                    class="btn btn-ghost-dark">다크</button>
                             </div>
                         </div>
                         <!-- end card-body-->
@@ -321,19 +314,19 @@
 
                             <div class="flex flex-wrap gap-2.5">
                                 <button type="button"
-                                    class="btn text-primary hover:bg-primary rounded-full hover:text-white">프라이머리</button>
+                                    class="btn btn-ghost-primary btn-pill">프라이머리</button>
                                 <button type="button"
-                                    class="btn text-secondary hover:bg-secondary rounded-full hover:text-white">세컨더리</button>
+                                    class="btn btn-ghost-secondary btn-pill">세컨더리</button>
                                 <button type="button"
-                                    class="btn text-success hover:bg-success rounded-full hover:text-white">성공</button>
+                                    class="btn btn-ghost-success btn-pill">성공</button>
                                 <button type="button"
-                                    class="btn text-danger hover:bg-danger rounded-full hover:text-white">위험</button>
+                                    class="btn btn-ghost-danger btn-pill">위험</button>
                                 <button type="button"
-                                    class="btn text-warning hover:bg-warning rounded-full hover:text-white">경고</button>
+                                    class="btn btn-ghost-warning btn-pill">경고</button>
                                 <button type="button"
-                                    class="btn text-info hover:bg-info rounded-full hover:text-white">정보</button>
+                                    class="btn btn-ghost-info btn-pill">정보</button>
                                 <button type="button"
-                                    class="btn text-dark hover:bg-dark rounded-full hover:text-white">다크</button>
+                                    class="btn btn-ghost-dark btn-pill">다크</button>
                             </div>
                         </div>
                         <!-- end card-body-->
@@ -389,25 +382,25 @@
 
                                 <div class="flex flex-wrap gap-2.5">
                                     <button type="button"
-                                        class="btn rounded-full btn-gradient-smooth btn-gradient-purple-blue text-white">보라색에서
+                                        class="btn btn-gradient-smooth btn-gradient-purple-blue text-white btn-pill">보라색에서
                                         파란색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full btn-gradient-smooth gradient-axis-r btn-gradient-cyan-blue text-white">청록색에서
+                                        class="btn btn-gradient-smooth gradient-axis-r btn-gradient-cyan-blue text-white btn-pill">청록색에서
                                         파란색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full btn-gradient-smooth btn-gradient-green-blue text-white">녹색에서
+                                        class="btn btn-gradient-smooth btn-gradient-green-blue text-white btn-pill">녹색에서
                                         파란색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full btn-gradient-smooth gradient-axis-r btn-gradient-purple-pink text-white">보라색에서
+                                        class="btn btn-gradient-smooth gradient-axis-r btn-gradient-purple-pink text-white btn-pill">보라색에서
                                         분홍색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full btn-gradient-smooth btn-gradient-pink-orange text-white">분홍색에서
+                                        class="btn btn-gradient-smooth btn-gradient-pink-orange text-white btn-pill">분홍색에서
                                         주황색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full btn-gradient-smooth gradient-axis-r btn-gradient-teal-lime text-gray-900">청록색에서
+                                        class="btn btn-gradient-smooth gradient-axis-r btn-gradient-teal-lime text-gray-900 btn-pill">청록색에서
                                         라임색으로</button>
                                     <button type="button"
-                                        class="btn rounded-full btn-gradient-smooth gradient-axis-r btn-gradient-red-yellow text-gray-900">빨간색에서
+                                        class="btn btn-gradient-smooth gradient-axis-r btn-gradient-red-yellow text-gray-900 btn-pill">빨간색에서
                                         노란색으로</button>
                                 </div>
                             </div>
@@ -427,10 +420,10 @@
 
                                 <div class="flex flex-wrap items-center gap-2.5">
                                     <button type="button"
-                                        class="btn btn-lg bg-primary hover:bg-primary-hover text-white">대형</button>
-                                    <button type="button" class="btn bg-info hover:bg-info-hover text-white">보통</button>
+                                        class="btn btn-lg btn-solid-primary">대형</button>
+                                    <button type="button" class="btn btn-solid-info">보통</button>
                                     <button type="button"
-                                        class="btn btn-sm bg-success hover:bg-success-hover text-white">소형</button>
+                                        class="btn btn-sm btn-solid-success">소형</button>
                                 </div>
                             </div>
                             <!-- end card-body-->
@@ -449,11 +442,11 @@
                             </p>
 
                             <div class="flex flex-wrap gap-2.5">
-                                <button type="button" class="btn bg-info text-white hover:bg-info-hover"
+                                <button type="button" class="btn btn-solid-info"
                                     disabled>정보</button>
-                                <button type="button" class="btn bg-danger text-white hover:bg-danger-hover"
+                                <button type="button" class="btn btn-solid-danger"
                                     disabled>위험</button>
-                                <button type="button" class="btn bg-dark text-white hover:bg-dark-hover"
+                                <button type="button" class="btn btn-solid-dark"
                                     disabled>다크</button>
                             </div>
                         </div>
@@ -473,10 +466,10 @@
 
                             <div class="space-y-3">
                                 <button type="button"
-                                    class="btn bg-primary hover:bg-primary-hover w-full text-white">Block
+                                    class="btn w-full btn-solid-primary">Block
                                     버튼</button>
                                 <button type="button"
-                                    class="btn btn-lg bg-success hover:bg-success-hover w-full text-white">Block
+                                    class="btn btn-lg w-full btn-solid-success">Block
                                     버튼</button>
                             </div>
                         </div>
@@ -495,56 +488,56 @@
                             </p>
 
                             <div class="flex flex-wrap gap-2.5">
-                                <button type="button" class="btn btn-icon bg-primary hover:bg-primary-hover text-white">
+                                <button type="button" class="btn btn-icon btn-solid-primary">
                                     <i data-icon="tabler:star" class="iconify tabler--star text-lg"></i>
                                 </button>
 
                                 <button type="button"
-                                    class="btn btn-icon bg-secondary hover:bg-secondary-hover text-white">
+                                    class="btn btn-icon btn-solid-secondary">
                                     <i data-icon="tabler:leaf" class="iconify tabler--leaf text-lg"></i>
                                 </button>
 
-                                <button type="button" class="btn btn-icon bg-warning hover:bg-warning-hover text-white">
+                                <button type="button" class="btn btn-icon btn-solid-warning">
                                     <i data-icon="tabler:settings" class="iconify tabler--settings text-lg"></i>
                                 </button>
 
                                 <button type="button"
-                                    class="btn btn-icon bg-info/15 text-info hover:bg-info hover:text-white">
+                                    class="btn btn-icon btn-soft-info">
                                     <i data-icon="tabler:bell" class="iconify tabler--bell text-lg"></i>
                                 </button>
 
                                 <button type="button"
-                                    class="btn btn-icon bg-secondary hover:bg-secondary-hover text-white">
+                                    class="btn btn-icon btn-solid-secondary">
                                     <i data-icon="tabler:rocket" class="iconify tabler--rocket text-lg"></i>
                                 </button>
 
                                 <button type="button"
-                                    class="btn btn-icon border-dark text-dark hover:bg-dark rounded-full border hover:text-white">
+                                    class="btn btn-icon border btn-outline-dark btn-pill">
                                     <i data-icon="tabler:plane" class="iconify tabler--plane text-lg"></i>
                                 </button>
 
                                 <button type="button"
-                                    class="btn btn-icon bg-secondary/15 text-secondary hover:bg-secondary hover:text-white">
+                                    class="btn btn-icon btn-soft-secondary">
                                     <i data-icon="tabler:microphone" class="iconify tabler--microphone text-lg"></i>
                                 </button>
 
-                                <button type="button" class="btn bg-light/60 hover:text-primary">
+                                <button type="button" class="btn btn-subtle-light-muted">
                                     <i data-icon="tabler:hand-stop" class="iconify tabler--hand-stop text-lg"></i>
                                     중지
                                 </button>
 
-                                <button type="button" class="btn bg-dark text-white">
+                                <button type="button" class="btn btn-solid-dark">
                                     <i data-icon="tabler:bolt" class="iconify tabler--bolt text-lg"></i>
                                     부스트
                                 </button>
 
                                 <button type="button"
-                                    class="btn border-info text-info hover:bg-info border hover:text-white">
+                                    class="btn border btn-outline-info">
                                     <i data-icon="tabler:credit-card" class="iconify tabler--credit-card text-base"></i>
                                     결제
                                 </button>
 
-                                <button type="button" class="btn bg-danger hover:bg-danger-hover text-white">
+                                <button type="button" class="btn btn-solid-danger">
                                     <i data-icon="tabler:tools" class="iconify tabler--tools text-base"></i>
                                     도구
                                 </button>
@@ -552,40 +545,40 @@
 
                             <div class="mt-5 flex flex-wrap gap-2.5">
                                 <button type="button"
-                                    class="btn border-secondary text-secondary hover:bg-secondary size-7.5 border hover:text-white">
+                                    class="btn size-7.5 border btn-outline-secondary">
                                     <i data-icon="tabler:star" class="iconify tabler--star text-xs"></i>
                                 </button>
 
-                                <button type="button" class="btn bg-primary hover:bg-primary-hover size-7.5 text-white">
+                                <button type="button" class="btn size-7.5 btn-solid-primary">
                                     <i data-icon="tabler:leaf" class="iconify tabler--leaf text-xs"></i>
                                 </button>
 
                                 <button type="button"
-                                    class="btn bg-success hover:bg-success-hover size-7.5 rounded-full text-white">
+                                    class="btn size-7.5 btn-solid-success btn-pill">
                                     <i data-icon="tabler:settings" class="iconify tabler--settings text-xs"></i>
                                 </button>
 
                                 <button type="button"
-                                    class="btn border-secondary text-secondary hover:bg-secondary size-11.25 border hover:text-white">
+                                    class="btn size-11.25 border btn-outline-secondary">
                                     <i data-icon="tabler:bell" class="iconify tabler--bell text-xl"></i>
                                 </button>
 
                                 <button type="button"
-                                    class="btn bg-primary hover:bg-primary-hover size-11.25 rounded-full text-white">
+                                    class="btn size-11.25 btn-solid-primary btn-pill">
                                     <i data-icon="tabler:rocket" class="iconify tabler--rocket text-xl"></i>
                                 </button>
 
                                 <button type="button"
-                                    class="btn bg-success hover:bg-success-hover size-11.25 rounded-full text-white">
+                                    class="btn size-11.25 btn-solid-success btn-pill">
                                     <i data-icon="tabler:share" class="iconify tabler--share text-xl"></i>
                                 </button>
 
-                                <button type="button" class="btn bg-info hover:bg-info-hover size-11.25 text-white">
+                                <button type="button" class="btn size-11.25 btn-solid-info">
                                     <i data-icon="tabler:star" class="iconify tabler--star text-xl"></i>
                                 </button>
 
                                 <button type="button"
-                                    class="btn bg-warning hover:bg-warning-hover size-11.25 text-white">
+                                    class="btn size-11.25 btn-solid-warning">
                                     <i data-icon="tabler:alert-octagon" class="iconify tabler--alert-octagon text-xl"></i>
                                 </button>
                             </div>
@@ -606,14 +599,14 @@
                             </p>
 
                             <div class="flex flex-wrap gap-2.5">
-                                <a href="#" class="btn bg-primary hover:bg-primary-hover rounded text-white">링크</a>
+                                <a href="#" class="btn btn-solid-primary">링크</a>
                                 <button type="submit"
-                                    class="btn bg-primary hover:bg-primary-hover rounded text-white">버튼</button>
-                                <input type="button" class="btn bg-primary hover:bg-primary-hover rounded text-white"
+                                    class="btn btn-solid-primary">버튼</button>
+                                <input type="button" class="btn btn-solid-primary"
                                     value="입력" />
-                                <input type="submit" class="btn bg-primary hover:bg-primary-hover rounded text-white"
+                                <input type="submit" class="btn btn-solid-primary"
                                     value="제출" />
-                                <input type="reset" class="btn bg-primary hover:bg-primary-hover rounded text-white"
+                                <input type="reset" class="btn btn-solid-primary"
                                     value="초기화" />
                             </div>
                         </div>
@@ -634,51 +627,51 @@
 
                                 <div class="mb-3 inline-flex">
                                     <button type="button"
-                                        class="btn bg-light hover:text-primary rounded-e-none">왼쪽</button>
+                                        class="btn btn-subtle-light rounded-e-none">왼쪽</button>
                                     <button type="button"
-                                        class="btn bg-light hover:text-primary rounded-none">중간</button>
+                                        class="btn btn-subtle-light rounded-none">중간</button>
                                     <button type="button"
-                                        class="btn bg-light hover:text-primary rounded-s-none">오른쪽</button>
+                                        class="btn btn-subtle-light rounded-s-none">오른쪽</button>
                                 </div>
 
                                 <br />
 
                                 <div class="mb-3 inline-flex">
                                     <button type="button"
-                                        class="btn bg-light hover:text-primary rounded-e-none">1</button>
+                                        class="btn btn-subtle-light rounded-e-none">1</button>
                                     <button type="button"
-                                        class="btn bg-light hover:text-primary rounded-none">2</button>
+                                        class="btn btn-subtle-light rounded-none">2</button>
                                     <button type="button"
-                                        class="btn bg-light hover:text-primary rounded-none">3</button>
+                                        class="btn btn-subtle-light rounded-none">3</button>
                                     <button type="button"
-                                        class="btn bg-light hover:text-primary rounded-s-none">4</button>
+                                        class="btn btn-subtle-light rounded-s-none">4</button>
                                 </div>
 
                                 <div class="mb-3 inline-flex">
                                     <button type="button"
-                                        class="btn bg-light hover:text-primary rounded-e-none">5</button>
+                                        class="btn btn-subtle-light rounded-e-none">5</button>
                                     <button type="button"
-                                        class="btn bg-light hover:text-primary rounded-none">6</button>
+                                        class="btn btn-subtle-light rounded-none">6</button>
                                     <button type="button"
-                                        class="btn bg-light hover:text-primary rounded-s-none">7</button>
+                                        class="btn btn-subtle-light rounded-s-none">7</button>
                                 </div>
 
                                 <div class="mb-3 inline-flex">
-                                    <button type="button" class="btn bg-light hover:text-primary">8</button>
+                                    <button type="button" class="btn btn-subtle-light">8</button>
                                 </div>
 
                                 <br />
 
                                 <div class="mb-3 inline-flex">
                                     <button type="button"
-                                        class="btn bg-light hover:text-primary rounded-e-none">1</button>
+                                        class="btn btn-subtle-light rounded-e-none">1</button>
                                     <button type="button"
-                                        class="btn bg-primary hover:bg-primary-hover rounded-none text-white">2</button>
+                                        class="btn rounded-none btn-solid-primary">2</button>
                                     <button type="button"
-                                        class="btn bg-light hover:text-primary rounded-none">3</button>
+                                        class="btn btn-subtle-light rounded-none">3</button>
 
                                     <div class="hs-dropdown relative inline-flex">
-                                        <button type="button" class="btn bg-light hover:text-primary rounded-s-none"
+                                        <button type="button" class="btn btn-subtle-light rounded-s-none"
                                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                             드롭다운
                                             <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down"></i>
@@ -697,23 +690,23 @@
                                     <div>
                                         <div class="inline-flex flex-col">
                                             <button type="button"
-                                                class="btn bg-light hover:text-primary rounded-b-none">상단</button>
+                                                class="btn btn-subtle-light rounded-b-none">상단</button>
                                             <button type="button"
-                                                class="btn bg-light hover:text-primary rounded-none">중간</button>
+                                                class="btn btn-subtle-light rounded-none">중간</button>
                                             <button type="button"
-                                                class="btn bg-light hover:text-primary rounded-t-none">하단</button>
+                                                class="btn btn-subtle-light rounded-t-none">하단</button>
                                         </div>
                                     </div>
 
                                     <div>
                                         <div class="inline-flex flex-col">
                                             <button type="button"
-                                                class="btn bg-light hover:text-primary rounded-b-none">버튼 1</button>
+                                                class="btn btn-subtle-light rounded-b-none">버튼 1</button>
                                             <button type="button"
-                                                class="btn bg-light hover:text-primary rounded-none">버튼 2</button>
+                                                class="btn btn-subtle-light rounded-none">버튼 2</button>
                                             <div class="hs-dropdown relative inline-flex">
                                                 <button type="button"
-                                                    class="btn bg-light hover:text-primary rounded-t-none"
+                                                    class="btn btn-subtle-light rounded-t-none"
                                                     aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                                                     버튼 3
                                                     <i data-icon="tabler:chevron-down" class="iconify tabler--chevron-down"></i>

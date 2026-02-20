@@ -18,7 +18,7 @@
                                     data-upload-preview-template="#uploadPreviewTemplate">
                                     <div class="dz-message needsclick text-center my-8">
                                         <div class="size-11 mx-auto mb-base">
-                                            <span class="btn btn-icon size-11 bg-info/15 text-info rounded-full">
+                                            <span class="btn btn-icon size-11 btn-soft-info btn-pill">
                                                 <i data-icon="tabler:cloud-upload" class="iconify tabler--cloud-upload text-2xl"></i>
                                             </span>
                                         </div>

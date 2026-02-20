@@ -13,7 +13,7 @@
                                     공간을 절약합니다.</p>
 
                                 <button data-hs-overlay="#offcanvasExample"
-                                    class="btn bg-primary hover:bg-primary-hover text-white" aria-haspopup="dialog"
+                                    class="btn btn-solid-primary" aria-haspopup="dialog"
                                     aria-expanded="false" aria-controls="offcanvasExample">오프캔버스 열기 (왼쪽)</button>
 
                                 <div id="offcanvasExample"
@@ -64,7 +64,7 @@
 
                                 <div class="flex flex-wrap gap-2.5">
                                     <div>
-                                        <button type="button" class="btn bg-primary hover:bg-primary-hover text-white"
+                                        <button type="button" class="btn btn-solid-primary"
                                             aria-haspopup="dialog" aria-expanded="false"
                                             aria-controls="offcanvasScrolling" data-hs-overlay="#offcanvasScrolling">본문
                                             스크롤 활성화</button>
@@ -101,7 +101,7 @@
                                     </div>
 
                                     <div>
-                                        <button class="btn bg-primary hover:bg-primary-hover text-white"
+                                        <button class="btn btn-solid-primary"
                                             aria-haspopup="dialog" aria-expanded="false"
                                             aria-controls="offcanvasWithBackdrop"
                                             data-hs-overlay="#offcanvasWithBackdrop">백드롭 활성화 (기본값)</button>
@@ -138,7 +138,7 @@
                                     </div>
 
                                     <div>
-                                        <button type="button" class="btn bg-primary hover:bg-primary-hover text-white"
+                                        <button type="button" class="btn btn-solid-primary"
                                             aria-haspopup="dialog" aria-expanded="false"
                                             aria-controls="offcanvasWithBothOptions"
                                             data-hs-overlay="#offcanvasWithBothOptions">
@@ -192,7 +192,7 @@
 
                                 <div class="flex flex-wrap gap-2.5">
                                     <div>
-                                        <button class="btn bg-primary hover:bg-primary-hover text-white"
+                                        <button class="btn btn-solid-primary"
                                             aria-haspopup="dialog" aria-expanded="false" aria-controls="offcanvasTop"
                                             data-hs-overlay="#offcanvasTop">상단 오프캔버스 토글</button>
 
@@ -222,7 +222,7 @@
                                     </div>
 
                                     <div>
-                                        <button class="btn bg-primary hover:bg-primary-hover text-white"
+                                        <button class="btn btn-solid-primary"
                                             aria-haspopup="dialog" aria-expanded="false" aria-controls="offcanvasRight"
                                             data-hs-overlay="#offcanvasRight">우측 오프캔버스 토글</button>
 
@@ -252,7 +252,7 @@
                                     </div>
 
                                     <div>
-                                        <button class="btn bg-primary hover:bg-primary-hover text-white"
+                                        <button class="btn btn-solid-primary"
                                             aria-haspopup="dialog" aria-expanded="false" aria-controls="offcanvasBottom"
                                             data-hs-overlay="#offcanvasBottom">하단 오프캔버스 토글</button>
 
@@ -282,7 +282,7 @@
                                     </div>
 
                                     <div>
-                                        <button class="btn bg-primary hover:bg-primary-hover text-white"
+                                        <button class="btn btn-solid-primary"
                                             aria-haspopup="dialog" aria-expanded="false" aria-controls="offcanvasLeft"
                                             data-hs-overlay="#offcanvasLeft">왼쪽 오프캔버스 토글</button>
 
@@ -331,7 +331,7 @@
 
                                 <div class="flex flex-wrap gap-2.5">
                                     <div>
-                                        <button class="btn bg-primary hover:bg-primary-hover text-white"
+                                        <button class="btn btn-solid-primary"
                                             aria-haspopup="dialog" aria-expanded="false" aria-controls="offcanvasDark"
                                             data-hs-overlay="#offcanvasDark">다크 오프캔버스</button>
 

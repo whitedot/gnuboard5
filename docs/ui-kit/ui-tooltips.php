@@ -70,7 +70,7 @@
 
                                     <div class="hs-tooltip inline-block [--placement:top]">
                                         <button type="button"
-                                            class="hs-tooltip-toggle btn bg-primary text-white hover:bg-primary-hover"
+                                            class="hs-tooltip-toggle btn btn-solid-primary"
                                             disabled>
                                             비활성화된 버튼
                                             <span
@@ -96,7 +96,7 @@
 
                                     <div class="hs-tooltip inline-block [--placement:top]">
                                         <button type="button"
-                                            class="hs-tooltip-toggle btn bg-primary hover:bg-primary-hover text-white">
+                                            class="hs-tooltip-toggle btn btn-solid-primary">
                                             정보를 보려면 마우스를 올리세요
                                             <span
                                                 class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-dark invisible absolute z-10 inline-block rounded py-2 px-3 text-sm font-medium text-white opacity-0 shadow-2xs transition-opacity"
@@ -122,7 +122,7 @@
                                     <div class="flex flex-wrap items-center gap-2.5">
                                         <div class="hs-tooltip inline-block [--placement:top]">
                                             <button type="button"
-                                                class="hs-tooltip-toggle btn bg-info hover:bg-info-hover text-white">
+                                                class="hs-tooltip-toggle btn btn-solid-info">
                                                 상단 툴팁
                                                 <span
                                                     class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-dark invisible absolute z-10 inline-block rounded py-2 px-3 text-sm font-medium text-white opacity-0 shadow-2xs transition-opacity"
@@ -132,7 +132,7 @@
 
                                         <div class="hs-tooltip inline-block [--placement:bottom]">
                                             <button type="button"
-                                                class="hs-tooltip-toggle btn bg-info hover:bg-info-hover text-white">
+                                                class="hs-tooltip-toggle btn btn-solid-info">
                                                 하단 툴팁
                                                 <span
                                                     class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-dark invisible absolute z-10 inline-block rounded py-2 px-3 text-sm font-medium text-white opacity-0 shadow-2xs transition-opacity"
@@ -142,7 +142,7 @@
 
                                         <div class="hs-tooltip inline-block [--placement:left]">
                                             <button type="button"
-                                                class="hs-tooltip-toggle btn bg-info hover:bg-info-hover text-white">
+                                                class="hs-tooltip-toggle btn btn-solid-info">
                                                 좌측 툴팁
                                                 <span
                                                     class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-dark invisible absolute z-10 inline-block rounded py-2 px-3 text-sm font-medium text-white opacity-0 shadow-2xs transition-opacity"
@@ -152,7 +152,7 @@
 
                                         <div class="hs-tooltip inline-block [--placement:right]">
                                             <button type="button"
-                                                class="hs-tooltip-toggle btn bg-info hover:bg-info-hover text-white">
+                                                class="hs-tooltip-toggle btn btn-solid-info">
                                                 우측 툴팁
                                                 <span
                                                     class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-dark invisible absolute z-10 inline-block rounded py-2 px-3 text-sm font-medium text-white opacity-0 shadow-2xs transition-opacity"
@@ -173,7 +173,7 @@
                                     <div class="flex flex-wrap items-center gap-2.5">
                                         <div class="hs-tooltip inline-block [--placement:top]">
                                             <button type="button"
-                                                class="hs-tooltip-toggle btn bg-secondary hover:bg-secondary-hover text-white">
+                                                class="hs-tooltip-toggle btn btn-solid-secondary">
                                                 HTML 툴팁
                                                 <span
                                                     class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-dark invisible absolute z-10 inline-block rounded py-2 px-3 text-sm font-medium text-white opacity-0 shadow-2xs transition-opacity"
@@ -202,7 +202,7 @@
                                     <div class="flex flex-wrap items-center gap-2.5">
                                         <div class="hs-tooltip inline-block [--placement:top]">
                                             <button type="button"
-                                                class="hs-tooltip-toggle btn bg-primary hover:bg-primary-hover text-white">
+                                                class="hs-tooltip-toggle btn btn-solid-primary">
                                                 기본(Primary) 툴팁
                                                 <span
                                                     class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-primary invisible absolute z-10 inline-block w-46 rounded py-2 px-3 text-sm font-medium text-white opacity-0 shadow-2xs transition-opacity"
@@ -212,7 +212,7 @@
 
                                         <div class="hs-tooltip inline-block [--placement:top]">
                                             <button type="button"
-                                                class="hs-tooltip-toggle btn bg-danger hover:bg-danger-hover text-white">
+                                                class="hs-tooltip-toggle btn btn-solid-danger">
                                                 위험(Danger) 툴팁
                                                 <span
                                                     class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-danger invisible absolute z-10 inline-block w-46 rounded py-2 px-3 text-sm font-medium text-white opacity-0 shadow-2xs transition-opacity"
@@ -222,7 +222,7 @@
 
                                         <div class="hs-tooltip inline-block [--placement:top]">
                                             <button type="button"
-                                                class="hs-tooltip-toggle btn bg-info hover:bg-info-hover text-white">
+                                                class="hs-tooltip-toggle btn btn-solid-info">
                                                 정보(Info) 툴팁
                                                 <span
                                                     class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-info invisible absolute z-10 inline-block w-46 rounded py-2 px-3 text-sm font-medium text-white opacity-0 shadow-2xs transition-opacity"
@@ -232,7 +232,7 @@
 
                                         <div class="hs-tooltip inline-block [--placement:top]">
                                             <button type="button"
-                                                class="hs-tooltip-toggle btn bg-success hover:bg-info-hover text-white">
+                                                class="hs-tooltip-toggle btn btn-solid-success-contrast">
                                                 성공(Success) 툴팁
                                                 <span
                                                     class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-success invisible absolute z-10 inline-block w-46 rounded py-2 px-3 text-sm font-medium text-white opacity-0 shadow-2xs transition-opacity"
@@ -242,7 +242,7 @@
 
                                         <div class="hs-tooltip inline-block [--placement:top]">
                                             <button type="button"
-                                                class="hs-tooltip-toggle btn bg-secondary hover:bg-secondary-hover text-white">
+                                                class="hs-tooltip-toggle btn btn-solid-secondary">
                                                 보조(Secondary) 툴팁
                                                 <span
                                                     class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-secondary invisible absolute z-10 inline-block w-46 rounded py-2 px-3 text-sm font-medium text-white opacity-0 shadow-2xs transition-opacity"
@@ -252,7 +252,7 @@
 
                                         <div class="hs-tooltip inline-block [--placement:top]">
                                             <button type="button"
-                                                class="hs-tooltip-toggle btn bg-warning hover:bg-warning-hover text-white">
+                                                class="hs-tooltip-toggle btn btn-solid-warning">
                                                 경고(Warning) 툴팁
                                                 <span
                                                     class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-warning invisible absolute z-10 inline-block w-46 rounded py-2 px-3 text-sm font-medium text-white opacity-0 shadow-2xs transition-opacity"
@@ -261,7 +261,7 @@
                                         </div>
 
                                         <div class="hs-tooltip inline-block [--placement:top]">
-                                            <button type="button" class="hs-tooltip-toggle btn bg-dark text-white">
+                                            <button type="button" class="hs-tooltip-toggle btn btn-solid-dark">
                                                 다크(Dark) 툴팁
                                                 <span
                                                     class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-dark invisible absolute z-10 inline-block w-46 rounded py-2 px-3 text-sm font-medium text-white opacity-0 shadow-2xs transition-opacity"

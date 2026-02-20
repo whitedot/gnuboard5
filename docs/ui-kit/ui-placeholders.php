@@ -19,7 +19,7 @@
                                                 <h5 class="card-title mb-2.5">카드 제목</h5>
                                                 <p class="mb-4">카드 제목을 기반으로 내용을 구성하고 카드 콘텐츠의 대부분을 차지하는 간단한 예시 텍스트입니다.</p>
                                                 <a href="#"
-                                                    class="btn btn-sm bg-primary hover:bg-primary-hover text-white">어딘가로 이동</a>
+                                                    class="btn btn-sm btn-solid-primary">어딘가로 이동</a>
                                             </div>
                                         </div>
                                     </div>
@@ -53,7 +53,7 @@
                                                 </p>
 
                                                 <div class="grid grid-cols-2">
-                                                    <a class="btn bg-primary disabled col-span-1" aria-disabled="true">
+                                                    <a class="btn btn-solid-primary disabled col-span-1" aria-disabled="true">
                                                         <span class="invisible">읽기 전용</span>
                                                     </a>
                                                 </div>
@@ -154,7 +154,7 @@
 
                                 <div class="grid grid-cols-3">
                                     <div class="col-span-1">
-                                        <a href="#" class="btn bg-primary disabled w-full" aria-hidden="true"></a>
+                                        <a href="#" class="btn btn-solid-primary disabled w-full" aria-hidden="true"></a>
                                     </div>
                                 </div>
                             </div>

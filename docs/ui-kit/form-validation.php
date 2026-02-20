@@ -129,7 +129,7 @@
                                     <!-- Submit -->
                                     <div class="md:col-span-12">
                                         <button type="submit"
-                                            class="btn bg-primary text-white hover:bg-primary-hover">양식 제출 (Submit
+                                            class="btn btn-solid-primary">양식 제출 (Submit
                                             Form)</button>
                                     </div>
                                 </form>
@@ -246,7 +246,7 @@
                                     <!-- Submit Button -->
                                     <div class="md:col-span-12">
                                         <button type="submit"
-                                            class="btn bg-primary hover:bg-primary-hover text-white">양식 제출 (Submit
+                                            class="btn btn-solid-primary">양식 제출 (Submit
                                             form)</button>
                                     </div>
                                 </form>
@@ -314,7 +314,7 @@
                                     <!-- Submit -->
                                     <div>
                                         <button type="submit" disabled
-                                            class="btn bg-primary hover:bg-primary-hover cursor-not-allowed text-white">양식
+                                            class="btn cursor-not-allowed btn-solid-primary">양식
                                             제출 (Submit form)</button>
                                     </div>
                                 </form>
@@ -381,7 +381,7 @@
                                     </div>
 
                                     <div class="mt-base">
-                                        <button class="btn bg-primary text-white hover:bg-primary-hover"
+                                        <button class="btn btn-solid-primary"
                                             type="submit">양식 제출 (Submit form)</button>
                                     </div>
                                 </form>

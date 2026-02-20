@@ -11,7 +11,7 @@
                             <div class="card-body">
                                 <div class="mb-4 flex flex-wrap items-center gap-2">
                                     <button
-                                        class="hs-collapse-toggle btn bg-primary hover:bg-primary-hover text-white open"
+                                        class="hs-collapse-toggle btn btn-solid-primary open"
                                         data-hs-collapse="#collapseExample">콜랩스 버튼</button>
                                 </div>
 
