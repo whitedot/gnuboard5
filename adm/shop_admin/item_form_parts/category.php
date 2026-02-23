@@ -6,17 +6,13 @@
     
 
     <div>
-        <table>
-        <caption>상품분류 입력</caption>
-        <colgroup>
-            <col>
-            <col>
-        </colgroup>
-        <tbody>
-        <tr>
-            <th scope="row"><label for="ca_id">기본분류</label></th>
-            <td>
-                <?php if ($w == "") echo help("기본분류를 선택하면, 판매/재고/HTML사용/판매자 E-mail 등을, 선택한 분류의 기본값으로 설정합니다."); ?>
+        
+        
+        
+        
+                <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_id">기본분류</label></div>
+            <div class="ui-form-field"><?php if ($w == "") echo help("기본분류를 선택하면, 판매/재고/HTML사용/판매자 E-mail 등을, 선택한 분류의 기본값으로 설정합니다."); ?>
                 <select name="ca_id" id="ca_id" onchange="categorychange(this.form)">
                     <option value="">선택하세요</option>
                     <?php echo conv_selected_option($category_select, $it['ca_id']); ?>
@@ -33,22 +29,19 @@
                     var ca_opt5_subject = new Array();
                     var ca_opt6_subject = new Array();
                     <?php echo "\n$script"; ?>
-                </script>
-            </td>
-        </tr>
+                </script></div>
+        </div>
         <?php for ($i=2; $i<=3; $i++) { ?>
-        <tr>
-            <th scope="row"><label for="ca_id<?php echo $i; ?>"><?php echo $i; ?>차 분류</label></th>
-            <td>
-                <?php echo help($i.'차 분류는 기본 분류의 하위 분류 개념이 아니므로 기본 분류 선택시 해당 상품이 포함될 최하위 분류만 선택하시면 됩니다.'); ?>
+                <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_id<?php echo $i; ?>"><?php echo $i; ?>차 분류</label></div>
+            <div class="ui-form-field"><?php echo help($i.'차 분류는 기본 분류의 하위 분류 개념이 아니므로 기본 분류 선택시 해당 상품이 포함될 최하위 분류만 선택하시면 됩니다.'); ?>
                 <select name="ca_id<?php echo $i; ?>" id="ca_id<?php echo $i; ?>">
                     <option value="">선택하세요</option>
                     <?php echo conv_selected_option($category_select, $it['ca_id'.$i]); ?>
-                </select>
-            </td>
-        </tr>
+                </select></div>
+        </div>
         <?php } ?>
-        </tbody>
-        </table>
+        
+        
     </div>
 </section>

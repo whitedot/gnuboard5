@@ -6,21 +6,16 @@
     
 
     
-        <table>
-        <caption>스킨설정</caption>
-        <colgroup>
-            <col>
-            <col>
-        </colgroup>
-        <tbody>
-        <tr>
-            <th scope="row"><label for="de_shop_skin">PC용 스킨</label></th>
-            <td>
-                <?php echo get_skin_select('shop', 'de_shop_skin', 'de_shop_skin', $default['de_shop_skin'], 'required'); ?>
-            </td>
-        </tr>
-        </tbody>
-        </table>
+        
+        
+        
+        
+                <div class="ui-form-row">
+            <div class="ui-form-label"><label for="de_shop_skin">PC용 스킨</label></div>
+            <div class="ui-form-field"><?php echo get_skin_select('shop', 'de_shop_skin', 'de_shop_skin', $default['de_shop_skin'], 'required'); ?></div>
+        </div>
+        
+        
     
 </section>
 

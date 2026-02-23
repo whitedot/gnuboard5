@@ -3,18 +3,14 @@
     <?php echo $pg_anchor; ?>
 
     <div>
-        <table>
-        <caption>이미지 업로드</caption>
-        <colgroup>
-            <col>
-            <col>
-        </colgroup>
-        <tbody>
+        
+        
+        
+        
         <?php for($i=1; $i<=10; $i++) { ?>
-        <tr>
-            <th scope="row"><label for="it_img<?php echo $i; ?>">이미지 <?php echo $i; ?></label></th>
-            <td>
-                <input type="file" name="it_img<?php echo $i; ?>" id="it_img<?php echo $i; ?>">
+                <div class="ui-form-row">
+            <div class="ui-form-label"><label for="it_img<?php echo $i; ?>">이미지 <?php echo $i; ?></label></div>
+            <div class="ui-form-field"><input type="file" name="it_img<?php echo $i; ?>" id="it_img<?php echo $i; ?>">
                 <?php
                 $it_img = G5_DATA_PATH.'/item/'.$it['it_img'.$i];
                 $it_img_exists = run_replace('shop_item_image_exists', (is_file($it_img) && file_exists($it_img)), $it, $i);
@@ -33,11 +29,10 @@
                 <script>
                 $('<button type="button" id="it_limg<?php echo $i; ?>_view" class="btn-inline sit_wimg_view">이미지<?php echo $i; ?> 확인</button>').appendTo('.sit_wimg_limg<?php echo $i; ?>');
                 </script>
-                <?php } ?>
-            </td>
-        </tr>
+                <?php } ?></div>
+        </div>
         <?php } ?>
-        </tbody>
-        </table>
+        
+        
     </div>
 </section>

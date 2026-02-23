@@ -1,19 +1,13 @@
 <section id="anc_mb_history">
     <h2>인증 및 활동 내역</h2>
     <div>
-        <table>
-            <caption>인증 및 활동 내역</caption>
-            <colgroup>
-                <col>
-                <col>
-                <col>
-                <col>
-            </colgroup>
-            <tbody>
-                <tr>
-                    <th scope="row"><label for="mb_cert_history">본인인증 내역</label></th>
-                    <td colspan="3">
-                        <?php
+        
+            
+            
+            
+                        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="mb_cert_history">본인인증 내역</label></div>
+            <div class="ui-form-field"><?php
                         $cnt = 0;
                         if ($mb_cert_history) {
                             sql_data_seek($mb_cert_history, 0);
@@ -45,67 +39,63 @@
 
                         <?php if ($cnt == 0) { ?>
                             본인인증 내역이 없습니다.
-                        <?php } ?>
-                    </td>
-                </tr>
+                        <?php } ?></div>
+        </div>
 
                 <?php if ($w == 'u') { ?>
-                    <tr>
-                        <th scope="row">회원가입일</th>
-                        <td><?php echo $mb['mb_datetime'] ?></td>
-                        <th scope="row">최근접속일</th>
-                        <td><?php echo $mb['mb_today_login'] ?></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">IP</th>
-                        <td colspan="3"><?php echo $mb['mb_ip'] ?></td>
-                    </tr>
+                            <div class="ui-form-row">
+            <div class="ui-form-label">회원가입일</div>
+            <div class="ui-form-field"><?php echo $mb['mb_datetime'] ?></div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">최근접속일</div>
+            <div class="ui-form-field"><?php echo $mb['mb_today_login'] ?></div>
+        </div>
+                            <div class="ui-form-row">
+            <div class="ui-form-label">IP</div>
+            <div class="ui-form-field"><?php echo $mb['mb_ip'] ?></div>
+        </div>
                     <?php if ($config['cf_use_email_certify']) { ?>
-                        <tr>
-                            <th scope="row">인증일시</th>
-                            <td colspan="3">
-                                <?php if ($mb['mb_email_certify'] == '0000-00-00 00:00:00') { ?>
+                                <div class="ui-form-row">
+            <div class="ui-form-label">인증일시</div>
+            <div class="ui-form-field"><?php if ($mb['mb_email_certify'] == '0000-00-00 00:00:00') { ?>
                                     <?php echo help('회원님이 메일을 수신할 수 없는 경우 등에 직접 인증처리를 하실 수 있습니다.') ?>
                                     <input type="checkbox" name="passive_certify" id="passive_certify">
                                     <label for="passive_certify">수동인증</label>
                                 <?php } else { ?>
                                     <?php echo $mb['mb_email_certify'] ?>
-                                <?php } ?>
-                            </td>
-                        </tr>
+                                <?php } ?></div>
+        </div>
                     <?php } ?>
                 <?php } ?>
 
                 <?php if ($config['cf_use_recommend']) { // 추천인 사용 ?>
-                    <tr>
-                        <th scope="row">추천인</th>
-                        <td colspan="3"><?php echo ((isset($mb['mb_recommend']) && $mb['mb_recommend']) ? get_text($mb['mb_recommend']) : '없음'); ?></td>
-                    </tr>
+                            <div class="ui-form-row">
+            <div class="ui-form-label">추천인</div>
+            <div class="ui-form-field"><?php echo ((isset($mb['mb_recommend']) && $mb['mb_recommend']) ? get_text($mb['mb_recommend']) : '없음'); ?></div>
+        </div>
                 <?php } ?>
 
-                <tr>
-                    <th scope="row"><label for="mb_leave_date">탈퇴일자</label></th>
-                    <td>
-                        <input type="text" name="mb_leave_date" value="<?php echo $mb['mb_leave_date'] ?>" id="mb_leave_date" maxlength="8">
+                        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="mb_leave_date">탈퇴일자</label></div>
+            <div class="ui-form-field"><input type="text" name="mb_leave_date" value="<?php echo $mb['mb_leave_date'] ?>" id="mb_leave_date" maxlength="8">
                         <input type="checkbox" value="<?php echo date("Ymd"); ?>" id="mb_leave_date_set_today" onclick="if (this.form.mb_leave_date.value==this.form.mb_leave_date.defaultValue) { this.form.mb_leave_date.value=this.value; } else { this.form.mb_leave_date.value=this.form.mb_leave_date.defaultValue; }">
-                        <label for="mb_leave_date_set_today">탈퇴일을 오늘로 지정</label>
-                    </td>
-                    <th scope="row">접근차단일자</th>
-                    <td>
-                        <input type="text" name="mb_intercept_date" value="<?php echo $mb['mb_intercept_date'] ?>" id="mb_intercept_date" maxlength="8">
+                        <label for="mb_leave_date_set_today">탈퇴일을 오늘로 지정</label></div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">접근차단일자</div>
+            <div class="ui-form-field"><input type="text" name="mb_intercept_date" value="<?php echo $mb['mb_intercept_date'] ?>" id="mb_intercept_date" maxlength="8">
                         <input type="checkbox" value="<?php echo date("Ymd"); ?>" id="mb_intercept_date_set_today" onclick="if (this.form.mb_intercept_date.value==this.form.mb_intercept_date.defaultValue) { this.form.mb_intercept_date.value=this.value; } else { this.form.mb_intercept_date.value=this.form.mb_intercept_date.defaultValue; }">
-                        <label for="mb_intercept_date_set_today">접근차단일을 오늘로 지정</label>
-                    </td>
-                </tr>
+                        <label for="mb_intercept_date_set_today">접근차단일을 오늘로 지정</label></div>
+        </div>
 
                 <?php
                 //소셜계정이 있다면
                 if (function_exists('social_login_link_account') && $mb['mb_id']) {
                     if ($my_social_accounts = social_login_link_account($mb['mb_id'], false, 'get_data')) { ?>
-                        <tr>
-                            <th>소셜계정목록</th>
-                            <td colspan="3">
-                                <ul>
+                                <div class="ui-form-row">
+            <div class="ui-form-label">소셜계정목록</div>
+            <div class="ui-form-field"><ul>
                                     <li>
                                         <h4>연결된 소셜 계정 목록</h4>
                                         <?php foreach ($my_social_accounts as $account) {     //반복문
@@ -177,18 +167,16 @@
                                             return;
                                         });
                                     });
-                                </script>
-
-                            </td>
-                        </tr>
+                                </script></div>
+        </div>
 
                 <?php
                     }   //end if
                 }   //end if
 
-                run_event('admin_member_form_add', $mb, $w, 'table');
+                run_event('admin_member_form_add', $mb, $w, 'div');
                 ?>
-            </tbody>
-        </table>
+            
+        
     </div>
 </section>

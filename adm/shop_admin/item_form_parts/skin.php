@@ -6,23 +6,21 @@
     
 
     
-        <table>
-        <caption>스킨설정</caption>
+        
+        
       
-        <tbody>
-        <tr>
-            <th scope="row"><label for="it_skin">스킨</label></th>
-            <td>
-                <?php echo get_skin_select('shop', 'it_skin', 'it_skin', $it['it_skin']); ?>
-            </td>
-            <td>
-                <input type="checkbox" name="chk_ca_it_skin" value="1" id="chk_ca_it_skin">
+        
+                <div class="ui-form-row">
+            <div class="ui-form-label"><label for="it_skin">스킨</label></div>
+            <div class="ui-form-field">
+            <div><?php echo get_skin_select('shop', 'it_skin', 'it_skin', $it['it_skin']); ?></div>
+            <div><input type="checkbox" name="chk_ca_it_skin" value="1" id="chk_ca_it_skin">
                 <label for="chk_ca_it_skin">분류적용</label>
                 <input type="checkbox" name="chk_all_it_skin" value="1" id="chk_all_it_skin">
-                <label for="chk_all_it_skin">전체적용</label>
-            </td>
-        </tr>
-        </tbody>
-        </table>
+                <label for="chk_all_it_skin">전체적용</label></div>
+        </div>
+        </div>
+        
+        
     
 </section>
