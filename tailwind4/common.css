@@ -450,6 +450,30 @@
         @apply text-md text-body-color leading-normal font-medium;
     }
 
+    .ui-form-grid {
+        @apply rounded-xl border border-default-300 bg-card shadow-sm;
+    }
+
+    .ui-form-row {
+        @apply grid border-b border-default-300 md:grid-cols-[16rem_minmax(0,1fr)];
+    }
+
+    .ui-form-row:last-child {
+        @apply border-b-0;
+    }
+
+    .ui-form-label {
+        @apply bg-default-100 px-4 py-3 text-sm font-semibold text-default-700;
+    }
+
+    .ui-form-field {
+        @apply px-4 py-3 text-sm;
+    }
+
+    .ui-form-caption {
+        @apply bg-default-100 px-4 py-3 text-sm font-medium text-default-700;
+    }
+
     /* --- Card Radio --- */
     .card-radio {
         @apply relative;

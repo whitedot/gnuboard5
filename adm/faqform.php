@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $sub_menu = '300700';
 include_once('./_common.php');
 include_once(G5_EDITOR_LIB);
@@ -39,31 +39,31 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 <input type="hidden" name="token" value="">
 
 
-    <table>
-    <caption><?php echo $g5['title']; ?></caption>
-    <colgroup>
-        <col>
-        <col>
-    </colgroup>
-    <tbody>
-    <tr>
-        <th scope="row"><label for="fa_order">출력순서</label></th>
-        <td>
+    <div class="ui-form-grid">
+    <div class="ui-form-caption"><?php echo $g5['title']; ?></div>
+    
+        
+        
+    
+    
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="fa_order">출력순서</label></div>
+        <div class="ui-form-field">
             <?php echo help('숫자가 작을수록 FAQ 페이지에서 먼저 출력됩니다.'); ?>
             <input type="text" name="fa_order" value="<?php echo $fa['fa_order']; ?>" id="fa_order" maxlength="10" size="10">
             <?php if ($w == 'u') { ?><a href="<?php echo G5_BBS_URL; ?>/faq.php?fm_id=<?php echo $fm_id; ?>">내용보기</a><?php } ?>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row">질문</th>
-        <td><?php echo editor_html('fa_subject', get_text(html_purifier($fa['fa_subject']), 0)); ?></td>
-    </tr>
-    <tr>
-        <th scope="row">답변</th>
-        <td><?php echo editor_html('fa_content', get_text(html_purifier($fa['fa_content']), 0)); ?></td>
-    </tr>
-    </tbody>
-    </table>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label">질문</div>
+        <div class="ui-form-field"><?php echo editor_html('fa_subject', get_text(html_purifier($fa['fa_subject']), 0)); ?></div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label">답변</div>
+        <div class="ui-form-field"><?php echo editor_html('fa_content', get_text(html_purifier($fa['fa_content']), 0)); ?></div>
+    </div>
+    
+    </div>
 
 
 <div>
@@ -100,3 +100,4 @@ function frmfaqform_check(f)
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+

@@ -11,7 +11,6 @@ $print_version = ($is_admin == 'super') ? 'Version ' . G5_GNUBOARD_VER : '';
         이 페이지는 JavaScript가 활성화되어야 일부 기능이 정상 동작합니다.
     </p>
 </noscript>
-</div>
     </div>
 
     <footer id="ft">

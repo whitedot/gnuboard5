@@ -49,98 +49,86 @@ require_once './admin.head.php';
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    
-        <table>
-            <caption><?php echo $g5['title']; ?></caption>
-            <colgroup>
-                <col>
-                <col>
-            </colgroup>
-            <tbody>
-                <tr>
-                    <th scope="row"><label for="gr_id">그룹 ID<?php echo $sound_only ?></label></th>
-                    <td><input type="text" name="gr_id" value="<?php echo $group['gr_id'] ?>" id="gr_id" <?php echo $gr_id_attr; ?> class="<?php echo $gr_id_attr; ?>" maxlength="10">
-                        <?php
-                        if ($w == '') {
-                            echo '영문자, 숫자, _ 만 가능 (공백없이)';
-                        } else {
-                            echo '<a href="' . G5_BBS_URL . '/group.php?gr_id=' . $group['gr_id'] . '">게시판그룹 바로가기</a>';
-                        }
-                        ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="gr_subject">그룹 제목<strong> 필수</strong></label></th>
-                    <td>
-                        <input type="text" name="gr_subject" value="<?php echo get_text($group['gr_subject']) ?>" id="gr_subject" required class="required" size="80">
-                        <?php
-                        if ($w == 'u') {
-                            echo '<a href="./board_form.php?gr_id=' . $gr_id . '">게시판생성</a>';
-                        }
-                        ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="gr_device">접속기기</label></th>
-                    <td>
-                        <?php echo help("PC 와 모바일 사용을 구분합니다.") ?>
-                        <select id="gr_device" name="gr_device">
-                            <option value="both" <?php echo get_selected($group['gr_device'], 'both', true); ?>>PC와 모바일에서 모두 사용</option>
-                            <option value="pc" <?php echo get_selected($group['gr_device'], 'pc'); ?>>PC 전용</option>
-                            <option value="mobile" <?php echo get_selected($group['gr_device'], 'mobile'); ?>>모바일 전용</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <?php
-                        if ($is_admin == 'super') {
-                            echo '<label for="gr_admin">그룹 관리자</label>';
-                        } else {
-                            echo '그룹 관리자';
-                        }
-                        ?>
-                    </th>
-                    <td>
-                        <?php
-                        if ($is_admin == 'super') {
-                            echo '<input type="text" id="gr_admin" name="gr_admin" value="' . $gr['gr_admin'] . '" maxlength="20">';
-                        } else {
-                            echo '<input type="hidden" id="gr_admin" name="gr_admin" value="' . $gr['gr_admin'] . '">' . $gr['gr_admin'];
-                        }
-                        ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="gr_use_access">접근회원사용</label></th>
-                    <td>
-                        <?php echo help("사용에 체크하시면 이 그룹에 속한 게시판은 접근가능한 회원만 접근이 가능합니다.") ?>
-                        <input type="checkbox" name="gr_use_access" value="1" id="gr_use_access" <?php echo $gr['gr_use_access'] ? 'checked' : ''; ?>>
-                        사용
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">접근회원수</th>
-                    <td>
-                        <?php
-                        echo '<a href="./boardgroupmember_list.php?gr_id=' . $gr_id . '">' . $group_member_count . '</a>';
-                        ?>
-                    </td>
-                </tr>
-                <?php for ($i = 1; $i <= 10; $i++) { ?>
-                    <tr>
-                        <th scope="row">여분필드<?php echo $i ?></th>
-                        <td>
-                            <label for="gr_<?php echo $i ?>_subj">여분필드 <?php echo $i ?> 제목</label>
-                            <input type="text" name="gr_<?php echo $i ?>_subj" value="<?php echo isset($group['gr_' . $i . '_subj']) ? get_text($group['gr_' . $i . '_subj']) : ''; ?>" id="gr_<?php echo $i ?>_subj">
-                            <label for="gr_<?php echo $i ?>">여분필드 <?php echo $i ?> 내용</label>
-                            <input type="text" name="gr_<?php echo $i ?>" value="<?php echo isset($gr['gr_' . $i]) ? get_sanitize_input($gr['gr_' . $i]) : ''; ?>" id="gr_<?php echo $i ?>">
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    
+    <div class="ui-form-grid">
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="gr_id">그룹 ID<?php echo $sound_only ?></label></div>
+            <div class="ui-form-field">
+                <input type="text" name="gr_id" value="<?php echo $group['gr_id'] ?>" id="gr_id" <?php echo $gr_id_attr; ?> class="<?php echo $gr_id_attr; ?>" maxlength="10">
+                <?php
+                if ($w == '') {
+                    echo '영문자, 숫자, _ 만 가능 (공백없이)';
+                } else {
+                    echo '<a href="' . G5_BBS_URL . '/group.php?gr_id=' . $group['gr_id'] . '">게시판그룹 바로가기</a>';
+                }
+                ?>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="gr_subject">그룹 제목<strong> 필수</strong></label></div>
+            <div class="ui-form-field">
+                <input type="text" name="gr_subject" value="<?php echo get_text($group['gr_subject']) ?>" id="gr_subject" required class="required" size="80">
+                <?php
+                if ($w == 'u') {
+                    echo '<a href="./board_form.php?gr_id=' . $gr_id . '">게시판생성</a>';
+                }
+                ?>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="gr_device">접속기기</label></div>
+            <div class="ui-form-field">
+                <?php echo help("PC 와 모바일 사용을 구분합니다.") ?>
+                <select id="gr_device" name="gr_device">
+                    <option value="both" <?php echo get_selected($group['gr_device'], 'both', true); ?>>PC와 모바일에서 모두 사용</option>
+                    <option value="pc" <?php echo get_selected($group['gr_device'], 'pc'); ?>>PC 전용</option>
+                    <option value="mobile" <?php echo get_selected($group['gr_device'], 'mobile'); ?>>모바일 전용</option>
+                </select>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">
+                <?php
+                if ($is_admin == 'super') {
+                    echo '<label for="gr_admin">그룹 관리자</label>';
+                } else {
+                    echo '그룹 관리자';
+                }
+                ?>
+            </div>
+            <div class="ui-form-field">
+                <?php
+                if ($is_admin == 'super') {
+                    echo '<input type="text" id="gr_admin" name="gr_admin" value="' . $gr['gr_admin'] . '" maxlength="20">';
+                } else {
+                    echo '<input type="hidden" id="gr_admin" name="gr_admin" value="' . $gr['gr_admin'] . '">' . $gr['gr_admin'];
+                }
+                ?>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="gr_use_access">접근회원사용</label></div>
+            <div class="ui-form-field">
+                <?php echo help("사용에 체크하시면 이 그룹에 속한 게시판은 접근가능한 회원만 접근이 가능합니다.") ?>
+                <input type="checkbox" name="gr_use_access" value="1" id="gr_use_access" <?php echo $gr['gr_use_access'] ? 'checked' : ''; ?>>
+                사용
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">접근회원수</div>
+            <div class="ui-form-field"><?php echo '<a href="./boardgroupmember_list.php?gr_id=' . $gr_id . '">' . $group_member_count . '</a>'; ?></div>
+        </div>
+        <?php for ($i = 1; $i <= 10; $i++) { ?>
+            <div class="ui-form-row">
+                <div class="ui-form-label">여분필드<?php echo $i ?></div>
+                <div class="ui-form-field">
+                    <label for="gr_<?php echo $i ?>_subj">여분필드 <?php echo $i ?> 제목</label>
+                    <input type="text" name="gr_<?php echo $i ?>_subj" value="<?php echo isset($group['gr_' . $i . '_subj']) ? get_text($group['gr_' . $i . '_subj']) : ''; ?>" id="gr_<?php echo $i ?>_subj">
+                    <label for="gr_<?php echo $i ?>">여분필드 <?php echo $i ?> 내용</label>
+                    <input type="text" name="gr_<?php echo $i ?>" value="<?php echo isset($gr['gr_' . $i]) ? get_sanitize_input($gr['gr_' . $i]) : ''; ?>" id="gr_<?php echo $i ?>">
+                </div>
+            </div>
+        <?php } ?>
+    </div>
 
     <div>
         <a href="./boardgroup_list.php?<?php echo $qstr ?>">목록</a>

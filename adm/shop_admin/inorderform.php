@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $sub_menu = '400410';
 include_once('./_common.php');
 
@@ -195,24 +195,24 @@ $pg_anchor = '<ul>
     
 
     
-        <table>
-        <caption>주문 상품 목록</caption>
-        <thead>
-        <tr>
-            <th scope="col">상품명</th>
-            <th scope="col">옵션항목</th>
-            <th scope="col">상태</th>
-            <th scope="col">수량</th>
-            <th scope="col">판매가</th>
-            <th scope="col">소계</th>
-            <th scope="col">쿠폰</th>
-            <th scope="col">포인트</th>
-            <th scope="col">배송비</th>
-            <th scope="col">포인트반영</th>
-            <th scope="col">재고반영</th>
-        </tr>
-        </thead>
-        <tbody>
+        <div class="ui-form-grid">
+        <div class="ui-form-caption">주문 상품 목록</div>
+        
+        <div class="ui-form-row">
+            <div class="ui-form-label">상품명</div>
+            <div class="ui-form-label">옵션항목</div>
+            <div class="ui-form-label">상태</div>
+            <div class="ui-form-label">수량</div>
+            <div class="ui-form-label">판매가</div>
+            <div class="ui-form-label">소계</div>
+            <div class="ui-form-label">쿠폰</div>
+            <div class="ui-form-label">포인트</div>
+            <div class="ui-form-label">배송비</div>
+            <div class="ui-form-label">포인트반영</div>
+            <div class="ui-form-label">재고반영</div>
+        </div>
+        
+        
         <?php
         for($i=0; $row=sql_fetch_array($result); $i++) {
             // 상품이미지
@@ -264,32 +264,32 @@ $pg_anchor = '<ul>
                 else
                     $opt_cp_price = 0;
             ?>
-            <tr>
+            <div class="ui-form-row">
                 <?php if($k == 0) { ?>
-                <td rowspan="<?php echo $rowspan; ?>">
+                <div class="ui-form-field">">
                     <?php echo $image; ?> <?php echo stripslashes($row['it_name']); ?>
                     <?php if(isset($od['od_tax_flag']) && $od['od_tax_flag'] && $row['ct_notax']) echo '[비과세상품]'; ?>
-                </td>
+                </div>
                 <?php } ?>
-                <td><?php echo $opt['ct_option']; ?></td>
-                <td class="cell-mngsmall"><?php echo $opt['ct_status']; ?></td>
-                <td><?php echo number_format($opt['ct_qty']); ?></td>
-                <td><?php echo number_format($opt_price); ?></td>
-                <td><?php echo number_format($ct_price['stotal']); ?></td>
-                <td><?php echo number_format($opt_cp_price); ?></td>
-                <td><?php echo number_format($ct_point['stotal']); ?></td>
-                <td><?php echo $ct_send_cost; ?></td>
-                <td class="cell-mngsmall"><?php echo get_yn($opt['ct_point_use']); ?></td>
-                <td class="cell-mngsmall"><?php echo get_yn($opt['ct_stock_use']); ?></td>
-            </tr>
+                <div class="ui-form-field"><?php echo $opt['ct_option']; ?></div>
+                <div class="ui-form-field"><?php echo $opt['ct_status']; ?></div>
+                <div class="ui-form-field"><?php echo number_format($opt['ct_qty']); ?></div>
+                <div class="ui-form-field"><?php echo number_format($opt_price); ?></div>
+                <div class="ui-form-field"><?php echo number_format($ct_price['stotal']); ?></div>
+                <div class="ui-form-field"><?php echo number_format($opt_cp_price); ?></div>
+                <div class="ui-form-field"><?php echo number_format($ct_point['stotal']); ?></div>
+                <div class="ui-form-field"><?php echo $ct_send_cost; ?></div>
+                <div class="ui-form-field"><?php echo get_yn($opt['ct_point_use']); ?></div>
+                <div class="ui-form-field"><?php echo get_yn($opt['ct_stock_use']); ?></div>
+            </div>
             <?php
             }
             ?>
         <?php
         }
         ?>
-        </tbody>
-        </table>
+        
+        </div>
     
 </section>
 
@@ -348,33 +348,33 @@ $pg_anchor = '<ul>
 
         <strong>미수금 <?php echo display_price($amount['misu']); ?></strong>
 
-        <table>
-        <caption>주문결제 내역</caption>
-        <thead>
-        <tr>
-            <th scope="col">주문번호</th>
-            <th scope="col">결제방법</th>
-            <th scope="col">주문총액</th>
-            <th scope="col">배송비</th>
-            <th scope="col">포인트결제</th>
-            <th scope="col">총결제액</th>
-            <th scope="col">쿠폰</th>
-            <th scope="col">주문취소</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><?php echo $od['od_id']; ?></td>
-            <td><?php echo $s_receipt_way; ?></td>
-            <td><?php echo display_price($amount['order']); ?></td>
-            <td><?php echo display_price($od_send_cost + $od_send_cost2); ?></td>
-            <td><?php echo display_point($od_temp_point); ?></td>
-            <td><?php echo number_format($amount['receipt']); ?>원</td>
-            <td><?php echo display_price($amount['coupon']); ?></td>
-            <td><?php echo number_format($amount['cancel']); ?>원</td>
-        </tr>
-        </tbody>
-        </table>
+        <div class="ui-form-grid">
+        <div class="ui-form-caption">주문결제 내역</div>
+        
+        <div class="ui-form-row">
+            <div class="ui-form-label">주문번호</div>
+            <div class="ui-form-label">결제방법</div>
+            <div class="ui-form-label">주문총액</div>
+            <div class="ui-form-label">배송비</div>
+            <div class="ui-form-label">포인트결제</div>
+            <div class="ui-form-label">총결제액</div>
+            <div class="ui-form-label">쿠폰</div>
+            <div class="ui-form-label">주문취소</div>
+        </div>
+        
+        
+        <div class="ui-form-row">
+            <div class="ui-form-field"><?php echo $od['od_id']; ?></div>
+            <div class="ui-form-field"><?php echo $s_receipt_way; ?></div>
+            <div class="ui-form-field"><?php echo display_price($amount['order']); ?></div>
+            <div class="ui-form-field"><?php echo display_price($od_send_cost + $od_send_cost2); ?></div>
+            <div class="ui-form-field"><?php echo display_point($od_temp_point); ?></div>
+            <div class="ui-form-field"><?php echo number_format($amount['receipt']); ?>원</div>
+            <div class="ui-form-field"><?php echo display_price($amount['coupon']); ?></div>
+            <div class="ui-form-field"><?php echo number_format($amount['cancel']); ?>원</div>
+        </div>
+        
+        </div>
 
         
             <input type="submit" value="주문 복구">
@@ -415,39 +415,39 @@ $pg_anchor = '<ul>
         <p>실결제로 결제된 경우 반드시 이니시스 상점 관리자에서 해당 결제건을 확인 후에 주문을 처리해 주세요.</p>
     
     
-        <table>
-        <caption>이니시스 결제 로그</caption>
-        <tbody>
+        <div class="ui-form-grid">
+        <div class="ui-form-caption">이니시스 결제 로그</div>
+        
         <?php foreach( $tmps as $tmp ){
             if( empty($tmp) ) continue;
         ?>
-        <tr>
-            <th>주문번호</th>
-            <td><?php echo $tmp['oid']; ?></td>
-        </tr>
-        <tr>
-            <th>결제 TID</th>
-            <td><?php echo $tmp['P_TID']; ?></td>
-        </tr>
-        <tr>
-            <th>결제 MID</th>
-            <td><?php echo $tmp['P_MID']; ?><?php echo in_array( strtolower($tmp['P_MID']), array('iniescrow0', 'inipaytest') ) ? ' ( 테스트결제 )' : ''; ?></td>
-        </tr>
-        <tr>
-            <th>결제 시간</th>
-            <td><?php echo date('Y-m-d H:i:s', strtotime(substr($tmp['P_AUTH_DT'], 0, 14))); ?></td>
-        </tr>
-        <tr>
-            <th>결제 수단</th>
-            <td><?php echo $tmp['P_TYPE'].' '.$tmp['P_FN_NM']; ?></td>
-        </tr>
-        <tr>
-            <th>결제된 금액</th>
-            <td><?php echo $tmp['P_AMT'] ? number_format($tmp['P_AMT']) : 0; ?></td>
-        </tr>
+        <div class="ui-form-row">
+            <div class="ui-form-label">주문번호</div>
+            <div class="ui-form-field"><?php echo $tmp['oid']; ?></div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">결제 TID</div>
+            <div class="ui-form-field"><?php echo $tmp['P_TID']; ?></div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">결제 MID</div>
+            <div class="ui-form-field"><?php echo $tmp['P_MID']; ?><?php echo in_array( strtolower($tmp['P_MID']), array('iniescrow0', 'inipaytest') ) ? ' ( 테스트결제 )' : ''; ?></div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">결제 시간</div>
+            <div class="ui-form-field"><?php echo date('Y-m-d H:i:s', strtotime(substr($tmp['P_AUTH_DT'], 0, 14))); ?></div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">결제 수단</div>
+            <div class="ui-form-field"><?php echo $tmp['P_TYPE'].' '.$tmp['P_FN_NM']; ?></div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">결제된 금액</div>
+            <div class="ui-form-field"><?php echo $tmp['P_AMT'] ? number_format($tmp['P_AMT']) : 0; ?></div>
+        </div>
         <?php }     //end foreach ?>
-        </tbody>
-        </table>
+        
+        </div>
     
     <?php
         }   //end if tmps
@@ -463,40 +463,40 @@ $pg_anchor = '<ul>
             <h3>주문하신 분</h3>
 
             
-                <table>
-                <caption>주문자/배송지 정보</caption>
-                <colgroup>
-                    <col>
-                    <col>
-                </colgroup>
-                <tbody>
-                <tr>
-                    <th scope="row"><span>주문하신 분 </span>이름</th>
-                    <td><?php echo get_text($data['od_name']); ?></td>
-                </tr>
-                <tr>
-                    <th scope="row"><span>주문하신 분 </span>전화번호</th>
-                    <td><?php echo get_text($data['od_tel']); ?></td>
-                </tr>
-                <tr>
-                    <th scope="row"><span>주문하신 분 </span>핸드폰</th>
-                    <td><?php echo get_text($data['od_hp']); ?></td>
-                </tr>
-                <tr>
-                    <th scope="row"><span>주문하시는 분 </span>주소</th>
-                    <td>
+                <div class="ui-form-grid">
+                <div class="ui-form-caption">주문자/배송지 정보</div>
+                
+                    
+                    
+                
+                
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><span>주문하신 분 </span>이름</div>
+                    <div class="ui-form-field"><?php echo get_text($data['od_name']); ?></div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><span>주문하신 분 </span>전화번호</div>
+                    <div class="ui-form-field"><?php echo get_text($data['od_tel']); ?></div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><span>주문하신 분 </span>핸드폰</div>
+                    <div class="ui-form-field"><?php echo get_text($data['od_hp']); ?></div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><span>주문하시는 분 </span>주소</div>
+                    <div class="ui-form-field">
                         <span><?php echo $data['od_zip']; ?></span>
                         <span><?php echo get_text($data['od_addr1']); ?></span>
                         <span><?php echo get_text($data['od_addr2']); ?></span>
                         <span><?php echo get_text($data['od_addr3']); ?></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><span>주문하신 분 </span>E-mail</th>
-                    <td><?php echo get_text($data['od_email']); ?></td>
-                </tr>
-                </tbody>
-                </table>
+                    </div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><span>주문하신 분 </span>E-mail</div>
+                    <div class="ui-form-field"><?php echo get_text($data['od_email']); ?></div>
+                </div>
+                
+                </div>
             
         </section>
 
@@ -504,47 +504,47 @@ $pg_anchor = '<ul>
             <h3>받으시는 분</h3>
 
             
-                <table>
-                <caption>받으시는 분 정보</caption>
-                <colgroup>
-                    <col>
-                    <col>
-                </colgroup>
-                <tbody>
-                <tr>
-                    <th scope="row"><span>받으시는 분 </span>이름</th>
-                    <td><?php echo get_text($data['od_b_name']); ?></td>
-                </tr>
-                <tr>
-                    <th scope="row"><span>받으시는 분 </span>전화번호</th>
-                    <td><?php echo get_text($data['od_b_tel']); ?></td>
-                </tr>
-                <tr>
-                    <th scope="row"><span>받으시는 분 </span>핸드폰</th>
-                    <td><?php echo get_text($data['od_b_hp']); ?></td>
-                </tr>
-                <tr>
-                    <th scope="row"><span>받으시는 분 </span>주소</th>
-                    <td>
+                <div class="ui-form-grid">
+                <div class="ui-form-caption">받으시는 분 정보</div>
+                
+                    
+                    
+                
+                
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><span>받으시는 분 </span>이름</div>
+                    <div class="ui-form-field"><?php echo get_text($data['od_b_name']); ?></div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><span>받으시는 분 </span>전화번호</div>
+                    <div class="ui-form-field"><?php echo get_text($data['od_b_tel']); ?></div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><span>받으시는 분 </span>핸드폰</div>
+                    <div class="ui-form-field"><?php echo get_text($data['od_b_hp']); ?></div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><span>받으시는 분 </span>주소</div>
+                    <div class="ui-form-field">
                         <span><?php echo $data['od_b_zip']; ?></span>
                         <span><?php echo get_text($data['od_b_addr1']); ?></span>
                         <span><?php echo get_text($data['od_b_addr2']); ?></span>
                         <span><?php echo get_text($data['od_b_addr3']); ?></span>
-                    </td>
-                </tr>
+                    </div>
+                </div>
 
                 <?php if ($default['de_hope_date_use']) { ?>
-                <tr>
-                    <th scope="row">희망배송일</th>
-                    <td><?php echo $data['od_hope_date']; ?> (<?php echo get_yoil($data['od_hope_date']); ?>)</td>
-                </tr>
+                <div class="ui-form-row">
+                    <div class="ui-form-label">희망배송일</div>
+                    <div class="ui-form-field"><?php echo $data['od_hope_date']; ?> (<?php echo get_yoil($data['od_hope_date']); ?>)</div>
+                </div>
                 <?php } ?>
-                <tr>
-                    <th scope="row">전달 메세지</th>
-                    <td><?php if ($data['od_memo']) echo get_text($data['od_memo'], 1);else echo "없음";?></td>
-                </tr>
-                </tbody>
-                </table>
+                <div class="ui-form-row">
+                    <div class="ui-form-label">전달 메세지</div>
+                    <div class="ui-form-field"><?php if ($data['od_memo']) echo get_text($data['od_memo'], 1);else echo "없음";?></div>
+                </div>
+                
+                </div>
             
         </section>
     </div>
@@ -572,3 +572,4 @@ function del_confirm()
 
 <?php
 include_once(G5_ADMIN_PATH.'/admin.tail.php');
+

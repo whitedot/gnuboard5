@@ -64,70 +64,65 @@ require_once './admin.head.php';
 <form name="frmsendmailselectform" id="frmsendmailselectform" action="./mail_select_list.php" method="post" autocomplete="off">
     <input type="hidden" name="ma_id" value="<?php echo $ma_id ?>">
 
-    
-        <table>
-            <caption><?php echo $g5['title']; ?> 대상선택</caption>
-            <tbody>
-                <tr>
-                    <th scope="row">회원 ID</th>
-                    <td>
-                        <input type="radio" name="mb_id1" value="1" id="mb_id1_all" <?php echo $mb_id1 ? "checked" : ""; ?>> <label for="mb_id1_all">전체</label>
-                        <input type="radio" name="mb_id1" value="0" id="mb_id1_section" <?php echo !$mb_id1 ? "checked" : ""; ?>> <label for="mb_id1_section">구간</label>
-                        <input type="text" name="mb_id1_from" value="<?php echo get_sanitize_input($mb_id1_from); ?>" id="mb_id1_from" title="시작구간"> 에서
-                        <input type="text" name="mb_id1_to" value="<?php echo get_sanitize_input($mb_id1_to); ?>" id="mb_id1_to" title="종료구간"> 까지
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="mb_email">E-mail</label></th>
-                    <td>
-                        <?php echo help("메일 주소에 단어 포함 (예 : @" . preg_replace('#^(www[^\.]*\.){1}#', '', $_SERVER['HTTP_HOST']) . ")") ?>
-                        <input type="text" name="mb_email" value="<?php echo get_sanitize_input($mb_email); ?>" id="mb_email" size="50">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="mb_mailling">메일링</label></th>
-                    <td>
-                        <select name="mb_mailling" id="mb_mailling">
-                            <option value="1">수신동의한 회원만
-                            <option value="">전체
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">권한</th>
-                    <td>
-                        <label for="mb_level_from">최소권한</label>
-                        <select name="mb_level_from" id="mb_level_from">
-                            <?php for ($i = 1; $i <= 10; $i++) { ?>
-                                <option value="<?php echo $i ?>"><?php echo $i ?></option>
-                            <?php } ?>
-                        </select> 에서
-                        <label for="mb_level_to">최대권한</label>
-                        <select name="mb_level_to" id="mb_level_to">
-                            <?php for ($i = 1; $i <= 10; $i++) { ?>
-                                <option value="<?php echo $i ?>" <?php echo $i == 10 ? " selected" : ""; ?>><?php echo $i ?></option>
-                            <?php } ?>
-                        </select> 까지
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="gr_id">게시판그룹회원</label></th>
-                    <td>
-                        <select name="gr_id" id="gr_id">
-                            <option value=''>전체</option>
-                            <?php
-                            $sql = " select gr_id, gr_subject from {$g5['group_table']} order by gr_subject ";
-                            $result = sql_query($sql);
-                            for ($i = 0; $row = sql_fetch_array($result); $i++) {
-                                echo '<option value="' . $row['gr_id'] . '">' . $row['gr_subject'] . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    
+    <div class="ui-form-grid">
+        <div class="ui-form-row">
+            <div class="ui-form-label">회원 ID</div>
+            <div class="ui-form-field">
+                <input type="radio" name="mb_id1" value="1" id="mb_id1_all" <?php echo $mb_id1 ? "checked" : ""; ?>> <label for="mb_id1_all">전체</label>
+                <input type="radio" name="mb_id1" value="0" id="mb_id1_section" <?php echo !$mb_id1 ? "checked" : ""; ?>> <label for="mb_id1_section">구간</label>
+                <input type="text" name="mb_id1_from" value="<?php echo get_sanitize_input($mb_id1_from); ?>" id="mb_id1_from" title="시작구간"> 에서
+                <input type="text" name="mb_id1_to" value="<?php echo get_sanitize_input($mb_id1_to); ?>" id="mb_id1_to" title="종료구간"> 까지
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="mb_email">E-mail</label></div>
+            <div class="ui-form-field">
+                <?php echo help("메일 주소에 단어 포함 (예 : @" . preg_replace('#^(www[^\.]*\.){1}#', '', $_SERVER['HTTP_HOST']) . ")") ?>
+                <input type="text" name="mb_email" value="<?php echo get_sanitize_input($mb_email); ?>" id="mb_email" size="50">
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="mb_mailling">메일링</label></div>
+            <div class="ui-form-field">
+                <select name="mb_mailling" id="mb_mailling">
+                    <option value="1">수신동의한 회원만
+                    <option value="">전체
+                </select>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">권한</div>
+            <div class="ui-form-field">
+                <label for="mb_level_from">최소권한</label>
+                <select name="mb_level_from" id="mb_level_from">
+                    <?php for ($i = 1; $i <= 10; $i++) { ?>
+                        <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                    <?php } ?>
+                </select> 에서
+                <label for="mb_level_to">최대권한</label>
+                <select name="mb_level_to" id="mb_level_to">
+                    <?php for ($i = 1; $i <= 10; $i++) { ?>
+                        <option value="<?php echo $i ?>" <?php echo $i == 10 ? " selected" : ""; ?>><?php echo $i ?></option>
+                    <?php } ?>
+                </select> 까지
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="gr_id">게시판그룹회원</label></div>
+            <div class="ui-form-field">
+                <select name="gr_id" id="gr_id">
+                    <option value=''>전체</option>
+                    <?php
+                    $sql = " select gr_id, gr_subject from {$g5['group_table']} order by gr_subject ";
+                    $result = sql_query($sql);
+                    for ($i = 0; $row = sql_fetch_array($result); $i++) {
+                        echo '<option value="' . $row['gr_id'] . '">' . $row['gr_subject'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+    </div>
 
     <div>
         <input type="submit" value="확인">

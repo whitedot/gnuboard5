@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $sub_menu = '300700';
 require_once './_common.php';
 require_once G5_EDITOR_LIB;
@@ -34,33 +34,33 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
     <input type="hidden" name="token" value="">
 
     
-        <table>
-            <caption><?php echo $g5['title']; ?></caption>
-            <colgroup>
-                <col>
-                <col>
-            </colgroup>
-            <tbody>
-                <tr>
-                    <th scope="row"><label for="fm_order">출력순서</label></th>
-                    <td>
+        <div class="ui-form-grid">
+            <div class="ui-form-caption"><?php echo $g5['title']; ?></div>
+            
+                
+                
+            
+            
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><label for="fm_order">출력순서</label></div>
+                    <div class="ui-form-field">
                         <?php echo help('숫자가 작을수록 FAQ 분류에서 먼저 출력됩니다.'); ?>
                         <input type="text" name="fm_order" value="<?php echo $fm['fm_order']; ?>" id="fm_order" maxlength="10" size="10">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="fm_subject">제목</label></th>
-                    <td>
+                    </div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><label for="fm_subject">제목</label></div>
+                    <div class="ui-form-field">
                         <input type="text" value="<?php echo get_text($fm['fm_subject']); ?>" name="fm_subject" id="fm_subject" required class="required" size="70">
                         <?php if ($w == 'u') { ?>
                             <a href="<?php echo G5_BBS_URL; ?>/faq.php?fm_id=<?php echo $fm_id; ?>">보기</a>
                             <a href="./faqlist.php?fm_id=<?php echo $fm_id; ?>">상세보기</a>
                         <?php } ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="fm_himg">상단이미지</label></th>
-                    <td>
+                    </div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><label for="fm_himg">상단이미지</label></div>
+                    <div class="ui-form-field">
                         <input type="file" name="fm_himg" id="fm_himg">
                         <?php
                         $himg = G5_DATA_PATH . '/faq/' . $fm['fm_id'] . '_h';
@@ -84,11 +84,11 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                             echo '</div>';
                         }
                         ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="fm_timg">하단이미지</label></th>
-                    <td>
+                    </div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><label for="fm_timg">하단이미지</label></div>
+                    <div class="ui-form-field">
                         <input type="file" name="fm_timg" id="fm_timg">
                         <?php
                         $timg = G5_DATA_PATH . '/faq/' . $fm['fm_id'] . '_t';
@@ -113,22 +113,22 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                             echo '</div>';
                         }
                         ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">상단 내용</th>
-                    <td>
+                    </div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label">상단 내용</div>
+                    <div class="ui-form-field">
                         <?php echo editor_html('fm_head_html', get_text(html_purifier($fm['fm_head_html']), 0)); ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">하단 내용</th>
-                    <td>
+                    </div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label">하단 내용</div>
+                    <div class="ui-form-field">
                         <?php echo editor_html('fm_tail_html', get_text(html_purifier($fm['fm_tail_html']), 0)); ?>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                    </div>
+                </div>
+            
+        </div>
     
 
     <div>
@@ -149,3 +149,5 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
 
 <?php
 require_once G5_ADMIN_PATH . '/admin.tail.php';
+
+

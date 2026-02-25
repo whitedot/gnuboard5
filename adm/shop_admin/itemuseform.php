@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $sub_menu = '400650';
 include_once('./_common.php');
 include_once(G5_EDITOR_LIB);
@@ -51,54 +51,54 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca;
 
 
 
-    <table>
-    <caption><?php echo $g5['title']; ?> 수정</caption>
-    <colgroup>
-        <col>
-        <col>
-    </colgroup>
-    <tbody>
-    <tr>
-        <th scope="row">상품명</th>
-        <td><a href="<?php echo shop_item_url($is['it_id']); ?>"><?php echo $is['it_name']; ?></a></td>
-    </tr>
-    <tr>
-        <th scope="row">이름</th>
-        <td><?php echo $name; ?></td>
-    </tr>
-    <tr>
-        <th scope="row">평점</th>
-        <td><img src="<?php echo G5_URL; ?>/shop/img/s_star<?php echo $is['is_score']; ?>.png" width="100"> (<?php echo $is['is_score']; ?>점)</td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="is_subject">제목</label></th>
-        <td><input type="text" name="is_subject" required class="required" id="is_subject" size="100"
-        value="<?php echo get_text($is['is_subject']); ?>"></td>
-    </tr>
-    <tr>
-        <th scope="row">내용</th>
-        <td><?php echo editor_html('is_content', get_text(html_purifier($is['is_content']), 0)); ?></td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="is_reply_subject">답변 제목</label></th>
-        <td><input type="text" name="is_reply_subject" id="is_reply_subject" size="100"
-        value="<?php echo get_text($is['is_reply_subject']); ?>"></td>
-    </tr>
-    <tr>
-        <th scope="row">답변 내용</th>
-        <td><?php echo editor_html('is_reply_content', get_text(html_purifier($is['is_reply_content']), 0)); ?></td>
-    </tr>
-    <tr>
-        <th scope="row">확인</th>
-        <td>
+    <div class="ui-form-grid">
+    <div class="ui-form-caption"><?php echo $g5['title']; ?> 수정</div>
+    
+        
+        
+    
+    
+    <div class="ui-form-row">
+        <div class="ui-form-label">상품명</div>
+        <div class="ui-form-field"><a href="<?php echo shop_item_url($is['it_id']); ?>"><?php echo $is['it_name']; ?></a></div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label">이름</div>
+        <div class="ui-form-field"><?php echo $name; ?></div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label">평점</div>
+        <div class="ui-form-field"><img src="<?php echo G5_URL; ?>/shop/img/s_star<?php echo $is['is_score']; ?>.png" width="100"> (<?php echo $is['is_score']; ?>점)</div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="is_subject">제목</label></div>
+        <div class="ui-form-field"><input type="text" name="is_subject" required class="required" id="is_subject" size="100"
+        value="<?php echo get_text($is['is_subject']); ?>"></div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label">내용</div>
+        <div class="ui-form-field"><?php echo editor_html('is_content', get_text(html_purifier($is['is_content']), 0)); ?></div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="is_reply_subject">답변 제목</label></div>
+        <div class="ui-form-field"><input type="text" name="is_reply_subject" id="is_reply_subject" size="100"
+        value="<?php echo get_text($is['is_reply_subject']); ?>"></div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label">답변 내용</div>
+        <div class="ui-form-field"><?php echo editor_html('is_reply_content', get_text(html_purifier($is['is_reply_content']), 0)); ?></div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label">확인</div>
+        <div class="ui-form-field">
             <input type="radio" name="is_confirm" value="1" id="is_confirm_yes" <?php echo $is_confirm_yes; ?>>
             <label for="is_confirm_yes">예</label>
             <input type="radio" name="is_confirm" value="0" id="is_confirm_no" <?php echo $is_confirm_no; ?>>
             <label for="is_confirm_no">아니오</label>
-        </td>
-    </tr>
-    </tbody>
-    </table>
+        </div>
+    </div>
+    
+    </div>
 
 
 <div>
@@ -118,3 +118,4 @@ function fitemuseform_submit(f)
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+

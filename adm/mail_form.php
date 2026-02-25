@@ -36,25 +36,16 @@ require_once './admin.head.php';
     <input type="hidden" name="ma_id" value="<?php echo $ma['ma_id'] ?>" id="ma_id">
     <input type="hidden" name="token" value="" id="token">
 
-    
-        <table>
-            <caption><?php echo $g5['title']; ?></caption>
-            <colgroup>
-                <col>
-                <col>
-            </colgroup>
-            <tbody>
-                <tr>
-                    <th scope="row"><label for="ma_subject">메일 제목<strong>필수</strong></label></th>
-                    <td><input type="text" name="ma_subject" value="<?php echo get_sanitize_input($ma['ma_subject']); ?>" id="ma_subject" required class="required" size="100"></td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="ma_content">메일 내용<strong>필수</strong></label></th>
-                    <td><?php echo editor_html("ma_content", get_text(html_purifier($ma['ma_content']), 0)); ?></td>
-                </tr>
-            </tbody>
-        </table>
-    
+    <div class="ui-form-grid">
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ma_subject">메일 제목<strong>필수</strong></label></div>
+            <div class="ui-form-field"><input type="text" name="ma_subject" value="<?php echo get_sanitize_input($ma['ma_subject']); ?>" id="ma_subject" required class="required" size="100"></div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ma_content">메일 내용<strong>필수</strong></label></div>
+            <div class="ui-form-field"><?php echo editor_html("ma_content", get_text(html_purifier($ma['ma_content']), 0)); ?></div>
+        </div>
+    </div>
 
     
         <input type="submit" accesskey="s" value="확인">

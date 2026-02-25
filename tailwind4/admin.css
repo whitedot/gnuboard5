@@ -58,6 +58,30 @@
         @apply border-b-0;
     }
 
+    .ui-form-grid {
+        @apply rounded-xl border border-default-300 bg-card shadow-sm;
+    }
+
+    .ui-form-row {
+        @apply grid border-b border-default-300 md:grid-cols-[16rem_minmax(0,1fr)];
+    }
+
+    .ui-form-row:last-child {
+        @apply border-b-0;
+    }
+
+    .ui-form-label {
+        @apply bg-default-100 px-4 py-3 text-sm font-semibold text-default-700;
+    }
+
+    .ui-form-field {
+        @apply px-4 py-3 text-sm;
+    }
+
+    .ui-form-caption {
+        @apply bg-default-100 px-4 py-3 text-sm font-medium text-default-700;
+    }
+
     .table-empty {
         @apply px-4 py-8 text-center text-sm text-default-500;
     }
@@ -560,8 +584,189 @@
         @apply mb-5 mt-2 text-sm text-default-500;
     }
 
-    #container > .admin-content-shell {
-        @apply rounded-2xl border border-default-300 bg-card p-4 shadow-sm lg:p-6;
+    #container > section,
+    #container > form > section,
+    #container > .section-card {
+        @apply relative mb-5 flex h-fit flex-col break-words rounded-[var(--radius)] bg-card bg-clip-border shadow;
+    }
+
+    #container > section > h2,
+    #container > form > section > h2,
+    #container > .section-card > h2 {
+        @apply mb-0 flex flex-wrap items-center justify-between gap-3 border-b border-dashed border-default-300 px-5 py-3.75 text-md font-medium leading-normal text-body-color;
+    }
+
+    #container > section > .tbl_wrap,
+    #container > form > section > .tbl_wrap,
+    #container > .section-card > .tbl_wrap {
+        @apply flex-auto p-0 transition-all duration-300;
+    }
+
+    #container > section > .local_desc,
+    #container > form > section > .local_desc,
+    #container > .section-card > .local_desc {
+        @apply flex-auto px-5 pb-5 pt-4 transition-all duration-300;
+    }
+
+    #container > section > :not(h1):not(h2):not(h3):not(.card-header),
+    #container > form > section > :not(h1):not(h2):not(h3):not(.card-header),
+    #container > .section-card > :not(h1):not(h2):not(h3):not(.card-header) {
+        @apply px-5;
+    }
+
+    #container > section > :not(h1):not(h2):not(h3):first-child,
+    #container > form > section > :not(h1):not(h2):not(h3):first-child,
+    #container > .section-card > :not(h1):not(h2):not(h3):first-child {
+        @apply pt-5;
+    }
+
+    #container > section > :not(h1):not(h2):not(h3):last-child,
+    #container > form > section > :not(h1):not(h2):not(h3):last-child,
+    #container > .section-card > :not(h1):not(h2):not(h3):last-child {
+        @apply pb-5;
+    }
+
+    #container > section > table,
+    #container > form > section > table,
+    #container > .section-card > table {
+        @apply w-full border-collapse;
+    }
+
+    #container > section > table thead th,
+    #container > form > section > table thead th,
+    #container > .section-card > table thead th {
+        @apply border-b border-default-300 bg-default-100 px-3 py-2 text-left text-sm font-semibold text-default-700;
+    }
+
+    #container > section > table tbody td,
+    #container > form > section > table tbody td,
+    #container > .section-card > table tbody td {
+        @apply border-b border-default-300 px-3 py-2 align-middle text-sm;
+    }
+
+    #container > section > table tbody tr:last-child td,
+    #container > form > section > table tbody tr:last-child td,
+    #container > .section-card > table tbody tr:last-child td {
+        @apply border-b-0;
+    }
+
+    /* Legacy admin pages (member/board/shop/sms) */
+    #container > div,
+    #container > form:not(#fconfigform) {
+        @apply mb-5 rounded-[var(--radius)] border border-default-300 bg-card p-4 shadow;
+    }
+
+    #container > form:has(> section),
+    #container > form#fconfigform {
+        @apply mb-0 border-0 bg-transparent p-0 shadow-none;
+    }
+
+    #container > div > table,
+    #container > form > table,
+    #container > div table,
+    #container > form table {
+        @apply w-full border-collapse;
+    }
+
+    #container > div > table thead th,
+    #container > form > table thead th,
+    #container > div table thead th,
+    #container > form table thead th {
+        @apply border-b border-default-300 bg-default-100 px-3 py-2 text-left text-sm font-semibold text-default-700;
+    }
+
+    #container > div > table tbody td,
+    #container > form > table tbody td,
+    #container > div table tbody td,
+    #container > form table tbody td {
+        @apply border-b border-default-300 px-3 py-2 align-middle text-sm;
+    }
+
+    #container > div > table tbody tr:last-child td,
+    #container > form > table tbody tr:last-child td,
+    #container > div table tbody tr:last-child td,
+    #container > form table tbody tr:last-child td {
+        @apply border-b-0;
+    }
+
+    #container input[type="text"],
+    #container input[type="search"],
+    #container input[type="password"],
+    #container input[type="number"],
+    #container input[type="date"],
+    #container input[type="email"],
+    #container input[type="url"],
+    #container select,
+    #container textarea {
+        @apply h-9.25 rounded border border-default-500 bg-default-100 px-3 text-sm text-body-color outline-0 transition-all;
+    }
+
+    #container textarea {
+        @apply h-auto py-2;
+    }
+
+    #container input[type="submit"],
+    #container input[type="button"],
+    #container button,
+    #container a.btn_add01,
+    #container a#bo_add,
+    #container a#order_delivery {
+        @apply inline-flex items-center rounded border border-default-300 bg-white px-3 py-1.75 text-sm font-medium text-default-700 transition-all hover:bg-default-100;
+    }
+
+    #container > div > a,
+    #container > form > div > a {
+        @apply inline-flex items-center rounded border border-default-300 bg-white px-3 py-1.5 text-sm text-default-700 transition-all hover:bg-default-100;
+    }
+
+    #fconfigform .config-shell {
+        @apply grid gap-5 lg:grid-cols-[18rem_minmax(0,1fr)] lg:items-start;
+    }
+
+    #fconfigform .config-sidebar {
+        @apply lg:sticky lg:top-[calc(var(--admin-shell-bar-height)+1rem)];
+    }
+
+    #fconfigform .config-submenu .card-header {
+        @apply px-4 py-3;
+    }
+
+    #fconfigform .config-submenu .card-body {
+        @apply p-4;
+    }
+
+    #fconfigform .config-submenu .section-anchor {
+        @apply mb-0;
+    }
+
+    #fconfigform .config-content > section,
+    #fconfigform .config-content > #anc_cf_url,
+    #fconfigform .config-content > #config_captcha_wrap {
+        @apply relative mb-5 flex h-fit flex-col break-words rounded-[var(--radius)] bg-card bg-clip-border shadow;
+    }
+
+    #fconfigform .config-content > section > h2,
+    #fconfigform .config-content > #anc_cf_url > h2,
+    #fconfigform .config-content > #config_captcha_wrap > h2 {
+        @apply mb-0 flex flex-wrap items-center justify-between gap-3 border-b border-dashed border-default-300 px-5 py-3.75 text-md font-medium leading-normal text-body-color;
+    }
+
+    #fconfigform .config-content > section > :not(h1):not(h2):not(h3):not(.card-header),
+    #fconfigform .config-content > #anc_cf_url > :not(h1):not(h2):not(h3):not(.card-header),
+    #fconfigform .config-content > #config_captcha_wrap > :not(h1):not(h2):not(h3):not(.card-header) {
+        @apply px-5;
+    }
+
+    #fconfigform .config-content > section > :not(h1):not(h2):not(h3):first-child,
+    #fconfigform .config-content > #anc_cf_url > :not(h1):not(h2):not(h3):first-child,
+    #fconfigform .config-content > #config_captcha_wrap > :not(h1):not(h2):not(h3):first-child {
+        @apply pt-5;
+    }
+
+    #fconfigform .config-content > section > :not(h1):not(h2):not(h3):last-child,
+    #fconfigform .config-content > #anc_cf_url > :not(h1):not(h2):not(h3):last-child,
+    #fconfigform .config-content > #config_captcha_wrap > :not(h1):not(h2):not(h3):last-child {
+        @apply pb-5;
     }
 
     #ft {

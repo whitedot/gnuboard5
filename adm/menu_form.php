@@ -139,41 +139,58 @@ if ($new == 'new' || !$code) {
         name = htmlEscape(name);
         link = htmlEscape(link);
         
-        var list = "<tr class=\"menu_list menu_group_<?php echo $code; ?>\">";
-        list += "<td" + sub_menu_class + ">";
-        list += "<label for=\"me_name_" + ms + "\"  class=\"sr-only\">메뉴<strong class=\"sr-only\"> 필수</strong></label>";
-        list += "<input type=\"hidden\" name=\"code[]\" value=\"<?php echo $code; ?>\">";
-        list += "<input type=\"text\" name=\"me_name[]\" value=\"" + name + "\" id=\"me_name_" + ms + "\" required class=\"required form-input w-full\">";
-        list += "</td>";
-        list += "<td>";
-        list += "<label for=\"me_link_" + ms + "\"  class=\"sr-only\">링크<strong class=\"sr-only\"> 필수</strong></label>";
-        list += "<input type=\"text\" name=\"me_link[]\" value=\"" + link + "\" id=\"me_link_" + ms + "\" required class=\"required form-input w-full\">";
-        list += "</td>";
-        list += "<td class=\"cell-mng\">";
-        list += "<label for=\"me_target_" + ms + "\"  class=\"sr-only\">새창</label>";
-        list += "<select name=\"me_target[]\" id=\"me_target_" + ms + "\">";
-        list += "<option value=\"self\">사용안함</option>";
-        list += "<option value=\"blank\">사용함</option>";
-        list += "</select>";
-        list += "</td>";
-        list += "<td class=\"cell-numsmall\">";
-        list += "<label for=\"me_order_" + ms + "\"  class=\"sr-only\">순서<strong class=\"sr-only\"> 필수</strong></label>";
-        list += "<input type=\"text\" name=\"me_order[]\" value=\"0\" id=\"me_order_" + ms + "\" required class=\"required form-input\" size=\"5\">";
-        list += "</td>";
-        list += "<td class=\"cell-mngsmall\">";
-        list += "<label for=\"me_use_" + ms + "\"  class=\"sr-only\">PC사용</label>";
-        list += "<select name=\"me_use[]\" id=\"me_use_" + ms + "\">";
-        list += "<option value=\"1\">사용함</option>";
-        list += "<option value=\"0\">사용안함</option>";
-        list += "</select>";
-        list += "</td>";
-        list += "<td class=\"cell-mng\">";
-        <?php if ($new == 'new') { ?>
-            list += "<button type=\"button\" class=\"btn_add_submenu btn-tertiary\">추가</button>\n";
-        <?php } ?>
-        list += "<button type=\"button\" class=\"btn_del_menu btn-secondary\">삭제</button>";
-        list += "</td>";
-        list += "</tr>";
+        var row = opener.document.createElement("tr");
+        row.className = "menu_list menu_group_<?php echo $code; ?>";
+
+        var cellName = opener.document.createElement("td");
+        cellName.className = <?php echo ($new == 'new') ? '"cell-category"' : '"cell-category sub_menu_class"'; ?>;
+        cellName.innerHTML =
+            "<label for=\"me_name_" + ms + "\" class=\"sr-only\">메뉴<strong class=\"sr-only\"> 필수</strong></label>" +
+            "<input type=\"hidden\" name=\"code[]\" value=\"<?php echo $code; ?>\">" +
+            "<input type=\"text\" name=\"me_name[]\" value=\"" + name + "\" id=\"me_name_" + ms + "\" required class=\"required form-input w-full\">";
+        row.appendChild(cellName);
+
+        var cellLink = opener.document.createElement("td");
+        cellLink.innerHTML =
+            "<label for=\"me_link_" + ms + "\" class=\"sr-only\">링크<strong class=\"sr-only\"> 필수</strong></label>" +
+            "<input type=\"text\" name=\"me_link[]\" value=\"" + link + "\" id=\"me_link_" + ms + "\" required class=\"required form-input w-full\">";
+        row.appendChild(cellLink);
+
+        var cellTarget = opener.document.createElement("td");
+        cellTarget.className = "cell-mng";
+        cellTarget.innerHTML =
+            "<label for=\"me_target_" + ms + "\" class=\"sr-only\">새창</label>" +
+            "<select name=\"me_target[]\" id=\"me_target_" + ms + "\">" +
+            "<option value=\"self\">사용안함</option>" +
+            "<option value=\"blank\">사용함</option>" +
+            "</select>";
+        row.appendChild(cellTarget);
+
+        var cellOrder = opener.document.createElement("td");
+        cellOrder.className = "cell-numsmall";
+        cellOrder.innerHTML =
+            "<label for=\"me_order_" + ms + "\" class=\"sr-only\">순서<strong class=\"sr-only\"> 필수</strong></label>" +
+            "<input type=\"text\" name=\"me_order[]\" value=\"0\" id=\"me_order_" + ms + "\" required class=\"required form-input\" size=\"5\">";
+        row.appendChild(cellOrder);
+
+        var cellUse = opener.document.createElement("td");
+        cellUse.className = "cell-mngsmall";
+        cellUse.innerHTML =
+            "<label for=\"me_use_" + ms + "\" class=\"sr-only\">PC사용</label>" +
+            "<select name=\"me_use[]\" id=\"me_use_" + ms + "\">" +
+            "<option value=\"1\">사용함</option>" +
+            "<option value=\"0\">사용안함</option>" +
+            "</select>";
+        row.appendChild(cellUse);
+
+        var cellActions = opener.document.createElement("td");
+        cellActions.className = "cell-mng";
+        cellActions.innerHTML =
+            <?php if ($new == 'new') { ?>
+            "<button type=\"button\" class=\"btn_add_submenu btn-tertiary\">추가</button>" +
+            <?php } ?>
+            "<button type=\"button\" class=\"btn_del_menu btn-secondary\">삭제</button>";
+        row.appendChild(cellActions);
 
         var $menu_last = null;
 
@@ -183,12 +200,12 @@ if ($new == 'new' || !$code) {
             $menu_last = $menulist.find("tr.menu_list:last");
 
         if ($menu_last.length > 0) {
-            $menu_last.after(list);
+            $menu_last.after(row);
         } else {
             if ($menulist.find("#empty_menu_list").length > 0)
                 $menulist.find("#empty_menu_list").remove();
 
-            $menulist.find("table tbody").append(list);
+            $menulist.find("table tbody").append(row);
         }
 
         $menulist.find("tr.menu_list").each(function(index) {

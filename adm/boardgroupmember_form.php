@@ -59,51 +59,44 @@ $colspan = 4;
     <input type="hidden" name="mb_id" value="<?php echo $mb['mb_id'] ?>" id="mb_id">
     <input type="hidden" name="w" value="d" id="w">
 
-    
-        <table>
-            <caption><?php echo $g5['title']; ?> 목록</caption>
-            <thead>
-                <tr>
-                    <th scope="col">
-                        <label for="chkall">접근가능그룹 전체</label>
-                        <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
-                    </th>
-                    <th scope="col">그룹아이디</th>
-                    <th scope="col">그룹</th>
-                    <th scope="col">처리일시</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $sql = " select * from {$g5['group_member_table']} a, {$g5['group_table']} b
-                        where a.mb_id = '{$mb['mb_id']}'
-                        and a.gr_id = b.gr_id ";
-                if ($is_admin != 'super') {
-                    $sql .= " and b.gr_admin = '{$member['mb_id']}' ";
-                }
-                $sql .= " order by a.gr_id desc ";
-                $result = sql_query($sql);
-                for ($i = 0; $row = sql_fetch_array($result); $i++) {
-                ?>
-                    <tr>
-                        <td>
-                            <label for="chk_<?php echo $i; ?>"><?php echo $row['gr_subject'] ?> 그룹</label>
-                            <input type="checkbox" name="chk[]" value="<?php echo $row['gm_id'] ?>" id="chk_<?php echo $i ?>">
-                        </td>
-                        <td><a href="<?php echo G5_BBS_URL; ?>/group.php?gr_id=<?php echo $row['gr_id'] ?>"><?php echo $row['gr_id'] ?></a></td>
-                        <td><?php echo $row['gr_subject'] ?></td>
-                        <td><?php echo $row['gm_datetime'] ?></td>
-                    </tr>
-                <?php
-                }
+    <div class="ui-form-grid">
+        <div class="ui-form-row">
+            <div class="ui-form-label">
+                <label for="chkall">접근가능그룹 전체</label>
+                <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
+            </div>
+            <div class="ui-form-field">그룹아이디 / 그룹 / 처리일시</div>
+        </div>
+        <?php
+        $sql = " select * from {$g5['group_member_table']} a, {$g5['group_table']} b
+                where a.mb_id = '{$mb['mb_id']}'
+                and a.gr_id = b.gr_id ";
+        if ($is_admin != 'super') {
+            $sql .= " and b.gr_admin = '{$member['mb_id']}' ";
+        }
+        $sql .= " order by a.gr_id desc ";
+        $result = sql_query($sql);
+        for ($i = 0; $row = sql_fetch_array($result); $i++) {
+        ?>
+            <div class="ui-form-row">
+                <div class="ui-form-label">
+                    <label for="chk_<?php echo $i; ?>"><?php echo $row['gr_subject'] ?> 그룹</label>
+                    <input type="checkbox" name="chk[]" value="<?php echo $row['gm_id'] ?>" id="chk_<?php echo $i ?>">
+                </div>
+                <div class="ui-form-field">
+                    <a href="<?php echo G5_BBS_URL; ?>/group.php?gr_id=<?php echo $row['gr_id'] ?>"><?php echo $row['gr_id'] ?></a>
+                    <span><?php echo $row['gr_subject'] ?></span>
+                    <span><?php echo $row['gm_datetime'] ?></span>
+                </div>
+            </div>
+        <?php
+        }
 
-                if ($i == 0) {
-                    echo '<tr><td colspan="' . $colspan . '">접근가능한 그룹이 없습니다.</td></tr>';
-                }
-                ?>
-            </tbody>
-        </table>
-    
+        if ($i == 0) {
+            echo '<div class="ui-form-row"><div class="ui-form-field">접근가능한 그룹이 없습니다.</div></div>';
+        }
+        ?>
+    </div>
 
     
         <input type="submit" name="" value="선택삭제">

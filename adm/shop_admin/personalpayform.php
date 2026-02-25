@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $sub_menu = '400440';
 include_once('./_common.php');
 
@@ -83,31 +83,31 @@ $pg_anchor = '<ul>
         
 
         
-            <table>
-            <caption>주문 정보 목록</caption>
-            <colgroup>
-                <col>
-                <col>
-            </colgroup>
-            <tbody>
-            <tr>
-                <th scope="row"><label for="pp_name">이름</label></th>
-                <td><input type="text" name="pp_name" value="<?php echo get_text($pp['pp_name']); ?>" id="pp_name" required class="required"></td>
-            </tr>
-            <tr>
-                <th scope="row"><label for="pp_price">주문금액</label></th>
-                <td><input type="text" name="pp_price" value="<?php echo $pp['pp_price']; ?>" id="pp_price" required class="required" size="15"> 원</td>
-            </tr>
-            <tr>
-                <th scope="row"><label for="od_id">주문번호</label></th>
-                <td><input type="text" name="od_id" value="<?php echo $pp['od_id'] ? $pp['od_id'] : ''; ?>" id="od_id" size="20"></td>
-            </tr>
-            <tr>
-                <th scope="row"><label for="pp_content">내용</label></th>
-                <td><textarea name="pp_content" id="pp_content" rows="8"><?php echo html_purifier($pp['pp_content']); ?></textarea></td>
-            </tr>
-            </tbody>
-            </table>
+            <div class="ui-form-grid">
+            <div class="ui-form-caption">주문 정보 목록</div>
+            
+                
+                
+            
+            
+            <div class="ui-form-row">
+                <div class="ui-form-label"><label for="pp_name">이름</label></div>
+                <div class="ui-form-field"><input type="text" name="pp_name" value="<?php echo get_text($pp['pp_name']); ?>" id="pp_name" required class="required"></div>
+            </div>
+            <div class="ui-form-row">
+                <div class="ui-form-label"><label for="pp_price">주문금액</label></div>
+                <div class="ui-form-field"><input type="text" name="pp_price" value="<?php echo $pp['pp_price']; ?>" id="pp_price" required class="required" size="15"> 원</div>
+            </div>
+            <div class="ui-form-row">
+                <div class="ui-form-label"><label for="od_id">주문번호</label></div>
+                <div class="ui-form-field"><input type="text" name="od_id" value="<?php echo $pp['od_id'] ? $pp['od_id'] : ''; ?>" id="od_id" size="20"></div>
+            </div>
+            <div class="ui-form-row">
+                <div class="ui-form-label"><label for="pp_content">내용</label></div>
+                <div class="ui-form-field"><textarea name="pp_content" id="pp_content" rows="8"><?php echo html_purifier($pp['pp_content']); ?></textarea></div>
+            </div>
+            
+            </div>
         
     </section>
 
@@ -122,21 +122,21 @@ $pg_anchor = '<ul>
         
 
         
-            <table>
-            <caption>결제 정보 목록</caption>
-            <colgroup>
-                <col>
-                <col>
-            </colgroup>
-            <tbody>
+            <div class="ui-form-grid">
+            <div class="ui-form-caption">결제 정보 목록</div>
+            
+                
+                
+            
+            
             <?php if($popup != 'yes') { ?>
-            <tr>
-                <th scope="row"><label for="pp_receipt_price">결제금액</label></th>
-                <td><input type="text" name="pp_receipt_price" value="<?php echo $pp['pp_receipt_price'] ? $pp['pp_receipt_price'] : ''; ?>" id="pp_receipt_price" size="15"> 원</td>
-            </tr>
-            <tr>
-                <th scope="row"><label for="pp_settle_case">결제방법</label></th>
-                <td>
+            <div class="ui-form-row">
+                <div class="ui-form-label"><label for="pp_receipt_price">결제금액</label></div>
+                <div class="ui-form-field"><input type="text" name="pp_receipt_price" value="<?php echo $pp['pp_receipt_price'] ? $pp['pp_receipt_price'] : ''; ?>" id="pp_receipt_price" size="15"> 원</div>
+            </div>
+            <div class="ui-form-row">
+                <div class="ui-form-label"><label for="pp_settle_case">결제방법</label></div>
+                <div class="ui-form-field">
                     <select name="pp_settle_case" id="pp_settle_case">
                         <option value="" <?php echo get_selected($pp['pp_settle_case'], ''); ?>>선택</option>
                         <option value="무통장" <?php echo get_selected($pp['pp_settle_case'], '무통장'); ?>>무통장</option>
@@ -145,16 +145,16 @@ $pg_anchor = '<ul>
                         <option value="신용카드" <?php echo get_selected($pp['pp_settle_case'], '신용카드'); ?>>신용카드</option>
                         <option value="휴대폰" <?php echo get_selected($pp['pp_settle_case'], '휴대폰'); ?>>휴대폰</option>
                     </select>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"><label for="pp_receipt_time">결제일시</label></th>
-                <td>
+                </div>
+            </div>
+            <div class="ui-form-row">
+                <div class="ui-form-label"><label for="pp_receipt_time">결제일시</label></div>
+                <div class="ui-form-field">
                     <input type="checkbox" name="pp_receipt_chk" id="pp_receipt_chk" value="<?php echo date("Y-m-d H:i:s", G5_SERVER_TIME); ?>" onclick="if (this.checked == true) this.form.pp_receipt_time.value=this.form.pp_receipt_chk.value; else this.form.pp_receipt_time.value = this.form.pp_receipt_time.defaultValue;">
                     <label for="pp_receipt_chk">현재 시간으로 설정</label><br>
                     <input type="text" name="pp_receipt_time" value="<?php echo is_null_time($pp['pp_receipt_time']) ? "" : $pp['pp_receipt_time']; ?>" id="pp_receipt_time" maxlength="19">
-                </td>
-            </tr>
+                </div>
+            </div>
             <?php
             $is_cash_receipt = true;
 
@@ -170,9 +170,9 @@ $pg_anchor = '<ul>
             if ($is_cash_receipt && ($pp['pp_price'] - $pp['pp_receipt_price']) == 0) {
                 if ($pp['pp_receipt_price'] && ($pp['pp_settle_case'] == '무통장' || $pp['pp_settle_case'] == '가상계좌' || $pp['pp_settle_case'] == '계좌이체')) {
             ?>
-            <tr>
-                <th scope="row">현금영수증</th>
-                <td>
+            <div class="ui-form-row">
+                <div class="ui-form-label">현금영수증</div>
+                <div class="ui-form-field">
                 <?php
                 if ($pp['pp_cash']) {
                     if($pp['pp_pg'] == 'lg') {
@@ -206,28 +206,28 @@ $pg_anchor = '<ul>
                 <?php } else { ?>
                     <a href="javascript:;" onclick="window.open('<?php echo G5_SHOP_URL; ?>/taxsave.php?tx=personalpay&od_id=<?php echo $pp_id; ?>', 'taxsave', 'width=550,height=400,scrollbars=1,menus=0');">현금영수증 발급</a>
                 <?php } ?>
-                </td>
-            </tr>
+                </div>
+            </div>
             <?php
                 }
             }
             ?>
             <?php } ?>
-            <tr>
-                <th scope="row"><label for="pp_shop_memo">상점메모</label></th>
-                <td><textarea name="pp_shop_memo" id="pp_shop_memo" rows="8"><?php echo html_purifier($pp['pp_shop_memo']); ?></textarea></td>
-            </tr>
-            <tr>
-                <th scope="row"><label for="pp_use">사용</label></th>
-                <td>
+            <div class="ui-form-row">
+                <div class="ui-form-label"><label for="pp_shop_memo">상점메모</label></div>
+                <div class="ui-form-field"><textarea name="pp_shop_memo" id="pp_shop_memo" rows="8"><?php echo html_purifier($pp['pp_shop_memo']); ?></textarea></div>
+            </div>
+            <div class="ui-form-row">
+                <div class="ui-form-label"><label for="pp_use">사용</label></div>
+                <div class="ui-form-field">
                     <select name="pp_use" id="pp_use">
                         <option value="1" <?php echo get_selected($pp['pp_use'], 1); ?>>사용함</option>
                         <option value="0" <?php echo get_selected($pp['pp_use'], 0); ?>>사용안함</option>
                     </select>
-                </td>
-            </tr>
-            </tbody>
-            </table>
+                </div>
+            </div>
+            
+            </div>
         
     </section>
     <?php } ?>
@@ -269,3 +269,4 @@ if($popup == 'yes') {
 } else {
     include_once (G5_ADMIN_PATH.'/admin.tail.php');
 }
+

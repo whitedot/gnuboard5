@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $sub_menu = '500300';
 include_once('./_common.php');
 include_once(G5_EDITOR_LIB);
@@ -74,79 +74,79 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 <input type="hidden" name="ev_item" value="">
 
 
-    <table>
-    <caption><?php echo $g5['title']; ?></caption>
-    <colgroup>
-        <col>
-        <col>
-    </colgroup>
-    <tbody>
+    <div class="ui-form-grid">
+    <div class="ui-form-caption"><?php echo $g5['title']; ?></div>
+    
+        
+        
+    
+    
     <?php if ($w == "u") { ?>
-    <tr>
-        <th>이벤트번호</th>
-        <td>
+    <div class="ui-form-row">
+        <div class="ui-form-label">이벤트번호</div>
+        <div class="ui-form-field">
             <span><?php echo $ev_id; ?></span>
             <a href="<?php echo G5_SHOP_URL; ?>/event.php?ev_id=<?php echo $ev['ev_id']; ?>">이벤트바로가기</a>
             <button type="button" class="shop_event">테마설정 가져오기</button>
-        </td>
-    </tr>
+        </div>
+    </div>
     <?php } ?>
-    <tr>
-        <th scope="row"><label for="ev_skin">출력스킨</label></th>
-        <td>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="ev_skin">출력스킨</label></div>
+        <div class="ui-form-field">
             <?php echo help('기본으로 제공하는 스킨은 '.str_replace(G5_PATH.'/', '', G5_SHOP_SKIN_PATH).'/list.*.skin.php 입니다.'.PHP_EOL.G5_SHOP_DIR.'/event.php?ev_id=1234567890&amp;skin=userskin.php 처럼 직접 만든 스킨을 사용할 수도 있습니다.'); ?>
             <select name="ev_skin" id="ev_skin">
                 <?php echo get_list_skin_options("^list.[0-9]+\.skin\.php", G5_SHOP_SKIN_PATH, $ev['ev_skin']); ?>
             </select>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="ev_img_width">출력이미지 폭</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="ev_img_width">출력이미지 폭</label></div>
+        <div class="ui-form-field">
               <input type="text" name="ev_img_width" value="<?php echo $ev['ev_img_width']; ?>" id="ev_img_width" required class="required" size="5"> 픽셀
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="ev_img_height">출력이미지 높이</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="ev_img_height">출력이미지 높이</label></div>
+        <div class="ui-form-field">
           <input type="text" name="ev_img_height" value="<?php echo $ev['ev_img_height']; ?>" id="ev_img_height" required class="required" size="5"> 픽셀
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="ev_list_mod">1줄당 이미지 수</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="ev_list_mod">1줄당 이미지 수</label></div>
+        <div class="ui-form-field">
             <?php echo help("1행에 설정한 값만큼의 상품을 출력합니다. 스킨 설정에 따라 1행에 하나의 상품만 출력할 수도 있습니다."); ?>
             <input type="text" name="ev_list_mod" value="<?php echo $ev['ev_list_mod']; ?>" id="ev_list_mod" required class="required" size="3"> 개
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="ev_list_row">이미지 줄 수</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="ev_list_row">이미지 줄 수</label></div>
+        <div class="ui-form-field">
             <?php echo help("한 페이지에 출력할 이미지 줄 수를 설정합니다.\n한 페이지에 표시되는 상품수는 (1줄당 이미지 수 x 줄 수) 입니다."); ?>
             <input type="text" name="ev_list_row" value="<?php echo $ev['ev_list_row']; ?>" id="ev_list_row" required class="required" size="3"> 줄
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="ev_use">사용</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="ev_use">사용</label></div>
+        <div class="ui-form-field">
             <?php echo help("사용하지 않으면 레이아웃의 이벤트 메뉴 및 이벤트 관련 페이지에 접근할 수 없습니다."); ?>
             <select name="ev_use" id="ev_use">
                 <option value="1" <?php echo get_selected($ev['ev_use'], 1); ?>>사용</option>
                 <option value="0" <?php echo get_selected($ev['ev_use'], 0); ?>>사용안함</option>
             </select>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="ev_subject">이벤트제목</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="ev_subject">이벤트제목</label></div>
+        <div class="ui-form-field">
             <input type="text" name="ev_subject" value="<?php echo htmlspecialchars2($ev['ev_subject']); ?>" id="ev_subject" required class="required"  size="60">
             <input type="checkbox" name="ev_subject_strong" value="1" id="ev_subject_strong" <?php if($ev['ev_subject_strong']) echo 'checked="checked"'; ?>>
             <label for="ev_subject_strong">제목 강조</label>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="ev_mimg">배너이미지</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="ev_mimg">배너이미지</label></div>
+        <div class="ui-form-field">
             <?php echo help("쇼핑몰 레이아웃에서 글자 대신 이미지로 출력할 경우 사용합니다."); ?>
             <input type="file" name="ev_mimg" id="ev_mimg">
             <?php
@@ -168,11 +168,11 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
                 echo '</div>';
             }
             ?>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row">관련상품</th>
-        <td id="sev_it_rel">
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label">관련상품</div>
+        <div class="ui-form-field">
 
             <section>
                 <h3>상품검색</h3>
@@ -217,11 +217,11 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
                     ?>
                 </div>
             </section>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="ev_himg">상단이미지</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="ev_himg">상단이미지</label></div>
+        <div class="ui-form-field">
             <?php echo help("이벤트 페이지 상단에 업로드 한 이미지를 출력합니다."); ?>
             <input type="file" name="ev_himg" id="ev_himg">
             <?php
@@ -243,11 +243,11 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
                 echo '</div>';
             }
             ?>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="ev_timg">하단이미지</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="ev_timg">하단이미지</label></div>
+        <div class="ui-form-field">
             <?php echo help("이벤트 페이지 하단에 업로드 한 이미지를 출력합니다."); ?>
             <input type="file" name="ev_timg" id="ev_timg">
             <?php
@@ -268,22 +268,22 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
                 echo '</div>';
             }
             ?>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row">상단내용</th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label">상단내용</div>
+        <div class="ui-form-field">
             <?php echo editor_html('ev_head_html', get_text(html_purifier($ev['ev_head_html']), 0)); ?>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row">하단내용</th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label">하단내용</div>
+        <div class="ui-form-field">
             <?php echo editor_html('ev_tail_html', get_text(html_purifier($ev['ev_tail_html']), 0)); ?>
-        </td>
-    </tr>
-    </tbody>
-    </table>
+        </div>
+    </div>
+    
+    </div>
 
 
 <div>
@@ -408,3 +408,4 @@ function feventform_check(f)
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+

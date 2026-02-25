@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $sub_menu = '400200';
 include_once('./_common.php');
 include_once(G5_EDITOR_LIB);
@@ -126,16 +126,16 @@ else {
     <?php echo $pg_anchor; ?>
 
     
-        <table>
-        <caption>분류 추가 필수입력</caption>
-        <colgroup>
-            <col>
-            <col>
-        </colgroup>
-        <tbody>
-        <tr>
-            <th scope="row"><label for="ca_id">분류코드</label></th>
-            <td>
+        <div class="ui-form-grid">
+        <div class="ui-form-caption">분류 추가 필수입력</div>
+        
+            
+            
+        
+        
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_id">분류코드</label></div>
+            <div class="ui-form-field">
             <?php if ($w == "") { ?>
                 <?php echo help("자동으로 보여지는 분류코드를 사용하시길 권해드리지만 직접 입력한 값으로도 사용할 수 있습니다.\n분류코드는 나중에 수정이 되지 않으므로 신중하게 결정하여 사용하십시오.\n\n분류코드는 2자리씩 10자리를 사용하여 5단계를 표현할 수 있습니다.\n0~z까지 입력이 가능하며 한 분류당 최대 1296가지를 표현할 수 있습니다.\n그러므로 총 3656158440062976가지의 분류를 사용할 수 있습니다."); ?>
                 <input type="text" name="ca_id" value="<?php echo $subid; ?>" id="ca_id" required class="required" size="<?php echo $sublen; ?>" maxlength="<?php echo $sublen; ?>">
@@ -146,123 +146,123 @@ else {
                 <a href="./categoryform.php?ca_id=<?php echo $ca_id; ?>&amp;<?php echo $qstr; ?>">하위분류 추가</a>
                 <a href="./itemlist.php?sca=<?php echo $ca['ca_id']; ?>">상품리스트</a>
             <?php } ?>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="ca_name">분류명</label></th>
-            <td><input type="text" name="ca_name" value="<?php echo $ca['ca_name']; ?>" id="ca_name" size="38" required class="required"></td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="ca_order">출력순서</label></th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_name">분류명</label></div>
+            <div class="ui-form-field"><input type="text" name="ca_name" value="<?php echo $ca['ca_name']; ?>" id="ca_name" size="38" required class="required"></div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_order">출력순서</label></div>
+            <div class="ui-form-field">
                 <?php echo help("숫자가 작을 수록 상위에 출력됩니다. 음수 입력도 가능하며 입력 가능 범위는 -2147483648 부터 2147483647 까지입니다.\n<b>입력하지 않으면 자동으로 출력됩니다.</b>"); ?>
                 <input type="text" name="ca_order" value="<?php echo $ca['ca_order']; ?>" id="ca_order" size="12">
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><?php if ($is_admin == 'super') { ?><label for="ca_mb_id"><?php } ?>관리 회원아이디<?php if ($is_admin == 'super') { ?></label><?php } ?></th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><?php if ($is_admin == 'super') { ?><label for="ca_mb_id"><?php } ?>관리 회원아이디<?php if ($is_admin == 'super') { ?></label><?php } ?></div>
+            <div class="ui-form-field">
                 <?php if ($is_admin == 'super') { ?>
                     <input type="text" name="ca_mb_id" value="<?php echo get_sanitize_input($ca['ca_mb_id']); ?>" id="ca_mb_id" maxlength="20">
                 <?php } else { ?>
                     <input type="hidden" name="ca_mb_id" value="<?php echo get_sanitize_input($ca['ca_mb_id']); ?>">
                     <?php echo $ca['ca_mb_id']; ?>
                 <?php } ?>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="ca_skin_dir">스킨명</label></th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_skin_dir">스킨명</label></div>
+            <div class="ui-form-field">
                 <?php echo get_skin_select('shop', 'ca_skin_dir', 'ca_skin_dir', $ca['ca_skin_dir']); ?>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">본인확인 체크</th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">본인확인 체크</div>
+            <div class="ui-form-field">
                 <input type="radio" name="ca_cert_use" value="1" id="ca_cert_use_yes" <?php if($ca['ca_cert_use']) echo 'checked="checked"'; ?>>
                 <label for="ca_cert_use_yes">사용함</label>
                 <input type="radio" name="ca_cert_use" value="0" id="ca_cert_use_no" <?php if(!$ca['ca_cert_use']) echo 'checked="checked"'; ?>>
                 <label for="ca_cert_use_no">사용안함</label>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">성인인증 체크</th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">성인인증 체크</div>
+            <div class="ui-form-field">
                 <input type="radio" name="ca_adult_use" value="1" id="ca_adult_use_yes" <?php if($ca['ca_adult_use']) echo 'checked="checked"'; ?>>
                 <label for="ca_adult_use_yes">사용함</label>
                 <input type="radio" name="ca_adult_use" value="0" id="ca_adult_use_no" <?php if(!$ca['ca_adult_use']) echo 'checked="checked"'; ?>>
                 <label for="ca_adult_use_no">사용안함</label>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="ca_skin">출력스킨</label></th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_skin">출력스킨</label></div>
+            <div class="ui-form-field">
                 <?php echo help('기본으로 제공하는 스킨은 '.str_replace(G5_PATH.'/', '', $g5_shop_skin_path).'/list.*.skin.php 입니다.'); ?>
                 <select id="ca_skin" name="ca_skin" required class="required">
                     <?php echo get_list_skin_options("^list.[0-9]+\.skin\.php", $g5_shop_skin_path, $ca['ca_skin']); ?>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="ca_img_width">출력이미지 폭</label></th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_img_width">출력이미지 폭</label></div>
+            <div class="ui-form-field">
                 <?php echo help("쇼핑몰환경설정 &gt; 이미지(소) 넓이가 기본값으로 설정됩니다.\n".G5_SHOP_URL."/list.php에서 출력되는 이미지의 폭입니다."); ?>
                 <input type="text" name="ca_img_width" value="<?php echo $ca['ca_img_width']; ?>" id="ca_img_width" required class="required" size="5" > 픽셀
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="ca_img_height">출력이미지 높이</label></th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_img_height">출력이미지 높이</label></div>
+            <div class="ui-form-field">
                 <?php echo help("쇼핑몰환경설정 &gt; 이미지(소) 높이가 기본값으로 설정됩니다.\n".G5_SHOP_URL."/list.php에서 출력되는 이미지의 높이입니다."); ?>
                 <input type="text" name="ca_img_height"  value="<?php echo $ca['ca_img_height']; ?>" id="ca_img_height" required class="required" size="5" > 픽셀
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="ca_list_mod">1줄당 이미지 수</label></th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_list_mod">1줄당 이미지 수</label></div>
+            <div class="ui-form-field">
                 <?php echo help("한 줄에 설정한 값만큼의 상품을 출력하지만 스킨에 따라 한 줄에 하나의 상품만 출력할 수도 있습니다."); ?>
                 <input type="text" name="ca_list_mod" size="3" value="<?php echo $ca['ca_list_mod']; ?>" id="ca_list_mod" required class="required"> 개
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="ca_list_row">이미지 줄 수</label></th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_list_row">이미지 줄 수</label></div>
+            <div class="ui-form-field">
                 <?php echo help("한 페이지에 출력할 이미지 줄 수를 설정합니다.\n한 페이지에서 표시하는 상품수는 (1줄당 이미지 수 x 줄 수) 입니다."); ?>
                 <input type="text" name="ca_list_row" value='<?php echo $ca['ca_list_row']; ?>' id="ca_list_row" required class="required" size="3"> 줄
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="ca_stock_qty">재고수량</label></th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_stock_qty">재고수량</label></div>
+            <div class="ui-form-field">
                 <?php echo help("상품의 기본재고 수량을 설정합니다.\n재고를 사용하지 않는다면 숫자를 크게 입력하여 주십시오. 예) 999999"); ?>
                 <input type="text" name="ca_stock_qty" size="10" value="<?php echo $ca['ca_stock_qty']; ?>" id="ca_stock_qty"> 개
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="ca_sell_email">판매자 E-mail</label></th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_sell_email">판매자 E-mail</label></div>
+            <div class="ui-form-field">
                 <?php echo help("운영자와 판매자가 다른 경우에 사용합니다.\n이 분류에 속한 상품을 등록할 경우에 기본값으로 입력됩니다."); ?>
                 <input type="text" name="ca_sell_email" size="40" value="<?php echo get_sanitize_input($ca['ca_sell_email']); ?>" id="ca_sell_email">
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="ca_use">판매가능</label></th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_use">판매가능</label></div>
+            <div class="ui-form-field">
                 <?php echo help("재고가 없거나 일시적으로 판매를 중단하시려면 체크 해제하십시오.\n체크 해제하시면 상품 출력을 하지 않으며, 주문도 받지 않습니다."); ?>
                 <input type="checkbox" name="ca_use" <?php echo ($ca['ca_use']) ? "checked" : ""; ?> value="1" id="ca_use">
                 예
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="ca_nocoupon">쿠폰적용안함</label></th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_nocoupon">쿠폰적용안함</label></div>
+            <div class="ui-form-field">
                 <?php echo help("설정에 체크하시면 쿠폰생성 때 분류 검색 결과에 노출되지 않습니다."); ?>
                 <input type="checkbox" name="ca_nocoupon" <?php echo ($ca['ca_nocoupon']) ? "checked" : ""; ?> value="1" id="ca_nocoupon">
                 예
-            </td>
-        </tr>
-        </tbody>
-        </table>
+            </div>
+        </div>
+        
+        </div>
     
     <button type="button" class="shop_category">테마설정 가져오기</button>
 </section>
@@ -273,30 +273,30 @@ else {
     <?php echo $pg_anchor; ?>
 
     <div>
-        <table>
-        <caption>분류 추가 선택입력</caption>
-        <colgroup>
-            <col>
-            <col>
-        </colgroup>
-        <tbody>
-        <tr>
-            <th scope="row"><label for="ca_include_head">상단파일경로</label></th>
-            <td>
+        <div class="ui-form-grid">
+        <div class="ui-form-caption">분류 추가 선택입력</div>
+        
+            
+            
+        
+        
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_include_head">상단파일경로</label></div>
+            <div class="ui-form-field">
                 <?php echo help("입력하지 않으면 기본 상단 파일을 사용합니다.<br>상단 내용과 달리 PHP 코드를 사용할 수 있습니다."); ?>
                 <input type="text" name="ca_include_head" value="<?php echo $ca['ca_include_head']; ?>" id="ca_include_head" size="60">
-            </td>
-        </tr>
-        <tr>
-            <th scope="row"><label for="ca_include_tail">하단 파일 경로</label></th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label"><label for="ca_include_tail">하단 파일 경로</label></div>
+            <div class="ui-form-field">
                 <?php echo help("입력하지 않으면 기본 하단 파일을 사용합니다.<br>하단 내용과 달리 PHP 코드를 사용할 수 있습니다."); ?>
                 <input type="text" name="ca_include_tail" value="<?php echo $ca['ca_include_tail']; ?>" id="ca_include_tail" size="60">
-            </td>
-        </tr>
-        <tr id="admin_captcha_box" style="display:none;">
-            <th scope="row">자동등록방지</th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">자동등록방지</div>
+            <div class="ui-form-field">
                 <?php
                 echo help("파일 경로를 입력 또는 수정시 캡챠를 반드시 입력해야 합니다.");
 
@@ -308,24 +308,24 @@ else {
                 <script>
                 jQuery("#captcha_key").removeAttr("required").removeClass("required");
                 </script>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">상단내용</th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">상단내용</div>
+            <div class="ui-form-field">
                 <?php echo help("상품리스트 페이지 상단에 출력하는 HTML 내용입니다."); ?>
                 <?php echo editor_html('ca_head_html', get_text(html_purifier($ca['ca_head_html']), 0)); ?>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">하단내용</th>
-            <td>
+            </div>
+        </div>
+        <div class="ui-form-row">
+            <div class="ui-form-label">하단내용</div>
+            <div class="ui-form-field">
                 <?php echo help("상품리스트 페이지 하단에 출력하는 HTML 내용입니다."); ?>
                 <?php echo editor_html('ca_tail_html', get_text(html_purifier($ca['ca_tail_html']), 0)); ?>
-            </td>
-        </tr>
-        </tbody>
-        </table>
+            </div>
+        </div>
+        
+        </div>
     </div>
 </section>
 
@@ -335,25 +335,25 @@ else {
     <?php echo $pg_anchor ?>
 
     
-        <table>
-        <colgroup>
-            <col>
-            <col>
-        </colgroup>
-        <tbody>
+        <div class="ui-form-grid">
+        
+            
+            
+        
+        
         <?php for ($i=1; $i<=10; $i++) { ?>
-        <tr>
-            <th scope="row">여분필드<?php echo $i ?></th>
-            <td>
+        <div class="ui-form-row">
+            <div class="ui-form-label">여분필드<?php echo $i ?></div>
+            <div class="ui-form-field">
                 <label for="ca_<?php echo $i ?>_subj">여분필드 <?php echo $i ?> 제목</label>
                 <input type="text" name="ca_<?php echo $i ?>_subj" id="ca_<?php echo $i ?>_subj" value="<?php echo get_text($ca['ca_'.$i.'_subj']) ?>">
                 <label for="ca_<?php echo $i ?>">여분필드 <?php echo $i ?> 값</label>
                 <input type="text" name="ca_<?php echo $i ?>" value="<?php echo get_text($ca['ca_'.$i]) ?>" id="ca_<?php echo $i ?>">
-            </td>
-        </tr>
+            </div>
+        </div>
         <?php } ?>
-        </tbody>
-        </table>
+        
+        </div>
     
 </section>
 
@@ -364,23 +364,23 @@ else {
     <?php echo $pg_anchor; ?>
 
     
-        <table>
-        <caption>분류 추가 기타설정</caption>
-        <colgroup>
-            <col>
-            <col>
-        </colgroup>
-        <tbody>
-        <tr>
-            <th scope="row">하위분류</th>
-            <td>
+        <div class="ui-form-grid">
+        <div class="ui-form-caption">분류 추가 기타설정</div>
+        
+            
+            
+        
+        
+        <div class="ui-form-row">
+            <div class="ui-form-label">하위분류</div>
+            <div class="ui-form-field">
                 <?php echo help("이 분류의 코드가 10 이라면 10 으로 시작하는 하위분류의 설정값을 이 분류와 동일하게 설정합니다.\n<strong>이 작업은 실행 후 복구할 수 없습니다.</strong>"); ?>
                 <label for="sub_category">이 분류의 하위분류 설정을, 이 분류와 동일하게 일괄수정</label>
                 <input type="checkbox" name="sub_category" value="1" id="sub_category" onclick="if (this.checked) if (confirm('이 분류에 속한 하위 분류의 속성을 똑같이 변경합니다.\n\n이 작업은 되돌릴 방법이 없습니다.\n\n그래도 변경하시겠습니까?')) return ; this.checked = false;">
-            </td>
-        </tr>
-        </tbody>
-        </table>
+            </div>
+        </div>
+        
+        </div>
     
 </section>
 
@@ -535,3 +535,5 @@ jQuery(function($){
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
+

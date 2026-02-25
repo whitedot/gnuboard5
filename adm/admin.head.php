@@ -358,7 +358,6 @@ if ($admin_site_title === '') {
     <div id="container" class="<?php echo $adm_menu_cookie['container']; ?>">
         <h1 id="container_title"><?php echo $g5['title']; ?></h1>
         <p id="container_subtitle">사이트 운영과 설정을 한 곳에서 관리하세요.</p>
-        <div class="admin-content-shell">
 
 <script>
     jQuery(function($) {

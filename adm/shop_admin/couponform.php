@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $sub_menu = '400800';
 include_once('./_common.php');
 
@@ -55,22 +55,22 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
 <input type="hidden" name="page" value="<?php echo get_sanitize_input($page);?>">
 
 
-    <table>
-    <caption><?php echo $g5['title']; ?></caption>
-    <colgroup>
-        <col>
-        <col>
-    </colgroup>
-    <tbody>
-    <tr>
-        <th scope="row"><label for="cp_subject">쿠폰이름</label></th>
-        <td>
+    <div class="ui-form-grid">
+    <div class="ui-form-caption"><?php echo $g5['title']; ?></div>
+    
+        
+        
+    
+    
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="cp_subject">쿠폰이름</label></div>
+        <div class="ui-form-field">
             <input type="text" name="cp_subject" value="<?php echo get_sanitize_input($cp['cp_subject']); ?>" id="cp_subject" required class="required" size="50">
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="cp_method">쿠폰종류</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="cp_method">쿠폰종류</label></div>
+        <div class="ui-form-field">
            <?php echo help("쿠폰 종류를 변경하시면 입력 서식도 일부 변경됩니다."); ?>
            <select name="cp_method" id="cp_method">
                 <option value="0"<?php echo get_selected('0', $cp['cp_method']); ?>>개별상품할인</option>
@@ -78,90 +78,90 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
                 <option value="2"<?php echo get_selected('2', $cp['cp_method']); ?>>주문금액할인</option>
                 <option value="3"<?php echo get_selected('3', $cp['cp_method']); ?>>배송비할인</option>
            </select>
-        </td>
-    </tr>
-    <tr id="tr_cp_target">
-        <th scope="row"><label for="cp_target"><?php echo $cp_target_label; ?></label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="cp_target"><?php echo $cp_target_label; ?></label></div>
+        <div class="ui-form-field">
            <input type="text" name="cp_target" value="<?php echo stripslashes($cp['cp_target']); ?>" id="cp_target" required class="required">
            <button type="button" id="sch_target"><?php echo $cp_target_btn; ?></button>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="mb_id">회원아이디</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="mb_id">회원아이디</label></div>
+        <div class="ui-form-field">
             <input type="text" name="mb_id" value="<?php echo stripslashes($cp['mb_id']); ?>" id="mb_id">
             <button type="button" id="sch_member">회원검색</button>
             <input type="checkbox" name="chk_all_mb" id="chk_all_mb" value="1">
             <label for="chk_all_mb">전체회원</label>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="cp_start">사용시작일</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="cp_start">사용시작일</label></div>
+        <div class="ui-form-field">
             <?php echo help('입력 예: '.date('Y-m-d')); ?>
             <input type="text" name="cp_start" value="<?php echo stripslashes($cp['cp_start']); ?>" id="cp_start" required class="required">
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="cp_end">사용종료일</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="cp_end">사용종료일</label></div>
+        <div class="ui-form-field">
             <?php echo help('입력 예: '.date('Y-m-d')); ?>
             <input type="text" name="cp_end" value="<?php echo stripslashes($cp['cp_end']); ?>" id="cp_end" required class="required">
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="cp_type">쿠폰타입</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="cp_type">쿠폰타입</label></div>
+        <div class="ui-form-field">
            <?php echo help("쿠폰 타입을 변경하시면 입력 서식도 일부 변경됩니다."); ?>
            <select name="cp_type" id="cp_type">
                 <option value="0"<?php echo get_selected('0', $cp['cp_type']); ?>>정액할인(원)</option>
                 <option value="1"<?php echo get_selected('1', $cp['cp_type']); ?>>정률할인(%)</option>
            </select>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="cp_price"><?php echo $cp['cp_type'] ? '할인비율' : '할인금액'; ?></label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="cp_price"><?php echo $cp['cp_type'] ? '할인비율' : '할인금액'; ?></label></div>
+        <div class="ui-form-field">
             <input type="text" name="cp_price" value="<?php echo stripslashes($cp['cp_price']); ?>" id="cp_price" required class="required"> <span id="cp_price_unit"><?php echo $cp['cp_type'] ? '%' : '원'; ?></span>
-        </td>
-    </tr>
-    <tr id="tr_cp_trunc">
-        <th scope="row"><label for="cp_trunc">절사금액</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="cp_trunc">절사금액</label></div>
+        <div class="ui-form-field">
             <select name="cp_trunc" id="cp_trunc">
             <option value="1"<?php echo get_selected('1', $cp['cp_trunc']); ?>>1원단위</option>
             <option value="10"<?php echo get_selected('10', $cp['cp_trunc']); ?>>10원단위</option>
             <option value="100"<?php echo get_selected('100', $cp['cp_trunc']); ?>>100원단위</option>
             <option value="1000"<?php echo get_selected('1000', $cp['cp_trunc']); ?>>1,000원단위</option>
            </select>
-        </td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="cp_minimum">최소주문금액</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="cp_minimum">최소주문금액</label></div>
+        <div class="ui-form-field">
             <input type="text" name="cp_minimum" value="<?php echo stripslashes($cp['cp_minimum']); ?>" id="cp_minimum"> 원
-        </td>
-    </tr>
-    <tr id="tr_cp_maximum">
-        <th scope="row"><label for="cp_maximum">최대할인금액</label></th>
-        <td>
+        </div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="cp_maximum">최대할인금액</label></div>
+        <div class="ui-form-field">
             <input type="text" name="cp_maximum" value="<?php echo stripslashes($cp['cp_maximum']); ?>" id="cp_maximum"> 원
-        </td>
-    </tr>
+        </div>
+    </div>
     <?php if($w == '') { ?>
-    <tr>
-        <th scope="row">쿠폰발행알림</th>
-        <td>
+    <div class="ui-form-row">
+        <div class="ui-form-label">쿠폰발행알림</div>
+        <div class="ui-form-field">
             <label for="cp_sms_send">SMS발송</label>
             <input type="checkbox" name="cp_sms_send" value="1" id="cp_sms_send" checked>
             <label for="cp_email_send">이메일발송</label>
             <input type="checkbox" name="cp_email_send" value="1" id="cp_email_send"  checked>
-        </td>
-    </tr>
+        </div>
+    </div>
     <?php } ?>
-    </tbody>
-    </table>
+    
+    </div>
 
 
 <div>
@@ -293,3 +293,4 @@ function form_check(f)
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+

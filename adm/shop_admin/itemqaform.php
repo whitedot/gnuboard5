@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $sub_menu = '400660';
 include_once('./_common.php');
 include_once(G5_EDITOR_LIB);
@@ -37,44 +37,44 @@ $qstr .= ($qstr ? '&amp;' : '').'sca='.$sca;
 
 
 
-    <table>
-    <caption><?php echo $g5['title']; ?> 수정</caption>
-    <colgroup>
-        <col>
-        <col>
-    </colgroup>
-    <tbody>
-    <tr>
-        <th scope="row">이름</th>
-        <td><?php echo $name; ?></td>
-    </tr>
+    <div class="ui-form-grid">
+    <div class="ui-form-caption"><?php echo $g5['title']; ?> 수정</div>
+    
+        
+        
+    
+    
+    <div class="ui-form-row">
+        <div class="ui-form-label">이름</div>
+        <div class="ui-form-field"><?php echo $name; ?></div>
+    </div>
     <?php if($iq['iq_email']) { ?>
-    <tr>
-        <th scope="row">이메일</th>
-        <td><?php echo get_text($iq['iq_email']); ?></td>
-    </tr>
+    <div class="ui-form-row">
+        <div class="ui-form-label">이메일</div>
+        <div class="ui-form-field"><?php echo get_text($iq['iq_email']); ?></div>
+    </div>
     <?php } ?>
     <?php if($iq['iq_hp']) { ?>
-    <tr>
-        <th scope="row">휴대폰</th>
-        <td><?php echo hyphen_hp_number($iq['iq_hp']); ?></td>
-    </tr>
+    <div class="ui-form-row">
+        <div class="ui-form-label">휴대폰</div>
+        <div class="ui-form-field"><?php echo hyphen_hp_number($iq['iq_hp']); ?></div>
+    </div>
     <?php } ?>
-    <tr>
-        <th scope="row"><label for="iq_subject">제목</label></th>
-        <td><input type="text" name="iq_subject" value="<?php echo conv_subject($iq['iq_subject'],120); ?>" id="iq_subject" required class="required" size="95"></td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="iq_question">질문</label></th>
-        <td><?php echo editor_html('iq_question', get_text(html_purifier($iq['iq_question']), 0)); ?></td>
-    </tr>
-    <tr>
-        <th scope="row"><label for="iq_answer">답변</label></th>
-        <td><?php echo editor_html('iq_answer', get_text(html_purifier($iq['iq_answer']), 0)); ?></td>
-        <!-- <td><textarea name="iq_answer" id="iq_answer" rows="7"><?php echo get_text($iq['iq_answer']); ?></textarea></td> -->
-    </tr>
-    </tbody>
-    </table>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="iq_subject">제목</label></div>
+        <div class="ui-form-field"><input type="text" name="iq_subject" value="<?php echo conv_subject($iq['iq_subject'],120); ?>" id="iq_subject" required class="required" size="95"></div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="iq_question">질문</label></div>
+        <div class="ui-form-field"><?php echo editor_html('iq_question', get_text(html_purifier($iq['iq_question']), 0)); ?></div>
+    </div>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="iq_answer">답변</label></div>
+        <div class="ui-form-field"><?php echo editor_html('iq_answer', get_text(html_purifier($iq['iq_answer']), 0)); ?></div>
+        <!-- <div class="ui-form-field"><textarea name="iq_answer" id="iq_answer" rows="7"><?php echo get_text($iq['iq_answer']); ?></textarea></div> -->
+    </div>
+    
+    </div>
 
 
 <div>
@@ -95,3 +95,4 @@ function fitemqaform_submit(f)
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+

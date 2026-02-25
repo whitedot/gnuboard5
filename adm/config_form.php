@@ -39,12 +39,12 @@ require_once './admin.head.php';
 
 $pg_anchor = '';
 $pg_anchor_menu = '
-<nav>
-    <div>
-        <h3>환경설정 바로가기</h3>
+<nav class="config-submenu card">
+    <div class="card-header">
+        <h3 class="card-title">환경설정 바로가기</h3>
     </div>
-    <div>
-        <ul>
+    <div class="card-body">
+        <ul class="section-anchor">
             <li><a href="#anc_cf_basic">기본</a></li>
             <li><a href="#anc_cf_board">게시판</a></li>
             <li><a href="#anc_cf_join">회원</a></li>
@@ -78,12 +78,12 @@ if ($config['cf_sms_use'] && $config['cf_icode_id'] && $config['cf_icode_pw']) {
 <form name="fconfigform" id="fconfigform" method="post" onsubmit="return fconfigform_submit(this);">
     <input type="hidden" name="token" value="" id="token">
 
-    <div>
-        <aside>
+    <div class="config-shell">
+        <aside class="config-sidebar">
             <?php echo $pg_anchor_menu; ?>
         </aside>
 
-        
+        <div class="config-content">
             <?php
             include_once G5_ADMIN_PATH.'/config_form_parts/basic.php';
             include_once G5_ADMIN_PATH.'/config_form_parts/board.php';
@@ -109,7 +109,7 @@ if ($config['cf_sms_use'] && $config['cf_icode_id'] && $config['cf_icode_pw']) {
                     ?>
                 
             </div>
-        
+        </div>
     </div>
 
     

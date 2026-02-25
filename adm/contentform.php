@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $sub_menu = '300600';
 require_once './_common.php';
 require_once G5_EDITOR_LIB;
@@ -46,64 +46,64 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
     <input type="hidden" name="token" value="">
 
     <div>
-        <table>
-            <caption><?php echo $g5['title']; ?> 목록</caption>
-            <colgroup>
-                <col>
-                <col>
-            </colgroup>
-            <tbody>
-                <tr>
-                    <th scope="row"><label for="co_id">ID</label></th>
-                    <td>
+        <div class="ui-form-grid">
+            <div class="ui-form-caption"><?php echo $g5['title']; ?> 목록</div>
+            
+                
+                
+            
+            
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><label for="co_id">ID</label></div>
+                    <div class="ui-form-field">
                         <?php echo help('20자 이내의 영문자, 숫자, _ 만 가능합니다.'); ?>
                         <input type="text" value="<?php echo $co['co_id']; ?>" name="co_id" id="co_id" required <?php echo $readonly; ?> class="required <?php echo $readonly; ?>" size="20" maxlength="20">
                         <?php if ($w == 'u') { ?><a href="<?php echo get_pretty_url('content', $co_id); ?>">내용확인</a><?php } ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="co_subject">제목</label></th>
-                    <td><input type="text" name="co_subject" value="<?php echo htmlspecialchars2($co['co_subject']); ?>" id="co_subject" required class="required" size="90"></td>
-                </tr>
-                <tr>
-                    <th scope="row">내용</th>
-                    <td><?php echo editor_html('co_content', get_text(html_purifier($co['co_content']), 0)); ?></td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="co_skin">스킨 디렉토리<strong>필수</strong></label></th>
-                    <td>
+                    </div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><label for="co_subject">제목</label></div>
+                    <div class="ui-form-field"><input type="text" name="co_subject" value="<?php echo htmlspecialchars2($co['co_subject']); ?>" id="co_subject" required class="required" size="90"></div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label">내용</div>
+                    <div class="ui-form-field"><?php echo editor_html('co_content', get_text(html_purifier($co['co_content']), 0)); ?></div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><label for="co_skin">스킨 디렉토리<strong>필수</strong></label></div>
+                    <div class="ui-form-field">
                         <?php echo get_skin_select('content', 'co_skin', 'co_skin', $co['co_skin'], 'required'); ?>
-                    </td>
-                </tr>
+                    </div>
+                </div>
                 <!--
-    <tr>
-        <th scope="row"><label for="co_tag_filter_use">태그 필터링 사용</label></th>
-        <td>
+    <div class="ui-form-row">
+        <div class="ui-form-label"><label for="co_tag_filter_use">태그 필터링 사용</label></div>
+        <div class="ui-form-field">
             <?php echo help("내용에서 iframe 등의 태그를 사용하려면 사용안함으로 선택해 주십시오."); ?>
             <select name="co_tag_filter_use" id="co_tag_filter_use">
                 <option value="1"<?php echo get_selected($co['co_tag_filter_use'], 1); ?>>사용함</option>
                 <option value="0"<?php echo get_selected($co['co_tag_filter_use'], 0); ?>>사용안함</option>
             </select>
-        </td>
-    </tr>
+        </div>
+    </div>
     -->
-                <tr>
-                    <th scope="row"><label for="co_include_head">상단 파일 경로</label></th>
-                    <td>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><label for="co_include_head">상단 파일 경로</label></div>
+                    <div class="ui-form-field">
                         <?php echo help("설정값이 없으면 기본 상단 파일을 사용합니다."); ?>
                         <input type="text" name="co_include_head" value="<?php echo get_sanitize_input($co['co_include_head']); ?>" id="co_include_head" size="60">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="co_include_tail">하단 파일 경로</label></th>
-                    <td>
+                    </div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><label for="co_include_tail">하단 파일 경로</label></div>
+                    <div class="ui-form-field">
                         <?php echo help("설정값이 없으면 기본 하단 파일을 사용합니다."); ?>
                         <input type="text" name="co_include_tail" value="<?php echo get_sanitize_input($co['co_include_tail']); ?>" id="co_include_tail" size="60">
-                    </td>
-                </tr>
-                <tr id="admin_captcha_box" style="display:none;">
-                    <th scope="row">자동등록방지</th>
-                    <td>
+                    </div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label">자동등록방지</div>
+                    <div class="ui-form-field">
                         <?php
                         echo help("파일 경로를 입력 또는 수정시 캡챠를 반드시 입력해야 합니다.");
 
@@ -115,11 +115,11 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                         <script>
                             jQuery("#captcha_key").removeAttr("required").removeClass("required");
                         </script>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="co_himg">상단이미지</label></th>
-                    <td>
+                    </div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><label for="co_himg">상단이미지</label></div>
+                    <div class="ui-form-field">
                         <input type="file" name="co_himg" id="co_himg">
                         <?php
                         $himg = G5_DATA_PATH . '/content/' . $co['co_id'] . '_h';
@@ -141,11 +141,11 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                             echo '</div>';
                         }
                         ?>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="co_timg">하단이미지</label></th>
-                    <td>
+                    </div>
+                </div>
+                <div class="ui-form-row">
+                    <div class="ui-form-label"><label for="co_timg">하단이미지</label></div>
+                    <div class="ui-form-field">
                         <input type="file" name="co_timg" id="co_timg">
                         <?php
                         $timg = G5_DATA_PATH . '/content/' . $co['co_id'] . '_t';
@@ -167,10 +167,10 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                             echo '</div>';
                         }
                         ?>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                    </div>
+                </div>
+            
+        </div>
     </div>
 
     <div>
@@ -258,3 +258,5 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
 
 <?php
 require_once G5_ADMIN_PATH . '/admin.tail.php';
+
+
