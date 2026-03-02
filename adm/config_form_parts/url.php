@@ -59,8 +59,8 @@ if ($is_use_apache) {
                             $checked = ((int) $config['cf_bbs_rewrite'] === (int) $k) ? 'checked' : '';
                         ?>
                         <label for="cf_bbs_rewrite_<?php echo $k; ?>" class="af-url-option">
-                            <span class="af-check">
-                                <input name="cf_bbs_rewrite" id="cf_bbs_rewrite_<?php echo $k; ?>" type="radio" value="<?php echo $k; ?>" <?php echo $checked; ?> class="form-radio rounded-full!">
+                            <span class="af-check form-label">
+                                <input name="cf_bbs_rewrite" id="cf_bbs_rewrite_<?php echo $k; ?>" type="radio" value="<?php echo $k; ?>" <?php echo $checked; ?> class="form-radio">
                                 <span class="form-label"><?php echo $v['label']; ?></span>
                             </span>
                             <code><?php echo $v['url']; ?></code>

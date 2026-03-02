@@ -629,7 +629,7 @@
 
     .form-radio,
     .form-checkbox {
-        @apply size-4.5 rounded appearance-none bg-center bg-no-repeat;
+        @apply size-4.5 appearance-none bg-center bg-no-repeat;
         @apply shrink-0 border border-default-300 bg-transparent ring-offset-white focus-visible:outline-none;
         @apply focus-visible:ring-2 focus-visible:ring-inherit focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-90;
         @apply aria-invalid:border-danger/60 aria-invalid:ring-danger/10;
@@ -669,6 +669,8 @@
     }
 
     .form-radio {
+        @apply rounded-full;
+
         &:checked {
             background-size: 0.8rem 0.8rem;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='4.1' fill='white'/%3E%3C/svg%3E");

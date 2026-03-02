@@ -1,56 +1,115 @@
-<section id="anc_mb_contact">
-    <h2>연락처 및 주소</h2>
-    
-        
-            
-            
-            
-                        <div class="ui-form-row">
-            <div class="ui-form-label"><label for="mb_hp">휴대폰번호</label></div>
-            <div class="ui-form-field"><input type="text" name="mb_hp" value="<?php echo $mb['mb_hp'] ?>" id="mb_hp" size="15" maxlength="20"></div>
+<section id="anc_mb_contact" class="card">
+    <div class="card-header">
+        <h2 class="card-title">연락처 및 주소</h2>
+    </div>
+    <div class="card-body">
+        <div class="af-grid">
+            <div class="af-row">
+                <div class="af-label">
+                    <label for="mb_hp" class="form-label">휴대폰번호</label>
+                </div>
+                <div class="af-field">
+                    <input type="text" name="mb_hp" value="<?php echo $mb['mb_hp'] ?>" id="mb_hp" size="15" maxlength="20" class="form-input">
+                </div>
+            </div>
+
+            <div class="af-row">
+                <div class="af-label">
+                    <label for="mb_tel" class="form-label">전화번호</label>
+                </div>
+                <div class="af-field">
+                    <input type="text" name="mb_tel" value="<?php echo $mb['mb_tel'] ?>" id="mb_tel" size="15" maxlength="20" class="form-input">
+                </div>
+            </div>
+
+            <div class="af-row">
+                <div class="af-label">
+                    <label for="mb_certify_sa" class="form-label">본인확인 방법</label>
+                </div>
+                <div class="af-field">
+                    <div class="af-inline">
+                        <label for="mb_certify_sa" class="af-check form-label">
+                            <input type="radio" name="mb_certify_case" value="simple" id="mb_certify_sa" <?php if ($mb['mb_certify'] == 'simple') { echo 'checked="checked"'; } ?> class="form-radio">
+                            <span class="form-label">간편인증</span>
+                        </label>
+                        <label for="mb_certify_hp" class="af-check form-label">
+                            <input type="radio" name="mb_certify_case" value="hp" id="mb_certify_hp" <?php if ($mb['mb_certify'] == 'hp') { echo 'checked="checked"'; } ?> class="form-radio">
+                            <span class="form-label">휴대폰</span>
+                        </label>
+                        <label for="mb_certify_ipin" class="af-check form-label">
+                            <input type="radio" name="mb_certify_case" value="ipin" id="mb_certify_ipin" <?php if ($mb['mb_certify'] == 'ipin') { echo 'checked="checked"'; } ?> class="form-radio">
+                            <span class="form-label">아이핀</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="af-row">
+                <div class="af-label">
+                    <label for="mb_certify_yes" class="form-label">본인확인</label>
+                </div>
+                <div class="af-field">
+                    <div class="af-inline">
+                        <label for="mb_certify_yes" class="af-check form-label">
+                            <input type="radio" name="mb_certify" value="1" id="mb_certify_yes" <?php echo $mb_certify_yes; ?> class="form-radio">
+                            <span class="form-label">예</span>
+                        </label>
+                        <label for="mb_certify_no" class="af-check form-label">
+                            <input type="radio" name="mb_certify" value="0" id="mb_certify_no" <?php echo $mb_certify_no; ?> class="form-radio">
+                            <span class="form-label">아니오</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="af-row">
+                <div class="af-label">
+                    <label for="mb_adult_yes" class="form-label">성인인증</label>
+                </div>
+                <div class="af-field">
+                    <div class="af-inline">
+                        <label for="mb_adult_yes" class="af-check form-label">
+                            <input type="radio" name="mb_adult" value="1" id="mb_adult_yes" <?php echo $mb_adult_yes; ?> class="form-radio">
+                            <span class="form-label">예</span>
+                        </label>
+                        <label for="mb_adult_no" class="af-check form-label">
+                            <input type="radio" name="mb_adult" value="0" id="mb_adult_no" <?php echo $mb_adult_no; ?> class="form-radio">
+                            <span class="form-label">아니오</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="af-row">
+                <div class="af-label">
+                    <label for="mb_zip" class="form-label">주소</label>
+                </div>
+                <div class="af-field">
+                    <div class="af-stack">
+                        <div class="af-inline">
+                            <label for="mb_zip" class="form-label">우편번호</label>
+                            <input type="text" name="mb_zip" value="<?php echo $mb['mb_zip1'] . $mb['mb_zip2']; ?>" id="mb_zip" size="5" maxlength="6" class="form-input">
+                            <button type="button" class="btn btn-sm btn-surface-default-soft" onclick="win_zip('fmember', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon');">주소 검색</button>
+                        </div>
+
+                        <div class="af-stack">
+                            <div>
+                                <label for="mb_addr1" class="form-label">기본주소</label>
+                                <input type="text" name="mb_addr1" value="<?php echo $mb['mb_addr1'] ?>" id="mb_addr1" size="60" class="form-input">
+                            </div>
+                            <div>
+                                <label for="mb_addr2" class="form-label">상세주소</label>
+                                <input type="text" name="mb_addr2" value="<?php echo $mb['mb_addr2'] ?>" id="mb_addr2" size="60" class="form-input">
+                            </div>
+                            <div>
+                                <label for="mb_addr3" class="form-label">참고항목</label>
+                                <input type="text" name="mb_addr3" value="<?php echo $mb['mb_addr3'] ?>" id="mb_addr3" size="60" class="form-input">
+                            </div>
+                            <input type="hidden" name="mb_addr_jibeon" value="<?php echo $mb['mb_addr_jibeon']; ?>">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="ui-form-row">
-            <div class="ui-form-label"><label for="mb_tel">전화번호</label></div>
-            <div class="ui-form-field"><input type="text" name="mb_tel" value="<?php echo $mb['mb_tel'] ?>" id="mb_tel" size="15" maxlength="20"></div>
-        </div>
-                        <div class="ui-form-row">
-            <div class="ui-form-label">본인확인방법</div>
-            <div class="ui-form-field"><input type="radio" name="mb_certify_case" value="simple" id="mb_certify_sa" <?php if ($mb['mb_certify'] == 'simple') { echo 'checked="checked"'; } ?>>
-                        <label for="mb_certify_sa">간편인증</label>
-                        <input type="radio" name="mb_certify_case" value="hp" id="mb_certify_hp" <?php if ($mb['mb_certify'] == 'hp') { echo 'checked="checked"'; } ?>>
-                        <label for="mb_certify_hp">휴대폰</label>
-                        <input type="radio" name="mb_certify_case" value="ipin" id="mb_certify_ipin" <?php if ($mb['mb_certify'] == 'ipin') { echo 'checked="checked"'; } ?>>
-                        <label for="mb_certify_ipin">아이핀</label></div>
-        </div>
-                        <div class="ui-form-row">
-            <div class="ui-form-label">본인확인</div>
-            <div class="ui-form-field"><input type="radio" name="mb_certify" value="1" id="mb_certify_yes" <?php echo $mb_certify_yes; ?>>
-                        <label for="mb_certify_yes">예</label>
-                        <input type="radio" name="mb_certify" value="0" id="mb_certify_no" <?php echo $mb_certify_no; ?>>
-                        <label for="mb_certify_no">아니오</label></div>
-        </div>
-        <div class="ui-form-row">
-            <div class="ui-form-label">성인인증</div>
-            <div class="ui-form-field"><input type="radio" name="mb_adult" value="1" id="mb_adult_yes" <?php echo $mb_adult_yes; ?>>
-                        <label for="mb_adult_yes">예</label>
-                        <input type="radio" name="mb_adult" value="0" id="mb_adult_no" <?php echo $mb_adult_no; ?>>
-                        <label for="mb_adult_no">아니오</label></div>
-        </div>
-                        <div class="ui-form-row">
-            <div class="ui-form-label">주소</div>
-            <div class="ui-form-field"><label for="mb_zip">우편번호</label>
-                        <input type="text" name="mb_zip" value="<?php echo $mb['mb_zip1'] . $mb['mb_zip2']; ?>" id="mb_zip" size="5" maxlength="6">
-                        <button type="button" onclick="win_zip('fmember', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon');">주소 검색</button><br>
-                        <input type="text" name="mb_addr1" value="<?php echo $mb['mb_addr1'] ?>" id="mb_addr1" size="60">
-                        <label for="mb_addr1">기본주소</label><br>
-                        <input type="text" name="mb_addr2" value="<?php echo $mb['mb_addr2'] ?>" id="mb_addr2" size="60">
-                        <label for="mb_addr2">상세주소</label>
-                        <br>
-                        <input type="text" name="mb_addr3" value="<?php echo $mb['mb_addr3'] ?>" id="mb_addr3" size="60">
-                        <label for="mb_addr3">참고항목</label>
-                        <input type="hidden" name="mb_addr_jibeon" value="<?php echo $mb['mb_addr_jibeon']; ?>"><br></div>
-        </div>
-            
-        
-    
+    </div>
 </section>
