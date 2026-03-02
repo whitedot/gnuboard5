@@ -1,5 +1,18 @@
 <script>
 $(function(){
+    if (window.CommonUI && typeof window.CommonUI.initStickyAnchorTabs === "function") {
+        window.CommonUI.initStickyAnchorTabs({
+            tabBarSelector: "#board_tabs_bar",
+            tabNavSelector: "#board_tabs_nav",
+            tabLinkSelector: "a.js-board-tab-link[href^='#']",
+            topbarSelector: "#hd_top",
+            heightVarName: "--config-tabs-height",
+            scrollGap: 8,
+            scrollDuration: 180,
+            namespace: "boardTabs"
+        });
+    }
+
     $("#board_copy").click(function(){
         window.open(this.href, "win_board_copy", "left=10,top=10,width=500,height=400");
         return false;

@@ -1,6 +1,6 @@
 ---
 name: refactor-config-form-ui-kit
-description: Refactor Gnuboard admin config form UI (`adm/config_form.php`, `adm/config_form_parts/*.php`) to ui-kit semantics without DOM post-processing. Use when requests include direct markup refactor, section/card normalization, sticky tab + scrollspy behavior, hint-text alignment, and admin CSS build synchronization.
+description: Refactor Gnuboard admin config form UI (`adm/config_form.php`, `adm/config_form_parts/*.php`) to ui-kit semantics without DOM post-processing. Use when requests include direct markup refactor, section/card normalization, sticky tab + scrollspy behavior, hint-text alignment, sentence-style manual inline layout, and admin CSS build synchronization.
 ---
 
 # Config Form UI-Kit Refactor
@@ -42,6 +42,43 @@ Refactor `config_form` by editing source PHP/HTML/CSS directly.
 7. Use `hint-text` for description/help text consistency.
 8. Prefer explicit manual layout utility classes (for example `af-grid`, `af-row`, `af-field`) over mixed 1-column/2-column patterns in same reading flow.
 9. Remove obsolete anchors or duplicate navigation markup inside part files (for example legacy `$pg_anchor` echoes).
+10. For checkbox/radio rows, avoid raw text nodes after controls when possible:
+- preferred: wrap with `af-check` and text in `<span class="form-label">...</span>`
+- if `for/id` association is valid, use `<label class="form-label" for="...">...</label>`
+- ensure `form-checkbox` / `form-radio` remain vertically aligned with adjacent text in build output.
+- apply light checkbox tone for bulk-propagation controls (`chk_grp_*`, `chk_all_*`):
+  use reusable selector-based styling in `tailwind4/admin.css` under `.admin-form-layout`
+  instead of page-local or inline overrides.
+- recommended markup:
+```html
+<label for="field_id" class="af-check form-label">
+  <input type="checkbox" class="form-checkbox" id="field_id" name="field_name" value="1">
+  <span class="form-label">사용</span>
+</label>
+```
+- if base control baseline needs adjustment, update `tailwind4/common.css` (`.form-checkbox`, `.form-radio`) and rebuild.
+
+## Sentence-Style Manual Layout
+
+Use this when a field reads like a sentence (for example: `댓글 [ ] 개 이상 달리면 수정불가`, `업로드 파일 한개당 [ ] bytes 이하`, `[ ] 픽셀`).
+
+1. Keep sentence parts and input in one inline flow:
+- wrapper: `af-inline af-inline-sentence`
+- text chunks: `af-inline-note`
+- numeric inputs: `form-input` + width helper (`af-input-xs`, `af-input-sm` as needed)
+2. Do not solve this with DOM post-processing or JS runtime replacement.
+3. Keep help copy separated from sentence row:
+- help text stays above sentence row in `af-stack`
+- sentence row should remain a single visual line on desktop and wrap naturally on small screens
+4. Keep group/all apply controls on a separate row:
+- use a dedicated `af-inline` block for `chk_grp_*` and `chk_all_*`
+- avoid mixing sentence token text with checkbox control row
+5. Add reusable CSS in `tailwind4/admin.css` (not page-id selector):
+- `.admin-form-layout .af-inline-sentence`
+- `.admin-form-layout .af-inline-note`
+- `.admin-form-layout .af-input-xs`, `.admin-form-layout .af-input-sm`
+6. Right-align numeric input content for readability in sentence rows.
+7. Apply manual fine placement per field; avoid broad regex replacement for mixed legacy markup.
 
 ## Tabs, Sticky, Scrollspy
 
@@ -68,6 +105,7 @@ Refactor `config_form` by editing source PHP/HTML/CSS directly.
 - `npm.cmd run build:admin`
 5. Ensure generated file updates:
 - `adm/css/admin.css`
+6. If sentence-style classes are added/changed, rebuild CSS before visual QA.
 
 ## Validation
 
@@ -80,6 +118,13 @@ Refactor `config_form` by editing source PHP/HTML/CSS directly.
 - sticky tabs remain below topbar while scrolling
 - scrollspy active state tracks section position
 - submit/captcha and existing config logic still work
+4. Sentence-style layout check:
+- inline sentence fields align naturally with token text and numeric input
+- group/all apply checkboxes stay vertically aligned on their own line
+- narrow viewport wraps tokens without overlapping controls
+5. Checkbox/radio text alignment check:
+- rows like `input + 사용` do not look vertically offset
+- same visual baseline is kept whether adjacent text is `label` or plain string
 
 ## Expected Deliverables
 

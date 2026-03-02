@@ -11,7 +11,6 @@ $fm_id = isset($_GET['fm_id']) ? strval(preg_replace('/[^0-9]/', '', $_GET['fm_i
 
 if ($w == "u") {
     $html_title .= ' 수정';
-    $readonly = ' readonly';
 
     $sql = " select * from {$g5['faq_master_table']} where fm_id = '$fm_id' ";
     $fm = sql_fetch($sql);
@@ -23,45 +22,59 @@ if ($w == "u") {
     $fm = array('fm_order' => '', 'fm_subject' => '', 'fm_id' => 0, 'fm_head_html' => '', 'fm_tail_html' => '');
 }
 
-$g5['title'] = $html_title . ' 관리';
+$g5['title'] = $html_title;
+$admin_container_class = 'admin-page-faq-master-form';
+$admin_page_subtitle = 'FAQ 분류 기본정보와 상하단 노출 콘텐츠를 설정하세요.';
 
 require_once G5_ADMIN_PATH . '/admin.head.php';
 ?>
 
-<form name="frmfaqmasterform" action="./faqmasterformupdate.php" onsubmit="return frmfaqmasterform_check(this);" method="post" enctype="MULTIPART/FORM-DATA">
+<form name="frmfaqmasterform" id="frmfaqmasterform" action="./faqmasterformupdate.php" onsubmit="return frmfaqmasterform_check(this);" method="post" enctype="MULTIPART/FORM-DATA" class="admin-form-layout space-y-5">
     <input type="hidden" name="w" value="<?php echo $w; ?>">
     <input type="hidden" name="fm_id" value="<?php echo $fm_id; ?>">
     <input type="hidden" name="token" value="">
 
-    
-        <div class="ui-form-grid">
-            <div class="ui-form-caption"><?php echo $g5['title']; ?></div>
-            
-                
-                
-            
-            
-                <div class="ui-form-row">
-                    <div class="ui-form-label"><label for="fm_order">출력순서</label></div>
-                    <div class="ui-form-field">
+    <section class="card">
+        <div class="card-header">
+            <h2 class="card-title">FAQ 분류 설정</h2>
+        </div>
+        <div class="card-body">
+            <p class="hint-text">분류 노출순서, 제목, 상하단 이미지 및 HTML 콘텐츠를 설정합니다.</p>
+
+            <div class="af-grid">
+                <div class="af-row">
+                    <div class="af-label">
+                        <label for="fm_order" class="form-label">출력순서</label>
+                    </div>
+                    <div class="af-field">
                         <?php echo help('숫자가 작을수록 FAQ 분류에서 먼저 출력됩니다.'); ?>
-                        <input type="text" name="fm_order" value="<?php echo $fm['fm_order']; ?>" id="fm_order" maxlength="10" size="10">
+                        <input type="text" name="fm_order" value="<?php echo $fm['fm_order']; ?>" id="fm_order" maxlength="10" size="10" class="form-input af-input-xs">
                     </div>
                 </div>
-                <div class="ui-form-row">
-                    <div class="ui-form-label"><label for="fm_subject">제목</label></div>
-                    <div class="ui-form-field">
-                        <input type="text" value="<?php echo get_text($fm['fm_subject']); ?>" name="fm_subject" id="fm_subject" required class="required" size="70">
+
+                <div class="af-row">
+                    <div class="af-label">
+                        <label for="fm_subject" class="form-label">제목<strong>필수</strong></label>
+                    </div>
+                    <div class="af-field">
+                        <div class="af-stack">
+                            <input type="text" value="<?php echo get_text($fm['fm_subject']); ?>" name="fm_subject" id="fm_subject" required class="form-input required" size="70">
+                        </div>
                         <?php if ($w == 'u') { ?>
-                            <a href="<?php echo G5_BBS_URL; ?>/faq.php?fm_id=<?php echo $fm_id; ?>">보기</a>
-                            <a href="./faqlist.php?fm_id=<?php echo $fm_id; ?>">상세보기</a>
+                            <div class="af-inline">
+                                <a href="<?php echo G5_BBS_URL; ?>/faq.php?fm_id=<?php echo $fm_id; ?>" class="btn btn-sm btn-surface-default-soft">보기</a>
+                                <a href="./faqlist.php?fm_id=<?php echo $fm_id; ?>" class="btn btn-sm btn-surface-default-soft">상세보기</a>
+                            </div>
                         <?php } ?>
                     </div>
                 </div>
-                <div class="ui-form-row">
-                    <div class="ui-form-label"><label for="fm_himg">상단이미지</label></div>
-                    <div class="ui-form-field">
-                        <input type="file" name="fm_himg" id="fm_himg">
+
+                <div class="af-row">
+                    <div class="af-label">
+                        <label for="fm_himg" class="form-label">상단이미지</label>
+                    </div>
+                    <div class="af-field">
+                        <input type="file" name="fm_himg" id="fm_himg" class="form-input">
                         <?php
                         $himg = G5_DATA_PATH . '/faq/' . $fm['fm_id'] . '_h';
                         $himg_str = '';
@@ -75,7 +88,7 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                                     $width = $size[0];
                                 }
                             }
-                            echo '<input type="checkbox" name="fm_himg_del" value="1" id="fm_himg_del"> <label for="fm_himg_del">삭제</label>';
+                            echo '<label for="fm_himg_del" class="af-check form-label"><input type="checkbox" name="fm_himg_del" value="1" id="fm_himg_del" class="form-checkbox"><span class="form-label">삭제</span></label>';
                             $himg_str = '<img src="' . G5_DATA_URL . '/faq/' . $fm['fm_id'] . '_h" width="' . $width . '" alt="">';
                         }
                         if ($himg_str) {
@@ -86,10 +99,13 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                         ?>
                     </div>
                 </div>
-                <div class="ui-form-row">
-                    <div class="ui-form-label"><label for="fm_timg">하단이미지</label></div>
-                    <div class="ui-form-field">
-                        <input type="file" name="fm_timg" id="fm_timg">
+
+                <div class="af-row">
+                    <div class="af-label">
+                        <label for="fm_timg" class="form-label">하단이미지</label>
+                    </div>
+                    <div class="af-field">
+                        <input type="file" name="fm_timg" id="fm_timg" class="form-input">
                         <?php
                         $timg = G5_DATA_PATH . '/faq/' . $fm['fm_id'] . '_t';
                         $timg_str = '';
@@ -104,7 +120,7 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                                 }
                             }
 
-                            echo '<input type="checkbox" name="fm_timg_del" value="1" id="fm_timg_del"><label for="fm_timg_del">삭제</label>';
+                            echo '<label for="fm_timg_del" class="af-check form-label"><input type="checkbox" name="fm_timg_del" value="1" id="fm_timg_del" class="form-checkbox"><span class="form-label">삭제</span></label>';
                             $timg_str = '<img src="' . G5_DATA_URL . '/faq/' . $fm['fm_id'] . '_t" width="' . $width . '" alt="">';
                         }
                         if ($timg_str) {
@@ -115,33 +131,39 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                         ?>
                     </div>
                 </div>
-                <div class="ui-form-row">
-                    <div class="ui-form-label">상단 내용</div>
-                    <div class="ui-form-field">
+
+                <div class="af-row">
+                    <div class="af-label">
+                        <label for="fm_head_html" class="form-label">상단 내용</label>
+                    </div>
+                    <div class="af-field">
                         <?php echo editor_html('fm_head_html', get_text(html_purifier($fm['fm_head_html']), 0)); ?>
                     </div>
                 </div>
-                <div class="ui-form-row">
-                    <div class="ui-form-label">하단 내용</div>
-                    <div class="ui-form-field">
+
+                <div class="af-row">
+                    <div class="af-label">
+                        <label for="fm_tail_html" class="form-label">하단 내용</label>
+                    </div>
+                    <div class="af-field">
                         <?php echo editor_html('fm_tail_html', get_text(html_purifier($fm['fm_tail_html']), 0)); ?>
                     </div>
                 </div>
-            
+            </div>
         </div>
-    
+    </section>
 
-    <div>
-        <a href="./faqmasterlist.php">목록</a>
-        <input type="submit" value="확인" accesskey="s">
+    <div class="flex items-center justify-between border-default-300 border-t border-dashed pt-4">
+        <a href="./faqmasterlist.php" class="btn btn-surface-default-soft">목록</a>
+        <button type="submit" accesskey="s" class="btn btn-solid-primary">저장</button>
     </div>
-
 </form>
 
 <script>
     function frmfaqmasterform_check(f) {
         <?php echo get_editor_js('fm_head_html'); ?>
         <?php echo get_editor_js('fm_tail_html'); ?>
+        return true;
     }
 
     // document.frmfaqmasterform.fm_subject.focus();

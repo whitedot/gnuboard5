@@ -4,9 +4,16 @@ require_once './_common.php';
 
 auth_check_menu($auth, $sub_menu, 'r');
 
-$gr = get_group($gr_id);
-if (!$gr['gr_id']) {
+$gr_id = isset($gr_id) ? (string) $gr_id : '';
+if ($gr_id === '') {
     alert('존재하지 않는 그룹입니다.');
+    exit;
+}
+
+$gr = get_group($gr_id);
+if (empty($gr['gr_id'])) {
+    alert('존재하지 않는 그룹입니다.');
+    exit;
 }
 
 $sql_common = " from {$g5['group_member_table']} a

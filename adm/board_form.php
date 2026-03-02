@@ -122,20 +122,38 @@ if ($is_admin != 'super') {
 }
 
 $g5['title'] = $html_title;
+$admin_container_class = 'admin-page-board-form';
+$admin_page_subtitle = '게시판 기본, 권한, 기능, 디자인, 포인트 설정을 탭으로 빠르게 관리하세요.';
 require_once './admin.head.php';
 
-$pg_anchor = '<ul>
-    <li><a href="#anc_bo_basic">기본 설정</a></li>
-    <li><a href="#anc_bo_auth">권한 설정</a></li>
-    <li><a href="#anc_bo_function">기능 설정</a></li>
-    <li><a href="#anc_bo_design">디자인/양식</a></li>
-    <li><a href="#anc_bo_point">포인트 설정</a></li>
-    <li><a href="#anc_bo_extra">여분필드</a></li>
-</ul>';
+$board_tabs = array(
+    array('id' => 'anc_bo_basic', 'label' => '기본 설정'),
+    array('id' => 'anc_bo_auth', 'label' => '권한 설정'),
+    array('id' => 'anc_bo_function', 'label' => '기능 설정'),
+    array('id' => 'anc_bo_design', 'label' => '디자인/양식'),
+    array('id' => 'anc_bo_point', 'label' => '포인트 설정'),
+);
+
+$pg_anchor_menu = admin_build_anchor_menu($board_tabs, array(
+    'nav_id' => 'board_tabs_nav',
+    'nav_class' => 'tab-nav',
+    'nav_aria_label' => '게시판 설정 탭',
+    'link_class' => 'tab-trigger-line-primary js-board-tab-link',
+    'active_class' => 'active',
+    'as_tabs' => true,
+    'link_id_prefix' => 'board_tab_',
+));
+
+// 레거시 파트 템플릿 내 출력되는 상단 앵커는 사용하지 않음
+$pg_anchor = '';
 
 ?>
 
-<form name="fboardform" id="fboardform" action="./board_form_update.php" onsubmit="return fboardform_submit(this)" method="post" enctype="multipart/form-data">
+<div id="board_tabs_bar">
+    <?php echo $pg_anchor_menu; ?>
+</div>
+
+<form name="fboardform" id="fboardform" action="./board_form_update.php" onsubmit="return fboardform_submit(this)" method="post" enctype="multipart/form-data" class="admin-form-layout space-y-5">
 <input type="hidden" name="w" value="<?php echo $w ?>">
 <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
 <input type="hidden" name="stx" value="<?php echo $stx ?>">
@@ -161,13 +179,17 @@ include_once G5_ADMIN_PATH.'/board_form_parts/design.php';
 include_once G5_ADMIN_PATH.'/board_form_parts/point.php';
 ?>
 
-<div>
+<div class="flex items-center justify-between border-default-300 border-t border-dashed pt-4">
     <?php if ($bo_table && $w) { ?>
-        <a href="./board_copy.php?bo_table=<?php echo $board['bo_table']; ?>" id="board_copy" target="win_board_copy">게시판복사</a>
-        <a href="<?php echo get_pretty_url($board['bo_table']); ?>">게시판 바로가기</a>
-        <a href="./board_thumbnail_delete.php?bo_table=<?php echo $board['bo_table'].'&amp;'.$qstr;?>" onclick="return delete_confirm2('게시판 썸네일 파일을 삭제하시겠습니까?');">게시판 썸네일 삭제</a>
+        <div class="af-inline">
+            <a href="./board_copy.php?bo_table=<?php echo $board['bo_table']; ?>" id="board_copy" target="win_board_copy" class="btn btn-surface-default-soft">게시판복사</a>
+            <a href="<?php echo get_pretty_url($board['bo_table']); ?>" class="btn btn-surface-default-soft">게시판 바로가기</a>
+            <a href="./board_thumbnail_delete.php?bo_table=<?php echo $board['bo_table'].'&amp;'.$qstr;?>" onclick="return delete_confirm2('게시판 썸네일 파일을 삭제하시겠습니까?');" class="btn btn-surface-default-soft">게시판 썸네일 삭제</a>
+        </div>
+    <?php } else { ?>
+        <div></div>
     <?php } ?>
-    <input type="submit" value="확인" accesskey="s">
+    <button type="submit" accesskey="s" class="btn btn-solid-primary">저장</button>
 </div>
 
 </form>

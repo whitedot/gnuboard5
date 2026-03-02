@@ -24,32 +24,47 @@ if ($w == 'u') {
 }
 
 $g5['title'] = $html_title;
+$admin_container_class = 'admin-page-mail-form';
+$admin_page_subtitle = '회원메일 템플릿 제목과 내용을 작성하고 관리하세요.';
 require_once './admin.head.php';
 ?>
 
-
-    <p>메일 내용에 {이름} , {닉네임} , {회원아이디} , {이메일} 처럼 내용에 삽입하면 해당 내용에 맞게 변환하여 메일을 발송합니다.</p>
-
-
-<form name="fmailform" id="fmailform" action="./mail_update.php" onsubmit="return fmailform_check(this);" method="post">
+<form name="fmailform" id="fmailform" action="./mail_update.php" onsubmit="return fmailform_check(this);" method="post" class="admin-form-layout space-y-5">
     <input type="hidden" name="w" value="<?php echo $w ?>" id="w">
     <input type="hidden" name="ma_id" value="<?php echo $ma['ma_id'] ?>" id="ma_id">
     <input type="hidden" name="token" value="" id="token">
 
-    <div class="ui-form-grid">
-        <div class="ui-form-row">
-            <div class="ui-form-label"><label for="ma_subject">메일 제목<strong>필수</strong></label></div>
-            <div class="ui-form-field"><input type="text" name="ma_subject" value="<?php echo get_sanitize_input($ma['ma_subject']); ?>" id="ma_subject" required class="required" size="100"></div>
+    <section class="card">
+        <div class="card-header">
+            <h2 class="card-title">회원메일 템플릿</h2>
         </div>
-        <div class="ui-form-row">
-            <div class="ui-form-label"><label for="ma_content">메일 내용<strong>필수</strong></label></div>
-            <div class="ui-form-field"><?php echo editor_html("ma_content", get_text(html_purifier($ma['ma_content']), 0)); ?></div>
-        </div>
-    </div>
+        <div class="card-body">
+            <p class="hint-text">메일 내용에 {이름}, {닉네임}, {회원아이디}, {이메일} 값을 넣으면 대상 회원 정보로 치환되어 발송됩니다.</p>
 
-    
-        <input type="submit" accesskey="s" value="확인">
-    
+            <div class="af-grid">
+                <div class="af-row">
+                    <div class="af-label">
+                        <label for="ma_subject" class="form-label">메일 제목<strong>필수</strong></label>
+                    </div>
+                    <div class="af-field">
+                        <input type="text" name="ma_subject" value="<?php echo get_sanitize_input($ma['ma_subject']); ?>" id="ma_subject" required class="form-input required" size="100">
+                    </div>
+                </div>
+                <div class="af-row">
+                    <div class="af-label">
+                        <label for="ma_content" class="form-label">메일 내용<strong>필수</strong></label>
+                    </div>
+                    <div class="af-field">
+                        <?php echo editor_html("ma_content", get_text(html_purifier($ma['ma_content']), 0)); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="flex items-center justify-end border-default-300 border-t border-dashed pt-4">
+        <button type="submit" accesskey="s" class="btn btn-solid-primary">저장</button>
+    </div>
 </form>
 
 <script>

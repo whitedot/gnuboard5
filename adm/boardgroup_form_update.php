@@ -32,11 +32,6 @@ $check_keys = array(
     'gr_admin' => '',
 );
 
-for ($i = 1; $i <= 10; $i++) {
-    $check_keys['gr_' . $i . '_subj']   = isset($_POST['gr_' . $i . '_subj']) ? $_POST['gr_' . $i . '_subj'] : '';
-    $check_keys['gr_' . $i]           = isset($_POST['gr_' . $i]) ? $_POST['gr_' . $i] : '';
-}
-
 foreach ($check_keys as $key => $value) {
     if ($key === 'gr_subject') {
         $posts[$key] = isset($_POST[$key]) ? strip_tags(clean_xss_attributes($_POST[$key])) : '';
@@ -47,27 +42,7 @@ foreach ($check_keys as $key => $value) {
 
 $sql_common = " gr_subject = '{$posts['gr_subject']}',
                 gr_device = '{$posts['gr_device']}',
-                gr_admin  = '{$posts['gr_admin']}',
-                gr_1_subj = '{$posts['gr_1_subj']}',
-                gr_2_subj = '{$posts['gr_2_subj']}',
-                gr_3_subj = '{$posts['gr_3_subj']}',
-                gr_4_subj = '{$posts['gr_4_subj']}',
-                gr_5_subj = '{$posts['gr_5_subj']}',
-                gr_6_subj = '{$posts['gr_6_subj']}',
-                gr_7_subj = '{$posts['gr_7_subj']}',
-                gr_8_subj = '{$posts['gr_8_subj']}',
-                gr_9_subj = '{$posts['gr_9_subj']}',
-                gr_10_subj = '{$posts['gr_10_subj']}',
-                gr_1 = '{$posts['gr_1']}',
-                gr_2 = '{$posts['gr_2']}',
-                gr_3 = '{$posts['gr_3']}',
-                gr_4 = '{$posts['gr_4']}',
-                gr_5 = '{$posts['gr_5']}',
-                gr_6 = '{$posts['gr_6']}',
-                gr_7 = '{$posts['gr_7']}',
-                gr_8 = '{$posts['gr_8']}',
-                gr_9 = '{$posts['gr_9']}',
-                gr_10 = '{$posts['gr_10']}' ";
+                gr_admin  = '{$posts['gr_admin']}' ";
 if (isset($_POST['gr_use_access'])) {
     $sql_common .= ", gr_use_access = '{$_POST['gr_use_access']}' ";
 } else {

@@ -668,7 +668,8 @@
     }
 
     #config_tabs_bar,
-    #member_tabs_bar {
+    #member_tabs_bar,
+    #board_tabs_bar {
         @apply sticky relative w-full rounded-[var(--radius)] border border-default-300 bg-default-100/95 shadow backdrop-blur;
         --config-tabs-inline-pad: 0.75rem;
         top: var(--admin-shell-bar-height);
@@ -680,7 +681,8 @@
 
     @media (min-width: 64rem) {
         #config_tabs_bar,
-        #member_tabs_bar {
+        #member_tabs_bar,
+        #board_tabs_bar {
             --config-tabs-inline-pad: 1.25rem;
             margin-left: 0;
             margin-right: 0;
@@ -690,14 +692,17 @@
     }
 
     #config_tabs_bar.is-stuck,
-    #member_tabs_bar.is-stuck {
+    #member_tabs_bar.is-stuck,
+    #board_tabs_bar.is-stuck {
         @apply shadow;
     }
 
     #config_tabs_bar::before,
     #config_tabs_bar::after,
     #member_tabs_bar::before,
-    #member_tabs_bar::after {
+    #member_tabs_bar::after,
+    #board_tabs_bar::before,
+    #board_tabs_bar::after {
         content: "";
         position: absolute;
         top: 0.125rem;
@@ -710,7 +715,8 @@
     }
 
     #config_tabs_bar::before,
-    #member_tabs_bar::before {
+    #member_tabs_bar::before,
+    #board_tabs_bar::before {
         left: var(--config-tabs-inline-pad);
         border-top-left-radius: var(--radius);
         border-bottom-left-radius: var(--radius);
@@ -724,7 +730,8 @@
     }
 
     #config_tabs_bar::after,
-    #member_tabs_bar::after {
+    #member_tabs_bar::after,
+    #board_tabs_bar::after {
         right: var(--config-tabs-inline-pad);
         border-top-right-radius: var(--radius);
         border-bottom-right-radius: var(--radius);
@@ -740,19 +747,23 @@
     #config_tabs_bar.has-overflow.is-overflow-left::before,
     #config_tabs_bar.has-overflow.is-overflow-right::after,
     #member_tabs_bar.has-overflow.is-overflow-left::before,
-    #member_tabs_bar.has-overflow.is-overflow-right::after {
+    #member_tabs_bar.has-overflow.is-overflow-right::after,
+    #board_tabs_bar.has-overflow.is-overflow-left::before,
+    #board_tabs_bar.has-overflow.is-overflow-right::after {
         opacity: 0.78;
     }
 
     #config_tabs_nav,
-    #member_tabs_nav {
+    #member_tabs_nav,
+    #board_tabs_nav {
         @apply flex flex-nowrap items-center gap-1 overflow-x-auto py-0.5;
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
 
     #config_tabs_nav::-webkit-scrollbar,
-    #member_tabs_nav::-webkit-scrollbar {
+    #member_tabs_nav::-webkit-scrollbar,
+    #board_tabs_nav::-webkit-scrollbar {
         width: 0;
         height: 0;
     }
@@ -760,14 +771,18 @@
     #config_tabs_bar:hover #config_tabs_nav,
     #config_tabs_bar:focus-within #config_tabs_nav,
     #member_tabs_bar:hover #member_tabs_nav,
-    #member_tabs_bar:focus-within #member_tabs_nav {
+    #member_tabs_bar:focus-within #member_tabs_nav,
+    #board_tabs_bar:hover #board_tabs_nav,
+    #board_tabs_bar:focus-within #board_tabs_nav {
         scrollbar-width: thin;
     }
 
     #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar,
     #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar,
     #member_tabs_bar:hover #member_tabs_nav::-webkit-scrollbar,
-    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar {
+    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar,
+    #board_tabs_bar:hover #board_tabs_nav::-webkit-scrollbar,
+    #board_tabs_bar:focus-within #board_tabs_nav::-webkit-scrollbar {
         width: 0.35rem;
         height: 0.35rem;
     }
@@ -775,14 +790,18 @@
     #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar-track,
     #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-track,
     #member_tabs_bar:hover #member_tabs_nav::-webkit-scrollbar-track,
-    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar-track {
+    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar-track,
+    #board_tabs_bar:hover #board_tabs_nav::-webkit-scrollbar-track,
+    #board_tabs_bar:focus-within #board_tabs_nav::-webkit-scrollbar-track {
         background: transparent;
     }
 
     #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar-thumb,
     #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-thumb,
     #member_tabs_bar:hover #member_tabs_nav::-webkit-scrollbar-thumb,
-    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar-thumb {
+    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar-thumb,
+    #board_tabs_bar:hover #board_tabs_nav::-webkit-scrollbar-thumb,
+    #board_tabs_bar:focus-within #board_tabs_nav::-webkit-scrollbar-thumb {
         border-radius: 9999px;
         background: color-mix(in oklab, var(--color-default-500) 72%, transparent);
     }
@@ -790,19 +809,24 @@
     #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar-thumb:hover,
     #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-thumb:hover,
     #member_tabs_bar:hover #member_tabs_nav::-webkit-scrollbar-thumb:hover,
-    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar-thumb:hover {
+    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar-thumb:hover,
+    #board_tabs_bar:hover #board_tabs_nav::-webkit-scrollbar-thumb:hover,
+    #board_tabs_bar:focus-within #board_tabs_nav::-webkit-scrollbar-thumb:hover {
         background: color-mix(in oklab, var(--color-default-500) 82%, transparent);
     }
 
     #config_tabs_nav .tab-trigger-line-primary,
-    #member_tabs_nav .tab-trigger-line-primary {
+    #member_tabs_nav .tab-trigger-line-primary,
+    #board_tabs_nav .tab-trigger-line-primary {
         @apply shrink-0 whitespace-nowrap rounded-t-[var(--radius)] border border-transparent px-3 py-1 text-sm text-default-500;
     }
 
     #config_tabs_nav .tab-trigger-line-primary.active,
     #config_tabs_nav .tab-trigger-line-primary[aria-selected="true"],
     #member_tabs_nav .tab-trigger-line-primary.active,
-    #member_tabs_nav .tab-trigger-line-primary[aria-selected="true"] {
+    #member_tabs_nav .tab-trigger-line-primary[aria-selected="true"],
+    #board_tabs_nav .tab-trigger-line-primary.active,
+    #board_tabs_nav .tab-trigger-line-primary[aria-selected="true"] {
         @apply border-default-300 border-b-transparent bg-card font-semibold text-primary;
     }
 
@@ -936,6 +960,34 @@
 
     .admin-form-layout .af-inline .form-input {
         @apply w-auto;
+    }
+
+    .admin-form-layout input.form-checkbox[name^="chk_grp_"],
+    .admin-form-layout input.form-checkbox[name^="chk_all_"] {
+        @apply border-light/90 bg-light/90;
+        box-shadow: inset 0 1px 2px rgba(var(--color-dark), 0.05);
+    }
+
+    .admin-form-layout .af-inline-sentence {
+        @apply gap-1.5;
+    }
+
+    .admin-form-layout .af-inline-sentence .form-input {
+        @apply text-right;
+    }
+
+    .admin-form-layout .af-inline-note {
+        @apply mb-0 text-sm font-medium text-default-600;
+    }
+
+    .admin-form-layout .af-input-xs {
+        width: 4.5rem;
+        min-width: 4.5rem;
+    }
+
+    .admin-form-layout .af-input-sm {
+        width: 8rem;
+        min-width: 8rem;
     }
 
     .admin-form-layout .af-check {
