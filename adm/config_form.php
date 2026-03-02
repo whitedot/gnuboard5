@@ -17,6 +17,8 @@ if (!$config['cf_faq_skin']) {
 }
 
 $g5['title'] = '환경설정';
+$admin_container_class = 'admin-page-config-form';
+$admin_page_subtitle = '기본, 회원, 보안, 연동 설정을 탭에서 빠르게 관리하세요.';
 require_once './admin.head.php';
 ?>
 <?php
@@ -37,23 +39,15 @@ $config_tabs = array(
     array('id' => 'anc_cf_sms', 'label' => 'SMS'),
 );
 
-$build_anchor_menu = function ($tabs) {
-    $menu = array();
-    $menu[] = '<nav id="config_tabs_nav" class="tab-nav" aria-label="환경설정 탭">';
-
-    foreach ($tabs as $index => $tab) {
-        $id = htmlspecialchars($tab['id'], ENT_QUOTES, 'UTF-8');
-        $label = htmlspecialchars($tab['label'], ENT_QUOTES, 'UTF-8');
-        $active_class = ($index === 0) ? ' active' : '';
-
-        $menu[] = '<a class="tab-trigger-line-primary js-config-tab-link' . $active_class . '" href="#' . $id . '" aria-selected="' . ($index === 0 ? 'true' : 'false') . '">' . $label . '</a>';
-    }
-
-    $menu[] = '</nav>';
-    return implode(PHP_EOL, $menu);
-};
-
-$pg_anchor_menu = $build_anchor_menu($config_tabs);
+$pg_anchor_menu = admin_build_anchor_menu($config_tabs, array(
+    'nav_id' => 'config_tabs_nav',
+    'nav_class' => 'tab-nav',
+    'nav_aria_label' => '환경설정 탭',
+    'link_class' => 'tab-trigger-line-primary js-config-tab-link',
+    'active_class' => 'active',
+    'as_tabs' => true,
+    'link_id_prefix' => 'config_tab_',
+));
 
 if (!$config['cf_icode_server_ip']) {
     $config['cf_icode_server_ip'] = '211.172.232.124';
@@ -72,7 +66,7 @@ if ($config['cf_sms_use'] && $config['cf_icode_id'] && $config['cf_icode_pw']) {
     <?php echo $pg_anchor_menu; ?>
 </div>
 
-<form name="fconfigform" id="fconfigform" method="post" action="./config_form_update.php" onsubmit="return fconfigform_submit(this);" class="space-y-5">
+<form name="fconfigform" id="fconfigform" method="post" action="./config_form_update.php" onsubmit="return fconfigform_submit(this);" class="admin-form-layout space-y-5">
     <input type="hidden" name="token" value="" id="token">
 
     <?php

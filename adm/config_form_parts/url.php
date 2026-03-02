@@ -42,13 +42,13 @@ if ($is_use_apache) {
             <?php } ?>
         </p>
 
-        <div class="cf-grid">
-            <div class="cf-row">
-                <div class="cf-label">
+        <div class="af-grid">
+            <div class="af-row">
+                <div class="af-label">
                     <label for="cf_bbs_rewrite_0" class="form-label">짧은 주소 유형</label>
                 </div>
-                <div class="cf-field">
-                    <div class="cf-stack">
+                <div class="af-field">
+                    <div class="af-stack">
                         <?php
                         $short_url_arrs = array(
                             '0' => array('label' => '사용안함', 'url' => G5_URL . '/board.php?bo_table=free&wr_id=123'),
@@ -58,8 +58,8 @@ if ($is_use_apache) {
                         foreach ($short_url_arrs as $k => $v) {
                             $checked = ((int) $config['cf_bbs_rewrite'] === (int) $k) ? 'checked' : '';
                         ?>
-                        <label for="cf_bbs_rewrite_<?php echo $k; ?>" class="cf-url-option">
-                            <span class="cf-check">
+                        <label for="cf_bbs_rewrite_<?php echo $k; ?>" class="af-url-option">
+                            <span class="af-check">
                                 <input name="cf_bbs_rewrite" id="cf_bbs_rewrite_<?php echo $k; ?>" type="radio" value="<?php echo $k; ?>" <?php echo $checked; ?> class="form-radio rounded-full!">
                                 <span class="form-label"><?php echo $v['label']; ?></span>
                             </span>
@@ -70,15 +70,15 @@ if ($is_use_apache) {
                 </div>
             </div>
 
-            <div class="cf-row">
-                <div class="cf-label">
+            <div class="af-row">
+                <div class="af-label">
                     <label class="form-label">설정 코드</label>
                 </div>
-                <div class="cf-field">
-                    <details class="cf-url-details">
-                        <summary class="cf-url-summary">설정 코드 보기 / 숨기기</summary>
-                        <div class="cf-stack">
-                            <div class="cf-stack">
+                <div class="af-field">
+                    <details class="af-url-details">
+                        <summary class="af-url-summary">설정 코드 보기 / 숨기기</summary>
+                        <div class="af-stack">
+                            <div class="af-stack">
                                 <?php if ($is_use_apache) { ?>
                                     <p>Apache 설정 코드는 <code>.htaccess</code> 파일에 적용할 코드입니다.</p>
                                 <?php } ?>
@@ -88,7 +88,7 @@ if ($is_use_apache) {
                             </div>
 
                             <?php if ($is_use_apache) { ?>
-                            <div class="cf-stack">
+                            <div class="af-stack">
                                 <?php if (!$is_apache_rewrite) { ?>
                                     <p>Apache 서버인 경우 rewrite_module 이 비활성화 되어 있으면 짧은 주소를 사용할수 없습니다.</p>
                                 <?php } elseif (!$is_write_file && $is_apache_need_rules) { ?>
@@ -101,7 +101,7 @@ if ($is_use_apache) {
                             <?php } ?>
 
                             <?php if ($is_use_nginx) { ?>
-                            <div class="cf-stack">
+                            <div class="af-stack">
                                 <textarea readonly="readonly" rows="12" class="form-textarea"><?php echo get_nginx_conf_rules(true); ?></textarea>
                             </div>
                             <?php } ?>

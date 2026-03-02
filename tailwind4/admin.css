@@ -584,6 +584,18 @@
         @apply mb-5 mt-2 text-sm text-default-500;
     }
 
+    #container.admin-page-config-form {
+        @apply pt-4;
+    }
+
+    #container.admin-page-config-form #container_title {
+        @apply mb-1 text-2xl;
+    }
+
+    #container.admin-page-config-form #container_subtitle {
+        @apply mt-0 mb-3;
+    }
+
     #container > section,
     #container > form > section,
     #container > .section-card {
@@ -651,7 +663,7 @@
     }
 
     /* Legacy admin pages (member/board/shop/sms) */
-    #container > div,
+    #container > div:not(#config_tabs_bar),
     #container > form:not(#fconfigform) {
         @apply mb-5 rounded-[var(--radius)] border border-default-300 bg-card p-4 shadow;
     }
@@ -662,32 +674,121 @@
     }
 
     #config_tabs_bar {
-        @apply sticky border-b border-default-300 bg-card/95 backdrop-blur;
+        @apply sticky relative w-full rounded-[var(--radius)] border border-default-300 bg-default-100/95 shadow backdrop-blur;
+        --config-tabs-inline-pad: 0.75rem;
         top: var(--admin-shell-bar-height);
         z-index: 15;
-        margin: -1.5rem -1rem 1.25rem;
-        padding: 0 1rem;
+        margin: 0 0 0.375rem;
+        padding: 0 var(--config-tabs-inline-pad);
+        transition: box-shadow 140ms ease, border-color 140ms ease;
     }
 
     @media (min-width: 64rem) {
         #config_tabs_bar {
-            margin-left: -2rem;
-            margin-right: -2rem;
-            padding-left: 2rem;
-            padding-right: 2rem;
+            --config-tabs-inline-pad: 1.25rem;
+            margin-left: 0;
+            margin-right: 0;
+            padding-left: var(--config-tabs-inline-pad);
+            padding-right: var(--config-tabs-inline-pad);
         }
     }
 
+    #config_tabs_bar.is-stuck {
+        @apply shadow;
+    }
+
+    #config_tabs_bar::before,
+    #config_tabs_bar::after {
+        content: "";
+        position: absolute;
+        top: 0.125rem;
+        bottom: 0.125rem;
+        width: 2rem;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 160ms ease;
+        z-index: 2;
+    }
+
+    #config_tabs_bar::before {
+        left: var(--config-tabs-inline-pad);
+        border-top-left-radius: var(--radius);
+        border-bottom-left-radius: var(--radius);
+        background: linear-gradient(
+            to right,
+            color-mix(in oklab, var(--color-default-100) 96%, transparent) 0%,
+            color-mix(in oklab, var(--color-default-100) 88%, transparent) 34%,
+            color-mix(in oklab, var(--color-default-200) 45%, transparent) 72%,
+            transparent 100%
+        );
+    }
+
+    #config_tabs_bar::after {
+        right: var(--config-tabs-inline-pad);
+        border-top-right-radius: var(--radius);
+        border-bottom-right-radius: var(--radius);
+        background: linear-gradient(
+            to left,
+            color-mix(in oklab, var(--color-default-100) 96%, transparent) 0%,
+            color-mix(in oklab, var(--color-default-100) 88%, transparent) 34%,
+            color-mix(in oklab, var(--color-default-200) 45%, transparent) 72%,
+            transparent 100%
+        );
+    }
+
+    #config_tabs_bar.has-overflow.is-overflow-left::before,
+    #config_tabs_bar.has-overflow.is-overflow-right::after {
+        opacity: 0.78;
+    }
+
     #config_tabs_nav {
-        @apply flex flex-nowrap items-center gap-1 overflow-x-auto py-2;
+        @apply flex flex-nowrap items-center gap-1 overflow-x-auto py-0.5;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    #config_tabs_nav::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+
+    #config_tabs_bar:hover #config_tabs_nav,
+    #config_tabs_bar:focus-within #config_tabs_nav {
         scrollbar-width: thin;
     }
 
-    #config_tabs_nav .tab-trigger-line-primary {
-        @apply shrink-0 whitespace-nowrap px-3 py-2 text-sm;
+    #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar,
+    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar {
+        width: 0.35rem;
+        height: 0.35rem;
     }
 
-    #fconfigform > section[id^="anc_cf_"] {
+    #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar-track,
+    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar-thumb,
+    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-thumb {
+        border-radius: 9999px;
+        background: color-mix(in oklab, var(--color-default-500) 72%, transparent);
+    }
+
+    #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar-thumb:hover,
+    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-thumb:hover {
+        background: color-mix(in oklab, var(--color-default-500) 82%, transparent);
+    }
+
+    #config_tabs_nav .tab-trigger-line-primary {
+        @apply shrink-0 whitespace-nowrap rounded-t-[var(--radius)] border border-transparent px-3 py-1 text-sm text-default-500;
+    }
+
+    #config_tabs_nav .tab-trigger-line-primary.active,
+    #config_tabs_nav .tab-trigger-line-primary[aria-selected="true"] {
+        @apply border-default-300 border-b-transparent bg-card font-semibold text-primary;
+    }
+
+    .admin-form-layout > section[id^="anc_"] {
         scroll-margin-top: calc(var(--admin-shell-bar-height) + var(--config-tabs-height, 3.25rem) + 0.75rem);
     }
 
@@ -749,121 +850,121 @@
         @apply inline-flex items-center rounded border border-default-300 bg-white px-3 py-1.5 text-sm text-default-700 transition-all hover:bg-default-100;
     }
 
-    #fconfigform > section.card {
+    .admin-form-layout > section.card {
         @apply overflow-hidden;
     }
 
-    #fconfigform > section.card > .card-header {
+    .admin-form-layout > section.card > .card-header {
         @apply px-5 py-3.75;
     }
 
-    #fconfigform > section.card > .card-body {
+    .admin-form-layout > section.card > .card-body {
         @apply p-0;
     }
 
-    #fconfigform > section.card > .card-body > p {
+    .admin-form-layout > section.card > .card-body > p {
         @apply border-b border-default-200 px-5 py-3 text-xs text-default-400;
     }
 
-    #fconfigform > section.card > .card-body > div:not(.cf-grid) {
+    .admin-form-layout > section.card > .card-body > div:not(.af-grid) {
         @apply border-b border-default-200 px-5 py-4;
     }
 
-    #fconfigform > section.card > .card-body > div:not(.cf-grid):last-child {
+    .admin-form-layout > section.card > .card-body > div:not(.af-grid):last-child {
         @apply border-b-0;
     }
 
-    #fconfigform > section.card > .card-body label.form-label {
+    .admin-form-layout > section.card > .card-body label.form-label {
         @apply mb-1 text-sm font-semibold text-default-700;
     }
 
-    #fconfigform > section.card > .card-body input.form-checkbox + .form-label,
-    #fconfigform > section.card > .card-body input.form-radio + .form-label {
+    .admin-form-layout > section.card > .card-body input.form-checkbox + .form-label,
+    .admin-form-layout > section.card > .card-body input.form-radio + .form-label {
         @apply mb-0 ml-1 inline-block font-medium;
     }
 
-    #fconfigform > section.card > .card-body select.form-select,
-    #fconfigform > section.card > .card-body textarea.form-textarea {
+    .admin-form-layout > section.card > .card-body select.form-select,
+    .admin-form-layout > section.card > .card-body textarea.form-textarea {
         @apply max-w-full;
     }
 
-    #fconfigform .cf-grid {
+    .admin-form-layout .af-grid {
         @apply divide-y divide-default-200;
     }
 
-    #fconfigform .cf-row {
+    .admin-form-layout .af-row {
         @apply grid gap-3 px-5 py-4 md:grid-cols-[16rem_minmax(0,1fr)] md:items-start;
     }
 
-    #fconfigform .cf-row-double {
+    .admin-form-layout .af-row-double {
         @apply grid gap-4 px-5 py-4 md:grid-cols-2;
     }
 
-    #fconfigform .cf-stack {
+    .admin-form-layout .af-stack {
         @apply space-y-2;
     }
 
-    #fconfigform .cf-label .form-label {
+    .admin-form-layout .af-label .form-label {
         @apply mb-0;
     }
 
-    #fconfigform .cf-field {
+    .admin-form-layout .af-field {
         @apply space-y-2;
     }
 
-    #fconfigform .cf-inline {
+    .admin-form-layout .af-inline {
         @apply inline-flex flex-wrap items-center gap-2;
     }
 
-    #fconfigform .cf-inline .form-input {
+    .admin-form-layout .af-inline .form-input {
         @apply w-auto;
     }
 
-    #fconfigform .cf-check {
+    .admin-form-layout .af-check {
         @apply inline-flex items-center gap-1.5;
     }
 
-    #fconfigform .cf-check .form-label {
+    .admin-form-layout .af-check .form-label {
         @apply mb-0 font-medium;
     }
 
-    #fconfigform .cf_cert_hide {
+    .admin-form-layout .cf_cert_hide {
         @apply hidden;
     }
 
-    #fconfigform .cf-service-list {
+    .admin-form-layout .af-service-list {
         @apply space-y-3;
     }
 
-    #fconfigform .cf-service-item {
+    .admin-form-layout .af-service-item {
         @apply space-y-2 rounded-md border border-default-200 bg-default-50 p-3;
     }
 
-    #fconfigform .cf-service-item h3 {
+    .admin-form-layout .af-service-item h3 {
         @apply text-sm font-semibold text-default-700;
     }
 
-    #fconfigform .cf-service-item p {
+    .admin-form-layout .af-service-item p {
         @apply break-all text-xs text-default-600;
     }
 
-    #fconfigform .cf-url-option {
+    .admin-form-layout .af-url-option {
         @apply flex flex-col gap-1 rounded-md border border-default-200 bg-default-50 p-3;
     }
 
-    #fconfigform .cf-url-option code {
+    .admin-form-layout .af-url-option code {
         @apply break-all text-xs text-default-600;
     }
 
-    #fconfigform .cf-url-details {
+    .admin-form-layout .af-url-details {
         @apply rounded-md border border-default-200 bg-default-50 p-3;
     }
 
-    #fconfigform .cf-url-summary {
+    .admin-form-layout .af-url-summary {
         @apply cursor-pointer text-sm font-semibold text-default-700;
     }
 
-    #fconfigform .cf-url-details[open] .cf-url-summary {
+    .admin-form-layout .af-url-details[open] .af-url-summary {
         @apply mb-3;
     }
 

@@ -355,9 +355,10 @@ if ($admin_site_title === '') {
         </div>
     </div>
 
-    <div id="container" class="<?php echo $adm_menu_cookie['container']; ?>">
+    <?php $admin_container_class_attr = trim($adm_menu_cookie['container'] . ' ' . (isset($admin_container_class) ? $admin_container_class : '')); ?>
+    <div id="container" class="<?php echo $admin_container_class_attr; ?>">
         <h1 id="container_title"><?php echo $g5['title']; ?></h1>
-        <p id="container_subtitle">사이트 운영과 설정을 한 곳에서 관리하세요.</p>
+        <p id="container_subtitle"><?php echo isset($admin_page_subtitle) ? $admin_page_subtitle : '사이트 운영과 설정을 한 곳에서 관리하세요.'; ?></p>
 
 <script>
     jQuery(function($) {

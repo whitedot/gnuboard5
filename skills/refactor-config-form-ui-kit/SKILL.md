@@ -25,13 +25,19 @@ Refactor `config_form` by editing source PHP/HTML/CSS directly.
 1. Do not add DOM 후처리 (`preg_replace_callback`, runtime HTML rewriting) for class injection.
 2. Edit each part file directly (`config_form_parts/*.php`), not generated output.
 3. Keep `<form id="fconfigform">` unwrapped by card; apply `card` to each logical `<section>`.
-4. Use ui-kit classes consistently:
+4. Prefer reusable class-scoped styling over page-id-scoped styling:
+- Add a reusable root class on target forms (example: `admin-form-layout`)
+- Avoid adding new `#page_id > ...` selectors when a class selector can express the same structure
+5. Extract repeated tab/anchor menu markup into reusable helper functions:
+- Prefer shared helper (example: `admin_build_anchor_menu()`) over page-local closure builders
+- Pass page-specific options (`nav_id`, classes, aria label) instead of duplicating HTML assembly logic
+6. Use ui-kit classes consistently:
 - Container: `card`, `card-header`, `card-title`, `card-body`
 - Form controls: `form-input`, `form-select`, `form-textarea`, `form-checkbox`, `form-radio`, `form-label`
 - Buttons: `btn` + semantic variants (`btn-solid-*`, `btn-soft-*`, `btn-sm` as needed)
-5. Use `hint-text` for description/help text consistency.
-6. Prefer explicit manual layout (`cf-grid`, `cf-row`, `cf-field`) over mixed 1-column/2-column patterns in same reading flow.
-7. Remove obsolete anchors or duplicate navigation markup inside part files (for example legacy `$pg_anchor` echoes).
+7. Use `hint-text` for description/help text consistency.
+8. Prefer explicit manual layout utility classes (for example `af-grid`, `af-row`, `af-field`) over mixed 1-column/2-column patterns in same reading flow.
+9. Remove obsolete anchors or duplicate navigation markup inside part files (for example legacy `$pg_anchor` echoes).
 
 ## Tabs, Sticky, Scrollspy
 
@@ -39,19 +45,24 @@ Refactor `config_form` by editing source PHP/HTML/CSS directly.
 2. Keep tabs visually attached under topbar:
 - sticky offset should follow `--admin-shell-bar-height`
 - reduce extra top margin/padding so tabs appear directly below topbar
-3. Implement scrollspy in `adm/config_form_parts/script.php`:
+3. Use a stronger tab visual hierarchy when needed:
+- tab bar can use card-level depth (`shadow`) to match nearby cards
+- tab bar background should differ from section card background (for example `bg-default-100/95` vs `bg-card`)
+- active tab should have distinct surface (`bg-card`), stronger text weight, and border separation
+4. Implement scrollspy in `adm/config_form_parts/script.php`:
 - click tab: smooth-scroll to target section with sticky offset compensation
 - on scroll: update active tab by current visible `anc_cf_*` section
 - keep `aria-selected` and active class synchronized
-4. Add section `scroll-margin-top` so anchored headings are not hidden behind sticky bars.
+5. Add section `scroll-margin-top` so anchored headings are not hidden behind sticky bars.
 
 ## CSS Rules
 
 1. Place source styling in `tailwind4/admin.css`.
-2. Keep config-form specific selectors scoped (`#fconfigform`, `#config_tabs_bar`, `#config_tabs_nav`).
-3. Rebuild output after edits:
+2. Scope reusable form layout rules with reusable classes (example: `.admin-form-layout`) instead of hardcoded form IDs.
+3. Keep tab container selectors explicit (`#config_tabs_bar`, `#config_tabs_nav`) when the tab element is page-specific.
+4. Rebuild output after edits:
 - `npm.cmd run build:admin`
-4. Ensure generated file updates:
+5. Ensure generated file updates:
 - `adm/css/admin.css`
 
 ## Validation
