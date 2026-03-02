@@ -142,23 +142,38 @@ if ($mb['mb_intercept_date']) {
     $g5['title'] = "";
 }
 $g5['title'] .= '회원 ' . $html_title;
+$admin_container_class = 'admin-page-member-form';
+$admin_page_subtitle = '기본정보, 연락처, 동의 상태, 활동 이력을 탭에서 빠르게 관리하세요.';
 require_once './admin.head.php';
 
 // add_javascript('js 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 
-$pg_anchor = '<ul>
-    <li><a href="#anc_mb_basic">기본 정보</a></li>
-    <li><a href="#anc_mb_contact">연락처 및 주소</a></li>
-    <li><a href="#anc_mb_media">아이콘 및 이미지</a></li>
-    <li><a href="#anc_mb_consent">수신 및 공개 설정</a></li>
-    <li><a href="#anc_mb_profile">프로필 및 메모</a></li>
-    <li><a href="#anc_mb_history">인증 및 활동 내역</a></li>
-    <li><a href="#anc_mb_extra">여분 필드</a></li>
-</ul>';
+$member_tabs = array(
+    array('id' => 'anc_mb_basic', 'label' => '기본 정보'),
+    array('id' => 'anc_mb_contact', 'label' => '연락처 및 주소'),
+    array('id' => 'anc_mb_media', 'label' => '아이콘 및 이미지'),
+    array('id' => 'anc_mb_consent', 'label' => '수신 및 공개 설정'),
+    array('id' => 'anc_mb_profile', 'label' => '프로필 및 메모'),
+    array('id' => 'anc_mb_history', 'label' => '인증 및 활동 내역'),
+);
+
+$pg_anchor_menu = admin_build_anchor_menu($member_tabs, array(
+    'nav_id' => 'member_tabs_nav',
+    'nav_class' => 'tab-nav',
+    'nav_aria_label' => '회원 등록/수정 탭',
+    'link_class' => 'tab-trigger-line-primary js-member-tab-link',
+    'active_class' => 'active',
+    'as_tabs' => true,
+    'link_id_prefix' => 'member_tab_',
+));
 ?>
 
-<form name="fmember" id="fmember" action="./member_form_update.php" onsubmit="return fmember_submit(this);" method="post" enctype="multipart/form-data">
+<div id="member_tabs_bar">
+    <?php echo $pg_anchor_menu; ?>
+</div>
+
+<form name="fmember" id="fmember" action="./member_form_update.php" onsubmit="return fmember_submit(this);" method="post" enctype="multipart/form-data" class="admin-form-layout space-y-5">
     <input type="hidden" name="w" value="<?php echo $w ?>">
     <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
     <input type="hidden" name="stx" value="<?php echo $stx ?>">
@@ -167,10 +182,7 @@ $pg_anchor = '<ul>
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <?php
-    echo $pg_anchor;
-
-    // 기본 정보
+    <?php // 기본 정보
     include_once G5_ADMIN_PATH.'/member_form_parts/basic.php';
 
     // 연락처 및 주소
@@ -189,9 +201,9 @@ $pg_anchor = '<ul>
     include_once G5_ADMIN_PATH.'/member_form_parts/history.php';
     ?>
 
-    <div>
-        <a href="./member_list.php?<?php echo $qstr ?>">목록</a>
-        <input type="submit" value="확인" accesskey='s'>
+    <div class="flex items-center justify-between border-default-300 border-t border-dashed pt-4">
+        <a href="./member_list.php?<?php echo $qstr ?>" class="btn btn-surface-default-soft">목록</a>
+        <button type="submit" class="btn btn-solid-primary" accesskey="s">저장</button>
     </div>
 </form>
 

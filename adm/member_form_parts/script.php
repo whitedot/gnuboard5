@@ -20,6 +20,19 @@
     jQuery(function($){
         $("#captcha_key").prop('required', false).removeAttr("required").removeClass("required");
 
+        if (window.CommonUI && typeof window.CommonUI.initStickyAnchorTabs === "function") {
+            window.CommonUI.initStickyAnchorTabs({
+                tabBarSelector: "#member_tabs_bar",
+                tabNavSelector: "#member_tabs_nav",
+                tabLinkSelector: "a.js-member-tab-link[href^='#']",
+                topbarSelector: "#hd_top",
+                heightVarName: "--config-tabs-height",
+                scrollGap: 8,
+                scrollDuration: 180,
+                namespace: "memberTabs"
+            });
+        }
+
         $("#mb_password").on("keyup", function(e) {
             var $warp = $("#mb_password_captcha_wrap"),
                 tooptipid = "mp_captcha_tooltip",

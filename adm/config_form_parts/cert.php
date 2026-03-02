@@ -29,7 +29,7 @@
                 </div>
                 <div class="af-field">
                     <?php echo help('휴대폰/아이핀 본인확인을 이용하시다가 간편인증을 이용하시는 경우, 기존 회원은 아이디/비밀번호 찾기에 사용할 수 없을 수 있습니다.') ?>
-                    <label for="cf_cert_find" class="af-check">
+                    <label for="cf_cert_find" class="af-check form-label">
                         <input type="checkbox" name="cf_cert_find" id="cf_cert_find" value="1" <?php if (isset($config['cf_cert_find']) && $config['cf_cert_find'] == 1) { echo "checked"; } ?> class="form-checkbox">
                         <span class="form-label">아이디/비밀번호 찾기에 사용하기</span>
                     </label>
@@ -165,7 +165,7 @@
                 </div>
                 <div class="af-field">
                     <?php echo help('회원가입 때 본인확인을 필수로 할지 설정합니다. 필수로 설정하시면 본인확인을 하지 않은 경우 회원가입이 안됩니다.'); ?>
-                    <label for="cf_cert_req" class="af-check">
+                    <label for="cf_cert_req" class="af-check form-label">
                         <input type="checkbox" name="cf_cert_req" value="1" id="cf_cert_req" <?php echo get_checked($config['cf_cert_req'], 1); ?> class="form-checkbox">
                         <span class="form-label">예</span>
                     </label>

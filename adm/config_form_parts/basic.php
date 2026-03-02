@@ -50,7 +50,7 @@
                     <label for="cf_use_point" class="form-label">포인트 사용</label>
                 </div>
                 <div class="af-field">
-                    <label for="cf_use_point" class="af-check">
+                    <label for="cf_use_point" class="af-check form-label">
                         <input type="checkbox" name="cf_use_point" value="1" id="cf_use_point" <?php echo $config['cf_use_point'] ? 'checked' : ''; ?> class="form-checkbox">
                         <span class="form-label">사용</span>
                     </label>
@@ -340,7 +340,7 @@
                 </div>
                 <div class="af-field">
                     <?php echo help('게시물 아래에 누구로 부터 복사, 이동됨 표시') ?>
-                    <label for="cf_use_copy_log" class="af-check">
+                    <label for="cf_use_copy_log" class="af-check form-label">
                         <input type="checkbox" name="cf_use_copy_log" value="1" id="cf_use_copy_log" <?php echo $config['cf_use_copy_log'] ? 'checked' : ''; ?> class="form-checkbox">
                         <span class="form-label">남김</span>
                     </label>

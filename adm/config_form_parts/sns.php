@@ -10,7 +10,7 @@
                 </div>
                 <div class="af-field">
                     <?php echo help('소셜로그인을 사용합니다. <a href="https://sir.kr/manual/g5/276" target="_blank" rel="noopener noreferrer">설정 관련 메뉴얼 보기</a> ') ?>
-                    <label for="cf_social_login_use" class="af-check">
+                    <label for="cf_social_login_use" class="af-check form-label">
                         <input type="checkbox" name="cf_social_login_use" value="1" id="cf_social_login_use" <?php echo (!empty($config['cf_social_login_use'])) ? 'checked' : ''; ?> class="form-checkbox">
                         <span class="form-label">사용</span>
                     </label>
@@ -24,7 +24,7 @@
                 <div class="af-field">
                     <div class="af-service-list">
                         <div class="af-service-item">
-                            <label for="check_social_naver" class="af-check">
+                            <label for="check_social_naver" class="af-check form-label">
                                 <input type="checkbox" name="cf_social_servicelist[]" id="check_social_naver" value="naver" <?php echo option_array_checked('naver', $config['cf_social_servicelist']); ?> class="form-checkbox">
                                 <span class="form-label">네이버 로그인을 사용합니다</span>
                             </label>
@@ -33,7 +33,7 @@
                         </div>
 
                         <div class="af-service-item">
-                            <label for="check_social_kakao" class="af-check">
+                            <label for="check_social_kakao" class="af-check form-label">
                                 <input type="checkbox" name="cf_social_servicelist[]" id="check_social_kakao" value="kakao" <?php echo option_array_checked('kakao', $config['cf_social_servicelist']); ?> class="form-checkbox">
                                 <span class="form-label">카카오 로그인을 사용합니다</span>
                             </label>
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="af-service-item">
-                            <label for="check_social_facebook" class="af-check">
+                            <label for="check_social_facebook" class="af-check form-label">
                                 <input type="checkbox" name="cf_social_servicelist[]" id="check_social_facebook" value="facebook" <?php echo option_array_checked('facebook', $config['cf_social_servicelist']); ?> class="form-checkbox">
                                 <span class="form-label">페이스북 로그인을 사용합니다</span>
                             </label>
@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="af-service-item">
-                            <label for="check_social_google" class="af-check">
+                            <label for="check_social_google" class="af-check form-label">
                                 <input type="checkbox" name="cf_social_servicelist[]" id="check_social_google" value="google" <?php echo option_array_checked('google', $config['cf_social_servicelist']); ?> class="form-checkbox">
                                 <span class="form-label">구글 로그인을 사용합니다</span>
                             </label>
@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="af-service-item">
-                            <label for="check_social_twitter" class="af-check">
+                            <label for="check_social_twitter" class="af-check form-label">
                                 <input type="checkbox" name="cf_social_servicelist[]" id="check_social_twitter" value="twitter" <?php echo option_array_checked('twitter', $config['cf_social_servicelist']); ?> class="form-checkbox">
                                 <span class="form-label">트위터 로그인을 사용합니다</span>
                             </label>
@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="af-service-item">
-                            <label for="check_social_payco" class="af-check">
+                            <label for="check_social_payco" class="af-check form-label">
                                 <input type="checkbox" name="cf_social_servicelist[]" id="check_social_payco" value="payco" <?php echo option_array_checked('payco', $config['cf_social_servicelist']); ?> class="form-checkbox">
                                 <span class="form-label">페이코 로그인을 사용합니다</span>
                             </label>

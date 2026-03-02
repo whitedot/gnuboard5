@@ -21,11 +21,11 @@
                 </div>
                 <div class="af-field">
                     <div class="af-inline">
-                        <label for="cf_use_homepage" class="af-check">
+                        <label for="cf_use_homepage" class="af-check form-label">
                             <input type="checkbox" name="cf_use_homepage" value="1" id="cf_use_homepage" <?php echo $config['cf_use_homepage'] ? 'checked' : ''; ?> class="form-checkbox">
                             <span class="form-label">보이기</span>
                         </label>
-                        <label for="cf_req_homepage" class="af-check">
+                        <label for="cf_req_homepage" class="af-check form-label">
                             <input type="checkbox" name="cf_req_homepage" value="1" id="cf_req_homepage" <?php echo $config['cf_req_homepage'] ? 'checked' : ''; ?> class="form-checkbox">
                             <span class="form-label">필수입력</span>
                         </label>
@@ -39,11 +39,11 @@
                 </div>
                 <div class="af-field">
                     <div class="af-inline">
-                        <label for="cf_use_addr" class="af-check">
+                        <label for="cf_use_addr" class="af-check form-label">
                             <input type="checkbox" name="cf_use_addr" value="1" id="cf_use_addr" <?php echo $config['cf_use_addr'] ? 'checked' : ''; ?> class="form-checkbox">
                             <span class="form-label">보이기</span>
                         </label>
-                        <label for="cf_req_addr" class="af-check">
+                        <label for="cf_req_addr" class="af-check form-label">
                             <input type="checkbox" name="cf_req_addr" value="1" id="cf_req_addr" <?php echo $config['cf_req_addr'] ? 'checked' : ''; ?> class="form-checkbox">
                             <span class="form-label">필수입력</span>
                         </label>
@@ -57,11 +57,11 @@
                 </div>
                 <div class="af-field">
                     <div class="af-inline">
-                        <label for="cf_use_tel" class="af-check">
+                        <label for="cf_use_tel" class="af-check form-label">
                             <input type="checkbox" name="cf_use_tel" value="1" id="cf_use_tel" <?php echo $config['cf_use_tel'] ? 'checked' : ''; ?> class="form-checkbox">
                             <span class="form-label">보이기</span>
                         </label>
-                        <label for="cf_req_tel" class="af-check">
+                        <label for="cf_req_tel" class="af-check form-label">
                             <input type="checkbox" name="cf_req_tel" value="1" id="cf_req_tel" <?php echo $config['cf_req_tel'] ? 'checked' : ''; ?> class="form-checkbox">
                             <span class="form-label">필수입력</span>
                         </label>
@@ -75,11 +75,11 @@
                 </div>
                 <div class="af-field">
                     <div class="af-inline">
-                        <label for="cf_use_hp" class="af-check">
+                        <label for="cf_use_hp" class="af-check form-label">
                             <input type="checkbox" name="cf_use_hp" value="1" id="cf_use_hp" <?php echo $config['cf_use_hp'] ? 'checked' : ''; ?> class="form-checkbox">
                             <span class="form-label">보이기</span>
                         </label>
-                        <label for="cf_req_hp" class="af-check">
+                        <label for="cf_req_hp" class="af-check form-label">
                             <input type="checkbox" name="cf_req_hp" value="1" id="cf_req_hp" <?php echo $config['cf_req_hp'] ? 'checked' : ''; ?> class="form-checkbox">
                             <span class="form-label">필수입력</span>
                         </label>
@@ -93,11 +93,11 @@
                 </div>
                 <div class="af-field">
                     <div class="af-inline">
-                        <label for="cf_use_signature" class="af-check">
+                        <label for="cf_use_signature" class="af-check form-label">
                             <input type="checkbox" name="cf_use_signature" value="1" id="cf_use_signature" <?php echo $config['cf_use_signature'] ? 'checked' : ''; ?> class="form-checkbox">
                             <span class="form-label">보이기</span>
                         </label>
-                        <label for="cf_req_signature" class="af-check">
+                        <label for="cf_req_signature" class="af-check form-label">
                             <input type="checkbox" name="cf_req_signature" value="1" id="cf_req_signature" <?php echo $config['cf_req_signature'] ? 'checked' : ''; ?> class="form-checkbox">
                             <span class="form-label">필수입력</span>
                         </label>
@@ -111,11 +111,11 @@
                 </div>
                 <div class="af-field">
                     <div class="af-inline">
-                        <label for="cf_use_profile" class="af-check">
+                        <label for="cf_use_profile" class="af-check form-label">
                             <input type="checkbox" name="cf_use_profile" value="1" id="cf_use_profile" <?php echo $config['cf_use_profile'] ? 'checked' : ''; ?> class="form-checkbox">
                             <span class="form-label">보이기</span>
                         </label>
-                        <label for="cf_req_profile" class="af-check">
+                        <label for="cf_req_profile" class="af-check form-label">
                             <input type="checkbox" name="cf_req_profile" value="1" id="cf_req_profile" <?php echo $config['cf_req_profile'] ? 'checked' : ''; ?> class="form-checkbox">
                             <span class="form-label">필수입력</span>
                         </label>
@@ -241,7 +241,7 @@
                     <label for="cf_use_recommend" class="form-label">추천인제도 사용</label>
                 </div>
                 <div class="af-field">
-                    <label for="cf_use_recommend" class="af-check">
+                    <label for="cf_use_recommend" class="af-check form-label">
                         <input type="checkbox" name="cf_use_recommend" value="1" id="cf_use_recommend" <?php echo $config['cf_use_recommend'] ? 'checked' : ''; ?> class="form-checkbox">
                         <span class="form-label">사용</span>
                     </label>
@@ -307,7 +307,7 @@
                     <?php echo help('동의한 회원에게 <b>카카오톡(친구톡)·문자</b>로 광고성 메시지를 발송할 수 있습니다.'); ?>
                     <?php echo help('<b>휴대전화번호</b> 사용을 위해서는 <b>기본환경설정 > 회원가입 > 휴대전화번호 입력</b>을 <b>[보이기]</b> 또는 <b>[필수입력]</b>으로 설정해야 하며, 미설정 시 수집이 불가합니다.'); ?>
                     <?php echo help('* 「정보통신망이용촉진및정보보호등에관한법률」에 따라 <b>광고성 정보 수신 동의</b>를 매 2년마다 반드시 확인해야 합니다.'); ?>
-                    <label for="cf_use_promotion" class="af-check">
+                    <label for="cf_use_promotion" class="af-check form-label">
                         <input type="checkbox" name="cf_use_promotion" value="1" id="cf_use_promotion" <?php echo $config['cf_use_promotion'] ? 'checked' : ''; ?> class="form-checkbox">
                         <span class="form-label">사용</span>
                     </label>

@@ -14,6 +14,9 @@ Refactor `config_form` by editing source PHP/HTML/CSS directly.
 - `adm/config_form_parts/*.php`
 - `adm/config_form_parts/script.php`
 - `tailwind4/admin.css`
+ - `docs/ui-kit/form-elements.php`
+ - `docs/ui-kit/ui-buttons.php`
+ - `docs/ui-kit/ui-tabs.php`
 2. Refactor markup directly; do not use DOM post-processing at render time.
 3. Keep section-based structure and ui-kit semantic classes.
 4. Align behavior scripts (tab navigation, sticky, scrollspy) with updated markup.
@@ -35,6 +38,7 @@ Refactor `config_form` by editing source PHP/HTML/CSS directly.
 - Container: `card`, `card-header`, `card-title`, `card-body`
 - Form controls: `form-input`, `form-select`, `form-textarea`, `form-checkbox`, `form-radio`, `form-label`
 - Buttons: `btn` + semantic variants (`btn-solid-*`, `btn-soft-*`, `btn-sm` as needed)
+ - Reference patterns must be aligned with `docs/ui-kit/form-elements.php`, `docs/ui-kit/ui-buttons.php`, `docs/ui-kit/ui-tabs.php`
 7. Use `hint-text` for description/help text consistency.
 8. Prefer explicit manual layout utility classes (for example `af-grid`, `af-row`, `af-field`) over mixed 1-column/2-column patterns in same reading flow.
 9. Remove obsolete anchors or duplicate navigation markup inside part files (for example legacy `$pg_anchor` echoes).

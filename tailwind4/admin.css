@@ -662,18 +662,13 @@
         @apply border-b-0;
     }
 
-    /* Legacy admin pages (member/board/shop/sms) */
-    #container > div:not(#config_tabs_bar),
-    #container > form:not(#fconfigform) {
-        @apply mb-5 rounded-[var(--radius)] border border-default-300 bg-card p-4 shadow;
-    }
-
     #container > form:has(> section),
     #container > form#fconfigform {
         @apply mb-0 border-0 bg-transparent p-0 shadow-none;
     }
 
-    #config_tabs_bar {
+    #config_tabs_bar,
+    #member_tabs_bar {
         @apply sticky relative w-full rounded-[var(--radius)] border border-default-300 bg-default-100/95 shadow backdrop-blur;
         --config-tabs-inline-pad: 0.75rem;
         top: var(--admin-shell-bar-height);
@@ -684,7 +679,8 @@
     }
 
     @media (min-width: 64rem) {
-        #config_tabs_bar {
+        #config_tabs_bar,
+        #member_tabs_bar {
             --config-tabs-inline-pad: 1.25rem;
             margin-left: 0;
             margin-right: 0;
@@ -693,12 +689,15 @@
         }
     }
 
-    #config_tabs_bar.is-stuck {
+    #config_tabs_bar.is-stuck,
+    #member_tabs_bar.is-stuck {
         @apply shadow;
     }
 
     #config_tabs_bar::before,
-    #config_tabs_bar::after {
+    #config_tabs_bar::after,
+    #member_tabs_bar::before,
+    #member_tabs_bar::after {
         content: "";
         position: absolute;
         top: 0.125rem;
@@ -710,7 +709,8 @@
         z-index: 2;
     }
 
-    #config_tabs_bar::before {
+    #config_tabs_bar::before,
+    #member_tabs_bar::before {
         left: var(--config-tabs-inline-pad);
         border-top-left-radius: var(--radius);
         border-bottom-left-radius: var(--radius);
@@ -723,7 +723,8 @@
         );
     }
 
-    #config_tabs_bar::after {
+    #config_tabs_bar::after,
+    #member_tabs_bar::after {
         right: var(--config-tabs-inline-pad);
         border-top-right-radius: var(--radius);
         border-bottom-right-radius: var(--radius);
@@ -737,54 +738,71 @@
     }
 
     #config_tabs_bar.has-overflow.is-overflow-left::before,
-    #config_tabs_bar.has-overflow.is-overflow-right::after {
+    #config_tabs_bar.has-overflow.is-overflow-right::after,
+    #member_tabs_bar.has-overflow.is-overflow-left::before,
+    #member_tabs_bar.has-overflow.is-overflow-right::after {
         opacity: 0.78;
     }
 
-    #config_tabs_nav {
+    #config_tabs_nav,
+    #member_tabs_nav {
         @apply flex flex-nowrap items-center gap-1 overflow-x-auto py-0.5;
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
 
-    #config_tabs_nav::-webkit-scrollbar {
+    #config_tabs_nav::-webkit-scrollbar,
+    #member_tabs_nav::-webkit-scrollbar {
         width: 0;
         height: 0;
     }
 
     #config_tabs_bar:hover #config_tabs_nav,
-    #config_tabs_bar:focus-within #config_tabs_nav {
+    #config_tabs_bar:focus-within #config_tabs_nav,
+    #member_tabs_bar:hover #member_tabs_nav,
+    #member_tabs_bar:focus-within #member_tabs_nav {
         scrollbar-width: thin;
     }
 
     #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar,
-    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar {
+    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar,
+    #member_tabs_bar:hover #member_tabs_nav::-webkit-scrollbar,
+    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar {
         width: 0.35rem;
         height: 0.35rem;
     }
 
     #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar-track,
-    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-track {
+    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-track,
+    #member_tabs_bar:hover #member_tabs_nav::-webkit-scrollbar-track,
+    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar-track {
         background: transparent;
     }
 
     #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar-thumb,
-    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-thumb {
+    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-thumb,
+    #member_tabs_bar:hover #member_tabs_nav::-webkit-scrollbar-thumb,
+    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar-thumb {
         border-radius: 9999px;
         background: color-mix(in oklab, var(--color-default-500) 72%, transparent);
     }
 
     #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar-thumb:hover,
-    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-thumb:hover {
+    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-thumb:hover,
+    #member_tabs_bar:hover #member_tabs_nav::-webkit-scrollbar-thumb:hover,
+    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar-thumb:hover {
         background: color-mix(in oklab, var(--color-default-500) 82%, transparent);
     }
 
-    #config_tabs_nav .tab-trigger-line-primary {
+    #config_tabs_nav .tab-trigger-line-primary,
+    #member_tabs_nav .tab-trigger-line-primary {
         @apply shrink-0 whitespace-nowrap rounded-t-[var(--radius)] border border-transparent px-3 py-1 text-sm text-default-500;
     }
 
     #config_tabs_nav .tab-trigger-line-primary.active,
-    #config_tabs_nav .tab-trigger-line-primary[aria-selected="true"] {
+    #config_tabs_nav .tab-trigger-line-primary[aria-selected="true"],
+    #member_tabs_nav .tab-trigger-line-primary.active,
+    #member_tabs_nav .tab-trigger-line-primary[aria-selected="true"] {
         @apply border-default-300 border-b-transparent bg-card font-semibold text-primary;
     }
 
@@ -922,6 +940,10 @@
 
     .admin-form-layout .af-check {
         @apply inline-flex items-center gap-1.5;
+    }
+
+    .admin-form-layout .af-check.form-label {
+        @apply mb-0 font-medium;
     }
 
     .admin-form-layout .af-check .form-label {
