@@ -120,7 +120,7 @@ $colspan = 16;
             <thead>
                 <tr>
                     <th scope="col" id="mb_list_chk" rowspan="2">
-                        <label for="chkall">회원 전체</label>
+                        <label for="chkall" class="sr-only">회원 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col" id="mb_list_id" colspan="2"><?php echo subject_sort_link('mb_id') ?>아이디</a></th>
@@ -216,7 +216,7 @@ $colspan = 16;
                     <tr class="<?php echo $bg; ?>">
                         <td headers="mb_list_chk" rowspan="2">
                             <input type="hidden" name="mb_id[<?php echo $i ?>]" value="<?php echo $row['mb_id'] ?>" id="mb_id_<?php echo $i ?>">
-                            <label for="chk_<?php echo $i; ?>"><?php echo get_text($row['mb_name']); ?> <?php echo get_text($row['mb_nick']); ?>님</label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['mb_name']); ?> <?php echo get_text($row['mb_nick']); ?>님</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
                         </td>
                         <td headers="mb_list_id" colspan="2">

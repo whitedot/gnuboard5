@@ -162,7 +162,7 @@ if($ev_id) {
     <tr class="<?php echo $bg; ?>">
         <td>
             <input type="hidden" name="it_id[<?php echo $i; ?>]" value="<?php echo $row['it_id']; ?>">
-            <label for="ev_chk_<?php echo $i; ?>">이벤트 사용</label>
+            <label for="ev_chk_<?php echo $i; ?>" class="sr-only">이벤트 사용</label>
             <input type="checkbox" name="ev_chk[<?php echo $i; ?>]" value="1" id="ev_chk_<?php echo $i; ?>" <?php echo ($row['ev_id'] ? "checked" : ""); ?>>
         </td>
         <td><a href="<?php echo $href; ?>"><?php echo $row['it_id']; ?></a></td>

@@ -64,7 +64,7 @@ $colspan = 9;
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall">쿠폰 전체</label>
+            <label for="chkall" class="sr-only">쿠폰 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">쿠폰이름</th>
@@ -122,6 +122,7 @@ $colspan = 9;
     <tr class="<?php echo $bg; ?>">
         <td>
             <input type="hidden" id="cz_id_<?php echo $i; ?>" name="cz_id[<?php echo $i; ?>]" value="<?php echo $row['cz_id']; ?>">
+            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['cz_subject']); ?> 쿠폰 선택</label>
             <input type="checkbox" id="chk_<?php echo $i; ?>" name="chk[]" value="<?php echo $i; ?>" title="내역선택">
         </td>
         <td><?php echo get_text($row['cz_subject']); ?></td>

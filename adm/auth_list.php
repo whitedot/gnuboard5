@@ -82,7 +82,7 @@ $colspan = 5;
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall">현재 페이지 회원 전체</label>
+                        <label for="chkall" class="sr-only">현재 페이지 회원 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col"><?php echo subject_sort_link('a.mb_id') ?>회원아이디</a></th>
@@ -120,7 +120,7 @@ $colspan = 5;
                         <td>
                             <input type="hidden" name="au_menu[<?php echo $i ?>]" value="<?php echo $row['au_menu'] ?>">
                             <input type="hidden" name="mb_id[<?php echo $i ?>]" value="<?php echo $row['mb_id'] ?>">
-                            <label for="chk_<?php echo $i; ?>"><?php echo $row['mb_nick'] ?>님 권한</label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $row['mb_nick'] ?>님 권한</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
                         </td>
                         <td><a href="?sfl=a.mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo $row['mb_id'] ?></a></td>
@@ -182,62 +182,44 @@ echo $pagelist;
             </p>
         
 
-        
+        <div>
+            <label for="mb_id">회원아이디<strong>필수</strong></label>
             <div>
-                <div>
-                    
-                        <label for="mb_id">회원아이디<strong>필수</strong></label>
-                    
-                    <div>
-                        <strong id="msg_mb_id"></strong>
-                        <input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" required class="required">
-                    </div>
-                </div>
-                <div>
-                    
-                        <label for="au_menu">접근가능메뉴<strong>필수</strong></label>
-                    
-                    
-                        <select id="au_menu" name="au_menu" required class="required">
-                            <option value=''>선택하세요</option>
-                            <?php
-                            foreach ($auth_menu as $key => $value) {
-                                if (!(substr($key, -3) == '000' || $key == '-' || !$key)) {
-                                    echo '<option value="' . $key . '">' . $key . ' ' . $value . '</option>';
-                                }
-                            }
-                            ?>
-                        </select>
-                    
-                </div>
-                <div>
-                    
-                        <span>권한지정</span>
-                    
-                    <div>
-                        <input type="checkbox" name="r" value="r" id="r" checked>
-                        <label for="r">r (읽기)</label>
-                        <input type="checkbox" name="w" value="w" id="w">
-                        <label for="w">w (쓰기)</label>
-                        <input type="checkbox" name="d" value="d" id="d">
-                        <label for="d">d (삭제)</label>
-                    </div>
-                </div>
-                
-                    
-                        <span>자동등록방지</span>
-                    
-                    
-                        <?php
-                        require_once G5_CAPTCHA_PATH . '/captcha.lib.php';
-                        $captcha_html = captcha_html();
-                        $captcha_js   = chk_captcha_js();
-                        echo $captcha_html;
-                        ?>
-                    
-                
+                <strong id="msg_mb_id"></strong>
+                <input type="text" name="mb_id" value="<?php echo $mb_id ?>" id="mb_id" required class="required">
             </div>
-        
+        </div>
+        <div>
+            <label for="au_menu">접근가능메뉴<strong>필수</strong></label>
+            <select id="au_menu" name="au_menu" required class="required">
+                <option value=''>선택하세요</option>
+                <?php
+                foreach ($auth_menu as $key => $value) {
+                    if (!(substr($key, -3) == '000' || $key == '-' || !$key)) {
+                        echo '<option value="' . $key . '">' . $key . ' ' . $value . '</option>';
+                    }
+                }
+                ?>
+            </select>
+        </div>
+        <div>
+            <span>권한지정</span>
+            <div>
+                <input type="checkbox" name="r" value="r" id="r" checked>
+                <label for="r">r (읽기)</label>
+                <input type="checkbox" name="w" value="w" id="w">
+                <label for="w">w (쓰기)</label>
+                <input type="checkbox" name="d" value="d" id="d">
+                <label for="d">d (삭제)</label>
+            </div>
+        </div>
+        <span>자동등록방지</span>
+        <?php
+        require_once G5_CAPTCHA_PATH . '/captcha.lib.php';
+        $captcha_html = captcha_html();
+        $captcha_js   = chk_captcha_js();
+        echo $captcha_html;
+        ?>
 
         
             <input type="submit" value="추가">

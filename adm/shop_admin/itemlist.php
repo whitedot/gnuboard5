@@ -134,7 +134,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
     <thead>
     <tr>
         <th scope="col" rowspan="3">
-            <label for="chkall">상품 전체</label>
+            <label for="chkall" class="sr-only">상품 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col" rowspan="3"><?php echo subject_sort_link('it_id', 'sca='.$sca); ?>상품코드</a></th>
@@ -170,7 +170,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
     ?>
     <tr class="<?php echo $bg; ?>">
         <td rowspan="3">
-            <label for="chk_<?php echo $i; ?>"><?php echo get_text($row['it_name']); ?></label>
+            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['it_name']); ?></label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i; ?>">
         </td>
         <td rowspan="3">

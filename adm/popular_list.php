@@ -104,7 +104,7 @@ $colspan = 4;
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall">현재 페이지 인기검색어 전체</label>
+                        <label for="chkall" class="sr-only">현재 페이지 인기검색어 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col"><?php echo subject_sort_link('pp_word') ?>검색어</a></th>
@@ -120,7 +120,7 @@ $colspan = 4;
                 ?>
                     <tr class="<?php echo $bg; ?>">
                         <td>
-                            <label for="chk_<?php echo $i; ?>"><?php echo $word ?></label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $word ?></label>
                             <input type="checkbox" name="chk[]" value="<?php echo $row['pp_id'] ?>" id="chk_<?php echo $i ?>">
                         </td>
                         <td><a href="<?php echo $_SERVER['SCRIPT_NAME'] ?>?sfl=pp_word&amp;stx=<?php echo $word ?>"><?php echo $word ?></a></td>

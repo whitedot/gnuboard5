@@ -111,7 +111,7 @@ if (strstr($sfl, "mb_id")) {
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall">포인트 내역 전체</label>
+                        <label for="chkall" class="sr-only">포인트 내역 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col"><?php echo subject_sort_link('mb_id') ?>회원아이디</a></th>
@@ -147,7 +147,7 @@ if (strstr($sfl, "mb_id")) {
                         <td>
                             <input type="hidden" name="mb_id[<?php echo $i ?>]" value="<?php echo $row['mb_id'] ?>" id="mb_id_<?php echo $i ?>">
                             <input type="hidden" name="po_id[<?php echo $i ?>]" value="<?php echo $row['po_id'] ?>" id="po_id_<?php echo $i ?>">
-                            <label for="chk_<?php echo $i; ?>"><?php echo $row['po_content'] ?> 내역</label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $row['po_content'] ?> 내역</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
                         </td>
                         <td><a href="?sfl=mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo $row['mb_id'] ?></a></td>

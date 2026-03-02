@@ -101,7 +101,7 @@ function num_group_submit(f)
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall">그룹 전체</label>
+            <label for="chkall" class="sr-only">그룹 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">그룹명</th>
@@ -145,7 +145,7 @@ function num_group_submit(f)
     <tr class="<?php echo $bg; ?>">
         <td>
             <input type="hidden" name="bg_no[<?php echo $i ?>]" value="<?php echo $group[$i]['bg_no']?>" id="bg_no_<?php echo $i ?>">
-            <label for="chk_<?php echo $i ?>">그룹명</label>
+            <label for="chk_<?php echo $i ?>" class="sr-only">그룹명</label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
         </td>
         <td>

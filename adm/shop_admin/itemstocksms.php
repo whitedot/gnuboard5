@@ -91,7 +91,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall">알림요청 전체</label>
+            <label for="chkall" class="sr-only">알림요청 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">상품명</th>
@@ -119,7 +119,7 @@ $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'">전체목록</a>';
     ?>
     <tr class="<?php echo $bg; ?>">
         <td>
-            <label for="chk_<?php echo $i; ?>"><?php echo $it_name; ?> 알림요청</label>
+            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $it_name; ?> 알림요청</label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i; ?>">
             <input type="hidden" name="ss_id[<?php echo $i; ?>]" value="<?php echo $row['ss_id']; ?>">
         </td>

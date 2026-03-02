@@ -37,7 +37,10 @@ $colspan = 7;
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
                 <tr>
-                    <th scope="col"><input type="checkbox" name="chkall" value="1" id="chkall" title="현재 페이지 목록 전체선택" onclick="check_all(this.form)"></th>
+                    <th scope="col">
+                        <label for="chkall" class="sr-only">현재 페이지 메일 전체</label>
+                        <input type="checkbox" name="chkall" value="1" id="chkall" title="현재 페이지 목록 전체선택" onclick="check_all(this.form)">
+                    </th>
                     <th scope="col">번호</th>
                     <th scope="col">제목</th>
                     <th scope="col">작성일시</th>
@@ -58,7 +61,7 @@ $colspan = 7;
 
                     <tr class="<?php echo $bg; ?>">
                         <td>
-                            <label for="chk_<?php echo $i; ?>"><?php echo $row['ma_subject']; ?> 메일</label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo $row['ma_subject']; ?> 메일</label>
                             <input type="checkbox" id="chk_<?php echo $i ?>" name="chk[]" value="<?php echo $row['ma_id'] ?>">
                         </td>
                         <td><?php echo $num ?></td>

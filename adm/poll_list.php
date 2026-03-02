@@ -84,7 +84,7 @@ $colspan = 8;
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall">현재 페이지 투표 전체</label>
+                        <label for="chkall" class="sr-only">현재 페이지 투표 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col">번호</th>
@@ -111,7 +111,7 @@ $colspan = 8;
 
                     <tr class="<?php echo $bg; ?>">
                         <td>
-                            <label for="chk_<?php echo $i; ?>"><?php echo cut_str(get_text($row['po_subject']), 70) ?> 투표</label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo cut_str(get_text($row['po_subject']), 70) ?> 투표</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $row['po_id'] ?>" id="chk_<?php echo $i ?>">
                         </td>
                         <td><?php echo $row['po_id'] ?></td>

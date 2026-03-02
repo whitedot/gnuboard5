@@ -85,7 +85,7 @@ $colspan = 10;
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall">그룹 전체</label>
+                        <label for="chkall" class="sr-only">그룹 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col"><?php echo subject_sort_link('gr_id') ?>그룹아이디</a></th>
@@ -118,7 +118,7 @@ $colspan = 10;
                     <tr class="<?php echo $bg; ?>">
                         <td>
                             <input type="hidden" name="group_id[<?php echo $i ?>]" value="<?php echo $row['gr_id'] ?>">
-                            <label for="chk_<?php echo $i; ?>"><?php echo get_text($row['gr_subject']); ?> 그룹</label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['gr_subject']); ?> 그룹</label>
                             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
                         </td>
                         <td><a href="<?php echo G5_BBS_URL ?>/group.php?gr_id=<?php echo $row['gr_id'] ?>"><?php echo $row['gr_id'] ?></a></td>

@@ -156,7 +156,7 @@ function no_hp_click(val)
     <thead>
     <tr>
         <th scope="col">
-            <label for="chk_all">현재 페이지 전체</label>
+            <label for="chk_all" class="sr-only">현재 페이지 전체</label>
             <input type="checkbox" id="chk_all" onclick="book_all_checked(this.checked)">
         </th>
         <th scope="col">번호</th>
@@ -188,7 +188,7 @@ function no_hp_click(val)
     ?>
     <tr class="<?php echo $bg; ?>">
         <td>
-            <label for="bk_no_<?php echo $i; ?>"><?php echo $group_name?>의 <?php echo get_text($res['bk_name']) ?></label>
+            <label for="bk_no_<?php echo $i; ?>" class="sr-only"><?php echo $group_name?>의 <?php echo get_text($res['bk_name']) ?></label>
             <input type="checkbox" name="bk_no[]" value="<?php echo $res['bk_no']?>" id="bk_no_<?php echo $i; ?>">
         </td>
         <td><?php echo number_format($vnum--)?></td>

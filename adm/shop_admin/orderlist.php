@@ -262,7 +262,7 @@ if( function_exists('pg_setting_check') ){
     <thead>
     <tr>
         <th scope="col" rowspan="3">
-            <label for="chkall">주문 전체</label>
+            <label for="chkall" class="sr-only">주문 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col" id="th_ordnum" rowspan="2" colspan="2"><a href="<?php echo title_sort("od_id", 1)."&amp;$qstr1"; ?>">주문번호</a></th>
@@ -357,7 +357,7 @@ if( function_exists('pg_setting_check') ){
     <tr class="<?php echo ' '.$bg; ?>">
         <td rowspan="3">
             <input type="hidden" name="od_id[<?php echo $i ?>]" value="<?php echo $row['od_id'] ?>" id="od_id_<?php echo $i ?>">
-            <label for="chk_<?php echo $i; ?>">주문번호 <?php echo $row['od_id']; ?></label>
+            <label for="chk_<?php echo $i; ?>" class="sr-only">주문번호 <?php echo $row['od_id']; ?></label>
             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
         </td>
         <td headers="th_ordnum" rowspan="2" colspan="2">

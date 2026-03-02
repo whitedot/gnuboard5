@@ -87,7 +87,7 @@ $colspan = 15;
             <thead>
                 <tr>
                     <th scope="col">
-                        <label for="chkall">게시판 전체</label>
+                        <label for="chkall" class="sr-only">게시판 전체</label>
                         <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                     </th>
                     <th scope="col"><?php echo subject_sort_link('a.gr_id') ?>그룹</a></th>
@@ -116,7 +116,7 @@ $colspan = 15;
 
                     <tr class="<?php echo $bg; ?>">
                         <td>
-                            <label for="chk_<?php echo $i; ?>"><?php echo get_text($row['bo_subject']) ?></label>
+                            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['bo_subject']) ?></label>
                             <input type="checkbox" name="chk[]" value="<?php echo $i ?>" id="chk_<?php echo $i ?>">
                         </td>
                         <td>

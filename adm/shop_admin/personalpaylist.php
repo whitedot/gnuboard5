@@ -85,7 +85,7 @@ $colspan = 10;
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall">개인결제 전체</label>
+            <label for="chkall" class="sr-only">개인결제 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col">제목</th>
@@ -113,6 +113,7 @@ $colspan = 10;
     <tr class="<?php echo $bg; ?>">
         <td>
             <input type="hidden" id="pp_id_<?php echo $i; ?>" name="pp_id[<?php echo $i; ?>]" value="<?php echo $row['pp_id']; ?>">
+            <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['pp_name']); ?> 개인결제 선택</label>
             <input type="checkbox" id="chk_<?php echo $i; ?>" name="chk[]" value="<?php echo $i; ?>" title="내역선택">
         </td>
         <td><?php echo get_text($row['pp_name']); ?></td>

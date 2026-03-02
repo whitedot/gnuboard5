@@ -78,7 +78,7 @@ $colspan = 10;
     <thead>
     <tr>
         <th scope="col">
-            <label for="chkall">미완료주문 전체</label>
+            <label for="chkall" class="sr-only">미완료주문 전체</label>
             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
         </th>
         <th scope="col"><?php echo subject_sort_link('od_id') ?>주문번호</a></th>
@@ -119,6 +119,7 @@ $colspan = 10;
     <tr class="<?php echo $bg; ?>">
         <td>
             <input type="hidden" id="od_id_<?php echo $i; ?>" name="od_id[<?php echo $i; ?>]" value="<?php echo $row['od_id']; ?>">
+            <label for="chk_<?php echo $i; ?>" class="sr-only">주문번호 <?php echo $row['od_id']; ?> 선택</label>
             <input type="checkbox" id="chk_<?php echo $i; ?>" name="chk[]" value="<?php echo $i; ?>" title="내역선택">
         </td>
         <td><?php echo $row['od_id']; ?></td>
