@@ -13,4 +13,10 @@ if( $ss_captcha_key && !preg_match('/^[0-9]/', $ss_captcha_key) && function_exis
 if(! $ss_captcha_key_decrypt) $ss_captcha_key_decrypt = $ss_captcha_key;
 $captcha->setKeyString($ss_captcha_key_decrypt);
 $captcha->getKeyString();
+
+// 이미지 바이너리 출력 전에 선행 출력(BOM/공백/경고문 등)을 제거한다.
+while (ob_get_level() > 0) {
+    ob_end_clean();
+}
+
 $captcha->image();

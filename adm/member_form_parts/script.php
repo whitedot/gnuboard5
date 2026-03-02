@@ -1,4 +1,77 @@
 <script>
+    function refresh_member_password_captcha() {
+        var candidates = [],
+            captchaUrl = window.g5_captcha_url || "",
+            adminBase = (window.g5_admin_url || "").replace(/\/+$/, "").replace(/\/adm$/, ""),
+            pathBase = window.location.origin + window.location.pathname.replace(/\/adm\/.*$/, ""),
+            i = 0,
+            resolved = "";
+
+        if (captchaUrl) {
+            candidates.push(captchaUrl);
+        }
+        if (window.g5_url) {
+            candidates.push(window.g5_url.replace(/\/+$/, "") + "/plugin/kcaptcha");
+        }
+        if (adminBase) {
+            candidates.push(adminBase + "/plugin/kcaptcha");
+        }
+        if (pathBase && /\/g5aif$/i.test(pathBase)) {
+            candidates.push(pathBase + "/plugin/kcaptcha");
+        }
+
+        candidates = $.grep(candidates, function(url, idx) {
+            return candidates.indexOf(url) === idx;
+        });
+
+        if (!candidates.length) {
+            return;
+        }
+
+        for (i = 0; i < candidates.length; i++) {
+            captchaUrl = candidates[i];
+            if (/^https:/i.test(window.location.protocol) && /^http:\/\//i.test(captchaUrl)) {
+                captchaUrl = captchaUrl.replace(/^http:/i, "https:");
+            }
+
+            try {
+                if (new URL(captchaUrl, window.location.href).origin !== window.location.origin) {
+                    continue;
+                }
+            } catch (e) {
+                continue;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: captchaUrl + "/kcaptcha_session.php",
+                cache: false,
+                async: false,
+                complete: function(xhr) {
+                    if (!resolved && xhr && xhr.status >= 200 && xhr.status < 400) {
+                        resolved = this.url.replace(/\/kcaptcha_session\.php(?:\?.*)?$/, "");
+                    }
+                }
+            });
+
+            if (resolved) {
+                break;
+            }
+        }
+
+        if (!resolved) {
+            return;
+        }
+
+        $("#captcha_img")
+            .css({
+                display: "inline-block",
+                verticalAlign: "middle",
+                marginRight: "8px"
+            })
+            .attr("src", resolved + "/kcaptcha_image.php?t=" + (new Date()).getTime());
+    }
+
     function fmember_submit(f) {
         if (!f.mb_icon.value.match(/\.(gif|jpe?g|png)$/i) && f.mb_icon.value) {
             alert('아이콘은 이미지 파일만 가능합니다.');
@@ -38,10 +111,14 @@
                 tooptipid = "mp_captcha_tooltip",
                 $span_text = $("<span>", {id:tooptipid, style:"font-size:0.95em;letter-spacing:-0.1em"}).html("비밀번호를 수정할 경우 캡챠를 입력해야 합니다."),
                 $parent = $(this).parent(),
-                is_invisible_recaptcha = $("#captcha").hasClass("invisible_recaptcha");
+                is_invisible_recaptcha = $("#captcha").hasClass("invisible_recaptcha"),
+                was_hidden = !$warp.is(":visible");
 
             if($(this).val()){
                 $warp.show();
+                if (was_hidden || ($("#captcha_img").attr("src") || "").indexOf("dot.gif") !== -1) {
+                    refresh_member_password_captcha();
+                }
                 if(! is_invisible_recaptcha) {
                     $warp.css("margin-top","1em");
                     if(! $("#"+tooptipid).length){ $parent.append($span_text) }
