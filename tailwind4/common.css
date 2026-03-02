@@ -450,6 +450,10 @@
         @apply text-md text-body-color leading-normal font-medium;
     }
 
+    .card-header .card-title {
+        @apply font-bold;
+    }
+
     .ui-form-grid {
         @apply rounded-xl border border-default-300 bg-card shadow-sm;
     }

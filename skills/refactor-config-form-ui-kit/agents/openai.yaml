@@ -1,0 +1,4 @@
+interface:
+  display_name: "Config Form UI-Kit Refactor"
+  short_description: "Refactor admin config form to direct ui-kit markup with sticky tabs and scrollspy."
+  default_prompt: "Use $refactor-config-form-ui-kit to refactor adm/config_form.php and config_form_parts directly (no DOM post-processing), apply ui-kit semantics, and implement sticky tabs with scrollspy."
