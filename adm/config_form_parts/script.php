@@ -62,122 +62,18 @@
             });
         });
 
-        (function() {
-            var $tabBar = $("#config_tabs_bar");
-            var $tabNav = $("#config_tabs_nav");
-            if (!$tabBar.length || !$tabNav.length) {
-                return;
-            }
-
-            var $tabLinks = $tabNav.find("a.js-config-tab-link[href^='#']");
-            if (!$tabLinks.length) {
-                return;
-            }
-
-            var sections = [];
-            $tabLinks.each(function() {
-                var targetId = $(this).attr("href");
-                var $target = $(targetId);
-                if ($target.length) {
-                    sections.push({
-                        id: targetId,
-                        $section: $target
-                    });
-                }
+        if (window.CommonUI && typeof window.CommonUI.initStickyAnchorTabs === "function") {
+            window.CommonUI.initStickyAnchorTabs({
+                tabBarSelector: "#config_tabs_bar",
+                tabNavSelector: "#config_tabs_nav",
+                tabLinkSelector: "a.js-config-tab-link[href^='#']",
+                topbarSelector: "#hd_top",
+                heightVarName: "--config-tabs-height",
+                scrollGap: 8,
+                scrollDuration: 180,
+                namespace: "configTabs"
             });
-
-            if (!sections.length) {
-                return;
-            }
-
-            var currentTabId = "";
-            var scrollTicking = false;
-
-            function getScrollOffset() {
-                var topbarHeight = $("#hd_top").outerHeight() || 0;
-                var tabbarHeight = $tabBar.outerHeight() || 0;
-                return topbarHeight + tabbarHeight + 8;
-            }
-
-            function updateTabbarHeightVar() {
-                var tabbarHeight = $tabBar.outerHeight() || 0;
-                document.documentElement.style.setProperty("--config-tabs-height", tabbarHeight + "px");
-            }
-
-            function setActiveTab(tabId) {
-                if (!tabId || currentTabId === tabId) {
-                    return;
-                }
-
-                currentTabId = tabId;
-                $tabLinks.removeClass("active").attr("aria-selected", "false");
-                $tabLinks.filter("[href='" + tabId + "']").addClass("active").attr("aria-selected", "true");
-            }
-
-            function findActiveTabByScroll() {
-                var marker = $(window).scrollTop() + getScrollOffset();
-                var activeTabId = sections[0].id;
-
-                for (var idx = 0; idx < sections.length; idx++) {
-                    if (sections[idx].$section.offset().top <= marker) {
-                        activeTabId = sections[idx].id;
-                    } else {
-                        break;
-                    }
-                }
-
-                return activeTabId;
-            }
-
-            function handleScroll() {
-                if (scrollTicking) {
-                    return;
-                }
-                scrollTicking = true;
-
-                window.requestAnimationFrame(function() {
-                    setActiveTab(findActiveTabByScroll());
-                    scrollTicking = false;
-                });
-            }
-
-            $tabLinks.on("click", function(e) {
-                var tabId = $(this).attr("href");
-                var $target = $(tabId);
-                if (!$target.length) {
-                    return;
-                }
-
-                e.preventDefault();
-                setActiveTab(tabId);
-                window.history.replaceState(null, "", tabId);
-
-                $("html, body").stop().animate({
-                    scrollTop: $target.offset().top - getScrollOffset()
-                }, 180);
-            });
-
-            $(window).on("scroll", handleScroll);
-            $(window).on("resize", function() {
-                updateTabbarHeightVar();
-                setActiveTab(findActiveTabByScroll());
-            });
-
-            updateTabbarHeightVar();
-
-            var initialHash = window.location.hash;
-            if (initialHash && $tabLinks.filter("[href='" + initialHash + "']").length) {
-                setActiveTab(initialHash);
-                window.setTimeout(function() {
-                    var $initialTarget = $(initialHash);
-                    if ($initialTarget.length) {
-                        $("html, body").stop().scrollTop($initialTarget.offset().top - getScrollOffset());
-                    }
-                }, 0);
-            } else {
-                setActiveTab(findActiveTabByScroll());
-            }
-        })();
+        }
     });
 
     // 각 요소의 초기값 저장
