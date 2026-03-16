@@ -9,7 +9,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 <section id="s_ol_before">
 	<div id="s_ol_be_cate">
     	<h2><span>회원</span>로그인</h2>
-    	<a href="<?php echo G5_BBS_URL ?>/register.php">회원가입</a>
+    	<a href="<?php echo G5_MEMBER_URL ?>/register.php">회원가입</a>
     </div>
     <form name="foutlogin" action="<?php echo $outlogin_action_url ?>" onsubmit="return fhead_submit(this);" method="post" autocomplete="off">
     <fieldset>
@@ -27,7 +27,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
                 <label for="auto_login" id="auto_login_label"><span></span>자동로그인</label>
             </div>
             <div id="ol_svc">
-                <a href="<?php echo G5_BBS_URL ?>/password_lost.php">ID/PW 찾기</a>
+                <a href="<?php echo G5_MEMBER_URL ?>/password_lost.php">ID/PW 찾기</a>
             </div>
         </div>
         <?php

@@ -26,9 +26,7 @@
 
         $("button[data-type^='conf_']").on("click", function() {
             var type = $(this).data("type");
-            var msg = "기본환경 스킨 설정";
-            if (type == "conf_member")
-                msg = "기본환경 회원스킨 설정";
+            var msg = "기본환경 회원스킨 설정";
 
             if (!confirm("현재 테마의 " + msg + "을 적용하시겠습니까?"))
                 return false;
@@ -48,7 +46,7 @@
                         return false;
                     }
 
-                    var field = Array('cf_member_skin', 'cf_new_skin', 'cf_search_skin', 'cf_connect_skin', 'cf_faq_skin');
+                    var field = Array('cf_member_skin');
                     var count = field.length;
                     var key;
 

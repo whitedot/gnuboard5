@@ -29,6 +29,7 @@ define('G5_HTTPS_DOMAIN', '');
 // 그누보드 디버그바 설정입니다, 실제 서버운영시 false 로 설정해 주세요.
 define('G5_DEBUG', false);
 define('G5_COLLECT_QUERY', false);
+define('G5_MEMBER_ONLY', true);
 
 // Set Database table default engine is Database default_storage_engine, If you want to use MyISAM or InnoDB, change to MyISAM or InnoDB.
 // DB에 테이블 생성 시 테이블의 기본 스토리지 엔진을 설정할 수 있습니다.
@@ -51,6 +52,7 @@ define('G5_DBCONFIG_FILE',  'dbconfig.php');
 
 define('G5_ADMIN_DIR',      'adm');
 define('G5_BBS_DIR',        'bbs');
+define('G5_MEMBER_DIR',     'member');
 define('G5_CSS_DIR',        'css');
 define('G5_DATA_DIR',       'data');
 define('G5_EXTEND_DIR',     'extend');
@@ -94,6 +96,7 @@ if (isset($g5_path['path'])) {
 
 define('G5_ADMIN_URL',      G5_URL.'/'.G5_ADMIN_DIR);
 define('G5_BBS_URL',        G5_URL.'/'.G5_BBS_DIR);
+define('G5_MEMBER_URL',     G5_URL.'/'.G5_MEMBER_DIR);
 define('G5_CSS_URL',        G5_URL.'/'.G5_CSS_DIR);
 define('G5_DATA_URL',       G5_URL.'/'.G5_DATA_DIR);
 define('G5_IMG_URL',        G5_URL.'/'.G5_IMG_DIR);
@@ -112,6 +115,7 @@ define('G5_MOBILE_URL',     G5_URL.'/'.G5_MOBILE_DIR);
 // PATH 는 서버상에서의 절대경로
 define('G5_ADMIN_PATH',     G5_PATH.'/'.G5_ADMIN_DIR);
 define('G5_BBS_PATH',       G5_PATH.'/'.G5_BBS_DIR);
+define('G5_MEMBER_PATH',    G5_PATH.'/'.G5_MEMBER_DIR);
 define('G5_CSS_PATH',       G5_PATH.'/'.G5_CSS_DIR);
 define('G5_DATA_PATH',      G5_PATH.'/'.G5_DATA_DIR);
 define('G5_EXTEND_PATH',    G5_PATH.'/'.G5_EXTEND_DIR);

@@ -486,23 +486,6 @@ win_password_lost = function (href) {
 }
 
 /**
- * 설문조사 결과
- **/
-var win_poll = function (href) {
-    var new_win = window.open(href, 'win_poll', 'width=616, height=500, scrollbars=1');
-    new_win.focus();
-}
-
-/**
- * 쿠폰
- **/
-var win_coupon = function (href) {
-    var new_win = window.open(href, "win_coupon", "left=100,top=100,width=700, height=600, scrollbars=1");
-    new_win.focus();
-}
-
-
-/**
  * 스크린리더 미사용자를 위한 스크립트 - 지운아빠 2013-04-22
  * alt 값만 갖는 그래픽 링크에 마우스오버 시 title 값 부여, 마우스아웃 시 title 값 제거
  **/
@@ -537,19 +520,7 @@ function font_resize(id, rmv_class, add_class, othis) {
  * 댓글 수정 토큰
 **/
 function set_comment_token(f) {
-    if (typeof f.token === "undefined")
-        $(f).prepend('<input type="hidden" name="token" value="">');
-
-    $.ajax({
-        url: g5_bbs_url + "/ajax.comment_token.php",
-        type: "GET",
-        dataType: "json",
-        async: false,
-        cache: false,
-        success: function (data, textStatus) {
-            f.token.value = data.token;
-        }
-    });
+    return true;
 }
 
 $(function () {
@@ -568,11 +539,6 @@ $(function () {
         return false;
     });
 
-    $(".win_scrap").click(function () {
-        win_scrap(this.href);
-        return false;
-    });
-
     $(".win_profile").click(function () {
         win_profile(this.href);
         return false;
@@ -585,18 +551,6 @@ $(function () {
 
     $(".win_password_lost").click(function () {
         win_password_lost(this.href);
-        return false;
-    });
-
-    /*
-    $(".win_poll").click(function() {
-        win_poll(this.href);
-        return false;
-    });
-    */
-
-    $(".win_coupon").click(function () {
-        win_coupon(this.href);
         return false;
     });
 
@@ -683,29 +637,7 @@ $(function () {
 });
 
 function get_write_token(bo_table) {
-    var token = "";
-
-    $.ajax({
-        type: "POST",
-        url: g5_bbs_url + "/write_token.php",
-        data: { bo_table: bo_table },
-        cache: false,
-        async: false,
-        dataType: "json",
-        success: function (data) {
-            if (data.error) {
-                alert(data.error);
-                if (data.url)
-                    document.location.href = data.url;
-
-                return false;
-            }
-
-            token = data.token;
-        }
-    });
-
-    return token;
+    return "";
 }
 
 $(function () {

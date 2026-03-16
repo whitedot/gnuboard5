@@ -13,7 +13,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
             <?php echo get_member_profile_img($member['mb_id']); ?>
         </span>
         <strong><?php echo $nick ?>님</strong>
-        <a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=register_form.php" id="ol_after_info" title="정보수정">정보수정</a>
+        <a href="<?php echo G5_MEMBER_URL ?>/member_confirm.php?url=register_form.php" id="ol_after_info" title="정보수정">정보수정</a>
         <?php if ($is_admin == 'super' || $is_auth) {  ?><a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>" title="관리자"><i></i><span>관리자</span></a><?php }  ?>
     </header>
     <ul id="ol_after_private">
@@ -29,15 +29,9 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
                 <strong><?php echo $memo_not_read; ?></strong>
             </a>
         </li>
-        <li>
-            <a href="<?php echo G5_BBS_URL ?>/scrap.php" target="_blank" id="ol_after_scrap" class="win_scrap">
-            	<i aria-hidden="true"></i>스크랩
-            	<strong><?php echo $mb_scrap_cnt; ?></strong>
-            </a>
-        </li>
     </ul>
     <footer>
-    	<a href="<?php echo G5_BBS_URL ?>/logout.php" id="ol_after_logout"><i aria-hidden="true"></i> 로그아웃</a>
+    	<a href="<?php echo G5_MEMBER_URL ?>/logout.php" id="ol_after_logout"><i aria-hidden="true"></i> 로그아웃</a>
     </footer>
 </section>
 
@@ -46,7 +40,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 function member_leave()
 {
     if (confirm("정말 회원에서 탈퇴 하시겠습니까?"))
-        location.href = "<?php echo G5_BBS_URL ?>/member_confirm.php?url=member_leave.php";
+        location.href = "<?php echo G5_MEMBER_URL ?>/member_confirm.php?url=member_leave.php";
 }
 </script>
 <!-- } 로그인 후 아웃로그인 끝 -->

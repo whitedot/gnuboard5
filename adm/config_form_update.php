@@ -171,6 +171,46 @@ foreach ($check_keys as $k => $v) {
     }
 }
 
+$preserve_keys = array(
+    'cf_new_del',
+    'cf_visit_del',
+    'cf_popular_del',
+    'cf_login_minutes',
+    'cf_new_rows',
+    'cf_new_skin',
+    'cf_search_skin',
+    'cf_connect_skin',
+    'cf_faq_skin',
+    'cf_formmail_is_member',
+    'cf_email_wr_super_admin',
+    'cf_email_wr_group_admin',
+    'cf_email_wr_board_admin',
+    'cf_email_wr_write',
+    'cf_email_wr_comment_all',
+    'cf_email_po_super_admin',
+    'cf_delay_sec',
+    'cf_link_target',
+    'cf_read_point',
+    'cf_write_point',
+    'cf_comment_point',
+    'cf_download_point',
+    'cf_search_part',
+    'cf_image_extension',
+    'cf_flash_extension',
+    'cf_movie_extension',
+    'cf_filter',
+    'cf_bbs_rewrite',
+    'cf_use_copy_log',
+    'cf_syndi_token',
+    'cf_syndi_except'
+);
+
+foreach ($preserve_keys as $key) {
+    if (!isset($_POST[$key])) {
+        $_POST[$key] = isset($ori_config[$key]) ? $ori_config[$key] : '';
+    }
+}
+
 // 본인확인을 사용할 경우 아이핀, 휴대폰인증 중 하나는 선택되어야 함
 if ($_POST['cf_cert_use'] && !$_POST['cf_cert_ipin'] && !$_POST['cf_cert_hp'] && !$_POST['cf_cert_simple']) {
     alert('본인확인을 위해 아이핀, 휴대폰 본인확인, KG이니시스 간편인증 서비스 중 하나 이상 선택해 주십시오.');

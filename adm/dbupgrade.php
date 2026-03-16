@@ -177,7 +177,7 @@ if( !$row ) {
     $is_check = true;
 }
 
-if (defined('G5_USE_SHOP') && G5_USE_SHOP) {
+if ((!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) && defined('G5_USE_SHOP') && G5_USE_SHOP) {
     // 임시저장 테이블이 없을 경우 생성
     if(!sql_query(" DESC {$g5['g5_shop_post_log_table']} ", false)) {
         sql_query(" CREATE TABLE IF NOT EXISTS `{$g5['g5_shop_post_log_table']}` (

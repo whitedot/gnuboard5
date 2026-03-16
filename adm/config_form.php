@@ -26,14 +26,10 @@ require_once './admin.head.php';
 $pg_anchor = '';
 $config_tabs = array(
     array('id' => 'anc_cf_basic', 'label' => '기본'),
-    array('id' => 'anc_cf_board', 'label' => '게시판'),
     array('id' => 'anc_cf_join', 'label' => '회원'),
     array('id' => 'anc_cf_cert', 'label' => '본인확인'),
-    array('id' => 'anc_cf_url', 'label' => 'URL'),
     array('id' => 'anc_cf_mail', 'label' => '메일'),
-    array('id' => 'anc_cf_article_mail', 'label' => '글작성 메일'),
     array('id' => 'anc_cf_join_mail', 'label' => '가입 메일'),
-    array('id' => 'anc_cf_vote_mail', 'label' => '투표 메일'),
     array('id' => 'anc_cf_sns', 'label' => 'SNS'),
     array('id' => 'anc_cf_lay', 'label' => '레이아웃'),
     array('id' => 'anc_cf_sms', 'label' => 'SMS'),
@@ -71,10 +67,8 @@ if ($config['cf_sms_use'] && $config['cf_icode_id'] && $config['cf_icode_pw']) {
 
     <?php
     include_once G5_ADMIN_PATH . '/config_form_parts/basic.php';
-    include_once G5_ADMIN_PATH . '/config_form_parts/board.php';
     include_once G5_ADMIN_PATH . '/config_form_parts/join.php';
     include_once G5_ADMIN_PATH . '/config_form_parts/cert.php';
-    include_once G5_ADMIN_PATH . '/config_form_parts/url.php';
     include_once G5_ADMIN_PATH . '/config_form_parts/mail.php';
     include_once G5_ADMIN_PATH . '/config_form_parts/sns.php';
     include_once G5_ADMIN_PATH . '/config_form_parts/layout.php';

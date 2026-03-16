@@ -19,7 +19,7 @@ include_once('./admin.head.php');
 $directory = array();
 $dl = array('file', 'editor');
 
-if (defined('G5_USE_SHOP') && G5_USE_SHOP) {
+if ((!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) && defined('G5_USE_SHOP') && G5_USE_SHOP) {
     $dl[] = 'item';
 }
 

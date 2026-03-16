@@ -21,8 +21,8 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         </div>
         <input type="submit" id="ol_submit" value="로그인">
         <div id="ol_svc">
-            <a href="<?php echo G5_BBS_URL ?>/register.php"><b>회원가입</b></a> /
-            <a href="<?php echo G5_BBS_URL ?>/password_lost.php">ID/PW 찾기</a>
+            <a href="<?php echo G5_MEMBER_URL ?>/register.php"><b>회원가입</b></a> /
+            <a href="<?php echo G5_MEMBER_URL ?>/password_lost.php">ID/PW 찾기</a>
         </div>
 
     </fieldset>

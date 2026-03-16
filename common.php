@@ -268,7 +268,7 @@ if( ! class_exists('XenoPostToForm') ){
         public static function php52_request_check(){
             $cookie_session_name = self::g5_session_name();
             if (isset($_REQUEST[$cookie_session_name]) && $_REQUEST[$cookie_session_name] != session_id())
-                goto_url(G5_BBS_URL.'/logout.php');
+                goto_url(G5_MEMBER_URL.'/logout.php');
         }
 
         public static function check() {
@@ -403,6 +403,8 @@ if( $config['cf_cert_use'] || (defined('G5_YOUNGCART_VER') && G5_YOUNGCART_VER) 
 
 define('G5_HTTP_BBS_URL',  https_url(G5_BBS_DIR, false));
 define('G5_HTTPS_BBS_URL', https_url(G5_BBS_DIR, true));
+define('G5_HTTP_MEMBER_URL',  https_url(G5_MEMBER_DIR, false));
+define('G5_HTTPS_MEMBER_URL', https_url(G5_MEMBER_DIR, true));
 
 define('G5_CAPTCHA_DIR',    !empty($config['cf_captcha']) ? $config['cf_captcha'] : 'kcaptcha');
 define('G5_CAPTCHA_URL',    G5_PLUGIN_URL.'/'.G5_CAPTCHA_DIR);
@@ -703,10 +705,6 @@ if(defined('G5_THEME_PATH') && is_file(G5_THEME_PATH.'/theme.config.php'))
     include_once(G5_THEME_PATH.'/theme.config.php');
 
 
-// 쇼핑몰 설정
-if (defined('G5_USE_SHOP') && G5_USE_SHOP)
-    include_once(G5_PATH.'/shop.config.php');
-
 //=====================================================================================
 // 사용기기 설정
 // 테마의 G5_THEME_DEVICE 설정에 따라 사용자 화면 제한됨
@@ -796,13 +794,6 @@ if (G5_IS_MOBILE) {
 //==============================================================================
 
 
-// 방문자수의 접속을 남김
-include_once(G5_BBS_PATH.'/visit_insert.inc.php');
-
-
-// 일정 기간이 지난 DB 데이터 삭제 및 최적화
-include_once(G5_BBS_PATH.'/db_table.optimize.php');
-
 // common.php 파일을 수정할 필요가 없도록 확장합니다.
 $extend_file = array();
 $tmp = dir(G5_EXTEND_PATH);
@@ -824,7 +815,7 @@ unset($extend_file);
 
 if($is_member && !$is_admin && (!defined("G5_CERT_IN_PROG") || !G5_CERT_IN_PROG) && $config['cf_cert_use'] <> 0 && $config['cf_cert_req']) { // 본인인증이 필수일때
     if ((empty($member['mb_certify']) || (!empty($member['mb_certify']) && strlen($member['mb_dupinfo']) == 64))) { // di로 인증되어 있거나 본인인증이 안된 계정일때
-        goto_url(G5_BBS_URL."/member_cert_refresh.php");
+        goto_url(G5_MEMBER_URL."/member_cert_refresh.php");
     }
 }
 

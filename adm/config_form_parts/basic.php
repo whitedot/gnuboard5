@@ -121,6 +121,7 @@
                 </div>
             </div>
 
+            <?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
             <div class="af-row">
                 <div class="af-label">
                     <label for="cf_new_del" class="form-label">최근게시물 삭제</label>
@@ -133,6 +134,7 @@
                     </div>
                 </div>
             </div>
+            <?php } ?>
 
             <div class="af-row">
                 <div class="af-label">
@@ -147,6 +149,7 @@
                 </div>
             </div>
 
+            <?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
             <div class="af-row">
                 <div class="af-label">
                     <label for="cf_visit_del" class="form-label">접속자로그 삭제</label>
@@ -198,6 +201,7 @@
                     </div>
                 </div>
             </div>
+            <?php } ?>
 
             <div class="af-row">
                 <div class="af-label">
@@ -224,6 +228,7 @@
                 </div>
             </div>
 
+            <?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
             <div class="af-row">
                 <div class="af-label">
                     <label for="cf_new_skin" class="form-label">최근게시물 스킨<strong>필수</strong></label>
@@ -259,6 +264,7 @@
                     <?php echo get_skin_select('faq', 'cf_faq_skin', 'cf_faq_skin', $config['cf_faq_skin'], 'required'); ?>
                 </div>
             </div>
+            <?php } ?>
 
             <div class="af-row">
                 <div class="af-label">
@@ -334,6 +340,7 @@
                 </div>
             </div>
 
+            <?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
             <div class="af-row">
                 <div class="af-label">
                     <label for="cf_use_copy_log" class="form-label">복사, 이동시 로그</label>
@@ -346,6 +353,7 @@
                     </label>
                 </div>
             </div>
+            <?php } ?>
 
             <div class="af-row">
                 <div class="af-label">
@@ -400,6 +408,7 @@
                 </div>
             </div>
 
+            <?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
             <div class="af-row">
                 <div class="af-label">
                     <label for="cf_syndi_token" class="form-label">네이버 신디케이션 연동키</label>
@@ -422,7 +431,10 @@
                     <input type="text" name="cf_syndi_except" value="<?php echo isset($config['cf_syndi_except']) ? get_sanitize_input($config['cf_syndi_except']) : ''; ?>" id="cf_syndi_except" size="70" class="form-input">
                 </div>
             </div>
+            <?php } ?>
         </div>
     </div>
 </section>
+<?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
 <button type="button" data-type="conf_skin" class="btn btn-soft-secondary btn-sm">테마 스킨설정 가져오기</button>
+<?php } ?>

@@ -131,7 +131,6 @@ $colspan = 16;
                     <th scope="col" id="mb_list_auth">상태</th>
                     <th scope="col" id="mb_list_mobile">휴대폰</th>
                     <th scope="col" id="mb_list_lastcall"><?php echo subject_sort_link('mb_today_login', '', 'desc') ?>최종접속</a></th>
-                    <th scope="col" id="mb_list_grp">접근그룹</th>
                     <th scope="col" rowspan="2" id="mb_list_mng">관리</th>
                 </tr>
                 <tr>
@@ -149,20 +148,11 @@ $colspan = 16;
             <tbody>
                 <?php
                 for ($i = 0; $row = sql_fetch_array($result); $i++) {
-                    // 접근가능한 그룹수
-                    $sql2 = " select count(*) as cnt from {$g5['group_member_table']} where mb_id = '{$row['mb_id']}' ";
-                    $row2 = sql_fetch($sql2);
-                    $group = '';
-                    if ($row2['cnt']) {
-                        $group = '<a href="./boardgroupmember_form.php?mb_id=' . $row['mb_id'] . '">' . $row2['cnt'] . '</a>';
-                    }
-
                     if ($is_admin == 'group') {
                         $s_mod = '';
                     } else {
                         $s_mod = '<a href="./member_form.php?' . $qstr . '&amp;w=u&amp;mb_id=' . $row['mb_id'] . '">수정</a>';
                     }
-                    $s_grp = '<a href="./boardgroupmember_form.php?mb_id=' . $row['mb_id'] . '">그룹</a>';
 
                     $leave_date = $row['mb_leave_date'] ? $row['mb_leave_date'] : date('Ymd', G5_SERVER_TIME);
                     $intercept_date = $row['mb_intercept_date'] ? $row['mb_intercept_date'] : date('Ymd', G5_SERVER_TIME);
@@ -273,8 +263,7 @@ $colspan = 16;
                         </td>
                         <td headers="mb_list_mobile"><?php echo get_text($row['mb_hp']); ?></td>
                         <td headers="mb_list_lastcall"><?php echo substr($row['mb_today_login'], 2, 8); ?></td>
-                        <td headers="mb_list_grp"><?php echo $group ?></td>
-                        <td headers="mb_list_mng" rowspan="2"><?php echo $s_mod ?><?php echo $s_grp ?></td>
+                        <td headers="mb_list_mng" rowspan="2"><?php echo $s_mod ?></td>
                     </tr>
                     <tr class="<?php echo $bg; ?>">
                         <td headers="mb_list_name"><?php echo get_text($row['mb_name']); ?></td>

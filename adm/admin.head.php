@@ -322,7 +322,7 @@ if ($admin_site_title === '') {
                             </svg>
                         </button>
                     </li>
-                    <?php if (defined('G5_USE_SHOP') && G5_USE_SHOP) { ?>
+                    <?php if ((!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) && defined('G5_USE_SHOP') && G5_USE_SHOP) { ?>
                         <li class="tnb_li">
                             <a class="tnb_icon_btn" href="<?php echo G5_SHOP_URL; ?>/" target="_blank" title="쇼핑몰 바로가기" aria-label="쇼핑몰 바로가기">
                                 <svg class="admin-shell-control-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
@@ -332,7 +332,7 @@ if ($admin_site_title === '') {
                         </li>
                     <?php } ?>
                     <li class="tnb_li">
-                        <a class="tnb_icon_btn" href="<?php echo G5_URL; ?>/" target="_blank" title="커뮤니티 바로가기" aria-label="커뮤니티 바로가기">
+                        <a class="tnb_icon_btn" href="<?php echo G5_URL; ?>/" target="_blank" title="서비스 바로가기" aria-label="서비스 바로가기">
                             <svg class="admin-shell-control-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
                                 <use href="#admin-menu-icon-article"></use>
                             </svg>

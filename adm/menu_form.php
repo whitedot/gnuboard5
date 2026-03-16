@@ -30,9 +30,6 @@ if ($new == 'new' || !$code) {
             <label for="me_type">대상선택</label>
             <select name="me_type" id="me_type">
                 <option value="">직접입력</option>
-                <option value="group">게시판그룹</option>
-                <option value="board">게시판</option>
-                <option value="content">내용관리</option>
             </select>
         </div>
 

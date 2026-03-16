@@ -351,6 +351,15 @@ function seo_title_update($db_table, $pk_id, $type='bbs'){
 
 function get_nginx_conf_rules($return_string = false)
 {
+    if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
+        $rules = array(
+            '#### ' . G5_VERSION . ' nginx rules BEGIN #####',
+            '#### ' . G5_VERSION . ' nginx rules END #####'
+        );
+
+        return $return_string ? implode("\n", $rules) : $rules;
+    }
+
     $get_path_url = parse_url(G5_URL);
     $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
 
@@ -382,6 +391,18 @@ function get_nginx_conf_rules($return_string = false)
 
 function get_mod_rewrite_rules($return_string = false)
 {
+    if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
+        $rules = array(
+            '#### ' . G5_VERSION . ' rewrite BEGIN #####',
+            '<IfModule mod_rewrite.c>',
+            'RewriteEngine On',
+            '</IfModule>',
+            '#### ' . G5_VERSION . ' rewrite END #####'
+        );
+
+        return $return_string ? implode("\n", $rules) : $rules;
+    }
+
     $get_path_url = parse_url(G5_URL);
     $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
 

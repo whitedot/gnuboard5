@@ -42,7 +42,7 @@ function outlogin($skin_dir='basic')
     }
 
     $outlogin_url        = login_url($urlencode);
-    $outlogin_action_url = G5_HTTPS_BBS_URL.'/login_check.php';
+    $outlogin_action_url = G5_HTTPS_MEMBER_URL.'/login_check.php';
     
     ob_start();
     if ($is_member)

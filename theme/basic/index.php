@@ -2,67 +2,27 @@
 if (!defined('_INDEX_')) define('_INDEX_', true);
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
-
-
-if(G5_COMMUNITY_USE === false) {
-    include_once(G5_THEME_SHOP_PATH.'/index.php');
-    return;
-}
-
 include_once(G5_THEME_PATH.'/head.php');
 ?>
 
-<h2>최신글</h2>
-
-
-    <?php
-    // 이 함수가 바로 최신글을 추출하는 역할을 합니다.
-    // 사용방법 : latest(스킨, 게시판아이디, 출력라인, 글자수);
-    // 테마의 스킨을 사용하려면 theme/basic 과 같이 지정
-    echo latest('theme/pic_list', 'free', 4, 23);		// 최소설치시 자동생성되는 자유게시판
-	echo latest('theme/pic_list', 'qa', 4, 23);			// 최소설치시 자동생성되는 질문답변게시판
-	echo latest('theme/pic_list', 'notice', 4, 23);		// 최소설치시 자동생성되는 공지사항게시판
-    ?>
-
-
-    <!-- 사진 최신글2 { -->
-    <?php
-    // 이 함수가 바로 최신글을 추출하는 역할을 합니다.
-    // 사용방법 : latest(스킨, 게시판아이디, 출력라인, 글자수);
-    // 테마의 스킨을 사용하려면 theme/basic 과 같이 지정
-    echo latest('theme/pic_block', 'gallery', 4, 23);		// 최소설치시 자동생성되는 갤러리게시판
-    ?>
-    <!-- } 사진 최신글2 끝 -->
-
-
-
-<!-- 최신글 시작 { -->
-    <?php
-    //  최신글
-    $sql = " select bo_table
-                from `{$g5['board_table']}` a left join `{$g5['group_table']}` b on (a.gr_id=b.gr_id)
-                where a.bo_device <> 'mobile' ";
-    if(!$is_admin)
-	$sql .= " and a.bo_use_cert = '' ";
-    $sql .= " and a.bo_table not in ('notice', 'gallery') ";     //공지사항과 갤러리 게시판은 제외
-    $sql .= " order by b.gr_order, a.bo_order ";
-    $result = sql_query($sql);
-    for ($i=0; $row=sql_fetch_array($result); $i++) {
-		$lt_style = '';
-    	if ($i%3 !== 0 ) $lt_style = "margin-left:2%";
-    ?>
-    
-        <?php
-        // 이 함수가 바로 최신글을 추출하는 역할을 합니다.
-        // 사용방법 : latest(스킨, 게시판아이디, 출력라인, 글자수);
-        // 테마의 스킨을 사용하려면 theme/basic 과 같이 지정
-        echo latest('theme/basic', $row['bo_table'], 6, 24);
-        ?>
-    
-    <?php
-    }
-    ?>
-    <!-- } 최신글 끝 -->
+<section class="member-home">
+    <h2>회원 서비스</h2>
+    <?php if ($is_member) { ?>
+    <p><?php echo get_text($member['mb_nick']); ?>님 계정 관리가 가능합니다.</p>
+    <p>
+        <a href="<?php echo G5_MEMBER_URL; ?>/member_confirm.php?url=<?php echo urlencode(G5_MEMBER_URL.'/register_form.php'); ?>">회원정보 수정</a>
+        <span>|</span>
+        <a href="<?php echo G5_MEMBER_URL; ?>/logout.php">로그아웃</a>
+    </p>
+    <?php } else { ?>
+    <p>로그인, 회원가입, 비밀번호 재설정만 제공하는 회원 전용 서비스입니다.</p>
+    <p>
+        <a href="<?php echo G5_MEMBER_URL; ?>/login.php">로그인</a>
+        <span>|</span>
+        <a href="<?php echo G5_MEMBER_URL; ?>/register.php">회원가입</a>
+    </p>
+    <?php } ?>
+</section>
 
 
 <?php
