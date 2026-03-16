@@ -31,7 +31,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             회원님의 성원에 보답하고자 더욱 더 열심히 하겠습니다.<br>
             감사합니다.
         </p>
-        <a href="<?php echo G5_BBS_URL ?>/login.php" target="_blank"><?php echo $config['cf_title'] ?> 로그인</a>
+        <a href="<?php echo G5_MEMBER_URL ?>/login.php" target="_blank"><?php echo $config['cf_title'] ?> 로그인</a>
     </div>
 </div>
 

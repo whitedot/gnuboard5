@@ -242,7 +242,7 @@ $ct_cert->mf_clear();
         }
             
         document.mbFindForm.target = "parentPage";
-        document.mbFindForm.action = "<?php echo G5_BBS_URL.'/password_reset.php'?>";
+        document.mbFindForm.action = "<?php echo G5_MEMBER_URL.'/password_reset.php'?>";
         document.mbFindForm.submit();
 
         alert("본인인증이 완료되었습니다.");

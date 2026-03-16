@@ -50,7 +50,7 @@ echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_THEME_CSS_UR
 <script>
 // 자바스크립트에서 사용하는 전역변수 선언
 var g5_url       = "<?php echo G5_URL ?>";
-var g5_bbs_url   = "<?php echo G5_BBS_URL ?>";
+var g5_bbs_url   = "<?php echo G5_MEMBER_URL ?>";
 var g5_member_url = "<?php echo G5_MEMBER_URL ?>";
 var g5_is_member = "<?php echo isset($is_member)?$is_member:''; ?>";
 var g5_is_admin  = "<?php echo isset($is_admin)?$is_admin:''; ?>";

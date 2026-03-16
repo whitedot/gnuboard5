@@ -786,8 +786,6 @@ if (G5_IS_MOBILE) {
     $search_skin_url    = get_skin_url('search', $config['cf_search_skin']);
     $connect_skin_path  = get_skin_path('connect', $config['cf_connect_skin']);
     $connect_skin_url   = get_skin_url('connect', $config['cf_connect_skin']);
-    $faq_skin_path      = get_skin_path('faq', $config['cf_faq_skin']);
-    $faq_skin_url       = get_skin_url('faq', $config['cf_faq_skin']);
 //==============================================================================
 
 

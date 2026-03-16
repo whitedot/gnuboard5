@@ -1,5 +1,7 @@
 # Admin Form Table to Div Conversion Priority
 
+Member-only 전환 이후에는 `Priority 2 (Shop Admin)` 묶음은 제거 대상이라 우선순위 작업에서 제외한다.
+
 - Auto conversion entry: `adm/admin.head.php`
 - Converter function: `convertFormTablesToDiv($scope)`
 - UI class harmonization: `applyCommonFormElements($scope)`

@@ -12,10 +12,6 @@ if ($is_admin != 'super') {
 $sql = " select * from {$g5['config_table']} limit 1";
 $config = sql_fetch($sql);
 
-if (!$config['cf_faq_skin']) {
-    $config['cf_faq_skin'] = 'basic';
-}
-
 $g5['title'] = '환경설정';
 $admin_container_class = 'admin-page-config-form';
 $admin_page_subtitle = '기본, 회원, 보안, 연동 설정을 탭에서 빠르게 관리하세요.';

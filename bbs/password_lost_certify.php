@@ -27,7 +27,7 @@ if ($mb_nonce === substr($mb['mb_lost_certify'], 0, 32)) {
 
     run_event('password_lost_certify_after', $mb, $mb_nonce);
 
-    alert('비밀번호가 변경됐습니다.\\n\\n회원아이디와 변경된 비밀번호로 로그인 하시기 바랍니다.', G5_BBS_URL.'/login.php');
+    alert('비밀번호가 변경됐습니다.\\n\\n회원아이디와 변경된 비밀번호로 로그인 하시기 바랍니다.', G5_MEMBER_URL.'/login.php');
 }
 else {
     die("Error");

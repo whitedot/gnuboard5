@@ -223,7 +223,7 @@ if($result) {
         $subject = '['.$config['cf_title'].'] '.$mb_nick .' 님께서 회원으로 가입하셨습니다.';
 
         ob_start();
-        include_once (G5_BBS_PATH.'/register_form_update_mail2.php');
+        include_once (G5_MEMBER_PATH.'/register_form_update_mail2.php');
         $content = ob_get_contents();
         ob_end_clean();
 
@@ -274,10 +274,10 @@ if($result) {
 
         sql_query(" update {$g5['member_table']} set mb_email_certify2 = '$mb_md5' where mb_id = '$mb_id' ");
 
-        $certify_href = G5_BBS_URL.'/email_certify.php?mb_id='.$mb_id.'&amp;mb_md5='.$mb_md5;
+        $certify_href = G5_MEMBER_URL.'/email_certify.php?mb_id='.$mb_id.'&amp;mb_md5='.$mb_md5;
 
         ob_start();
-        include_once (G5_BBS_PATH.'/register_form_update_mail3.php');
+        include_once (G5_MEMBER_PATH.'/register_form_update_mail3.php');
         $content = ob_get_contents();
         ob_end_clean();
 
@@ -285,7 +285,7 @@ if($result) {
     }
 
     // 신규회원 쿠폰발생
-    if($w == '' && $default['de_member_reg_coupon_use'] && $default['de_member_reg_coupon_term'] > 0 && $default['de_member_reg_coupon_price'] > 0) {
+if((!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) && $w == '' && $default['de_member_reg_coupon_use'] && $default['de_member_reg_coupon_term'] > 0 && $default['de_member_reg_coupon_price'] > 0) {
         $j = 0;
         $create_coupon = false;
 
@@ -331,7 +331,7 @@ if($result) {
     // 사용자 코드 실행
     @include_once ($member_skin_path.'/register_form_update.tail.skin.php');
 
-    goto_url(G5_HTTP_BBS_URL.'/register_result.php');
+    goto_url(G5_HTTP_MEMBER_URL.'/register_result.php');
 
 } else {
 

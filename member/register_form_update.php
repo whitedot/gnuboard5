@@ -579,7 +579,7 @@ if ($config['cf_use_email_certify'] && $old_email != $mb_email) {
 
 
 // 신규회원 쿠폰발생
-if($w == '' && isset($default['de_member_reg_coupon_use']) && $default['de_member_reg_coupon_use'] && $default['de_member_reg_coupon_term'] > 0 && $default['de_member_reg_coupon_price'] > 0) {
+if((!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) && $w == '' && isset($default['de_member_reg_coupon_use']) && $default['de_member_reg_coupon_use'] && $default['de_member_reg_coupon_term'] > 0 && $default['de_member_reg_coupon_price'] > 0) {
     $j = 0;
     $create_coupon = false;
 

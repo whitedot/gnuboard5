@@ -199,7 +199,6 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_new_rows` int(11) NOT NULL DEFAULT '0',
   `cf_search_skin` varchar(50) NOT NULL DEFAULT '',
   `cf_connect_skin` varchar(50) NOT NULL DEFAULT '',
-  `cf_faq_skin` varchar(50) NOT NULL DEFAULT '',
   `cf_read_point` int(11) NOT NULL DEFAULT '0',
   `cf_write_point` int(11) NOT NULL DEFAULT '0',
   `cf_comment_point` int(11) NOT NULL DEFAULT '0',

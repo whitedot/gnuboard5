@@ -57,7 +57,7 @@ function social_return_from_provider_page( $provider, $login_action_url, $mb_id,
     if( !G5_SOCIAL_USE_POPUP || strpos($ref, 'login_check.php') !== false ){
         if( get_session('social_login_redirect') ){
             unset($_SESSION['social_login_redirect']);
-            goto_url(G5_BBS_URL.'/login.php?url='.urlencode($url));
+            goto_url(G5_MEMBER_URL.'/login.php?url='.urlencode($url));
         } else {
             set_session('social_login_redirect', 1);
         }
@@ -497,10 +497,10 @@ function social_check_login_before($p_service=''){
             exit;
         }
 
-        $register_url = G5_BBS_URL.'/register_form.php?provider='.$provider_name;
-        $register_action_url = G5_BBS_URL.'/register_form_update.php';
+        $register_url = G5_MEMBER_URL.'/register_form.php?provider='.$provider_name;
+        $register_action_url = G5_MEMBER_URL.'/register_form_update.php';
 
-        $login_action_url = G5_HTTPS_BBS_URL."/login_check.php";
+        $login_action_url = G5_HTTPS_MEMBER_URL."/login_check.php";
         $mylink = (isset($_REQUEST['mylink']) && !empty($_REQUEST['mylink'])) ? 1 : 0;
 
         //소셜로 이미 가입 했다면 로그인 처리 합니다.
@@ -745,7 +745,7 @@ function social_member_comfirm_redirect(){
             
             social_login_session_clear(1);
 
-            $url = G5_BBS_URL.'/register_form.php';
+            $url = G5_MEMBER_URL.'/register_form.php';
 
             $social_token = social_nonce_create($provider_name);
             set_session('social_link_token', $social_token);
@@ -875,7 +875,7 @@ function social_login_link_account($mb_id, $is_buffer=false, $is_type=''){
             $my_provides[] = strtolower($account['provider']);
         }
 
-        $self_url = G5_BBS_URL."/login.php";
+        $self_url = G5_MEMBER_URL."/login.php";
 
         //새창을 사용한다면
         if( G5_SOCIAL_USE_POPUP )

@@ -58,13 +58,9 @@ require_once G5_ADMIN_PATH . '/admin.head.php';
                 <div class="ui-form-row">
                     <div class="ui-form-label"><label for="nw_division">구분</label></div>
                     <div class="ui-form-field">
-                        <?php echo help("커뮤니티에 표시될 것인지 쇼핑몰에 표시될 것인지를 설정합니다."); ?>
+                        <?php echo help("회원 서비스 영역에 표시할 팝업레이어 범위를 설정합니다."); ?>
                         <select name="nw_division" id="nw_division">
                             <option value="comm" <?php echo get_selected($nw['nw_division'], 'comm'); ?>>커뮤니티</option>
-                            <?php if ((!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) && defined('G5_USE_SHOP') && G5_USE_SHOP) { ?>
-                                <option value="both" <?php echo get_selected($nw['nw_division'], 'both', true); ?>>커뮤니티와 쇼핑몰</option>
-                                <option value="shop" <?php echo get_selected($nw['nw_division'], 'shop'); ?>>쇼핑몰</option>
-                            <?php } ?>
                         </select>
                     </div>
                 </div>

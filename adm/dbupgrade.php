@@ -177,44 +177,6 @@ if( !$row ) {
     $is_check = true;
 }
 
-if ((!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) && defined('G5_USE_SHOP') && G5_USE_SHOP) {
-    // 임시저장 테이블이 없을 경우 생성
-    if(!sql_query(" DESC {$g5['g5_shop_post_log_table']} ", false)) {
-        sql_query(" CREATE TABLE IF NOT EXISTS `{$g5['g5_shop_post_log_table']}` (
-                    `log_id` int(11) NOT NULL AUTO_INCREMENT,
-                    `oid` bigint(20) unsigned NOT NULL,
-                    `mb_id` varchar(255) NOT NULL DEFAULT '',
-                    `post_data` text NOT NULL,
-                    `ol_code` varchar(255) NOT NULL DEFAULT '',
-                    `ol_msg` text NOT NULL,
-                    `ol_datetime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-                    `ol_ip` varchar(25) NOT NULL DEFAULT '',
-                    PRIMARY KEY (`log_id`)
-                    ) ENGINE=MyISAM DEFAULT CHARSET=utf8; ", true);
-
-        $is_check = true;
-    }
-
-    $result = sql_query("describe `{$g5['g5_shop_post_log_table']}`");
-    while ($row = sql_fetch_array($result)){
-        if( isset($row['Field']) && $row['Field'] === 'ol_msg' && $row['Type'] === 'varchar(255)' ){
-            sql_query("ALTER TABLE `{$g5['g5_shop_post_log_table']}` MODIFY ol_msg TEXT NOT NULL;", false);
-            sql_query("ALTER TABLE `{$g5['g5_shop_post_log_table']}` DROP PRIMARY KEY;", false);
-            sql_query("ALTER TABLE `{$g5['g5_shop_post_log_table']}` ADD `log_id` int(11) NOT NULL AUTO_INCREMENT, ADD PRIMARY KEY (`log_id`);", false);
-            $is_check = true;
-            break;
-        }
-    }
-
-    if (!isset($default['de_id'])) {
-        sql_query(" ALTER TABLE `{$g5['g5_shop_default_table']}`
-                        ADD COLUMN `de_id` INT(11) NOT NULL AUTO_INCREMENT FIRST,
-                        ADD PRIMARY KEY (`de_id`); ", true);
-
-        $is_check = true;
-    }
-}
-
 // auth.au_menu 컬럼 크기 조정
 $sql = " SHOW COLUMNS FROM `{$g5['auth_table']}` LIKE 'au_menu' ";
 $row = sql_fetch($sql);

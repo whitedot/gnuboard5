@@ -290,7 +290,7 @@ if ($admin_site_title === '') {
                 <strong><?php echo $admin_profile_name ?: $admin_profile_id; ?></strong>
                 <span><?php echo $admin_profile_mail; ?></span>
             </div>
-            <a class="gnb_profile_logout" href="<?php echo G5_BBS_URL; ?>/logout.php" title="로그아웃">↗</a>
+            <a class="gnb_profile_logout" href="<?php echo G5_MEMBER_URL; ?>/logout.php" title="로그아웃">↗</a>
         </div>
     </nav>
 
@@ -322,15 +322,6 @@ if ($admin_site_title === '') {
                             </svg>
                         </button>
                     </li>
-                    <?php if ((!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) && defined('G5_USE_SHOP') && G5_USE_SHOP) { ?>
-                        <li class="tnb_li">
-                            <a class="tnb_icon_btn" href="<?php echo G5_SHOP_URL; ?>/" target="_blank" title="쇼핑몰 바로가기" aria-label="쇼핑몰 바로가기">
-                                <svg class="admin-shell-control-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
-                                    <use href="#admin-menu-icon-shop"></use>
-                                </svg>
-                            </a>
-                        </li>
-                    <?php } ?>
                     <li class="tnb_li">
                         <a class="tnb_icon_btn" href="<?php echo G5_URL; ?>/" target="_blank" title="서비스 바로가기" aria-label="서비스 바로가기">
                             <svg class="admin-shell-control-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
@@ -347,7 +338,7 @@ if ($admin_site_title === '') {
                         </button>
                         <ul class="tnb_mb_area hidden">
                             <li><a href="<?php echo G5_ADMIN_URL; ?>/member_form.php?w=u&amp;mb_id=<?php echo $member['mb_id']; ?>">관리자정보</a></li>
-                            <li id="tnb_logout"><a href="<?php echo G5_BBS_URL; ?>/logout.php">로그아웃</a></li>
+                            <li id="tnb_logout"><a href="<?php echo G5_MEMBER_URL; ?>/logout.php">로그아웃</a></li>
                         </ul>
                     </li>
                 </ul>

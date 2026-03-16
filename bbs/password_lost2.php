@@ -41,7 +41,7 @@ $sql = " update {$g5['member_table']} set mb_lost_certify = '$mb_nonce $mb_lost_
 sql_query($sql);
 
 // 인증 링크 생성
-$href = G5_BBS_URL.'/password_lost_certify.php?mb_no='.$mb['mb_no'].'&amp;mb_nonce='.$mb_nonce;
+$href = G5_MEMBER_URL.'/password_lost_certify.php?mb_no='.$mb['mb_no'].'&amp;mb_nonce='.$mb_nonce;
 
 $subject = "[".$config['cf_title']."] 요청하신 회원정보 찾기 안내 메일입니다.";
 

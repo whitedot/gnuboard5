@@ -205,14 +205,6 @@
                 </div>
             </div>
 
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_faq_skin" class="form-label">FAQ 스킨<strong>필수</strong></label>
-                </div>
-                <div class="af-field">
-                    <?php echo get_skin_select('faq', 'cf_faq_skin', 'cf_faq_skin', $config['cf_faq_skin'], 'required'); ?>
-                </div>
-            </div>
             <?php } ?>
 
             <div class="af-row">

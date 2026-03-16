@@ -55,7 +55,7 @@ if ($mb['mb_leave_date'] && $mb['mb_leave_date'] <= date("Ymd", G5_SERVER_TIME))
 // 메일인증 설정이 되어 있다면
 if ( is_use_email_certify() && !preg_match("/[1-9]/", $mb['mb_email_certify'])) {
     $ckey = md5($mb['mb_ip'].$mb['mb_datetime']);
-    confirm("{$mb['mb_email']} 메일로 메일인증을 받으셔야 로그인 가능합니다. 다른 메일주소로 변경하여 인증하시려면 취소를 클릭하시기 바랍니다.", G5_URL, G5_BBS_URL.'/register_email.php?mb_id='.$mb_id.'&ckey='.$ckey);
+    confirm("{$mb['mb_email']} 메일로 메일인증을 받으셔야 로그인 가능합니다. 다른 메일주소로 변경하여 인증하시려면 취소를 클릭하시기 바랍니다.", G5_URL, G5_MEMBER_URL.'/register_email.php?mb_id='.$mb_id.'&ckey='.$ckey);
 }
 
 run_event('login_session_before', $mb, $is_social_login);

@@ -287,7 +287,7 @@ if ($w == '') {
         if ($config['cf_use_email_certify']) {
             $mb_md5 = md5(pack('V*', rand(), rand(), rand(), rand()));
             sql_query(" update {$g5['member_table']} set mb_email_certify2 = '$mb_md5' where mb_id = '$mb_id' ");
-            $certify_href = G5_BBS_URL.'/email_certify.php?mb_id='.$mb_id.'&amp;mb_md5='.$mb_md5;
+            $certify_href = G5_MEMBER_URL.'/email_certify.php?mb_id='.$mb_id.'&amp;mb_md5='.$mb_md5;
         }
 
         ob_start();
@@ -563,7 +563,7 @@ if ($config['cf_use_email_certify'] && $old_email != $mb_email) {
 
     sql_query(" update {$g5['member_table']} set mb_email_certify2 = '$mb_md5' where mb_id = '$mb_id' ");
 
-    $certify_href = G5_BBS_URL.'/email_certify.php?mb_id='.$mb_id.'&amp;mb_md5='.$mb_md5;
+    $certify_href = G5_MEMBER_URL.'/email_certify.php?mb_id='.$mb_id.'&amp;mb_md5='.$mb_md5;
 
     ob_start();
     include_once ('./register_form_update_mail3.php');
@@ -579,7 +579,7 @@ if ($config['cf_use_email_certify'] && $old_email != $mb_email) {
 
 
 // 신규회원 쿠폰발생
-if($w == '' && isset($default['de_member_reg_coupon_use']) && $default['de_member_reg_coupon_use'] && $default['de_member_reg_coupon_term'] > 0 && $default['de_member_reg_coupon_price'] > 0) {
+if((!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) && $w == '' && isset($default['de_member_reg_coupon_use']) && $default['de_member_reg_coupon_use'] && $default['de_member_reg_coupon_term'] > 0 && $default['de_member_reg_coupon_price'] > 0) {
     $j = 0;
     $create_coupon = false;
 
@@ -638,7 +638,7 @@ if ($msg)
 run_event('register_form_update_after', $mb_id, $w);
 
 if ($w == '') {
-    goto_url(G5_HTTP_BBS_URL.'/register_result.php');
+    goto_url(G5_HTTP_MEMBER_URL.'/register_result.php');
 } else if ($w == 'u') {
     $row  = sql_fetch(" select mb_password from {$g5['member_table']} where mb_id = '{$member['mb_id']}' ");
     $tmp_password = $row['mb_password'];
@@ -654,7 +654,7 @@ if ($w == '') {
         <meta charset="utf-8">
         <title>회원정보수정</title>
         <body>
-        <form name="fregisterupdate" method="post" action="'.G5_HTTP_BBS_URL.'/register_form.php">
+        <form name="fregisterupdate" method="post" action="'.G5_HTTP_MEMBER_URL.'/register_form.php">
         <input type="hidden" name="w" value="u">
         <input type="hidden" name="mb_id" value="'.$mb_id.'">
         <input type="hidden" name="mb_password" value="'.$tmp_password.'">

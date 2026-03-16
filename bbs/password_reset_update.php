@@ -28,4 +28,4 @@ sql_query("update {$g5['member_table']} set {$sql_password} where mb_id = '{$mb_
 set_session('ss_cert_mb_id', '');
 set_session('ss_cert_dupinfo', '');
 
-goto_url(G5_BBS_URL.'/login.php');
+goto_url(G5_MEMBER_URL.'/login.php');
