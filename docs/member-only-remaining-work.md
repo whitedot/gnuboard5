@@ -4,6 +4,8 @@
 
 회원 전용 구조 전환 이후 남은 정리 작업만 추려서 고정한다.
 
+구현 순서와 세부 대상 파일은 `docs/member-only-implementation-plan.md`를 기준으로 이어간다.
+
 ## 현재 상태 요약
 
 - `member/` 기준으로 로그인, 가입, 인증, 비밀번호 재설정 흐름을 분리했다.
@@ -13,6 +15,7 @@
 - `bbs` 회원 처리 파일은 대부분 `member/` 구현을 호출하는 호환 브리지로 축소했다.
 - FAQ 설정, poll 헬퍼 같은 비회원 기능 잔재도 함께 축소했다.
 - 팝업레이어 공용 include를 `bbs` 밖으로 이동했고, 게시판 전용 SNS/신디케이션 코드는 member-only 모드에서 비활성화했다.
+- `extend/`, `js/`에는 종료 기능 잔재가 일부 남아 있어 후속 정리가 필요하다.
 
 ## 완료된 정리
 
@@ -62,6 +65,7 @@
 
 - `lib/common.data.lib.php`, `lib/common.file.lib.php`, `lib/thumbnail.lib.php` 등 게시판 전용 링크 헬퍼 정리
 - `plugin/sns`, `plugin/syndi`, `lib/uri.lib.php`의 완전 제거 여부 결정
+- `extend/g5_54version_update.extend.php`, `js/common.js`, `js/shop*.js` 등 종료 기능 잔재 정리
 - 구 `bbs` 회원 리다이렉트 유지 기간 결정
 
 완료 기준:
