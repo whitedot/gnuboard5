@@ -1,6 +1,8 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
+if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) return;
+
 if (!$board['bo_use_sns']) return;
 
 $sns_msg = urlencode(str_replace('\"', '"', $view['subject']));

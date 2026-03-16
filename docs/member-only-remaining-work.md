@@ -10,7 +10,9 @@
 - 회원 관련 메일, 소셜 로그인, 본인인증 결과 처리도 `member/` 기준 경로로 정리했다.
 - `shop/` 바이너리와 이미지 잔재를 포함한 쇼핑몰 흔적을 정리했고, 신규 설치에서 쇼핑몰 생성도 끊었다.
 - 쪽지, 포인트, 공개 프로필은 사용자 진입점과 관리자 노출을 종료했다.
+- `bbs` 회원 처리 파일은 대부분 `member/` 구현을 호출하는 호환 브리지로 축소했다.
 - FAQ 설정, poll 헬퍼 같은 비회원 기능 잔재도 함께 축소했다.
+- 팝업레이어 공용 include를 `bbs` 밖으로 이동했고, 게시판 전용 SNS/신디케이션 코드는 member-only 모드에서 비활성화했다.
 
 ## 완료된 정리
 
@@ -28,6 +30,9 @@
 - 회원가입 후 쇼핑 쿠폰 지급 로직 비활성화
 - 설치 화면과 설치 SQL 기본값에서 쇼핑몰 / FAQ 의존 축소
 - `theme/basic/head.sub.php` 및 관리자/플러그인 회원 URL을 `member/` 기준으로 통일
+- `bbs/login_check.php`, `bbs/register_form*.php`, `bbs/password_*` 등 회원 처리 스크립트를 `member/` 브리지로 축소
+- `theme/basic/head.php` 팝업 include를 공용 파일로 이동하고 `adm/newwinlist.php`의 쇼핑 팝업 마이그레이션 제거
+- `plugin/sns`, `plugin/syndi`, `lib/uri.lib.php`에 member-only 기준 게시판 경로 차단 추가
 - 미사용 조회 함수와 회원 전용과 무관한 헬퍼 정리
 
 ## 남은 작업
@@ -36,9 +41,9 @@
 
 후보 파일:
 
-- `adm/dbupgrade.php`
-- `adm/newwinform.php`
-- `adm/thumbnail_file_delete.php`
+- `adm/newwinlist.php`
+- `adm/config_form_update.php`
+- `adm/menu_list.php`
 
 작업:
 
@@ -51,12 +56,12 @@
 
 ### 2. 라우팅/상수 정리
 
-현재 회원 인증/가입 계열은 대부분 `member/` 기준으로 바뀌었지만, 게시판/공용 헬퍼 레벨에서는 `G5_BBS_*`가 남아 있다.
+현재 회원 인증/가입 계열은 대부분 `member/` 기준으로 바뀌었지만, 게시판/공용 헬퍼 레벨에서는 `G5_BBS_*`가 일부 남아 있다.
 
 작업:
 
-- 게시판 전용이 아닌 공용 JS/테마 변수의 `G5_BBS_*` 잔재 점검
-- `plugin/sns`, `plugin/syndi`, `lib/uri.lib.php` 등 게시판 결합부의 정리 시점 결정
+- `lib/common.data.lib.php`, `lib/common.file.lib.php`, `lib/thumbnail.lib.php` 등 게시판 전용 링크 헬퍼 정리
+- `plugin/sns`, `plugin/syndi`, `lib/uri.lib.php`의 완전 제거 여부 결정
 - 구 `bbs` 회원 리다이렉트 유지 기간 결정
 
 완료 기준:

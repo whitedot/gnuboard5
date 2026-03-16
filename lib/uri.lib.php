@@ -14,6 +14,10 @@ function get_pretty_url($folder, $no='', $query_string='', $action='')
         return $url;
     }
 
+    if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY && in_array($folder, $boards, true)) {
+        return G5_URL;
+    }
+
     // use shortten url
     if($config['cf_bbs_rewrite']) {
 
@@ -102,6 +106,15 @@ function get_pretty_url($folder, $no='', $query_string='', $action='')
 function short_url_clean($string_url, $add_qry=''){
 
     global $config, $g5;
+
+    if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
+        $parsed_url = parse_url(str_replace('&amp;', '&', $string_url));
+        $page_name = isset($parsed_url['path']) ? basename($parsed_url['path'], '.php') : '';
+
+        if (in_array($page_name, array('board', 'write', 'rss'), true)) {
+            return G5_URL;
+        }
+    }
 
     if( isset($config['cf_bbs_rewrite']) && $config['cf_bbs_rewrite'] ){
 

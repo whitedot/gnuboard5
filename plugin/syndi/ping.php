@@ -1,6 +1,9 @@
 <?php
 include_once("./_common.php");
 
+if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY)
+    die("member-only mode does not support syndication.");
+
 if (!$write)
     die("게시글이 없습니다.");
 
