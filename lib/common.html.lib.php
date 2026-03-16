@@ -315,17 +315,12 @@ function get_sideview($mb_id, $name, $email='', $homepage='', $bo_table='')
     $tmp_name .= "</button>";
     $tmp_name .= "<div class=\"sv hs-dropdown-menu\" role=\"menu\" aria-orientation=\"vertical\">";
 
-    $tmp_name .= "<a href=\"".G5_BBS_URL."/memo_form.php?me_recv_mb_id=".$mb_id."\" class=\"win_memo\">쪽지보내기</a>";
-
     if ($homepage) {
         $tmp_name .= "<a href=\"".$homepage."\" target=\"_blank\" rel=\"noopener\">홈페이지</a>";
     }
 
-    $tmp_name .= "<a href=\"".G5_BBS_URL."/profile.php?mb_id=".$mb_id."\" class=\"win_profile\">자기소개</a>";
-
     if (is_admin($mb_id)) {
         $tmp_name .= "<a href=\"".G5_ADMIN_URL."/member_form.php?w=u&mb_id=".$mb_id."\" target=\"_blank\" rel=\"noopener\">회원정보변경</a>";
-        $tmp_name .= "<a href=\"".G5_ADMIN_URL."/point_list.php?sfl=mb_id&stx=".$mb_id."\" target=\"_blank\" rel=\"noopener\">포인트내역</a>";
     }
 
     $tmp_name .= "</div></span>";

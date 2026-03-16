@@ -1,4 +1,4 @@
-﻿# Admin Form Table to Div Conversion Priority
+# Admin Form Table to Div Conversion Priority
 
 - Auto conversion entry: `adm/admin.head.php`
 - Converter function: `convertFormTablesToDiv($scope)`
@@ -6,7 +6,7 @@
 - Target rule: files containing `tbl_frm01|tbl_frm02` with `input/select/textarea`
 
 ## Priority 1 (Core Admin)
-- Count: 33
+- Count: 32
 - Order:
   - `adm\_rewrite_config_form.php`
   - `adm\auth_list.php`
@@ -38,7 +38,6 @@
   - `adm\member_form_parts\profile.php`
   - `adm\menu_form_search.php`
   - `adm\newwinform.php`
-  - `adm\point_list.php`
   - `adm\poll_form.php`
   - `adm\qa_config.php`
 
@@ -78,10 +77,5 @@
 - Count: 3
 - Order:
   - `adm\sms_admin\config.php`
-  - `adm\sms_admin\form_write.php`
-  - `adm\sms_admin\num_book_write.php`
-
-## Notes
-- Runtime conversion applies in page render order after `jQuery(function($){ ... })` executes.
-- To exclude a specific form table from conversion, wrap it with `.no-auto-div-form`.
-- Total current targets: 64
+  - `adm\sms_admin\formmail.php`
+  - `adm\sms_admin\write_form.php`

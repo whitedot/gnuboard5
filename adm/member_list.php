@@ -10,9 +10,6 @@ $sql_search = " where (1) ";
 if ($stx) {
     $sql_search .= " and ( ";
     switch ($sfl) {
-        case 'mb_point':
-            $sql_search .= " ({$sfl} >= '{$stx}') ";
-            break;
         case 'mb_level':
             $sql_search .= " ({$sfl} = '{$stx}') ";
             break;
@@ -67,7 +64,7 @@ require_once './admin.head.php';
 $sql = " select * {$sql_common} {$sql_search} {$sql_order} limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 
-$colspan = 16;
+$colspan = 11;
 ?>
 
 <div>
@@ -88,7 +85,6 @@ $colspan = 16;
         <option value="mb_email" <?php echo get_selected($sfl, "mb_email"); ?>>E-MAIL</option>
         <option value="mb_tel" <?php echo get_selected($sfl, "mb_tel"); ?>>전화번호</option>
         <option value="mb_hp" <?php echo get_selected($sfl, "mb_hp"); ?>>휴대폰번호</option>
-        <option value="mb_point" <?php echo get_selected($sfl, "mb_point"); ?>>포인트</option>
         <option value="mb_datetime" <?php echo get_selected($sfl, "mb_datetime"); ?>>가입일시</option>
         <option value="mb_ip" <?php echo get_selected($sfl, "mb_ip"); ?>>IP</option>
         <option value="mb_recommend" <?php echo get_selected($sfl, "mb_recommend"); ?>>추천인</option>
@@ -142,7 +138,6 @@ $colspan = 16;
                     <th scope="col" id="mb_list_deny"><?php echo subject_sort_link('mb_level', '', 'desc') ?>권한</a></th>
                     <th scope="col" id="mb_list_tel">전화번호</th>
                     <th scope="col" id="mb_list_join"><?php echo subject_sort_link('mb_datetime', '', 'desc') ?>가입일</a></th>
-                    <th scope="col" id="mb_list_point"><?php echo subject_sort_link('mb_point', '', 'desc') ?> 포인트</a></th>
                 </tr>
             </thead>
             <tbody>
@@ -299,7 +294,6 @@ $colspan = 16;
                         </td>
                         <td headers="mb_list_tel"><?php echo get_text($row['mb_tel']); ?></td>
                         <td headers="mb_list_join"><?php echo substr($row['mb_datetime'], 2, 8); ?></td>
-                        <td headers="mb_list_point"><a href="point_list.php?sfl=mb_id&amp;stx=<?php echo $row['mb_id'] ?>"><?php echo number_format($row['mb_point']) ?></a></td>
 
                     </tr>
 

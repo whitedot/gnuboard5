@@ -89,58 +89,10 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_use_signature" class="form-label">서명 입력</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <label for="cf_use_signature" class="af-check form-label">
-                            <input type="checkbox" name="cf_use_signature" value="1" id="cf_use_signature" <?php echo $config['cf_use_signature'] ? 'checked' : ''; ?> class="form-checkbox">
-                            <span class="form-label">보이기</span>
-                        </label>
-                        <label for="cf_req_signature" class="af-check form-label">
-                            <input type="checkbox" name="cf_req_signature" value="1" id="cf_req_signature" <?php echo $config['cf_req_signature'] ? 'checked' : ''; ?> class="form-checkbox">
-                            <span class="form-label">필수입력</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_use_profile" class="form-label">자기소개 입력</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <label for="cf_use_profile" class="af-check form-label">
-                            <input type="checkbox" name="cf_use_profile" value="1" id="cf_use_profile" <?php echo $config['cf_use_profile'] ? 'checked' : ''; ?> class="form-checkbox">
-                            <span class="form-label">보이기</span>
-                        </label>
-                        <label for="cf_req_profile" class="af-check form-label">
-                            <input type="checkbox" name="cf_req_profile" value="1" id="cf_req_profile" <?php echo $config['cf_req_profile'] ? 'checked' : ''; ?> class="form-checkbox">
-                            <span class="form-label">필수입력</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
                     <label for="cf_register_level" class="form-label">회원가입시 권한</label>
                 </div>
                 <div class="af-field">
                     <?php echo get_member_level_select('cf_register_level', 1, 9, $config['cf_register_level']) ?>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_register_point" class="form-label">회원가입시 포인트</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <input type="text" name="cf_register_point" value="<?php echo (int) $config['cf_register_point'] ?>" id="cf_register_point" size="5" class="form-input">
-                        <span>점</span>
-                    </div>
                 </div>
             </div>
 
@@ -245,18 +197,6 @@
                         <input type="checkbox" name="cf_use_recommend" value="1" id="cf_use_recommend" <?php echo $config['cf_use_recommend'] ? 'checked' : ''; ?> class="form-checkbox">
                         <span class="form-label">사용</span>
                     </label>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_recommend_point" class="form-label">추천인 포인트</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <input type="text" name="cf_recommend_point" value="<?php echo (int) $config['cf_recommend_point'] ?>" id="cf_recommend_point" class="form-input">
-                        <span>점</span>
-                    </div>
                 </div>
             </div>
 

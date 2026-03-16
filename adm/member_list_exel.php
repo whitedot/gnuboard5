@@ -107,21 +107,6 @@ $colspan = 14;
                 </div>
             </div>
 
-            <!-- 포인트 적용 -->
-            <div>
-                
-                    <label><input type="checkbox" name="use_point" value="1" <?php echo isset($_GET['use_point']) ? 'checked' : ''; ?>> 포인트 적용</label>
-                
-                <div>
-                    <input type="number" name="point" value="<?php echo htmlspecialchars(isset($_GET['point']) ? $_GET['point'] : ''); ?>" placeholder="포인트 입력">
-                    <span>
-                        <label><input type="radio" name="point_cond" value="gte" <?php echo (isset($_GET['point_cond']) ? $_GET['point_cond'] : 'gte') === 'gte' ? 'checked' : ''; ?>> 이상</label>
-                        <label><input type="radio" name="point_cond" value="lte" <?php echo (isset($_GET['point_cond']) ? $_GET['point_cond'] : '') === 'lte' ? 'checked' : ''; ?>> 이하</label>
-                        <label><input type="radio" name="point_cond" value="eq" <?php echo (isset($_GET['point_cond']) ? $_GET['point_cond'] : '') === 'eq' ? 'checked' : ''; ?>> 일치</label>
-                    </span>
-                </div>
-            </div>
-
             <!-- 차단회원 조건 -->
             <div>
                 

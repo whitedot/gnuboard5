@@ -148,13 +148,13 @@ function member_export_get_config()
     $configs = [
         1 => [
             'title'   => ["회원관리파일(일반)"],
-            'headers' => ['아이디', '이름', '닉네임', '휴대폰번호', '전화번호', '이메일', '주소', '회원권한', '포인트', '가입일', '차단', 
+            'headers' => ['아이디', '이름', '닉네임', '휴대폰번호', '전화번호', '이메일', '주소', '회원권한', '가입일', '차단',
                             '광고성 이메일 수신동의', '광고성 이메일 동의일자', '광고성 SMS/카카오톡 수신동의', '광고성 SMS/카카오톡 동의일자', 
                             '마케팅목적의개인정보수집및이용동의', '마케팅목적의개인정보수집및이용동의일자', '개인정보제3자제공동의', '개인정보제3자제공동의일자'],
-            'fields'  => ['mb_id', 'mb_name', 'mb_nick', 'mb_hp', 'mb_tel', 'mb_email', 'mb_addr1', 'mb_level', 'mb_point', 'mb_datetime', 'mb_intercept_date',
+            'fields'  => ['mb_id', 'mb_name', 'mb_nick', 'mb_hp', 'mb_tel', 'mb_email', 'mb_addr1', 'mb_level', 'mb_datetime', 'mb_intercept_date',
                             'mb_mailling','mb_mailling_date', 'mb_sms','mb_sms_date', 'mb_marketing_agree', 
                             'mb_marketing_date', 'mb_thirdparty_agree', 'mb_thirdparty_date'],
-            'widths'  => [20, 20, 20, 20, 20, 30, 30, 10, 15, 25, 10, 20, 25, 20, 25, 20, 25, 20, 25],
+            'widths'  => [20, 20, 20, 20, 20, 30, 30, 10, 25, 10, 20, 25, 20, 25, 20, 25, 20, 25],
         ],
     ];
     
@@ -482,13 +482,6 @@ function member_export_write_log($params, $result = [])
     // 가입일 조건
     if ($params['use_date'] == 1 && ($params['date_start'] || $params['date_end'])) {
         $condition[] = "가입일: {$params['date_start']}~{$params['date_end']}";
-    }
-    
-    // 포인트 조건
-    if ($params['use_point'] == 1 && $params['point'] !== '') {
-        $point_cond_map = get_export_config('point_cond_map');
-        $symbol = isset($point_cond_map[$params['point_cond']]) ? $point_cond_map[$params['point_cond']] : '≥';
-        $condition[] = "포인트 {$symbol} {$params['point']}";
     }
     
     // 휴대폰 여부

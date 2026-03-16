@@ -64,15 +64,6 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <span class="form-label">포인트</span>
-                </div>
-                <div class="af-field">
-                    <a href="./point_list.php?sfl=mb_id&amp;stx=<?php echo $mb['mb_id'] ?>" target="_blank"><?php echo number_format($mb['mb_point']) ?></a> 점
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
                     <label for="mb_email" class="form-label">E-mail<strong>필수</strong></label>
                 </div>
                 <div class="af-field">

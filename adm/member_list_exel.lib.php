@@ -31,11 +31,6 @@ function get_export_config($type = null)
             'mb_hp'=>'휴대폰번호',
             'mb_addr1'=>'주소'
         ],
-        'point_cond_map' => [
-            'gte'=>'≥',
-            'lte'=>'≤',
-            'eq'=>'='
-        ],
         'intercept_list' => [
             'exclude'=>'차단회원 제외',
             'only'=>'차단회원만'
@@ -79,9 +74,6 @@ function get_member_export_params()
         'use_date'          => isset($_GET['use_date']) ? $_GET['use_date'] : 0,
         'date_start'        => clean_xss_tags(isset($_GET['date_start']) ? $_GET['date_start'] : ''),
         'date_end'          => clean_xss_tags(isset($_GET['date_end']) ? $_GET['date_end'] : ''),
-        'use_point'         => isset($_GET['use_point']) ? $_GET['use_point'] : 0,
-        'point'             => isset($_GET['point']) ? $_GET['point'] : '',
-        'point_cond'        => isset($_GET['point_cond']) ? $_GET['point_cond'] : 'gte',
         'use_hp_exist'      => isset($_GET['use_hp_exist']) ? $_GET['use_hp_exist'] : 0,
         'ad_range_only'     => isset($_GET['ad_range_only']) ? $_GET['ad_range_only'] : 0,
         'ad_range_type'     => clean_xss_tags(isset($_GET['ad_range_type']) ? $_GET['ad_range_type'] : 'all'),
@@ -180,28 +172,6 @@ function member_export_build_where($params)
             $conditions[] = "mb_datetime >= '{$date_start} 00:00:00'";
         } elseif ($date_end) {
             $conditions[] = "mb_datetime <= '{$date_end} 23:59:59'";
-        }
-    }
-    
-    // 포인트 조건
-    if (!empty($params['use_point']) && $params['use_point'] === '1') {
-        $point = $params['point'];
-        $point_cond = $params['point_cond'];
-    
-        if ($point != '') {
-            $point = (int)$point; // 정수로 캐스팅
-
-            switch ($point_cond) {
-                case 'lte':
-                    $conditions[] = "mb_point <= {$point}";
-                    break;
-                case 'eq':
-                    $conditions[] = "mb_point = {$point}";
-                    break;
-                default:
-                    $conditions[] = "mb_point >= {$point}";
-                    break;
-            }
         }
     }
     

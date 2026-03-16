@@ -265,25 +265,6 @@ function get_mail_content_db($ma_id, $is_cache=false){
     return $cache[$key];
 }
 
-function get_qacontent_db($qa_id, $is_cache=false){
-    global $g5;
-
-    static $cache = array();
-
-    $qa_id = (int) $qa_id;
-    $key = md5($qa_id);
-
-    if( $is_cache && isset($cache[$key]) ){
-        return $cache[$key];
-    }
-
-    $sql = " select * from {$g5['qa_content_table']} where qa_id = '{$qa_id}' ";
-
-    $cache[$key] = sql_fetch($sql);
-
-    return $cache[$key];
-}
-
 function get_thumbnail_find_cache($bo_table, $wr_id, $wr_key){
     global $g5;
 
@@ -463,38 +444,3 @@ function get_board_sfl_select_options($sfl){
     return run_replace('get_board_sfl_select_options', $str, $sfl);
 }
 
-function get_qa_sfl_select_options($sfl) {
-
-    global $is_admin;
-
-    $str = '';
-    $str .= '<option value="qa_subject" '.get_selected($sfl, 'qa_subject', true).'>제목</option>';
-    $str .= '<option value="qa_content" '.get_selected($sfl, 'qa_content').'>내용</option>';
-    $str .= '<option value="qa_name" '.get_selected($sfl, 'qa_name').'>글쓴이</option>';
-    if ($is_admin)
-        $str .= '<option value="mb_id" '.get_selected($sfl, 'mb_id').'>회원아이디</option>';
-
-    return run_replace('get_qa_sfl_select_options', $str, $sfl);
-}
-
-// 읽지 않은 메모 갯수 반환
-function get_memo_not_read($mb_id, $add_where='')
-{
-    global $g5;
-
-    $sql = " SELECT count(*) as cnt FROM {$g5['memo_table']} WHERE me_recv_mb_id = '$mb_id' and me_type= 'recv' and me_read_datetime like '0%' $add_where ";
-    $row = sql_fetch($sql, false);
-
-    return isset($row['cnt']) ? $row['cnt'] : 0;
-}
-
-function get_scrap_totals($mb_id=''){
-    global $g5;
-
-    $add_where = $mb_id ? " and mb_id = '$mb_id' " : '';
-
-    $sql = " select count(*) as cnt from {$g5['scrap_table']} where 1=1 $add_where";
-    $row = sql_fetch($sql, false);
-
-    return isset($row['cnt']) ? $row['cnt'] : 0;
-}

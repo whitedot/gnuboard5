@@ -77,14 +77,6 @@ generate_mb_key($mb);
 // 회원의 토큰키를 세션에 저장한다. /common.php 에서 해당 회원의 토큰값을 검사한다.
 if(function_exists('update_auth_session_token')) update_auth_session_token($mb['mb_datetime']);
 
-// 포인트 체크
-if($config['cf_use_point']) {
-    $sum_point = get_point_sum($mb['mb_id']);
-
-    $sql= " update {$g5['member_table']} set mb_point = '$sum_point' where mb_id = '{$mb['mb_id']}' ";
-    sql_query($sql);
-}
-
 // 3.26
 // 아이디 쿠키에 한달간 저장
 if (isset($auto_login) && $auto_login) {

@@ -86,7 +86,7 @@ class str_encrypt
         global $config;
 
         if (!$salt) {
-            $config_hash = md5(serialize(array($config['cf_title'], $config['cf_theme'], $config['cf_admin_email_name'], $config['cf_login_point'], $config['cf_memo_send_point'])));
+            $config_hash = md5(serialize(array($config['cf_title'], $config['cf_theme'], $config['cf_admin_email_name'])));
 
             $this->salt = hash('sha256', preg_replace('/[^0-9A-Za-z]/', substr($config_hash, -1), $_SERVER['SERVER_SOFTWARE'].$config_hash.$_SERVER['DOCUMENT_ROOT']));
         } else {

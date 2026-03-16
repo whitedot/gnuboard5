@@ -279,19 +279,6 @@ function googl_short_url($longUrl)
     return function_exists('run_replace') ? run_replace('googl_short_url', $longUrl) : $longUrl;
 }
 
-// 임시 저장된 글 수
-function autosave_count($mb_id)
-{
-    global $g5;
-
-    if ($mb_id) {
-        $row = sql_fetch(" select count(*) as cnt from {$g5['autosave_table']} where mb_id = '$mb_id' ");
-        return (int)$row['cnt'];
-    } else {
-        return 0;
-    }
-}
-
 // 본인확인내역 기록
 function insert_cert_history($mb_id, $company, $method)
 {
@@ -381,23 +368,6 @@ function certify_count_check($mb_id, $type)
 
     if((int)$row['cnt'] >= (int)$config['cf_cert_limit'])
         alert_close('오늘 '.$cert.' 본인확인을 '.$row['cnt'].'회 이용하셔서 더 이상 이용할 수 없습니다.');
-}
-
-// 1:1문의 설정로드
-function get_qa_config($fld='*', $is_cache=false)
-{
-    global $g5;
-
-    static $cache = array();
-
-    if( $is_cache && !empty($cache) ){
-        return $cache;
-    }
-
-    $sql = " select * from {$g5['qa_config_table']} ";
-    $cache = run_replace('get_qa_config', sql_fetch($sql));
-
-    return $cache;
 }
 
 // get_sock 함수 대체
@@ -616,12 +586,6 @@ function member_delete($mb_id)
     // 이미 삭제된 회원은 제외
     if(preg_match('#^[0-9]{8}.*삭제함#', $mb['mb_memo']))
         return;
-
-    if ($mb['mb_recommend']) {
-        $row = sql_fetch(" select count(*) as cnt from {$g5['member_table']} where mb_id = '".addslashes($mb['mb_recommend'])."' ");
-        if ($row['cnt'])
-            insert_point($mb['mb_recommend'], $config['cf_recommend_point'] * (-1), $mb_id.'님의 회원자료 삭제로 인한 추천인 포인트 반환', "@member", $mb['mb_recommend'], $mb_id.' 추천인 삭제');
-    }
 
     // 회원자료는 정보만 없앤 후 아이디는 보관하여 다른 사람이 사용하지 못하도록 함 : 061025
     $sql = " update {$g5['member_table']} set mb_password = '', mb_level = 1, mb_email = '', mb_homepage = '', mb_tel = '', mb_hp = '', mb_zip1 = '', mb_zip2 = '', mb_addr1 = '', mb_addr2 = '', mb_addr3 = '', mb_point = 0, mb_profile = '', mb_birth = '', mb_sex = '', mb_signature = '', mb_memo = '".date('Ymd', G5_SERVER_TIME)." 삭제함\n".sql_real_escape_string($mb['mb_memo'])."', mb_certify = '', mb_adult = 0, mb_dupinfo = '' where mb_id = '{$mb_id}' ";

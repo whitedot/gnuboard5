@@ -11,10 +11,6 @@ function outlogin($skin_dir='basic')
     if (array_key_exists('mb_nick', $member)) {
         $nick  = get_text(cut_str($member['mb_nick'], $config['cf_cut_name']));
     }
-    if (array_key_exists('mb_point', $member)) {
-        $point = number_format($member['mb_point']);
-    }
-
     // 반응형: theme/skin/outlogin/ 경로 사용
     if(preg_match('#^theme/(.+)$#', $skin_dir, $match)) {
         $outlogin_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/outlogin/'.$match[1];
@@ -26,15 +22,7 @@ function outlogin($skin_dir='basic')
         $outlogin_skin_url = str_replace(G5_PATH, G5_URL, $outlogin_skin_path);
     }
 
-    // 읽지 않은 쪽지가 있다면
     if ($is_member) {
-        if( isset($member['mb_memo_cnt']) ){
-            $memo_not_read = $member['mb_memo_cnt'];
-        } else {
-            $memo_not_read = get_memo_not_read($member['mb_id']);
-        }
-        
-        $mb_scrap_cnt = isset($member['mb_scrap_cnt']) ? (int) $member['mb_scrap_cnt'] : '';
         $sql = " select count(*) as cnt from {$g5['auth_table']} where mb_id = '{$member['mb_id']}' ";
         $row = sql_fetch($sql);
         if ($row['cnt'])

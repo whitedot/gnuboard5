@@ -176,14 +176,14 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	    <div>
 	        <h2>기타 개인설정</h2>
 	        <ul>
-	            <?php if ($config['cf_use_signature']) {  ?>
+	            <?php if ((!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) && $config['cf_use_signature']) {  ?>
 	            <li>
 	                <label for="reg_mb_signature">서명<?php if ($config['cf_req_signature']){ ?> (필수)<?php } ?></label>
 	                <textarea name="mb_signature" id="reg_mb_signature" <?php echo $config['cf_req_signature']?"required":""; ?> class="<?php echo $config['cf_req_signature']?"required":""; ?>"   placeholder="서명"><?php echo $member['mb_signature'] ?></textarea>
 	            </li>
 	            <?php }  ?>
 	
-	            <?php if ($config['cf_use_profile']) {  ?>
+	            <?php if ((!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) && $config['cf_use_profile']) {  ?>
 	            <li>
 	                <label for="reg_mb_profile">자기소개</label>
 	                <textarea name="mb_profile" id="reg_mb_profile" <?php echo $config['cf_req_profile']?"required":""; ?> class="<?php echo $config['cf_req_profile']?"required":""; ?>" placeholder="자기소개"><?php echo $member['mb_profile'] ?></textarea>

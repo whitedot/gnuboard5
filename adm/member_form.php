@@ -12,7 +12,6 @@ $mb = array(
     'mb_id' => null,
     'mb_name' => null,
     'mb_nick' => null,
-    'mb_point' => null,
     'mb_email' => null,
     'mb_homepage' => null,
     'mb_hp' => null,
@@ -154,7 +153,7 @@ $member_tabs = array(
     array('id' => 'anc_mb_contact', 'label' => '연락처 및 주소'),
     array('id' => 'anc_mb_media', 'label' => '아이콘 및 이미지'),
     array('id' => 'anc_mb_consent', 'label' => '수신 및 공개 설정'),
-    array('id' => 'anc_mb_profile', 'label' => '프로필 및 메모'),
+    array('id' => 'anc_mb_profile', 'label' => '관리 메모'),
     array('id' => 'anc_mb_history', 'label' => '인증 및 활동 내역'),
 );
 

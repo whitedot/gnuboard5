@@ -47,44 +47,6 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_use_point" class="form-label">포인트 사용</label>
-                </div>
-                <div class="af-field">
-                    <label for="cf_use_point" class="af-check form-label">
-                        <input type="checkbox" name="cf_use_point" value="1" id="cf_use_point" <?php echo $config['cf_use_point'] ? 'checked' : ''; ?> class="form-checkbox">
-                        <span class="form-label">사용</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_login_point" class="form-label">로그인시 포인트<strong>필수</strong></label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('회원이 로그인시 하루에 한번만 적립') ?>
-                    <div class="af-inline">
-                        <input type="text" name="cf_login_point" value="<?php echo (int) $config['cf_login_point'] ?>" id="cf_login_point" required size="5" class="form-input">
-                        <span>점</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_memo_send_point" class="form-label">쪽지보낼시 차감 포인트<strong>필수</strong></label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('양수로 입력하십시오. 0점은 쪽지 보낼시 포인트를 차감하지 않습니다.') ?>
-                    <div class="af-inline">
-                        <input type="text" name="cf_memo_send_point" value="<?php echo (int) $config['cf_memo_send_point']; ?>" id="cf_memo_send_point" required size="5" class="form-input">
-                        <span>점</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
                     <label for="cf_cut_name" class="form-label">이름(닉네임) 표시</label>
                 </div>
                 <div class="af-field">
@@ -135,19 +97,6 @@
                 </div>
             </div>
             <?php } ?>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_memo_del" class="form-label">쪽지 삭제</label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('설정일이 지난 쪽지 자동 삭제') ?>
-                    <div class="af-inline">
-                        <input type="text" name="cf_memo_del" value="<?php echo (int) $config['cf_memo_del'] ?>" id="cf_memo_del" size="5" class="form-input">
-                        <span>일</span>
-                    </div>
-                </div>
-            </div>
 
             <?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
             <div class="af-row">
@@ -354,19 +303,6 @@
                 </div>
             </div>
             <?php } ?>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_point_term" class="form-label">포인트 유효기간</label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('기간을 0으로 설정시 포인트 유효기간이 적용되지 않습니다.') ?>
-                    <div class="af-inline">
-                        <input type="text" name="cf_point_term" value="<?php echo (int) $config['cf_point_term']; ?>" id="cf_point_term" required size="5" class="form-input">
-                        <span>일</span>
-                    </div>
-                </div>
-            </div>
 
             <div class="af-row">
                 <div class="af-label">

@@ -64,6 +64,11 @@ $mb_addr2       = clean_xss_tags($mb_addr2, 1, 1);
 $mb_addr3       = clean_xss_tags($mb_addr3, 1, 1);
 $mb_addr_jibeon = preg_match("/^(N|R)$/", $mb_addr_jibeon) ? $mb_addr_jibeon : '';
 
+if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
+    $mb_signature = '';
+    $mb_profile = '';
+}
+
 $mb_marketing_agree     = isset($_POST['mb_marketing_agree'])   ? trim($_POST['mb_marketing_agree'])    : "0";
 $mb_thirdparty_agree    = isset($_POST['mb_thirdparty_agree'])  ? trim($_POST['mb_thirdparty_agree'])   : "0";
 
@@ -273,13 +278,6 @@ if ($w == '') {
     }
 
     sql_query($sql);
-
-    // 회원가입 포인트 부여
-    insert_point($mb_id, $config['cf_register_point'], '회원가입 축하', '@member', $mb_id, '회원가입');
-
-    // 추천인에게 포인트 부여
-    if ($config['cf_use_recommend'] && $mb_recommend)
-        insert_point($mb_recommend, $config['cf_recommend_point'], $mb_id.'의 추천인', '@member', $mb_recommend, $mb_id.' 추천');
 
     // 회원님께 메일 발송
     if ($config['cf_email_mb_member']) {

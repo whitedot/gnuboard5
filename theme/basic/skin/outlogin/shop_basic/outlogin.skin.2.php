@@ -17,8 +17,6 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
     <h2>회원정보</h2>
     <ul id="ol_after_private">
     	<li><a href="<?php echo G5_MEMBER_URL ?>/member_confirm.php?url=register_form.php" >정보수정</a></li>
-        <li><a href="<?php echo G5_BBS_URL ?>/point.php" target="_blank" class="win_point">포인트<strong><?php echo $point ?></strong></a></li>
-        <li><a href="<?php echo G5_BBS_URL ?>/memo.php" target="_blank" class="win_memo"><span>안 읽은</span>쪽지<strong><?php echo $memo_not_read ?></strong></a></li>
         <li>
         	<?php if ($is_admin == 'super' || $is_auth) {  ?>
         	<a href="<?php echo G5_ADMIN_URL ?>">관리자</a>

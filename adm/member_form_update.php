@@ -68,13 +68,11 @@ $check_keys = array(
     'mb_addr2',
     'mb_addr3',
     'mb_addr_jibeon',
-    'mb_signature',
     'mb_leave_date',
     'mb_intercept_date',
     'mb_mailling',
     'mb_sms',
     'mb_open',
-    'mb_profile',
     'mb_level'
 );
 
@@ -83,11 +81,7 @@ for ($i = 1; $i <= 10; $i++) {
 }
 
 foreach ($check_keys as $key) {
-    if( in_array($key, array('mb_signature', 'mb_profile')) ){
-        $posts[$key] = isset($_POST[$key]) ? clean_xss_tags($_POST[$key], 1, 1, 0, 0) : '';
-    } else {
-        $posts[$key] = isset($_POST[$key]) ? clean_xss_tags($_POST[$key], 1, 1) : '';
-    }
+    $posts[$key] = isset($_POST[$key]) ? clean_xss_tags($_POST[$key], 1, 1) : '';
 }
 
 $sql_common = "  mb_name = '{$posts['mb_name']}',
@@ -104,7 +98,6 @@ $sql_common = "  mb_name = '{$posts['mb_name']}',
                  mb_addr2 = '{$posts['mb_addr2']}',
                  mb_addr3 = '{$posts['mb_addr3']}',
                  mb_addr_jibeon = '{$posts['mb_addr_jibeon']}',
-                 mb_signature = '{$posts['mb_signature']}',
                  mb_leave_date = '{$posts['mb_leave_date']}',
                  mb_intercept_date='{$posts['mb_intercept_date']}',
                  mb_memo = '{$mb_memo}',
@@ -112,7 +105,6 @@ $sql_common = "  mb_name = '{$posts['mb_name']}',
                  mb_sms = '{$posts['mb_sms']}',
                  mb_open = '{$posts['mb_open']}',
                  mb_open_date = '".G5_TIME_YMDHIS."',
-                 mb_profile = '{$posts['mb_profile']}',
                  mb_level = '{$posts['mb_level']}',
                  mb_marketing_agree = '{$mb_marketing_agree}',
                  mb_thirdparty_agree = '{$mb_thirdparty_agree}' ";
