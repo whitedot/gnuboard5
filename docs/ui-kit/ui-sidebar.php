@@ -807,19 +807,11 @@
                                                     </ul>
                                                 </li>
                                                 <li class="admin-nav-sub-item"><a href="#">권한설정</a></li>
-                                                <li class="admin-nav-sub-item"><a href="#">테마설정</a></li>
-                                                <li class="admin-nav-sub-item"><a href="#">메뉴설정</a></li>
                                                 <li class="admin-nav-sub-item"><a href="#">메일 테스트</a></li>
-                                                <li class="admin-nav-sub-item"><a href="#">팝업레이어관리</a></li>
                                                 <li class="admin-nav-sub-item"><a href="#">세션파일 일괄삭제</a></li>
-                                                <li class="admin-nav-sub-item"><a href="#">캐시파일 일괄삭제</a></li>
                                                 <li class="admin-nav-sub-item"><a href="#">캡챠파일 일괄삭제</a></li>
-                                                <li class="admin-nav-sub-item"><a href="#">썸네일파일 일괄삭제</a></li>
                                                 <li class="admin-nav-sub-item"><a href="#">회원관리파일 일괄삭제</a></li>
                                                 <li class="admin-nav-sub-item"><a href="#">phpinfo()</a></li>
-                                                <li class="admin-nav-sub-item"><a href="#">Browscap 업데이트</a></li>
-                                                <li class="admin-nav-sub-item"><a href="#">접속로그 변환</a></li>
-                                                <li class="admin-nav-sub-item"><a href="#">DB업그레이드</a></li>
                                                 <li class="admin-nav-sub-item"><a href="#">부가서비스</a></li>
                                             </ul>
                                         </div>
@@ -842,7 +834,7 @@
                                             <ul class="admin-nav-sub-list">
                                                 <li class="admin-nav-sub-item"><a href="#">회원관리</a></li>
                                                 <li class="admin-nav-sub-item"><a href="#">회원메일발송</a></li>
-                                                <li class="admin-nav-sub-item"><a href="#">접속자집계</a></li>
+                                                <li class="admin-nav-sub-item"><a href="#">회원관리파일</a></li>
                                             </ul>
                                         </div>
                                     </li>
@@ -856,14 +848,16 @@
                                                     <path d="M7 12h10"></path>
                                                     <path d="M7 16h10"></path>
                                                 </svg>
-                                                <span class="admin-nav-trigger-label">콘텐츠관리</span>
+                                                <span class="admin-nav-trigger-label">SMS 관리</span>
                                             </span>
                                             <span class="admin-nav-caret" aria-hidden="true">⌄</span>
                                         </button>
                                         <div class="admin-nav-panel hidden">
                                             <ul class="admin-nav-sub-list">
-                                                <li class="admin-nav-sub-item"><a href="#">콘텐츠관리</a></li>
-                                                <li class="admin-nav-sub-item"><a href="#">새창 관리</a></li>
+                                                <li class="admin-nav-sub-item"><a href="#">SMS 기본설정</a></li>
+                                                <li class="admin-nav-sub-item"><a href="#">회원정보업데이트</a></li>
+                                                <li class="admin-nav-sub-item"><a href="#">문자 보내기</a></li>
+                                                <li class="admin-nav-sub-item"><a href="#">전송내역-건별</a></li>
                                             </ul>
                                         </div>
                                     </li>

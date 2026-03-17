@@ -152,7 +152,7 @@ function get_theme_info($dir)
 }
 
 
-// 테마설정 정보
+// 테마 구성 정보
 function get_theme_config_value($dir, $key = '*')
 {
     $tconfig = array();

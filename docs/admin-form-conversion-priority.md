@@ -26,9 +26,6 @@ Member-only 전환 이후 이 문서는 현재 운영 중인 관리자 화면만
 - `adm\member_form_parts\history.php`
 - `adm\member_form_parts\media.php`
 - `adm\member_form_parts\profile.php`
-- `adm\menu_form_search.php`
-- `adm\newwinform.php`
-
 ## Priority 2 (SMS Admin)
 - `adm\sms_admin\config.php`
 - `adm\sms_admin\formmail.php`
