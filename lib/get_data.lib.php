@@ -233,56 +233,10 @@ function get_bo_table_banned_word(){
 }
 
 function get_board_sort_fields($board=array(), $make_key_return=''){
-    $bo_sort_fields = run_replace('get_board_sort_fields', array(
-        array('wr_num, wr_reply', '기본'),
-        array('wr_datetime asc', '날짜 이전것 부터'),
-        array('wr_datetime desc', '날짜 최근것 부터'),
-        array('wr_hit asc, wr_num, wr_reply', '조회수 낮은것 부터'),
-        array('wr_hit desc, wr_num, wr_reply', '조회수 높은것 부터'),
-        array('wr_last asc', '최근글 이전것 부터'),
-        array('wr_last desc', '최근글 최근것 부터'),
-        array('wr_comment asc, wr_num, wr_reply', '댓글수 낮은것 부터'),
-        array('wr_comment desc, wr_num, wr_reply', '댓글수 높은것 부터'),
-        array('wr_good asc, wr_num, wr_reply', '추천수 낮은것 부터'),
-        array('wr_good desc, wr_num, wr_reply', '추천수 높은것 부터'),
-        array('wr_nogood asc, wr_num, wr_reply', '비추천수 낮은것 부터'),
-        array('wr_nogood desc, wr_num, wr_reply', '비추천수 높은것 부터'),
-        array('wr_subject asc, wr_num, wr_reply', '제목 오름차순'),
-        array('wr_subject desc, wr_num, wr_reply', '제목 내림차순'),
-        array('wr_name asc, wr_num, wr_reply', '글쓴이 오름차순'),
-        array('wr_name desc, wr_num, wr_reply', '글쓴이 내림차순'),
-        array('ca_name asc, wr_num, wr_reply', '분류명 오름차순'),
-        array('ca_name desc, wr_num, wr_reply', '분류명 내림차순'),
-    ), $board, $make_key_return);
-
-    if( $make_key_return ){
-        
-        $returns = array();
-        foreach( $bo_sort_fields as $v ){
-            $key = preg_replace("/[\<\>\'\"\\\'\\\"\%\=\(\)\/\^\*\s]/", "", $v[0]);
-            $returns[$key] = $v[0];
-        }
-        
-        return $returns;
-    }
-    return $bo_sort_fields;
+    return array();
 }
 
 function get_board_sfl_select_options($sfl){
-
-    global $is_admin;
-
-    $str = '';
-    $str .= '<option value="wr_subject" '.get_selected($sfl, 'wr_subject', true).'>제목</option>';
-    $str .= '<option value="wr_content" '.get_selected($sfl, 'wr_content').'>내용</option>';
-    $str .= '<option value="wr_subject||wr_content" '.get_selected($sfl, 'wr_subject||wr_content').'>제목+내용</option>';
-    if ( $is_admin ){
-        $str .= '<option value="mb_id,1" '.get_selected($sfl, 'mb_id,1').'>회원아이디</option>';
-        $str .= '<option value="mb_id,0" '.get_selected($sfl, 'mb_id,0').'>회원아이디(코)</option>';
-    }
-    $str .= '<option value="wr_name,1" '.get_selected($sfl, 'wr_name,1').'>글쓴이</option>';
-    $str .= '<option value="wr_name,0" '.get_selected($sfl, 'wr_name,0').'>글쓴이(코)</option>';
-
-    return run_replace('get_board_sfl_select_options', $str, $sfl);
+    return run_replace('get_board_sfl_select_options', '', $sfl);
 }
 

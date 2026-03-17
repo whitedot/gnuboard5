@@ -246,22 +246,15 @@ function subject_sort_link($col, $query_string='', $flag='asc')
 // 관리자 정보를 얻음
 function get_admin($admin='super', $fields='*')
 {
-    global $config, $group, $board;
+    global $config, $group;
     global $g5;
 
     $is = false;
-    if ($admin == 'board') {
-        $mb = sql_fetch("select {$fields} from {$g5['member_table']} where mb_id in ('{$board['bo_admin']}') limit 1 ");
-        $is = true;
-    }
-
-    // if (($is && !$mb['mb_id']) || $admin == 'group') {
-    if (($is && !isset($mb['mb_id'])) || $admin == 'group') {
+    if ($admin == 'group') {
         $mb = sql_fetch("select {$fields} from {$g5['member_table']} where mb_id in ('{$group['gr_admin']}') limit 1 ");
         $is = true;
     }
 
-    // if (($is && !$mb['mb_id']) || $admin == 'super') {
     if (($is && !isset($mb['mb_id'])) || $admin == 'super') {
         $mb = sql_fetch("select {$fields} from {$g5['member_table']} where mb_id in ('{$config['cf_admin']}') limit 1 ");
     }
@@ -272,7 +265,7 @@ function get_admin($admin='super', $fields='*')
 // 관리자인가?
 function is_admin($mb_id)
 {
-    global $config, $group, $board;
+    global $config, $group;
 
     if (!$mb_id) return '';
 
@@ -282,8 +275,6 @@ function is_admin($mb_id)
         $is_authority = 'super';
     } else if (isset($group['gr_admin']) && ($group['gr_admin'] == $mb_id)){
         $is_authority = 'group';
-    } else if (isset($board['bo_admin']) && ($board['bo_admin'] == $mb_id)){
-        $is_authority = 'board';
     }
 
     return run_replace('is_admin', $is_authority, $mb_id);
