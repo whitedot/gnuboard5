@@ -68,7 +68,7 @@ function page_insertafter($paging_html, $insert_html)
 // 경고메세지를 경고창으로
 function alert($msg='', $url='', $error=true, $post=false)
 {
-    global $g5, $config, $member, $is_member, $is_admin, $board;
+    global $g5, $config, $member, $is_member, $is_admin;
 
     run_event('alert', $msg, $url, $error, $post);
 
@@ -89,7 +89,7 @@ function alert($msg='', $url='', $error=true, $post=false)
 // 경고메세지 출력후 창을 닫음
 function alert_close($msg, $error=true)
 {
-    global $g5, $config, $member, $is_member, $is_admin, $board;
+    global $g5, $config, $member, $is_member, $is_admin;
     
     run_event('alert_close', $msg, $error);
 
@@ -106,7 +106,7 @@ function alert_close($msg, $error=true)
 // confirm 창
 function confirm($msg, $url1='', $url2='', $url3='')
 {
-    global $g5, $config, $member, $is_member, $is_admin, $board;
+    global $g5, $config, $member, $is_member, $is_admin;
 
     if (!$msg) {
         $msg = '올바른 방법으로 이용해 주십시오.';
@@ -251,7 +251,7 @@ function time_select($time, $name="")
 }
 
 // 회원 레이어
-function get_sideview($mb_id, $name, $email='', $homepage='', $bo_table='')
+function get_sideview($mb_id, $name, $email='', $homepage='')
 {
     global $g5;
 
@@ -578,12 +578,6 @@ class html_process {
 }
 
 function get_head_title($title){
-    global $g5;
-
-    if( isset($g5['board_title']) && $g5['board_title'] ){
-        $title = strip_tags($g5['board_title']);
-    }
-
     return $title;
 }
 

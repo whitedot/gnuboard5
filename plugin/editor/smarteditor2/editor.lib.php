@@ -3,20 +3,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 function editor_html($id, $content, $is_dhtml_editor=true)
 {
-    global $g5, $config, $w, $board, $write;
+    global $g5, $config;
     static $js = true;
-
-    if( 
-        $is_dhtml_editor && $content && 
-        (
-        (!$w && (isset($board['bo_insert_content']) && !empty($board['bo_insert_content'])))
-        || ($w == 'u' && isset($write['wr_option']) && strpos($write['wr_option'], 'html') === false )
-        )
-    ){       //글쓰기 기본 내용 처리
-        if( preg_match('/\r|\n/', $content) && $content === strip_tags($content, '<a><strong><b>') ) {  //textarea로 작성되고, html 내용이 없다면
-            $content = nl2br($content);
-        }
-    }
 
     $editor_url = G5_EDITOR_URL.'/'.$config['cf_editor'];
 

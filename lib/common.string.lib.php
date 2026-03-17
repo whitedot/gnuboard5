@@ -36,7 +36,7 @@ function conv_subject($subject, $len, $suffix='')
 // 내용을 변환
 function conv_content($content, $html, $filter=true)
 {
-    global $config, $board;
+    global $config;
 
     if ($html)
     {
@@ -499,11 +499,6 @@ function clean_query_string($query, $amp=true)
                     break;
                 case 'w':
                     $val = substr($val, 0, 2);
-                    $q[$key] = $val;
-                    break;
-                case 'bo_table':
-                    $val = preg_replace('/[^a-z0-9_]/i', '', $val);
-                    $val = substr($val, 0, 20);
                     $q[$key] = $val;
                     break;
                 case 'gr_id':

@@ -1264,34 +1264,9 @@
                 });
             }
             if ($.support.fileInput) {
-                /*
                 this._on(this.options.fileInput, {
                     change: this._onChange
                 });
-                */
-                //var othis = this;
-                if( $.support.xhrFileUpload ) {
-                    this._on(this.options.fileInput, {
-                        change: this._onChange
-                    });
-                } else {    //drag and drop을 지원 하지 않는 브라우저에는 swfupload를 사용
-                    var $swf_target = $(this.options.container_el);
-                    $swf_target.swfupload({
-                        //upload_url: "upload.php",
-                        upload_url: this.options.url,
-                        file_post_name : "files",
-                        file_size_limit : "10 MB",
-                        file_upload_limit: 0,
-                        file_queue_limit : this.options.limit_filesLength,
-                        file_types : "*.jpeg; *.bmp; *.png; *.jpg; *.gif; *.webp",
-                        file_types_description : "Image Files (JPG, JPEG, PNG, BMP, GIF, WEBP)",
-                        flash_url : "./swfupload/swfupload.swf",
-                        button_placeholder : this.options.fileInput[0],
-                        button_width : "100%",
-                        button_height : "100%",
-                        button_window_mode : "transparent"
-                    });
-                }
             }
         },
 

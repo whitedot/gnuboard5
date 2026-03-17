@@ -135,8 +135,6 @@ $_REQUEST = array_map_deep(G5_ESCAPE_FUNCTION,  $_REQUEST);
 
 $config = array();
 $member = array('mb_id'=>'', 'mb_level'=> 1, 'mb_name'=> '', 'mb_point'=> 0, 'mb_certify'=>'', 'mb_email'=>'', 'mb_open'=>'', 'mb_homepage'=>'', 'mb_tel'=>'', 'mb_hp'=>'', 'mb_zip1'=>'', 'mb_zip2'=>'', 'mb_addr1'=>'', 'mb_addr2'=>'', 'mb_addr3'=>'', 'mb_addr_jibeon'=>'', 'mb_signature'=>'', 'mb_profile'=>'');
-$board  = array('bo_table'=>'', 'bo_skin'=>'', 'bo_mobile_skin'=>'', 'bo_upload_count' => 0, 'bo_use_dhtml_editor'=>'', 'bo_subject'=>'', 'bo_image_width'=>0);
-$group  = array('gr_device'=>'', 'gr_subject'=>'');
 $g5     = array();
 if( version_compare( phpversion(), '8.0.0', '>=' ) ) { $g5 = array('title'=>''); }
 $qaconfig = array();
@@ -472,20 +470,6 @@ if (isset($_REQUEST['w'])) {
     $w = '';
 }
 
-/** @var int $wr_id 게시판 글의 ID */
-if (isset($_REQUEST['wr_id'])) {
-    $wr_id = (int)$_REQUEST['wr_id'];
-} else {
-    $wr_id = 0;
-}
-
-if (isset($_REQUEST['bo_table']) && ! is_array($_REQUEST['bo_table'])) {
-    $bo_table = preg_replace('/[^a-z0-9_]/i', '', trim($_REQUEST['bo_table']));
-    $bo_table = substr($bo_table, 0, 20);
-} else {
-    $bo_table = '';
-}
-
 // URL ENCODING
 if (isset($_REQUEST['url'])) {
     $url = preg_replace('|[^a-z0-9-~+_.?#=!&;,/:%@$\|*\'()\[\]\\x80-\\xff]|i', '', trim($_REQUEST['url']));
@@ -605,24 +589,8 @@ if (!(isset($member['mb_id']) && $config['cf_admin'] === $member['mb_id'])) {
     }
 }
 
-/** @var array $board 레거시 데이터 */
-$board = array(
-    'bo_table' => '',
-    'bo_skin' => '',
-    'bo_subject_len' => 0,
-    'bo_use_list_content' => 0,
-    'bo_select_editor' => '',
-    'bo_image_width' => 0,
-);
-/** @var array $write 글 데이터 */
+/** @var array $write 에디터/필터용 데이터 */
 $write = array();
-/** @var string $write_table 레거시 테이블 이름 */
-$write_table = '';
-if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
-    $bo_table = '';
-    $wr_id = 0;
-    $wr_seo_title = '';
-}
 
 if ($config['cf_editor']) {
     define('G5_EDITOR_LIB', G5_EDITOR_PATH."/{$config['cf_editor']}/editor.lib.php");
@@ -744,14 +712,8 @@ if (G5_IS_MOBILE) {
 //==============================================================================
 // 스킨경로
 //------------------------------------------------------------------------------
-    $board_skin_path    = '';
-    $board_skin_url     = '';
     $member_skin_path   = get_skin_path('member', $config['cf_member_skin']);
     $member_skin_url    = get_skin_url('member', $config['cf_member_skin']);
-    $new_skin_path      = '';
-    $new_skin_url       = '';
-    $search_skin_path   = '';
-    $search_skin_url    = '';
     $connect_skin_path  = '';
     $connect_skin_url   = '';
 //==============================================================================

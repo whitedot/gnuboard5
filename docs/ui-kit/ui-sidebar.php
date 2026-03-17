@@ -856,13 +856,13 @@
                                                     <path d="M7 12h10"></path>
                                                     <path d="M7 16h10"></path>
                                                 </svg>
-                                                <span class="admin-nav-trigger-label">게시판관리</span>
+                                                <span class="admin-nav-trigger-label">콘텐츠관리</span>
                                             </span>
                                             <span class="admin-nav-caret" aria-hidden="true">⌄</span>
                                         </button>
                                         <div class="admin-nav-panel hidden">
                                             <ul class="admin-nav-sub-list">
-                                                <li class="admin-nav-sub-item"><a href="#">게시판관리</a></li>
+                                                <li class="admin-nav-sub-item"><a href="#">콘텐츠관리</a></li>
                                                 <li class="admin-nav-sub-item"><a href="#">인기검색어</a></li>
                                                 <li class="admin-nav-sub-item"><a href="#">1:1문의설정</a></li>
                                             </ul>

@@ -1,11 +1,3 @@
-jQuery.fn.bindAll = function (options) {
-    var $this = this;
-    jQuery.each(options, function (key, val) {
-        $this.bind(key, val);
-    });
-    return this;
-}
-
 jQuery(function ($) {
     'use strict';
 
@@ -98,7 +90,7 @@ jQuery(function ($) {
                     $img = "<img src='./img/loading.gif' class='pre_thumb' />",
                     size_text = '';
 
-                if (preload && preload != 'swfupload') {
+                if (preload) {
                     var ret = othis.get_ratio(file.width, file.height),
                         size_text = file.width + " x " + file.height;
                     $img = "<img src='" + file.url + "' width='" + ret['width'] + "' height='" + ret['height'] + "' class='pre_thumb' />";
@@ -248,64 +240,6 @@ jQuery(function ($) {
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
     gnu.init();
-
-    var listeners = {
-        data: {},
-        log: false,
-        swfuploadLoaded: function (event) {
-            if (this.log) $('.log', this).append('<li>Loaded</li>');
-        },
-        fileQueued: function (event, file) {
-            if (this.log) $('.log', this).append('<li>File queued - ' + file.name + '</li>');
-            // start the upload once it is queued
-            // but only if this queue is not disabled
-            if (!$('input[name=disabled]:checked', this).length) {
-                $(this).swfupload('startUpload');
-            }
-        },
-        fileQueueError: function (event, file, errorCode, message) {
-            switch (errorCode) {
-                case -100:
-                    alert("파일을 " + message + "개 이하로 선택해주세요.");
-                    break;
-            }
-            if (this.log) $('.log', this).append('<li>File queue error - ' + message + '</li>');
-        },
-        fileDialogStart: function (event) {
-            if (this.log) $('.log', this).append('<li>File dialog start</li>');
-        },
-        fileDialogComplete: function (event, numFilesSelected, numFilesQueued) {
-            if (this.log) $('.log', this).append('<li>File dialog complete</li>');
-        },
-        uploadStart: function (event, file) {
-            listeners.data.files = $.makeArray(file);
-            gnu._add(event, listeners.data, 'swfupload');
-            if (this.log) $('.log', this).append('<li>Upload start - ' + file.name + '</li>');
-        },
-        uploadProgress: function (event, file, bytesLoaded) {
-            if (this.log) $('.log', this).append('<li>Upload progress - ' + bytesLoaded + '</li>');
-        },
-        uploadSuccess: function (event, file, serverData) {
-            listeners.data.result = jQuery.parseJSON(serverData);
-            gnu._done(event, listeners.data);
-            if (this.log) $('.log', this).append('<li>Upload success - ' + file.name + '</li>');
-
-        },
-        uploadComplete: function (event, file) {
-            if (this.log) $('.log', this).append('<li>Upload complete - ' + file.name + '</li>');
-            // upload has completed, lets try the next one in the queue
-            // but only if this queue is not disabled
-            if (!$('input[name=disabled]:checked', this).length) {
-                $(this).swfupload('startUpload');
-            }
-        },
-        uploadError: function (event, file, errorCode, message) {
-            if (this.log) $('.log', this).append('<li>Upload error - ' + message + '</li>');
-        }
-    };
-
-    $(gnu.container_el).bindAll(listeners);
-    /* listeners이벤트 */
 
     $(gnu.dreg_area).bind('drop dragover', function (e) {
         e.preventDefault();
