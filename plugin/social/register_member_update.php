@@ -284,9 +284,6 @@ if($result) {
         mailer($config['cf_admin_email_name'], $config['cf_admin_email'], $mb_email, $subject, $content, 1);
     }
 
-    // 사용자 코드 실행
-    @include_once ($member_skin_path.'/register_form_update.tail.skin.php');
-
     goto_url(G5_HTTP_MEMBER_URL.'/register_result.php');
 
 } else {

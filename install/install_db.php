@@ -116,11 +116,6 @@ if ($g5_install || $is_install === false) {
         <li>전체 테이블 생성 완료</li>
 
 <?php
-$read_point = 0;
-$write_point = 0;
-$comment_point = 0;
-$download_point = 0;
-
 //-------------------------------------------------------------------------------------------------
 // config 테이블 설정
 if ($g5_install || $is_install === false) {
@@ -138,16 +133,9 @@ if ($g5_install || $is_install === false) {
                     cf_admin_email = '$admin_email',
                     cf_admin_email_name = '".G5_VERSION.'_'.substr(base_convert(mt_rand(), 10, 36), 0, 6)."',
                     cf_use_point = '0',
-                    cf_use_copy_log = '1',
                     cf_login_point = '0',
-                    cf_memo_send_point = '0',
                     cf_cut_name = '15',
                     cf_nick_modify = '60',
-                    cf_new_rows = '15',
-                    cf_read_point = '$read_point',
-                    cf_write_point = '$write_point',
-                    cf_comment_point = '$comment_point',
-                    cf_download_point = '$download_point',
                     cf_write_pages = '10',
                     cf_link_target = '_blank',
                     cf_delay_sec = '30',
@@ -161,12 +149,9 @@ if ($g5_install || $is_install === false) {
                     cf_register_point = '0',
                     cf_icon_level = '2',
                     cf_leave_day = '30',
-                    cf_search_part = '10000',
                     cf_email_use = '1',
                     cf_prohibit_id = 'admin,administrator,관리자,운영자,어드민,주인장,webmaster,웹마스터,sysop,시삽,시샵,manager,매니저,메니저,root,루트,su,guest,방문객',
                     cf_prohibit_email = '',
-                    cf_new_del = '30',
-                    cf_memo_del = '180',
                     cf_visit_del = '180',
                     cf_use_member_icon = '2',
                     cf_member_icon_size = '5000',
@@ -203,11 +188,6 @@ if ($g5_install || $is_install === false) {
                      mb_ip = '{$_SERVER['REMOTE_ADDR']}'
                      ";
     sql_query($sql, true, $dblink);
-
-    // 내용관리 생성
-    sql_query(" insert into `{$table_prefix}content` set co_id = 'company', co_html = '1', co_subject = '회사소개', co_content= '<p align=center><b>회사소개에 대한 내용을 입력하십시오.</b></p>', co_skin = 'theme/basic' ", true, $dblink);
-    sql_query(" insert into `{$table_prefix}content` set co_id = 'privacy', co_html = '1', co_subject = '개인정보 처리방침', co_content= '<p align=center><b>개인정보 처리방침에 대한 내용을 입력하십시오.</b></p>', co_skin = 'theme/basic' ", true, $dblink);
-    sql_query(" insert into `{$table_prefix}content` set co_id = 'provision', co_html = '1', co_subject = '서비스 이용약관', co_content= '<p align=center><b>서비스 이용약관에 대한 내용을 입력하십시오.</b></p>', co_skin = 'theme/basic' ", true, $dblink);
 
 }
 
@@ -261,13 +241,11 @@ fwrite($f, "\$g5['config_table'] = G5_TABLE_PREFIX.'config'; // 기본환경 설
 fwrite($f, "\$g5['login_table'] = G5_TABLE_PREFIX.'login'; // 로그인 테이블 (접속자수)\n");
 fwrite($f, "\$g5['mail_table'] = G5_TABLE_PREFIX.'mail'; // 회원메일 테이블\n");
 fwrite($f, "\$g5['member_table'] = G5_TABLE_PREFIX.'member'; // 회원 테이블\n");
-fwrite($f, "\$g5['memo_table'] = G5_TABLE_PREFIX.'memo'; // 메모 테이블\n");
 fwrite($f, "\$g5['point_table'] = G5_TABLE_PREFIX.'point'; // 포인트 테이블\n");
 fwrite($f, "\$g5['visit_table'] = G5_TABLE_PREFIX.'visit'; // 방문자 테이블\n");
 fwrite($f, "\$g5['visit_sum_table'] = G5_TABLE_PREFIX.'visit_sum'; // 방문자 합계 테이블\n");
 fwrite($f, "\$g5['uniqid_table'] = G5_TABLE_PREFIX.'uniqid'; // 유니크한 값을 만드는 테이블\n");
 fwrite($f, "\$g5['cert_history_table'] = G5_TABLE_PREFIX.'cert_history'; // 인증내역 테이블\n");
-fwrite($f, "\$g5['content_table'] = G5_TABLE_PREFIX.'content'; // 내용(컨텐츠)정보 테이블\n");
 fwrite($f, "\$g5['new_win_table'] = G5_TABLE_PREFIX.'new_win'; // 새창 테이블\n");
 fwrite($f, "\$g5['menu_table'] = G5_TABLE_PREFIX.'menu'; // 메뉴관리 테이블\n");
 fwrite($f, "\$g5['social_profile_table'] = G5_TABLE_PREFIX.'member_social_profiles'; // 소셜 로그인 테이블\n");

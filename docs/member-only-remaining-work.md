@@ -56,11 +56,6 @@
 - 재로그인
 - 기존 계정 매핑 확인
 
-### 9. 콘텐츠 페이지
-
-- `content.php?co_id=company`
-- `/content/company` 또는 SEO 주소
-
 ## 기록 항목
 
 - 테스트 일시

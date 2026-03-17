@@ -74,59 +74,6 @@ if( isset($g5['social_profile_table']) && !sql_query(" DESC {$g5['social_profile
     $is_check = true;
 }
 
-// 내용 관리 짧은 주소
-$sql = " SHOW COLUMNS FROM `{$g5['content_table']}` LIKE 'co_seo_title' ";
-$row = sql_fetch($sql);
-
-if( !$row ){
-    sql_query("ALTER TABLE `{$g5['content_table']}`
-                ADD `co_seo_title` varchar(200) NOT NULL DEFAULT '' AFTER `co_content`,
-                ADD INDEX `co_seo_title` (`co_seo_title`);
-    ", false);
-
-    $is_check = true;
-}
-
-$sql = "select * from {$g5['content_table']} limit 100 ";
-$result = sql_query($sql);
-
-while ($row = sql_fetch_array($result)) {
-
-    if( ! $row['co_seo_title']){
-        
-        $co_seo_title = exist_seo_title_recursive('content', generate_seo_title($row['co_subject']), $g5['content_table'], $row['co_id']);
-        
-        $sql = " update {$g5['content_table']}
-                    set co_seo_title = '$co_seo_title'
-                  where co_id = '{$row['co_id']}' ";
-        sql_query($sql);
-
-    }
-}
-
-// 메모 테이블
-$sql = " SHOW COLUMNS FROM `{$g5['memo_table']}` LIKE 'me_send_id' ";
-$row = sql_fetch($sql);
-
-if( !$row ){
-    sql_query("ALTER TABLE `{$g5['memo_table']}`
-                ADD `me_send_id` INT(11) NOT NULL DEFAULT '0',
-                ADD `me_type` ENUM('send','recv') NOT NULL DEFAULT 'recv',
-                ADD `me_send_ip` VARCHAR(100) NOT NULL DEFAULT '',
-                CHANGE COLUMN `me_id` `me_id` INT(11) NOT NULL AUTO_INCREMENT;
-    ", false);
-
-    $is_check = true;
-}
-
-// 읽지 않은 메모 수 칼럼
-if(!isset($member['mb_memo_cnt'])) {
-    sql_query(" ALTER TABLE `{$g5['member_table']}`
-                ADD `mb_memo_cnt` int(11) NOT NULL DEFAULT '0' AFTER `mb_memo_call`", true);
-
-    $is_check = true;
-}
-
 // auth.au_menu 컬럼 크기 조정
 $sql = " SHOW COLUMNS FROM `{$g5['auth_table']}` LIKE 'au_menu' ";
 $row = sql_fetch($sql);
@@ -207,7 +154,7 @@ if (!isset($config['cf_use_promotion'])) {
 if (!isset($member['mb_marketing_agree'])) {
     sql_query(
         " ALTER TABLE `{$g5['member_table']}`
-                ADD `mb_marketing_agree` tinyint(1) NOT NULL DEFAULT '0' AFTER `mb_memo_cnt`,
+                ADD `mb_marketing_agree` tinyint(1) NOT NULL DEFAULT '0' AFTER `mb_profile`,
                 ADD `mb_marketing_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `mb_marketing_agree`,
                 ADD `mb_thirdparty_agree` tinyint(1) NOT NULL DEFAULT '0' AFTER  `mb_marketing_date`,
                 ADD `mb_thirdparty_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `mb_thirdparty_agree`,

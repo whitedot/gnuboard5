@@ -86,21 +86,6 @@
             <?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_new_del" class="form-label">최근게시물 삭제</label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('설정일이 지난 최근게시물 자동 삭제') ?>
-                    <div class="af-inline">
-                        <input type="text" name="cf_new_del" value="<?php echo (int) $config['cf_new_del'] ?>" id="cf_new_del" size="5" class="form-input">
-                        <span>일</span>
-                    </div>
-                </div>
-            </div>
-            <?php } ?>
-
-            <?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
-            <div class="af-row">
-                <div class="af-label">
                     <label for="cf_visit_del" class="form-label">접속자로그 삭제</label>
                 </div>
                 <div class="af-field">
@@ -125,18 +110,6 @@
                 </div>
             </div>
 
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_new_rows" class="form-label">최근게시물 라인수</label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('목록 한페이지당 라인수') ?>
-                    <div class="af-inline">
-                        <input type="text" name="cf_new_rows" value="<?php echo (int) $config['cf_new_rows'] ?>" id="cf_new_rows" size="3" class="form-input">
-                        <span>라인</span>
-                    </div>
-                </div>
-            </div>
             <?php } ?>
 
             <div class="af-row">
@@ -237,21 +210,6 @@
                     <input type="text" name="cf_recaptcha_secret_key" value="<?php echo get_sanitize_input($config['cf_recaptcha_secret_key']); ?>" id="cf_recaptcha_secret_key" size="52" class="form-input">
                 </div>
             </div>
-
-            <?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_use_copy_log" class="form-label">복사, 이동시 로그</label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('게시물 아래에 누구로 부터 복사, 이동됨 표시') ?>
-                    <label for="cf_use_copy_log" class="af-check form-label">
-                        <input type="checkbox" name="cf_use_copy_log" value="1" id="cf_use_copy_log" <?php echo $config['cf_use_copy_log'] ? 'checked' : ''; ?> class="form-checkbox">
-                        <span class="form-label">남김</span>
-                    </label>
-                </div>
-            </div>
-            <?php } ?>
 
             <div class="af-row">
                 <div class="af-label">

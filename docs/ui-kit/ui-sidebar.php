@@ -863,7 +863,6 @@
                                         <div class="admin-nav-panel hidden">
                                             <ul class="admin-nav-sub-list">
                                                 <li class="admin-nav-sub-item"><a href="#">콘텐츠관리</a></li>
-                                                <li class="admin-nav-sub-item"><a href="#">내용 관리</a></li>
                                                 <li class="admin-nav-sub-item"><a href="#">새창 관리</a></li>
                                             </ul>
                                         </div>

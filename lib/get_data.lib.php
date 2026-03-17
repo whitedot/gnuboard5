@@ -18,34 +18,6 @@ function get_config($is_cache=false){
     return $cache;
 }
 
-function get_content_db($co_id, $is_cache=false){
-    global $g5, $g5_object;
-
-    static $cache = array();
-    
-    $type = 'content';
-
-    $co_id = preg_replace('/[^a-z0-9_]/i', '', $co_id);
-    $co = $g5_object->get($type, $co_id, $type);
-
-    if( !$co ){
-
-        $cache_file_name = "{$type}-{$co_id}-".g5_cache_secret_key();
-        $co = g5_get_cache($cache_file_name, 10800);
-        
-        if( $co === false ){
-            $sql = " select * from {$g5['content_table']} where co_id = '$co_id' ";
-            $co = sql_fetch($sql);
-            
-            g5_set_cache($cache_file_name, $co, 10800);
-        }
-
-        $g5_object->set($type, $co_id, $co, $type);
-    }
-
-    return $co;
-}
-
 function get_menu_db($use_mobile=0, $is_cache=false){
     global $g5;
 

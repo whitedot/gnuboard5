@@ -578,9 +578,6 @@ if ($config['cf_use_email_certify'] && $old_email != $mb_email) {
 }
 
 
-// 사용자 코드 실행
-@include_once ($member_skin_path.'/register_form_update.tail.skin.php');
-
 if(isset($_SESSION['ss_cert_type'])) unset($_SESSION['ss_cert_type']);
 if(isset($_SESSION['ss_cert_no'])) unset($_SESSION['ss_cert_no']);
 if(isset($_SESSION['ss_cert_hash'])) unset($_SESSION['ss_cert_hash']);

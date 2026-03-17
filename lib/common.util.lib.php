@@ -595,9 +595,6 @@ function member_delete($mb_id)
     // 포인트 테이블에서 삭제
     sql_query(" delete from {$g5['point_table']} where mb_id = '$mb_id' ");
 
-    // 쪽지 삭제
-    sql_query(" delete from {$g5['memo_table']} where me_recv_mb_id = '$mb_id' or me_send_mb_id = '$mb_id' ");
-
     // 관리권한 삭제
     sql_query(" delete from {$g5['auth_table']} where mb_id = '$mb_id' ");
 

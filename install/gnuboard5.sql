@@ -29,16 +29,10 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_add_script` text NOT NULL,
   `cf_use_point` tinyint(4) NOT NULL DEFAULT '0',
   `cf_point_term` int(11) NOT NULL DEFAULT '0',
-  `cf_use_copy_log` tinyint(4) NOT NULL DEFAULT '0',
   `cf_use_email_certify` tinyint(4) NOT NULL DEFAULT '0',
   `cf_login_point` int(11) NOT NULL DEFAULT '0',
   `cf_cut_name` tinyint(4) NOT NULL DEFAULT '0',
   `cf_nick_modify` int(11) NOT NULL DEFAULT '0',
-  `cf_new_rows` int(11) NOT NULL DEFAULT '0',
-  `cf_read_point` int(11) NOT NULL DEFAULT '0',
-  `cf_write_point` int(11) NOT NULL DEFAULT '0',
-  `cf_comment_point` int(11) NOT NULL DEFAULT '0',
-  `cf_download_point` int(11) NOT NULL DEFAULT '0',
   `cf_write_pages` int(11) NOT NULL DEFAULT '0',
   `cf_link_target` varchar(50) NOT NULL DEFAULT '',
   `cf_delay_sec` int(11) NOT NULL DEFAULT '0',
@@ -66,19 +60,11 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_use_recommend` tinyint(4) NOT NULL DEFAULT '0',
   `cf_recommend_point` int(11) NOT NULL DEFAULT '0',
   `cf_leave_day` int(11) NOT NULL DEFAULT '0',
-  `cf_search_part` int(11) NOT NULL DEFAULT '0',
   `cf_email_use` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_email_wr_super_admin` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_email_wr_group_admin` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_email_wr_write` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_email_wr_comment_all` tinyint(4) NOT NULL DEFAULT '0',
   `cf_email_mb_super_admin` tinyint(4) NOT NULL DEFAULT '0',
   `cf_email_mb_member` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_email_po_super_admin` tinyint(4) NOT NULL DEFAULT '0',
   `cf_prohibit_id` text NOT NULL,
   `cf_prohibit_email` text NOT NULL,
-  `cf_new_del` int(11) NOT NULL DEFAULT '0',
-  `cf_memo_del` int(11) NOT NULL DEFAULT '0',
   `cf_visit_del` int(11) NOT NULL DEFAULT '0',
   `cf_optimize_date` date NOT NULL default '0000-00-00',
   `cf_use_member_icon` tinyint(4) NOT NULL DEFAULT '0',
@@ -100,7 +86,6 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_privacy` text NOT NULL,
   `cf_use_promotion` tinyint(1) NOT NULL DEFAULT '0',
   `cf_open_modify` int(11) NOT NULL DEFAULT '0',
-  `cf_memo_send_point` int(11) NOT NULL DEFAULT '0',
   `cf_captcha_mp3` varchar(255) NOT NULL DEFAULT '',
   `cf_editor` varchar(50) NOT NULL DEFAULT '',
   `cf_cert_use` tinyint(4) NOT NULL DEFAULT '0',
@@ -272,8 +257,6 @@ CREATE TABLE IF NOT EXISTS `g5_member` (
   `mb_open` tinyint(4) NOT NULL default '0',
   `mb_open_date` date NOT NULL default '0000-00-00',
   `mb_profile` text NOT NULL,
-  `mb_memo_call` varchar(255) NOT NULL default '',
-  `mb_memo_cnt` int(11) NOT NULL DEFAULT '0',
   `mb_marketing_agree` tinyint(1) NOT NULL default '0',
   `mb_marketing_date` datetime NOT NULL default '0000-00-00 00:00:00',
   `mb_thirdparty_agree` tinyint(1) NOT NULL default '0',
@@ -284,27 +267,6 @@ CREATE TABLE IF NOT EXISTS `g5_member` (
   KEY `mb_today_login` (`mb_today_login`),
   KEY `mb_datetime` (`mb_datetime`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_memo`
---
-
-DROP TABLE IF EXISTS `g5_memo`;
-CREATE TABLE IF NOT EXISTS `g5_memo` (
-  `me_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `me_recv_mb_id` varchar(20) NOT NULL default '',
-  `me_send_mb_id` varchar(20) NOT NULL default '',
-  `me_send_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
-  `me_read_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
-  `me_memo` text NOT NULL,
-  `me_send_id` INT(11) NOT NULL DEFAULT '0',
-  `me_type` ENUM('send','recv') NOT NULL DEFAULT 'recv',
-  `me_send_ip` VARCHAR(100) NOT NULL DEFAULT '',
-  PRIMARY KEY  (`me_id`),
-  KEY `me_recv_mb_id` (`me_recv_mb_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 -- --------------------------------------------------------
 
 --
@@ -378,30 +340,6 @@ CREATE TABLE IF NOT EXISTS `g5_uniqid` (
   `uq_ip` varchar(255) NOT NULL,
   PRIMARY KEY (`uq_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_content`
---
-
-DROP TABLE IF EXISTS `g5_content`;
-CREATE TABLE IF NOT EXISTS `g5_content` (
-  `co_id` varchar(20) NOT NULL DEFAULT '',
-  `co_html` tinyint(4) NOT NULL DEFAULT '0',
-  `co_subject` varchar(255) NOT NULL DEFAULT '',
-  `co_content` longtext NOT NULL,
-  `co_seo_title` varchar(255) NOT NULL DEFAULT '',
-  `co_skin` varchar(255) NOT NULL DEFAULT '',
-  `co_tag_filter_use` tinyint(4) NOT NULL DEFAULT '0',
-  `co_hit` int(11) NOT NULL DEFAULT '0',
-  `co_include_head` varchar(255) NOT NULL,
-  `co_include_tail` varchar(255) NOT NULL,
-  PRIMARY KEY (`co_id`),
-  KEY `co_seo_title` (`co_seo_title`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `g5_member_social_profiles`

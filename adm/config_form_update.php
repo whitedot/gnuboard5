@@ -68,18 +68,11 @@ $check_keys = array(
     'cf_icon_level' => 'int',
     'cf_use_recommend' => 'int',
     'cf_leave_day' => 'int',
-    'cf_search_part' => 'int',
     'cf_email_use' => 'int',
-    'cf_email_wr_super_admin' => 'int',
-    'cf_email_wr_group_admin' => 'int',
-    'cf_email_wr_write' => 'int',
-    'cf_email_wr_comment_all' => 'int',
     'cf_email_mb_super_admin' => 'int',
     'cf_email_mb_member' => 'int',
-    'cf_email_po_super_admin' => 'int',
     'cf_prohibit_id' => 'text',
     'cf_prohibit_email' => 'text',
-    'cf_new_del' => 'int',
     'cf_visit_del' => 'int',
     'cf_use_member_icon' => 'int',
     'cf_member_icon_size' => 'int',
@@ -102,14 +95,8 @@ $check_keys = array(
     'cf_admin_email' => 'char',
     'cf_admin_email_name' => 'char',
     'cf_add_script' => 'text',
-    'cf_use_copy_log' => 'int',
     'cf_cut_name' => 'int',
     'cf_nick_modify' => 'int',
-    'cf_new_rows' => 'int',
-    'cf_read_point' => 'int',
-    'cf_write_point' => 'int',
-    'cf_comment_point' => 'int',
-    'cf_download_point' => 'int',
     'cf_write_pages' => 'int',
     'cf_link_target' => 'char',
     'cf_delay_sec' => 'int',
@@ -154,38 +141,21 @@ foreach ($check_keys as $k => $v) {
 }
 
 $preserve_keys = array(
-    'cf_new_del',
     'cf_visit_del',
     'cf_login_minutes',
-    'cf_new_rows',
     'cf_formmail_is_member',
-    'cf_email_wr_super_admin',
-    'cf_email_wr_group_admin',
-    'cf_email_wr_write',
-    'cf_email_wr_comment_all',
-    'cf_email_po_super_admin',
     'cf_delay_sec',
     'cf_link_target',
-    'cf_read_point',
-    'cf_write_point',
-    'cf_comment_point',
-    'cf_download_point',
-    'cf_search_part',
     'cf_image_extension',
     'cf_flash_extension',
     'cf_movie_extension',
-    'cf_filter',
-    'cf_use_copy_log'
+    'cf_filter'
 );
 
 foreach ($preserve_keys as $key) {
     if (!isset($_POST[$key])) {
         $_POST[$key] = isset($ori_config[$key]) ? $ori_config[$key] : '';
     }
-}
-
-if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
-    $_POST['cf_use_copy_log'] = 0;
 }
 
 // 본인확인을 사용할 경우 아이핀, 휴대폰인증 중 하나는 선택되어야 함
@@ -232,15 +202,9 @@ $sql = " update {$g5['config_table']}
                 cf_admin_email = '{$_POST['cf_admin_email']}',
                 cf_admin_email_name = '{$_POST['cf_admin_email_name']}',
                 cf_add_script = '{$_POST['cf_add_script']}',
-                cf_use_copy_log = '{$_POST['cf_use_copy_log']}',
                 cf_use_email_certify = '{$_POST['cf_use_email_certify']}',
                 cf_cut_name = '{$_POST['cf_cut_name']}',
                 cf_nick_modify = '{$_POST['cf_nick_modify']}',
-                cf_new_rows = '{$_POST['cf_new_rows']}',
-                cf_read_point = '{$_POST['cf_read_point']}',
-                cf_write_point = '{$_POST['cf_write_point']}',
-                cf_comment_point = '{$_POST['cf_comment_point']}',
-                cf_download_point = '{$_POST['cf_download_point']}',
                 cf_write_pages = '{$_POST['cf_write_pages']}',
                 cf_link_target = '{$_POST['cf_link_target']}',
                 cf_delay_sec = '{$_POST['cf_delay_sec']}',
@@ -262,18 +226,11 @@ $sql = " update {$g5['config_table']}
                 cf_icon_level = '{$_POST['cf_icon_level']}',
                 cf_use_recommend = '{$_POST['cf_use_recommend']}',
                 cf_leave_day = '{$_POST['cf_leave_day']}',
-                cf_search_part = '{$_POST['cf_search_part']}',
                 cf_email_use = '{$_POST['cf_email_use']}',
-                cf_email_wr_super_admin = '{$_POST['cf_email_wr_super_admin']}',
-                cf_email_wr_group_admin = '{$_POST['cf_email_wr_group_admin']}',
-                cf_email_wr_write = '{$_POST['cf_email_wr_write']}',
-                cf_email_wr_comment_all = '{$_POST['cf_email_wr_comment_all']}',
                 cf_email_mb_super_admin = '{$_POST['cf_email_mb_super_admin']}',
                 cf_email_mb_member = '{$_POST['cf_email_mb_member']}',
-                cf_email_po_super_admin = '{$_POST['cf_email_po_super_admin']}',
                 cf_prohibit_id = '{$_POST['cf_prohibit_id']}',
                 cf_prohibit_email = '{$_POST['cf_prohibit_email']}',
-                cf_new_del = '{$_POST['cf_new_del']}',
                 cf_visit_del = '{$_POST['cf_visit_del']}',
                 cf_use_member_icon = '{$_POST['cf_use_member_icon']}',
                 cf_member_icon_size = '{$_POST['cf_member_icon_size']}',
