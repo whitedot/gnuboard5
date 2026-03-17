@@ -10,6 +10,58 @@ if ($is_admin != 'super') {
 
 check_admin_token();
 
+function sanitize_member_only_menu_link($link)
+{
+    if (!(defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY)) {
+        return $link;
+    }
+
+    $decoded_link = html_entity_decode((string) $link, ENT_QUOTES);
+    $parsed_link = parse_url($decoded_link);
+
+    if ($parsed_link === false) {
+        return G5_URL;
+    }
+
+    $host = isset($parsed_link['host']) ? strtolower((string) $parsed_link['host']) : '';
+    $site_host = parse_url(G5_URL, PHP_URL_HOST);
+    $site_host = $site_host ? strtolower((string) $site_host) : '';
+
+    if ($host && $site_host && $host !== $site_host) {
+        return $link;
+    }
+
+    $path = isset($parsed_link['path']) ? strtolower((string) $parsed_link['path']) : '';
+    $basename = $path ? basename($path) : '';
+    $blocked_bbs_pages = array(
+        'board.php',
+        'write.php',
+        'password.php',
+        'password_check.php',
+        'point.php',
+        'profile.php',
+        'memo.php',
+        'memo_form.php',
+        'memo_view.php',
+        'memo_delete.php',
+        'memo_form_update.php',
+        'download.php',
+        'link.php',
+        'view_image.php',
+        'rss.php'
+    );
+
+    if (strpos($path, '/shop/') !== false || $basename === 'shop.php') {
+        return G5_URL;
+    }
+
+    if (in_array($basename, $blocked_bbs_pages, true)) {
+        return G5_URL;
+    }
+
+    return $link;
+}
+
 // 이전 메뉴정보 삭제
 $sql = " delete from {$g5['menu_table']} ";
 sql_query($sql);
@@ -27,6 +79,7 @@ for ($i = 0; $i < $count; $i++) {
 
     $_POST['me_link'][$i] = is_array($_POST['me_link']) ? clean_xss_tags(clean_xss_attributes(preg_replace('/[ ]{2,}|[\t]/', '', $_POST['me_link'][$i]), 1)) : '';
     $_POST['me_link'][$i] = html_purifier($_POST['me_link'][$i]);
+    $_POST['me_link'][$i] = sanitize_member_only_menu_link($_POST['me_link'][$i]);
 
     $code    = is_array($_POST['code']) ? strip_tags($_POST['code'][$i]) : '';
     $me_name = is_array($_POST['me_name']) ? strip_tags($_POST['me_name'][$i]) : '';

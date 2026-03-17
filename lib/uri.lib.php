@@ -1,6 +1,12 @@
 <?php
 if (!defined('_GNUBOARD_')) exit;
 
+function is_member_only_blocked_bbs_page($page_name)
+{
+    return defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY
+        && in_array($page_name, array('board', 'write', 'rss'), true);
+}
+
 // 짧은 주소 형식으로 만들어서 가져온다.
 function get_pretty_url($folder, $no='', $query_string='', $action='')
 {
@@ -111,7 +117,7 @@ function short_url_clean($string_url, $add_qry=''){
         $parsed_url = parse_url(str_replace('&amp;', '&', $string_url));
         $page_name = isset($parsed_url['path']) ? basename($parsed_url['path'], '.php') : '';
 
-        if (in_array($page_name, array('board', 'write', 'rss'), true)) {
+        if (is_member_only_blocked_bbs_page($page_name)) {
             return G5_URL;
         }
     }
@@ -365,8 +371,15 @@ function seo_title_update($db_table, $pk_id, $type='bbs'){
 function get_nginx_conf_rules($return_string = false)
 {
     if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
+        $get_path_url = parse_url(G5_URL);
+        $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
+
         $rules = array(
             '#### ' . G5_VERSION . ' nginx rules BEGIN #####',
+            'if (!-e $request_filename) {',
+            "rewrite ^{$base_path}content/([0-9a-zA-Z_]+)$ {$base_path}" . G5_BBS_DIR . "/content.php?co_id=$1&rewrite=1 break;",
+            "rewrite ^{$base_path}content/([^/]+)/$ {$base_path}" . G5_BBS_DIR . "/content.php?co_seo_title=$1&rewrite=1 break;",
+            '}',
             '#### ' . G5_VERSION . ' nginx rules END #####'
         );
 
@@ -405,10 +418,19 @@ function get_nginx_conf_rules($return_string = false)
 function get_mod_rewrite_rules($return_string = false)
 {
     if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
+        $get_path_url = parse_url(G5_URL);
+        $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
+
         $rules = array(
             '#### ' . G5_VERSION . ' rewrite BEGIN #####',
             '<IfModule mod_rewrite.c>',
             'RewriteEngine On',
+            'RewriteBase ' . $base_path,
+            'RewriteCond %{REQUEST_FILENAME} -f [OR]',
+            'RewriteCond %{REQUEST_FILENAME} -d',
+            'RewriteRule ^ - [L]',
+            'RewriteRule ^content/([0-9a-zA-Z_]+)$ ' . G5_BBS_DIR . '/content.php?co_id=$1&rewrite=1 [QSA,L]',
+            'RewriteRule ^content/([^/]+)/$ ' . G5_BBS_DIR . '/content.php?co_seo_title=$1&rewrite=1 [QSA,L]',
             '</IfModule>',
             '#### ' . G5_VERSION . ' rewrite END #####'
         );

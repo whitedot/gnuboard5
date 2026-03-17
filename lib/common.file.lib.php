@@ -45,6 +45,7 @@ function download_file_nonce_is_valid($nonce, $bo_table, $wr_id)
 function get_file($bo_table, $wr_id)
 {
     global $g5, $qstr, $board;
+    $is_member_only = defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY;
 
     $file['count'] = 0;
     $sql = " select * from {$g5['board_file_table']} where bo_table = '$bo_table' and wr_id = '$wr_id' order by bf_no ";
@@ -54,7 +55,9 @@ function get_file($bo_table, $wr_id)
     {
         $no = (int) $row['bf_no'];
         $bf_content = $row['bf_content'] ? html_purifier($row['bf_content']) : '';
-        $file[$no]['href'] = G5_BBS_URL."/download.php?bo_table=$bo_table&amp;wr_id=$wr_id&amp;no=$no&amp;nonce=$nonce" . $qstr;
+        $file[$no]['href'] = $is_member_only
+            ? ''
+            : G5_BBS_URL."/download.php?bo_table=$bo_table&amp;wr_id=$wr_id&amp;no=$no&amp;nonce=$nonce" . $qstr;
         $file[$no]['download'] = $row['bf_download'];
         // 4.00.11 - 파일 path 추가
         $file[$no]['path'] = G5_DATA_URL.'/file/'.$bo_table;
@@ -118,10 +121,12 @@ function view_file_link($file, $width, $height, $content='')
         $attr = '';
 
     if (preg_match("/\.({$config['cf_image_extension']})$/i", $file) && isset($board['bo_table'])) {
-        $attr_href = run_replace('thumb_view_image_href', G5_BBS_URL.'/view_image.php?bo_table='.$board['bo_table'].'&amp;fn='.urlencode($file), $file, $board['bo_table'], $width, $height, $content);
-        $img = '<a href="'.$attr_href.'" target="_blank">';
-        $img .= '<img src="'.G5_DATA_URL.'/file/'.$board['bo_table'].'/'.urlencode($file).'" alt="'.$content.'" '.$attr.'>';
-        $img .= '</a>';
+        $img = '<img src="'.G5_DATA_URL.'/file/'.$board['bo_table'].'/'.urlencode($file).'" alt="'.$content.'" '.$attr.'>';
+
+        if (!(defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY)) {
+            $attr_href = run_replace('thumb_view_image_href', G5_BBS_URL.'/view_image.php?bo_table='.$board['bo_table'].'&amp;fn='.urlencode($file), $file, $board['bo_table'], $width, $height, $content);
+            $img = '<a href="'.$attr_href.'" target="_blank">'.$img.'</a>';
+        }
 
         return $img;
     }

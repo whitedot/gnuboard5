@@ -199,6 +199,12 @@ foreach ($preserve_keys as $key) {
     }
 }
 
+if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
+    $_POST['cf_use_copy_log'] = 0;
+    $_POST['cf_syndi_token'] = '';
+    $_POST['cf_syndi_except'] = '';
+}
+
 // 본인확인을 사용할 경우 아이핀, 휴대폰인증 중 하나는 선택되어야 함
 if ($_POST['cf_cert_use'] && !$_POST['cf_cert_ipin'] && !$_POST['cf_cert_hp'] && !$_POST['cf_cert_simple']) {
     alert('본인확인을 위해 아이핀, 휴대폰 본인확인, KG이니시스 간편인증 서비스 중 하나 이상 선택해 주십시오.');

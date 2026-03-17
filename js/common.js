@@ -276,22 +276,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /**
- * 포인트 창
- **/
-var win_point = function (href) {
-    var new_win = window.open(href, 'win_point', 'left=100,top=100,width=600, height=600, scrollbars=1');
-    new_win.focus();
-}
-
-/**
- * 쪽지 창
- **/
-var win_memo = function (href) {
-    var new_win = window.open(href, 'win_memo', 'left=100,top=100,width=620,height=500,scrollbars=1');
-    new_win.focus();
-}
-
-/**
  * 쪽지 창
  **/
 var check_goto_new = function (href, event) {
@@ -309,22 +293,6 @@ var check_goto_new = function (href, event) {
  **/
 var win_email = function (href) {
     var new_win = window.open(href, 'win_email', 'left=100,top=100,width=600,height=580,scrollbars=1');
-    new_win.focus();
-}
-
-/**
- * 자기소개 창
- **/
-var win_profile = function (href) {
-    var new_win = window.open(href, 'win_profile', 'left=100,top=100,width=620,height=510,scrollbars=1');
-    new_win.focus();
-}
-
-/**
- * 스크랩 창
- **/
-var win_scrap = function (href) {
-    var new_win = window.open(href, 'win_scrap', 'left=100,top=100,width=600,height=600,scrollbars=1');
     new_win.focus();
 }
 
@@ -524,23 +492,8 @@ function set_comment_token(f) {
 }
 
 $(function () {
-    $(".win_point").click(function () {
-        win_point(this.href);
-        return false;
-    });
-
-    $(".win_memo").click(function () {
-        win_memo(this.href);
-        return false;
-    });
-
     $(".win_email").click(function () {
         win_email(this.href);
-        return false;
-    });
-
-    $(".win_profile").click(function () {
-        win_profile(this.href);
         return false;
     });
 

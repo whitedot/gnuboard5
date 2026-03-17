@@ -6,6 +6,7 @@ function get_list($write_row, $board, $skin_url, $subject_len=40)
 {
     global $g5, $config, $g5_object;
     global $qstr, $page;
+    $is_member_only = defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY;
 
     //$t = get_microtime();
 
@@ -100,7 +101,9 @@ function get_list($write_row, $board, $skin_url, $subject_len=40)
     // 링크
     for ($i=1; $i<=G5_LINK_COUNT; $i++) {
         $list['link'][$i] = set_http(get_text($list["wr_link{$i}"]));
-        $list['link_href'][$i] = G5_BBS_URL.'/link.php?bo_table='.$board['bo_table'].'&amp;wr_id='.$list['wr_id'].'&amp;no='.$i.$qstr;
+        $list['link_href'][$i] = $is_member_only
+            ? ''
+            : G5_BBS_URL.'/link.php?bo_table='.$board['bo_table'].'&amp;wr_id='.$list['wr_id'].'&amp;no='.$i.$qstr;
         $list['link_hit'][$i] = (int)$list["wr_link{$i}_hit"];
     }
 

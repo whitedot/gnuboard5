@@ -103,8 +103,12 @@ class G5_URI {
         $string_url = str_replace('&amp;', '&', $string_url);
 		$url=parse_url($string_url);
 		$page_name = basename($url['path'],".php");
+
+        if (function_exists('is_member_only_blocked_bbs_page') && is_member_only_blocked_bbs_page($page_name)) {
+            return G5_URL;
+        }
         
-        $array_page_names = run_replace('url_clean_page_names', array('board', 'write'));
+        $array_page_names = run_replace('url_clean_page_names', array('board', 'write', 'content'));
 
         if( strpos($string_url, G5_BBS_URL) === false || ! in_array($page_name, $array_page_names) ){   //게시판이 아니면 리턴
             return $string_url;
@@ -119,6 +123,9 @@ class G5_URI {
         if( $page_name === 'write' ){
             $vars['action'] = 'write';
             $allow_param_keys = array('bo_table'=>'', 'action'=>'');
+        } else if ( $page_name === 'content' ){
+            $vars['action'] = 'content';
+            $allow_param_keys = array('action'=>'', 'co_id'=>'');
         } else {
             $allow_param_keys = array('bo_table'=>'', 'wr_id'=>'');
         }
@@ -146,7 +153,7 @@ class G5_URI {
 
         if( isset($url['host']) ){
 
-            $array_file_paths = run_replace('url_clean_page_paths', array('/'.G5_BBS_DIR.'/board.php', '/'.G5_BBS_DIR.'/write.php'));
+            $array_file_paths = run_replace('url_clean_page_paths', array('/'.G5_BBS_DIR.'/board.php', '/'.G5_BBS_DIR.'/write.php', '/'.G5_BBS_DIR.'/content.php'));
 
             $str_path = isset($url['path']) ? $url['path'] : '';
             $http = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on') ? 'https://' : 'http://';

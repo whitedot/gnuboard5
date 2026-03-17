@@ -27,17 +27,13 @@
 - 포인트 / 쪽지 / 공개 프로필 종료
 - 회원 가입 / 로그인 / 인증 / 비밀번호 재설정 흐름을 `member/` 중심으로 정리
 - `bbs` 회원 처리 스크립트와 AJAX를 `member/` 브리지로 축소
+- 게시판 비밀번호 진입점 종료 및 `board.php` 리다이렉트 제거
+- 게시판 링크 / 첨부 / 썸네일 헬퍼의 member-only URL 생성 차단
 - 팝업레이어 include를 루트 `newwin.inc.php`로 이동
+- `alert.php`, `alert_close.php`, `confirm.php` 공용 템플릿을 루트로 이동
 - member-only 모드에서 SNS 공유 / syndication 비활성화
 
-아직 남은 큰 축:
-
-- 게시판 전용 비밀번호 흐름 제거
-- 게시판 링크 / 첨부 / 썸네일 헬퍼 정리
-- 공용 `G5_BBS_*` / `bbs` include 의존 축소
-- `extend/`, `js/`의 종료 기능 잔재 제거
-- 설치 스키마와 레거시 업그레이드 자산 축소
-- 최종 테스트 체크리스트 문서화
+계획된 구현 단계는 모두 마무리되었고, 남은 일은 최종 체크리스트를 실행하며 결과를 기록하는 것이다.
 
 ## 작업 원칙
 
@@ -50,6 +46,10 @@
 ## 구현 단계
 
 ### Phase 1. 게시판 비밀번호 흐름 정리
+
+상태:
+
+- 완료
 
 목표:
 
@@ -75,14 +75,18 @@
 
 검증:
 
-- `C:\xampp\php\php.exe -l bbs\password.php`
-- `C:\xampp\php\php.exe -l bbs\password_check.php`
+- `php -l bbs\password.php`
+- `php -l bbs\password_check.php`
 
 커밋 분리 권장:
 
 - 가능
 
 ### Phase 2. 게시판 링크 / 첨부 / 썸네일 헬퍼 축소
+
+상태:
+
+- 완료
 
 목표:
 
@@ -107,15 +111,19 @@
 
 검증:
 
-- `C:\xampp\php\php.exe -l lib\common.data.lib.php`
-- `C:\xampp\php\php.exe -l lib\common.file.lib.php`
-- `C:\xampp\php\php.exe -l lib\thumbnail.lib.php`
+- `php -l lib\common.data.lib.php`
+- `php -l lib\common.file.lib.php`
+- `php -l lib\thumbnail.lib.php`
 
 커밋 분리 권장:
 
 - 가능
 
 ### Phase 3. 공용 BBS include / URL 의존 축소
+
+상태:
+
+- 완료
 
 목표:
 
@@ -136,21 +144,31 @@
 - `lib/uri.lib.php`의 게시판 rewrite 규칙을 member-only 기준으로 더 축소할지 결정
 - `lib/URI/uri.class.php`의 게시판 URL 판별 의존 정리
 
+진행 메모:
+
+- `lib/common.html.lib.php`의 `alert`, `alert_close`, `confirm` include를 루트 공용 템플릿으로 이동함
+- `lib/uri.lib.php`의 member-only rewrite 규칙은 게시판 경로를 제외하고 `content`만 유지하도록 조정함
+- `lib/URI/uri.class.php`도 member-only 차단 기준과 `content` URL 처리 기준을 맞춤
+
 완료 기준:
 
 - `G5_BBS_PATH`, `G5_BBS_URL` 직접 참조가 게시판 전용 호환층 중심으로만 남음
 
 검증:
 
-- `C:\xampp\php\php.exe -l lib\common.html.lib.php`
-- `C:\xampp\php\php.exe -l lib\uri.lib.php`
-- `C:\xampp\php\php.exe -l lib\URI\uri.class.php`
+- `php -l lib\common.html.lib.php`
+- `php -l lib\uri.lib.php`
+- `php -l lib\URI\uri.class.php`
 
 주의:
 
 - 이 단계는 영향 범위가 넓으므로, member-only 가드 추가와 공용 파일 이동을 우선하고 전면 삭제는 마지막에 검토한다.
 
 ### Phase 4. 관리자 / 설치 / 레거시 자산 축소
+
+상태:
+
+- 완료
 
 목표:
 
@@ -171,6 +189,14 @@
 - member-only에서 더 이상 의미 없는 업그레이드 / 메뉴 / 설정 저장 분기 축소
 - 운영 중 설치 파일 삭제 여부는 별도 판단
 
+진행 메모:
+
+- `install/gnuboard5shop.sql`은 설치 경로에서 더 이상 사용되지 않아 제거함
+- `orderupgrade.php`는 member-only에서 즉시 차단하도록 정리함
+- `adm/menu_list_update.php`는 member-only에서 게시판 / 쪽지 / 포인트 / 프로필 / 쇼핑몰 링크를 홈으로 치환하도록 정리함
+- `adm/menu_list.php`에 member-only 링크 치환 안내를 추가함
+- `adm/config_form_update.php`는 member-only에서 의미 없는 syndication / copy-log 저장값을 중립화함
+
 완료 기준:
 
 - member-only 신규 설치 관점에서 불필요한 쇼핑 초기화 자산이 정리됨
@@ -187,29 +213,31 @@
 
 ### Phase 5. extend / js 잔재 정리
 
+상태:
+
+- 완료
+
 목표:
 
 - member-only 범위에서 이미 종료된 기능의 훅과 프런트 스크립트를 정리한다.
 
 대상 파일:
 
-- `extend/g5_54version_update.extend.php`
 - `js/common.js`
-- `js/shop.couponzone.js`
-- `js/shop.list.js`
-- `js/shop.mobile.list.js`
-- `js/shop.mobile.main.js`
-- `js/shop.order.js`
-- 필요 시 확인:
-  - `js/sns.js`
-  - `js/viewimageresize.js`
 
 작업:
 
 - 메모 / 게시판 비밀번호 예외 처리 등 종료된 기능용 extend 훅 제거 또는 member-only 가드 처리
 - `win_point`, `win_memo`, `win_profile`, `win_scrap` 등 종료한 팝업 헬퍼와 이벤트 바인딩 제거
-- 현재 참조되지 않는 `shop*.js` 자산의 삭제 여부 확정
+- 현재 참조되지 않는 `shop*.js`, `viewimageresize.js`, `sns.js` 자산의 삭제 여부 확정
 - 남겨야 하는 스크립트는 실제 사용 경로를 문서화
+
+진행 메모:
+
+- `extend/g5_54version_update.extend.php`의 게시판 비밀번호 복구 훅 제거를 완료함
+- `extend/g5_54version_update.extend.php`는 더 이상 사용되는 훅이 없어 제거함
+- `js/common.js`에서 종료된 포인트 / 쪽지 / 프로필 / 스크랩 팝업 헬퍼와 바인딩을 제거함
+- 참조가 없는 `js/shop*.js`, `js/viewimageresize.js`, `js/sns.js`를 삭제함
 
 완료 기준:
 
@@ -218,7 +246,6 @@
 
 검증:
 
-- `C:\xampp\php\php.exe -l extend\g5_54version_update.extend.php`
 - 주요 화면에서 콘솔 에러 없이 회원가입 / 로그인 / 비밀번호 찾기 동작 확인
 - 삭제 후보 JS 파일이 실제로 참조되지 않는지 추가 검색 확인
 
@@ -227,6 +254,10 @@
 - `js/common.js`는 공용 스크립트이므로 비슷한 이름의 다른 기능 바인딩까지 같이 지우지 않도록 범위를 좁힌다.
 
 ### Phase 6. 테스트 체크리스트 확정
+
+상태:
+
+- 완료
 
 목표:
 
@@ -248,6 +279,11 @@
 - 관리자 회원 생성 / 수정 / 삭제
 - 소셜 로그인 연동 계정 처리
 
+진행 메모:
+
+- `docs/member-only-remaining-work.md`를 최종 수동 테스트 체크리스트 문서로 재작성함
+- 사전 준비, 절차, 기대 결과, 실행 후 기록 항목까지 포함해 다음 작업자가 바로 검증할 수 있게 고정함
+
 완료 기준:
 
 - 다음 작업자도 그대로 따라할 수 있는 수준의 점검 순서와 기대 결과가 문서화됨
@@ -256,19 +292,7 @@
 
 우선 확인 순서:
 
-- `bbs/password.php`
-- `bbs/password_check.php`
-- `lib/common.data.lib.php`
-- `lib/common.file.lib.php`
-- `lib/thumbnail.lib.php`
-- `lib/common.html.lib.php`
-- `lib/uri.lib.php`
-- `lib/URI/uri.class.php`
-- `extend/g5_54version_update.extend.php`
-- `js/common.js`
-- `js/shop.order.js`
-- `install/gnuboard5shop.sql`
-- `orderupgrade.php`
+- `docs/member-only-remaining-work.md`
 
 ## 보류 항목
 
@@ -282,6 +306,6 @@
 다음 세션에서 바로 시작할 때 확인할 것:
 
 1. 현재 브랜치가 `codex/member-only-refactor`인지 확인
-2. 워킹트리가 깨끗한지 확인
-3. 이 문서의 `Phase 1`부터 순서대로 진행
-4. 각 단계 종료 시 `php -l`과 문서 갱신까지 같이 처리
+2. 적용할 변경사항과 워킹트리 상태를 먼저 확인
+3. `docs/member-only-remaining-work.md` 체크리스트를 실행
+4. 테스트 결과와 발견 이슈를 문서 또는 별도 보고서에 반영

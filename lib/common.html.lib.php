@@ -82,7 +82,7 @@ function alert($msg='', $url='', $error=true, $post=false)
     if (isset($g5['title'])) {
         $header = $g5['title'];
     }
-    include_once(G5_BBS_PATH.'/alert.php');
+    include_once(G5_PATH.'/alert.php');
     exit;
 }
 
@@ -99,7 +99,7 @@ function alert_close($msg, $error=true)
     if (isset($g5['title'])) {
         $header = $g5['title'];
     }
-    include_once(G5_BBS_PATH.'/alert_close.php');
+    include_once(G5_PATH.'/alert_close.php');
     exit;
 }
 
@@ -132,7 +132,7 @@ function confirm($msg, $url1='', $url2='', $url3='')
     if (isset($g5['title'])) {
         $header = $g5['title'];
     }
-    include_once(G5_BBS_PATH.'/confirm.php');
+    include_once(G5_PATH.'/confirm.php');
     exit;
 }
 

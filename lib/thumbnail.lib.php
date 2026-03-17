@@ -105,6 +105,7 @@ function get_file_thumbnail($file){
 function get_view_thumbnail($contents, $thumb_width=0)
 {
     global $board, $config;
+    $is_member_only = defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY;
 
     if (!$thumb_width)
         $thumb_width = $board['bo_image_width'];
@@ -213,7 +214,7 @@ function get_view_thumbnail($contents, $thumb_width=0)
             }
             
             // $img_tag에 editor 경로가 있으면 원본보기 링크 추가
-            if(strpos($img_tag, G5_DATA_DIR.'/'.G5_EDITOR_DIR) && preg_match("/\.({$config['cf_image_extension']})$/i", $filename)) {
+            if(!$is_member_only && strpos($img_tag, G5_DATA_DIR.'/'.G5_EDITOR_DIR) && preg_match("/\.({$config['cf_image_extension']})$/i", $filename)) {
                 $imgurl = str_replace(G5_URL, "", $src);
                 $attr_href = run_replace('thumb_view_image_href', G5_BBS_URL.'/view_image.php?fn='.urlencode($imgurl), $filename, '', $width, $height, $alt);
                 $thumb_tag = '<a href="'.$attr_href.'" target="_blank">'.$thumb_tag.'</a>';

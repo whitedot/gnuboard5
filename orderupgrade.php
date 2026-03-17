@@ -1,6 +1,10 @@
 <?php
 include_once('./_common.php');
 
+if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
+    alert('회원 전용 모드에서는 쇼핑몰 업그레이드 기능을 제공하지 않습니다.', G5_URL);
+}
+
 if($is_admin != 'super')
     alert('최고관리자로 로그인 후 실행해 주십시오.', G5_URL);
 
