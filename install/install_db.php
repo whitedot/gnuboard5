@@ -168,7 +168,6 @@ if ($g5_install || $is_install === false) {
                     cf_new_del = '30',
                     cf_memo_del = '180',
                     cf_visit_del = '180',
-                    cf_popular_del = '180',
                     cf_use_member_icon = '2',
                     cf_member_icon_size = '5000',
                     cf_member_icon_width = '22',

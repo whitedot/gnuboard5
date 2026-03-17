@@ -230,8 +230,8 @@
 
                                 <div
                                     class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
-                                    <i data-icon="tabler:shopping-cart" class="iconify tabler--shopping-cart text-2xl"></i>
-                                    <span class="block w-full truncate text-center font-semibold">장바구니 (Cart)</span>
+                                    <i data-icon="tabler:package" class="iconify tabler--package text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">패키지 (Package)</span>
                                 </div>
 
                                 <div

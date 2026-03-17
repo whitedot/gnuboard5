@@ -35,7 +35,7 @@ if ($co['co_include_head'] && is_include_path_check($co['co_include_head'])) {
 $co['co_tag_filter_use'] = 1;
 $str = conv_content($co['co_content'], $co['co_html'], $co['co_tag_filter_use']);
 
-$src = array('/{{쇼핑몰명}}|{{홈페이지제목}}/');
+$src = array('/{{홈페이지제목}}/');
 $dst = array($config['cf_title']);
 
 if (isset($default) && isset($default['de_admin_company_name'])) {

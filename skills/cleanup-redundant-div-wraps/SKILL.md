@@ -1,6 +1,6 @@
 ---
 name: cleanup-redundant-div-wraps
-description: Remove redundant wrapper div elements that remain after legacy class/style cleanup in PHP templates while preserving dynamic/PHP-sensitive markup. Use after cleanup-legacy-class-inline-style when Gnuboard/Youngcart theme files contain many plain <div> wrappers with no attributes.
+description: Remove redundant wrapper div elements that remain after legacy class/style cleanup in PHP templates while preserving dynamic/PHP-sensitive markup. Use after cleanup-legacy-class-inline-style when legacy theme files contain many plain <div> wrappers with no attributes.
 ---
 
 # Redundant Div Wrap Cleanup

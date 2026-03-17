@@ -243,7 +243,7 @@
                                             aria-labelledby="vertical-support">
                                             <p class="mb-2">도움이 필요하신가요? 도움말 센터에 접속하거나 지원 팀에 직접 문의하세요.</p>
                                             <ul class="mb-4 list-disc space-y-1 ps-8">
-                                                <li>FAQ 및 튜토리얼 찾아보기</li>
+                                                <li>도움말 및 튜토리얼 찾아보기</li>
                                                 <li>지원 티켓 제출</li>
                                                 <li>지원 상담원과 실시간 채팅</li>
                                             </ul>
@@ -315,7 +315,7 @@
                                             aria-labelledby="right-support">
                                             <p class="mb-2">도움이 필요하신가요? 도움말 센터에 접속하거나 지원 팀에 직접 문의하세요.</p>
                                             <ul class="mb-4 list-disc space-y-1 ps-8">
-                                                <li>FAQ 및 튜토리얼 찾아보기</li>
+                                                <li>도움말 및 튜토리얼 찾아보기</li>
                                                 <li>지원 티켓 제출</li>
                                                 <li>지원 상담원과 실시간 채팅</li>
                                             </ul>

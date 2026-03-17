@@ -207,7 +207,7 @@ if (!isset($config['cf_use_promotion'])) {
 if (!isset($member['mb_marketing_agree'])) {
     sql_query(
         " ALTER TABLE `{$g5['member_table']}`
-                ADD `mb_marketing_agree` tinyint(1) NOT NULL DEFAULT '0' AFTER  `mb_scrap_cnt`,
+                ADD `mb_marketing_agree` tinyint(1) NOT NULL DEFAULT '0' AFTER `mb_memo_cnt`,
                 ADD `mb_marketing_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `mb_marketing_agree`,
                 ADD `mb_thirdparty_agree` tinyint(1) NOT NULL DEFAULT '0' AFTER  `mb_marketing_date`,
                 ADD `mb_thirdparty_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `mb_thirdparty_agree`,

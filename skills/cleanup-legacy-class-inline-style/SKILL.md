@@ -1,6 +1,6 @@
 ---
 name: cleanup-legacy-class-inline-style
-description: Remove legacy class and inline style attributes from PHP templates while preserving JS behavior hooks and ui-kit compatibility. Use when refactoring Gnuboard/Youngcart theme files (for example theme/basic) for Tailwind migration with rules like "keep id", "keep JS-related classes", and "keep ui-kit related classes".
+description: Remove legacy class and inline style attributes from PHP templates while preserving JS behavior hooks and ui-kit compatibility. Use when refactoring legacy theme files (for example theme/basic) for Tailwind migration with rules like "keep id", "keep JS-related classes", and "keep ui-kit related classes".
 ---
 
 # Legacy Attr Cleanup

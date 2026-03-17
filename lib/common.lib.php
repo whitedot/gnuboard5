@@ -47,7 +47,7 @@ include_once(G5_LIB_PATH.'/common.crypto.lib.php');
 // File handling (upload, download, view) - requires SQL
 include_once(G5_LIB_PATH.'/common.file.lib.php');
 
-// Data entities (Member, Board, Group access) - requires SQL
+// Data entities (Member, Content access) - requires SQL
 include_once(G5_LIB_PATH.'/common.data.lib.php');
 
 // Point system - requires SQL

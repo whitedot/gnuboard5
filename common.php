@@ -137,7 +137,6 @@ $config = array();
 $member = array('mb_id'=>'', 'mb_level'=> 1, 'mb_name'=> '', 'mb_point'=> 0, 'mb_certify'=>'', 'mb_email'=>'', 'mb_open'=>'', 'mb_homepage'=>'', 'mb_tel'=>'', 'mb_hp'=>'', 'mb_zip1'=>'', 'mb_zip2'=>'', 'mb_addr1'=>'', 'mb_addr2'=>'', 'mb_addr3'=>'', 'mb_addr_jibeon'=>'', 'mb_signature'=>'', 'mb_profile'=>'');
 $g5     = array();
 if( version_compare( phpversion(), '8.0.0', '>=' ) ) { $g5 = array('title'=>''); }
-$qaconfig = array();
 $g5_debug = array('php'=>array(),'sql'=>array());
 
 include_once(G5_LIB_PATH.'/hook.lib.php');    // hook 함수 파일

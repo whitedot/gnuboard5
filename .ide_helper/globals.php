@@ -16,9 +16,6 @@ $g5 = [];
 /** @var array<string, mixed> $write 에디터/필터용 임시 데이터 */
 $write = [];
 
-/** @var array<string, mixed> $qaconfig 1:1문의 설정 정보 */
-$qaconfig = [];
-
 /** @var bool|string $is_admin 관리자 여부 */
 $is_admin = false;
 

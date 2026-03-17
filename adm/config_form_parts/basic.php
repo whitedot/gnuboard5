@@ -114,19 +114,6 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_popular_del" class="form-label">인기검색어 삭제</label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('설정일이 지난 인기검색어 자동 삭제') ?>
-                    <div class="af-inline">
-                        <input type="text" name="cf_popular_del" value="<?php echo (int) $config['cf_popular_del'] ?>" id="cf_popular_del" size="5" class="form-input">
-                        <span>일</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
                     <label for="cf_login_minutes" class="form-label">현재 접속자</label>
                 </div>
                 <div class="af-field">

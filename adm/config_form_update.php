@@ -81,7 +81,6 @@ $check_keys = array(
     'cf_prohibit_email' => 'text',
     'cf_new_del' => 'int',
     'cf_visit_del' => 'int',
-    'cf_popular_del' => 'int',
     'cf_use_member_icon' => 'int',
     'cf_member_icon_size' => 'int',
     'cf_member_icon_width' => 'int',
@@ -157,7 +156,6 @@ foreach ($check_keys as $k => $v) {
 $preserve_keys = array(
     'cf_new_del',
     'cf_visit_del',
-    'cf_popular_del',
     'cf_login_minutes',
     'cf_new_rows',
     'cf_formmail_is_member',
@@ -277,7 +275,6 @@ $sql = " update {$g5['config_table']}
                 cf_prohibit_email = '{$_POST['cf_prohibit_email']}',
                 cf_new_del = '{$_POST['cf_new_del']}',
                 cf_visit_del = '{$_POST['cf_visit_del']}',
-                cf_popular_del = '{$_POST['cf_popular_del']}',
                 cf_use_member_icon = '{$_POST['cf_use_member_icon']}',
                 cf_member_icon_size = '{$_POST['cf_member_icon_size']}',
                 cf_member_icon_width = '{$_POST['cf_member_icon_width']}',
