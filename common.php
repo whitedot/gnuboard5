@@ -309,31 +309,15 @@ if( ! class_exists('XenoPostToForm') ){
     }
 }
 
-if( !function_exists('shop_check_is_pay_page') ){
-    function shop_check_is_pay_page(){
-        $shop_dir = 'shop';
-        $plugin_dir = 'plugin';
-        $mobile_dir = G5_MOBILE_DIR;
-
-
-        // PG 결제사의 리턴페이지 목록들
+if( !function_exists('check_special_post_return_page') ){
+    function check_special_post_return_page(){
         $pg_checks_pages = array(
-            $shop_dir.'/inicis/INIStdPayReturn.php',	// 영카트 5.2.9.5 이하에서 사용됨, 그 이상버전에서는 파일 삭제됨
-            $shop_dir.'/inicis/inistdpay_return.php',	// 영카트 5.2.9.6 이상에서 사용됨
-            $mobile_dir.'/'.$shop_dir.'/inicis/pay_return.php',
-            $mobile_dir.'/'.$shop_dir.'/inicis/pay_approval.php',
-            $shop_dir.'/lg/returnurl.php',
-            $mobile_dir.'/'.$shop_dir.'/lg/returnurl.php',
-            $mobile_dir.'/'.$shop_dir.'/lg/xpay_approval.php',
-            $mobile_dir.'/'.$shop_dir.'/kcp/order_approval_form.php',
-            $shop_dir.'/kakaopay/inicis_kk_return.php',     // 이니시스 카카오페이 (SIRK 로 시작하는 아이디 전용)
-            $plugin_dir."/inicert/ini_result.php", // 이니시스 간편인증 모듈 2021-09-10 http <-> https 간 세션 공유 문제로 인해 추가
-            $plugin_dir."/inicert/ini_find_result.php", // 이니시스 간편인증 모듈 2021-09-10 http <-> https 간 세션 공유 문제로 인해 추가
+            'plugin/inicert/ini_result.php',
+            'plugin/inicert/ini_find_result.php',
         );
 
         $server_script_name = str_replace('\\', '/', $_SERVER['SCRIPT_NAME']);
 
-        // PG 결제사의 리턴페이지이면
         foreach( $pg_checks_pages as $pg_page ){
             if( preg_match('~'.preg_quote($pg_page).'$~i', $server_script_name) ){
                 return true;
@@ -344,10 +328,9 @@ if( !function_exists('shop_check_is_pay_page') ){
     }
 }
 
-// PG 결제시에 세션이 없으면 내 호출페이지를 다시 호출하여 쿠키 PHPSESSID를 살려내어 세션값을 정상적으로 불러오게 합니다.
-// 위와 같이 코드를 전부 한페이지에 넣은 이유는 이전 버전 사용자들이 패치시 어려울수 있으므로 한페이지에 코드를 다 넣었습니다.
+// 본인인증 리턴페이지에서 세션이 없으면 내 호출페이지를 다시 호출하여 PHPSESSID를 복구합니다.
 if(XenoPostToForm::check()) {
-    if ( shop_check_is_pay_page() ){	// PG 결제 리턴페이지에서만 사용
+    if ( check_special_post_return_page() ){
         XenoPostToForm::submit($_POST); // session_start(); 하기 전에
     }
 }
@@ -359,8 +342,8 @@ if(XenoPostToForm::check()) {
 // 기본적으로 사용하는 필드만 얻은 후 상황에 따라 필드를 추가로 얻음
 $config = get_config(true);
 
-// 본인인증 또는 쇼핑몰 사용시에만 secure; SameSite=None 로 설정합니다.
-if( $config['cf_cert_use'] || (defined('G5_YOUNGCART_VER') && G5_YOUNGCART_VER) ) {
+// 본인인증 사용시에만 secure; SameSite=None 로 설정합니다.
+if( $config['cf_cert_use'] ) {
     // Chrome 80 버전부터 아래 이슈 대응
     // https://developers-kr.googleblog.com/2020/01/developers-get-ready-for-new.html?fbclid=IwAR0wnJFGd6Fg9_WIbQPK3_FxSSpFLqDCr9bjicXdzy--CCLJhJgC9pJe5ss
     if(!function_exists('session_start_samesite')) {
@@ -401,8 +384,6 @@ if( $config['cf_cert_use'] || (defined('G5_YOUNGCART_VER') && G5_YOUNGCART_VER) 
 }
 //==============================================================================
 
-define('G5_HTTP_BBS_URL',  https_url(G5_BBS_DIR, false));
-define('G5_HTTPS_BBS_URL', https_url(G5_BBS_DIR, true));
 define('G5_HTTP_MEMBER_URL',  https_url(G5_MEMBER_DIR, false));
 define('G5_HTTPS_MEMBER_URL', https_url(G5_MEMBER_DIR, true));
 
@@ -624,32 +605,23 @@ if (!(isset($member['mb_id']) && $config['cf_admin'] === $member['mb_id'])) {
     }
 }
 
+/** @var array $board 게시판 데이터 */
+$board = array(
+    'bo_table' => '',
+    'bo_skin' => '',
+    'bo_subject_len' => 0,
+    'bo_use_list_content' => 0,
+    'bo_select_editor' => '',
+    'bo_image_width' => 0,
+);
 /** @var array $write 글 데이터 */
 $write = array();
 /** @var string $write_table 게시판 테이블 전체이름 */
 $write_table = '';
-if ($bo_table) {
-    $board = get_board_db($bo_table, true);
-    if (isset($board['bo_table']) && $board['bo_table']) {
-        set_cookie("ck_bo_table", $board['bo_table'], 86400 * 1);
-        $gr_id = $board['gr_id'];
-        // 게시판 테이블 전체이름
-        $write_table = $g5['write_prefix'] . $bo_table; 
-
-        if (isset($wr_id) && $wr_id) {
-            $write = get_write($write_table, $wr_id);
-        } else if (isset($wr_seo_title) && $wr_seo_title) {
-            $write = get_content_by_field($write_table, 'bbs', 'wr_seo_title', generate_seo_title($wr_seo_title));
-            if (isset($write['wr_id'])) {
-                $wr_id = (int) $write['wr_id'];
-            }
-        }
-    }
-
-    // 게시판에서 사용하는 에디터를 설정
-    if (isset($board['bo_select_editor']) && $board['bo_select_editor']) {
-        $config['cf_editor'] = $board['bo_select_editor'];
-    }
+if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
+    $bo_table = '';
+    $wr_id = 0;
+    $wr_seo_title = '';
 }
 
 if ($gr_id && !is_array($gr_id)) {
@@ -776,16 +748,16 @@ if (G5_IS_MOBILE) {
 //==============================================================================
 // 스킨경로
 //------------------------------------------------------------------------------
-    $board_skin_path    = get_skin_path('board', $board['bo_skin']);
-    $board_skin_url     = get_skin_url('board', $board['bo_skin']);
+    $board_skin_path    = '';
+    $board_skin_url     = '';
     $member_skin_path   = get_skin_path('member', $config['cf_member_skin']);
     $member_skin_url    = get_skin_url('member', $config['cf_member_skin']);
-    $new_skin_path      = get_skin_path('new', $config['cf_new_skin']);
-    $new_skin_url       = get_skin_url('new', $config['cf_new_skin']);
-    $search_skin_path   = get_skin_path('search', $config['cf_search_skin']);
-    $search_skin_url    = get_skin_url('search', $config['cf_search_skin']);
-    $connect_skin_path  = get_skin_path('connect', $config['cf_connect_skin']);
-    $connect_skin_url   = get_skin_url('connect', $config['cf_connect_skin']);
+    $new_skin_path      = '';
+    $new_skin_url       = '';
+    $search_skin_path   = '';
+    $search_skin_url    = '';
+    $connect_skin_path  = '';
+    $connect_skin_url   = '';
 //==============================================================================
 
 

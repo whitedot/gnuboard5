@@ -51,7 +51,6 @@ define('G5_COOKIE_DOMAIN',  '');
 define('G5_DBCONFIG_FILE',  'dbconfig.php');
 
 define('G5_ADMIN_DIR',      'adm');
-define('G5_BBS_DIR',        'bbs');
 define('G5_MEMBER_DIR',     'member');
 define('G5_CSS_DIR',        'css');
 define('G5_DATA_DIR',       'data');
@@ -69,8 +68,6 @@ define('G5_KCPCERT_DIR',    'kcpcert');
 define('G5_INICERT_DIR',     'inicert');
 define('G5_LGXPAY_DIR',     'lgxpay');
 
-define('G5_SNS_DIR',        'sns');
-define('G5_SYNDI_DIR',      'syndi');
 define('G5_PHPMAILER_DIR',  'PHPMailer');
 define('G5_SESSION_DIR',    'session');
 define('G5_THEME_DIR',      'theme');
@@ -95,7 +92,6 @@ if (isset($g5_path['path'])) {
 }
 
 define('G5_ADMIN_URL',      G5_URL.'/'.G5_ADMIN_DIR);
-define('G5_BBS_URL',        G5_URL.'/'.G5_BBS_DIR);
 define('G5_MEMBER_URL',     G5_URL.'/'.G5_MEMBER_DIR);
 define('G5_CSS_URL',        G5_URL.'/'.G5_CSS_DIR);
 define('G5_DATA_URL',       G5_URL.'/'.G5_DATA_DIR);
@@ -108,13 +104,10 @@ define('G5_OKNAME_URL',     G5_PLUGIN_URL.'/'.G5_OKNAME_DIR);
 define('G5_KCPCERT_URL',    G5_PLUGIN_URL.'/'.G5_KCPCERT_DIR);
 define('G5_INICERT_URL',     G5_PLUGIN_URL.'/'.G5_INICERT_DIR);
 define('G5_LGXPAY_URL',     G5_PLUGIN_URL.'/'.G5_LGXPAY_DIR);
-define('G5_SNS_URL',        G5_PLUGIN_URL.'/'.G5_SNS_DIR);
-define('G5_SYNDI_URL',      G5_PLUGIN_URL.'/'.G5_SYNDI_DIR);
 define('G5_MOBILE_URL',     G5_URL.'/'.G5_MOBILE_DIR);
 
 // PATH 는 서버상에서의 절대경로
 define('G5_ADMIN_PATH',     G5_PATH.'/'.G5_ADMIN_DIR);
-define('G5_BBS_PATH',       G5_PATH.'/'.G5_BBS_DIR);
 define('G5_MEMBER_PATH',    G5_PATH.'/'.G5_MEMBER_DIR);
 define('G5_CSS_PATH',       G5_PATH.'/'.G5_CSS_DIR);
 define('G5_DATA_PATH',      G5_PATH.'/'.G5_DATA_DIR);
@@ -133,8 +126,6 @@ define('G5_KCPCERT_PATH',   G5_PLUGIN_PATH.'/'.G5_KCPCERT_DIR);
 define('G5_INICERT_PATH',   G5_PLUGIN_PATH.'/'.G5_INICERT_DIR);
 define('G5_LGXPAY_PATH',    G5_PLUGIN_PATH.'/'.G5_LGXPAY_DIR);
 
-define('G5_SNS_PATH',       G5_PLUGIN_PATH.'/'.G5_SNS_DIR);
-define('G5_SYNDI_PATH',     G5_PLUGIN_PATH.'/'.G5_SYNDI_DIR);
 define('G5_PHPMAILER_PATH', G5_PLUGIN_PATH.'/'.G5_PHPMAILER_DIR);
 //==============================================================================
 

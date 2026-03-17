@@ -46,52 +46,6 @@ function get_content_db($co_id, $is_cache=false){
     return $co;
 }
 
-function get_board_names(){
-    global $g5;
-
-    static $boards = array();
-	
-	$boards = run_replace('get_board_names_cache', $boards);
-
-    if( ! $boards ){
-        $sql = " select bo_table from {$g5['board_table']} ";
-        $result = sql_query($sql);
-
-        while ($row = sql_fetch_array($result)) {
-            $boards[] = $row['bo_table'];
-        }
-    }
-
-    return $boards;
-}
-
-function get_board_db($bo_table, $is_cache=false){
-    global $g5;
-
-    static $cache = array();
-
-    $bo_table = preg_replace('/[^a-z0-9_]/i', '', $bo_table);
-    $cache = run_replace('get_board_db_cache', $cache, $bo_table, $is_cache);
-    $key = md5($bo_table);
-
-    if( $is_cache && isset($cache[$key]) ){
-        return $cache[$key];
-    }
-
-    if( !($cache[$key] = run_replace('get_board_db', array(), $bo_table)) ){
-
-        $sql = " select * from {$g5['board_table']} where bo_table = '$bo_table' ";
-
-        $board = sql_fetch($sql);
-        
-        $board_defaults = array('bo_table'=>'', 'bo_skin'=>'', 'bo_mobile_skin'=>'', 'bo_upload_count' => 0, 'bo_use_dhtml_editor'=>'', 'bo_subject'=>'', 'bo_image_width'=>0);
-
-        $cache[$key] = array_merge($board_defaults, (array) $board);
-    }
-
-    return $cache[$key];
-}
-
 function get_menu_db($use_mobile=0, $is_cache=false){
     global $g5;
 
@@ -140,74 +94,6 @@ function get_menu_db($use_mobile=0, $is_cache=false){
     return $cache[$key];
 }
 
-// 게시판 테이블에서 하나의 행을 읽음
-function get_content_by_field($write_table, $type='bbs', $where_field='', $where_value='', $is_cache=false)
-{
-    global $g5, $g5_object;
-
-    static $cache = array();
-
-    $order_key = 'wr_id';
-
-    if( $type === 'content' ){
-        $check_array = array('co_id', 'co_html', 'co_subject', 'co_content', 'co_seo_title', 'co_mobile_content', 'co_skin', 'co_mobile_skin', 'co_tag_filter_use', 'co_hit', 'co_include_head', 'co_include_tail');
-
-        $order_key = 'co_id';
-    } else {
-        $check_array = array('wr_id', 'wr_num', 'wr_reply', 'wr_parent', 'wr_is_comment', 'ca_name', 'wr_option', 'wr_subject', 'wr_content', 'wr_seo_title', 'wr_link1', 'wr_link2', 'wr_hit', 'wr_good', 'wr_nogood', 'mb_id', 'wr_name', 'wr_email', 'wr_homepage', 'wr_datetime', 'wr_ip', 'wr_1', 'wr_2', 'wr_3', 'wr_4', 'wr_5', 'wr_6', 'wr_7', 'wr_8', 'wr_9', 'wr_10');
-    }
-
-    if( ! in_array($where_field, $check_array) ){
-        return '';
-    }
-    
-    $where_value = strip_tags($where_value);
-    $key = md5($write_table.'|'.$where_field.'|'.$where_value);
-
-    if( $is_cache && isset($cache[$key]) ){
-        return $cache[$key];
-    }
-
-    $sql = " select * from {$write_table} where $where_field = '".sql_real_escape_string($where_value)."' order by $order_key desc limit 1 ";
-
-    $cache[$key] = sql_fetch($sql);
-
-    if( $type === 'content' ){
-        
-        $g5_object->set($type, $cache[$key]['co_id'], $cache[$key], 'content');
-
-    } else {
-    
-        $wr_bo_table = preg_replace('/^'.preg_quote($g5['write_prefix']).'/i', '', $write_table);
-        $g5_object->set($type, $cache[$key]['wr_id'], $cache[$key], $wr_bo_table);
-
-    }
-
-    return $cache[$key];
-}
-
-// 게시판 첨부파일 테이블에서 하나의 행을 읽음
-function get_board_file_db($bo_table, $wr_id, $fields='*', $add_where='', $is_cache=false)
-{
-    global $g5;
-
-    static $cache = array();
-
-    $wr_id = (int) $wr_id;
-    $key = md5($bo_table.'|'.$wr_id.$fields.$add_where);
-
-    if( $is_cache && isset($cache[$key]) ){
-        return $cache[$key];
-    }
-
-    $sql = " select $fields from {$g5['board_file_table']}
-                where bo_table = '$bo_table' and wr_id = '$wr_id' $add_where order by bf_no limit 0, 1 ";
-
-    $cache[$key] = sql_fetch($sql);
-
-    return $cache[$key];
-}
-
 function get_point_db($po_id, $is_cache=false){
     global $g5;
 
@@ -244,31 +130,6 @@ function get_mail_content_db($ma_id, $is_cache=false){
     $cache[$key] = sql_fetch($sql);
 
     return $cache[$key];
-}
-
-function get_thumbnail_find_cache($bo_table, $wr_id, $wr_key){
-    global $g5;
-
-    if( $cache_content = g5_latest_cache_data($bo_table, array(), $wr_id) ){
-        if( $wr_key === 'content' ){
-            return $cache_content;
-        } else if ( $wr_key === 'file' && isset($cache_content['first_file_thumb']) ){
-            return $cache_content['first_file_thumb'];
-        }
-    }
-
-    if( $wr_key === 'content' ){
-        $write_table = $g5['write_prefix'].$bo_table;
-        return get_write($write_table, $wr_id, true);
-    }
-
-    return get_board_file_db($bo_table, $wr_id, 'bf_file, bf_content', "and bf_type in (1, 2, 3, 18) ", true);
-}
-
-function get_write_table_name($bo_table){
-    global $g5;
-
-    return $g5['write_prefix'].preg_replace('/[^a-z0-9_]/i', '', $bo_table);
 }
 
 function get_db_charset($charset){

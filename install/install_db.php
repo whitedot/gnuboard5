@@ -146,10 +146,7 @@ if ($g5_install || $is_install === false) {
                     cf_memo_send_point = '0',
                     cf_cut_name = '15',
                     cf_nick_modify = '60',
-                    cf_new_skin = 'theme/basic',
                     cf_new_rows = '15',
-                    cf_search_skin = 'theme/basic',
-                    cf_connect_skin = 'theme/basic',
                     cf_read_point = '$read_point',
                     cf_write_point = '$write_point',
                     cf_comment_point = '$comment_point',
@@ -226,9 +223,7 @@ if ($g5_install || $is_install === false) {
     // FAQ Master
     sql_query(" insert into `{$table_prefix}faq_master` set fm_id = '1', fm_subject = '자주하시는 질문' ", true, $dblink);
 
-    // 그누보드, 영카트 통합으로 인하여 게시판그룹을 커뮤니티(community)로 생성 (NaviGator님,210624)
-    // $tmp_gr_id = defined('G5_YOUNGCART_VER') ? 'shop' : 'community';
-    // $tmp_gr_subject = defined('G5_YOUNGCART_VER') ? '쇼핑몰' : '커뮤니티';
+    // member-only 기본 설치에서는 게시판 그룹을 community로 고정한다.
     $tmp_gr_id = 'community';
     $tmp_gr_subject = '커뮤니티';
 

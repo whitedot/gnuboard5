@@ -177,36 +177,6 @@
                 </div>
             </div>
 
-            <?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_new_skin" class="form-label">최근게시물 스킨<strong>필수</strong></label>
-                </div>
-                <div class="af-field">
-                    <?php echo get_skin_select('new', 'cf_new_skin', 'cf_new_skin', $config['cf_new_skin'], 'required'); ?>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_search_skin" class="form-label">검색 스킨<strong>필수</strong></label>
-                </div>
-                <div class="af-field">
-                    <?php echo get_skin_select('search', 'cf_search_skin', 'cf_search_skin', $config['cf_search_skin'], 'required'); ?>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_connect_skin" class="form-label">접속자 스킨<strong>필수</strong></label>
-                </div>
-                <div class="af-field">
-                    <?php echo get_skin_select('connect', 'cf_connect_skin', 'cf_connect_skin', $config['cf_connect_skin'], 'required'); ?>
-                </div>
-            </div>
-
-            <?php } ?>
-
             <div class="af-row">
                 <div class="af-label">
                     <label for="cf_editor" class="form-label">에디터 선택</label>
@@ -336,30 +306,6 @@
                 </div>
             </div>
 
-            <?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_syndi_token" class="form-label">네이버 신디케이션 연동키</label>
-                </div>
-                <div class="af-field">
-                    <?php if (!function_exists('curl_init')) { ?>
-                    <?php echo help('<b>경고) curl이 지원되지 않아 네이버 신디케이션을 사용할수 없습니다.</b>'); ?>
-                    <?php } ?>
-                    <?php echo help('네이버 신디케이션 연동키(token)을 입력하면 네이버 신디케이션을 사용할 수 있습니다.<br>연동키는 <a href="http://webmastertool.naver.com/" target="_blank" rel="noopener noreferrer"><u>네이버 웹마스터도구</u></a> -> 네이버 신디케이션에서 발급할 수 있습니다.') ?>
-                    <input type="text" name="cf_syndi_token" value="<?php echo isset($config['cf_syndi_token']) ? get_sanitize_input($config['cf_syndi_token']) : ''; ?>" id="cf_syndi_token" size="70" class="form-input">
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_syndi_except" class="form-label">네이버 신디케이션 제외게시판</label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('네이버 신디케이션 수집에서 제외할 게시판 아이디를 | 로 구분하여 입력하십시오. 예) notice|adult<br>참고로 그룹접근사용 게시판, 글읽기 권한 2 이상 게시판, 비밀글은 신디케이션 수집에서 제외됩니다.') ?>
-                    <input type="text" name="cf_syndi_except" value="<?php echo isset($config['cf_syndi_except']) ? get_sanitize_input($config['cf_syndi_except']) : ''; ?>" id="cf_syndi_except" size="70" class="form-input">
-                </div>
-            </div>
-            <?php } ?>
         </div>
     </div>
 </section>

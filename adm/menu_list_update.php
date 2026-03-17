@@ -12,10 +12,6 @@ check_admin_token();
 
 function sanitize_member_only_menu_link($link)
 {
-    if (!(defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY)) {
-        return $link;
-    }
-
     $decoded_link = html_entity_decode((string) $link, ENT_QUOTES);
     $parsed_link = parse_url($decoded_link);
 
@@ -29,34 +25,6 @@ function sanitize_member_only_menu_link($link)
 
     if ($host && $site_host && $host !== $site_host) {
         return $link;
-    }
-
-    $path = isset($parsed_link['path']) ? strtolower((string) $parsed_link['path']) : '';
-    $basename = $path ? basename($path) : '';
-    $blocked_bbs_pages = array(
-        'board.php',
-        'write.php',
-        'password.php',
-        'password_check.php',
-        'point.php',
-        'profile.php',
-        'memo.php',
-        'memo_form.php',
-        'memo_view.php',
-        'memo_delete.php',
-        'memo_form_update.php',
-        'download.php',
-        'link.php',
-        'view_image.php',
-        'rss.php'
-    );
-
-    if (strpos($path, '/shop/') !== false || $basename === 'shop.php') {
-        return G5_URL;
-    }
-
-    if (in_array($basename, $blocked_bbs_pages, true)) {
-        return G5_URL;
     }
 
     return $link;

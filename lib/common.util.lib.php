@@ -610,9 +610,6 @@ function member_delete($mb_id)
     // 그룹관리자인 경우 그룹관리자를 공백으로
     sql_query(" update {$g5['group_table']} set gr_admin = '' where gr_admin = '$mb_id' ");
 
-    // 게시판관리자인 경우 게시판관리자를 공백으로
-    sql_query(" update {$g5['board_table']} set bo_admin = '' where bo_admin = '$mb_id' ");
-
     //소셜로그인에서 삭제 또는 해제
     if(function_exists('social_member_link_delete')){
         social_member_link_delete($mb_id);
@@ -987,9 +984,6 @@ function is_include_path_check($path='', $is_input='')
                 return false;
             }
             if( substr_count($replace_path, './') > 5 ){
-                return false;
-            }
-            if( defined('G5_SHOP_DIR') && preg_match('/'.G5_SHOP_DIR.'\//i', $replace_path) && preg_match('/kcp\//i', $replace_path) ){
                 return false;
             }
         }

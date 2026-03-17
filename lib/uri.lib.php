@@ -7,12 +7,43 @@ function is_member_only_blocked_bbs_page($page_name)
         && in_array($page_name, array('board', 'write', 'rss'), true);
 }
 
+function get_content_page_url()
+{
+    return G5_URL.'/content.php';
+}
+
+function is_member_page_request($folder)
+{
+    if (!preg_match('/^[a-z0-9_.-]+$/i', (string) $folder)) {
+        return false;
+    }
+
+    return is_file(G5_MEMBER_PATH.'/'.$folder.'.php');
+}
+
+function get_page_url($folder)
+{
+    if ($folder === 'content') {
+        return get_content_page_url();
+    }
+
+    if (is_member_page_request($folder)) {
+        return G5_MEMBER_URL.'/'.$folder.'.php';
+    }
+
+    $root_file = G5_PATH.'/'.$folder.'.php';
+
+    if (is_file($root_file)) {
+        return G5_URL.'/'.$folder.'.php';
+    }
+
+    return G5_URL;
+}
+
 // 짧은 주소 형식으로 만들어서 가져온다.
 function get_pretty_url($folder, $no='', $query_string='', $action='')
 {
-    global $g5, $config;
-
-    $boards = get_board_names();
+    global $config;
     $segments = array();
     $url = $add_query = '';
 
@@ -20,54 +51,17 @@ function get_pretty_url($folder, $no='', $query_string='', $action='')
         return $url;
     }
 
-    if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY && in_array($folder, $boards, true)) {
-        return G5_URL;
-    }
-
-    // use shortten url
-    if($config['cf_bbs_rewrite']) {
+    if ($folder === 'content' && $config['cf_bbs_rewrite']) {
 
         $segments[0] = G5_URL;
+        $segments[1] = $folder;
 
-        if( $folder === 'content' && $no ){     // 내용관리
-
-            $segments[1] = $folder;
-
-            if( $config['cf_bbs_rewrite'] > 1 ){
-
-                $get_content = get_content_db( $no , true);
+        if ($no) {
+            if ($config['cf_bbs_rewrite'] > 1) {
+                $get_content = get_content_db($no, true);
                 $segments[2] = (isset($get_content['co_seo_title']) && $get_content['co_seo_title']) ? urlencode($get_content['co_seo_title']).'/' : urlencode($no);
-
             } else {
                 $segments[2] = urlencode($no);
-            }
-
-        } else if(in_array($folder, $boards)) {     // 게시판
-
-            $segments[1] = $folder;
-
-            if($no) {
-
-                if( $config['cf_bbs_rewrite'] > 1 ){
-
-                $get_write = get_write( $g5['write_prefix'].$folder, $no , true);
-
-                $segments[2] = (isset($get_write['wr_seo_title']) && $get_write['wr_seo_title']) ? urlencode($get_write['wr_seo_title']).'/' : urlencode($no);
-
-                } else {
-                    $segments[2] = urlencode($no);
-                }
-
-            } else if($action) {
-                $segments[2] = urlencode($action);
-            }
-
-        } else {
-            $segments[1] = $folder;
-            if($no) {
-                $no_array = explode("=", $no);
-                $no_value = end($no_array);
-                $segments[2] = urlencode($no_value);
             }
         }
 
@@ -80,27 +74,17 @@ function get_pretty_url($folder, $no='', $query_string='', $action='')
             }
         }
 
-    } else { // don't use shortten url
-        if(in_array($folder, $boards)) {
-            $url = G5_BBS_URL. '/board.php?bo_table='. $folder;
-            if($no) {
-                $url .= '&amp;wr_id='. $no;
-            }
-            if($query_string) {
-                if(substr($query_string, 0, 1) !== '&') {
-                    $url .= '&amp;';
-                }
+    } else {
+        $url = get_page_url($folder);
 
-                $url .= $query_string;
-            }
-        } else {
-            $url = G5_BBS_URL. '/'.$folder.'.php';
-            if($no) {
-                $url .= ($folder === 'content') ? '?co_id='. $no : '?'. $no;
-            }
-            if($query_string) {
-                $url .= (!$no ? '?' : '&amp;'). $query_string;
-            }
+        if ($folder === 'content' && $no) {
+            $url .= '?co_id='.$no;
+        } else if ($no && $url !== G5_URL) {
+            $url .= '?'.$no;
+        }
+
+        if ($query_string) {
+            $url .= (!$no ? '?' : '&amp;').$query_string;
         }
 
         $segments[0] = $url;
@@ -111,94 +95,63 @@ function get_pretty_url($folder, $no='', $query_string='', $action='')
 
 function short_url_clean($string_url, $add_qry=''){
 
-    global $config, $g5;
+    global $config;
 
-    if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
-        $parsed_url = parse_url(str_replace('&amp;', '&', $string_url));
-        $page_name = isset($parsed_url['path']) ? basename($parsed_url['path'], '.php') : '';
-
-        if (is_member_only_blocked_bbs_page($page_name)) {
-            return G5_URL;
-        }
+    if (!(isset($config['cf_bbs_rewrite']) && $config['cf_bbs_rewrite'])) {
+        return $string_url;
     }
 
-    if( isset($config['cf_bbs_rewrite']) && $config['cf_bbs_rewrite'] ){
+    $string_url = str_replace('&amp;', '&', $string_url);
+    $url = parse_url($string_url);
+    $page_name = isset($url['path']) ? basename($url['path'], ".php") : '';
 
-        $string_url = str_replace('&amp;', '&', $string_url);
-        $url=parse_url($string_url);
-        $page_name = isset($url['path']) ? basename($url['path'],".php") : '';
+    if ($page_name !== 'content') {
+        return run_replace('false_short_url_clean', $string_url, $url, $page_name, array('content'));
+    }
 
-        $array_page_names = run_replace('url_clean_page_names', array('board', 'write', 'content'));
+    $normalized_string_url = preg_replace('/^https?:/i', '', $string_url);
+    $normalized_content_url = preg_replace('/^https?:/i', '', get_content_page_url());
 
-        if( stripos(preg_replace('/^https?:/i', '', $string_url), preg_replace('/^https?:/i', '', G5_BBS_URL)) === false || ! in_array($page_name, $array_page_names) ){   //게시판이 아니면 리턴
-            return run_replace('false_short_url_clean', $string_url, $url, $page_name, $array_page_names);
-        }
+    if (stripos($normalized_string_url, $normalized_content_url) === false) {
+        return run_replace('false_short_url_clean', $string_url, $url, $page_name, array('content'));
+    }
 
-        $return_url = '';
-        parse_str($url['query'], $vars);
+    parse_str(isset($url['query']) ? $url['query'] : '', $vars);
+    $fragment = isset($url['fragment']) ? '#'.$url['fragment'] : '';
+    $host = G5_URL;
 
-        /*
-        // 예) Array ( [scheme] => http [host] => sir.kr [path] => /bbs/board.php [query] => wr_id=1110870&bo_table=cm_free&cpage=1 [fragment] => c_1110946 )
-        foreach($vars as $k => $v) { $page_name .= "/".$v; }
-        */
+    if (isset($url['host'])) {
+        $array_file_paths = run_replace('url_clean_page_paths', array('/content.php'));
+        $str_path = isset($url['path']) ? $url['path'] : '';
+        $http = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on') ? 'https://' : 'http://';
+        $port = (isset($url['port']) && ($url['port'] !== 80 && $url['port'] !== 443)) ? ':'.$url['port'] : '';
+        $host = $http.$url['host'].$port.str_replace($array_file_paths, '', $str_path);
+    }
 
-        if( $page_name === 'write' ){
-            $vars['action'] = 'write';
-            $allow_param_keys = array('bo_table'=>'', 'action'=>'');
-        } else if( $page_name === 'content' ){
-            $vars['action'] = 'content';
-            $allow_param_keys = array('action'=>'', 'co_id'=>'');
+    $return_url = '';
+
+    if (!empty($vars['co_id'])) {
+        if ($config['cf_bbs_rewrite'] > 1) {
+            $content = get_content_db($vars['co_id'], true);
+            $return_url = '/'.((isset($content['co_seo_title']) && $content['co_seo_title']) ? urlencode($content['co_seo_title']).'/' : urlencode($vars['co_id']));
         } else {
-            $allow_param_keys = array('bo_table'=>'', 'wr_id'=>'');
+            $return_url = '/'.urlencode($vars['co_id']);
         }
-
-        $s = array();
-
-        foreach( $allow_param_keys as $key=>$v ){
-            if( !isset($vars[$key]) || empty($vars[$key]) ) continue;
-
-            $s[$key] = $vars[$key];
-        }
-
-        if( $config['cf_bbs_rewrite'] > 1 && $page_name === 'board' && (isset($s['wr_id']) && $s['wr_id']) && (isset($s['bo_table']) && $s['bo_table']) ){
-            $get_write = get_write( get_write_table_name($s['bo_table']), $s['wr_id'], true);
-
-            if( $get_write['wr_seo_title'] ){
-                unset($s['wr_id']);
-                $s['wr_seo_title'] = urlencode($get_write['wr_seo_title']).'/';
-            }
-        }
-
-        $fragment = isset($url['fragment']) ? '#'.$url['fragment'] : '';
-
-        $host = G5_URL;
-
-        if( isset($url['host']) ){
-
-            $array_file_paths = run_replace('url_clean_page_paths', array('/'.G5_BBS_DIR.'/board.php', '/'.G5_BBS_DIR.'/write.php', '/'.G5_BBS_DIR.'/content.php'));
-
-            $str_path = isset($url['path']) ? $url['path'] : '';
-            $http = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on') ? 'https://' : 'http://';
-            $port = (isset($url['port']) && ($url['port']!==80 || $url['port']!==443)) ? ':'.$url['port'] : '';
-            $host = $http.$url['host'].$port.str_replace($array_file_paths, '', $str_path);
-        }
-
-        $add_param = '';
-
-        if( $result = array_diff_key($vars, $allow_param_keys ) ){
-            $add_param = '?'.http_build_query($result,'','&amp;');
-        }
-
-        if( $add_qry ){
-            $add_param .= $add_param ? '&amp;'.$add_qry : '?'.$add_qry;
-        }
-
-        foreach($s as $k => $v) { $return_url .= '/'.$v; }
-
-        return $host.$return_url.$add_param.$fragment;
     }
 
-    return $string_url;
+    $add_param = '';
+    $extra_vars = $vars;
+    unset($extra_vars['co_id']);
+
+    if ($extra_vars) {
+        $add_param = '?'.http_build_query($extra_vars, '', '&amp;');
+    }
+
+    if ($add_qry) {
+        $add_param .= $add_param ? '&amp;'.$add_qry : '?'.$add_qry;
+    }
+
+    return $host.'/content'.$return_url.$add_param.$fragment;
 }
 
 function correct_goto_url($url){
@@ -249,13 +202,7 @@ function exist_seo_url($type, $seo_title, $write_table, $sql_id=0){
     $sql_id = preg_replace('/[^a-z0-9_\-]/i', '', $sql_id);
 	// 영카트 상품코드의 경우 - 하이픈이 들어가야 함
 
-    if( $type === 'bbs' ){
-        $sql = "select wr_seo_title FROM {$write_table} WHERE wr_seo_title = '".sql_real_escape_string($seo_title)."' AND wr_id <> '$sql_id' limit 1";
-        $row = sql_fetch($sql);
-
-        $exists_title = isset($row['wr_seo_title']) ? $row['wr_seo_title'] : '';
-
-    } else if ( $type === 'content' ){
+    if ($type === 'content') {
 
         $sql = "select co_seo_title FROM {$write_table} WHERE co_seo_title = '".sql_real_escape_string($seo_title)."' AND co_id <> '$sql_id' limit 1";
         $row = sql_fetch($sql);
@@ -266,14 +213,11 @@ function exist_seo_url($type, $seo_title, $write_table, $sql_id=0){
         return run_replace('exist_check_seo_title', $seo_title, $type, $write_table, $sql_id);
     }
 
-    if ($exists_title)
-        return 'is_exists';
-    else
-        return '';
+    return $exists_title ? 'is_exists' : '';
 }
 
-function check_case_exist_title($data, $case=G5_BBS_DIR, $is_redirect=false) {
-    global $config, $g5, $board;
+function check_case_exist_title($data, $case=G5_CONTENT_DIR, $is_redirect=false) {
+    global $config, $g5;
 
     if ((int) $config['cf_bbs_rewrite'] !== 2) {
         return;
@@ -282,18 +226,7 @@ function check_case_exist_title($data, $case=G5_BBS_DIR, $is_redirect=false) {
     $seo_title = '';
     $redirect_url = '';
 
-    if ($case == G5_BBS_DIR && isset($data['wr_seo_title'])) {
-        $db_table = $g5['write_prefix'].$board['bo_table'];
-
-        if (exist_seo_url($case, $data['wr_seo_title'], $db_table, $data['wr_id'])) {
-            $seo_title = $data['wr_seo_title'].'-'.$data['wr_id'];
-            $sql = " update `{$db_table}` set wr_seo_title = '".sql_real_escape_string($seo_title)."' where wr_id = '{$data['wr_id']}' ";
-            sql_query($sql, false);
-
-            get_write($db_table, $data['wr_id'], false);
-            $redirect_url = get_pretty_url($board['bo_table'], $data['wr_id']);
-        }
-    } else if ($case == G5_CONTENT_DIR && isset($data['co_seo_title'])) {
+    if ($case == G5_CONTENT_DIR && isset($data['co_seo_title'])) {
         $db_table = $g5['content_table'];
 
         if (exist_seo_url($case, $data['co_seo_title'], $db_table, $data['co_id'])) {
@@ -304,17 +237,6 @@ function check_case_exist_title($data, $case=G5_BBS_DIR, $is_redirect=false) {
             get_content_db($data['co_id'], false);
             g5_delete_cache_by_prefix('content-' . $data['co_id'] . '-');
             $redirect_url = get_pretty_url($case, $data['co_id']);
-        }
-    } else if (defined('G5_SHOP_DIR') && $case == G5_SHOP_DIR && isset($data['it_seo_title'])) {
-        $db_table = $g5['g5_shop_item_table'];
-
-        if (shop_exist_check_seo_title($data['it_seo_title'], $case, $db_table, $data['it_id'])) {
-            $seo_title = $data['it_seo_title'].'-'.substr(get_random_token_string(4), 4);
-            $sql = " update `{$db_table}` set it_seo_title = '".sql_real_escape_string($seo_title)."' where it_id = '{$data['it_id']}' ";
-            sql_query($sql, false);
-
-            get_shop_item($data['it_id'], false);
-            $redirect_url = get_pretty_url($case, $data['it_id']);
         }
     }
 
@@ -341,23 +263,10 @@ function exist_seo_title_recursive($type, $seo_title, $write_table, $sql_id=0){
     return exist_seo_title_recursive($type, $seo_title, $write_table, $sql_id);
 }
 
-function seo_title_update($db_table, $pk_id, $type='bbs'){
-    
-    global $g5;
-
+function seo_title_update($db_table, $pk_id, $type='content'){
     $pk_id = (int) $pk_id;
 
-    if( $type === 'bbs' ){
-
-        $write = get_write($db_table, $pk_id, true);
-        if( ! (isset($write['wr_seo_title']) && $write['wr_seo_title']) && (isset($write['wr_subject']) && $write['wr_subject']) ){
-            $wr_seo_title = exist_seo_title_recursive('bbs', generate_seo_title($write['wr_subject']), $db_table, $pk_id);
-
-            $sql = " update `{$db_table}` set wr_seo_title = '{$wr_seo_title}' where wr_id = '{$pk_id}' ";
-            sql_query($sql);
-        }
-    } else if ( $type === 'content' ){
-
+    if ($type === 'content') {
         $co = get_content_db($pk_id, true);
         if( ! (isset($co['co_seo_title']) && $co['co_seo_title']) && (isset($co['co_subject']) && $co['co_subject']) ){
             $co_seo_title = exist_seo_title_recursive('content', generate_seo_title($co['co_subject']), $db_table, $pk_id);
@@ -370,22 +279,6 @@ function seo_title_update($db_table, $pk_id, $type='bbs'){
 
 function get_nginx_conf_rules($return_string = false)
 {
-    if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
-        $get_path_url = parse_url(G5_URL);
-        $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
-
-        $rules = array(
-            '#### ' . G5_VERSION . ' nginx rules BEGIN #####',
-            'if (!-e $request_filename) {',
-            "rewrite ^{$base_path}content/([0-9a-zA-Z_]+)$ {$base_path}" . G5_BBS_DIR . "/content.php?co_id=$1&rewrite=1 break;",
-            "rewrite ^{$base_path}content/([^/]+)/$ {$base_path}" . G5_BBS_DIR . "/content.php?co_seo_title=$1&rewrite=1 break;",
-            '}',
-            '#### ' . G5_VERSION . ' nginx rules END #####'
-        );
-
-        return $return_string ? implode("\n", $rules) : $rules;
-    }
-
     $get_path_url = parse_url(G5_URL);
     $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
 
@@ -402,13 +295,8 @@ function get_nginx_conf_rules($return_string = false)
         $rules[] = $add_rules;
     }
 
-    $rules[] = "rewrite ^{$base_path}content/([0-9a-zA-Z_]+)$ {$base_path}" . G5_BBS_DIR . "/content.php?co_id=$1&rewrite=1 break;";
-    $rules[] = "rewrite ^{$base_path}content/([^/]+)/$ {$base_path}" . G5_BBS_DIR . "/content.php?co_seo_title=$1&rewrite=1 break;";
-    $rules[] = "rewrite ^{$base_path}rss/([0-9a-zA-Z_]+)$ {$base_path}" . G5_BBS_DIR . "/rss.php?bo_table=$1 break;";
-    $rules[] = "rewrite ^{$base_path}([0-9a-zA-Z_]+)$ {$base_path}" . G5_BBS_DIR . "/board.php?bo_table=$1&rewrite=1 break;";
-    $rules[] = "rewrite ^{$base_path}([0-9a-zA-Z_]+)/write$ {$base_path}" . G5_BBS_DIR . "/write.php?bo_table=$1&rewrite=1 break;";
-    $rules[] = "rewrite ^{$base_path}([0-9a-zA-Z_]+)/([^/]+)/$ {$base_path}" . G5_BBS_DIR . "/board.php?bo_table=$1&wr_seo_title=$2&rewrite=1 break;";
-    $rules[] = "rewrite ^{$base_path}([0-9a-zA-Z_]+)/([0-9]+)$ {$base_path}" . G5_BBS_DIR . "/board.php?bo_table=$1&wr_id=$2&rewrite=1 break;";
+    $rules[] = "rewrite ^{$base_path}content/([0-9a-zA-Z_]+)$ {$base_path}content.php?co_id=$1&rewrite=1 break;";
+    $rules[] = "rewrite ^{$base_path}content/([^/]+)/$ {$base_path}content.php?co_seo_title=$1&rewrite=1 break;";
     $rules[] = '}';
     $rules[] = '#### ' . G5_VERSION . ' nginx rules END #####';
 
@@ -417,27 +305,6 @@ function get_nginx_conf_rules($return_string = false)
 
 function get_mod_rewrite_rules($return_string = false)
 {
-    if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
-        $get_path_url = parse_url(G5_URL);
-        $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
-
-        $rules = array(
-            '#### ' . G5_VERSION . ' rewrite BEGIN #####',
-            '<IfModule mod_rewrite.c>',
-            'RewriteEngine On',
-            'RewriteBase ' . $base_path,
-            'RewriteCond %{REQUEST_FILENAME} -f [OR]',
-            'RewriteCond %{REQUEST_FILENAME} -d',
-            'RewriteRule ^ - [L]',
-            'RewriteRule ^content/([0-9a-zA-Z_]+)$ ' . G5_BBS_DIR . '/content.php?co_id=$1&rewrite=1 [QSA,L]',
-            'RewriteRule ^content/([^/]+)/$ ' . G5_BBS_DIR . '/content.php?co_seo_title=$1&rewrite=1 [QSA,L]',
-            '</IfModule>',
-            '#### ' . G5_VERSION . ' rewrite END #####'
-        );
-
-        return $return_string ? implode("\n", $rules) : $rules;
-    }
-
     $get_path_url = parse_url(G5_URL);
     $base_path = isset($get_path_url['path']) ? $get_path_url['path'] . '/' : '/';
 
@@ -459,13 +326,8 @@ function get_mod_rewrite_rules($return_string = false)
         $rules[] = $add_rules;
     }
 
-    $rules[] = 'RewriteRule ^content/([0-9a-zA-Z_]+)$ ' . G5_BBS_DIR . '/content.php?co_id=$1&rewrite=1 [QSA,L]';
-    $rules[] = 'RewriteRule ^content/([^/]+)/$ ' . G5_BBS_DIR . '/content.php?co_seo_title=$1&rewrite=1 [QSA,L]';
-    $rules[] = 'RewriteRule ^rss/([0-9a-zA-Z_]+)$ ' . G5_BBS_DIR . '/rss.php?bo_table=$1 [QSA,L]';
-    $rules[] = 'RewriteRule ^([0-9a-zA-Z_]+)$ ' . G5_BBS_DIR . '/board.php?bo_table=$1&rewrite=1 [QSA,L]';
-    $rules[] = 'RewriteRule ^([0-9a-zA-Z_]+)/([^/]+)/$ ' . G5_BBS_DIR . '/board.php?bo_table=$1&wr_seo_title=$2&rewrite=1 [QSA,L]';
-    $rules[] = 'RewriteRule ^([0-9a-zA-Z_]+)/write$ ' . G5_BBS_DIR . '/write.php?bo_table=$1&rewrite=1 [QSA,L]';
-    $rules[] = 'RewriteRule ^([0-9a-zA-Z_]+)/([0-9]+)$ ' . G5_BBS_DIR . '/board.php?bo_table=$1&wr_id=$2&rewrite=1 [QSA,L]';
+    $rules[] = 'RewriteRule ^content/([0-9a-zA-Z_]+)$ content.php?co_id=$1&rewrite=1 [QSA,L]';
+    $rules[] = 'RewriteRule ^content/([^/]+)/$ content.php?co_seo_title=$1&rewrite=1 [QSA,L]';
     $rules[] = '</IfModule>';
     $rules[] = '#### ' . G5_VERSION . ' rewrite END #####';
 

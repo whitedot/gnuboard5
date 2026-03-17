@@ -98,62 +98,30 @@ class G5_URI {
    }
 
    public function url_clean($string_url, $add_qry='') {
-        global $config, $g5;
+        global $config;
 
         $string_url = str_replace('&amp;', '&', $string_url);
 		$url=parse_url($string_url);
-		$page_name = basename($url['path'],".php");
+		$page_name = isset($url['path']) ? basename($url['path'],".php") : '';
 
-        if (function_exists('is_member_only_blocked_bbs_page') && is_member_only_blocked_bbs_page($page_name)) {
-            return G5_URL;
-        }
-        
-        $array_page_names = run_replace('url_clean_page_names', array('board', 'write', 'content'));
-
-        if( strpos($string_url, G5_BBS_URL) === false || ! in_array($page_name, $array_page_names) ){   //게시판이 아니면 리턴
+        if ($page_name !== 'content') {
             return $string_url;
         }
 
         $return_url = '';
 	    parse_str($url['query'], $vars);
 
-        // 예) Array ( [scheme] => http [host] => sir.kr [path] => /bbs/board.php [query] => wr_id=1110870&bo_table=cm_free&cpage=1 [fragment] => c_1110946 )
-        //while(list($k,$v) = each($vars)) $page_name .= "/".$v;
-        
-        if( $page_name === 'write' ){
-            $vars['action'] = 'write';
-            $allow_param_keys = array('bo_table'=>'', 'action'=>'');
-        } else if ( $page_name === 'content' ){
-            $vars['action'] = 'content';
-            $allow_param_keys = array('action'=>'', 'co_id'=>'');
-        } else {
-            $allow_param_keys = array('bo_table'=>'', 'wr_id'=>'');
-        }
-
-        $s = array();
-
-        foreach( $allow_param_keys as $key=>$v ){
-            if( !isset($vars[$key]) || empty($vars[$key]) ) continue;
-            $add = '';
-            $s[$key] = $vars[$key];
-        }
-
-        if( $config['cf_bbs_rewrite'] > 1 && $page_name === 'board' && (isset($s['wr_id']) && $s['wr_id']) && (isset($s['bo_table']) && $s['bo_table']) ){
-            $get_write = get_write( get_write_table_name($s['bo_table']), $s['wr_id'], true);
-            
-            if( $get_write['wr_seo_title'] ){
-                unset($s['wr_id']);
-                $s['wr_seo_title'] = $get_write['wr_seo_title'].'/';
-            }
-        }
-
         $fragment = isset($url['fragment']) ? '#'.$url['fragment'] : '';
-
         $host = G5_URL;
+        $normalized_string_url = preg_replace('/^https?:/i', '', $string_url);
+        $normalized_content_url = preg_replace('/^https?:/i', '', G5_URL.'/content.php');
+
+        if (strpos($normalized_string_url, $normalized_content_url) === false) {
+            return $string_url;
+        }
 
         if( isset($url['host']) ){
-
-            $array_file_paths = run_replace('url_clean_page_paths', array('/'.G5_BBS_DIR.'/board.php', '/'.G5_BBS_DIR.'/write.php', '/'.G5_BBS_DIR.'/content.php'));
+            $array_file_paths = run_replace('url_clean_page_paths', array('/content.php'));
 
             $str_path = isset($url['path']) ? $url['path'] : '';
             $http = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on') ? 'https://' : 'http://';
@@ -161,6 +129,7 @@ class G5_URI {
         }
 
         $add_param = '';
+        $allow_param_keys = array('co_id'=>'');
 
         if( $result = array_diff_key($vars, $allow_param_keys ) ){
             $add_param = '?'.http_build_query($result,'','&amp;');
@@ -170,10 +139,15 @@ class G5_URI {
             $add_param .= $add_param ? '&amp;'.$add_qry : '?'.$add_qry;
         }
 
-        foreach($s as $value){
-            $return_url .= "/$value";
+        if (!empty($vars['co_id'])) {
+            if ($config['cf_bbs_rewrite'] > 1) {
+                $content = get_content_db($vars['co_id'], true);
+                $return_url = '/'.((isset($content['co_seo_title']) && $content['co_seo_title']) ? $content['co_seo_title'].'/' : $vars['co_id']);
+            } else {
+                $return_url = '/'.$vars['co_id'];
+            }
         }
 
-        return $host.$return_url.$add_param.$fragment;
+        return $host.'/content'.$return_url.$add_param.$fragment;
    }
 }

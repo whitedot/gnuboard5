@@ -34,7 +34,7 @@ function admin_menu_icon_id($menu_code)
         '100' => 'settings',
         '200' => 'users',
         '300' => 'board',
-        '400' => 'shop',
+        '400' => 'folder',
         '500' => 'stats',
         '900' => 'message',
     );
@@ -169,10 +169,6 @@ if ($admin_site_title === '') {
                 <path d="M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1"></path>
                 <path d="M15 12h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1"></path>
                 <path d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1"></path>
-            </symbol>
-            <symbol id="admin-menu-icon-shop" viewBox="0 0 24 24">
-                <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304"></path>
-                <path d="M9 11v-5a3 3 0 0 1 6 0v5"></path>
             </symbol>
             <symbol id="admin-menu-icon-stats" viewBox="0 0 24 24">
                 <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"></path>

@@ -159,7 +159,7 @@ function update_auth_session_token($str=''){
 }
 
 function get_token_encryption_key($str=''){
-    $token = G5_TABLE_PREFIX.(defined('G5_SHOP_TABLE_PREFIX') ? G5_SHOP_TABLE_PREFIX : '').(defined('G5_TOKEN_ENCRYPTION_KEY') ? G5_TOKEN_ENCRYPTION_KEY : '').$str;
+    $token = G5_TABLE_PREFIX.(defined('G5_TOKEN_ENCRYPTION_KEY') ? G5_TOKEN_ENCRYPTION_KEY : '').$str;
 
     return md5($token);
 }

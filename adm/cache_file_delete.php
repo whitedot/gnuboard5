@@ -33,10 +33,7 @@ if (!$dir = @opendir(G5_DATA_PATH . '/cache')) {
 $cnt = 0;
 echo '<div><ul>' . PHP_EOL;
 
-$files = glob(G5_DATA_PATH . '/cache/latest-*');
-$content_files = glob(G5_DATA_PATH . '/cache/content-*');
-
-$files = array_merge($files, $content_files);
+$files = glob(G5_DATA_PATH . '/cache/content-*');
 if (is_array($files)) {
     foreach ($files as $cache_file) {
         $cnt++;
@@ -54,7 +51,7 @@ if (is_array($files)) {
 run_event('adm_cache_file_delete');
 
 echo '<li>완료됨</li></ul></div>' . PHP_EOL;
-echo '<div><p><strong>최신글 캐시파일 ' . $cnt . '건 삭제 완료됐습니다.</strong><br>프로그램의 실행을 끝마치셔도 좋습니다.</p></div>' . PHP_EOL;
+echo '<div><p><strong>콘텐츠 캐시파일 ' . $cnt . '건 삭제 완료됐습니다.</strong><br>프로그램의 실행을 끝마치셔도 좋습니다.</p></div>' . PHP_EOL;
 ?>
 
 <?php

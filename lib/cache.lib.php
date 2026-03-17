@@ -80,14 +80,17 @@ function g5_delete_cache($key){
 }
 
 function g5_delete_all_cache(){
+    $files = glob(G5_DATA_PATH.'/cache/*');
 
-    $board_tables = get_board_names();
+    foreach ((array) $files as $filename) {
+        if (!is_file($filename)) {
+            continue;
+        }
 
-    foreach( $board_tables as $board_table ){
-        delete_cache_latest($board_table);
+        @unlink($filename);
     }
 
-    run_event('adm_cache_delete', $board_tables);
+    run_event('adm_cache_delete', array());
 
 }
 

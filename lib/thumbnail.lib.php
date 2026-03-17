@@ -3,90 +3,6 @@ if (!defined('_GNUBOARD_')) exit;
 
 @ini_set('memory_limit', '-1');
 
-// 게시글리스트 썸네일 생성
-function get_list_thumbnail($bo_table, $wr_id, $thumb_width, $thumb_height, $is_create=false, $is_crop=false, $crop_mode='center', $is_sharpen=false, $um_value='80/0.5/3')
-{
-    global $g5, $config;
-    $filename = $alt = $data_path = '';
-    $edt = false;
-
-    $empty_array = array('src'=>'', 'ori'=>'', 'alt'=>'');
-
-    $write = get_thumbnail_find_cache($bo_table, $wr_id, 'content');
-
-    // 비밀글이면 썸네일을 노출하지 않습니다.
-    if (isset($write['wr_option']) && strstr($write['wr_option'], "secret")) {
-        return run_replace('is_secret_list_thumbnail', $empty_array, $bo_table, $write);
-    }
-
-    $row = get_thumbnail_find_cache($bo_table, $wr_id, 'file');
-
-    if (isset($row['bf_file']) && $row['bf_file']) {
-        $filename = $row['bf_file'];
-        $filepath = G5_DATA_PATH.'/file/'.$bo_table;
-        $alt = get_text($row['bf_content']);
-    } else {
-        $edt = true;
-        
-        if( $matches = get_editor_image($write['wr_content'], false) ){
-            for($i=0; $i<count($matches[1]); $i++)
-            {
-                // 이미지 path 구함
-                $p = parse_url($matches[1][$i]);
-                if(strpos($p['path'], '/'.G5_DATA_DIR.'/') != 0)
-                    $data_path = preg_replace('/^\/.*\/'.G5_DATA_DIR.'/', '/'.G5_DATA_DIR, $p['path']);
-                else
-                    $data_path = $p['path'];
-
-                $srcfile = G5_PATH.$data_path;
-
-                if(preg_match("/\.({$config['cf_image_extension']})$/i", $srcfile) && is_file($srcfile)) {
-                    $size = @getimagesize($srcfile);
-                    if(empty($size))
-                        continue;
-
-                    $filename = basename($srcfile);
-                    $filepath = dirname($srcfile);
-
-                    preg_match("/alt=[\"\']?([^\"\']*)[\"\']?/", $matches[0][$i], $malt);
-                    $alt = isset($malt[1]) ? get_text($malt[1]) : '';
-
-                    break;
-                }
-
-                $filename = run_replace('get_editor_filename', $filename, $p);
-            }   //end for
-        }   //end if
-    }
-
-    if(!$filename)
-        return $empty_array;
-    
-    if( $thumbnail_info = run_replace('get_list_thumbnail_info', array(), array('bo_table'=>$bo_table, 'wr_id'=>$wr_id, 'data_path'=>$data_path, 'edt'=>$edt, 'filename'=>$filename, 'filepath'=>$filepath, 'thumb_width'=>$thumb_width, 'thumb_height'=>$thumb_height, 'is_create'=>$is_create, 'is_crop'=>$is_crop, 'crop_mode'=>$crop_mode, 'is_sharpen'=>$is_sharpen, 'um_value'=>$um_value)) ){
-        return $thumbnail_info;
-    }
-
-    $tname = thumbnail($filename, $filepath, $filepath, $thumb_width, $thumb_height, $is_create, $is_crop, $crop_mode, $is_sharpen, $um_value);
-
-    if($tname) {
-        if($edt) {
-            // 오리지날 이미지
-            $ori = G5_URL.$data_path;
-            // 썸네일 이미지
-            $src = G5_URL.str_replace($filename, $tname, $data_path);
-        } else {
-            $ori = G5_DATA_URL.'/file/'.$bo_table.'/'.$filename;
-            $src = G5_DATA_URL.'/file/'.$bo_table.'/'.$tname;
-        }
-    } else {
-        return $empty_array;
-    }
-
-    $thumb = array("src"=>$src, "ori"=>$ori, "alt"=>$alt);
-
-    return $thumb;
-}
-
 // 게시글보기 파일 썸네일 리턴
 function get_file_thumbnail($file){
     
@@ -214,12 +130,6 @@ function get_view_thumbnail($contents, $thumb_width=0)
             }
             
             // $img_tag에 editor 경로가 있으면 원본보기 링크 추가
-            if(!$is_member_only && strpos($img_tag, G5_DATA_DIR.'/'.G5_EDITOR_DIR) && preg_match("/\.({$config['cf_image_extension']})$/i", $filename)) {
-                $imgurl = str_replace(G5_URL, "", $src);
-                $attr_href = run_replace('thumb_view_image_href', G5_BBS_URL.'/view_image.php?fn='.urlencode($imgurl), $filename, '', $width, $height, $alt);
-                $thumb_tag = '<a href="'.$attr_href.'" target="_blank">'.$thumb_tag.'</a>';
-            }
-
             $contents = str_replace($img_tag, $thumb_tag, $contents);
         }
     }

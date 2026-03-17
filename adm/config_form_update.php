@@ -107,10 +107,7 @@ $check_keys = array(
     'cf_use_copy_log' => 'int',
     'cf_cut_name' => 'int',
     'cf_nick_modify' => 'int',
-    'cf_new_skin' => 'char',
     'cf_new_rows' => 'int',
-    'cf_search_skin' => 'char',
-    'cf_connect_skin' => 'char',
     'cf_read_point' => 'int',
     'cf_write_point' => 'int',
     'cf_comment_point' => 'int',
@@ -138,9 +135,7 @@ $check_keys = array(
     'cf_icode_id' => 'char',
     'cf_icode_pw' => 'char',
     'cf_icode_server_ip' => 'char',
-    'cf_captcha' => 'char',
-    'cf_syndi_token' => '',
-    'cf_syndi_except' => ''
+    'cf_captcha' => 'char'
 );
 
 for ($i = 1; $i <= 10; $i++) {
@@ -166,9 +161,6 @@ $preserve_keys = array(
     'cf_popular_del',
     'cf_login_minutes',
     'cf_new_rows',
-    'cf_new_skin',
-    'cf_search_skin',
-    'cf_connect_skin',
     'cf_formmail_is_member',
     'cf_email_wr_super_admin',
     'cf_email_wr_group_admin',
@@ -188,9 +180,7 @@ $preserve_keys = array(
     'cf_movie_extension',
     'cf_filter',
     'cf_bbs_rewrite',
-    'cf_use_copy_log',
-    'cf_syndi_token',
-    'cf_syndi_except'
+    'cf_use_copy_log'
 );
 
 foreach ($preserve_keys as $key) {
@@ -201,8 +191,6 @@ foreach ($preserve_keys as $key) {
 
 if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
     $_POST['cf_use_copy_log'] = 0;
-    $_POST['cf_syndi_token'] = '';
-    $_POST['cf_syndi_except'] = '';
 }
 
 // 본인확인을 사용할 경우 아이핀, 휴대폰인증 중 하나는 선택되어야 함
@@ -253,10 +241,7 @@ $sql = " update {$g5['config_table']}
                 cf_use_email_certify = '{$_POST['cf_use_email_certify']}',
                 cf_cut_name = '{$_POST['cf_cut_name']}',
                 cf_nick_modify = '{$_POST['cf_nick_modify']}',
-                cf_new_skin = '{$_POST['cf_new_skin']}',
                 cf_new_rows = '{$_POST['cf_new_rows']}',
-                cf_search_skin = '{$_POST['cf_search_skin']}',
-                cf_connect_skin = '{$_POST['cf_connect_skin']}',
                 cf_read_point = '{$_POST['cf_read_point']}',
                 cf_write_point = '{$_POST['cf_write_point']}',
                 cf_comment_point = '{$_POST['cf_comment_point']}',
@@ -269,8 +254,6 @@ $sql = " update {$g5['config_table']}
                 cf_intercept_ip = '" . trim($_POST['cf_intercept_ip']) . "',
                 cf_analytics = '{$_POST['cf_analytics']}',
                 cf_add_meta = '{$_POST['cf_add_meta']}',
-                cf_syndi_token = '{$_POST['cf_syndi_token']}',
-                cf_syndi_except = '{$_POST['cf_syndi_except']}',
                 cf_bbs_rewrite = '{$_POST['cf_bbs_rewrite']}',
                 cf_member_skin = '{$_POST['cf_member_skin']}',
                 cf_use_homepage = '{$_POST['cf_use_homepage']}',

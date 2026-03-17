@@ -55,9 +55,7 @@ function get_file($bo_table, $wr_id)
     {
         $no = (int) $row['bf_no'];
         $bf_content = $row['bf_content'] ? html_purifier($row['bf_content']) : '';
-        $file[$no]['href'] = $is_member_only
-            ? ''
-            : G5_BBS_URL."/download.php?bo_table=$bo_table&amp;wr_id=$wr_id&amp;no=$no&amp;nonce=$nonce" . $qstr;
+        $file[$no]['href'] = '';
         $file[$no]['download'] = $row['bf_download'];
         // 4.00.11 - 파일 path 추가
         $file[$no]['path'] = G5_DATA_URL.'/file/'.$bo_table;
@@ -123,11 +121,6 @@ function view_file_link($file, $width, $height, $content='')
     if (preg_match("/\.({$config['cf_image_extension']})$/i", $file) && isset($board['bo_table'])) {
         $img = '<img src="'.G5_DATA_URL.'/file/'.$board['bo_table'].'/'.urlencode($file).'" alt="'.$content.'" '.$attr.'>';
 
-        if (!(defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY)) {
-            $attr_href = run_replace('thumb_view_image_href', G5_BBS_URL.'/view_image.php?bo_table='.$board['bo_table'].'&amp;fn='.urlencode($file), $file, $board['bo_table'], $width, $height, $content);
-            $img = '<a href="'.$attr_href.'" target="_blank">'.$img.'</a>';
-        }
-
         return $img;
     }
 }
@@ -165,21 +158,6 @@ function replace_filename($name)
         $return_filename .= '.'.$ext;
 
     return $return_filename;
-}
-
-/**
- * 게시판 최신글 캐시 파일 삭제
- * @param string $bo_table 게시판 ID
- */
-function delete_cache_latest($bo_table)
-{
-    if (!preg_match("/^([A-Za-z0-9_]{1,20})$/", $bo_table)) {
-        return;
-    }
-
-    run_event('delete_cache_latest', $bo_table);
-
-    g5_delete_cache_by_prefix('latest-' . $bo_table . '-');
 }
 
 // 게시판 첨부파일 썸네일 삭제
