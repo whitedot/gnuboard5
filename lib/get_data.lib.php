@@ -220,23 +220,4 @@ function get_mb_icon_name($mb_id){
     return $mb_id;
 }
 
-// 생성되면 안되는 게시판명
-function get_bo_table_banned_word(){
-
-    $folders = array(G5_CONTENT_DIR, 'rss');
-
-    foreach(glob(G5_PATH.'/*', GLOB_ONLYDIR) as $dir) {
-        $folders[] = basename($dir);
-    }
-
-    return run_replace('get_bo_table_banned_word', $folders);
-}
-
-function get_board_sort_fields($board=array(), $make_key_return=''){
-    return array();
-}
-
-function get_board_sfl_select_options($sfl){
-    return run_replace('get_board_sfl_select_options', '', $sfl);
-}
 

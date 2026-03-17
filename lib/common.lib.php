@@ -14,7 +14,7 @@ if (!defined('_GNUBOARD_')) exit;
  * - common.string.lib.php: 문자열 처리 및 변환
  * - common.crypto.lib.php: 암호화 및 비밀번호 처리
  * - common.file.lib.php: 파일 업로드 및 관리
- * - common.data.lib.php: 회원, 게시판, 그룹 등 주요 데이터 엔티티 접근
+ * - common.data.lib.php: 회원, 콘텐츠 등 주요 데이터 엔티티 접근
  * - common.point.lib.php: 포인트 시스템 관리
  * - common.html.lib.php: UI 요소 생성 및 HTML 헬퍼 (페이징, 알림 등)
  */

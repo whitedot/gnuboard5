@@ -98,8 +98,6 @@ class G5_URI {
    }
 
    public function url_clean($string_url, $add_qry='') {
-        global $config;
-
         $string_url = str_replace('&amp;', '&', $string_url);
 		$url=parse_url($string_url);
 		$page_name = isset($url['path']) ? basename($url['path'],".php") : '';
@@ -140,12 +138,8 @@ class G5_URI {
         }
 
         if (!empty($vars['co_id'])) {
-            if ($config['cf_bbs_rewrite'] > 1) {
-                $content = get_content_db($vars['co_id'], true);
-                $return_url = '/'.((isset($content['co_seo_title']) && $content['co_seo_title']) ? $content['co_seo_title'].'/' : $vars['co_id']);
-            } else {
-                $return_url = '/'.$vars['co_id'];
-            }
+            $content = get_content_db($vars['co_id'], true);
+            $return_url = '/'.((isset($content['co_seo_title']) && $content['co_seo_title']) ? $content['co_seo_title'].'/' : $vars['co_id']);
         }
 
         return $host.'/content'.$return_url.$add_param.$fragment;

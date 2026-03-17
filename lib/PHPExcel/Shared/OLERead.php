@@ -139,12 +139,12 @@ class PHPExcel_Shared_OLERead
 
         $pos = 0;
         $this->bigBlockChain = '';
-        $bbs = self::BIG_BLOCK_SIZE / 4;
+        $blockWordSize = self::BIG_BLOCK_SIZE / 4;
         for ($i = 0; $i < $this->numBigBlockDepotBlocks; ++$i) {
             $pos = ($bigBlockDepotBlocks[$i] + 1) * self::BIG_BLOCK_SIZE;
 
-            $this->bigBlockChain .= substr($this->data, $pos, 4*$bbs);
-            $pos += 4*$bbs;
+            $this->bigBlockChain .= substr($this->data, $pos, 4*$blockWordSize);
+            $pos += 4*$blockWordSize;
         }
 
         $pos = 0;
@@ -153,8 +153,8 @@ class PHPExcel_Shared_OLERead
         while ($sbdBlock != -2) {
             $pos = ($sbdBlock + 1) * self::BIG_BLOCK_SIZE;
 
-            $this->smallBlockChain .= substr($this->data, $pos, 4*$bbs);
-            $pos += 4*$bbs;
+            $this->smallBlockChain .= substr($this->data, $pos, 4*$blockWordSize);
+            $pos += 4*$blockWordSize;
 
             $sbdBlock = self::getInt4d($this->bigBlockChain, $sbdBlock*4);
         }

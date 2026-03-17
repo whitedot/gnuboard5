@@ -37,24 +37,6 @@ if ($mb_mailling != "") {
 // 권한
 $sql_where .= " and mb_level between '{$mb_level_from}' and '{$mb_level_to}' ";
 
-// 게시판그룹회원
-if ($gr_id) {
-    $group_member = "";
-    $comma = "";
-    $sql2 = " select mb_id from {$g5['group_member_table']} where gr_id = '{$gr_id}' order by mb_id ";
-    $result2 = sql_query($sql2);
-    for ($k = 0; $row2 = sql_fetch_array($result2); $k++) {
-        $group_member .= "{$comma}'{$row2['mb_id']}'";
-        $comma = ",";
-    }
-
-    if (!$group_member) {
-        alert('선택하신 게시판 그룹회원이 한명도 없습니다.');
-    }
-
-    $sql_where .= " and mb_id in ($group_member) ";
-}
-
 // 탈퇴, 차단된 회원은 제외
 $sql_where .= " and mb_leave_date = '' and mb_intercept_date = '' ";
 
@@ -73,8 +55,6 @@ $ma_last_option .= "||mb_email={$mb_email}";
 $ma_last_option .= "||mb_mailling={$mb_mailling}";
 $ma_last_option .= "||mb_level_from={$mb_level_from}";
 $ma_last_option .= "||mb_level_to={$mb_level_to}";
-$ma_last_option .= "||gr_id={$gr_id}";
-
 sql_query(" update {$g5['mail_table']} set ma_last_option = '{$ma_last_option}' where ma_id = '{$ma_id}' ");
 
 $g5['title'] = "메일발송 대상 회원";

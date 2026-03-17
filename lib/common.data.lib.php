@@ -80,9 +80,6 @@ function get_sql_search($search_ca_name, $search_field, $search_text, $search_op
         $search_str = trim($s[$i]);
         if ($search_str == "") continue;
 
-        // 인기검색어
-        insert_popular($field, $search_str);
-
         $str .= $op1;
         $str .= "(";
 
@@ -134,33 +131,6 @@ function get_sql_search($search_ca_name, $search_field, $search_text, $search_op
     }
 
     return $str;
-}
-
-// 그룹 설정 테이블에서 하나의 행을 읽음
-function get_group($gr_id, $is_cache=false)
-{
-    global $g5;
-    
-    if( is_array($gr_id) ){
-        return array();
-    }
-
-    static $cache = array();
-
-    $gr_id = preg_replace('/[^a-z0-9_]/i', '', $gr_id);
-    $cache = run_replace('get_group_db_cache', $cache, $gr_id, $is_cache);
-    $key = md5($gr_id);
-
-    if( $is_cache && isset($cache[$key]) ){
-        return $cache[$key];
-    }
-
-    $sql = " select * from {$g5['group_table']} where gr_id = '$gr_id' ";
-
-    $group = run_replace('get_group', sql_fetch($sql), $gr_id, $is_cache);
-    $cache[$key] = array_merge(array('gr_device'=>'', 'gr_subject'=>''), (array) $group);
-
-    return $cache[$key];
 }
 
 /**

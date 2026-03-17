@@ -107,21 +107,6 @@ require_once './admin.head.php';
                 </select> 까지
             </div>
         </div>
-        <div class="ui-form-row">
-            <div class="ui-form-label"><label for="gr_id">게시판그룹회원</label></div>
-            <div class="ui-form-field">
-                <select name="gr_id" id="gr_id">
-                    <option value=''>전체</option>
-                    <?php
-                    $sql = " select gr_id, gr_subject from {$g5['group_table']} order by gr_subject ";
-                    $result = sql_query($sql);
-                    for ($i = 0; $row = sql_fetch_array($result); $i++) {
-                        echo '<option value="' . $row['gr_id'] . '">' . $row['gr_subject'] . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-        </div>
     </div>
 
     <div>

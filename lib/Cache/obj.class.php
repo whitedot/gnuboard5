@@ -2,16 +2,12 @@
 if (!defined('_GNUBOARD_')) exit;
 
 Class G5_object_cache {
-    public $writes = array();
     public $contents = array();
     public $etcs = array();
 
     function get($type, $key, $group ='default') {
 
         switch ($type) {
-            case 'bbs':
-                $datas = $this->writes;
-                break;
             case 'content' :
                 $datas = $this->contents;
                 break;
@@ -35,9 +31,6 @@ Class G5_object_cache {
         $return_data = '';
 
         switch ($type) {
-            case 'bbs':
-                $datas = $this->writes;
-                break;
             case 'content':
                 $datas = $this->contents;
                 break;
@@ -54,9 +47,6 @@ Class G5_object_cache {
             $data = clone $data;
 
         switch ($type) {
-            case 'bbs':
-                $this->writes[$group][$key] = $data;
-                break;
             case 'content':
                 $this->contents[$group][$key] = $data;
                 break;
@@ -80,9 +70,6 @@ Class G5_object_cache {
         }
 
         switch ($type) {
-            case 'bbs':
-                $datas = &$this->writes;
-                break;
             case 'content':
                 $datas = &$this->contents;
                 break;

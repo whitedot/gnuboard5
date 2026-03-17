@@ -605,7 +605,7 @@ if (!(isset($member['mb_id']) && $config['cf_admin'] === $member['mb_id'])) {
     }
 }
 
-/** @var array $board 게시판 데이터 */
+/** @var array $board 레거시 데이터 */
 $board = array(
     'bo_table' => '',
     'bo_skin' => '',
@@ -616,16 +616,12 @@ $board = array(
 );
 /** @var array $write 글 데이터 */
 $write = array();
-/** @var string $write_table 게시판 테이블 전체이름 */
+/** @var string $write_table 레거시 테이블 이름 */
 $write_table = '';
 if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
     $bo_table = '';
     $wr_id = 0;
     $wr_seo_title = '';
-}
-
-if ($gr_id && !is_array($gr_id)) {
-    $group = get_group($gr_id, true);
 }
 
 if ($config['cf_editor']) {

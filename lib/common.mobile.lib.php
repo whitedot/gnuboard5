@@ -17,9 +17,9 @@ function check_device($device)
     if ($is_admin) return;
 
     if ($device=='pc' && G5_IS_MOBILE) {
-        alert('PC 전용 게시판입니다.', G5_URL);
+        alert('PC 전용 페이지입니다.', G5_URL);
     } else if ($device=='mobile' && !G5_IS_MOBILE) {
-        alert('모바일 전용 게시판입니다.', G5_URL);
+        alert('모바일 전용 페이지입니다.', G5_URL);
     }
 }
 

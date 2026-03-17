@@ -32,21 +32,6 @@ function g5_cache_secret_key(){
     return $str;
 }
 
-function g5_latest_cache_data($bo_table, $cache_list=array(), $find_wr_id=0){
-    static $cache = array();
-
-    if( $bo_table && $cache_list && ! isset($cache[$bo_table]) ){
-        foreach( (array) $cache_list as $wr ){
-            if( empty($wr) || ! isset($wr['wr_id']) ) continue;
-            $cache[$bo_table][$wr['wr_id']] = $wr;
-        }
-    }
-    
-    if( $find_wr_id && isset($cache[$bo_table][$find_wr_id]) ){
-        return $cache[$bo_table][$find_wr_id];
-    }
-}
-
 function g5_set_cache($key, $save_data, $ttl = null){
 
     if( $cache = get_cachemanage_instance() ){

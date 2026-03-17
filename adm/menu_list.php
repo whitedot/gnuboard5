@@ -40,7 +40,7 @@ $sub_menu_info = '';
 
     <p><strong>주의!</strong> 메뉴설정 작업 후 반드시 <strong>확인</strong>을 누르셔야 저장됩니다.</p>
     <?php if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) { ?>
-    <p><strong>회원 전용 모드:</strong> 게시판, 쪽지, 포인트, 프로필, 쇼핑몰 링크는 저장 시 홈으로 대체됩니다.</p>
+    <p><strong>회원 전용 모드:</strong> 제거된 기능 링크는 저장 시 홈으로 대체됩니다.</p>
     <?php } ?>
 
 

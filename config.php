@@ -202,7 +202,7 @@ define('G5_ESCAPE_FUNCTION', 'sql_escape_string');
 //define('G5_ESCAPE_PATTERN',  '/(and|or).*(union|select|insert|update|delete|from|where|limit|create|drop).*/i');
 //define('G5_ESCAPE_REPLACE',  '');
 
-// 게시판에서 링크의 기본개수를 말합니다.
+// 링크 필드의 기본 개수입니다.
 // 필드를 추가하면 이 숫자를 필드수에 맞게 늘려주십시오.
 define('G5_LINK_COUNT', 2);
 

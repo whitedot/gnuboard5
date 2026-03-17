@@ -33,7 +33,7 @@ function admin_menu_icon_id($menu_code)
     $map = array(
         '100' => 'settings',
         '200' => 'users',
-        '300' => 'board',
+        '300' => 'content',
         '400' => 'folder',
         '500' => 'stats',
         '900' => 'message',
@@ -164,7 +164,7 @@ if ($admin_site_title === '') {
                 <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
             </symbol>
-            <symbol id="admin-menu-icon-board" viewBox="0 0 24 24">
+            <symbol id="admin-menu-icon-content" viewBox="0 0 24 24">
                 <path d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1"></path>
                 <path d="M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1"></path>
                 <path d="M15 12h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1"></path>

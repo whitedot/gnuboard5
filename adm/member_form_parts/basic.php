@@ -10,9 +10,6 @@
                 </div>
                 <div class="af-field">
                     <input type="text" name="mb_id" value="<?php echo $mb['mb_id'] ?>" id="mb_id" <?php echo $required_mb_id ?> class="<?php echo $required_mb_id_class ?> form-input" size="15" maxlength="20">
-                    <?php if ($w == 'u') { ?>
-                    <a href="./boardgroupmember_form.php?mb_id=<?php echo $mb['mb_id'] ?>" class="btn btn-sm btn-surface-default-soft">접근가능그룹보기</a>
-                    <?php } ?>
                 </div>
             </div>
 

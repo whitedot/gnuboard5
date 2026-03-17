@@ -1,4 +1,4 @@
-var g5_register_url = typeof g5_member_url !== "undefined" && g5_member_url ? g5_member_url : g5_bbs_url;
+var g5_register_url = typeof g5_member_url !== "undefined" && g5_member_url ? g5_member_url : g5_url;
 
 var reg_mb_id_check = function() {
     var result = "";

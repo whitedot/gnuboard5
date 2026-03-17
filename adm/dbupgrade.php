@@ -74,26 +74,6 @@ if( isset($g5['social_profile_table']) && !sql_query(" DESC {$g5['social_profile
     $is_check = true;
 }
 
-// 게시판 짧은 주소
-$sql = " select bo_table from {$g5['board_table']} ";
-$result = sql_query($sql);
-
-while ($row = sql_fetch_array($result)) {
-    $write_table = $g5['write_prefix'] . $row['bo_table']; // 게시판 테이블 전체이름
-
-    $sql = " SHOW COLUMNS FROM {$write_table} LIKE 'wr_seo_title' ";
-    $row = sql_fetch($sql);
-    
-    if( !$row ){
-        sql_query("ALTER TABLE `{$write_table}`
-                    ADD `wr_seo_title` varchar(200) NOT NULL DEFAULT '' AFTER `wr_content`,
-                    ADD INDEX `wr_seo_title` (`wr_seo_title`);
-        ", false);
-
-        $is_check = true;
-    }
-}
-
 // 내용 관리 짧은 주소
 $sql = " SHOW COLUMNS FROM `{$g5['content_table']}` LIKE 'co_seo_title' ";
 $row = sql_fetch($sql);
@@ -147,36 +127,6 @@ if(!isset($member['mb_memo_cnt'])) {
     $is_check = true;
 }
 
-// 스크랩 읽은 수 추가
-if(!isset($member['mb_scrap_cnt'])) {
-    sql_query(" ALTER TABLE `{$g5['member_table']}`
-                ADD `mb_scrap_cnt` int(11) NOT NULL DEFAULT '0' AFTER `mb_memo_cnt`", true);
-
-	$is_check = true;
-}
-
-// 짧은 URL 주소를 사용 여부 필드 추가
-if (!isset($config['cf_bbs_rewrite'])) {
-    sql_query(" ALTER TABLE `{$g5['config_table']}`
-                    ADD `cf_bbs_rewrite` tinyint(4) NOT NULL DEFAULT '0' AFTER `cf_link_target` ", true);
-
-	$is_check = true;
-}
-
-// 파일테이블에 추가 칼럼
-
-$sql = " SHOW COLUMNS FROM `{$g5['board_file_table']}` LIKE 'bf_fileurl' ";
-$row = sql_fetch($sql);
-
-if( !$row ) {
-    sql_query(" ALTER TABLE `{$g5['board_file_table']}` 
-                ADD COLUMN `bf_fileurl` VARCHAR(255) NOT NULL DEFAULT '' AFTER `bf_content`,
-                ADD COLUMN `bf_thumburl` VARCHAR(255) NOT NULL DEFAULT '' AFTER `bf_fileurl`,
-                ADD COLUMN `bf_storage` VARCHAR(50) NOT NULL DEFAULT '' AFTER `bf_thumburl`", true);
-
-    $is_check = true;
-}
-
 // auth.au_menu 컬럼 크기 조정
 $sql = " SHOW COLUMNS FROM `{$g5['auth_table']}` LIKE 'au_menu' ";
 $row = sql_fetch($sql);
@@ -185,15 +135,6 @@ if (
     && (int) preg_replace('/[^0-9]/', '', $row['Type']) < 50
 ) {
     sql_query(" ALTER TABLE `{$g5['auth_table']}` CHANGE `au_menu` `au_menu` VARCHAR(50) NOT NULL; ", true);
-
-    $is_check = true;
-}
-
-// qa config 테이블 auto id key 추가
-$row = sql_fetch("select * from `{$g5['qa_config_table']}` limit 1");
-if (!isset($row['qa_id'])) {
-    sql_query(" ALTER TABLE `{$g5['qa_config_table']}` ADD COLUMN `qa_id` INT(11) NOT NULL AUTO_INCREMENT FIRST,
-                ADD PRIMARY KEY (`qa_id`); ", true);
 
     $is_check = true;
 }

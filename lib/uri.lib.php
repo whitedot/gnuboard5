@@ -1,12 +1,6 @@
 <?php
 if (!defined('_GNUBOARD_')) exit;
 
-function is_member_only_blocked_bbs_page($page_name)
-{
-    return defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY
-        && in_array($page_name, array('board', 'write', 'rss'), true);
-}
-
 function get_content_page_url()
 {
     return G5_URL.'/content.php';
@@ -43,7 +37,6 @@ function get_page_url($folder)
 // 짧은 주소 형식으로 만들어서 가져온다.
 function get_pretty_url($folder, $no='', $query_string='', $action='')
 {
-    global $config;
     $segments = array();
     $url = $add_query = '';
 
@@ -51,18 +44,14 @@ function get_pretty_url($folder, $no='', $query_string='', $action='')
         return $url;
     }
 
-    if ($folder === 'content' && $config['cf_bbs_rewrite']) {
+    if ($folder === 'content') {
 
         $segments[0] = G5_URL;
         $segments[1] = $folder;
 
         if ($no) {
-            if ($config['cf_bbs_rewrite'] > 1) {
-                $get_content = get_content_db($no, true);
-                $segments[2] = (isset($get_content['co_seo_title']) && $get_content['co_seo_title']) ? urlencode($get_content['co_seo_title']).'/' : urlencode($no);
-            } else {
-                $segments[2] = urlencode($no);
-            }
+            $get_content = get_content_db($no, true);
+            $segments[2] = (isset($get_content['co_seo_title']) && $get_content['co_seo_title']) ? urlencode($get_content['co_seo_title']).'/' : urlencode($no);
         }
 
         if($query_string) {
@@ -95,12 +84,6 @@ function get_pretty_url($folder, $no='', $query_string='', $action='')
 
 function short_url_clean($string_url, $add_qry=''){
 
-    global $config;
-
-    if (!(isset($config['cf_bbs_rewrite']) && $config['cf_bbs_rewrite'])) {
-        return $string_url;
-    }
-
     $string_url = str_replace('&amp;', '&', $string_url);
     $url = parse_url($string_url);
     $page_name = isset($url['path']) ? basename($url['path'], ".php") : '';
@@ -131,12 +114,8 @@ function short_url_clean($string_url, $add_qry=''){
     $return_url = '';
 
     if (!empty($vars['co_id'])) {
-        if ($config['cf_bbs_rewrite'] > 1) {
-            $content = get_content_db($vars['co_id'], true);
-            $return_url = '/'.((isset($content['co_seo_title']) && $content['co_seo_title']) ? urlencode($content['co_seo_title']).'/' : urlencode($vars['co_id']));
-        } else {
-            $return_url = '/'.urlencode($vars['co_id']);
-        }
+        $content = get_content_db($vars['co_id'], true);
+        $return_url = '/'.((isset($content['co_seo_title']) && $content['co_seo_title']) ? urlencode($content['co_seo_title']).'/' : urlencode($vars['co_id']));
     }
 
     $add_param = '';
@@ -217,11 +196,7 @@ function exist_seo_url($type, $seo_title, $write_table, $sql_id=0){
 }
 
 function check_case_exist_title($data, $case=G5_CONTENT_DIR, $is_redirect=false) {
-    global $config, $g5;
-
-    if ((int) $config['cf_bbs_rewrite'] !== 2) {
-        return;
-    }
+    global $g5;
 
     $seo_title = '';
     $redirect_url = '';

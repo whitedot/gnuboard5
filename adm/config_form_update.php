@@ -72,7 +72,6 @@ $check_keys = array(
     'cf_email_use' => 'int',
     'cf_email_wr_super_admin' => 'int',
     'cf_email_wr_group_admin' => 'int',
-    'cf_email_wr_board_admin' => 'int',
     'cf_email_wr_write' => 'int',
     'cf_email_wr_comment_all' => 'int',
     'cf_email_mb_super_admin' => 'int',
@@ -164,7 +163,6 @@ $preserve_keys = array(
     'cf_formmail_is_member',
     'cf_email_wr_super_admin',
     'cf_email_wr_group_admin',
-    'cf_email_wr_board_admin',
     'cf_email_wr_write',
     'cf_email_wr_comment_all',
     'cf_email_po_super_admin',
@@ -179,7 +177,6 @@ $preserve_keys = array(
     'cf_flash_extension',
     'cf_movie_extension',
     'cf_filter',
-    'cf_bbs_rewrite',
     'cf_use_copy_log'
 );
 
@@ -254,7 +251,6 @@ $sql = " update {$g5['config_table']}
                 cf_intercept_ip = '" . trim($_POST['cf_intercept_ip']) . "',
                 cf_analytics = '{$_POST['cf_analytics']}',
                 cf_add_meta = '{$_POST['cf_add_meta']}',
-                cf_bbs_rewrite = '{$_POST['cf_bbs_rewrite']}',
                 cf_member_skin = '{$_POST['cf_member_skin']}',
                 cf_use_homepage = '{$_POST['cf_use_homepage']}',
                 cf_req_homepage = '{$_POST['cf_req_homepage']}',
@@ -272,7 +268,6 @@ $sql = " update {$g5['config_table']}
                 cf_email_use = '{$_POST['cf_email_use']}',
                 cf_email_wr_super_admin = '{$_POST['cf_email_wr_super_admin']}',
                 cf_email_wr_group_admin = '{$_POST['cf_email_wr_group_admin']}',
-                cf_email_wr_board_admin = '{$_POST['cf_email_wr_board_admin']}',
                 cf_email_wr_write = '{$_POST['cf_email_wr_write']}',
                 cf_email_wr_comment_all = '{$_POST['cf_email_wr_comment_all']}',
                 cf_email_mb_super_admin = '{$_POST['cf_email_mb_super_admin']}',
@@ -345,9 +340,7 @@ sql_query($sql);
 
 //sql_query(" OPTIMIZE TABLE `$g5[config_table]` ");
 
-if (isset($_POST['cf_bbs_rewrite'])) {
-    g5_delete_all_cache();
-}
+g5_delete_all_cache();
 
 if (function_exists('get_admin_captcha_by')) {
     get_admin_captcha_by('remove');

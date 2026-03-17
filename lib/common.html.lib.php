@@ -136,28 +136,6 @@ function confirm($msg, $url1='', $url2='', $url3='')
     exit;
 }
 
-// 게시판 그룹을 SELECT 형식으로 얻음
-function get_group_select($name, $selected='', $event='')
-{
-    global $g5, $is_admin, $member;
-
-    $sql = " select gr_id, gr_subject from {$g5['group_table']} a ";
-    if ($is_admin == "group") {
-        $sql .= " left join {$g5['member_table']} b on (b.mb_id = a.gr_admin)
-                  where b.mb_id = '{$member['mb_id']}' ";
-    }
-    $sql .= " order by a.gr_id ";
-
-    $result = sql_query($sql);
-    $str = "<select id=\"$name\" name=\"$name\" $event>\n";
-    for ($i=0; $row=sql_fetch_array($result); $i++) {
-        if ($i == 0) $str .= "<option value=\"\">선택</option>";
-        $str .= option_selected($row['gr_id'], $selected, $row['gr_subject']);
-    }
-    $str .= "</select>";
-    return $str;
-}
-
 function option_selected($value, $selected, $text='')
 {
     if (!$text) $text = $value;
@@ -165,28 +143,6 @@ function option_selected($value, $selected, $text='')
         return "<option value=\"$value\" selected=\"selected\">$text</option>\n";
     else
         return "<option value=\"$value\">$text</option>\n";
-}
-
-// 분류 옵션을 얻음
-// 4.00 에서는 카테고리 테이블을 없애고 보드테이블에 있는 내용으로 대체
-function get_category_option($bo_table='', $ca_name='')
-{
-    global $g5, $board, $is_admin;
-
-    $categories = explode("|", $board['bo_category_list'].($is_admin?"|공지":"")); // 구분자가 | 로 되어 있음
-    $str = "";
-    for ($i=0; $i<count($categories); $i++) {
-        $category = trim($categories[$i]);
-        if (!$category) continue;
-
-        $str .= "<option value=\"$categories[$i]\"";
-        if ($category == $ca_name) {
-            $str .= ' selected="selected"';
-        }
-        $str .= ">$categories[$i]</option>\n";
-    }
-
-    return $str;
 }
 
 // '예', '아니오'를 SELECT 형식으로 얻음

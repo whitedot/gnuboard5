@@ -195,7 +195,7 @@ function get_checked($field, $value)
         예) 2008062611570199 또는 08062611570199 (2100년까지만 유일키)
 
     사용하는 곳 :
-    1. 게시판 글쓰기시 미리 유일키를 얻어 파일 업로드 필드에 넣는다.
+    1. 파일 업로드 전에 미리 유일키를 얻어 업로드 필드에 넣는다.
     2. 주문번호 생성시에 사용한다.
     3. 기타 유일키가 필요한 곳에서 사용한다.
 *******************************************************************************/
@@ -595,20 +595,11 @@ function member_delete($mb_id)
     // 포인트 테이블에서 삭제
     sql_query(" delete from {$g5['point_table']} where mb_id = '$mb_id' ");
 
-    // 그룹접근가능 삭제
-    sql_query(" delete from {$g5['group_member_table']} where mb_id = '$mb_id' ");
-
     // 쪽지 삭제
     sql_query(" delete from {$g5['memo_table']} where me_recv_mb_id = '$mb_id' or me_send_mb_id = '$mb_id' ");
 
-    // 스크랩 삭제
-    sql_query(" delete from {$g5['scrap_table']} where mb_id = '$mb_id' ");
-
     // 관리권한 삭제
     sql_query(" delete from {$g5['auth_table']} where mb_id = '$mb_id' ");
-
-    // 그룹관리자인 경우 그룹관리자를 공백으로
-    sql_query(" update {$g5['group_table']} set gr_admin = '' where gr_admin = '$mb_id' ");
 
     //소셜로그인에서 삭제 또는 해제
     if(function_exists('social_member_link_delete')){
@@ -645,17 +636,6 @@ function get_icode_userinfo($id, $pass)
     );
 
     return $userinfo;
-}
-
-// 인기검색어 입력
-function insert_popular($field, $str)
-{
-    global $g5;
-
-    if(!in_array('mb_id', $field)) {
-        $sql = " insert into {$g5['popular_table']} set pp_word = '{$str}', pp_date = '".G5_TIME_YMD."', pp_ip = '{$_SERVER['REMOTE_ADDR']}' ";
-        sql_query($sql, FALSE);
-    }
 }
 
 function safe_filter_url_host($url) {

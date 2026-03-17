@@ -23,9 +23,6 @@ include_once('../lib/cache.lib.php');
 $title = G5_VERSION." 설치 완료 3/3";
 include_once('./install.inc.php');
 
-$tmp_bo_table   = array ("notice", "qa", "free", "gallery");
-
-
 $mysql_host  = isset($_POST['mysql_host']) ? safe_install_string_check($_POST['mysql_host']) : '';
 $mysql_user  = isset($_POST['mysql_user']) ? safe_install_string_check($_POST['mysql_user']) : '';
 $mysql_pass  = isset($_POST['mysql_pass']) ? safe_install_string_check($_POST['mysql_pass']) : '';
@@ -191,13 +188,6 @@ if ($g5_install || $is_install === false) {
                     ";
     sql_query($sql, true, $dblink);
 
-    // 1:1문의 설정
-    $sql = " insert into `{$table_prefix}qa_config`
-                ( qa_title, qa_category, qa_skin, qa_use_email, qa_req_email, qa_use_hp, qa_req_hp, qa_use_editor, qa_subject_len, qa_page_rows, qa_image_width, qa_upload_size, qa_insert_content )
-              values
-                ( '1:1문의', '회원|포인트', 'theme/basic', '1', '0', '1', '0', '1', '60', '15', '600', '1048576', '' ) ";
-    sql_query($sql, true, $dblink);
-
     // 관리자 회원가입
     $sql = " insert into `{$table_prefix}member`
                 set mb_id = '$admin_id',
@@ -220,107 +210,6 @@ if ($g5_install || $is_install === false) {
     sql_query(" insert into `{$table_prefix}content` set co_id = 'privacy', co_html = '1', co_subject = '개인정보 처리방침', co_content= '<p align=center><b>개인정보 처리방침에 대한 내용을 입력하십시오.</b></p>', co_skin = 'theme/basic' ", true, $dblink);
     sql_query(" insert into `{$table_prefix}content` set co_id = 'provision', co_html = '1', co_subject = '서비스 이용약관', co_content= '<p align=center><b>서비스 이용약관에 대한 내용을 입력하십시오.</b></p>', co_skin = 'theme/basic' ", true, $dblink);
 
-    // FAQ Master
-    sql_query(" insert into `{$table_prefix}faq_master` set fm_id = '1', fm_subject = '자주하시는 질문' ", true, $dblink);
-
-    // member-only 기본 설치에서는 게시판 그룹을 community로 고정한다.
-    $tmp_gr_id = 'community';
-    $tmp_gr_subject = '커뮤니티';
-
-    // 게시판 그룹 생성
-    sql_query(" insert into `{$table_prefix}group` set gr_id = '$tmp_gr_id', gr_subject = '$tmp_gr_subject' ", true, $dblink);
-
-    // 게시판 생성
-    $tmp_bo_subject = array ("공지사항", "질문답변", "자유게시판", "갤러리");
-    for ($i=0; $i<count($tmp_bo_table); $i++)
-    {
-
-        $bo_skin = ($tmp_bo_table[$i] === 'gallery') ? 'theme/gallery' : 'theme/basic';
-
-        if (in_array($tmp_bo_table[$i], array('gallery', 'qa'))) {
-            $read_bo_point = -1;
-            $write_bo_point = 5;
-            $comment_bo_point = 1;
-            $download_bo_point = -20;
-        } else {
-            $read_bo_point = $read_point;
-            $write_bo_point = $write_point;
-            $comment_bo_point = $comment_point;
-            $download_bo_point = $download_point;
-        }
-
-        $sql = " insert into `{$table_prefix}board`
-                    set bo_table = '$tmp_bo_table[$i]',
-                        gr_id = '$tmp_gr_id',
-                        bo_subject = '$tmp_bo_subject[$i]',
-                        bo_device           = 'both',
-                        bo_admin            = '',
-                        bo_list_level       = '1',
-                        bo_read_level       = '1',
-                        bo_write_level      = '1',
-                        bo_reply_level      = '1',
-                        bo_comment_level    = '1',
-                        bo_html_level       = '1',
-                        bo_link_level       = '1',
-                        bo_count_modify     = '1',
-                        bo_count_delete     = '1',
-                        bo_upload_level     = '1',
-                        bo_download_level   = '1',
-                        bo_read_point       = '$read_bo_point',
-                        bo_write_point      = '$write_bo_point',
-                        bo_comment_point    = '$comment_bo_point',
-                        bo_download_point   = '$download_bo_point',
-                        bo_use_category     = '0',
-                        bo_category_list    = '',
-                        bo_use_sideview     = '0',
-                        bo_use_file_content = '0',
-                        bo_use_secret       = '0',
-                        bo_use_dhtml_editor = '0',
-                        bo_use_rss_view     = '0',
-                        bo_use_good         = '0',
-                        bo_use_nogood       = '0',
-                        bo_use_name         = '0',
-                        bo_use_signature    = '0',
-                        bo_use_ip_view      = '0',
-                        bo_use_list_view    = '0',
-                        bo_use_list_content = '0',
-                        bo_use_email        = '0',
-                        bo_table_width      = '100',
-                        bo_subject_len      = '60',
-                        bo_page_rows        = '15',
-                        bo_new              = '24',
-                        bo_hot              = '100',
-                        bo_image_width      = '835',
-                        bo_skin             = '$bo_skin',
-                        bo_include_head     = '_head.php',
-                        bo_include_tail     = '_tail.php',
-                        bo_content_head     = '',
-                        bo_content_tail     = '',
-                        bo_insert_content   = '',
-                        bo_gallery_cols     = '4',
-                        bo_gallery_width    = '202',
-                        bo_gallery_height   = '150',
-                        bo_upload_count     = '2',
-                        bo_upload_size      = '1048576',
-                        bo_reply_order      = '1',
-                        bo_use_search       = '0',
-                        bo_order            = '0'
-                        ";
-        sql_query($sql, true, $dblink);
-
-        // 게시판 테이블 생성
-        $file = file("../".G5_ADMIN_DIR."/sql_write.sql");
-        $file = get_db_create_replace($file);
-        $sql = implode("\n", $file);
-
-        $create_table = $table_prefix.'write_' . $tmp_bo_table[$i];
-
-        // sql_board.sql 파일의 테이블명을 변환
-        $source = array("/__TABLE_NAME__/", "/;/");
-        $target = array($create_table, "");
-        $sql = preg_replace($source, $target, $sql);
-        sql_query($sql, false, $dblink);
-    }
 }
 
 ?>
@@ -340,20 +229,12 @@ $dir_arr = array (
     $data_path.'/member_image',
     $data_path.'/session',
     $data_path.'/content',
-    $data_path.'/faq',
     $data_path.'/tmp'
 );
 
 for ($i=0; $i<count($dir_arr); $i++) {
     @mkdir($dir_arr[$i], G5_DIR_PERMISSION);
     @chmod($dir_arr[$i], G5_DIR_PERMISSION);
-}
-
-// 게시판 디렉토리 생성 (작은별님,211206)
-for ($i=0; $i<count($tmp_bo_table); $i++) {
-    $board_dir = $data_path.'/file/'.$tmp_bo_table[$i];
-    @mkdir($board_dir, G5_DIR_PERMISSION);
-    @chmod($board_dir, G5_DIR_PERMISSION);
 }
 
 ?>
@@ -376,34 +257,18 @@ fwrite($f, "define('G5_MYSQL_DB', '".addcslashes($mysql_db, "\\'")."');\n");
 fwrite($f, "define('G5_MYSQL_SET_MODE', {$mysql_set_mode});\n\n");
 fwrite($f, "define('G5_TABLE_PREFIX', '{$table_prefix}');\n\n");
 fwrite($f, "define('G5_TOKEN_ENCRYPTION_KEY', '".get_random_token_string(16)."'); // 토큰 암호화에 사용할 키\n\n");
-fwrite($f, "\$g5['write_prefix'] = G5_TABLE_PREFIX.'write_'; // 게시판 테이블명 접두사\n\n");
 fwrite($f, "\$g5['auth_table'] = G5_TABLE_PREFIX.'auth'; // 관리권한 설정 테이블\n");
 fwrite($f, "\$g5['config_table'] = G5_TABLE_PREFIX.'config'; // 기본환경 설정 테이블\n");
-fwrite($f, "\$g5['group_table'] = G5_TABLE_PREFIX.'group'; // 게시판 그룹 테이블\n");
-fwrite($f, "\$g5['group_member_table'] = G5_TABLE_PREFIX.'group_member'; // 게시판 그룹+회원 테이블\n");
-fwrite($f, "\$g5['board_table'] = G5_TABLE_PREFIX.'board'; // 게시판 설정 테이블\n");
-fwrite($f, "\$g5['board_file_table'] = G5_TABLE_PREFIX.'board_file'; // 게시판 첨부파일 테이블\n");
-fwrite($f, "\$g5['board_good_table'] = G5_TABLE_PREFIX.'board_good'; // 게시물 추천,비추천 테이블\n");
-fwrite($f, "\$g5['board_new_table'] = G5_TABLE_PREFIX.'board_new'; // 게시판 새글 테이블\n");
 fwrite($f, "\$g5['login_table'] = G5_TABLE_PREFIX.'login'; // 로그인 테이블 (접속자수)\n");
 fwrite($f, "\$g5['mail_table'] = G5_TABLE_PREFIX.'mail'; // 회원메일 테이블\n");
 fwrite($f, "\$g5['member_table'] = G5_TABLE_PREFIX.'member'; // 회원 테이블\n");
 fwrite($f, "\$g5['memo_table'] = G5_TABLE_PREFIX.'memo'; // 메모 테이블\n");
-fwrite($f, "\$g5['poll_table'] = G5_TABLE_PREFIX.'poll'; // 투표 테이블\n");
-fwrite($f, "\$g5['poll_etc_table'] = G5_TABLE_PREFIX.'poll_etc'; // 투표 기타의견 테이블\n");
 fwrite($f, "\$g5['point_table'] = G5_TABLE_PREFIX.'point'; // 포인트 테이블\n");
-fwrite($f, "\$g5['popular_table'] = G5_TABLE_PREFIX.'popular'; // 인기검색어 테이블\n");
-fwrite($f, "\$g5['scrap_table'] = G5_TABLE_PREFIX.'scrap'; // 게시글 스크랩 테이블\n");
 fwrite($f, "\$g5['visit_table'] = G5_TABLE_PREFIX.'visit'; // 방문자 테이블\n");
 fwrite($f, "\$g5['visit_sum_table'] = G5_TABLE_PREFIX.'visit_sum'; // 방문자 합계 테이블\n");
 fwrite($f, "\$g5['uniqid_table'] = G5_TABLE_PREFIX.'uniqid'; // 유니크한 값을 만드는 테이블\n");
-fwrite($f, "\$g5['autosave_table'] = G5_TABLE_PREFIX.'autosave'; // 게시글 작성시 일정시간마다 글을 임시 저장하는 테이블\n");
 fwrite($f, "\$g5['cert_history_table'] = G5_TABLE_PREFIX.'cert_history'; // 인증내역 테이블\n");
-fwrite($f, "\$g5['qa_config_table'] = G5_TABLE_PREFIX.'qa_config'; // 1:1문의 설정테이블\n");
-fwrite($f, "\$g5['qa_content_table'] = G5_TABLE_PREFIX.'qa_content'; // 1:1문의 테이블\n");
 fwrite($f, "\$g5['content_table'] = G5_TABLE_PREFIX.'content'; // 내용(컨텐츠)정보 테이블\n");
-fwrite($f, "\$g5['faq_table'] = G5_TABLE_PREFIX.'faq'; // 자주하시는 질문 테이블\n");
-fwrite($f, "\$g5['faq_master_table'] = G5_TABLE_PREFIX.'faq_master'; // 자주하시는 질문 마스터 테이블\n");
 fwrite($f, "\$g5['new_win_table'] = G5_TABLE_PREFIX.'new_win'; // 새창 테이블\n");
 fwrite($f, "\$g5['menu_table'] = G5_TABLE_PREFIX.'menu'; // 메뉴관리 테이블\n");
 fwrite($f, "\$g5['social_profile_table'] = G5_TABLE_PREFIX.'member_social_profiles'; // 소셜 로그인 테이블\n");
