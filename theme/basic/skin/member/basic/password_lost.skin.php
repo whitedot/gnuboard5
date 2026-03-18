@@ -35,11 +35,9 @@ if($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipin
         <div>
         <?php if(!empty($config['cf_cert_simple'])) { ?>
             <button type="button" id="win_sa_kakao_cert" class="win_sa_cert" data-type="">간편인증</button>
-        <?php } if(!empty($config['cf_cert_hp']) || !empty($config['cf_cert_ipin'])) { ?>
+        <?php } if(!empty($config['cf_cert_hp'])) { ?>
             <?php if(!empty($config['cf_cert_hp'])) { ?>
             <button type="button" id="win_hp_cert">휴대폰 본인확인</button>
-            <?php } if(!empty($config['cf_cert_ipin'])) { ?>
-            <button type="button" id="win_ipin_cert">아이핀 본인확인</button>
             <?php } ?>
         <?php } ?>
         </div>
@@ -66,17 +64,6 @@ $(function() {
         call_sa(request_url);
 	});
     <?php } ?>
-    <?php if($config['cf_cert_use'] && $config['cf_cert_ipin']) { ?>
-    // 아이핀인증
-    var params = "";
-    $("#win_ipin_cert").click(function() {
-        params = "?" + pageTypeParam;
-        var url = "<?php echo G5_OKNAME_URL; ?>/ipin1.php"+params;
-        certify_win_open('kcb-ipin', url);
-        return;
-    });
-
-    <?php } ?>
     <?php if($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
     // 휴대폰인증
     var params = "";
@@ -84,10 +71,6 @@ $(function() {
         params = "?" + pageTypeParam;
         <?php     
         switch($config['cf_cert_hp']) {
-            case 'kcb':                
-                $cert_url = G5_OKNAME_URL.'/hpcert1.php';
-                $cert_type = 'kcb-hp';
-                break;
             case 'kcp':
                 $cert_url = G5_KCPCERT_URL.'/kcpcert_form.php';
                 $cert_type = 'kcp-hp';

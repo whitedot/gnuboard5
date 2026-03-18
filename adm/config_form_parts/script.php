@@ -170,30 +170,6 @@
 <?php
 // 본인확인 모듈 실행권한 체크
 if ($config['cf_cert_use']) {
-    // kcb일 때
-    if ($config['cf_cert_ipin'] == 'kcb' || $config['cf_cert_hp'] == 'kcb') {
-        // 실행모듈
-        if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
-            if (PHP_INT_MAX == 2147483647) { // 32-bit
-                $exe = G5_OKNAME_PATH . '/bin/okname';
-            } else {
-                $exe = G5_OKNAME_PATH . '/bin/okname_x64';
-            }
-        } else {
-            if (PHP_INT_MAX == 2147483647) { // 32-bit
-                $exe = G5_OKNAME_PATH . '/bin/okname.exe';
-            } else {
-                $exe = G5_OKNAME_PATH . '/bin/oknamex64.exe';
-            }
-        }
-
-        echo module_exec_check($exe, 'okname');
-
-        if (is_dir(G5_OKNAME_PATH . '/log') && is_writable(G5_OKNAME_PATH . '/log') && function_exists('check_log_folder')) {
-            check_log_folder(G5_OKNAME_PATH . '/log');
-        }
-    }
-
     // kcp일 때
     if ($config['cf_cert_hp'] == 'kcp') {
         

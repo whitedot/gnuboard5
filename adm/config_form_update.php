@@ -26,7 +26,7 @@ check_admin_token();
 
 $cf_social_servicelist = !empty($_POST['cf_social_servicelist']) ? implode(',', $_POST['cf_social_servicelist']) : '';
 
-$check_keys = array('cf_cert_kcb_cd', 'cf_cert_kcp_cd', 'cf_cert_kcp_enckey', 'cf_editor', 'cf_recaptcha_site_key', 'cf_recaptcha_secret_key', 'cf_naver_clientid', 'cf_naver_secret', 'cf_facebook_appid', 'cf_facebook_secret', 'cf_twitter_key', 'cf_twitter_secret', 'cf_google_clientid', 'cf_google_secret', 'cf_googl_shorturl_apikey', 'cf_kakao_rest_key', 'cf_kakao_client_secret', 'cf_kakao_js_apikey', 'cf_payco_clientid', 'cf_payco_secret', 'cf_cert_kg_cd', 'cf_cert_kg_mid');
+$check_keys = array('cf_cert_kcp_cd', 'cf_cert_kcp_enckey', 'cf_editor', 'cf_recaptcha_site_key', 'cf_recaptcha_secret_key', 'cf_naver_clientid', 'cf_naver_secret', 'cf_facebook_appid', 'cf_facebook_secret', 'cf_twitter_key', 'cf_twitter_secret', 'cf_google_clientid', 'cf_google_secret', 'cf_googl_shorturl_apikey', 'cf_kakao_rest_key', 'cf_kakao_client_secret', 'cf_kakao_js_apikey', 'cf_payco_clientid', 'cf_payco_secret', 'cf_cert_kg_cd', 'cf_cert_kg_mid');
 
 foreach ($check_keys as $key) {
     if (isset($_POST[$key]) && $_POST[$key]) {
@@ -139,15 +139,22 @@ foreach ($preserve_keys as $key) {
     }
 }
 
-// 본인확인을 사용할 경우 아이핀, 휴대폰인증 중 하나는 선택되어야 함
+// 본인확인을 사용할 경우 휴대폰인증 또는 간편인증 중 하나는 선택되어야 함
 if ($_POST['cf_cert_use'] && !$_POST['cf_cert_ipin'] && !$_POST['cf_cert_hp'] && !$_POST['cf_cert_simple']) {
-    alert('본인확인을 위해 아이핀, 휴대폰 본인확인, KG이니시스 간편인증 서비스 중 하나 이상 선택해 주십시오.');
+    alert('본인확인을 위해 휴대폰 본인확인 또는 KG이니시스 간편인증 서비스 중 하나 이상 선택해 주십시오.');
 }
 
 if (!$_POST['cf_cert_use']) {
     $_POST['cf_cert_ipin'] = '';
     $_POST['cf_cert_hp'] = '';
    $_POST['cf_cert_simple'] = '';
+}
+
+if ($_POST['cf_cert_ipin'] === 'kcb') {
+    $_POST['cf_cert_ipin'] = '';
+}
+if ($_POST['cf_cert_hp'] === 'kcb') {
+    $_POST['cf_cert_hp'] = '';
 }
 
 // 관리자가 자동등록방지를 사용해야 할 경우 ( 기본환경설정에서 최고관리자, 방문자분석 스크립트, 추가 메타태그, 추가 script, css 변경시 )
@@ -230,7 +237,6 @@ $sql = " update {$g5['config_table']}
                 cf_cert_use_seed = '".(int)$_POST['cf_cert_use_seed']."',
                 cf_cert_kg_cd = '{$_POST['cf_cert_kg_cd']}',
                 cf_cert_kg_mid = '" . trim($_POST['cf_cert_kg_mid']) . "',
-                cf_cert_kcb_cd = '{$_POST['cf_cert_kcb_cd']}',
                 cf_cert_kcp_cd = '{$_POST['cf_cert_kcp_cd']}',
                 cf_cert_kcp_enckey = '{$_POST['cf_cert_kcp_enckey']}',
                 cf_cert_limit = '{$_POST['cf_cert_limit']}',

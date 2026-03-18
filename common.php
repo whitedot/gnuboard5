@@ -636,6 +636,14 @@ if(isset($config['cf_theme']) && trim($config['cf_theme'])) {
 if(defined('G5_THEME_PATH') && is_file(G5_THEME_PATH.'/theme.config.php'))
     include_once(G5_THEME_PATH.'/theme.config.php');
 
+// 지원 종료된 okname/KCB 설정은 즉시 비활성화합니다.
+if (isset($config['cf_cert_ipin']) && $config['cf_cert_ipin'] === 'kcb') {
+    $config['cf_cert_ipin'] = '';
+}
+if (isset($config['cf_cert_hp']) && $config['cf_cert_hp'] === 'kcb') {
+    $config['cf_cert_hp'] = '';
+}
+
 
 //=====================================================================================
 // 사용기기 설정

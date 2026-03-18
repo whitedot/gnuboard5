@@ -477,21 +477,6 @@ function module_exec_check($exe, $type)
                             }
                         }
                         break;
-                    case 'okname':
-                        exec($exe.' D 2>&1', $out, $return_var);
-
-                        if($return_var == 139) {
-                            $isbinary = false;
-                            break;
-                        }
-
-                        for($i=0; $i<count($out); $i++) {
-                            if(strpos(strtolower($out[$i]), 'ret code') !== false) {
-                                $search = true;
-                                break;
-                            }
-                        }
-                        break;
                 }
 
                 if(!$isbinary || !$search) {
@@ -906,7 +891,7 @@ function is_include_path_check($path='', $is_input='')
             if (preg_match('/\/data\/(file|editor|qa|cache|member|member_image|session|tmp)\/[A-Za-z0-9_]{1,20}\//i', $replace_path) || preg_match('/pe(?:ar|cl)(?:cmd)?\.php/i', $replace_path)){
                 return false;
             }
-            if( preg_match('/'.G5_PLUGIN_DIR.'\//i', $replace_path) && (preg_match('/'.G5_OKNAME_DIR.'\//i', $replace_path) || preg_match('/'.G5_KCPCERT_DIR.'\//i', $replace_path) || preg_match('/'.G5_LGXPAY_DIR.'\//i', $replace_path)) || (preg_match('/search\.skin\.php/i', $replace_path) ) ){
+            if( preg_match('/'.G5_PLUGIN_DIR.'\//i', $replace_path) && (preg_match('/'.G5_KCPCERT_DIR.'\//i', $replace_path) || preg_match('/'.G5_LGXPAY_DIR.'\//i', $replace_path)) || (preg_match('/search\.skin\.php/i', $replace_path) ) ){
                 return false;
             }
             if( substr_count($replace_path, './') > 5 ){

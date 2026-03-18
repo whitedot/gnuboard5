@@ -28,7 +28,7 @@
                     <label for="cf_cert_find" class="form-label">회원정보찾기</label>
                 </div>
                 <div class="af-field">
-                    <?php echo help('휴대폰/아이핀 본인확인을 이용하시다가 간편인증을 이용하시는 경우, 기존 회원은 아이디/비밀번호 찾기에 사용할 수 없을 수 있습니다.') ?>
+                    <?php echo help('휴대폰 본인확인을 이용하시다가 간편인증을 이용하시는 경우, 기존 회원은 아이디/비밀번호 찾기에 사용할 수 없을 수 있습니다.') ?>
                     <label for="cf_cert_find" class="af-check form-label">
                         <input type="checkbox" name="cf_cert_find" id="cf_cert_find" value="1" <?php if (isset($config['cf_cert_find']) && $config['cf_cert_find'] == 1) { echo "checked"; } ?> class="form-checkbox">
                         <span class="form-label">아이디/비밀번호 찾기에 사용하기</span>
@@ -69,20 +69,7 @@
                 <div class="af-field">
                     <select name="cf_cert_hp" id="cf_cert_hp" class="form-select">
                         <?php echo option_selected("", $config['cf_cert_hp'], "사용안함"); ?>
-                        <?php echo option_selected("kcb", $config['cf_cert_hp'], "코리아크레딧뷰로(KCB) 휴대폰 본인확인"); ?>
                         <?php echo option_selected("kcp", $config['cf_cert_hp'], "NHN KCP 휴대폰 본인확인"); ?>
-                    </select>
-                </div>
-            </div>
-
-            <div class="af-row cf_cert_service">
-                <div class="af-label">
-                    <label for="cf_cert_ipin" class="form-label">아이핀 본인확인</label>
-                </div>
-                <div class="af-field">
-                    <select name="cf_cert_ipin" id="cf_cert_ipin" class="form-select">
-                        <?php echo option_selected("", $config['cf_cert_ipin'], "사용안함"); ?>
-                        <?php echo option_selected("kcb", $config['cf_cert_ipin'], "코리아크레딧뷰로(KCB) 아이핀"); ?>
                     </select>
                 </div>
             </div>
@@ -106,16 +93,6 @@
                 </div>
                 <div class="af-field">
                     <input type="text" name="cf_cert_kg_cd" value="<?php echo get_sanitize_input($config['cf_cert_kg_cd']); ?>" id="cf_cert_kg_cd" size="40" minlength="32" maxlength="32" class="form-input">
-                </div>
-            </div>
-
-            <div class="af-row cf_cert_service">
-                <div class="af-label">
-                    <label for="cf_cert_kcb_cd" class="form-label">코리아크레딧뷰로<br>KCB 회원사ID</label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('KCB 회원사ID를 입력해 주십시오.<br>서비스에 가입되어 있지 않다면, KCB와 계약체결 후 회원사ID를 발급 받으실 수 있습니다.<br>이용하시려는 서비스에 대한 계약을 아이핀, 휴대폰 본인확인 각각 체결해주셔야 합니다.<br>아이핀 본인확인 테스트의 경우에는 KCB 회원사ID가 필요 없으나,<br>휴대폰 본인확인 테스트의 경우 KCB 에서 따로 발급 받으셔야 합니다.') ?>
-                    <input type="text" name="cf_cert_kcb_cd" value="<?php echo get_sanitize_input($config['cf_cert_kcb_cd']); ?>" id="cf_cert_kcb_cd" size="20" class="form-input">
                 </div>
             </div>
 
@@ -151,7 +128,7 @@
                     <label for="cf_cert_limit" class="form-label">본인확인 이용제한</label>
                 </div>
                 <div class="af-field">
-                    <?php echo help('1일 단위 본인인증을 시도할 수 있는 최대횟수를 지정합니다. (0으로 설정 시 무한으로 인증시도 가능)<br>아이핀/휴대폰/간편인증에서 개별 적용됩니다.)'); ?>
+                    <?php echo help('1일 단위 본인인증을 시도할 수 있는 최대횟수를 지정합니다. (0으로 설정 시 무한으로 인증시도 가능)<br>휴대폰/간편인증에서 개별 적용됩니다.)'); ?>
                     <div class="af-inline">
                         <input type="text" name="cf_cert_limit" value="<?php echo (int) $config['cf_cert_limit']; ?>" id="cf_cert_limit" size="3" class="form-input">
                         <span>회</span>

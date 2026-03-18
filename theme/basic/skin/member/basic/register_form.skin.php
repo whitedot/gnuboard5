@@ -58,19 +58,17 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
                         $desc_name = '<span> 본인확인 시 자동입력</span>';
                         $desc_phone = '<span> 본인확인 시 자동입력</span>';
 
-                        if (!$config['cf_cert_simple'] && !$config['cf_cert_hp'] && $config['cf_cert_ipin']) {
+                        if (!$config['cf_cert_simple'] && !$config['cf_cert_hp']) {
                             $desc_phone = '';
                         }
 				?>
 				<li>
 	                <?php
-	                    if ($config['cf_cert_simple']) {
+						if ($config['cf_cert_simple']) {
                             echo '<button type="button" id="win_sa_kakao_cert" class="win_sa_cert" data-type="">간편인증</button>'.PHP_EOL;
 						}
 						if ($config['cf_cert_hp'])
 							echo '<button type="button" id="win_hp_cert">휴대폰 본인확인</button>'.PHP_EOL;
-						if ($config['cf_cert_ipin'])
-							echo '<button type="button" id="win_ipin_cert">아이핀 본인확인</button>'.PHP_EOL;
 	
                         echo '<span>(필수)</span>';
 	                    echo '<noscript>본인확인을 위해서는 자바스크립트 사용이 가능해야합니다.</noscript>'.PHP_EOL;
@@ -308,18 +306,6 @@ $(function() {
         call_sa(request_url);
 	});
     <?php } ?>
-    <?php if($config['cf_cert_use'] && $config['cf_cert_ipin']) { ?>
-    // 아이핀인증
-    var params = "";
-    $("#win_ipin_cert").click(function() {
-		if(!cert_confirm()) return false;
-        params = "?" + pageTypeParam;
-        var url = "<?php echo G5_OKNAME_URL; ?>/ipin1.php"+params;
-        certify_win_open('kcb-ipin', url);
-        return;
-    });
-
-    <?php } ?>
     <?php if($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
     // 휴대폰인증
     var params = "";
@@ -328,10 +314,6 @@ $(function() {
         params = "?" + pageTypeParam;
         <?php     
         switch($config['cf_cert_hp']) {
-            case 'kcb':                
-                $cert_url = G5_OKNAME_URL.'/hpcert1.php';
-                $cert_type = 'kcb-hp';
-                break;
             case 'kcp':
                 $cert_url = G5_KCPCERT_URL.'/kcpcert_form.php';
                 $cert_type = 'kcp-hp';

@@ -4,17 +4,7 @@ function certify_win_open(type, url, event) {
         event = window.event;
     }
 
-    if(type == 'kcb-ipin')
-    {
-        var popupWindow = window.open( url, "kcbPop", "left=200, top=100, status=0, width=450, height=550" );
-        popupWindow.focus();
-    }
-    else if(type == 'kcb-hp')
-    {
-        var popupWindow = window.open( url, "auth_popup", "left=200, top=100, width=430, height=590, scrollbar=yes" );
-        popupWindow.focus();
-    }
-    else if(type == 'kcp-hp')
+    if(type == 'kcp-hp')
     {
         if($("input[name=veri_up_hash]").length < 1)
                 $("input[name=cert_no]").after('<input type="hidden" name="veri_up_hash" value="">');
