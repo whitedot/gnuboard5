@@ -299,7 +299,7 @@ function insert_member_cert_history($mb_id, $name, $hp, $birth, $type)
 {
     global $g5;
 
-    // 본인인증 내역 테이블 정보가 dbconfig에 없으면 소셜 테이블 정의
+    // 본인인증 변경내역 테이블 정보가 dbconfig에 없으면 기본 테이블명을 보정
     if( !isset($g5['member_cert_history']) ){
         $g5['member_cert_history_table'] = G5_TABLE_PREFIX.'member_cert_history';
     }

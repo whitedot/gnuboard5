@@ -15,6 +15,9 @@
 - P2: 회원 전용 범위에서 제외한 가입 운영 메일 설정/발송 제거
 - P3: 관리자 목록 페이징의 `cf_write_pages` 참조 제거
 - 위 3건을 해결한 뒤, 수동 QA 기준 문서와 실제 코드 기준을 일치시키는 것을 이번 사이클 완료 조건으로 둔다.
+- 같은 날 2차 점검에서 추가 이슈 2건을 확인했다.
+- P2: 관리자 회원 수정 시 `mb_memo` 미초기화로 관리 메모 저장이 누락될 수 있음
+- P3: 이메일 인증 전용으로 바뀐 메일 템플릿 문구가 여전히 가입 축하 메일 기준으로 남아 있음
 
 ## 개발 반영
 
@@ -24,12 +27,16 @@
 - `adm/config_form_parts/basic.php`, `adm/config_form_update.php` 에서 `cf_write_pages` 및 가입 운영 메일 설정 제거
 - `adm/member_list.php`, `adm/auth_list.php` 는 고정 상수 `G5_ADMIN_PAGING_PAGES` 를 사용하도록 변경
 - 신규 설치 기준에서도 제거된 설정 컬럼/초기값이 다시 생기지 않도록 `install/gnuboard5.sql`, `install/install_db.php` 정리
+- `adm/member_form_update.php` 에서 관리 메모 입력값을 명시적으로 수집해 저장 경로 복구
+- `member/register_form_update_mail1.php` 를 이메일 인증 안내용 문구로 정리
 
 ## QA 포인트
 
 - 비밀번호 재설정은 `mb_password` 와 `mb_password_re` 불일치 시 반드시 차단되어야 한다.
 - 회원가입 직후에는 이메일 인증 메일만 발송되고, 가입 축하 메일/관리자 가입 알림 메일은 더 이상 발송되지 않아야 한다.
 - 관리자 회원 목록과 권한 목록은 `cf_write_pages` 없이 정상 페이징되어야 한다.
+- 관리자 회원 수정 시 관리 메모가 저장되고 재진입 시 값이 유지되어야 한다.
+- 이메일 인증 메일 제목/본문/CTA가 실제 인증 흐름과 일치해야 한다.
 
 ## 완료 기준
 

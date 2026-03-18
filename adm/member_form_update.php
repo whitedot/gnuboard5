@@ -48,6 +48,7 @@ if ($mb_certify_case && $mb_certify) {
 
 $mb_email = isset($_POST['mb_email']) ? get_email_address(trim($_POST['mb_email'])) : '';
 $mb_nick = isset($_POST['mb_nick']) ? trim(strip_tags($_POST['mb_nick'])) : '';
+$mb_memo = isset($_POST['mb_memo']) ? clean_xss_tags(trim($_POST['mb_memo']), 1, 1) : '';
 
 if ($msg = valid_mb_nick($mb_nick)) {
     alert($msg, "", true, true);
