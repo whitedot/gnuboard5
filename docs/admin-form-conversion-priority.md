@@ -18,8 +18,6 @@ Member-only 전환 이후 이 문서는 현재 운영 중인 관리자 화면만
 - `adm\config_form_parts\sms.php`
 - `adm\config_form_parts\sns.php`
 - `adm\contentform.php`
-- `adm\mail_form.php`
-- `adm\mail_select_form.php`
 - `adm\member_form_parts\basic.php`
 - `adm\member_form_parts\consent.php`
 - `adm\member_form_parts\contact.php`

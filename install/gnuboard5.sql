@@ -66,7 +66,6 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_use_promotion` tinyint(1) NOT NULL DEFAULT '0',
   `cf_open_modify` int(11) NOT NULL DEFAULT '0',
   `cf_captcha_mp3` varchar(255) NOT NULL DEFAULT '',
-  `cf_editor` varchar(50) NOT NULL DEFAULT '',
   `cf_cert_use` tinyint(4) NOT NULL DEFAULT '0',
   `cf_cert_find` tinyint(4) NOT NULL DEFAULT '0',
   `cf_cert_ipin` varchar(255) NOT NULL DEFAULT '',
@@ -160,23 +159,6 @@ CREATE TABLE IF NOT EXISTS `g5_login` (
   PRIMARY KEY (`lo_id`),
   UNIQUE KEY `lo_ip_unique` (`lo_ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_mail`
---
-
-DROP TABLE IF EXISTS `g5_mail`;
-CREATE TABLE IF NOT EXISTS `g5_mail` (
-  `ma_id` int(11) NOT NULL auto_increment,
-  `ma_subject` varchar(255) NOT NULL default '',
-  `ma_content` mediumtext NOT NULL,
-  `ma_time` datetime NOT NULL default '0000-00-00 00:00:00',
-  `ma_ip` varchar(255) NOT NULL default '',
-  `ma_last_option` text NOT NULL,
-  PRIMARY KEY  (`ma_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 

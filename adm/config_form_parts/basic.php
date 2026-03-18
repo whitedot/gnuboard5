@@ -27,7 +27,7 @@
                     <label for="cf_admin_email" class="form-label">관리자 메일 주소<strong>필수</strong></label>
                 </div>
                 <div class="af-field">
-                    <?php echo help('관리자가 보내고 받는 용도로 사용하는 메일 주소를 입력합니다. (회원가입, 인증메일, 테스트, 회원메일발송 등에서 사용)') ?>
+                    <?php echo help('관리자가 보내고 받는 용도로 사용하는 메일 주소를 입력합니다. (회원가입, 인증메일, 테스트 등에서 사용)') ?>
                     <input type="text" name="cf_admin_email" value="<?php echo get_sanitize_input($config['cf_admin_email']); ?>" id="cf_admin_email" required size="40" class="form-input">
                     <?php if (function_exists('domain_mail_host') && $config['cf_admin_email'] && stripos($config['cf_admin_email'], domain_mail_host()) === false) { ?>
                     <?php echo help('외부메일설정이나 기타 설정을 하지 않았다면, 도메인과 다른 헤더로 여겨 스팸이나 차단될 가능성이 있습니다.<br>name'.domain_mail_host().' 과 같은 도메인 형식으로 설정할것을 권장합니다.') ?>
@@ -40,7 +40,7 @@
                     <label for="cf_admin_email_name" class="form-label">관리자 메일 발송이름<strong>필수</strong></label>
                 </div>
                 <div class="af-field">
-                    <?php echo help('관리자가 보내고 받는 용도로 사용하는 메일의 발송이름을 입력합니다. (회원가입, 인증메일, 테스트, 회원메일발송 등에서 사용)') ?>
+                    <?php echo help('관리자가 보내고 받는 용도로 사용하는 메일의 발송이름을 입력합니다. (회원가입, 인증메일, 테스트 등에서 사용)') ?>
                     <input type="text" name="cf_admin_email_name" value="<?php echo get_sanitize_input($config['cf_admin_email_name']); ?>" id="cf_admin_email_name" required size="40" class="form-input">
                 </div>
             </div>
@@ -121,26 +121,6 @@
                         <input type="text" name="cf_write_pages" value="<?php echo (int) $config['cf_write_pages'] ?>" id="cf_write_pages" required size="3" class="form-input">
                         <span>페이지씩 표시</span>
                     </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_editor" class="form-label">에디터 선택</label>
-                </div>
-                <div class="af-field">
-                    <?php echo help(G5_EDITOR_URL . ' 밑의 DHTML 에디터 폴더를 선택합니다.') ?>
-                    <select name="cf_editor" id="cf_editor" class="form-select">
-                    <?php
-                    $arr = get_skin_dir('', G5_EDITOR_PATH);
-                    for ($i = 0; $i < count($arr); $i++) {
-                        if ($i == 0) {
-                            echo "<option value=\"\">사용안함</option>";
-                        }
-                        echo "<option value=\"" . $arr[$i] . "\"" . get_selected($config['cf_editor'], $arr[$i]) . ">" . $arr[$i] . "</option>\n";
-                    }
-                    ?>
-                    </select>
                 </div>
             </div>
 

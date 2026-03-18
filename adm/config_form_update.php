@@ -26,7 +26,7 @@ check_admin_token();
 
 $cf_social_servicelist = !empty($_POST['cf_social_servicelist']) ? implode(',', $_POST['cf_social_servicelist']) : '';
 
-$check_keys = array('cf_cert_kcp_cd', 'cf_cert_kcp_enckey', 'cf_editor', 'cf_recaptcha_site_key', 'cf_recaptcha_secret_key', 'cf_naver_clientid', 'cf_naver_secret', 'cf_facebook_appid', 'cf_facebook_secret', 'cf_twitter_key', 'cf_twitter_secret', 'cf_google_clientid', 'cf_google_secret', 'cf_googl_shorturl_apikey', 'cf_kakao_rest_key', 'cf_kakao_client_secret', 'cf_kakao_js_apikey', 'cf_payco_clientid', 'cf_payco_secret', 'cf_cert_kg_cd', 'cf_cert_kg_mid');
+$check_keys = array('cf_cert_kcp_cd', 'cf_cert_kcp_enckey', 'cf_recaptcha_site_key', 'cf_recaptcha_secret_key', 'cf_naver_clientid', 'cf_naver_secret', 'cf_facebook_appid', 'cf_facebook_secret', 'cf_twitter_key', 'cf_twitter_secret', 'cf_google_clientid', 'cf_google_secret', 'cf_googl_shorturl_apikey', 'cf_kakao_rest_key', 'cf_kakao_client_secret', 'cf_kakao_js_apikey', 'cf_payco_clientid', 'cf_payco_secret', 'cf_cert_kg_cd', 'cf_cert_kg_mid');
 
 foreach ($check_keys as $key) {
     if (isset($_POST[$key]) && $_POST[$key]) {
@@ -228,7 +228,6 @@ $sql = " update {$g5['config_table']}
                 cf_use_promotion = '{$_POST['cf_use_promotion']}',
                 cf_open_modify = '{$_POST['cf_open_modify']}',
                 cf_captcha_mp3 = '{$_POST['cf_captcha_mp3']}',
-                cf_editor = '{$_POST['cf_editor']}',
                 cf_cert_use = '{$_POST['cf_cert_use']}',
                 cf_cert_find = '{$_POST['cf_cert_find']}',
                 cf_cert_ipin = '{$_POST['cf_cert_ipin']}',

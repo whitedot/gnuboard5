@@ -588,14 +588,8 @@ if (!(isset($member['mb_id']) && $config['cf_admin'] === $member['mb_id'])) {
     }
 }
 
-/** @var array $write 에디터/필터용 데이터 */
+/** @var array $write 필터용 데이터 */
 $write = array();
-
-if ($config['cf_editor']) {
-    define('G5_EDITOR_LIB', G5_EDITOR_PATH."/{$config['cf_editor']}/editor.lib.php");
-} else {
-    define('G5_EDITOR_LIB', G5_LIB_PATH."/editor.lib.php");
-}
 
 // 회원, 비회원 구분
 $is_member = $is_guest = false;

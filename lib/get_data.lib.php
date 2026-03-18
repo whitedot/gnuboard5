@@ -18,25 +18,6 @@ function get_config($is_cache=false){
     return $cache;
 }
 
-function get_mail_content_db($ma_id, $is_cache=false){
-    global $g5;
-
-    static $cache = array();
-
-    $ma_id = (int) $ma_id;
-    $key = md5($ma_id);
-
-    if( $is_cache && isset($cache[$key]) ){
-        return $cache[$key];
-    }
-
-    $sql = " select * from {$g5['mail_table']} where ma_id = '{$ma_id}' ";
-
-    $cache[$key] = sql_fetch($sql);
-
-    return $cache[$key];
-}
-
 function get_db_charset($charset){
 
     $add_charset = $charset;

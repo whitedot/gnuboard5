@@ -833,7 +833,6 @@
                                         <div class="admin-nav-panel hidden">
                                             <ul class="admin-nav-sub-list">
                                                 <li class="admin-nav-sub-item"><a href="#">회원관리</a></li>
-                                                <li class="admin-nav-sub-item"><a href="#">회원메일발송</a></li>
                                                 <li class="admin-nav-sub-item"><a href="#">회원관리파일</a></li>
                                             </ul>
                                         </div>
