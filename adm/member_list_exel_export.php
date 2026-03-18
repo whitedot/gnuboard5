@@ -149,12 +149,11 @@ function member_export_get_config()
         1 => [
             'title'   => ["회원관리파일(일반)"],
             'headers' => ['아이디', '이름', '닉네임', '휴대폰번호', '전화번호', '이메일', '주소', '회원권한', '가입일', '차단',
-                            '광고성 이메일 수신동의', '광고성 이메일 동의일자', '광고성 SMS/카카오톡 수신동의', '광고성 SMS/카카오톡 동의일자', 
-                            '마케팅목적의개인정보수집및이용동의', '마케팅목적의개인정보수집및이용동의일자', '개인정보제3자제공동의', '개인정보제3자제공동의일자'],
+                            '광고성 이메일 수신동의', '광고성 이메일 동의일자',
+                            '마케팅목적의개인정보수집및이용동의', '마케팅목적의개인정보수집및이용동의일자'],
             'fields'  => ['mb_id', 'mb_name', 'mb_nick', 'mb_hp', 'mb_tel', 'mb_email', 'mb_addr1', 'mb_level', 'mb_datetime', 'mb_intercept_date',
-                            'mb_mailling','mb_mailling_date', 'mb_sms','mb_sms_date', 'mb_marketing_agree', 
-                            'mb_marketing_date', 'mb_thirdparty_agree', 'mb_thirdparty_date'],
-            'widths'  => [20, 20, 20, 20, 20, 30, 30, 10, 25, 10, 20, 25, 20, 25, 20, 25, 20, 25],
+                            'mb_mailling','mb_mailling_date', 'mb_marketing_agree', 'mb_marketing_date'],
+            'widths'  => [20, 20, 20, 20, 20, 30, 30, 10, 25, 10, 20, 25, 20, 25],
         ],
     ];
     
@@ -198,14 +197,10 @@ function member_export_get_data($params)
     $sqlTransformMap = [
         'mb_datetime' => "IF(mb_datetime = '0000-00-00 00:00:00', '', mb_datetime) AS mb_datetime",
         'mb_intercept_date' => "IF(mb_intercept_date != '', '차단됨', '정상') AS mb_intercept_date",
-        'mb_sms' => "IF(mb_sms = '1', '동의', '미동의') AS mb_sms",
-        'mb_sms_date' => "IF(mb_sms != '1' OR mb_sms_date = '0000-00-00 00:00:00', '', mb_sms_date) AS mb_sms_date",
         'mb_mailling' => "IF(mb_mailling = '1', '동의', '미동의') AS mb_mailling",
         'mb_mailling_date' => "IF(mb_mailling != '1' OR mb_mailling_date = '0000-00-00 00:00:00', '', mb_mailling_date) AS mb_mailling_date",
         'mb_marketing_agree' => "IF(mb_marketing_agree = '1', '동의', '미동의') AS mb_marketing_agree",
         'mb_marketing_date' => "IF(mb_marketing_agree != '1' OR mb_marketing_date = '0000-00-00 00:00:00', '', mb_marketing_date) AS mb_marketing_date",
-        'mb_thirdparty_agree' => "IF(mb_thirdparty_agree = '1', '동의', '미동의') AS mb_thirdparty_agree",
-        'mb_thirdparty_date' => "IF(mb_thirdparty_agree != '1' OR mb_thirdparty_date = '0000-00-00 00:00:00', '', mb_thirdparty_date) AS mb_thirdparty_date",
     ];
 
     // SQL 필드 생성

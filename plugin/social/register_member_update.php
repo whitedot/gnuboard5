@@ -97,12 +97,8 @@ if( defined('G5_SOCIAL_CERTIFY_MAIL') && G5_SOCIAL_CERTIFY_MAIL && $config['cf_u
 $mb_mailling = (isset($_POST['mb_mailling']) && $_POST['mb_mailling']) ? 1 : 0;
 //회원 정보 공개
 $mb_open = (isset($_POST['mb_open']) && $_POST['mb_open']) ? 1 : 0;
-//회원 SMS 동의
-$mb_sms = isset($_POST['mb_sms']) ? trim($_POST['mb_sms']) : "0";
 //마케팅 목적의 개인정보 수집 및 이용 동의
 $mb_marketing_agree = isset($_POST['mb_marketing_agree']) ? trim($_POST['mb_marketing_agree']) : "0";
-//개인정보 제3자 제공 동의
-$mb_thirdparty_agree = isset($_POST['mb_thirdparty_agree']) ? trim($_POST['mb_thirdparty_agree']) : "0";
 
 $agree_items = [];
 $sql_agree = "";
@@ -116,18 +112,6 @@ if ($mb_marketing_agree == 1) {
 if ($mb_mailling == 1) {
     $sql_agree .=  " , mb_mailling_date = '".G5_TIME_YMDHIS."' ";
     $agree_items[] = "광고성 이메일 수신(동의)";
-}
-
-// 광고성 SMS/카카오톡 수신
-if ($mb_sms == 1) {
-    $sql_agree .=  " , mb_sms_date = '".G5_TIME_YMDHIS."' ";
-    $agree_items[] = "광고성 SMS/카카오톡 수신(동의)";
-}
-
-// 개인정보 제3자 제공
-if ($mb_thirdparty_agree == 1) {
-    $sql_agree .=  " , mb_thirdparty_date = '".G5_TIME_YMDHIS."' ";
-    $agree_items[] = "개인정보 제3자 제공(동의)";
 }
 
 // 동의 로그 추가
@@ -202,11 +186,9 @@ $sql = " insert into {$g5['member_table']}
                 mb_level = '{$config['cf_register_level']}',
                 mb_login_ip = '{$_SERVER['REMOTE_ADDR']}',
                 mb_mailling = '{$mb_mailling}',
-                mb_sms = '{$mb_sms}',
                 mb_open = '{$mb_open}',
                 mb_open_date = '".G5_TIME_YMD."',
-                mb_marketing_agree = '{$mb_marketing_agree}',
-                mb_thirdparty_agree = '{$mb_thirdparty_agree}'
+                mb_marketing_agree = '{$mb_marketing_agree}'
                 {$sql_agree}
                 {$sql_certify} ";
 $result = sql_query($sql, false);
@@ -238,27 +220,6 @@ if($result) {
     }
 
     set_session('ss_mb_reg', $mb['mb_id']);
-
-    if( !empty($user_profile->photoURL) && ($config['cf_register_level'] >= $config['cf_icon_level']) ){  //회원 프로필 사진이 있고, 회원 아이콘를 올릴수 있는 조건이면
-        
-        // 회원아이콘
-        $mb_dir = G5_DATA_PATH.'/member/'.substr($mb_id,0,2);
-        @mkdir($mb_dir, G5_DIR_PERMISSION);
-        @chmod($mb_dir, G5_DIR_PERMISSION);
-        $dest_path = "$mb_dir/$mb_id.gif";
-        
-        social_profile_img_resize($dest_path, $user_profile->photoURL, $config['cf_member_icon_width'], $config['cf_member_icon_height'] );
-        
-        // 회원이미지
-        if( is_dir(G5_DATA_PATH.'/member_image/') ) {
-            $mb_dir = G5_DATA_PATH.'/member_image/'.substr($mb_id,0,2);
-            @mkdir($mb_dir, G5_DIR_PERMISSION);
-            @chmod($mb_dir, G5_DIR_PERMISSION);
-            $dest_path = "$mb_dir/$mb_id.gif";
-            
-            social_profile_img_resize($dest_path, $user_profile->photoURL, $config['cf_member_img_width'], $config['cf_member_img_height'] );
-        }
-    }
 
     if( $mb_email_certify ){    //메일인증 사용 안하면
 

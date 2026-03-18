@@ -7,7 +7,6 @@ auth_check_menu($auth, $sub_menu, 'w');
 $mb = array(
     'mb_certify' => null,
     'mb_adult' => null,
-    'mb_sms' => null,
     'mb_intercept_date' => null,
     'mb_id' => null,
     'mb_name' => null,
@@ -41,11 +40,9 @@ if ($w == '') {
     $sound_only = '<strong>필수</strong>';
 
     $mb['mb_mailling'] = 1;
-    $mb['mb_sms'] = 1;
     $mb['mb_open'] = 1;
     $mb['mb_level'] = $config['cf_register_level'];
     $mb['mb_marketing_agree'] = 0;
-    $mb['mb_thirdparty_agree'] = 0;
     $html_title = '추가';
 } elseif ($w == 'u') {
     $mb = get_member($mb_id);
@@ -71,7 +68,6 @@ if ($w == '') {
     $mb['mb_addr2'] = get_text($mb['mb_addr2']);
     $mb['mb_addr3'] = get_text($mb['mb_addr3']);
     $mb['mb_signature'] = get_text($mb['mb_signature']);
-    $mb['mb_recommend'] = get_text($mb['mb_recommend']);
     $mb['mb_profile'] = get_text($mb['mb_profile']);
 } else {
     alert('제대로 된 값이 넘어오지 않았습니다.');
@@ -113,10 +109,6 @@ $mb_adult_no        = !$mb['mb_adult']      ? 'checked="checked"' : '';
 $mb_mailling_yes    =  $mb['mb_mailling']   ? 'checked="checked"' : '';
 $mb_mailling_no     = !$mb['mb_mailling']   ? 'checked="checked"' : '';
 
-// SMS 수신
-$mb_sms_yes         =  $mb['mb_sms']        ? 'checked="checked"' : '';
-$mb_sms_no          = !$mb['mb_sms']        ? 'checked="checked"' : '';
-
 // 정보 공개
 $mb_open_yes        =  $mb['mb_open']       ? 'checked="checked"' : '';
 $mb_open_no         = !$mb['mb_open']       ? 'checked="checked"' : '';
@@ -124,10 +116,6 @@ $mb_open_no         = !$mb['mb_open']       ? 'checked="checked"' : '';
 // 마케팅 목적의 개인정보 수집 및 이용
 $mb_marketing_agree_yes     =  $mb['mb_marketing_agree'] ? 'checked="checked"' : '';
 $mb_marketing_agree_no      = !$mb['mb_marketing_agree'] ? 'checked="checked"' : '';
-
-// 개인정보 제3자 제공 동의
-$mb_thirdparty_agree_yes    =  $mb['mb_thirdparty_agree'] ? 'checked="checked"' : '';
-$mb_thirdparty_agree_no     = !$mb['mb_thirdparty_agree'] ? 'checked="checked"' : '';
 
 $mb_cert_history = '';
 if (isset($mb_id) && $mb_id) {
@@ -151,7 +139,6 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 $member_tabs = array(
     array('id' => 'anc_mb_basic', 'label' => '기본 정보'),
     array('id' => 'anc_mb_contact', 'label' => '연락처 및 주소'),
-    array('id' => 'anc_mb_media', 'label' => '아이콘 및 이미지'),
     array('id' => 'anc_mb_consent', 'label' => '수신 및 공개 설정'),
     array('id' => 'anc_mb_profile', 'label' => '관리 메모'),
     array('id' => 'anc_mb_history', 'label' => '인증 및 활동 내역'),
@@ -172,7 +159,7 @@ $pg_anchor_menu = admin_build_anchor_menu($member_tabs, array(
     <?php echo $pg_anchor_menu; ?>
 </div>
 
-<form name="fmember" id="fmember" action="./member_form_update.php" onsubmit="return fmember_submit(this);" method="post" enctype="multipart/form-data" class="admin-form-layout space-y-5">
+<form name="fmember" id="fmember" action="./member_form_update.php" onsubmit="return fmember_submit(this);" method="post" class="admin-form-layout space-y-5">
     <input type="hidden" name="w" value="<?php echo $w ?>">
     <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
     <input type="hidden" name="stx" value="<?php echo $stx ?>">
@@ -186,9 +173,6 @@ $pg_anchor_menu = admin_build_anchor_menu($member_tabs, array(
 
     // 연락처 및 주소
     include_once G5_ADMIN_PATH.'/member_form_parts/contact.php';
-
-    // 아이콘 및 이미지
-    include_once G5_ADMIN_PATH.'/member_form_parts/media.php';
 
     // 수신 및 공개 설정
     include_once G5_ADMIN_PATH.'/member_form_parts/consent.php';

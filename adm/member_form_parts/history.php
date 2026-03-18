@@ -79,13 +79,6 @@
             <?php } ?>
             <?php } ?>
 
-            <?php if ($config['cf_use_recommend']) { ?>
-            <div class="af-row">
-                <div class="af-label"><span class="form-label">추천인</span></div>
-                <div class="af-field"><?php echo ((isset($mb['mb_recommend']) && $mb['mb_recommend']) ? get_text($mb['mb_recommend']) : '없음'); ?></div>
-            </div>
-            <?php } ?>
-
             <div class="af-row">
                 <div class="af-label">
                     <label for="mb_leave_date" class="form-label">탈퇴일자</label>

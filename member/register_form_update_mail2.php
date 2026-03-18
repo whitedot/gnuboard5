@@ -24,8 +24,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             <b><?php echo $mb_name ?></b> 님께서 회원가입 하셨습니다.<br>
             회원 아이디 : <b><?php echo $mb_id ?></b><br>
             회원 이름 : <?php echo $mb_name ?><br>
-            회원 닉네임 : <?php echo $mb_nick ?><br>
-            추천인아이디 : <?php echo $mb_recommend ?>
+            회원 닉네임 : <?php echo $mb_nick ?>
         </p>
         <a href="<?php echo G5_ADMIN_URL ?>/member_form.php?w=u&amp;mb_id=<?php echo $mb_id ?>">관리자에서 회원정보 확인하기</a>
     </div>

@@ -110,98 +110,6 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_use_member_icon" class="form-label">회원아이콘 사용</label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('게시물에 게시자 닉네임 대신 아이콘 사용') ?>
-                    <select name="cf_use_member_icon" id="cf_use_member_icon" class="form-select">
-                        <option value="0" <?php echo get_selected($config['cf_use_member_icon'], '0') ?>>미사용</option>
-                        <option value="1" <?php echo get_selected($config['cf_use_member_icon'], '1') ?>>아이콘만 표시</option>
-                        <option value="2" <?php echo get_selected($config['cf_use_member_icon'], '2') ?>>아이콘+이름 표시</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_icon_level" class="form-label">회원 아이콘, 이미지 업로드 권한</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <?php echo get_member_level_select('cf_icon_level', 1, 9, $config['cf_icon_level']) ?>
-                        <span>이상</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_member_icon_size" class="form-label">회원아이콘 용량</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <input type="text" name="cf_member_icon_size" value="<?php echo (int) $config['cf_member_icon_size'] ?>" id="cf_member_icon_size" size="10" class="form-input">
-                        <span>바이트 이하</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_member_icon_width" class="form-label">회원아이콘 사이즈</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <label for="cf_member_icon_width" class="form-label">가로</label>
-                        <input type="text" name="cf_member_icon_width" value="<?php echo (int) $config['cf_member_icon_width'] ?>" id="cf_member_icon_width" size="2" class="form-input">
-                        <label for="cf_member_icon_height" class="form-label">세로</label>
-                        <input type="text" name="cf_member_icon_height" value="<?php echo (int) $config['cf_member_icon_height'] ?>" id="cf_member_icon_height" size="2" class="form-input">
-                        <span>픽셀 이하</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_member_img_size" class="form-label">회원이미지 용량</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <input type="text" name="cf_member_img_size" value="<?php echo (int) $config['cf_member_img_size'] ?>" id="cf_member_img_size" size="10" class="form-input">
-                        <span>바이트 이하</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_member_img_width" class="form-label">회원이미지 사이즈</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <label for="cf_member_img_width" class="form-label">가로</label>
-                        <input type="text" name="cf_member_img_width" value="<?php echo (int) $config['cf_member_img_width'] ?>" id="cf_member_img_width" size="2" class="form-input">
-                        <label for="cf_member_img_height" class="form-label">세로</label>
-                        <input type="text" name="cf_member_img_height" value="<?php echo (int) $config['cf_member_img_height'] ?>" id="cf_member_img_height" size="2" class="form-input">
-                        <span>픽셀 이하</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_use_recommend" class="form-label">추천인제도 사용</label>
-                </div>
-                <div class="af-field">
-                    <label for="cf_use_recommend" class="af-check form-label">
-                        <input type="checkbox" name="cf_use_recommend" value="1" id="cf_use_recommend" <?php echo $config['cf_use_recommend'] ? 'checked' : ''; ?> class="form-checkbox">
-                        <span class="form-label">사용</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
                     <label for="cf_prohibit_id" class="form-label">아이디,닉네임 금지단어</label>
                 </div>
                 <div class="af-field">
@@ -243,9 +151,8 @@
                     <label for="cf_use_promotion" class="form-label">회원가입 약관 동의에<br>광고성 정보 수신 동의 표시 여부</label>
                 </div>
                 <div class="af-field">
-                    <?php echo help('<b>광고성 정보 수신 · 마케팅 목적의 개인정보 수집 및 이용 · 개인정보 제 3자 제공</b> 여부를 설정합니다. <b>SMS 또는 카카오톡</b> 사용 시 <b>개인정보 제3자 제공</b>이 활성화됩니다.'); ?>
-                    <?php echo help('동의한 회원에게 <b>카카오톡(친구톡)·문자</b>로 광고성 메시지를 발송할 수 있습니다.'); ?>
-                    <?php echo help('<b>휴대전화번호</b> 사용을 위해서는 <b>기본환경설정 > 회원가입 > 휴대전화번호 입력</b>을 <b>[보이기]</b> 또는 <b>[필수입력]</b>으로 설정해야 하며, 미설정 시 수집이 불가합니다.'); ?>
+                    <?php echo help('<b>광고성 정보 수신 · 마케팅 목적의 개인정보 수집 및 이용</b> 여부를 설정합니다.'); ?>
+                    <?php echo help('동의한 회원에게 <b>이메일</b>로 광고성 메시지를 발송할 수 있습니다.'); ?>
                     <?php echo help('* 「정보통신망이용촉진및정보보호등에관한법률」에 따라 <b>광고성 정보 수신 동의</b>를 매 2년마다 반드시 확인해야 합니다.'); ?>
                     <label for="cf_use_promotion" class="af-check form-label">
                         <input type="checkbox" name="cf_use_promotion" value="1" id="cf_use_promotion" <?php echo $config['cf_use_promotion'] ? 'checked' : ''; ?> class="form-checkbox">

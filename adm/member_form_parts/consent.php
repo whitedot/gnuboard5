@@ -27,27 +27,6 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <label for="mb_sms_yes" class="form-label">광고성 SMS/카카오톡 수신</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <label for="mb_sms_yes" class="af-check form-label">
-                            <input type="radio" name="mb_sms" value="1" id="mb_sms_yes" <?php echo $mb_sms_yes; ?> class="form-radio">
-                            <span class="form-label">예</span>
-                        </label>
-                        <label for="mb_sms_no" class="af-check form-label">
-                            <input type="radio" name="mb_sms" value="0" id="mb_sms_no" <?php echo $mb_sms_no; ?> class="form-radio">
-                            <span class="form-label">아니오</span>
-                        </label>
-                    </div>
-                    <?php if ($w == "u" && $mb['mb_sms_date'] != "0000-00-00 00:00:00" && $mb['mb_sms'] == 1) { ?>
-                    <p class="hint-text">(동의 일자: <?php echo $mb['mb_sms_date']; ?>)</p>
-                    <?php } ?>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
                     <label for="mb_marketing_agree_yes" class="form-label">마케팅 목적의 개인정보 수집 및 이용</label>
                 </div>
                 <div class="af-field">
@@ -63,27 +42,6 @@
                     </div>
                     <?php if ($w == "u" && $mb['mb_marketing_date'] != "0000-00-00 00:00:00" && $mb['mb_marketing_agree'] == 1) { ?>
                     <p class="hint-text">(동의 일자: <?php echo $mb['mb_marketing_date']; ?>)</p>
-                    <?php } ?>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="mb_thirdparty_agree_yes" class="form-label">개인정보 제3자 제공</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <label for="mb_thirdparty_agree_yes" class="af-check form-label">
-                            <input type="radio" name="mb_thirdparty_agree" value="1" id="mb_thirdparty_agree_yes" <?php echo $mb_thirdparty_agree_yes; ?> class="form-radio">
-                            <span class="form-label">예</span>
-                        </label>
-                        <label for="mb_thirdparty_agree_no" class="af-check form-label">
-                            <input type="radio" name="mb_thirdparty_agree" value="0" id="mb_thirdparty_agree_no" <?php echo $mb_thirdparty_agree_no; ?> class="form-radio">
-                            <span class="form-label">아니오</span>
-                        </label>
-                    </div>
-                    <?php if ($w == "u" && $mb['mb_thirdparty_date'] != "0000-00-00 00:00:00" && $mb['mb_thirdparty_agree'] == 1) { ?>
-                    <p class="hint-text">(동의 일자: <?php echo $mb['mb_thirdparty_date']; ?>)</p>
                     <?php } ?>
                 </div>
             </div>

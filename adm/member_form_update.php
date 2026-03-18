@@ -2,7 +2,6 @@
 $sub_menu = "200100";
 require_once "./_common.php";
 require_once G5_LIB_PATH . "/register.lib.php";
-require_once G5_LIB_PATH . '/thumbnail.lib.php';
 
 if ($w == 'u') {
     check_demo();
@@ -20,7 +19,6 @@ $mb_zip         = isset($_POST['mb_zip']) ? preg_replace('/[^0-9a-z_]/i', '', $_
 
 // 광고성 정보 수신
 $mb_marketing_agree         = isset($_POST['mb_marketing_agree']) ? clean_xss_tags($_POST['mb_marketing_agree'], 1, 1) : '0';
-$mb_thirdparty_agree         = isset($_POST['mb_thirdparty_agree']) ? clean_xss_tags($_POST['mb_thirdparty_agree'], 1, 1) : '0';
 
 // 관리자가 자동등록방지를 사용해야 할 경우 ( 회원의 비밀번호 변경시 캡챠를 체크한다 )
 if ($mb_password) {
@@ -71,7 +69,6 @@ $check_keys = array(
     'mb_leave_date',
     'mb_intercept_date',
     'mb_mailling',
-    'mb_sms',
     'mb_open',
     'mb_level'
 );
@@ -102,12 +99,10 @@ $sql_common = "  mb_name = '{$posts['mb_name']}',
                  mb_intercept_date='{$posts['mb_intercept_date']}',
                  mb_memo = '{$mb_memo}',
                  mb_mailling = '{$posts['mb_mailling']}',
-                 mb_sms = '{$posts['mb_sms']}',
                  mb_open = '{$posts['mb_open']}',
                  mb_open_date = '".G5_TIME_YMDHIS."',
                  mb_level = '{$posts['mb_level']}',
-                 mb_marketing_agree = '{$mb_marketing_agree}',
-                 mb_thirdparty_agree = '{$mb_thirdparty_agree}' ";
+                 mb_marketing_agree = '{$mb_marketing_agree}' ";
 
 if ($w == '') {
     $mb = get_member($mb_id);
@@ -140,18 +135,6 @@ if ($w == '') {
     if ($mb_mailling == 1) {
         $sql_common .=  " , mb_mailling_date = '".G5_TIME_YMDHIS."' ";
         $agree_items[] = "광고성 이메일 수신(동의)";
-    }
-
-    // 광고성 SMS/카카오톡 수신
-    if ($mb_sms == 1) {
-        $sql_common .=  " , mb_sms_date = '".G5_TIME_YMDHIS."' ";
-        $agree_items[] = "광고성 SMS/카카오톡 수신(동의)";
-    }
-
-    // 개인정보 제3자 제공 
-    if ($mb_thirdparty_agree == 1) {
-        $sql_common .=  " , mb_thirdparty_date = '".G5_TIME_YMDHIS."' ";
-        $agree_items[] = "개인정보 제3자 제공(동의)";
     }
 
     // 동의 로그 추가
@@ -223,23 +206,9 @@ if ($w == '') {
 
     // 광고성 이메일 수신
     $sql_mailling_date = "";
-    if ($row['mb_mailling'] !== $mb_mailling) {
+    if ((string) $row['mb_mailling'] !== (string) $posts['mb_mailling']) {
         $sql_mailling_date .= " , mb_mailling_date = '".G5_TIME_YMDHIS."' ";
-        $agree_items[] = "광고성 이메일 수신(" . ($mb_mailling == 1 ? "동의" : "철회") . ")";
-    }
-    
-    // 광고성 SMS/카카오톡 수신
-    $sql_sms_date = "";
-    if ($row['mb_sms'] !== $mb_sms) {
-        $sql_sms_date .= " , mb_sms_date = '".G5_TIME_YMDHIS."' ";
-        $agree_items[] = "광고성 SMS/카카오톡 수신(" . ($mb_sms == 1 ? "동의" : "철회") . ")";
-    }
-    
-    // 개인정보 제3자 제공
-    $sql_thirdparty_date = "";
-    if ($row['mb_thirdparty_agree'] !== $mb_thirdparty_agree) {
-        $sql_thirdparty_date .= " , mb_thirdparty_date = '".G5_TIME_YMDHIS."' ";
-        $agree_items[] = "개인정보 제3자 제공(" . ($mb_thirdparty_agree == 1 ? "동의" : "철회") . ")";
+        $agree_items[] = "광고성 이메일 수신(" . ($posts['mb_mailling'] == 1 ? "동의" : "철회") . ")";
     }
     
     // 동의 로그 추가
@@ -254,115 +223,12 @@ if ($w == '') {
                      {$sql_password}
                      {$sql_certify}
                      {$sql_mailling_date}
-                     {$sql_sms_date}
                      {$sql_marketing_date}
-                     {$sql_thirdparty_date}
                      {$sql_agree_log}
                 where mb_id = '{$mb_id}' ";
     sql_query($sql);
 } else {
     alert('제대로 된 값이 넘어오지 않았습니다.');
-}
-
-if ($w == '' || $w == 'u') {
-    $mb_dir = substr($mb_id, 0, 2);
-    $mb_icon_img = get_mb_icon_name($mb_id) . '.gif';
-
-    // 회원 아이콘 삭제
-    if (isset($del_mb_icon) && $del_mb_icon) {
-        @unlink(G5_DATA_PATH . '/member/' . $mb_dir . '/' . $mb_icon_img);
-    }
-
-    $image_regex = "/(\.(gif|jpe?g|png))$/i";
-
-    // 아이콘 업로드
-    if (isset($_FILES['mb_icon']) && is_uploaded_file($_FILES['mb_icon']['tmp_name'])) {
-        if (!preg_match($image_regex, $_FILES['mb_icon']['name'])) {
-            alert($_FILES['mb_icon']['name'] . '은(는) 이미지 파일이 아닙니다.');
-        }
-
-        if (preg_match($image_regex, $_FILES['mb_icon']['name'])) {
-            $mb_icon_dir = G5_DATA_PATH . '/member/' . $mb_dir;
-            @mkdir($mb_icon_dir, G5_DIR_PERMISSION);
-            @chmod($mb_icon_dir, G5_DIR_PERMISSION);
-
-            $dest_path = $mb_icon_dir . '/' . $mb_icon_img;
-
-            move_uploaded_file($_FILES['mb_icon']['tmp_name'], $dest_path);
-            chmod($dest_path, G5_FILE_PERMISSION);
-
-            if (file_exists($dest_path)) {
-                $size = @getimagesize($dest_path);
-                if ($size) {
-                    if ($size[0] > $config['cf_member_icon_width'] || $size[1] > $config['cf_member_icon_height']) {
-                        $thumb = null;
-                        if ($size[2] === 2 || $size[2] === 3) {
-                            //jpg 또는 png 파일 적용
-                            $thumb = thumbnail($mb_icon_img, $mb_icon_dir, $mb_icon_dir, $config['cf_member_icon_width'], $config['cf_member_icon_height'], true, true);
-                            if ($thumb) {
-                                @unlink($dest_path);
-                                rename($mb_icon_dir . '/' . $thumb, $dest_path);
-                            }
-                        }
-                        if (!$thumb) {
-                            // 아이콘의 폭 또는 높이가 설정값 보다 크다면 이미 업로드 된 아이콘 삭제
-                            @unlink($dest_path);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    $mb_img_dir = G5_DATA_PATH . '/member_image/';
-    if (!is_dir($mb_img_dir)) {
-        @mkdir($mb_img_dir, G5_DIR_PERMISSION);
-        @chmod($mb_img_dir, G5_DIR_PERMISSION);
-    }
-    $mb_img_dir .= substr($mb_id, 0, 2);
-
-    // 회원 이미지 삭제
-    if (isset($del_mb_img) && $del_mb_img) {
-        @unlink($mb_img_dir . '/' . $mb_icon_img);
-    }
-
-    // 아이콘 업로드
-    if (isset($_FILES['mb_img']) && is_uploaded_file($_FILES['mb_img']['tmp_name'])) {
-        if (!preg_match($image_regex, $_FILES['mb_img']['name'])) {
-            alert($_FILES['mb_img']['name'] . '은(는) 이미지 파일이 아닙니다.');
-        }
-
-        if (preg_match($image_regex, $_FILES['mb_img']['name'])) {
-            @mkdir($mb_img_dir, G5_DIR_PERMISSION);
-            @chmod($mb_img_dir, G5_DIR_PERMISSION);
-
-            $dest_path = $mb_img_dir . '/' . $mb_icon_img;
-
-            move_uploaded_file($_FILES['mb_img']['tmp_name'], $dest_path);
-            chmod($dest_path, G5_FILE_PERMISSION);
-
-            if (file_exists($dest_path)) {
-                $size = @getimagesize($dest_path);
-                if ($size) {
-                    if ($size[0] > $config['cf_member_img_width'] || $size[1] > $config['cf_member_img_height']) {
-                        $thumb = null;
-                        if ($size[2] === 2 || $size[2] === 3) {
-                            //jpg 또는 png 파일 적용
-                            $thumb = thumbnail($mb_icon_img, $mb_img_dir, $mb_img_dir, $config['cf_member_img_width'], $config['cf_member_img_height'], true, true);
-                            if ($thumb) {
-                                @unlink($dest_path);
-                                rename($mb_img_dir . '/' . $thumb, $dest_path);
-                            }
-                        }
-                        if (!$thumb) {
-                            // 아이콘의 폭 또는 높이가 설정값 보다 크다면 이미 업로드 된 아이콘 삭제
-                            @unlink($dest_path);
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
 
 if (function_exists('get_admin_captcha_by')) {

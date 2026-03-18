@@ -27,10 +27,7 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_admin_email` varchar(100) NOT NULL DEFAULT '',
   `cf_admin_email_name` varchar(100) NOT NULL DEFAULT '',
   `cf_add_script` text NOT NULL,
-  `cf_use_point` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_point_term` int(11) NOT NULL DEFAULT '0',
   `cf_use_email_certify` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_login_point` int(11) NOT NULL DEFAULT '0',
   `cf_cut_name` tinyint(4) NOT NULL DEFAULT '0',
   `cf_nick_modify` int(11) NOT NULL DEFAULT '0',
   `cf_write_pages` int(11) NOT NULL DEFAULT '0',
@@ -55,10 +52,6 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_use_profile` tinyint(4) NOT NULL DEFAULT '0',
   `cf_req_profile` tinyint(4) NOT NULL DEFAULT '0',
   `cf_register_level` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_register_point` int(11) NOT NULL DEFAULT '0',
-  `cf_icon_level` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_use_recommend` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_recommend_point` int(11) NOT NULL DEFAULT '0',
   `cf_leave_day` int(11) NOT NULL DEFAULT '0',
   `cf_email_use` tinyint(4) NOT NULL DEFAULT '0',
   `cf_email_mb_super_admin` tinyint(4) NOT NULL DEFAULT '0',
@@ -66,20 +59,12 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_prohibit_id` text NOT NULL,
   `cf_prohibit_email` text NOT NULL,
   `cf_optimize_date` date NOT NULL default '0000-00-00',
-  `cf_use_member_icon` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_member_icon_size` int(11) NOT NULL DEFAULT '0',
-  `cf_member_icon_width` int(11) NOT NULL DEFAULT '0',
-  `cf_member_icon_height` int(11) NOT NULL DEFAULT '0',
-  `cf_member_img_size` int(11) NOT NULL DEFAULT '0',
-  `cf_member_img_width` int(11) NOT NULL DEFAULT '0',
-  `cf_member_img_height` int(11) NOT NULL DEFAULT '0',
   `cf_login_minutes` int(11) NOT NULL DEFAULT '0',
   `cf_image_extension` varchar(255) NOT NULL DEFAULT '',
   `cf_flash_extension` varchar(255) NOT NULL DEFAULT '',
   `cf_movie_extension` varchar(255) NOT NULL DEFAULT '',
   `cf_formmail_is_member` tinyint(4) NOT NULL DEFAULT '0',
   `cf_page_rows` int(11) NOT NULL DEFAULT '0',
-  `cf_max_po_id` int(11) NOT NULL DEFAULT '0',
   `cf_stipulation` text NOT NULL,
   `cf_privacy` text NOT NULL,
   `cf_use_promotion` tinyint(1) NOT NULL DEFAULT '0',
@@ -103,13 +88,6 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_toss_secret_key` varchar(100) NOT NULL DEFAULT '',
   `cf_cert_limit` int(11) NOT NULL DEFAULT '0',
   `cf_cert_req` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_sms_use` varchar(255) NOT NULL DEFAULT '',
-  `cf_sms_type` varchar(10) NOT NULL DEFAULT '',
-  `cf_icode_id` varchar(255) NOT NULL DEFAULT '',
-  `cf_icode_pw` varchar(255) NOT NULL DEFAULT '',  
-  `cf_icode_server_ip` varchar(50) NOT NULL DEFAULT '',
-  `cf_icode_server_port` varchar(50) NOT NULL DEFAULT '',
-  `cf_icode_token_key` varchar(100) NOT NULL DEFAULT '',
   `cf_googl_shorturl_apikey` varchar(50) NOT NULL DEFAULT '',
   `cf_social_login_use` tinyint(4) NOT NULL DEFAULT '0',
   `cf_social_servicelist` varchar(255) NOT NULL DEFAULT '',
@@ -236,8 +214,6 @@ CREATE TABLE IF NOT EXISTS `g5_member` (
   `mb_addr3` varchar(255) NOT NULL default '',
   `mb_addr_jibeon` varchar(255) NOT NULL default '',
   `mb_signature` text NOT NULL,
-  `mb_recommend` varchar(255) NOT NULL default '',
-  `mb_point` int(11) NOT NULL default '0',
   `mb_today_login` datetime NOT NULL default '0000-00-00 00:00:00',
   `mb_login_ip` varchar(255) NOT NULL default '',
   `mb_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
@@ -250,15 +226,11 @@ CREATE TABLE IF NOT EXISTS `g5_member` (
   `mb_lost_certify` varchar(255) NOT NULL,
   `mb_mailling` tinyint(4) NOT NULL default '0',
   `mb_mailling_date` datetime NOT NULL default '0000-00-00 00:00:00',
-  `mb_sms` tinyint(4) NOT NULL default '0',
-  `mb_sms_date` datetime NOT NULL default '0000-00-00 00:00:00',
   `mb_open` tinyint(4) NOT NULL default '0',
   `mb_open_date` date NOT NULL default '0000-00-00',
   `mb_profile` text NOT NULL,
   `mb_marketing_agree` tinyint(1) NOT NULL default '0',
   `mb_marketing_date` datetime NOT NULL default '0000-00-00 00:00:00',
-  `mb_thirdparty_agree` tinyint(1) NOT NULL default '0',
-  `mb_thirdparty_date` datetime NOT NULL default '0000-00-00 00:00:00',
   `mb_agree_log` TEXT NOT NULL,
   PRIMARY KEY  (`mb_no`),
   UNIQUE KEY `mb_id` (`mb_id`),
@@ -266,29 +238,6 @@ CREATE TABLE IF NOT EXISTS `g5_member` (
   KEY `mb_datetime` (`mb_datetime`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 -- --------------------------------------------------------
-
---
--- Table structure for table `g5_point`
---
-
-DROP TABLE IF EXISTS `g5_point`;
-CREATE TABLE IF NOT EXISTS `g5_point` (
-  `po_id` int(11) NOT NULL auto_increment,
-  `mb_id` varchar(20) NOT NULL default '',
-  `po_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
-  `po_content` varchar(255) NOT NULL default '',
-  `po_point` int(11) NOT NULL default '0',
-  `po_use_point` int(11) NOT NULL default '0',
-  `po_expired` tinyint(4) NOT NULL default '0',
-  `po_expire_date` date NOT NULL default '0000-00-00',
-  `po_mb_point` int(11) NOT NULL default '0',
-  `po_rel_table` varchar(20) NOT NULL default '',
-  `po_rel_id` varchar(20) NOT NULL default '',
-  `po_rel_action` varchar(100) NOT NULL default '',
-  PRIMARY KEY  (`po_id`),
-  KEY `index1` (`mb_id`,`po_rel_table`,`po_rel_id`,`po_rel_action`),
-  KEY `index2` (`po_expire_date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `g5_unique`

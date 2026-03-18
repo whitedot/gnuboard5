@@ -134,7 +134,7 @@ $_REQUEST = array_map_deep(G5_ESCAPE_FUNCTION,  $_REQUEST);
 // $member 에 값을 직접 넘길 수 있음
 
 $config = array();
-$member = array('mb_id'=>'', 'mb_level'=> 1, 'mb_name'=> '', 'mb_point'=> 0, 'mb_certify'=>'', 'mb_email'=>'', 'mb_open'=>'', 'mb_homepage'=>'', 'mb_tel'=>'', 'mb_hp'=>'', 'mb_zip1'=>'', 'mb_zip2'=>'', 'mb_addr1'=>'', 'mb_addr2'=>'', 'mb_addr3'=>'', 'mb_addr_jibeon'=>'', 'mb_signature'=>'', 'mb_profile'=>'');
+$member = array('mb_id'=>'', 'mb_level'=> 1, 'mb_name'=> '', 'mb_certify'=>'', 'mb_email'=>'', 'mb_open'=>'', 'mb_homepage'=>'', 'mb_tel'=>'', 'mb_hp'=>'', 'mb_zip1'=>'', 'mb_zip2'=>'', 'mb_addr1'=>'', 'mb_addr2'=>'', 'mb_addr3'=>'', 'mb_addr_jibeon'=>'', 'mb_signature'=>'', 'mb_profile'=>'');
 $g5     = array();
 if( version_compare( phpversion(), '8.0.0', '>=' ) ) { $g5 = array('title'=>''); }
 $g5_debug = array('php'=>array(),'sql'=>array());

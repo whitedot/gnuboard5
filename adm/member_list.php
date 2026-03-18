@@ -64,7 +64,7 @@ require_once './admin.head.php';
 $sql = " select * {$sql_common} {$sql_search} {$sql_order} limit {$from_record}, {$rows} ";
 $result = sql_query($sql);
 
-$colspan = 11;
+$colspan = 10;
 ?>
 
 <div>
@@ -87,7 +87,6 @@ $colspan = 11;
         <option value="mb_hp" <?php echo get_selected($sfl, "mb_hp"); ?>>휴대폰번호</option>
         <option value="mb_datetime" <?php echo get_selected($sfl, "mb_datetime"); ?>>가입일시</option>
         <option value="mb_ip" <?php echo get_selected($sfl, "mb_ip"); ?>>IP</option>
-        <option value="mb_recommend" <?php echo get_selected($sfl, "mb_recommend"); ?>>추천인</option>
     </select>
     <label for="stx">검색어<strong> 필수</strong></label>
     <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required">
@@ -132,7 +131,6 @@ $colspan = 11;
                 <tr>
                     <th scope="col" id="mb_list_name"><?php echo subject_sort_link('mb_name') ?>이름</a></th>
                     <th scope="col" id="mb_list_nick"><?php echo subject_sort_link('mb_nick') ?>닉네임</a></th>
-                    <th scope="col" id="mb_list_sms"><?php echo subject_sort_link('mb_sms', '', 'desc') ?>광고성SMS/카카오톡수신</a></th>
                     <th scope="col" id="mb_list_adultc"><?php echo subject_sort_link('mb_adult', '', 'desc') ?>성인인증</a></th>
                     <th scope="col" id="mb_list_auth"><?php echo subject_sort_link('mb_intercept_date', '', 'desc') ?>접근차단</a></th>
                     <th scope="col" id="mb_list_deny"><?php echo subject_sort_link('mb_level', '', 'desc') ?>권한</a></th>
@@ -264,12 +262,6 @@ $colspan = 11;
                         <td headers="mb_list_name"><?php echo get_text($row['mb_name']); ?></td>
                         <td headers="mb_list_nick">
                             <?php echo $mb_nick ?>
-                        </td>
-
-                        <td headers="mb_list_sms">
-                            <label for="mb_sms_<?php echo $i; ?>">SMS수신</label>
-                            <input type="checkbox" name="mb_sms[<?php echo $i; ?>]" <?php echo $row['mb_sms'] ? 'checked' : ''; ?> value="1" id="mb_sms_<?php echo $i; ?>">
-                            <input type="hidden" name="mb_sms_default[<?php echo $i; ?>]" value="<?php echo isset($row['mb_sms']) ? $row['mb_sms'] : '0'; ?> " id="mb_sms_default_<?php echo $i; ?>">
                         </td>
                         <td headers="mb_list_adultc">
                             <label for="mb_adult_<?php echo $i; ?>">성인인증</label>

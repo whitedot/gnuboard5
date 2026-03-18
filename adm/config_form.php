@@ -28,7 +28,6 @@ $config_tabs = array(
     array('id' => 'anc_cf_join_mail', 'label' => '가입 메일'),
     array('id' => 'anc_cf_sns', 'label' => 'SNS'),
     array('id' => 'anc_cf_lay', 'label' => '레이아웃'),
-    array('id' => 'anc_cf_sms', 'label' => 'SMS'),
 );
 
 $pg_anchor_menu = admin_build_anchor_menu($config_tabs, array(
@@ -41,17 +40,6 @@ $pg_anchor_menu = admin_build_anchor_menu($config_tabs, array(
     'link_id_prefix' => 'config_tab_',
 ));
 
-if (!$config['cf_icode_server_ip']) {
-    $config['cf_icode_server_ip'] = '211.172.232.124';
-}
-if (!$config['cf_icode_server_port']) {
-    $config['cf_icode_server_port'] = '7295';
-}
-
-$userinfo = array('payment' => '');
-if ($config['cf_sms_use'] && $config['cf_icode_id'] && $config['cf_icode_pw']) {
-    $userinfo = get_icode_userinfo($config['cf_icode_id'], $config['cf_icode_pw']);
-}
 ?>
 
 <div id="config_tabs_bar">
@@ -68,7 +56,6 @@ if ($config['cf_sms_use'] && $config['cf_icode_id'] && $config['cf_icode_pw']) {
     include_once G5_ADMIN_PATH . '/config_form_parts/mail.php';
     include_once G5_ADMIN_PATH . '/config_form_parts/sns.php';
     include_once G5_ADMIN_PATH . '/config_form_parts/layout.php';
-    include_once G5_ADMIN_PATH . '/config_form_parts/sms.php';
     ?>
 
     <div id="config_captcha_wrap" class="rounded-lg border border-default-200 bg-default-50 p-4 space-y-3" hidden>

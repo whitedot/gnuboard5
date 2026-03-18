@@ -580,7 +580,7 @@ function member_delete($mb_id)
     global $config;
     global $g5;
 
-    $sql = " select mb_name, mb_nick, mb_ip, mb_recommend, mb_memo, mb_level from {$g5['member_table']} where mb_id= '".$mb_id."' ";
+    $sql = " select mb_name, mb_nick, mb_ip, mb_memo, mb_level from {$g5['member_table']} where mb_id= '".$mb_id."' ";
     $mb = sql_fetch($sql);
 
     // 이미 삭제된 회원은 제외
@@ -588,12 +588,9 @@ function member_delete($mb_id)
         return;
 
     // 회원자료는 정보만 없앤 후 아이디는 보관하여 다른 사람이 사용하지 못하도록 함 : 061025
-    $sql = " update {$g5['member_table']} set mb_password = '', mb_level = 1, mb_email = '', mb_homepage = '', mb_tel = '', mb_hp = '', mb_zip1 = '', mb_zip2 = '', mb_addr1 = '', mb_addr2 = '', mb_addr3 = '', mb_point = 0, mb_profile = '', mb_birth = '', mb_sex = '', mb_signature = '', mb_memo = '".date('Ymd', G5_SERVER_TIME)." 삭제함\n".sql_real_escape_string($mb['mb_memo'])."', mb_certify = '', mb_adult = 0, mb_dupinfo = '' where mb_id = '{$mb_id}' ";
+    $sql = " update {$g5['member_table']} set mb_password = '', mb_level = 1, mb_email = '', mb_homepage = '', mb_tel = '', mb_hp = '', mb_zip1 = '', mb_zip2 = '', mb_addr1 = '', mb_addr2 = '', mb_addr3 = '', mb_profile = '', mb_birth = '', mb_sex = '', mb_signature = '', mb_memo = '".date('Ymd', G5_SERVER_TIME)." 삭제함\n".sql_real_escape_string($mb['mb_memo'])."', mb_certify = '', mb_adult = 0, mb_dupinfo = '' where mb_id = '{$mb_id}' ";
 
     sql_query($sql);
-
-    // 포인트 테이블에서 삭제
-    sql_query(" delete from {$g5['point_table']} where mb_id = '$mb_id' ");
 
     // 관리권한 삭제
     sql_query(" delete from {$g5['auth_table']} where mb_id = '$mb_id' ");
@@ -618,21 +615,6 @@ function get_email_address($email)
     preg_match("/[0-9a-z._-]+@[a-z0-9._-]{4,}/i", $email, $matches);
 
     return isset($matches[0]) ? $matches[0] : '';
-}
-
-// 아이코드 사용자정보
-function get_icode_userinfo($id, $pass)
-{
-    $res = get_sock('http://www.icodekorea.com/res/userinfo.php?userid='.$id.'&userpw='.$pass, 2);
-    $res = explode(';', $res);
-    $userinfo = array(
-        'code'      => $res[0], // 결과코드
-        'coin'      => $res[1], // 고객 잔액 (충전제만 해당)
-        'gpay'      => $res[2], // 고객의 건수 별 차감액 표시 (충전제만 해당)
-        'payment'   => $res[3]  // 요금제 표시, A:충전제, C:정액제
-    );
-
-    return $userinfo;
 }
 
 function safe_filter_url_host($url) {
@@ -785,36 +767,6 @@ function check_vaild_callback($callback){
    } else {
              return true;
    }
-}
-
-function is_sms_send($is_type=''){
-    global $config;
-    
-    $is_sms_send = false;
-    
-    // 토큰키를 사용한다면
-    if(isset($config['cf_icode_token_key']) && $config['cf_icode_token_key']){
-        $is_sms_send = true;
-    } else if($config['cf_icode_id'] && $config['cf_icode_pw']) {
-        // 충전식일 경우 잔액이 있는지 체크
-
-        $userinfo = get_icode_userinfo($config['cf_icode_id'], $config['cf_icode_pw']);
-
-        if($userinfo['code'] == 0) {
-            if($userinfo['payment'] == 'C') { // 정액제
-                $is_sms_send = true;
-            } else {
-                $minimum_coin = 100;
-                if(defined('G5_ICODE_COIN'))
-                    $minimum_coin = intval(G5_ICODE_COIN);
-
-                if((int)$userinfo['coin'] >= $minimum_coin)
-                    $is_sms_send = true;
-            }
-        }
-    }
-
-    return $is_sms_send;
 }
 
 function is_use_email_certify(){

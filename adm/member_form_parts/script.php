@@ -73,16 +73,6 @@
     }
 
     function fmember_submit(f) {
-        if (!f.mb_icon.value.match(/\.(gif|jpe?g|png)$/i) && f.mb_icon.value) {
-            alert('아이콘은 이미지 파일만 가능합니다.');
-            return false;
-        }
-
-        if (!f.mb_img.value.match(/\.(gif|jpe?g|png)$/i) && f.mb_img.value) {
-            alert('회원이미지는 이미지 파일만 가능합니다.');
-            return false;
-        }
-
         if( jQuery("#mb_password").val() ){
             <?php echo $captcha_js; // 캡챠 사용시 자바스크립트에서 입력된 캡챠를 검사함 ?>
         }

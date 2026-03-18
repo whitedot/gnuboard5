@@ -190,44 +190,6 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	            </li>
 	            <?php }  ?>
 	
-	            <?php if ($config['cf_use_member_icon'] && $member['mb_level'] >= $config['cf_icon_level']) {  ?>
-	            <li>
-	                <label for="reg_mb_icon">
-	                	회원아이콘
-	                	<button type="button" class="tooltip_icon"><i aria-hidden="true"></i><span>설명보기</span></button>
-	                	<span class="tooltip">이미지 크기는 가로 <?php echo $config['cf_member_icon_width'] ?>픽셀, 세로 <?php echo $config['cf_member_icon_height'] ?>픽셀 이하로 해주세요.<br>
-gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_member_icon_size']) ?>바이트 이하만 등록됩니다.</span>
-	                </label>
-	                <input type="file" name="mb_icon" id="reg_mb_icon">
-	
-	                <?php if ($w == 'u' && file_exists($mb_icon_path)) {  ?>
-	                <img src="<?php echo $mb_icon_url ?>" alt="회원아이콘">
-	                <input type="checkbox" name="del_mb_icon" value="1" id="del_mb_icon">
-	                <label for="del_mb_icon">삭제</label>
-	                <?php }  ?>
-	            
-	            </li>
-	            <?php }  ?>
-	
-	            <?php if ($member['mb_level'] >= $config['cf_icon_level'] && $config['cf_member_img_size'] && $config['cf_member_img_width'] && $config['cf_member_img_height']) {  ?>
-	            <li>
-	                <label for="reg_mb_img">
-	                	회원이미지
-	                	<button type="button" class="tooltip_icon"><i aria-hidden="true"></i><span>설명보기</span></button>
-	                	<span class="tooltip">이미지 크기는 가로 <?php echo $config['cf_member_img_width'] ?>픽셀, 세로 <?php echo $config['cf_member_img_height'] ?>픽셀 이하로 해주세요.<br>
-	                    gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_member_img_size']) ?>바이트 이하만 등록됩니다.</span>
-	                </label>
-	                <input type="file" name="mb_img" id="reg_mb_img">
-	
-	                <?php if ($w == 'u' && file_exists($mb_img_path)) {  ?>
-	                <img src="<?php echo $mb_img_url ?>" alt="회원이미지">
-	                <input type="checkbox" name="del_mb_img" value="1" id="del_mb_img">
-	                <label for="del_mb_img">삭제</label>
-	                <?php }  ?>
-	            
-	            </li>
-	            <?php } ?>
-	
 		        <?php if (isset($member['mb_open_date']) && $member['mb_open_date'] <= date("Y-m-d", G5_SERVER_TIME - ($config['cf_open_modify'] * 86400)) || empty($member['mb_open_date'])) { // 정보공개 수정일이 지났다면 수정가능 ?>
 		        <li>
 		            <input type="checkbox" name="mb_open" value="1" id="reg_mb_open" <?php echo ($w=='' || $member['mb_open'])?'checked':''; ?>>
@@ -261,13 +223,6 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	                social_member_provider_manage();
 	            }
 	            ?>
-	            
-	            <?php if ($w == "" && $config['cf_use_recommend']) {  ?>
-	            <li>
-	                <label for="reg_mb_recommend">추천인아이디</label>
-	                <input type="text" name="mb_recommend" id="reg_mb_recommend" placeholder="추천인아이디">
-	            </li>
-	            <?php }  ?>
 	        </ul>
 	    </div>
 
@@ -306,9 +261,9 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 					<button type="button" class="js-open-consent" data-title="광고성 정보 수신 동의" data-template="#tpl_promotion" data-check="#reg_mb_promotion_agree" data-check-group=".child-promo" aria-controls="consentDialog">자세히보기</button>
 				</div>
 				
-				<div id="desc_promotion">광고성 정보(이메일/SMS·카카오톡) 수신 동의의 상위 항목입니다. 자세히보기를 눌러 전문을 확인할 수 있습니다.</div>
+				<div id="desc_promotion">광고성 정보(이메일) 수신 동의의 상위 항목입니다. 자세히보기를 눌러 전문을 확인할 수 있습니다.</div>
 
-				<!-- 하위 채널(이메일/SMS) -->
+				<!-- 하위 채널(이메일) -->
 				<ul>
 					<li>
 						<input type="checkbox" name="mb_mailling" value="1" id="reg_mb_mailling" <?php echo $member['mb_mailling'] ? 'checked' : ''; ?> class="child-promo">
@@ -317,58 +272,13 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 						<input type="hidden" name="mb_mailling_default" value="<?php echo $member['mb_mailling']; ?>">
 						<?php if ($w == 'u' && $member['mb_mailling'] == 1 && $member['mb_mailling_date'] != "0000-00-00 00:00:00") echo " (동의일자: ".$member['mb_mailling_date'].")"; ?>
 					</li>
-
-					<!-- 휴대폰번호 입력 보이기 or 필수입력일 경우에만 -->
-					<?php if ($config['cf_use_hp'] || $config['cf_req_hp']) { ?>
-					<li>
-						<input type="checkbox" name="mb_sms" value="1" id="reg_mb_sms" <?php echo $member['mb_sms'] ? 'checked' : ''; ?> class="child-promo">
-						<label for="reg_mb_sms"><span></span><b>광고성 SMS/카카오톡 수신 동의</b></label>
-						<span>광고성 SMS/카카오톡 수신 동의</span>
-						<input type="hidden" name="mb_sms_default" value="<?php echo $member['mb_sms']; ?>">
-						<?php if ($w == 'u' && $member['mb_sms'] == 1 && $member['mb_sms_date'] != "0000-00-00 00:00:00") echo " (동의일자: ".$member['mb_sms_date'].")"; ?>
-					</li>
-					<?php } ?>
 				</ul>
 
 				<template id="tpl_promotion">
-					수집·이용에 동의한 개인정보를 이용하여 이메일/SMS/카카오톡 등으로 오전 8시~오후 9시에 광고성 정보를 전송할 수 있습니다.<br>
+					수집·이용에 동의한 개인정보를 이용하여 이메일로 오전 8시~오후 9시에 광고성 정보를 전송할 수 있습니다.<br>
 					동의는 언제든지 마이페이지에서 철회할 수 있습니다.
 				</template>
 				</li>
-
-				<!-- (선택) 개인정보 제3자 제공 동의 -->
-				<!-- SMS 사용시에만 -->
-				<?php
-					$configKeys = ['cf_sms_use'];
-					$companies = ['icode' => '아이코드'];
-
-					$usedCompanies = [];
-					foreach ($configKeys as $key) {
-						if (!empty($config[$key]) && isset($companies[$config[$key]])) {
-							$usedCompanies[] = $companies[$config[$key]];
-						}
-					}
-				?>
-				<?php if (!empty($usedCompanies)) { ?>
-				<li>
-				<div>
-					<input type="checkbox" name="mb_thirdparty_agree" value="1" id="reg_mb_thirdparty_agree" aria-describedby="desc_thirdparty" <?php echo $member['mb_thirdparty_agree'] ? 'checked' : ''; ?>>
-					<label for="reg_mb_thirdparty_agree"><span></span><b>(선택) 개인정보 제3자 제공 동의</b></label>
-					<span>(선택) 개인정보 제3자 제공 동의</span>
-					<button type="button" class="js-open-consent" data-title="개인정보 제3자 제공 동의" data-template="#tpl_thirdparty" data-check="#reg_mb_thirdparty_agree" aria-controls="consentDialog">자세히보기</button>
-				</div>
-				<input type="hidden" name="mb_thirdparty_agree_default" value="<?php echo $member['mb_thirdparty_agree'] ?>">
-				<div id="desc_thirdparty">개인정보 제3자 제공 동의에 대한 안내입니다. 자세히보기를 눌러 전문을 확인할 수 있습니다.</div>
-				<?php if ($member['mb_thirdparty_agree'] == 1 && $member['mb_thirdparty_date'] != "0000-00-00 00:00:00") echo "(동의일자: ".$member['mb_thirdparty_date'].")"; ?>
-
-				<template id="tpl_thirdparty">
-					* 목적: 상품/서비스, 사은/판촉행사, 이벤트 등의 마케팅 안내(카카오톡 등)<br>
-					* 항목: 이름, 휴대폰 번호<br>
-					* 제공받는 자: <?php echo implode(', ', $usedCompanies);?><br>
-					* 보유기간: 제공 목적 서비스 기간 또는 동의 철회 시까지
-				</template>
-				</li>
-				<?php } ?>
 			</ul>
 		</div>
 		<?php } ?>
@@ -547,41 +457,6 @@ function fregisterform_submit(f)
         return false;
     }
     <?php } ?>
-
-    if (typeof f.mb_icon != "undefined") {
-        if (f.mb_icon.value) {
-            if (!f.mb_icon.value.toLowerCase().match(/.(gif|jpe?g|png)$/i)) {
-                alert("회원아이콘이 이미지 파일이 아닙니다.");
-                f.mb_icon.focus();
-                return false;
-            }
-        }
-    }
-
-    if (typeof f.mb_img != "undefined") {
-        if (f.mb_img.value) {
-            if (!f.mb_img.value.toLowerCase().match(/.(gif|jpe?g|png)$/i)) {
-                alert("회원이미지가 이미지 파일이 아닙니다.");
-                f.mb_img.focus();
-                return false;
-            }
-        }
-    }
-
-    if (typeof(f.mb_recommend) != "undefined" && f.mb_recommend.value) {
-        if (f.mb_id.value == f.mb_recommend.value) {
-            alert("본인을 추천할 수 없습니다.");
-            f.mb_recommend.focus();
-            return false;
-        }
-
-        var msg = reg_mb_recommend_check();
-        if (msg) {
-            alert(msg);
-            f.mb_recommend.select();
-            return false;
-        }
-    }
 
     <?php echo chk_captcha_js();  ?>
 

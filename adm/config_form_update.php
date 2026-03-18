@@ -34,8 +34,6 @@ foreach ($check_keys as $key) {
     }
 }
 
-$_POST['cf_icode_server_port'] = isset($_POST['cf_icode_server_port']) ? preg_replace('/[^0-9]/', '', $_POST['cf_icode_server_port']) : '7295';
-
 if (isset($_POST['cf_intercept_ip']) && $_POST['cf_intercept_ip']) {
     $pattern = explode("\n", trim($_POST['cf_intercept_ip']));
     for ($i = 0; $i < count($pattern); $i++) {
@@ -65,21 +63,12 @@ $check_keys = array(
     'cf_use_addr' => 'int',
     'cf_req_addr' => 'int',
     'cf_register_level' => 'int',
-    'cf_icon_level' => 'int',
-    'cf_use_recommend' => 'int',
     'cf_leave_day' => 'int',
     'cf_email_use' => 'int',
     'cf_email_mb_super_admin' => 'int',
     'cf_email_mb_member' => 'int',
     'cf_prohibit_id' => 'text',
     'cf_prohibit_email' => 'text',
-    'cf_use_member_icon' => 'int',
-    'cf_member_icon_size' => 'int',
-    'cf_member_icon_width' => 'int',
-    'cf_member_icon_height' => 'int',
-    'cf_member_img_size' => 'int',
-    'cf_member_img_width' => 'int',
-    'cf_member_img_height' => 'int',
     'cf_login_minutes' => 'int',
     'cf_formmail_is_member' => 'int',
     'cf_page_rows' => 'int',
@@ -113,11 +102,6 @@ $check_keys = array(
     'cf_open_modify' => 'int',
     'cf_captcha_mp3' => 'char',
     'cf_cert_limit' => 'int',
-    'cf_sms_use' => 'char',
-    'cf_sms_type' => 'char',
-    'cf_icode_id' => 'char',
-    'cf_icode_pw' => 'char',
-    'cf_icode_server_ip' => 'char',
     'cf_captcha' => 'char'
 );
 
@@ -220,21 +204,12 @@ $sql = " update {$g5['config_table']}
                 cf_use_addr = '{$_POST['cf_use_addr']}',
                 cf_req_addr = '{$_POST['cf_req_addr']}',
                 cf_register_level = '{$_POST['cf_register_level']}',
-                cf_icon_level = '{$_POST['cf_icon_level']}',
-                cf_use_recommend = '{$_POST['cf_use_recommend']}',
                 cf_leave_day = '{$_POST['cf_leave_day']}',
                 cf_email_use = '{$_POST['cf_email_use']}',
                 cf_email_mb_super_admin = '{$_POST['cf_email_mb_super_admin']}',
                 cf_email_mb_member = '{$_POST['cf_email_mb_member']}',
                 cf_prohibit_id = '{$_POST['cf_prohibit_id']}',
                 cf_prohibit_email = '{$_POST['cf_prohibit_email']}',
-                cf_use_member_icon = '{$_POST['cf_use_member_icon']}',
-                cf_member_icon_size = '{$_POST['cf_member_icon_size']}',
-                cf_member_icon_width = '{$_POST['cf_member_icon_width']}',
-                cf_member_icon_height = '{$_POST['cf_member_icon_height']}',
-                cf_member_img_size = '{$_POST['cf_member_img_size']}',
-                cf_member_img_width = '{$_POST['cf_member_img_width']}',
-                cf_member_img_height = '{$_POST['cf_member_img_height']}',
                 cf_login_minutes = '{$_POST['cf_login_minutes']}',
                 cf_image_extension = '{$_POST['cf_image_extension']}',
                 cf_flash_extension = '{$_POST['cf_flash_extension']}',
@@ -260,13 +235,6 @@ $sql = " update {$g5['config_table']}
                 cf_cert_kcp_enckey = '{$_POST['cf_cert_kcp_enckey']}',
                 cf_cert_limit = '{$_POST['cf_cert_limit']}',
                 cf_cert_req = '{$_POST['cf_cert_req']}',
-                cf_sms_use = '{$_POST['cf_sms_use']}',
-                cf_sms_type = '{$_POST['cf_sms_type']}',
-                cf_icode_id = '{$_POST['cf_icode_id']}',
-                cf_icode_pw = '{$_POST['cf_icode_pw']}',
-                cf_icode_token_key = '{$_POST['cf_icode_token_key']}',
-                cf_icode_server_ip = '{$_POST['cf_icode_server_ip']}',
-                cf_icode_server_port = '{$_POST['cf_icode_server_port']}',
                 cf_googl_shorturl_apikey = '{$_POST['cf_googl_shorturl_apikey']}',
                 cf_kakao_js_apikey = '{$_POST['cf_kakao_js_apikey']}',
                 cf_facebook_appid = '{$_POST['cf_facebook_appid']}',

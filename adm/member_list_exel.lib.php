@@ -38,7 +38,6 @@ function get_export_config($type = null)
         'ad_range_list' => [
             'all'           => '수신동의 회원 전체',
             'mailling_only' => '이메일 수신동의 회원만',
-            'sms_only'      => 'SMS/카카오톡 수신동의 회원만',
             'month_confirm' => date('m월').' 수신동의 확인 대상만',
             'custom_period' => '수신동의 기간 직접 입력'
         ],
@@ -184,60 +183,38 @@ function member_export_build_where($params)
     if (!empty($params['ad_range_only']) && $params['ad_range_only'] === '1') {
         $range = isset($params['ad_range_type']) ? $params['ad_range_type'] : '';
 
-        // 공통: 마케팅 목적 수집·이용 동의 + (필요 시) 제3자 동의
-        $thirdparty_clause = $config['cf_sms_use'] !== '' ? " AND mb_thirdparty_agree = 1" : "";        
-        $base_marketing = "mb_marketing_agree = 1{$thirdparty_clause}";
+        $base_marketing = "mb_marketing_agree = 1";
 
         if ($range === 'all') {        
-            // 마케팅 동의 + (이메일 OR SMS 동의)
-            $conditions[] = "({$base_marketing} AND (mb_mailling = 1 OR mb_sms = 1))";        
-        } elseif ($range === 'mailling_only') {        
-            // 마케팅 동의 + 이메일 동의
             $conditions[] = "({$base_marketing} AND mb_mailling = 1)";
-        } elseif ($range === 'sms_only') {        
-            // 마케팅 동의 + SMS/카카오톡 동의
-            $conditions[] = "({$base_marketing} AND mb_sms = 1)";
+        } elseif ($range === 'mailling_only') {        
+            $conditions[] = "({$base_marketing} AND mb_mailling = 1)";
         } elseif ($range === 'month_confirm' || $range === 'custom_period') {
-            // 채널 필터 체크
             $useEmail = !empty($params['ad_mailling']);
-            $useSms   = !empty($params['ad_sms']);
         
             if ($range === 'month_confirm') {
-                // 23개월 전 그 달
                 $start = date('Y-m-01 00:00:00', strtotime('-23 months'));
                 $end   = date('Y-m-t 23:59:59', strtotime('-23 months'));
                 $emailDateCond = "mb_mailling_date BETWEEN '{$start}' AND '{$end}'";
-                $smsDateCond   = "mb_sms_date BETWEEN '{$start}' AND '{$end}'";
-        
             } else {
-                // 수신동의기간 직접 입력 - custom_period
                 $date_start = isset($params['agree_date_start']) ? $params['agree_date_start'] : '';
                 $date_end   = isset($params['agree_date_end']) ? $params['agree_date_end'] : '';
 
                 if ($date_start && $date_end) {
                     $emailDateCond = "mb_mailling_date BETWEEN '{$date_start} 00:00:00' AND '{$date_end} 23:59:59'";
-                    $smsDateCond   = "mb_sms_date BETWEEN '{$date_start} 00:00:00' AND '{$date_end} 23:59:59'";
                 } elseif ($date_start) {
                     $emailDateCond = "mb_mailling_date >= '{$date_start} 00:00:00'";
-                    $smsDateCond   = "mb_sms_date >= '{$date_start} 00:00:00'";
                 } elseif ($date_end) {
                     $emailDateCond = "mb_mailling_date <= '{$date_end} 23:59:59'";
-                    $smsDateCond   = "mb_sms_date <= '{$date_end} 23:59:59'";
                 } else {
                     $emailDateCond = "mb_mailling_date <> '0000-00-00 00:00:00'";
-                    $smsDateCond   = "mb_sms_date <> '0000-00-00 00:00:00'";
                 }
             }
             
-            if (!$useEmail && !$useSms) {     
-                $conditions[] = "0=1"; // 둘 다 해제 ⇒ 결과 0건
+            if (!$useEmail) {
+                $conditions[] = "0=1";
             } else {
-                // 조건 조립
-                $parts = [];
-                if ($useEmail) $parts[] = "(mb_mailling = 1 AND {$emailDateCond})";
-                if ($useSms)   $parts[] = "(mb_sms = 1 AND {$smsDateCond})";
-            
-                $conditions[] = !empty($parts) ? '(' . implode(' OR ', $parts) . ')' : '';
+                $conditions[] = "(mb_mailling = 1 AND {$emailDateCond})";
             }
         }
     }

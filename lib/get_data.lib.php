@@ -18,25 +18,6 @@ function get_config($is_cache=false){
     return $cache;
 }
 
-function get_point_db($po_id, $is_cache=false){
-    global $g5;
-
-    static $cache = array();
-
-    $po_id = (int) $po_id;
-    $key = md5($po_id);
-
-    if( $is_cache && isset($cache[$key]) ){
-        return $cache[$key];
-    }
-
-    $sql = " select * from {$g5['point_table']} where po_id = '{$po_id}' ";
-
-    $cache[$key] = sql_fetch($sql);
-
-    return $cache[$key];
-}
-
 function get_mail_content_db($ma_id, $is_cache=false){
     global $g5;
 

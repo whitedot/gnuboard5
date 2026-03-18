@@ -132,8 +132,6 @@ if ($g5_install || $is_install === false) {
                     cf_admin = '$admin_id',
                     cf_admin_email = '$admin_email',
                     cf_admin_email_name = '".G5_VERSION.'_'.substr(base_convert(mt_rand(), 10, 36), 0, 6)."',
-                    cf_use_point = '0',
-                    cf_login_point = '0',
                     cf_cut_name = '15',
                     cf_nick_modify = '60',
                     cf_write_pages = '10',
@@ -146,19 +144,10 @@ if ($g5_install || $is_install === false) {
                     cf_editor = 'smarteditor2',
                     cf_captcha_mp3 = 'basic',
                     cf_register_level = '2',
-                    cf_register_point = '0',
-                    cf_icon_level = '2',
                     cf_leave_day = '30',
                     cf_email_use = '1',
                     cf_prohibit_id = 'admin,administrator,관리자,운영자,어드민,주인장,webmaster,웹마스터,sysop,시삽,시샵,manager,매니저,메니저,root,루트,su,guest,방문객',
                     cf_prohibit_email = '',
-                    cf_use_member_icon = '2',
-                    cf_member_icon_size = '5000',
-                    cf_member_icon_width = '22',
-                    cf_member_icon_height = '22',
-                    cf_member_img_size = '50000',
-                    cf_member_img_width = '60',
-                    cf_member_img_height = '60',
                     cf_login_minutes = '10',
                     cf_image_extension = '{$image_extension}',
                     cf_flash_extension = 'swf',
@@ -204,7 +193,6 @@ $dir_arr = array (
     $data_path.'/file',
     $data_path.'/log',
     $data_path.'/member',
-    $data_path.'/member_image',
     $data_path.'/session',
     $data_path.'/tmp'
 );
@@ -239,7 +227,6 @@ fwrite($f, "\$g5['config_table'] = G5_TABLE_PREFIX.'config'; // 기본환경 설
 fwrite($f, "\$g5['login_table'] = G5_TABLE_PREFIX.'login'; // 로그인 테이블 (접속자수)\n");
 fwrite($f, "\$g5['mail_table'] = G5_TABLE_PREFIX.'mail'; // 회원메일 테이블\n");
 fwrite($f, "\$g5['member_table'] = G5_TABLE_PREFIX.'member'; // 회원 테이블\n");
-fwrite($f, "\$g5['point_table'] = G5_TABLE_PREFIX.'point'; // 포인트 테이블\n");
 fwrite($f, "\$g5['uniqid_table'] = G5_TABLE_PREFIX.'uniqid'; // 유니크한 값을 만드는 테이블\n");
 fwrite($f, "\$g5['cert_history_table'] = G5_TABLE_PREFIX.'cert_history'; // 인증내역 테이블\n");
 fwrite($f, "\$g5['social_profile_table'] = G5_TABLE_PREFIX.'member_social_profiles'; // 소셜 로그인 테이블\n");
