@@ -338,6 +338,9 @@ if(XenoPostToForm::check()) {
 // 기본환경설정
 // 기본적으로 사용하는 필드만 얻은 후 상황에 따라 필드를 추가로 얻음
 $config = get_config(true);
+if (empty($config['cf_member_skin']) || $config['cf_member_skin'] === 'theme/basic') {
+    $config['cf_member_skin'] = 'basic';
+}
 
 // 본인인증 사용시에만 secure; SameSite=None 로 설정합니다.
 if( $config['cf_cert_use'] ) {
@@ -604,31 +607,20 @@ if (isset($member['mb_id']) && $member['mb_id']) {
     $member['mb_level'] = 1; // 비회원의 경우 회원레벨을 가장 낮게 설정
 }
 
-// 테마경로
-if(defined('_THEME_PREVIEW_') && _THEME_PREVIEW_ === true)
-    $config['cf_theme'] = isset($_GET['theme']) ? trim($_GET['theme']) : '';
-
-if(isset($config['cf_theme']) && trim($config['cf_theme'])) {
-    $theme_path = G5_PATH.'/'.G5_THEME_DIR.'/'.$config['cf_theme'];
-    if(is_dir($theme_path)) {
-        define('G5_THEME_PATH',        $theme_path);
-        define('G5_THEME_URL',         G5_URL.'/'.G5_THEME_DIR.'/'.$config['cf_theme']);
-        define('G5_THEME_MOBILE_PATH', $theme_path.'/'.G5_MOBILE_DIR);
-        define('G5_THEME_LIB_PATH',    $theme_path.'/'.G5_LIB_DIR);
-        define('G5_THEME_CSS_URL',     G5_THEME_URL.'/'.G5_CSS_DIR);
-        define('G5_THEME_CSS_PATH',    G5_THEME_PATH.'/'.G5_CSS_DIR);
-        define('G5_THEME_IMG_URL',     G5_THEME_URL.'/'.G5_IMG_DIR);
-        define('G5_THEME_IMG_PATH',    G5_THEME_PATH.'/'.G5_IMG_DIR);
-        define('G5_THEME_JS_URL',      G5_THEME_URL.'/'.G5_JS_DIR);
-        define('G5_THEME_JS_PATH',     G5_THEME_PATH.'/'.G5_JS_DIR);
-    }
-    unset($theme_path);
+// 회원 전용 모드에서는 theme 디렉터리 자체를 고정 앱 셸로 사용합니다.
+$theme_path = G5_PATH.'/'.G5_THEME_DIR;
+if (is_dir($theme_path)) {
+    define('G5_THEME_PATH',        $theme_path);
+    define('G5_THEME_URL',         G5_URL.'/'.G5_THEME_DIR);
+    define('G5_THEME_MOBILE_PATH', $theme_path.'/'.G5_MOBILE_DIR);
+    define('G5_THEME_CSS_URL',     G5_THEME_URL.'/'.G5_CSS_DIR);
+    define('G5_THEME_CSS_PATH',    G5_THEME_PATH.'/'.G5_CSS_DIR);
+    define('G5_THEME_IMG_URL',     G5_THEME_URL.'/'.G5_IMG_DIR);
+    define('G5_THEME_IMG_PATH',    G5_THEME_PATH.'/'.G5_IMG_DIR);
+    define('G5_THEME_JS_URL',      G5_THEME_URL.'/'.G5_JS_DIR);
+    define('G5_THEME_JS_PATH',     G5_THEME_PATH.'/'.G5_JS_DIR);
 }
-
-
-// 테마 설정 로드
-if(defined('G5_THEME_PATH') && is_file(G5_THEME_PATH.'/theme.config.php'))
-    include_once(G5_THEME_PATH.'/theme.config.php');
+unset($theme_path);
 
 // 지원 종료된 okname/KCB 설정은 즉시 비활성화합니다.
 if (isset($config['cf_cert_ipin']) && $config['cf_cert_ipin'] === 'kcb') {

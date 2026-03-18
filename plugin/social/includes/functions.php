@@ -2,21 +2,13 @@
 if (!defined('_GNUBOARD_')) exit;
 
 function get_social_skin_path(){
-    global $config;
-
     static $skin_path = '';
 
     if( $skin_path ){
         return $skin_path;
     }
 
-    // 반응형: theme/skin/ 경로만 사용
-    if( $config['cf_theme'] ){
-        $cf_theme = trim($config['cf_theme']);
-        $dir = G5_SOCIAL_LOGIN_DIR;
-        $theme_path = G5_PATH.'/'.G5_THEME_DIR.'/'.$cf_theme;
-        $skin_path = $theme_path.'/'.G5_SKIN_DIR.'/'.$dir;
-    }
+    $skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/'.G5_SOCIAL_LOGIN_DIR;
 
     if( ! ($skin_path && is_dir($skin_path)) ){
         $skin_path = G5_SOCIAL_SKIN_PATH;

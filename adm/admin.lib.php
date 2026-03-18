@@ -14,15 +14,16 @@ if (!get_session('ss_admin')) {
 // 스킨디렉토리를 SELECT 형식으로 얻음 (테마 스킨만 표시)
 function get_skin_select($skin_gubun, $id, $name, $selected = '', $event = '')
 {
-    global $config;
-
     $skins = array();
+    if (preg_match('#^theme/(.+)$#', $selected, $match)) {
+        $selected = $match[1];
+    }
 
-    if (defined('G5_THEME_PATH') && $config['cf_theme']) {
+    if (defined('G5_THEME_PATH')) {
         $dirs = get_skin_dir($skin_gubun, G5_THEME_PATH . '/' . G5_SKIN_DIR);
         if (!empty($dirs)) {
             foreach ($dirs as $dir) {
-                $skins[] = 'theme/' . $dir;
+                $skins[] = $dir;
             }
         }
     }
@@ -32,13 +33,7 @@ function get_skin_select($skin_gubun, $id, $name, $selected = '', $event = '')
         if ($i == 0) {
             $str .= "<option value=\"\">선택</option>";
         }
-        if (preg_match('#^theme/(.+)$#', $skins[$i], $match)) {
-            $text = '(테마) ' . $match[1];
-        } else {
-            $text = $skins[$i];
-        }
-
-        $str .= option_selected($skins[$i], $selected, $text);
+        $str .= option_selected($skins[$i], $selected, $skins[$i]);
     }
     $str .= "</select>";
     return $str;
@@ -72,108 +67,6 @@ function get_skin_dir($skin, $skin_path = G5_SKIN_PATH)
 
     return $result_array;
 }
-
-
-// 테마
-function get_theme_dir()
-{
-    $result_array = array();
-
-    $dirname = G5_PATH . '/' . G5_THEME_DIR . '/';
-    $handle = opendir($dirname);
-    while ($file = readdir($handle)) {
-        if ($file == '.' || $file == '..') {
-            continue;
-        }
-
-        if (is_dir($dirname . $file)) {
-            $theme_path = $dirname . $file;
-            if (is_file($theme_path . '/index.php') && is_file($theme_path . '/head.php') && is_file($theme_path . '/tail.php')) {
-                $result_array[] = $file;
-            }
-        }
-    }
-    closedir($handle);
-    natsort($result_array);
-
-    return $result_array;
-}
-
-
-// 테마정보
-function get_theme_info($dir)
-{
-    $info = array();
-    $path = G5_PATH . '/' . G5_THEME_DIR . '/' . $dir;
-
-    if (is_dir($path)) {
-        $screenshot = $path . '/screenshot.png';
-        $screenshot_url = '';
-        if (is_file($screenshot)) {
-            $size = @getimagesize($screenshot);
-
-            if ($size[2] == 3) {
-                $screenshot_url = str_replace(G5_PATH, G5_URL, $screenshot);
-            }
-        }
-
-        $info['screenshot'] = $screenshot_url;
-
-        $text = $path . '/readme.txt';
-        if (is_file($text)) {
-            $content = file($text, false);
-            $content = array_map('trim', $content);
-
-            preg_match('#^Theme Name:(.+)$#i', $content[0], $m0);
-            preg_match('#^Theme URI:(.+)$#i', $content[1], $m1);
-            preg_match('#^Maker:(.+)$#i', $content[2], $m2);
-            preg_match('#^Maker URI:(.+)$#i', $content[3], $m3);
-            preg_match('#^Version:(.+)$#i', $content[4], $m4);
-            preg_match('#^Detail:(.+)$#i', $content[5], $m5);
-            preg_match('#^License:(.+)$#i', $content[6], $m6);
-            preg_match('#^License URI:(.+)$#i', $content[7], $m7);
-
-            $info['theme_name'] = trim($m0[1]);
-            $info['theme_uri'] = trim($m1[1]);
-            $info['maker'] = trim($m2[1]);
-            $info['maker_uri'] = trim($m3[1]);
-            $info['version'] = trim($m4[1]);
-            $info['detail'] = trim($m5[1]);
-            $info['license'] = trim($m6[1]);
-            $info['license_uri'] = trim($m7[1]);
-        }
-
-        if (!$info['theme_name']) {
-            $info['theme_name'] = $dir;
-        }
-    }
-
-    return $info;
-}
-
-
-// 테마 구성 정보
-function get_theme_config_value($dir, $key = '*')
-{
-    $tconfig = array();
-
-    $theme_config_file = G5_PATH . '/' . G5_THEME_DIR . '/' . $dir . '/theme.config.php';
-    if (is_file($theme_config_file)) {
-        include $theme_config_file;
-        // 22.05.26 Undefined Variable $theme_config;
-        if ($key == '*') {
-            $tconfig = $theme_config;
-        } else {
-            $keys = array_map('trim', explode(',', $key));
-            foreach ($keys as $v) {
-                $tconfig[$v] = isset($theme_config[$v]) ? trim($theme_config[$v]) : '';
-            }
-        }
-    }
-
-    return $tconfig;
-}
-
 
 // 회원권한을 SELECT 형식으로 얻음
 function get_member_level_select($name, $start_id = 0, $end_id = 10, $selected = "", $event = "")

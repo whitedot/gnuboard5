@@ -22,7 +22,6 @@ DROP TABLE IF EXISTS `g5_config`;
 CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_id` int(11) NOT NULL auto_increment,
   `cf_title` varchar(255) NOT NULL DEFAULT '',
-  `cf_theme` varchar(100) NOT NULL DEFAULT '',
   `cf_admin` varchar(100) NOT NULL DEFAULT '',
   `cf_admin_email` varchar(100) NOT NULL DEFAULT '',
   `cf_admin_email_name` varchar(100) NOT NULL DEFAULT '',

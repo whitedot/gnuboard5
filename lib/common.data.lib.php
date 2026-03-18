@@ -253,15 +253,12 @@ function is_admin($mb_id)
 // 스킨 path (단일 반응형 - 테마 스킨만 사용)
 function get_skin_path($dir, $skin)
 {
-    global $config;
-
-    $cf_theme = trim($config['cf_theme']) ?: 'basic';
-    $theme_path = G5_PATH.'/'.G5_THEME_DIR.'/'.$cf_theme;
+    $theme_path = G5_THEME_PATH;
 
     if(preg_match('#^theme/(.+)$#', $skin, $match)) { // 테마에 포함된 스킨이라면
         $skin_path = $theme_path.'/'.G5_SKIN_DIR.'/'.$dir.'/'.$match[1];
     } else {
-        // 레거시 호환: 'basic' -> theme/basic/skin/ 경로로 변환
+        // 레거시 호환: 'basic' -> theme/skin/ 경로로 변환
         $skin_name = $skin ?: 'basic';
         $skin_path = $theme_path.'/'.G5_SKIN_DIR.'/'.$dir.'/'.$skin_name;
     }
