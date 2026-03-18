@@ -73,7 +73,6 @@ $check_keys = array(
     'cf_email_mb_member' => 'int',
     'cf_prohibit_id' => 'text',
     'cf_prohibit_email' => 'text',
-    'cf_visit_del' => 'int',
     'cf_use_member_icon' => 'int',
     'cf_member_icon_size' => 'int',
     'cf_member_icon_width' => 'int',
@@ -108,7 +107,6 @@ $check_keys = array(
     'cf_image_extension' => 'char',
     'cf_flash_extension' => 'char',
     'cf_movie_extension' => 'char',
-    'cf_visit' => 'char',
     'cf_stipulation' => 'text',
     'cf_privacy' => 'text',
     'cf_use_promotion' => 'int',
@@ -141,7 +139,6 @@ foreach ($check_keys as $k => $v) {
 }
 
 $preserve_keys = array(
-    'cf_visit_del',
     'cf_login_minutes',
     'cf_formmail_is_member',
     'cf_delay_sec',
@@ -231,7 +228,6 @@ $sql = " update {$g5['config_table']}
                 cf_email_mb_member = '{$_POST['cf_email_mb_member']}',
                 cf_prohibit_id = '{$_POST['cf_prohibit_id']}',
                 cf_prohibit_email = '{$_POST['cf_prohibit_email']}',
-                cf_visit_del = '{$_POST['cf_visit_del']}',
                 cf_use_member_icon = '{$_POST['cf_use_member_icon']}',
                 cf_member_icon_size = '{$_POST['cf_member_icon_size']}',
                 cf_member_icon_width = '{$_POST['cf_member_icon_width']}',

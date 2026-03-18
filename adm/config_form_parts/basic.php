@@ -86,19 +86,6 @@
             <?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_visit_del" class="form-label">접속자로그 삭제</label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('설정일이 지난 접속자 로그 자동 삭제') ?>
-                    <div class="af-inline">
-                        <input type="text" name="cf_visit_del" value="<?php echo (int) $config['cf_visit_del'] ?>" id="cf_visit_del" size="5" class="form-input">
-                        <span>일</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
                     <label for="cf_login_minutes" class="form-label">현재 접속자</label>
                 </div>
                 <div class="af-field">

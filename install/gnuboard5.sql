@@ -65,7 +65,6 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_email_mb_member` tinyint(4) NOT NULL DEFAULT '0',
   `cf_prohibit_id` text NOT NULL,
   `cf_prohibit_email` text NOT NULL,
-  `cf_visit_del` int(11) NOT NULL DEFAULT '0',
   `cf_optimize_date` date NOT NULL default '0000-00-00',
   `cf_use_member_icon` tinyint(4) NOT NULL DEFAULT '0',
   `cf_member_icon_size` int(11) NOT NULL DEFAULT '0',
@@ -80,7 +79,6 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_movie_extension` varchar(255) NOT NULL DEFAULT '',
   `cf_formmail_is_member` tinyint(4) NOT NULL DEFAULT '0',
   `cf_page_rows` int(11) NOT NULL DEFAULT '0',
-  `cf_visit` varchar(255) NOT NULL DEFAULT '',
   `cf_max_po_id` int(11) NOT NULL DEFAULT '0',
   `cf_stipulation` text NOT NULL,
   `cf_privacy` text NOT NULL,
@@ -291,44 +289,6 @@ CREATE TABLE IF NOT EXISTS `g5_point` (
   KEY `index1` (`mb_id`,`po_rel_table`,`po_rel_id`,`po_rel_action`),
   KEY `index2` (`po_expire_date`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_visit`
---
-
-DROP TABLE IF EXISTS `g5_visit`;
-CREATE TABLE IF NOT EXISTS `g5_visit` (
-  `vi_id` int(11) NOT NULL AUTO_INCREMENT,
-  `vi_ip` varchar(100) NOT NULL default '',
-  `vi_date` date NOT NULL default '0000-00-00',
-  `vi_time` time NOT NULL default '00:00:00',
-  `vi_referer` text NOT NULL,
-  `vi_agent` varchar(200) NOT NULL default '',
-  `vi_browser` varchar(255) NOT NULL DEFAULT '',
-  `vi_os` varchar(255) NOT NULL DEFAULT '',
-  `vi_device` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY  (`vi_id`),
-  UNIQUE KEY `index1` (`vi_ip`,`vi_date`),
-  KEY `index2` (`vi_date`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_visit_sum`
---
-
-DROP TABLE IF EXISTS `g5_visit_sum`;
-CREATE TABLE IF NOT EXISTS `g5_visit_sum` (
-  `vs_date` date NOT NULL default '0000-00-00',
-  `vs_count` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`vs_date`),
-  KEY `index1` (`vs_count`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `g5_unique`
