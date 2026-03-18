@@ -133,7 +133,6 @@ if ($g5_install || $is_install === false) {
                     cf_admin_email_name = '".G5_VERSION.'_'.substr(base_convert(mt_rand(), 10, 36), 0, 6)."',
                     cf_cut_name = '15',
                     cf_nick_modify = '60',
-                    cf_write_pages = '10',
                     cf_possible_ip = '',
                     cf_intercept_ip = '',
                     cf_captcha_mp3 = 'basic',

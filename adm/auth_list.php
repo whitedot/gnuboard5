@@ -160,7 +160,7 @@ $colspan = 5;
 </form>
 
 <?php
-$pagelist = get_paging($config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME'] . '?' . $qstr . '&amp;page=');
+$pagelist = get_paging(G5_ADMIN_PAGING_PAGES, $page, $total_page, $_SERVER['SCRIPT_NAME'] . '?' . $qstr . '&amp;page=');
 echo $pagelist;
 ?>
 

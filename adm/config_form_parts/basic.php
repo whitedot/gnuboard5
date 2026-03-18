@@ -98,18 +98,6 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_write_pages" class="form-label">페이지 표시 수<strong>필수</strong></label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <input type="text" name="cf_write_pages" value="<?php echo (int) $config['cf_write_pages'] ?>" id="cf_write_pages" required size="3" class="form-input">
-                        <span>페이지씩 표시</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
                     <label for="cf_captcha" class="form-label">캡챠 선택<strong>필수</strong></label>
                 </div>
                 <div class="af-field">

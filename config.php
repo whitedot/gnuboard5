@@ -30,6 +30,7 @@ define('G5_HTTPS_DOMAIN', '');
 define('G5_DEBUG', false);
 define('G5_COLLECT_QUERY', false);
 define('G5_MEMBER_ONLY', true);
+define('G5_ADMIN_PAGING_PAGES', 10);
 
 // Set Database table default engine is Database default_storage_engine, If you want to use MyISAM or InnoDB, change to MyISAM or InnoDB.
 // DB에 테이블 생성 시 테이블의 기본 스토리지 엔진을 설정할 수 있습니다.

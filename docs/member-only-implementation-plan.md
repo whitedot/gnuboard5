@@ -4,9 +4,32 @@
 
 - 계정, 인증, 관리자 회원 관리 흐름만 유지한다.
 - 제거 대상이던 커뮤니티/상거래, 포인트, SMS, 소셜 로그인, 관리자 보조 기능 정리는 끝났다.
-- 공개 페이지 주입성 설정(`cf_analytics`, `cf_add_meta`, `cf_add_script`), 현재 접속자 집계, 사용자 디바이스 전환, 회원메일/에디터, 홈페이지/전화번호/주소 입력도 제거했다.
+- 공개 페이지 주입성 설정(`cf_analytics`, `cf_add_meta`, `cf_add_script`), 현재 접속자 집계, 사용자 디바이스 전환, 회원 대상 운영 메일, 홈페이지/전화번호/주소 입력도 제거했다.
 - 정보공개, 이메일 수신동의, 마케팅 동의와 동의 이력은 유지한다.
 - 남은 일은 실제 운영 흐름 수동 QA와 결과 기록이다.
+
+## PM 업데이트
+
+- 2026-03-18 기준 우선순위 이슈는 3건이었다.
+- P1: 비밀번호 재설정 시 새 비밀번호 검증 불일치 수정
+- P2: 회원 전용 범위에서 제외한 가입 운영 메일 설정/발송 제거
+- P3: 관리자 목록 페이징의 `cf_write_pages` 참조 제거
+- 위 3건을 해결한 뒤, 수동 QA 기준 문서와 실제 코드 기준을 일치시키는 것을 이번 사이클 완료 조건으로 둔다.
+
+## 개발 반영
+
+- `member/password_reset_update.php` 입력 검증 버그 수정
+- `member/register_form_update.php` 에서 가입 축하/관리자 알림 메일 제거, 이메일 인증 메일만 유지
+- `adm/config_form_parts/mail.php` 를 인증 메일 중심 설정으로 정리
+- `adm/config_form_parts/basic.php`, `adm/config_form_update.php` 에서 `cf_write_pages` 및 가입 운영 메일 설정 제거
+- `adm/member_list.php`, `adm/auth_list.php` 는 고정 상수 `G5_ADMIN_PAGING_PAGES` 를 사용하도록 변경
+- 신규 설치 기준에서도 제거된 설정 컬럼/초기값이 다시 생기지 않도록 `install/gnuboard5.sql`, `install/install_db.php` 정리
+
+## QA 포인트
+
+- 비밀번호 재설정은 `mb_password` 와 `mb_password_re` 불일치 시 반드시 차단되어야 한다.
+- 회원가입 직후에는 이메일 인증 메일만 발송되고, 가입 축하 메일/관리자 가입 알림 메일은 더 이상 발송되지 않아야 한다.
+- 관리자 회원 목록과 권한 목록은 `cf_write_pages` 없이 정상 페이징되어야 한다.
 
 ## 완료 기준
 

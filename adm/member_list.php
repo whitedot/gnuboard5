@@ -284,7 +284,7 @@ $colspan = 10;
 
 </form>
 
-<?php echo get_paging($config['cf_write_pages'], $page, $total_page, '?' . $qstr . '&amp;page='); ?>
+<?php echo get_paging(G5_ADMIN_PAGING_PAGES, $page, $total_page, '?' . $qstr . '&amp;page='); ?>
 
 <script>
     function fmemberlist_submit(f) {

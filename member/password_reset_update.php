@@ -12,7 +12,7 @@ $mb_check = sql_fetch("select * from {$g5['member_table']} where mb_id = '{$mb_i
 
 if(!$mb_check) alert('잘못된 접근입니다.', G5_URL);
 
-$mb_password    = isset($_POST['mb_password']) ? trim($_POST['mb_password_re']) : '';
+$mb_password    = isset($_POST['mb_password']) ? trim($_POST['mb_password']) : '';
 $mb_password_re = isset($_POST['mb_password_re']) ? trim($_POST['mb_password_re']) : '';
 
 
