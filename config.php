@@ -54,7 +54,6 @@ define('G5_ADMIN_DIR',      'adm');
 define('G5_MEMBER_DIR',     'member');
 define('G5_CSS_DIR',        'css');
 define('G5_DATA_DIR',       'data');
-define('G5_EXTEND_DIR',     'extend');
 define('G5_IMG_DIR',        'img');
 define('G5_JS_DIR',         'js');
 define('G5_LIB_DIR',        'lib');
@@ -108,7 +107,6 @@ define('G5_ADMIN_PATH',     G5_PATH.'/'.G5_ADMIN_DIR);
 define('G5_MEMBER_PATH',    G5_PATH.'/'.G5_MEMBER_DIR);
 define('G5_CSS_PATH',       G5_PATH.'/'.G5_CSS_DIR);
 define('G5_DATA_PATH',      G5_PATH.'/'.G5_DATA_DIR);
-define('G5_EXTEND_PATH',    G5_PATH.'/'.G5_EXTEND_DIR);
 define('G5_IMG_PATH',       G5_PATH.'/'.G5_IMG_DIR);
 define('G5_JS_PATH',        G5_PATH.'/'.G5_JS_DIR);
 define('G5_LIB_PATH',       G5_PATH.'/'.G5_LIB_DIR);
@@ -125,6 +123,15 @@ define('G5_LGXPAY_PATH',    G5_PLUGIN_PATH.'/'.G5_LGXPAY_DIR);
 
 define('G5_PHPMAILER_PATH', G5_PLUGIN_PATH.'/'.G5_PHPMAILER_DIR);
 //==============================================================================
+
+// 자바스크립트와 CSS 파일을 새로 다운로드 하도록 파일의 끝에 년월일 지정
+// 예) https://도메인/css/default.css?ver=220620
+// 예) https://도메인/js/common.js?ver=220620
+define('G5_CSS_VER', '2303229');
+define('G5_JS_VER',  '2304171');
+
+// 유저 사이드뷰에서 기본 no 프로필 이미지를 사용합니다.
+define('G5_NO_PROFILE_IMG', '<span><img src="'.G5_IMG_URL.'/no_profile.gif" alt="no_profile" width="22" height="22"></span>');
 
 
 //==============================================================================

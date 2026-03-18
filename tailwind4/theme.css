@@ -10,5 +10,4 @@
 @source "../skin/**/*.php";
 @source "../lib/**/*.php";
 @source "../plugin/**/*.php";
-@source "../extend/**/*.php";
 @source "../theme/basic/**/*.php";

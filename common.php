@@ -717,25 +717,30 @@ if (G5_IS_MOBILE) {
     $connect_skin_url   = '';
 //==============================================================================
 
-
-// common.php 파일을 수정할 필요가 없도록 확장합니다.
-$extend_file = array();
-$tmp = dir(G5_EXTEND_PATH);
-while ($entry = $tmp->read()) {
-    // php 파일만 include 함
-    if (preg_match("/(\.php)$/i", $entry))
-        $extend_file[] = $entry;
+if (!defined('KGINICIS_USE_CERT_SEED')) {
+    define('KGINICIS_USE_CERT_SEED', isset($config['cf_cert_use_seed']) ? (int) $config['cf_cert_use_seed'] : 1);
 }
 
-if(!empty($extend_file) && is_array($extend_file)) {
-    natsort($extend_file);
-
-    foreach($extend_file as $file) {
-        include_once(G5_EXTEND_PATH.'/'.$file);
-    }
-    unset($file);
+if (!isset($g5['social_profile_table'])) {
+    $g5['social_profile_table'] = G5_TABLE_PREFIX.'member_social_profiles';
 }
-unset($extend_file);
+
+if (!defined('G5_SOCIAL_LOGIN_DIR')) {
+    define('G5_SOCIAL_LOGIN_DIR', 'social');
+    define('G5_SOCIAL_LOGIN_START_PARAM', 'hauth.start');
+    define('G5_SOCIAL_LOGIN_DONE_PARAM', 'hauth.done');
+    define('G5_SOCIAL_LOGIN_PATH', G5_PLUGIN_PATH.'/'.G5_SOCIAL_LOGIN_DIR);
+    define('G5_SOCIAL_LOGIN_URL', G5_PLUGIN_URL.'/'.G5_SOCIAL_LOGIN_DIR);
+    define('G5_SOCIAL_LOGIN_BASE_URL', G5_SOCIAL_LOGIN_URL.'/');
+    define('G5_SOCIAL_SKIN_PATH', G5_THEME_PATH.'/'.G5_SKIN_DIR.'/'.G5_SOCIAL_LOGIN_DIR);
+    define('G5_SOCIAL_SKIN_URL', str_replace(G5_PATH, G5_URL, G5_SOCIAL_SKIN_PATH));
+    define('G5_SOCIAL_USE_POPUP', !is_mobile());
+    define('G5_SOCIAL_DELETE_DAY', 0);
+    define('G5_SOCIAL_CERTIFY_MAIL', false);
+    define('G5_SOCIAL_IS_DEBUG', false);
+
+    include_once(G5_SOCIAL_LOGIN_PATH.'/includes/functions.php');
+}
 
 if($is_member && !$is_admin && (!defined("G5_CERT_IN_PROG") || !G5_CERT_IN_PROG) && $config['cf_cert_use'] <> 0 && $config['cf_cert_req']) { // 본인인증이 필수일때
     if ((empty($member['mb_certify']) || (!empty($member['mb_certify']) && strlen($member['mb_dupinfo']) == 64))) { // di로 인증되어 있거나 본인인증이 안된 계정일때
