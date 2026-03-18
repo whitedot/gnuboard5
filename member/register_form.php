@@ -110,8 +110,6 @@ if ($w == "") {
     $member['mb_hp']          = get_text($member['mb_hp']);
     $member['mb_addr1']       = get_text($member['mb_addr1']);
     $member['mb_addr2']       = get_text($member['mb_addr2']);
-    $member['mb_signature']   = get_text($member['mb_signature']);
-    $member['mb_profile']     = get_text($member['mb_profile']);
 } else {
     alert('w 값이 제대로 넘어오지 않았습니다.');
 }

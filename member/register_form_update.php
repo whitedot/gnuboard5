@@ -46,8 +46,6 @@ $mb_addr1       = isset($_POST['mb_addr1'])         ? trim($_POST['mb_addr1'])  
 $mb_addr2       = isset($_POST['mb_addr2'])         ? trim($_POST['mb_addr2'])       : "";
 $mb_addr3       = isset($_POST['mb_addr3'])         ? trim($_POST['mb_addr3'])       : "";
 $mb_addr_jibeon = isset($_POST['mb_addr_jibeon'])   ? trim($_POST['mb_addr_jibeon']) : "";
-$mb_signature   = isset($_POST['mb_signature'])     ? trim($_POST['mb_signature'])   : "";
-$mb_profile     = isset($_POST['mb_profile'])       ? trim($_POST['mb_profile'])     : "";
 $mb_mailling    = isset($_POST['mb_mailling'])      ? trim($_POST['mb_mailling'])    : "0";
 $mb_open        = isset($_POST['mb_open'])          ? trim($_POST['mb_open'])        : "0";
 $mb_name        = clean_xss_tags($mb_name, 1, 1);
@@ -62,10 +60,6 @@ $mb_addr3       = clean_xss_tags($mb_addr3, 1, 1);
 $mb_addr_jibeon = preg_match("/^(N|R)$/", $mb_addr_jibeon) ? $mb_addr_jibeon : '';
 
 $mb_marketing_agree     = isset($_POST['mb_marketing_agree'])   ? trim($_POST['mb_marketing_agree'])    : "0";
-if (defined('G5_MEMBER_ONLY') && G5_MEMBER_ONLY) {
-    $mb_signature = '';
-    $mb_profile = '';
-}
 
 run_event('register_form_update_before', $mb_id, $w);
 
@@ -213,8 +207,6 @@ if ($w == '') {
                      mb_addr2 = '{$mb_addr2}',
                      mb_addr3 = '{$mb_addr3}',
                      mb_addr_jibeon = '{$mb_addr_jibeon}',
-                     mb_signature = '{$mb_signature}',
-                     mb_profile = '{$mb_profile}',
                      mb_today_login = '".G5_TIME_YMDHIS."',
                      mb_datetime = '".G5_TIME_YMDHIS."',
                      mb_ip = '{$_SERVER['REMOTE_ADDR']}',
@@ -368,8 +360,6 @@ if ($w == '') {
                     mb_addr2 = '{$mb_addr2}',
                     mb_addr3 = '{$mb_addr3}',
                     mb_addr_jibeon = '{$mb_addr_jibeon}',
-                    mb_signature = '{$mb_signature}',
-                    mb_profile = '{$mb_profile}',
                     mb_marketing_agree = '{$mb_marketing_agree}'
                     {$sql_password}
                     {$sql_nick_date}

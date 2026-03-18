@@ -21,8 +21,6 @@ $mb = array(
     'mb_addr2' => null,
     'mb_addr3' => null,
     'mb_addr_jibeon' => null,
-    'mb_signature' => null,
-    'mb_profile' => null,
     'mb_memo' => null,
     'mb_leave_date' => null,
 );
@@ -67,8 +65,6 @@ if ($w == '') {
     $mb['mb_addr1'] = get_text($mb['mb_addr1']);
     $mb['mb_addr2'] = get_text($mb['mb_addr2']);
     $mb['mb_addr3'] = get_text($mb['mb_addr3']);
-    $mb['mb_signature'] = get_text($mb['mb_signature']);
-    $mb['mb_profile'] = get_text($mb['mb_profile']);
 } else {
     alert('제대로 된 값이 넘어오지 않았습니다.');
 }
