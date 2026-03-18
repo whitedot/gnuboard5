@@ -1,6 +1,4 @@
 <?php
-global $lo_location;
-global $lo_url;
 
 include_once('./_common.php');
 

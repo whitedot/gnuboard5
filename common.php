@@ -134,7 +134,7 @@ $_REQUEST = array_map_deep(G5_ESCAPE_FUNCTION,  $_REQUEST);
 // $member 에 값을 직접 넘길 수 있음
 
 $config = array();
-$member = array('mb_id'=>'', 'mb_level'=> 1, 'mb_name'=> '', 'mb_certify'=>'', 'mb_email'=>'', 'mb_open'=>'', 'mb_homepage'=>'', 'mb_tel'=>'', 'mb_hp'=>'', 'mb_zip1'=>'', 'mb_zip2'=>'', 'mb_addr1'=>'', 'mb_addr2'=>'', 'mb_addr3'=>'', 'mb_addr_jibeon'=>'');
+$member = array('mb_id'=>'', 'mb_level'=> 1, 'mb_name'=> '', 'mb_certify'=>'', 'mb_email'=>'', 'mb_open'=>'', 'mb_hp'=>'');
 $g5     = array();
 if( version_compare( phpversion(), '8.0.0', '>=' ) ) { $g5 = array('title'=>''); }
 $g5_debug = array('php'=>array(),'sql'=>array());
@@ -609,7 +609,6 @@ $theme_path = G5_PATH.'/'.G5_THEME_DIR;
 if (is_dir($theme_path)) {
     define('G5_THEME_PATH',        $theme_path);
     define('G5_THEME_URL',         G5_URL.'/'.G5_THEME_DIR);
-    define('G5_THEME_MOBILE_PATH', $theme_path.'/'.G5_MOBILE_DIR);
     define('G5_THEME_CSS_URL',     G5_THEME_URL.'/'.G5_CSS_DIR);
     define('G5_THEME_CSS_PATH',    G5_THEME_PATH.'/'.G5_CSS_DIR);
     define('G5_THEME_IMG_URL',     G5_THEME_URL.'/'.G5_IMG_DIR);
@@ -627,76 +626,18 @@ if (isset($config['cf_cert_hp']) && $config['cf_cert_hp'] === 'kcb') {
     $config['cf_cert_hp'] = '';
 }
 
-
-//=====================================================================================
-// 사용기기 설정
-// 테마의 G5_THEME_DEVICE 설정에 따라 사용자 화면 제한됨
-// 테마에 별도 설정이 없는 경우 config.php G5_SET_DEVICE 설정에 따라 사용자 화면 제한됨
-// pc 설정 시 모바일 기기에서도 PC화면 보여짐
-// mobile 설정 시 PC에서도 모바일화면 보여짐
-// both 설정 시 접속 기기에 따른 화면 보여짐
-//-------------------------------------------------------------------------------------
-/** @var bool $is_mobile 모바일 접속 여부 */
-$is_mobile = false;
-$set_device = true;
-
-if(defined('G5_THEME_DEVICE') && G5_THEME_DEVICE != '') {
-    switch(G5_THEME_DEVICE) {
-        case 'pc':
-            $is_mobile  = false;
-            $set_device = false;
-            break;
-        case 'mobile':
-            $is_mobile  = true;
-            $set_device = false;
-            break;
-        default:
-            break;
-    }
-}
-
-if(defined('G5_SET_DEVICE') && $set_device) {
-    switch(G5_SET_DEVICE) {
-        case 'pc':
-            $is_mobile  = false;
-            $set_device = false;
-            break;
-        case 'mobile':
-            $is_mobile  = true;
-            $set_device = false;
-            break;
-        default:
-            break;
-    }
-}
-//==============================================================================
-
 //==============================================================================
 // Mobile 모바일 설정
-// 회원 전용 앱 셸에서는 사용자 전환 UI 없이 접속 기기만 판별합니다.
+// 회원 전용 앱 셸에서는 접속 기기만 판별합니다.
 //------------------------------------------------------------------------------
-if (G5_USE_MOBILE && $set_device) {
-    if (is_mobile()) {
-        $is_mobile = true;
-    }
-} else {
-    $set_device = false;
-}
-
-define('G5_IS_MOBILE', $is_mobile);
-if (G5_IS_MOBILE) {
-    $g5['mobile_path'] = G5_PATH.'/'.G5_MOBILE_DIR;
-}
+define('G5_IS_MOBILE', G5_USE_MOBILE && is_mobile());
 //==============================================================================
 
 
 //==============================================================================
 // 스킨경로
 //------------------------------------------------------------------------------
-    $member_skin_path   = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/member/basic';
-    $member_skin_url    = G5_THEME_URL.'/'.G5_SKIN_DIR.'/member/basic';
-    $connect_skin_path  = '';
-    $connect_skin_url   = '';
+    $member_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/member/basic';
 //==============================================================================
 
 if (!defined('KGINICIS_USE_CERT_SEED')) {

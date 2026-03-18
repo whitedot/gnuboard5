@@ -83,22 +83,6 @@
                 </div>
             </div>
 
-            <?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_login_minutes" class="form-label">현재 접속자</label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('설정값 이내의 접속자를 현재 접속자로 인정') ?>
-                    <div class="af-inline">
-                        <input type="text" name="cf_login_minutes" value="<?php echo (int) $config['cf_login_minutes'] ?>" id="cf_login_minutes" size="3" class="form-input">
-                        <span>분</span>
-                    </div>
-                </div>
-            </div>
-
-            <?php } ?>
-
             <div class="af-row">
                 <div class="af-label">
                     <label for="cf_page_rows" class="form-label">한페이지당 라인수</label>

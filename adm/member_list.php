@@ -13,7 +13,6 @@ if ($stx) {
         case 'mb_level':
             $sql_search .= " ({$sfl} = '{$stx}') ";
             break;
-        case 'mb_tel':
         case 'mb_hp':
             $sql_search .= " ({$sfl} like '%{$stx}') ";
             break;
@@ -83,7 +82,6 @@ $colspan = 10;
         <option value="mb_name" <?php echo get_selected($sfl, "mb_name"); ?>>이름</option>
         <option value="mb_level" <?php echo get_selected($sfl, "mb_level"); ?>>권한</option>
         <option value="mb_email" <?php echo get_selected($sfl, "mb_email"); ?>>E-MAIL</option>
-        <option value="mb_tel" <?php echo get_selected($sfl, "mb_tel"); ?>>전화번호</option>
         <option value="mb_hp" <?php echo get_selected($sfl, "mb_hp"); ?>>휴대폰번호</option>
         <option value="mb_datetime" <?php echo get_selected($sfl, "mb_datetime"); ?>>가입일시</option>
         <option value="mb_ip" <?php echo get_selected($sfl, "mb_ip"); ?>>IP</option>
@@ -150,7 +148,7 @@ $colspan = 10;
                     $leave_date = $row['mb_leave_date'] ? $row['mb_leave_date'] : date('Ymd', G5_SERVER_TIME);
                     $intercept_date = $row['mb_intercept_date'] ? $row['mb_intercept_date'] : date('Ymd', G5_SERVER_TIME);
 
-                    $mb_nick = get_sideview($row['mb_id'], get_text($row['mb_nick']), $row['mb_email'], $row['mb_homepage']);
+                    $mb_nick = get_sideview($row['mb_id'], get_text($row['mb_nick']), $row['mb_email'], '');
 
                     $mb_id = $row['mb_id'];
                     $leave_msg = '';
@@ -167,8 +165,6 @@ $colspan = 10;
                     if ($intercept_title == '') {
                         $intercept_title = '차단하기';
                     }
-
-                    $address = $row['mb_zip1'] ? print_address($row['mb_addr1'], $row['mb_addr2'], $row['mb_addr3'], $row['mb_addr_jibeon']) : '';
 
                     $bg = 'bg' . ($i % 2);
 
@@ -262,7 +258,6 @@ $colspan = 10;
                             );
                             ?>
                         </td>
-                        <td headers="mb_list_tel"><?php echo get_text($row['mb_tel']); ?></td>
                         <td headers="mb_list_join"><?php echo substr($row['mb_datetime'], 2, 8); ?></td>
 
                     </tr>

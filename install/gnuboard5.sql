@@ -29,19 +29,10 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_cut_name` tinyint(4) NOT NULL DEFAULT '0',
   `cf_nick_modify` int(11) NOT NULL DEFAULT '0',
   `cf_write_pages` int(11) NOT NULL DEFAULT '0',
-  `cf_link_target` varchar(50) NOT NULL DEFAULT '',
-  `cf_delay_sec` int(11) NOT NULL DEFAULT '0',
-  `cf_filter` text NOT NULL,
   `cf_possible_ip` text NOT NULL,
   `cf_intercept_ip` text NOT NULL,
-  `cf_use_homepage` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_req_homepage` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_use_tel` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_req_tel` tinyint(4) NOT NULL DEFAULT '0',
   `cf_use_hp` tinyint(4) NOT NULL DEFAULT '0',
   `cf_req_hp` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_use_addr` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_req_addr` tinyint(4) NOT NULL DEFAULT '0',
   `cf_register_level` tinyint(4) NOT NULL DEFAULT '0',
   `cf_leave_day` int(11) NOT NULL DEFAULT '0',
   `cf_email_use` tinyint(4) NOT NULL DEFAULT '0',
@@ -50,7 +41,6 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_prohibit_id` text NOT NULL,
   `cf_prohibit_email` text NOT NULL,
   `cf_optimize_date` date NOT NULL default '0000-00-00',
-  `cf_login_minutes` int(11) NOT NULL DEFAULT '0',
   `cf_image_extension` varchar(255) NOT NULL DEFAULT '',
   `cf_flash_extension` varchar(255) NOT NULL DEFAULT '',
   `cf_movie_extension` varchar(255) NOT NULL DEFAULT '',
@@ -120,26 +110,6 @@ CREATE TABLE IF NOT EXISTS `g5_member_cert_history` (
   KEY `mb_id` (`mb_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_login`
---
-
-DROP TABLE IF EXISTS `g5_login`;
-CREATE TABLE IF NOT EXISTS `g5_login` (
-  `lo_id` int(11) NOT NULL AUTO_INCREMENT,
-  `lo_ip` varchar(100) NOT NULL default '',
-  `mb_id` varchar(20) NOT NULL default '',
-  `lo_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
-  `lo_location` text NOT NULL,
-  `lo_url` text NOT NULL,
-  PRIMARY KEY (`lo_id`),
-  UNIQUE KEY `lo_ip_unique` (`lo_ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `g5_member`
 --
@@ -153,21 +123,13 @@ CREATE TABLE IF NOT EXISTS `g5_member` (
   `mb_nick` varchar(255) NOT NULL default '',
   `mb_nick_date` date NOT NULL default '0000-00-00',
   `mb_email` varchar(255) NOT NULL default '',
-  `mb_homepage` varchar(255) NOT NULL default '',
   `mb_level` tinyint(4) NOT NULL default '0',
   `mb_sex` char(1) NOT NULL default '',
   `mb_birth` varchar(255) NOT NULL default '',
-  `mb_tel` varchar(255) NOT NULL default '',
   `mb_hp` varchar(255) NOT NULL default '',
   `mb_certify` varchar(20) NOT NULL default '',
   `mb_adult` tinyint(4) NOT NULL default '0',
   `mb_dupinfo` varchar(255) NOT NULL default '',
-  `mb_zip1` char(3) NOT NULL default '',
-  `mb_zip2` char(3) NOT NULL default '',
-  `mb_addr1` varchar(255) NOT NULL default '',
-  `mb_addr2` varchar(255) NOT NULL default '',
-  `mb_addr3` varchar(255) NOT NULL default '',
-  `mb_addr_jibeon` varchar(255) NOT NULL default '',
   `mb_today_login` datetime NOT NULL default '0000-00-00 00:00:00',
   `mb_login_ip` varchar(255) NOT NULL default '',
   `mb_datetime` datetime NOT NULL default '0000-00-00 00:00:00',

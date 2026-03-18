@@ -27,9 +27,7 @@ function get_export_config($type = null)
             'mb_name'=>'이름',
             'mb_nick'=>'닉네임',
             'mb_email'=>'이메일',
-            'mb_tel'=>'전화번호',
             'mb_hp'=>'휴대폰번호',
-            'mb_addr1'=>'주소'
         ],
         'intercept_list' => [
             'exclude'=>'차단회원 제외',

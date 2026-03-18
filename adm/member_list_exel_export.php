@@ -148,12 +148,12 @@ function member_export_get_config()
     $configs = [
         1 => [
             'title'   => ["회원관리파일(일반)"],
-            'headers' => ['아이디', '이름', '닉네임', '휴대폰번호', '전화번호', '이메일', '주소', '회원권한', '가입일', '차단',
+            'headers' => ['아이디', '이름', '닉네임', '휴대폰번호', '이메일', '회원권한', '가입일', '차단',
                             '광고성 이메일 수신동의', '광고성 이메일 동의일자',
                             '마케팅목적의개인정보수집및이용동의', '마케팅목적의개인정보수집및이용동의일자'],
-            'fields'  => ['mb_id', 'mb_name', 'mb_nick', 'mb_hp', 'mb_tel', 'mb_email', 'mb_addr1', 'mb_level', 'mb_datetime', 'mb_intercept_date',
+            'fields'  => ['mb_id', 'mb_name', 'mb_nick', 'mb_hp', 'mb_email', 'mb_level', 'mb_datetime', 'mb_intercept_date',
                             'mb_mailling','mb_mailling_date', 'mb_marketing_agree', 'mb_marketing_date'],
-            'widths'  => [20, 20, 20, 20, 20, 30, 30, 10, 25, 10, 20, 25, 20, 25],
+            'widths'  => [20, 20, 20, 20, 30, 10, 25, 10, 20, 25, 20, 25],
         ],
     ];
     

@@ -59,7 +59,6 @@ define('G5_JS_DIR',         'js');
 define('G5_LIB_DIR',        'lib');
 define('G5_PLUGIN_DIR',     'plugin');
 define('G5_SKIN_DIR',       'skin');
-define('G5_MOBILE_DIR',     'mobile');
 
 define('G5_KCPCERT_DIR',    'kcpcert');
 define('G5_INICERT_DIR',     'inicert');
@@ -68,7 +67,6 @@ define('G5_LGXPAY_DIR',     'lgxpay');
 define('G5_PHPMAILER_DIR',  'PHPMailer');
 define('G5_SESSION_DIR',    'session');
 define('G5_THEME_DIR',      'theme');
-define('G5_THEME_DEVICE',   '');
 
 // URL 은 브라우저상에서의 경로 (도메인으로 부터)
 if (G5_DOMAIN) {
@@ -97,7 +95,6 @@ define('G5_PLUGIN_URL',     G5_URL.'/'.G5_PLUGIN_DIR);
 define('G5_KCPCERT_URL',    G5_PLUGIN_URL.'/'.G5_KCPCERT_DIR);
 define('G5_INICERT_URL',     G5_PLUGIN_URL.'/'.G5_INICERT_DIR);
 define('G5_LGXPAY_URL',     G5_PLUGIN_URL.'/'.G5_LGXPAY_DIR);
-define('G5_MOBILE_URL',     G5_URL.'/'.G5_MOBILE_DIR);
 
 // PATH 는 서버상에서의 절대경로
 define('G5_ADMIN_PATH',     G5_PATH.'/'.G5_ADMIN_DIR);
@@ -109,7 +106,6 @@ define('G5_JS_PATH',        G5_PATH.'/'.G5_JS_DIR);
 define('G5_LIB_PATH',       G5_PATH.'/'.G5_LIB_DIR);
 define('G5_PLUGIN_PATH',    G5_PATH.'/'.G5_PLUGIN_DIR);
 define('G5_SKIN_PATH',      G5_PATH.'/'.G5_SKIN_DIR);
-define('G5_MOBILE_PATH',    G5_PATH.'/'.G5_MOBILE_DIR);
 define('G5_SESSION_PATH',   G5_DATA_PATH.'/'.G5_SESSION_DIR);
 
 define('G5_KCPCERT_PATH',   G5_PLUGIN_PATH.'/'.G5_KCPCERT_DIR);
@@ -128,14 +124,6 @@ define('G5_JS_VER',  '2304171');
 // 유저 사이드뷰에서 기본 no 프로필 이미지를 사용합니다.
 define('G5_NO_PROFILE_IMG', '<span><img src="'.G5_IMG_URL.'/no_profile.gif" alt="no_profile" width="22" height="22"></span>');
 
-
-//==============================================================================
-// 사용기기 설정
-// pc 설정 시 모바일 기기에서도 PC화면 보여짐
-// mobile 설정 시 PC에서도 모바일화면 보여짐
-// both 설정 시 접속 기기에 따른 화면 보여짐
-//------------------------------------------------------------------------------
-define('G5_SET_DEVICE', 'both');
 
 define('G5_USE_MOBILE', true); // 모바일 홈페이지를 사용하지 않을 경우 false 로 설정
 define('G5_USE_CACHE',  true); // 최신글등에 cache 기능 사용 여부
@@ -226,4 +214,3 @@ define('G5_MYSQLI_USE', true);
 define('G5_IP_DISPLAY', '\\1.♡.\\3.\\4');
 
 // KAKAO 우편번호 서비스 CDN
-define('G5_POSTCODE_JS', '<script src="//t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" async></script>');

@@ -18,7 +18,13 @@ include_once(G5_THEME_PATH.'/head.sub.php');
     <div id="hd_wrapper">
 
         <div id="logo">
-            <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/logo.png" alt="<?php echo $config['cf_title']; ?>"></a>
+            <a href="<?php echo G5_URL ?>">
+                <?php if (is_file(G5_IMG_PATH.'/logo.png')) { ?>
+                <img src="<?php echo G5_IMG_URL ?>/logo.png" alt="<?php echo $config['cf_title']; ?>">
+                <?php } else { ?>
+                <span><?php echo get_text($config['cf_title']); ?></span>
+                <?php } ?>
+            </a>
         </div>
     
         <div></div>

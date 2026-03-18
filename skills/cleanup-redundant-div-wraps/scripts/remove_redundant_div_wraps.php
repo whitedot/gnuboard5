@@ -561,7 +561,7 @@ function rangesOverlap(int $startA, int $endA, int $startB, int $endB): bool
 function parseArgs(array $argv): array
 {
     $opts = [
-        'target' => 'theme/basic',
+        'target' => 'theme',
         'mode' => 'both',
         'maxPasses' => 2,
         'singleChildTags' => [
@@ -669,9 +669,9 @@ Usage:
   php remove_redundant_div_wraps.php [--target=<path>] [--mode=empty|single|both] [--max-passes=<n>] [--single-child-tags=<csv|any>] [--allow-php] [--dry-run]
 
 Examples:
-  php remove_redundant_div_wraps.php --target=theme/basic --mode=both --dry-run
-  php remove_redundant_div_wraps.php --target=theme/basic --mode=single --single-child-tags=div,section
-  php remove_redundant_div_wraps.php --target=theme/basic --mode=both --allow-php
+  php remove_redundant_div_wraps.php --target=theme --mode=both --dry-run
+  php remove_redundant_div_wraps.php --target=theme --mode=single --single-child-tags=div,section
+  php remove_redundant_div_wraps.php --target=theme --mode=both --allow-php
 TXT;
 
     fwrite($code === 0 ? STDOUT : STDERR, $usage . PHP_EOL);

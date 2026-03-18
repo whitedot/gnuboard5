@@ -1,6 +1,6 @@
 ---
 name: cleanup-legacy-class-inline-style
-description: Remove legacy class and inline style attributes from PHP templates while preserving JS behavior hooks and ui-kit compatibility. Use when refactoring legacy theme files (for example theme/basic) for Tailwind migration with rules like "keep id", "keep JS-related classes", and "keep ui-kit related classes".
+description: Remove legacy class and inline style attributes from PHP templates while preserving JS behavior hooks and ui-kit compatibility. Use when refactoring legacy theme files (for example theme) for Tailwind migration with rules like "keep id", "keep JS-related classes", and "keep ui-kit related classes".
 ---
 
 # Legacy Attr Cleanup
@@ -33,15 +33,15 @@ Use this skill to remove presentational legacy attributes safely.
 
 Use the bundled script:
 
-`php skills/cleanup-legacy-class-inline-style/scripts/cleanup_legacy_attrs.php --target=theme/basic --mode=both --dry-run`
+`php skills/cleanup-legacy-class-inline-style/scripts/cleanup_legacy_attrs.php --target=theme --mode=both --dry-run`
 
 Then apply:
 
-`php skills/cleanup-legacy-class-inline-style/scripts/cleanup_legacy_attrs.php --target=theme/basic --mode=both`
+`php skills/cleanup-legacy-class-inline-style/scripts/cleanup_legacy_attrs.php --target=theme --mode=both`
 
 ## Options
 
-- `--target=<path>`: PHP file or directory to process (default: `theme/basic`)
+- `--target=<path>`: PHP file or directory to process (default: `theme`)
 - `--mode=class|style|both`: cleanup mode (default: `both`)
 - `--js-root=<path>`: JS root used for class keep-set extraction (default: `js`)
 - `--dry-run`: calculate and report changes without writing files
@@ -49,7 +49,7 @@ Then apply:
 ## Validation
 
 1. Verify remaining inline styles are only intended exceptions:
-- `rg -n "style=" theme/basic -g "*.php"`
+- `rg -n "style=" theme -g "*.php"`
 2. Lint changed PHP files:
 - Run `php -l` on changed files.
 3. Spot-check dynamic class lines in diffs:

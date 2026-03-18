@@ -52,14 +52,8 @@ if (isset($_POST['cf_intercept_ip']) && $_POST['cf_intercept_ip']) {
 
 $check_keys = array(
     'cf_use_email_certify' => 'int',
-    'cf_use_homepage' => 'int',
-    'cf_req_homepage' => 'int',
-    'cf_use_tel' => 'int',
-    'cf_req_tel' => 'int',
     'cf_use_hp' => 'int',
     'cf_req_hp' => 'int',
-    'cf_use_addr' => 'int',
-    'cf_req_addr' => 'int',
     'cf_register_level' => 'int',
     'cf_leave_day' => 'int',
     'cf_email_use' => 'int',
@@ -67,7 +61,6 @@ $check_keys = array(
     'cf_email_mb_member' => 'int',
     'cf_prohibit_id' => 'text',
     'cf_prohibit_email' => 'text',
-    'cf_login_minutes' => 'int',
     'cf_page_rows' => 'int',
     'cf_cert_req' => 'int',
     'cf_cert_use' => 'int',
@@ -81,9 +74,6 @@ $check_keys = array(
     'cf_cut_name' => 'int',
     'cf_nick_modify' => 'int',
     'cf_write_pages' => 'int',
-    'cf_link_target' => 'char',
-    'cf_delay_sec' => 'int',
-    'cf_filter' => 'text',
     'cf_possible_ip' => 'text',
     'cf_image_extension' => 'char',
     'cf_flash_extension' => 'char',
@@ -115,13 +105,9 @@ foreach ($check_keys as $k => $v) {
 }
 
 $preserve_keys = array(
-    'cf_login_minutes',
-    'cf_delay_sec',
-    'cf_link_target',
     'cf_image_extension',
     'cf_flash_extension',
-    'cf_movie_extension',
-    'cf_filter'
+    'cf_movie_extension'
 );
 
 foreach ($preserve_keys as $key) {
@@ -172,19 +158,10 @@ $sql = " update {$g5['config_table']}
                 cf_cut_name = '{$_POST['cf_cut_name']}',
                 cf_nick_modify = '{$_POST['cf_nick_modify']}',
                 cf_write_pages = '{$_POST['cf_write_pages']}',
-                cf_link_target = '{$_POST['cf_link_target']}',
-                cf_delay_sec = '{$_POST['cf_delay_sec']}',
-                cf_filter = '{$_POST['cf_filter']}',
                 cf_possible_ip = '" . trim($_POST['cf_possible_ip']) . "',
                 cf_intercept_ip = '" . trim($_POST['cf_intercept_ip']) . "',
-                cf_use_homepage = '{$_POST['cf_use_homepage']}',
-                cf_req_homepage = '{$_POST['cf_req_homepage']}',
-                cf_use_tel = '{$_POST['cf_use_tel']}',
-                cf_req_tel = '{$_POST['cf_req_tel']}',
                 cf_use_hp = '{$_POST['cf_use_hp']}',
                 cf_req_hp = '{$_POST['cf_req_hp']}',
-                cf_use_addr = '{$_POST['cf_use_addr']}',
-                cf_req_addr = '{$_POST['cf_req_addr']}',
                 cf_register_level = '{$_POST['cf_register_level']}',
                 cf_leave_day = '{$_POST['cf_leave_day']}',
                 cf_email_use = '{$_POST['cf_email_use']}',
@@ -192,7 +169,6 @@ $sql = " update {$g5['config_table']}
                 cf_email_mb_member = '{$_POST['cf_email_mb_member']}',
                 cf_prohibit_id = '{$_POST['cf_prohibit_id']}',
                 cf_prohibit_email = '{$_POST['cf_prohibit_email']}',
-                cf_login_minutes = '{$_POST['cf_login_minutes']}',
                 cf_image_extension = '{$_POST['cf_image_extension']}',
                 cf_flash_extension = '{$_POST['cf_flash_extension']}',
                 cf_movie_extension = '{$_POST['cf_movie_extension']}',

@@ -1,6 +1,6 @@
 <section id="anc_mb_contact" class="card">
     <div class="card-header">
-        <h2 class="card-title">연락처 및 주소</h2>
+        <h2 class="card-title">인증 연락처</h2>
     </div>
     <div class="card-body">
         <div class="af-grid">
@@ -10,15 +10,6 @@
                 </div>
                 <div class="af-field">
                     <input type="text" name="mb_hp" value="<?php echo $mb['mb_hp'] ?>" id="mb_hp" size="15" maxlength="20" class="form-input">
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="mb_tel" class="form-label">전화번호</label>
-                </div>
-                <div class="af-field">
-                    <input type="text" name="mb_tel" value="<?php echo $mb['mb_tel'] ?>" id="mb_tel" size="15" maxlength="20" class="form-input">
                 </div>
             </div>
 
@@ -80,36 +71,6 @@
                 </div>
             </div>
 
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="mb_zip" class="form-label">주소</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-stack">
-                        <div class="af-inline">
-                            <label for="mb_zip" class="form-label">우편번호</label>
-                            <input type="text" name="mb_zip" value="<?php echo $mb['mb_zip1'] . $mb['mb_zip2']; ?>" id="mb_zip" size="5" maxlength="6" class="form-input">
-                            <button type="button" class="btn btn-sm btn-surface-default-soft" onclick="win_zip('fmember', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon');">주소 검색</button>
-                        </div>
-
-                        <div class="af-stack">
-                            <div>
-                                <label for="mb_addr1" class="form-label">기본주소</label>
-                                <input type="text" name="mb_addr1" value="<?php echo $mb['mb_addr1'] ?>" id="mb_addr1" size="60" class="form-input">
-                            </div>
-                            <div>
-                                <label for="mb_addr2" class="form-label">상세주소</label>
-                                <input type="text" name="mb_addr2" value="<?php echo $mb['mb_addr2'] ?>" id="mb_addr2" size="60" class="form-input">
-                            </div>
-                            <div>
-                                <label for="mb_addr3" class="form-label">참고항목</label>
-                                <input type="text" name="mb_addr3" value="<?php echo $mb['mb_addr3'] ?>" id="mb_addr3" size="60" class="form-input">
-                            </div>
-                            <input type="hidden" name="mb_addr_jibeon" value="<?php echo $mb['mb_addr_jibeon']; ?>">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>

@@ -92,12 +92,8 @@ if ($w == "") {
     set_session("ss_reg_mb_hp", $member['mb_hp']);
 
     $member['mb_email']       = get_text($member['mb_email']);
-    $member['mb_homepage']    = get_text($member['mb_homepage']);
     $member['mb_birth']       = get_text($member['mb_birth']);
-    $member['mb_tel']         = get_text($member['mb_tel']);
     $member['mb_hp']          = get_text($member['mb_hp']);
-    $member['mb_addr1']       = get_text($member['mb_addr1']);
-    $member['mb_addr2']       = get_text($member['mb_addr2']);
 } else {
     alert('w 값이 제대로 넘어오지 않았습니다.');
 }
@@ -114,10 +110,6 @@ $hp_readonly = (($config['cf_cert_use'] && $config['cf_cert_req']) && ($config['
 
 $agree  = isset($_REQUEST['agree']) ? preg_replace('#[^0-9]#', '', $_REQUEST['agree']) : '';
 $agree2 = isset($_REQUEST['agree2']) ? preg_replace('#[^0-9]#', '', $_REQUEST['agree2']) : '';
-
-// add_javascript('js 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-if ($config['cf_use_addr'])
-    add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 
 include_once($member_skin_path.'/register_form.skin.php');
 

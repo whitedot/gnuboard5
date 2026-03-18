@@ -37,27 +37,11 @@ $mb_nick        = isset($_POST['mb_nick']) ? trim($_POST['mb_nick']) : '';
 $mb_email       = isset($_POST['mb_email']) ? trim($_POST['mb_email']) : '';
 $mb_sex         = isset($_POST['mb_sex'])           ? trim($_POST['mb_sex'])         : "";
 $mb_birth       = isset($_POST['mb_birth'])         ? trim($_POST['mb_birth'])       : "";
-$mb_homepage    = isset($_POST['mb_homepage'])      ? trim($_POST['mb_homepage'])    : "";
-$mb_tel         = isset($_POST['mb_tel'])           ? trim($_POST['mb_tel'])         : "";
 $mb_hp          = isset($_POST['mb_hp'])            ? trim($_POST['mb_hp'])          : "";
-$mb_zip1        = isset($_POST['mb_zip'])           ? substr(trim($_POST['mb_zip']), 0, 3) : "";
-$mb_zip2        = isset($_POST['mb_zip'])           ? substr(trim($_POST['mb_zip']), 3)    : "";
-$mb_addr1       = isset($_POST['mb_addr1'])         ? trim($_POST['mb_addr1'])       : "";
-$mb_addr2       = isset($_POST['mb_addr2'])         ? trim($_POST['mb_addr2'])       : "";
-$mb_addr3       = isset($_POST['mb_addr3'])         ? trim($_POST['mb_addr3'])       : "";
-$mb_addr_jibeon = isset($_POST['mb_addr_jibeon'])   ? trim($_POST['mb_addr_jibeon']) : "";
 $mb_mailling    = isset($_POST['mb_mailling'])      ? trim($_POST['mb_mailling'])    : "0";
 $mb_open        = isset($_POST['mb_open'])          ? trim($_POST['mb_open'])        : "0";
 $mb_name        = clean_xss_tags($mb_name, 1, 1);
 $mb_email       = get_email_address($mb_email);
-$mb_homepage    = clean_xss_tags($mb_homepage, 1, 1);
-$mb_tel         = clean_xss_tags($mb_tel, 1, 1);
-$mb_zip1        = preg_replace('/[^0-9]/', '', $mb_zip1);
-$mb_zip2        = preg_replace('/[^0-9]/', '', $mb_zip2);
-$mb_addr1       = clean_xss_tags($mb_addr1, 1, 1);
-$mb_addr2       = clean_xss_tags($mb_addr2, 1, 1);
-$mb_addr3       = clean_xss_tags($mb_addr3, 1, 1);
-$mb_addr_jibeon = preg_match("/^(N|R)$/", $mb_addr_jibeon) ? $mb_addr_jibeon : '';
 
 $mb_marketing_agree     = isset($_POST['mb_marketing_agree'])   ? trim($_POST['mb_marketing_agree'])    : "0";
 
@@ -199,14 +183,6 @@ if ($w == '') {
                      mb_nick = '{$mb_nick}',
                      mb_nick_date = '".G5_TIME_YMD."',
                      mb_email = '{$mb_email}',
-                     mb_homepage = '{$mb_homepage}',
-                     mb_tel = '{$mb_tel}',
-                     mb_zip1 = '{$mb_zip1}',
-                     mb_zip2 = '{$mb_zip2}',
-                     mb_addr1 = '{$mb_addr1}',
-                     mb_addr2 = '{$mb_addr2}',
-                     mb_addr3 = '{$mb_addr3}',
-                     mb_addr_jibeon = '{$mb_addr_jibeon}',
                      mb_today_login = '".G5_TIME_YMDHIS."',
                      mb_datetime = '".G5_TIME_YMDHIS."',
                      mb_ip = '{$_SERVER['REMOTE_ADDR']}',
@@ -352,14 +328,6 @@ if ($w == '') {
                     mb_mailling = '{$mb_mailling}',
                     mb_open = '{$mb_open}',
                     mb_email = '{$mb_email}',
-                    mb_homepage = '{$mb_homepage}',
-                    mb_tel = '{$mb_tel}',
-                    mb_zip1 = '{$mb_zip1}',
-                    mb_zip2 = '{$mb_zip2}',
-                    mb_addr1 = '{$mb_addr1}',
-                    mb_addr2 = '{$mb_addr2}',
-                    mb_addr3 = '{$mb_addr3}',
-                    mb_addr_jibeon = '{$mb_addr_jibeon}',
                     mb_marketing_agree = '{$mb_marketing_agree}'
                     {$sql_password}
                     {$sql_nick_date}

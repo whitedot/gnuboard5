@@ -12,15 +12,7 @@ $mb = array(
     'mb_name' => null,
     'mb_nick' => null,
     'mb_email' => null,
-    'mb_homepage' => null,
     'mb_hp' => null,
-    'mb_tel' => null,
-    'mb_zip1' => null,
-    'mb_zip2' => null,
-    'mb_addr1' => null,
-    'mb_addr2' => null,
-    'mb_addr3' => null,
-    'mb_addr_jibeon' => null,
     'mb_memo' => null,
     'mb_leave_date' => null,
 );
@@ -58,13 +50,8 @@ if ($w == '') {
     $mb['mb_name'] = get_text($mb['mb_name']);
     $mb['mb_nick'] = get_text($mb['mb_nick']);
     $mb['mb_email'] = get_text($mb['mb_email']);
-    $mb['mb_homepage'] = get_text($mb['mb_homepage']);
     $mb['mb_birth'] = get_text($mb['mb_birth']);
-    $mb['mb_tel'] = get_text($mb['mb_tel']);
     $mb['mb_hp'] = get_text($mb['mb_hp']);
-    $mb['mb_addr1'] = get_text($mb['mb_addr1']);
-    $mb['mb_addr2'] = get_text($mb['mb_addr2']);
-    $mb['mb_addr3'] = get_text($mb['mb_addr3']);
 } else {
     alert('제대로 된 값이 넘어오지 않았습니다.');
 }
@@ -126,15 +113,12 @@ if ($mb['mb_intercept_date']) {
 }
 $g5['title'] .= '회원 ' . $html_title;
 $admin_container_class = 'admin-page-member-form';
-$admin_page_subtitle = '기본정보, 연락처, 동의 상태, 활동 이력을 탭에서 빠르게 관리하세요.';
+$admin_page_subtitle = '기본정보, 인증 연락처, 동의 상태, 활동 이력을 탭에서 빠르게 관리하세요.';
 require_once './admin.head.php';
-
-// add_javascript('js 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 
 $member_tabs = array(
     array('id' => 'anc_mb_basic', 'label' => '기본 정보'),
-    array('id' => 'anc_mb_contact', 'label' => '연락처 및 주소'),
+    array('id' => 'anc_mb_contact', 'label' => '인증 연락처'),
     array('id' => 'anc_mb_consent', 'label' => '수신 및 공개 설정'),
     array('id' => 'anc_mb_profile', 'label' => '관리 메모'),
     array('id' => 'anc_mb_history', 'label' => '인증 및 활동 내역'),

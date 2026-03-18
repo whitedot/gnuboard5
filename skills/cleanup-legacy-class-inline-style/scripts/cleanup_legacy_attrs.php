@@ -212,7 +212,7 @@ function main(array $argv): void
 function parseArgs(array $argv): array
 {
     $opts = [
-        'target' => 'theme/basic',
+        'target' => 'theme',
         'mode' => 'both',
         'jsRoot' => 'js',
         'dryRun' => false,
@@ -259,9 +259,9 @@ Usage:
   php cleanup_legacy_attrs.php [--target=<path>] [--mode=class|style|both] [--js-root=<path>] [--dry-run]
 
 Examples:
-  php cleanup_legacy_attrs.php --target=theme/basic --mode=both --dry-run
-  php cleanup_legacy_attrs.php --target=theme/basic --mode=class
-  php cleanup_legacy_attrs.php --target=theme/basic --mode=style
+  php cleanup_legacy_attrs.php --target=theme --mode=both --dry-run
+  php cleanup_legacy_attrs.php --target=theme --mode=class
+  php cleanup_legacy_attrs.php --target=theme --mode=style
 
 TXT;
     fwrite($code === 0 ? STDOUT : STDERR, $usage);

@@ -112,7 +112,7 @@ $colspan = 5;
                         continue;
                     }
 
-                    $mb_nick = get_sideview($row['mb_id'], $row['mb_nick'], $row['mb_email'], $row['mb_homepage']);
+                    $mb_nick = get_sideview($row['mb_id'], $row['mb_nick'], $row['mb_email'], '');
 
                     $bg = 'bg' . ($i % 2);
                 ?>

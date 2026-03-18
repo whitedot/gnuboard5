@@ -29,15 +29,15 @@ Use this skill to safely unwrap unnecessary `<div>` wrappers after legacy attr c
 
 Run dry-run:
 
-`php skills/cleanup-redundant-div-wraps/scripts/remove_redundant_div_wraps.php --target=theme/basic --mode=both --dry-run`
+`php skills/cleanup-redundant-div-wraps/scripts/remove_redundant_div_wraps.php --target=theme --mode=both --dry-run`
 
 Then apply:
 
-`php skills/cleanup-redundant-div-wraps/scripts/remove_redundant_div_wraps.php --target=theme/basic --mode=both`
+`php skills/cleanup-redundant-div-wraps/scripts/remove_redundant_div_wraps.php --target=theme --mode=both`
 
 ## Options
 
-- `--target=<path>`: PHP file or directory to process (default: `theme/basic`)
+- `--target=<path>`: PHP file or directory to process (default: `theme`)
 - `--mode=empty|single|both`: remove empty wrappers, single-child wrappers, or both (default: `both`)
 - `--max-passes=<n>`: number of cleanup passes (default: `2`)
 - `--single-child-tags=<csv|any>`: allowed direct-child tags for single-child unwrap (default: `div,section,article,main,aside,nav,header,footer,ul,ol,table,form,fieldset`)
@@ -51,4 +51,4 @@ Then apply:
 2. Spot-check wrappers in diffs:
 - Ensure structure did not change around forms/tables/nav blocks.
 3. Scan remaining plain wrappers when needed:
-- `rg -n "^\s*<div>\s*$" theme/basic -g "*.php"`
+- `rg -n "^\s*<div>\s*$" theme -g "*.php"`

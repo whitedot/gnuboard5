@@ -68,14 +68,6 @@
                 </div>
             </div>
 
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="mb_homepage" class="form-label">홈페이지</label>
-                </div>
-                <div class="af-field">
-                    <input type="text" name="mb_homepage" value="<?php echo $mb['mb_homepage'] ?>" id="mb_homepage" maxlength="255" size="15" class="form-input">
-                </div>
-            </div>
         </div>
     </div>
 </section>

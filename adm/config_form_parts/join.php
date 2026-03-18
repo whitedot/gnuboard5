@@ -8,60 +8,6 @@
         <div class="af-grid">
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_use_homepage" class="form-label">홈페이지 입력</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <label for="cf_use_homepage" class="af-check form-label">
-                            <input type="checkbox" name="cf_use_homepage" value="1" id="cf_use_homepage" <?php echo $config['cf_use_homepage'] ? 'checked' : ''; ?> class="form-checkbox">
-                            <span class="form-label">보이기</span>
-                        </label>
-                        <label for="cf_req_homepage" class="af-check form-label">
-                            <input type="checkbox" name="cf_req_homepage" value="1" id="cf_req_homepage" <?php echo $config['cf_req_homepage'] ? 'checked' : ''; ?> class="form-checkbox">
-                            <span class="form-label">필수입력</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_use_addr" class="form-label">주소 입력</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <label for="cf_use_addr" class="af-check form-label">
-                            <input type="checkbox" name="cf_use_addr" value="1" id="cf_use_addr" <?php echo $config['cf_use_addr'] ? 'checked' : ''; ?> class="form-checkbox">
-                            <span class="form-label">보이기</span>
-                        </label>
-                        <label for="cf_req_addr" class="af-check form-label">
-                            <input type="checkbox" name="cf_req_addr" value="1" id="cf_req_addr" <?php echo $config['cf_req_addr'] ? 'checked' : ''; ?> class="form-checkbox">
-                            <span class="form-label">필수입력</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_use_tel" class="form-label">전화번호 입력</label>
-                </div>
-                <div class="af-field">
-                    <div class="af-inline">
-                        <label for="cf_use_tel" class="af-check form-label">
-                            <input type="checkbox" name="cf_use_tel" value="1" id="cf_use_tel" <?php echo $config['cf_use_tel'] ? 'checked' : ''; ?> class="form-checkbox">
-                            <span class="form-label">보이기</span>
-                        </label>
-                        <label for="cf_req_tel" class="af-check form-label">
-                            <input type="checkbox" name="cf_req_tel" value="1" id="cf_req_tel" <?php echo $config['cf_req_tel'] ? 'checked' : ''; ?> class="form-checkbox">
-                            <span class="form-label">필수입력</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
                     <label for="cf_use_hp" class="form-label">휴대폰번호 입력</label>
                 </div>
                 <div class="af-field">

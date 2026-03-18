@@ -15,7 +15,6 @@ $mb_id          = isset($_POST['mb_id']) ? trim($_POST['mb_id']) : '';
 $mb_password    = isset($_POST['mb_password']) ? trim($_POST['mb_password']) : '';
 $mb_certify_case = isset($_POST['mb_certify_case']) ? preg_replace('/[^0-9a-z_]/i', '', $_POST['mb_certify_case']) : '';
 $mb_certify     = isset($_POST['mb_certify']) ? preg_replace('/[^0-9a-z_]/i', '', $_POST['mb_certify']) : '';
-$mb_zip         = isset($_POST['mb_zip']) ? preg_replace('/[^0-9a-z_]/i', '', $_POST['mb_zip']) : '';
 
 // 광고성 정보 수신
 $mb_marketing_agree         = isset($_POST['mb_marketing_agree']) ? clean_xss_tags($_POST['mb_marketing_agree'], 1, 1) : '0';
@@ -47,9 +46,6 @@ if ($mb_certify_case && $mb_certify) {
     $mb_adult = 0;
 }
 
-$mb_zip1 = substr($mb_zip, 0, 3);
-$mb_zip2 = substr($mb_zip, 3);
-
 $mb_email = isset($_POST['mb_email']) ? get_email_address(trim($_POST['mb_email'])) : '';
 $mb_nick = isset($_POST['mb_nick']) ? trim(strip_tags($_POST['mb_nick'])) : '';
 
@@ -60,12 +56,6 @@ if ($msg = valid_mb_nick($mb_nick)) {
 $posts = array();
 $check_keys = array(
     'mb_name',
-    'mb_homepage',
-    'mb_tel',
-    'mb_addr1',
-    'mb_addr2',
-    'mb_addr3',
-    'mb_addr_jibeon',
     'mb_leave_date',
     'mb_intercept_date',
     'mb_mailling',
@@ -84,17 +74,9 @@ foreach ($check_keys as $key) {
 $sql_common = "  mb_name = '{$posts['mb_name']}',
                  mb_nick = '{$mb_nick}',
                  mb_email = '{$mb_email}',
-                 mb_homepage = '{$posts['mb_homepage']}',
-                 mb_tel = '{$posts['mb_tel']}',
                  mb_hp = '{$mb_hp}',
                  mb_certify = '{$mb_certify}',
                  mb_adult = '{$mb_adult}',
-                 mb_zip1 = '$mb_zip1',
-                 mb_zip2 = '$mb_zip2',
-                 mb_addr1 = '{$posts['mb_addr1']}',
-                 mb_addr2 = '{$posts['mb_addr2']}',
-                 mb_addr3 = '{$posts['mb_addr3']}',
-                 mb_addr_jibeon = '{$posts['mb_addr_jibeon']}',
                  mb_leave_date = '{$posts['mb_leave_date']}',
                  mb_intercept_date='{$posts['mb_intercept_date']}',
                  mb_memo = '{$mb_memo}',

@@ -46,7 +46,6 @@ if($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipin
 </div>
 <script>    
 $(function() {
-    $("#reg_zip_find").css("display", "inline-block");
     var pageTypeParam = "pageType=find";
 
 	<?php if($config['cf_cert_use'] && $config['cf_cert_simple']) { ?>
