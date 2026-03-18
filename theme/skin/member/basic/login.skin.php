@@ -35,7 +35,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             </div>
         </fieldset> 
         </form>
-        <?php @include_once(get_social_skin_path().'/social_login.skin.php'); // 소셜로그인 사용시 소셜로그인 버튼 ?>
     </div>
 
 </div>

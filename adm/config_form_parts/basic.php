@@ -197,30 +197,6 @@
                     <textarea name="cf_intercept_ip" id="cf_intercept_ip" class="form-textarea"><?php echo get_sanitize_input($config['cf_intercept_ip']); ?></textarea>
                 </div>
             </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_analytics" class="form-label">방문자분석 스크립트</label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('방문자분석 스크립트 코드를 입력합니다. 예) 구글 애널리틱스<br>관리자 페이지에서는 이 코드를 사용하지 않습니다.'); ?>
-                    <textarea name="cf_analytics" id="cf_analytics" class="form-textarea"><?php echo get_text($config['cf_analytics']); ?></textarea>
-                </div>
-            </div>
-
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_add_meta" class="form-label">추가 메타태그</label>
-                </div>
-                <div class="af-field">
-                    <?php echo help('추가로 사용하실 meta 태그를 입력합니다.<br>관리자 페이지에서는 이 코드를 사용하지 않습니다.'); ?>
-                    <textarea name="cf_add_meta" id="cf_add_meta" class="form-textarea"><?php echo get_text($config['cf_add_meta']); ?></textarea>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>
-<?php if (!defined('G5_MEMBER_ONLY') || !G5_MEMBER_ONLY) { ?>
-<button type="button" data-type="conf_skin" class="btn btn-soft-secondary btn-sm">테마 스킨설정 가져오기</button>
-<?php } ?>

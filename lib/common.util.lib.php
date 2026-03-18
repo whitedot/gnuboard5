@@ -580,11 +580,6 @@ function member_delete($mb_id)
     // 관리권한 삭제
     sql_query(" delete from {$g5['auth_table']} where mb_id = '$mb_id' ");
 
-    //소셜로그인에서 삭제 또는 해제
-    if(function_exists('social_member_link_delete')){
-        social_member_link_delete($mb_id);
-    }
-
     // 아이콘 삭제
     @unlink(G5_DATA_PATH.'/member/'.substr($mb_id,0,2).'/'.$mb_id.'.gif');
 
@@ -753,13 +748,6 @@ function check_vaild_callback($callback){
 
 function is_use_email_certify(){
     global $config;
-
-    if( $config['cf_use_email_certify'] && function_exists('social_is_login_check') ){
-        if( $config['cf_social_login_use'] && (get_session('ss_social_provider') || social_is_login_check()) ){      //소셜 로그인을 사용한다면
-            $tmp = (defined('G5_SOCIAL_CERTIFY_MAIL') && G5_SOCIAL_CERTIFY_MAIL) ? 1 : 0;
-            return $tmp;
-        }
-    }
 
     return $config['cf_use_email_certify'];
 }

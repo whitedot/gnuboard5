@@ -33,9 +33,6 @@ if (G5_IS_MOBILE) {
     echo '<meta name="viewport" id="meta_viewport" content="width=device-width,initial-scale=1.0">'.PHP_EOL;
     echo '<meta name="format-detection" content="telephone=no">'.PHP_EOL;
 }
-
-if($config['cf_add_meta'])
-    echo $config['cf_add_meta'].PHP_EOL;
 ?>
 <title><?php echo $g5_head_title; ?></title>
 <?php
@@ -63,9 +60,6 @@ add_javascript('<script src="'.G5_JS_URL.'/jquery-migrate-1.4.1.min.js"></script
 add_javascript('<script src="'.G5_JS_URL.'/common.js?ver='.G5_JS_VER.'"></script>', 0);
 add_javascript('<script src="'.G5_JS_URL.'/ui-kit/ui-dropdown.js?ver='.G5_JS_VER.'"></script>', 1);
 add_javascript('<script src="'.G5_JS_URL.'/wrest.js?ver='.G5_JS_VER.'"></script>', 0);
-
-if(!defined('G5_IS_ADMIN'))
-    echo $config['cf_add_script'];
 ?>
 </head>
 <body<?php echo isset($g5['body_script']) ? $g5['body_script'] : ''; ?>>

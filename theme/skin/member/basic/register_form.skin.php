@@ -201,12 +201,6 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	            </li>
 	            <?php }  ?>
 	
-	            <?php
-	            //회원정보 수정인 경우 소셜 계정 출력
-	            if( $w == 'u' && function_exists('social_member_provider_manage') ){
-	                social_member_provider_manage();
-	            }
-	            ?>
 	        </ul>
 	    </div>
 

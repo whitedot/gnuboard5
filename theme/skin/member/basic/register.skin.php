@@ -12,10 +12,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
     <p><i aria-hidden="true"></i> 회원가입약관 및 개인정보 수집 및 이용의 내용에 동의하셔야 회원가입 하실 수 있습니다.</p>
     
-    <?php
-    // 소셜로그인 사용시 소셜로그인 버튼
-    @include_once(get_social_skin_path().'/social_register.skin.php');
-    ?>
     <section id="fregister_term">
         <h2>(필수) 회원가입약관</h2>
         <textarea readonly><?php echo get_text($config['cf_stipulation']) ?></textarea>

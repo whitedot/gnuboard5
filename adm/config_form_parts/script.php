@@ -24,42 +24,6 @@
             }
         }).trigger("change");
 
-        $("button[data-type^='conf_']").on("click", function() {
-            var type = $(this).data("type");
-            var msg = "기본환경 회원스킨 설정";
-
-            if (!confirm("현재 테마의 " + msg + "을 적용하시겠습니까?"))
-                return false;
-
-            $.ajax({
-                type: "POST",
-                url: "./theme_config_load.php",
-                cache: false,
-                async: false,
-                data: {
-                    type: type
-                },
-                dataType: "json",
-                success: function(data) {
-                    if (data.error) {
-                        alert(data.error);
-                        return false;
-                    }
-
-                    var field = Array('cf_member_skin');
-                    var count = field.length;
-                    var key;
-
-                    for (i = 0; i < count; i++) {
-                        key = field[i];
-
-                        if (data[key] != undefined && data[key] != "")
-                            $("select[name=" + key + "]").val(data[key]);
-                    }
-                }
-            });
-        });
-
         if (window.CommonUI && typeof window.CommonUI.initStickyAnchorTabs === "function") {
             window.CommonUI.initStickyAnchorTabs({
                 tabBarSelector: "#config_tabs_bar",
@@ -76,10 +40,7 @@
 
     // 각 요소의 초기값 저장
     var initialValues = {
-        cf_admin: $('#cf_admin').val(),
-        cf_analytics: $('#cf_analytics').val(),
-        cf_add_meta: $('#cf_add_meta').val(),
-        cf_add_script: $('#cf_add_script').val()
+        cf_admin: $('#cf_admin').val()
     };
 
     function check_config_captcha_open() {
@@ -89,16 +50,6 @@
         if ($('#cf_admin').val()) {
             isChanged = isChanged || $('#cf_admin').val() !== initialValues.cf_admin;
         }
-        if ($('#cf_analytics').val()) {
-            isChanged = isChanged || $('#cf_analytics').val() !== initialValues.cf_analytics;
-        }
-        if ($('#cf_add_meta').val()) {
-            isChanged = isChanged || $('#cf_add_meta').val() !== initialValues.cf_add_meta;
-        }
-        if ($('#cf_add_script').val()) {
-            isChanged = isChanged || $('#cf_add_script').val() !== initialValues.cf_add_script;
-        }
-        
         var $wrap = $("#config_captcha_wrap"),
             tooptipid = "mp_captcha_tooltip",
             $p_text = $("<p>", {id:tooptipid, style:"font-size:0.95em;letter-spacing:-0.1em"}).html("중요정보를 수정할 경우 캡챠를 입력해야 합니다."),
@@ -155,15 +106,6 @@
         
         // 최고관리자 변경시
         $(document).on('change', '#cf_admin', check_config_captcha_open);
-
-        // 방문자분석 스크립트 변경시
-        $(document).on('input', '#cf_analytics', check_config_captcha_open);
-        
-        // 추가 메타태그 변경시
-        $(document).on('input', '#cf_add_meta', check_config_captcha_open);
-        
-        // 추가 script, css 변경시
-        $(document).on('input', '#cf_add_script', check_config_captcha_open);
     });
 </script>
 

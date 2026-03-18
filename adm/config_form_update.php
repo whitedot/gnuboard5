@@ -24,9 +24,7 @@ if (!(isset($mb['mb_id']) && $mb['mb_id'])) {
 
 check_admin_token();
 
-$cf_social_servicelist = !empty($_POST['cf_social_servicelist']) ? implode(',', $_POST['cf_social_servicelist']) : '';
-
-$check_keys = array('cf_cert_kcp_cd', 'cf_cert_kcp_enckey', 'cf_recaptcha_site_key', 'cf_recaptcha_secret_key', 'cf_naver_clientid', 'cf_naver_secret', 'cf_facebook_appid', 'cf_facebook_secret', 'cf_twitter_key', 'cf_twitter_secret', 'cf_google_clientid', 'cf_google_secret', 'cf_googl_shorturl_apikey', 'cf_kakao_rest_key', 'cf_kakao_client_secret', 'cf_kakao_js_apikey', 'cf_payco_clientid', 'cf_payco_secret', 'cf_cert_kg_cd', 'cf_cert_kg_mid');
+$check_keys = array('cf_cert_kcp_cd', 'cf_cert_kcp_enckey', 'cf_recaptcha_site_key', 'cf_recaptcha_secret_key', 'cf_cert_kg_cd', 'cf_cert_kg_mid');
 
 foreach ($check_keys as $key) {
     if (isset($_POST[$key]) && $_POST[$key]) {
@@ -70,9 +68,7 @@ $check_keys = array(
     'cf_prohibit_id' => 'text',
     'cf_prohibit_email' => 'text',
     'cf_login_minutes' => 'int',
-    'cf_formmail_is_member' => 'int',
     'cf_page_rows' => 'int',
-    'cf_social_login_use' => 'int',
     'cf_cert_req' => 'int',
     'cf_cert_use' => 'int',
     'cf_cert_find' => 'int',
@@ -82,7 +78,6 @@ $check_keys = array(
     'cf_cert_use_seed' => 'int',
     'cf_admin_email' => 'char',
     'cf_admin_email_name' => 'char',
-    'cf_add_script' => 'text',
     'cf_cut_name' => 'int',
     'cf_nick_modify' => 'int',
     'cf_write_pages' => 'int',
@@ -90,9 +85,6 @@ $check_keys = array(
     'cf_delay_sec' => 'int',
     'cf_filter' => 'text',
     'cf_possible_ip' => 'text',
-    'cf_analytics' => 'text',
-    'cf_add_meta' => 'text',
-    'cf_member_skin' => 'char',
     'cf_image_extension' => 'char',
     'cf_flash_extension' => 'char',
     'cf_movie_extension' => 'char',
@@ -114,7 +106,7 @@ foreach ($check_keys as $k => $v) {
     if ($v === 'int') {
         $_POST[$k] = isset($_POST[$k]) ? (int) $_POST[$k] : 0;
     } else {
-        if (in_array($k, array('cf_analytics', 'cf_add_meta', 'cf_add_script', 'cf_stipulation', 'cf_privacy'))) {
+        if (in_array($k, array('cf_stipulation', 'cf_privacy'))) {
             $_POST[$k] = isset($_POST[$k]) ? $_POST[$k] : '';
         } else {
             $_POST[$k] = isset($_POST[$k]) ? strip_tags(clean_xss_attributes($_POST[$k])) : '';
@@ -124,7 +116,6 @@ foreach ($check_keys as $k => $v) {
 
 $preserve_keys = array(
     'cf_login_minutes',
-    'cf_formmail_is_member',
     'cf_delay_sec',
     'cf_link_target',
     'cf_image_extension',
@@ -157,22 +148,10 @@ if ($_POST['cf_cert_hp'] === 'kcb') {
     $_POST['cf_cert_hp'] = '';
 }
 
-// 관리자가 자동등록방지를 사용해야 할 경우 ( 기본환경설정에서 최고관리자, 방문자분석 스크립트, 추가 메타태그, 추가 script, css 변경시 )
+// 관리자가 자동등록방지를 사용해야 할 경우 ( 기본환경설정에서 최고관리자 변경시 )
 $check_captcha = 0;
 
 if ($cf_admin && $ori_config['cf_admin'] !== $cf_admin) {
-    $check_captcha = 1;
-}
-
-if ($_POST['cf_analytics'] && $ori_config['cf_analytics'] !== stripslashes($_POST['cf_analytics'])) {
-    $check_captcha = 1;
-}
-
-if ($_POST['cf_add_meta'] && $ori_config['cf_add_meta'] !== stripslashes($_POST['cf_add_meta'])) {
-    $check_captcha = 1;
-}
-
-if ($_POST['cf_add_script'] && $ori_config['cf_add_script'] !== stripslashes($_POST['cf_add_script'])) {
     $check_captcha = 1;
 }
 
@@ -189,7 +168,6 @@ $sql = " update {$g5['config_table']}
                 cf_admin = '{$cf_admin}',
                 cf_admin_email = '{$_POST['cf_admin_email']}',
                 cf_admin_email_name = '{$_POST['cf_admin_email_name']}',
-                cf_add_script = '{$_POST['cf_add_script']}',
                 cf_use_email_certify = '{$_POST['cf_use_email_certify']}',
                 cf_cut_name = '{$_POST['cf_cut_name']}',
                 cf_nick_modify = '{$_POST['cf_nick_modify']}',
@@ -199,9 +177,6 @@ $sql = " update {$g5['config_table']}
                 cf_filter = '{$_POST['cf_filter']}',
                 cf_possible_ip = '" . trim($_POST['cf_possible_ip']) . "',
                 cf_intercept_ip = '" . trim($_POST['cf_intercept_ip']) . "',
-                cf_analytics = '{$_POST['cf_analytics']}',
-                cf_add_meta = '{$_POST['cf_add_meta']}',
-                cf_member_skin = '{$_POST['cf_member_skin']}',
                 cf_use_homepage = '{$_POST['cf_use_homepage']}',
                 cf_req_homepage = '{$_POST['cf_req_homepage']}',
                 cf_use_tel = '{$_POST['cf_use_tel']}',
@@ -221,7 +196,6 @@ $sql = " update {$g5['config_table']}
                 cf_image_extension = '{$_POST['cf_image_extension']}',
                 cf_flash_extension = '{$_POST['cf_flash_extension']}',
                 cf_movie_extension = '{$_POST['cf_movie_extension']}',
-                cf_formmail_is_member = '{$_POST['cf_formmail_is_member']}',
                 cf_page_rows = '{$_POST['cf_page_rows']}',
                 cf_stipulation = '{$_POST['cf_stipulation']}',
                 cf_privacy = '{$_POST['cf_privacy']}',
@@ -240,25 +214,9 @@ $sql = " update {$g5['config_table']}
                 cf_cert_kcp_enckey = '{$_POST['cf_cert_kcp_enckey']}',
                 cf_cert_limit = '{$_POST['cf_cert_limit']}',
                 cf_cert_req = '{$_POST['cf_cert_req']}',
-                cf_googl_shorturl_apikey = '{$_POST['cf_googl_shorturl_apikey']}',
-                cf_kakao_js_apikey = '{$_POST['cf_kakao_js_apikey']}',
-                cf_facebook_appid = '{$_POST['cf_facebook_appid']}',
-                cf_facebook_secret = '{$_POST['cf_facebook_secret']}',
-                cf_twitter_key = '{$_POST['cf_twitter_key']}',
-                cf_twitter_secret = '{$_POST['cf_twitter_secret']}',
-                cf_social_login_use = '{$_POST['cf_social_login_use']}',
-                cf_naver_clientid = '{$_POST['cf_naver_clientid']}',
-                cf_naver_secret = '{$_POST['cf_naver_secret']}',
-                cf_google_clientid = '{$_POST['cf_google_clientid']}',
-                cf_google_secret = '{$_POST['cf_google_secret']}',
-                cf_kakao_rest_key = '{$_POST['cf_kakao_rest_key']}',
-                cf_kakao_client_secret = '{$_POST['cf_kakao_client_secret']}',
-                cf_social_servicelist   =   '{$cf_social_servicelist}',
                 cf_captcha = '{$_POST['cf_captcha']}',
                 cf_recaptcha_site_key = '{$_POST['cf_recaptcha_site_key']}',
-                cf_recaptcha_secret_key   =   '{$_POST['cf_recaptcha_secret_key']}',
-                cf_payco_clientid = '{$_POST['cf_payco_clientid']}',
-                cf_payco_secret = '{$_POST['cf_payco_secret']}' ";
+                cf_recaptcha_secret_key   =   '{$_POST['cf_recaptcha_secret_key']}' ";
 sql_query($sql);
 
 //sql_query(" OPTIMIZE TABLE `$g5[config_table]` ");

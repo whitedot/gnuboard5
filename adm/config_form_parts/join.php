@@ -3,18 +3,9 @@
         <h2 class="card-title">회원가입 설정</h2>
     </div>
     <div class="card-body">
-        <p>회원가입 시 사용할 스킨과 입력 받을 정보 등을 설정할 수 있습니다.</p>
+        <p>회원가입과 회원정보 수정 시 입력 받을 정보 등을 설정할 수 있습니다.</p>
 
         <div class="af-grid">
-            <div class="af-row">
-                <div class="af-label">
-                    <label for="cf_member_skin" class="form-label">회원 스킨<strong>필수</strong></label>
-                </div>
-                <div class="af-field">
-                    <?php echo get_skin_select('member', 'cf_member_skin', 'cf_member_skin', $config['cf_member_skin'], 'required'); ?>
-                </div>
-            </div>
-
             <div class="af-row">
                 <div class="af-label">
                     <label for="cf_use_homepage" class="form-label">홈페이지 입력</label>
@@ -162,8 +153,5 @@
             </div>
         </div>
 
-        <div>
-            <button type="button" data-type="conf_member" class="btn btn-soft-secondary btn-sm">테마 회원스킨설정 가져오기</button>
-        </div>
     </div>
 </section>

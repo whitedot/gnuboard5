@@ -325,7 +325,6 @@ if ($admin_site_title === '') {
                             </svg>
                         </a>
                     </li>
-                    <li class="tnb_li"><a href="<?php echo G5_ADMIN_URL; ?>/service.php">부가서비스</a></li>
                     <li class="tnb_li relative">
                         <button type="button" class="tnb_mb_btn tnb_icon_btn" aria-label="관리자 메뉴" title="관리자 메뉴">
                             <svg class="admin-shell-control-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">

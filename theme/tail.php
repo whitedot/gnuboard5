@@ -14,9 +14,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 <div id="ft">
 
     <div id="ft_wr">
-        <div id="ft_link">
-            <a href="<?php echo get_device_change_url(); ?>">모바일버전</a>
-        </div>
         <div id="ft_company">
         	<h2>사이트 정보</h2>
 	        <p>
@@ -45,16 +42,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     });
     </script>
 </div>
-
-<?php
-if(G5_DEVICE_BUTTON_DISPLAY && !G5_IS_MOBILE) { ?>
-<?php
-}
-
-if ($config['cf_analytics']) {
-    echo $config['cf_analytics'];
-}
-?>
 
 <!-- } 하단 끝 -->
 

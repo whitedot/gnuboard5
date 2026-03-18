@@ -12,22 +12,7 @@ if (!$mb_id || run_replace('check_empty_member_login_password', !$mb_password, $
     alert('회원아이디나 비밀번호가 공백이면 안됩니다.');
 
 $mb = get_member($mb_id);
-
-//소셜 로그인추가 체크
-
-$is_social_login = false;
-$is_social_password_check = false;
-
-// 소셜 로그인이 맞는지 체크하고 해당 값이 맞는지 체크합니다.
-if(function_exists('social_is_login_check')){
-    $is_social_login = social_is_login_check();
-
-    //패스워드를 체크할건지 결정합니다.
-    //소셜로그인일때는 체크하지 않고, 계정을 연결할때는 체크합니다.
-    $is_social_password_check = social_is_login_password_check($mb_id);
-}
-
-$is_need_not_password = run_replace('login_check_need_not_password', $is_social_password_check, $mb_id, $mb_password, $mb, $is_social_login);
+$is_need_not_password = run_replace('login_check_need_not_password', false, $mb_id, $mb_password, $mb, false);
 
 // $is_need_not_password 변수가 true 이면 패스워드를 체크하지 않습니다.
 // 가입된 회원이 아니다. 비밀번호가 틀리다. 라는 메세지를 따로 보여주지 않는 이유는
@@ -58,7 +43,7 @@ if ( is_use_email_certify() && !preg_match("/[1-9]/", $mb['mb_email_certify'])) 
     confirm("{$mb['mb_email']} 메일로 메일인증을 받으셔야 로그인 가능합니다. 다른 메일주소로 변경하여 인증하시려면 취소를 클릭하시기 바랍니다.", G5_URL, G5_MEMBER_URL.'/register_email.php?mb_id='.$mb_id.'&ckey='.$ckey);
 }
 
-run_event('login_session_before', $mb, $is_social_login);
+run_event('login_session_before', $mb, false);
 
 @include_once($member_skin_path.'/login_check.skin.php');
 
@@ -106,12 +91,7 @@ if ($url) {
     // $_POST 배열변수에서 아래의 이름을 가지지 않은 것만 넘김
     $post_check_keys = array('mb_id', 'mb_password', 'x', 'y', 'url');
     
-    //소셜 로그인 추가
-    if($is_social_login){
-        $post_check_keys[] = 'provider';
-    }
-
-    $post_check_keys = run_replace('login_check_post_check_keys', $post_check_keys, $link, $is_social_login);
+    $post_check_keys = run_replace('login_check_post_check_keys', $post_check_keys, $link, false);
 
     foreach($_POST as $key=>$value) {
         if ($key && !in_array($key, $post_check_keys)) {
@@ -124,14 +104,7 @@ if ($url) {
     $link = G5_URL;
 }
 
-//소셜 로그인 추가
-if(function_exists('social_login_success_after')){
-    // 로그인 성공시 소셜 데이터를 기존의 데이터와 비교하여 바뀐 부분이 있으면 업데이트 합니다.
-    $link = social_login_success_after($mb, $link);
-    social_login_session_clear(1);
-}
-
-run_event('member_login_check', $mb, $link, $is_social_login);
+run_event('member_login_check', $mb, $link, false);
 
 // 관리자로 로그인시 DATA 폴더의 쓰기 권한이 있는지 체크합니다. 쓰기 권한이 없으면 로그인을 못합니다.
 if( is_admin($mb['mb_id']) && is_dir(G5_DATA_PATH.'/tmp/') ){

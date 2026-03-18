@@ -25,7 +25,6 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_admin` varchar(100) NOT NULL DEFAULT '',
   `cf_admin_email` varchar(100) NOT NULL DEFAULT '',
   `cf_admin_email_name` varchar(100) NOT NULL DEFAULT '',
-  `cf_add_script` text NOT NULL,
   `cf_use_email_certify` tinyint(4) NOT NULL DEFAULT '0',
   `cf_cut_name` tinyint(4) NOT NULL DEFAULT '0',
   `cf_nick_modify` int(11) NOT NULL DEFAULT '0',
@@ -35,9 +34,6 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_filter` text NOT NULL,
   `cf_possible_ip` text NOT NULL,
   `cf_intercept_ip` text NOT NULL,
-  `cf_analytics` text NOT NULL,
-  `cf_add_meta` text NOT NULL,
-  `cf_member_skin` varchar(50) NOT NULL DEFAULT '',
   `cf_use_homepage` tinyint(4) NOT NULL DEFAULT '0',
   `cf_req_homepage` tinyint(4) NOT NULL DEFAULT '0',
   `cf_use_tel` tinyint(4) NOT NULL DEFAULT '0',
@@ -58,7 +54,6 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_image_extension` varchar(255) NOT NULL DEFAULT '',
   `cf_flash_extension` varchar(255) NOT NULL DEFAULT '',
   `cf_movie_extension` varchar(255) NOT NULL DEFAULT '',
-  `cf_formmail_is_member` tinyint(4) NOT NULL DEFAULT '0',
   `cf_page_rows` int(11) NOT NULL DEFAULT '0',
   `cf_stipulation` text NOT NULL,
   `cf_privacy` text NOT NULL,
@@ -81,22 +76,6 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_toss_secret_key` varchar(100) NOT NULL DEFAULT '',
   `cf_cert_limit` int(11) NOT NULL DEFAULT '0',
   `cf_cert_req` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_googl_shorturl_apikey` varchar(50) NOT NULL DEFAULT '',
-  `cf_social_login_use` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_social_servicelist` varchar(255) NOT NULL DEFAULT '',
-  `cf_payco_clientid` varchar(100) NOT NULL DEFAULT '',
-  `cf_payco_secret` varchar(100) NOT NULL DEFAULT '',
-  `cf_facebook_appid` varchar(100) NOT NULL,
-  `cf_facebook_secret` varchar(100) NOT NULL,
-  `cf_twitter_key` varchar(100) NOT NULL,
-  `cf_twitter_secret` varchar(100) NOT NULL,
-  `cf_google_clientid` varchar(100) NOT NULL DEFAULT '',
-  `cf_google_secret` varchar(100) NOT NULL DEFAULT '',
-  `cf_naver_clientid` varchar(100) NOT NULL DEFAULT '',
-  `cf_naver_secret` varchar(100) NOT NULL DEFAULT '',
-  `cf_kakao_rest_key` varchar(100) NOT NULL DEFAULT '',
-  `cf_kakao_client_secret` varchar(100) NOT NULL DEFAULT '',
-  `cf_kakao_js_apikey` varchar(100) NOT NULL,
   `cf_captcha` varchar(100) NOT NULL DEFAULT '',
   `cf_recaptcha_site_key` varchar(100) NOT NULL DEFAULT '',
   `cf_recaptcha_secret_key` varchar(100) NOT NULL DEFAULT '',
@@ -222,28 +201,6 @@ CREATE TABLE IF NOT EXISTS `g5_uniqid` (
   `uq_id` bigint(20) unsigned NOT NULL,
   `uq_ip` varchar(255) NOT NULL,
   PRIMARY KEY (`uq_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Table structure for table `g5_member_social_profiles`
---
-
-DROP TABLE IF EXISTS `g5_member_social_profiles`;
-CREATE TABLE IF NOT EXISTS `g5_member_social_profiles` (
-  `mp_no` int(11) NOT NULL AUTO_INCREMENT,
-  `mb_id` varchar(255) NOT NULL DEFAULT '',
-  `provider` varchar(50) NOT NULL DEFAULT '',
-  `object_sha` varchar(45) NOT NULL DEFAULT '',
-  `identifier` varchar(255) NOT NULL DEFAULT '',
-  `profileurl` varchar(255) NOT NULL DEFAULT '',
-  `photourl` varchar(255) NOT NULL DEFAULT '',
-  `displayname` varchar(150) NOT NULL DEFAULT '',
-  `description` varchar(255) NOT NULL DEFAULT '',
-  `mp_register_day` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `mp_latest_day` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`mp_no`),
-  KEY `mb_id` (`mb_id`),
-  KEY `provider` (`provider`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

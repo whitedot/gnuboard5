@@ -26,8 +26,6 @@ $config_tabs = array(
     array('id' => 'anc_cf_cert', 'label' => '본인확인'),
     array('id' => 'anc_cf_mail', 'label' => '메일'),
     array('id' => 'anc_cf_join_mail', 'label' => '가입 메일'),
-    array('id' => 'anc_cf_sns', 'label' => 'SNS'),
-    array('id' => 'anc_cf_lay', 'label' => '레이아웃'),
 );
 
 $pg_anchor_menu = admin_build_anchor_menu($config_tabs, array(
@@ -54,8 +52,6 @@ $pg_anchor_menu = admin_build_anchor_menu($config_tabs, array(
     include_once G5_ADMIN_PATH . '/config_form_parts/join.php';
     include_once G5_ADMIN_PATH . '/config_form_parts/cert.php';
     include_once G5_ADMIN_PATH . '/config_form_parts/mail.php';
-    include_once G5_ADMIN_PATH . '/config_form_parts/sns.php';
-    include_once G5_ADMIN_PATH . '/config_form_parts/layout.php';
     ?>
 
     <div id="config_captcha_wrap" class="rounded-lg border border-default-200 bg-default-50 p-4 space-y-3" hidden>

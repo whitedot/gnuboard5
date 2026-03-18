@@ -204,28 +204,6 @@ $colspan = 10;
                         </td>
                         <td headers="mb_list_id" colspan="2">
                             <?php echo $mb_id ?>
-                            <?php
-                            //소셜계정이 있다면
-                            if (function_exists('social_login_link_account')) {
-                                if ($my_social_accounts = social_login_link_account($row['mb_id'], false, 'get_data')) {
-                                    echo '<div>';
-                                    foreach ((array) $my_social_accounts as $account) {     //반복문
-                                        if (empty($account) || empty($account['provider'])) {
-                                            continue;
-                                        }
-
-                                        $provider = strtolower($account['provider']);
-                                        $provider_name = social_get_provider_service_name($provider);
-
-                                        echo '<span title="' . $provider_name . '">';
-                                        echo '<span></span>';
-                                        echo '<span>' . $provider_name . '</span>';
-                                        echo '</span>';
-                                    }
-                                    echo '</div>';
-                                }
-                            }
-                            ?>
                         </td>
                         <td headers="mb_list_cert" rowspan="2">
                             <input type="radio" name="mb_certify[<?php echo $i; ?>]" value="simple" id="mb_certify_sa_<?php echo $i; ?>" <?php echo $row['mb_certify'] == 'simple' ? 'checked' : ''; ?>>

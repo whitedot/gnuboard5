@@ -10,11 +10,6 @@ while (1) {
     $url = $tmp;
 }
 
-//소셜 로그인 한 경우
-if( function_exists('social_member_comfirm_redirect') && (! $url || $url === 'register_form.php' || (function_exists('social_is_edit_page') && social_is_edit_page($url) ) ) ){    
-    social_member_comfirm_redirect();
-}
-
 $url = run_replace('member_confirm_next_url', $url);
 
 $g5['title'] = '회원 비밀번호 확인';

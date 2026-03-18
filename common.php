@@ -338,9 +338,6 @@ if(XenoPostToForm::check()) {
 // 기본환경설정
 // 기본적으로 사용하는 필드만 얻은 후 상황에 따라 필드를 추가로 얻음
 $config = get_config(true);
-if (empty($config['cf_member_skin']) || $config['cf_member_skin'] === 'theme/basic') {
-    $config['cf_member_skin'] = 'basic';
-}
 
 // 본인인증 사용시에만 secure; SameSite=None 로 설정합니다.
 if( $config['cf_cert_use'] ) {
@@ -676,26 +673,17 @@ if(defined('G5_SET_DEVICE') && $set_device) {
 
 //==============================================================================
 // Mobile 모바일 설정
-// 쿠키에 저장된 값이 모바일이라면 브라우저 상관없이 모바일로 실행
-// 그렇지 않다면 브라우저의 HTTP_USER_AGENT 에 따라 모바일 결정
-// G5_MOBILE_AGENT : config.php 에서 선언
+// 회원 전용 앱 셸에서는 사용자 전환 UI 없이 접속 기기만 판별합니다.
 //------------------------------------------------------------------------------
 if (G5_USE_MOBILE && $set_device) {
-    if (isset($_REQUEST['device']) && $_REQUEST['device']=='pc')
-        $is_mobile = false;
-    else if (isset($_REQUEST['device']) && $_REQUEST['device']=='mobile')
+    if (is_mobile()) {
         $is_mobile = true;
-    else if (isset($_SESSION['ss_is_mobile']))
-        $is_mobile = $_SESSION['ss_is_mobile'];
-    else if (is_mobile())
-        $is_mobile = true;
+    }
 } else {
     $set_device = false;
 }
 
-$_SESSION['ss_is_mobile'] = $is_mobile;
 define('G5_IS_MOBILE', $is_mobile);
-define('G5_DEVICE_BUTTON_DISPLAY', $set_device);
 if (G5_IS_MOBILE) {
     $g5['mobile_path'] = G5_PATH.'/'.G5_MOBILE_DIR;
 }
@@ -705,35 +693,14 @@ if (G5_IS_MOBILE) {
 //==============================================================================
 // 스킨경로
 //------------------------------------------------------------------------------
-    $member_skin_path   = get_skin_path('member', $config['cf_member_skin']);
-    $member_skin_url    = get_skin_url('member', $config['cf_member_skin']);
+    $member_skin_path   = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/member/basic';
+    $member_skin_url    = G5_THEME_URL.'/'.G5_SKIN_DIR.'/member/basic';
     $connect_skin_path  = '';
     $connect_skin_url   = '';
 //==============================================================================
 
 if (!defined('KGINICIS_USE_CERT_SEED')) {
     define('KGINICIS_USE_CERT_SEED', isset($config['cf_cert_use_seed']) ? (int) $config['cf_cert_use_seed'] : 1);
-}
-
-if (!isset($g5['social_profile_table'])) {
-    $g5['social_profile_table'] = G5_TABLE_PREFIX.'member_social_profiles';
-}
-
-if (!defined('G5_SOCIAL_LOGIN_DIR')) {
-    define('G5_SOCIAL_LOGIN_DIR', 'social');
-    define('G5_SOCIAL_LOGIN_START_PARAM', 'hauth.start');
-    define('G5_SOCIAL_LOGIN_DONE_PARAM', 'hauth.done');
-    define('G5_SOCIAL_LOGIN_PATH', G5_PLUGIN_PATH.'/'.G5_SOCIAL_LOGIN_DIR);
-    define('G5_SOCIAL_LOGIN_URL', G5_PLUGIN_URL.'/'.G5_SOCIAL_LOGIN_DIR);
-    define('G5_SOCIAL_LOGIN_BASE_URL', G5_SOCIAL_LOGIN_URL.'/');
-    define('G5_SOCIAL_SKIN_PATH', G5_THEME_PATH.'/'.G5_SKIN_DIR.'/'.G5_SOCIAL_LOGIN_DIR);
-    define('G5_SOCIAL_SKIN_URL', str_replace(G5_PATH, G5_URL, G5_SOCIAL_SKIN_PATH));
-    define('G5_SOCIAL_USE_POPUP', !is_mobile());
-    define('G5_SOCIAL_DELETE_DAY', 0);
-    define('G5_SOCIAL_CERTIFY_MAIL', false);
-    define('G5_SOCIAL_IS_DEBUG', false);
-
-    include_once(G5_SOCIAL_LOGIN_PATH.'/includes/functions.php');
 }
 
 if($is_member && !$is_admin && (!defined("G5_CERT_IN_PROG") || !G5_CERT_IN_PROG) && $config['cf_cert_use'] <> 0 && $config['cf_cert_req']) { // 본인인증이 필수일때
