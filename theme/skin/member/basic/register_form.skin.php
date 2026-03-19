@@ -243,6 +243,10 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	</div>
 	<div>
 	    <a href="<?php echo G5_URL ?>">취소</a>
+        <?php if ($w == 'u') { ?>
+        <span>|</span>
+        <a href="<?php echo G5_MEMBER_URL; ?>/member_confirm.php?url=member_leave.php">회원탈퇴</a>
+        <?php } ?>
 	    <button type="submit" id="btn_submit" accesskey="s"><?php echo $w==''?'회원가입':'정보수정'; ?></button>
 	</div>
 	</form>

@@ -12,6 +12,8 @@ include_once(G5_THEME_PATH.'/head.php');
     <p>
         <a href="<?php echo G5_MEMBER_URL; ?>/member_confirm.php?url=<?php echo urlencode(G5_MEMBER_URL.'/register_form.php'); ?>">회원정보 수정</a>
         <span>|</span>
+        <a href="<?php echo G5_MEMBER_URL; ?>/member_confirm.php?url=member_leave.php">회원탈퇴</a>
+        <span>|</span>
         <a href="<?php echo G5_MEMBER_URL; ?>/logout.php">로그아웃</a>
     </p>
     <?php } else { ?>

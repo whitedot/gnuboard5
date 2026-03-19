@@ -31,6 +31,7 @@ include_once(G5_THEME_PATH.'/head.sub.php');
         <ul class="hd_login">        
             <?php if ($is_member) {  ?>
             <li><a href="<?php echo G5_MEMBER_URL ?>/member_confirm.php?url=<?php echo G5_MEMBER_URL ?>/register_form.php">정보수정</a></li>
+            <li><a href="<?php echo G5_MEMBER_URL ?>/member_confirm.php?url=member_leave.php">회원탈퇴</a></li>
             <li><a href="<?php echo G5_MEMBER_URL ?>/logout.php">로그아웃</a></li>
             <?php if ($is_admin) {  ?>
             <li><a href="<?php echo correct_goto_url(G5_ADMIN_URL); ?>">관리자</a></li>
