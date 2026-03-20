@@ -142,7 +142,7 @@
       return entry.tab.getAttribute('aria-selected') === 'true';
     });
 
-    activateTab(state, (selectedEntry ? selectedEntry.tab : state.enabledTabs[0]), false);
+    activateTab(state, selectedEntry ? selectedEntry.tab : state.enabledTabs[0], false);
   }
 
   function init() {
