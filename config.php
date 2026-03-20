@@ -63,7 +63,6 @@ define('G5_SKIN_DIR',       'skin');
 
 define('G5_KCPCERT_DIR',    'kcpcert');
 define('G5_INICERT_DIR',     'inicert');
-define('G5_LGXPAY_DIR',     'lgxpay');
 
 define('G5_PHPMAILER_DIR',  'PHPMailer');
 define('G5_SESSION_DIR',    'session');
@@ -95,7 +94,6 @@ define('G5_SKIN_URL',       G5_URL.'/'.G5_SKIN_DIR);
 define('G5_PLUGIN_URL',     G5_URL.'/'.G5_PLUGIN_DIR);
 define('G5_KCPCERT_URL',    G5_PLUGIN_URL.'/'.G5_KCPCERT_DIR);
 define('G5_INICERT_URL',     G5_PLUGIN_URL.'/'.G5_INICERT_DIR);
-define('G5_LGXPAY_URL',     G5_PLUGIN_URL.'/'.G5_LGXPAY_DIR);
 
 // PATH 는 서버상에서의 절대경로
 define('G5_ADMIN_PATH',     G5_PATH.'/'.G5_ADMIN_DIR);
@@ -111,7 +109,6 @@ define('G5_SESSION_PATH',   G5_DATA_PATH.'/'.G5_SESSION_DIR);
 
 define('G5_KCPCERT_PATH',   G5_PLUGIN_PATH.'/'.G5_KCPCERT_DIR);
 define('G5_INICERT_PATH',   G5_PLUGIN_PATH.'/'.G5_INICERT_DIR);
-define('G5_LGXPAY_PATH',    G5_PLUGIN_PATH.'/'.G5_LGXPAY_DIR);
 
 define('G5_PHPMAILER_PATH', G5_PLUGIN_PATH.'/'.G5_PHPMAILER_DIR);
 //==============================================================================

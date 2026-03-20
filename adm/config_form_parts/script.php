@@ -113,7 +113,7 @@
 // 본인확인 모듈 실행권한 체크
 if ($config['cf_cert_use']) {
     // kcp일 때
-    if ($config['cf_cert_hp'] == 'kcp') {
+	    if ($config['cf_cert_hp'] == 'kcp') {
         
         $bin_path = ((int)$config['cf_cert_use'] === 2 && !$config['cf_cert_kcp_enckey']) ? 'bin_old' : 'bin';
         
@@ -127,38 +127,9 @@ if ($config['cf_cert_use']) {
             $exe = G5_KCPCERT_PATH . '/'.$bin_path.'/ct_cli_exe.exe';
         }
         
-        echo module_exec_check($exe, 'ct_cli');
-    }
-
-    // LG의 경우 log 디렉토리 체크
-    if ($config['cf_cert_hp'] == 'lg') {
-        $log_path = G5_LGXPAY_PATH . '/lgdacom/log';
-
-        if (!is_dir($log_path)) {
-            if (is_writable(G5_LGXPAY_PATH . '/lgdacom/')) {
-                // 디렉토리가 없다면 생성합니다. (퍼미션도 변경하구요.)
-                @mkdir($log_path, G5_DIR_PERMISSION);
-                @chmod($log_path, G5_DIR_PERMISSION);
-            }
-
-            if (!is_dir($log_path)) {
-                echo '<script>' . PHP_EOL;
-                echo 'alert("' . str_replace(G5_PATH . '/', '', G5_LGXPAY_PATH) . '/lgdacom 폴더 안에 log 폴더를 생성하신 후 쓰기권한을 부여해 주십시오.\n> mkdir log\n> chmod 707 log");' . PHP_EOL;
-                echo '</script>' . PHP_EOL;
-            }
-        }
-
-        if (is_dir($log_path) && is_writable($log_path)) {
-            if (function_exists('check_log_folder')) {
-                check_log_folder($log_path);
-            }
-        } elseif (is_dir($log_path)) {
-            echo '<script>' . PHP_EOL;
-            echo 'alert("' . str_replace(G5_PATH . '/', '', $log_path) . ' 폴더에 쓰기권한을 부여해 주십시오.\n> chmod 707 log");' . PHP_EOL;
-            echo '</script>' . PHP_EOL;
-        }
-    }
-}
+	        echo module_exec_check($exe, 'ct_cli');
+	    }
+	}
 
 if (stripos($config['cf_image_extension'], "webp") !== false) {
     if (!function_exists("imagewebp")) {

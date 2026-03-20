@@ -165,7 +165,7 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 	                <button type="button" class="tooltip_icon"><i aria-hidden="true"></i><span>설명보기</span></button>
 	                <span class="tooltip">
 	                    정보공개는 수정후 <?php echo (int)$config['cf_open_modify'] ?>일 이내, <?php echo date("Y년 m월 j일", isset($member['mb_open_date']) ? strtotime("{$member['mb_open_date']} 00:00:00")+$config['cf_open_modify']*86400:G5_SERVER_TIME+$config['cf_open_modify']*86400); ?> 까지는 변경이 안됩니다.<br>
-	                    이렇게 하는 이유는 잦은 정보공개 수정으로 인하여 쪽지를 보낸 후 받지 않는 경우를 막기 위해서 입니다.
+	                    공개 범위가 자주 바뀌면 운영 정책과 사용자 기대가 어긋날 수 있어 일정 기간 동안 변경을 제한합니다.
 	                </span>
 	                
 	            </li>
@@ -280,17 +280,13 @@ $(function() {
 		if(!cert_confirm()) return false;
         params = "?" + pageTypeParam;
         <?php     
-        switch($config['cf_cert_hp']) {
-            case 'kcp':
-                $cert_url = G5_KCPCERT_URL.'/kcpcert_form.php';
-                $cert_type = 'kcp-hp';
-                break;
-            case 'lg':
-                $cert_url = G5_LGXPAY_URL.'/AuthOnlyReq.php';
-                $cert_type = 'lg-hp';
-                break;
-            default:
-                echo 'alert("기본환경설정에서 휴대폰 본인확인 설정을 해주십시오");';
+	        switch($config['cf_cert_hp']) {
+	            case 'kcp':
+	                $cert_url = G5_KCPCERT_URL.'/kcpcert_form.php';
+	                $cert_type = 'kcp-hp';
+	                break;
+	            default:
+	                echo 'alert("기본환경설정에서 휴대폰 본인확인 설정을 해주십시오");';
                 echo 'return false;';
                 break;
         }

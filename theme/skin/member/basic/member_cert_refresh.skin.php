@@ -94,17 +94,13 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
                     if (!fcertrefreshform_submit(f)) return false;
                     params = "?" + pageTypeParam;
                     <?php
-                    switch ($config['cf_cert_hp']) {
-                        case 'kcp':
-                            $cert_url = G5_KCPCERT_URL.'/kcpcert_form.php';
-                            $cert_type = 'kcp-hp';
-                            break;
-                        case 'lg':
-                            $cert_url = G5_LGXPAY_URL.'/AuthOnlyReq.php';
-                            $cert_type = 'lg-hp';
-                            break;
-                        default:
-                            echo 'alert("기본환경설정에서 휴대폰 본인확인 설정을 해주십시오");';
+	                    switch ($config['cf_cert_hp']) {
+	                        case 'kcp':
+	                            $cert_url = G5_KCPCERT_URL.'/kcpcert_form.php';
+	                            $cert_type = 'kcp-hp';
+	                            break;
+	                        default:
+	                            echo 'alert("기본환경설정에서 휴대폰 본인확인 설정을 해주십시오");';
                             echo 'return false;';
                             break;
                     }

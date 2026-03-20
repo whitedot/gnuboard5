@@ -625,6 +625,9 @@ if (isset($config['cf_cert_ipin']) && $config['cf_cert_ipin'] === 'kcb') {
 if (isset($config['cf_cert_hp']) && $config['cf_cert_hp'] === 'kcb') {
     $config['cf_cert_hp'] = '';
 }
+if (isset($config['cf_cert_hp']) && $config['cf_cert_hp'] === 'lg') {
+    $config['cf_cert_hp'] = '';
+}
 
 //==============================================================================
 // Mobile 모바일 설정
