@@ -547,7 +547,6 @@ if (isset($auth) && is_array($auth)) {
 }
 
 // 가변 메뉴
-unset($auth_menu);
 unset($menu);
 unset($amenu);
 $tmp = dir(G5_ADMIN_PATH);

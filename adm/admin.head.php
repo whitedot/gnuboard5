@@ -44,7 +44,7 @@ function admin_menu_icon_id($menu_code)
 
 function print_menu2($key, $no = '')
 {
-    global $menu, $auth_menu, $is_admin, $auth, $sub_menu;
+    global $menu, $is_admin, $auth, $sub_menu;
 
     $str = '<ul class="admin-nav-sub-list">';
 
@@ -64,7 +64,6 @@ function print_menu2($key, $no = '')
 
         $str .= '<li class="admin-nav-sub-item' . $current_class . '" data-menu="' . $menu[$key][$i][0] . '"><a href="' . $menu[$key][$i][2] . '">' . $menu[$key][$i][1] . '</a></li>';
 
-        $auth_menu[$menu[$key][$i][0]] = $menu[$key][$i][1];
     }
 
     $str .= '</ul>';
