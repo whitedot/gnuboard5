@@ -43,6 +43,8 @@ if (G5_IS_MOBILE) {
 <?php
 $admin_css_path = G5_ADMIN_PATH.'/css/admin.css';
 $admin_css_ver = is_file($admin_css_path) ? filemtime($admin_css_path) : G5_CSS_VER;
+$sticky_anchor_tabs_path = G5_PATH.'/js/ui-kit/ui-sticky-anchor-tabs.js';
+$sticky_anchor_tabs_ver = is_file($sticky_anchor_tabs_path) ? filemtime($sticky_anchor_tabs_path) : G5_JS_VER;
 echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_ADMIN_URL.'/css/admin.css?ver='.$admin_css_ver, G5_URL).'">'.PHP_EOL;
 ?>
 <script>
@@ -61,6 +63,7 @@ add_javascript('<script src="'.G5_JS_URL.'/jquery-1.12.4.min.js"></script>', 0);
 add_javascript('<script src="'.G5_JS_URL.'/jquery-migrate-1.4.1.min.js"></script>', 0);
 add_javascript('<script src="'.G5_JS_URL.'/common.js?ver='.G5_JS_VER.'"></script>', 0);
 add_javascript('<script src="'.G5_JS_URL.'/ui-kit/ui-dropdown-menu.js?ver='.G5_JS_VER.'"></script>', 1);
+add_javascript('<script src="'.G5_JS_URL.'/ui-kit/ui-sticky-anchor-tabs.js?ver='.$sticky_anchor_tabs_ver.'"></script>', 1);
 add_javascript('<script src="'.G5_JS_URL.'/wrest.js?ver='.G5_JS_VER.'"></script>', 0);
 ?>
 </head>

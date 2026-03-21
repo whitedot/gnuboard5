@@ -25,20 +25,39 @@ $config_tabs = array(
     array('id' => 'anc_cf_join', 'label' => '회원'),
     array('id' => 'anc_cf_cert', 'label' => '본인확인'),
     array('id' => 'anc_cf_mail', 'label' => '메일'),
-    array('id' => 'anc_cf_join_mail', 'label' => '가입 메일'),
 );
 
 $pg_anchor_menu = admin_build_anchor_menu($config_tabs, array(
     'nav_id' => 'config_tabs_nav',
-    'nav_class' => 'tab-nav',
+    'nav_class' => 'tab-nav-justified',
     'nav_aria_label' => '환경설정 탭',
-    'link_class' => 'tab-trigger-line-primary js-config-tab-link',
+    'link_class' => 'tab-trigger-underline-justified js-config-tab-link',
     'active_class' => 'active',
     'as_tabs' => true,
     'link_id_prefix' => 'config_tab_',
 ));
 
 ?>
+
+<style>
+    #config_tabs_bar {
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        padding: 0;
+    }
+
+    #config_tabs_bar .tab-nav-justified {
+        background-color: var(--color-body-bg);
+    }
+
+    #config_tabs_bar .tab-trigger-underline-justified:not(.active):not([aria-selected="true"]) {
+        background-color: var(--color-body-bg);
+    }
+</style>
 
 <div id="config_tabs_bar">
     <?php echo $pg_anchor_menu; ?>
