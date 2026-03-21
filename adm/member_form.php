@@ -126,14 +126,35 @@ $member_tabs = array(
 
 $pg_anchor_menu = admin_build_anchor_menu($member_tabs, array(
     'nav_id' => 'member_tabs_nav',
-    'nav_class' => 'tab-nav',
+    'nav_class' => 'tab-nav-justified',
     'nav_aria_label' => '회원 등록/수정 탭',
-    'link_class' => 'tab-trigger-line-primary js-member-tab-link',
+    'link_class' => 'tab-trigger-underline-justified js-member-tab-link',
     'active_class' => 'active',
     'as_tabs' => true,
     'link_id_prefix' => 'member_tab_',
 ));
 ?>
+
+<style>
+    #member_tabs_bar {
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        padding: 0;
+    }
+
+    #member_tabs_bar,
+    #member_tabs_bar .tab-nav-justified {
+        background-color: var(--color-body-bg) !important;
+    }
+
+    #member_tabs_bar .tab-trigger-underline-justified:not(.active):not([aria-selected="true"]) {
+        background-color: var(--color-body-bg) !important;
+    }
+</style>
 
 <div id="member_tabs_bar">
     <?php echo $pg_anchor_menu; ?>
@@ -146,7 +167,7 @@ $pg_anchor_menu = admin_build_anchor_menu($member_tabs, array(
     <input type="hidden" name="sst" value="<?php echo $sst ?>">
     <input type="hidden" name="sod" value="<?php echo $sod ?>">
     <input type="hidden" name="page" value="<?php echo $page ?>">
-    <input type="hidden" name="token" value="">
+    <input type="hidden" name="token" value="<?php echo get_admin_token(); ?>" id="token">
 
     <?php // 기본 정보
     include_once G5_ADMIN_PATH.'/member_form_parts/basic.php';

@@ -29,7 +29,11 @@ $colspan = 14;
     <p><b>수신동의 확인 대상은 만료일까지 1달 미만인 회원</b>을 기준으로 필터링됩니다.</p>
 
     <br>
-    <p>파일 생성 시 서버에 임시 생성된 파일 중 <b>오늘 날짜를 제외 한 파일은 자동 삭제</b>되며, 수동 삭제 필요 시 <a href="<?php echo G5_ADMIN_URL;?>/member_list_file_delete.php"><b>회원관리파일 일괄삭제</b></a>에서 진행하시기 바랍니다.</p>
+    <p>
+        파일 생성 시 서버에 임시 생성된 파일 중 <b>오늘 날짜를 제외 한 파일은 자동 삭제</b>되며, 수동 삭제가 필요하면
+        <a href="<?php echo G5_ADMIN_URL; ?>/member_list_file_delete.php" class="btn btn-surface-default-soft">회원관리파일 일괄삭제</a>
+        를 이용해 주세요.
+    </p>
     <p>회원 정보 수정은 <a href="<?php echo G5_ADMIN_URL;?>/member_list.php"><b>회원 관리</b></a>에서 진행하실 수 있습니다.</p>
 </div>
 

@@ -50,12 +50,13 @@ $pg_anchor_menu = admin_build_anchor_menu($config_tabs, array(
         padding: 0;
     }
 
+    #config_tabs_bar,
     #config_tabs_bar .tab-nav-justified {
-        background-color: var(--color-body-bg);
+        background-color: var(--color-body-bg) !important;
     }
 
     #config_tabs_bar .tab-trigger-underline-justified:not(.active):not([aria-selected="true"]) {
-        background-color: var(--color-body-bg);
+        background-color: var(--color-body-bg) !important;
     }
 </style>
 
