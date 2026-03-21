@@ -107,8 +107,9 @@ $colspan = 10;
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="">
 
-    <div>
-        <table>
+    <div class="table-shell">
+        <div class="table-card">
+        <table class="table">
             <caption><?php echo $g5['title']; ?> 목록</caption>
             <thead>
                 <tr>
@@ -270,15 +271,17 @@ $colspan = 10;
                 ?>
             </tbody>
         </table>
+        </div>
     </div>
 
-    <div>
-        <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value">
-        <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value">
+    <div class="flex items-center justify-between pt-4">
+        <div class="flex items-center">
+            <input type="submit" name="act_button" value="선택수정" onclick="document.pressed=this.value" class="btn btn-solid-primary">
+            <input type="submit" name="act_button" value="선택삭제" onclick="document.pressed=this.value" class="btn btn-outline-danger">
+        </div>
         <?php if ($is_admin == 'super') { ?>
-            <a href="./member_form.php" id="member_add">회원추가</a>
+            <a href="./member_form.php" id="member_add" class="btn btn-surface-default-soft">회원추가</a>
         <?php } ?>
-
     </div>
 
 
