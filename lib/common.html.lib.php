@@ -267,7 +267,7 @@ function get_sideview($mb_id, $name, $email='', $homepage='')
     $tmp_name = "<span class=\"sv_wrap hs-dropdown [--placement:bottom-left]\">";
     $tmp_name .= "<button type=\"button\" class=\"sv_member hs-dropdown-toggle\" aria-haspopup=\"menu\" aria-expanded=\"false\">";
     $tmp_name .= $name;
-    $tmp_name .= "<span>메뉴 열기</span>";
+    $tmp_name .= "<span class=\"sr-only\"> 메뉴 열기</span>";
     $tmp_name .= "</button>";
     $tmp_name .= "<div class=\"sv hs-dropdown-menu\" role=\"menu\" aria-orientation=\"vertical\">";
 

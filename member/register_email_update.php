@@ -25,24 +25,8 @@ if ($row['cnt']) {
     alert("{$mb_email} 메일은 이미 존재하는 메일주소 입니다.\\n\\n다른 메일주소를 입력해 주십시오.");
 }
 
-// 인증메일 발송
-$subject = '['.$config['cf_title'].'] 인증확인 메일입니다.';
-
 $mb_name = $mb['mb_name'];
-
-// 어떠한 회원정보도 포함되지 않은 일회용 난수를 생성하여 인증에 사용
-$mb_md5 = md5(pack('V*', rand(), rand(), rand(), rand()));
-
-sql_query(" update {$g5['member_table']} set mb_email_certify2 = '$mb_md5' where mb_id = '$mb_id' ");
-
-$certify_href = G5_MEMBER_URL.'/email_certify.php?mb_id='.$mb_id.'&amp;mb_md5='.$mb_md5;
-
-ob_start();
-include_once ('./register_form_update_mail3.php');
-$content = ob_get_contents();
-ob_end_clean();
-
-mailer($config['cf_admin_email_name'], $config['cf_admin_email'], $mb_email, $subject, $content, 1);
+MemberNotificationService::sendRegisterEmailChange($mb_id, $mb_name, $mb_email, 'u');
 
 $sql = " update {$g5['member_table']} set mb_email = '$mb_email' where mb_id = '$mb_id' ";
 sql_query($sql);

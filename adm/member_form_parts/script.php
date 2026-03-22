@@ -81,6 +81,52 @@
     }
 
     jQuery(function($){
+        var $passwordField = $("#mb_password"),
+            passwordFieldUnlocked = false;
+
+        function hideMemberPasswordCaptcha() {
+            var $warp = $("#mb_password_captcha_wrap"),
+                is_invisible_recaptcha = $("#captcha").hasClass("invisible_recaptcha");
+
+            $warp.hide();
+            if (!is_invisible_recaptcha) {
+                $("#mp_captcha_tooltip").remove();
+            }
+        }
+
+        function unlockMemberPasswordField() {
+            if (passwordFieldUnlocked || !$passwordField.length) {
+                return;
+            }
+
+            passwordFieldUnlocked = true;
+            $passwordField.prop("readonly", false).removeAttr("readonly");
+        }
+
+        function toggleMemberPasswordCaptcha() {
+            var $warp = $("#mb_password_captcha_wrap"),
+                tooptipid = "mp_captcha_tooltip",
+                $span_text = $("<span>", {id:tooptipid, style:"font-size:0.95em;letter-spacing:-0.1em"}).html("비밀번호를 수정할 경우 캡챠를 입력해야 합니다."),
+                $parent = $passwordField.parent(),
+                is_invisible_recaptcha = $("#captcha").hasClass("invisible_recaptcha"),
+                was_hidden = !$warp.is(":visible");
+
+            if ($passwordField.val()) {
+                $warp.show();
+                if (was_hidden || ($("#captcha_img").attr("src") || "").indexOf("dot.gif") !== -1) {
+                    refresh_member_password_captcha();
+                }
+                if (!is_invisible_recaptcha) {
+                    $warp.css("margin-top", "1em");
+                    if (!$("#" + tooptipid).length) {
+                        $parent.append($span_text);
+                    }
+                }
+            } else {
+                hideMemberPasswordCaptcha();
+            }
+        }
+
         $("#captcha_key").prop('required', false).removeAttr("required").removeClass("required");
 
         if (window.CommonUI && typeof window.CommonUI.initStickyAnchorTabs === "function") {
@@ -96,27 +142,27 @@
             });
         }
 
-        $("#mb_password").on("keyup", function(e) {
-            var $warp = $("#mb_password_captcha_wrap"),
-                tooptipid = "mp_captcha_tooltip",
-                $span_text = $("<span>", {id:tooptipid, style:"font-size:0.95em;letter-spacing:-0.1em"}).html("비밀번호를 수정할 경우 캡챠를 입력해야 합니다."),
-                $parent = $(this).parent(),
-                is_invisible_recaptcha = $("#captcha").hasClass("invisible_recaptcha"),
-                was_hidden = !$warp.is(":visible");
+        hideMemberPasswordCaptcha();
 
-            if($(this).val()){
-                $warp.show();
-                if (was_hidden || ($("#captcha_img").attr("src") || "").indexOf("dot.gif") !== -1) {
-                    refresh_member_password_captcha();
-                }
-                if(! is_invisible_recaptcha) {
-                    $warp.css("margin-top","1em");
-                    if(! $("#"+tooptipid).length){ $parent.append($span_text) }
-                }
-            } else {
-                $warp.hide();
-                if($("#"+tooptipid).length && ! is_invisible_recaptcha){ $parent.find("#"+tooptipid).remove(); }
-            }
+        $passwordField.on("focus pointerdown keydown", function() {
+            unlockMemberPasswordField();
         });
+
+        $passwordField.on("input keyup change", function() {
+            if (!passwordFieldUnlocked && $(this).val()) {
+                $(this).val("");
+                hideMemberPasswordCaptcha();
+                return;
+            }
+
+            toggleMemberPasswordCaptcha();
+        });
+
+        window.setTimeout(function() {
+            if (!passwordFieldUnlocked && $passwordField.val()) {
+                $passwordField.val("");
+                hideMemberPasswordCaptcha();
+            }
+        }, 150);
     });
 </script>

@@ -1,7 +1,7 @@
 <?php include 'layout/header.php'; ?>
 <?php include 'layout/sidebar.php'; ?>
 
-<div class="container-fluid">
+<div class="container-fluid ui-form-theme">
                     <div class="grid grid-cols-1 gap-base">
                         <div class="card">
                             <div class="card-header">
@@ -32,11 +32,12 @@
                                             </div>
 
                                             <div class="lg:col-span-2">
-                                                <div class="relative">
-                                                    <input type="text" id="floatingInput" placeholder=""
-                                                        class="peer border border-default-500 focus:border-default-500 block w-full rounded bg-default-100 p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm" />
+                                                <div class="ui-floating-field">
+                                                    <input type="text" id="floatingInput" placeholder=" "
+                                                        class="ui-floating-control"
+                                                        value="" />
                                                     <label for="floatingInput"
-                                                        class="text-default-500 peer-placeholder-shown:text-default-400 peer-placeholder-shown: absolute start-3 top-2 transition-all peer-placeholder-shown:top-3.5 peer-focus:top-1.5 peer-focus:border-0 peer-focus:text-xs peer-focus:ring-0">이름</label>
+                                                        class="ui-floating-label">이름</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -57,7 +58,7 @@
                                                         aria-describedby="hs-validation-name-success-helper" />
                                                     <div
                                                         class="pointer-events-none absolute inset-y-0 end-0 flex items-center pe-3">
-                                                        <i data-icon="tabler:check" class="iconify tabler--check text-success text-base"></i>
+                                                        <i data-icon="tabler:check" class="iconify tabler--check validation-icon text-success text-base" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -155,7 +156,7 @@
                                             </div>
 
                                             <div class="lg:col-span-2">
-                                                <div>
+                                                <div class="ui-label-stack">
                                                     <label for="labelInputInput1" class="form-label">라벨 입력</label>
                                                     <input type="email" class="form-input" id="labelInputInput1"
                                                         placeholder="name@example.com" />
@@ -191,13 +192,14 @@
                                             </div>
 
                                             <div class="lg:col-span-2">
-                                                <div class="input-icon-group">
+                                                <div class="input-icon-group has-end-icon">
                                                     <input type="text" id="inValidationInput"
                                                         name="hs-validation-name-success"
                                                         class="form-input border-danger" required=""
                                                         aria-describedby="hs-validation-name-success-helper" />
-                                                    <i
-                                                        class="iconify tabler--info-circle text-danger! input-icon text-base"></i>
+                                                    <i data-icon="tabler:info-circle"
+                                                        class="iconify tabler--info-circle text-danger! input-icon is-end text-base"
+                                                        aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -327,9 +329,11 @@
                                                         data-hs-toggle-password='{"target":"#password"}'
                                                         class="absolute end-3 top-1/2 inline-flex size-6 -translate-y-1/2 items-center justify-center text-default-500 transition-colors hover:text-default-700 focus:outline-none">
                                                         <i data-icon="tabler:eye"
-                                                            class="iconify tabler--eye hs-password-active:hidden block text-sm"></i>
+                                                            class="iconify tabler--eye password-toggle-icon hs-password-active:hidden block text-sm"
+                                                            aria-hidden="true"></i>
                                                         <i data-icon="tabler:eye-off"
-                                                            class="iconify tabler--eye-off hs-password-active:block hidden text-sm"></i>
+                                                            class="iconify tabler--eye-off password-toggle-icon hs-password-active:block hidden text-sm"
+                                                            aria-hidden="true"></i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -603,15 +607,17 @@
                                             </div>
 
                                             <div class="lg:col-span-2">
-                                                <div class="input-group">
-                                                    <div class="hs-dropdown relative inline-flex">
-                                                        <button type="button"
-                                                            class="hs-dropdown-toggle btn rounded-e-none btn-solid-primary"
-                                                            aria-haspopup="menu" aria-expanded="false"
-                                                            aria-label="Dropdown">
-                                                            드롭다운 <i
-                                                                class="iconify tabler--chevron-down text-base text-white"></i>
-                                                        </button>
+                                                    <div class="input-group">
+                                                        <div class="hs-dropdown relative inline-flex">
+                                                            <button type="button"
+                                                                class="hs-dropdown-toggle input-group-trigger btn rounded-e-none btn-solid-primary"
+                                                                aria-haspopup="menu" aria-expanded="false"
+                                                                aria-label="Dropdown">
+                                                                드롭다운
+                                                                <i data-icon="tabler:chevron-down"
+                                                                    class="iconify tabler--chevron-down input-group-icon text-base text-white"
+                                                                    aria-hidden="true"></i>
+                                                            </button>
 
                                                         <div class="hs-dropdown-menu" role="menu"
                                                             aria-orientation="vertical">
@@ -685,12 +691,12 @@
 
                                             <div class="lg:col-span-2">
                                                 <!-- Floating Input -->
-                                                <div class="relative">
+                                                <div class="ui-floating-field">
                                                     <input type="email" id="hs-floating-input-email"
-                                                        class="peer border border-default-500 focus:border-default-500 block w-full rounded bg-default-100 p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm"
+                                                        class="ui-floating-control"
                                                         placeholder="you@email.com" />
                                                     <label for="hs-floating-input-email"
-                                                        class="peer-focus:text-default-500 peer-not-placeholder-shown:text-default-500 pointer-events-none absolute start-0 top-0 h-full origin-top-left truncate border border-transparent p-4 transition duration-100 ease-in-out peer-not-placeholder-shown:translate-x-0.5 peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:scale-90 peer-focus:translate-x-0.5 peer-focus:-translate-y-1.5 peer-focus:scale-90 sm:text-sm">이메일</label>
+                                                        class="ui-floating-label">이메일</label>
                                                 </div>
                                                 <!-- End Floating Input -->
                                             </div>
@@ -705,11 +711,11 @@
                                             </div>
 
                                             <div class="lg:col-span-2">
-                                                <div class="relative">
-                                                    <textarea id="floatingTextarea" rows="4" placeholder=""
-                                                        class="peer border border-default-500 focus:border-default-500 block w-full rounded bg-default-100 p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm"></textarea>
+                                                <div class="ui-floating-field">
+                                                    <textarea id="floatingTextarea" rows="4" placeholder=" "
+                                                        class="ui-floating-control"></textarea>
                                                     <label for="floatingTextarea"
-                                                        class="peer-focus:text-default-500 peer-not-placeholder-shown:text-default-500 pointer-events-none absolute start-0 top-0 h-full origin-top-left truncate border border-transparent p-4 transition duration-100 ease-in-out peer-not-placeholder-shown:translate-x-0.5 peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:scale-90 peer-focus:translate-x-0.5 peer-focus:-translate-y-1.5 peer-focus:scale-90 sm:text-sm">의견</label>
+                                                        class="ui-floating-label">의견</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -723,11 +729,11 @@
                                             </div>
 
                                             <div class="lg:col-span-2">
-                                                <div class="relative">
-                                                    <input type="password" id="floatingPassword" placeholder=""
-                                                        class="peer border border-default-500 focus:border-default-500 block w-full rounded bg-default-100 p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm" />
+                                                <div class="ui-floating-field">
+                                                    <input type="password" id="floatingPassword" placeholder=" "
+                                                        class="ui-floating-control" />
                                                     <label for="floatingPassword"
-                                                        class="peer-focus:text-default-500 peer-not-placeholder-shown:text-default-500 pointer-events-none absolute start-0 top-0 h-full origin-top-left truncate border border-transparent p-4 transition duration-100 ease-in-out peer-not-placeholder-shown:translate-x-0.5 peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:scale-90 peer-focus:translate-x-0.5 peer-focus:-translate-y-1.5 peer-focus:scale-90 sm:text-sm">비밀번호</label>
+                                                        class="ui-floating-label">비밀번호</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -741,9 +747,9 @@
                                             </div>
 
                                             <div class="lg:col-span-2">
-                                                <div class="relative">
+                                                <div class="ui-floating-field">
                                                     <select id="floatingSelect" placeholder=""
-                                                        class="peer border border-default-500 focus:border-default-500 block w-full rounded bg-default-100 p-4 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:pt-6 focus:pb-2 focus:ring-0 sm:text-sm">
+                                                        class="ui-floating-control">
                                                         <option value="" selected disabled>이 선택 메뉴를 여세요
                                                         </option>
                                                         <option value="1">하나</option>
@@ -751,7 +757,7 @@
                                                         <option value="3">셋</option>
                                                     </select>
                                                     <label for="floatingSelect"
-                                                        class="peer-focus:text-default-500 peer-not-placeholder-shown:text-default-500 pointer-events-none absolute start-0 top-0 h-full origin-top-left truncate border border-transparent p-4 transition duration-100 ease-in-out peer-not-placeholder-shown:translate-x-0.5 peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:scale-90 peer-focus:translate-x-0.5 peer-focus:-translate-y-1.5 peer-focus:scale-90 sm:text-sm">선택
+                                                        class="ui-floating-label">선택
                                                         가능</label>
                                                 </div>
                                             </div>
@@ -937,7 +943,7 @@
 
                                                 <div class="flex items-center gap-2">
                                                     <input type="checkbox" id="checkSize2"
-                                                        class="form-checkbox checked:bg-secondary! size-6.25!"
+                                                        class="form-checkbox checked:bg-primary! size-6.25!"
                                                         checked />
                                                     <label for="checkSize2">20px 체크박스</label>
                                                 </div>
@@ -978,7 +984,7 @@
                                                 <!-- 20px Switch -->
                                                 <div class="flex items-center gap-2">
                                                     <input type="checkbox" id="checkboxSize20"
-                                                        class="form-switch form-switch-lg checked:bg-secondary!"
+                                                        class="form-switch form-switch-lg checked:bg-primary!"
                                                         checked />
                                                     <label for="checkboxSize20">20px 스위치</label>
                                                 </div>
@@ -1308,21 +1314,21 @@
                                                     <input type="radio" name="radiotoggle" id="radioLeft"
                                                         class="peer hidden" checked />
                                                     <label for="radioLeft"
-                                                        class="btn btn-choice-secondary rounded-e-none">왼쪽</label>
+                                                        class="btn btn-choice-primary rounded-e-none">왼쪽</label>
                                                 </div>
 
                                                 <div>
                                                     <input type="radio" name="radiotoggle" id="radioMiddle"
                                                         class="peer hidden" />
                                                     <label for="radioMiddle"
-                                                        class="btn btn-choice-secondary rounded-none border-x-0">가운데</label>
+                                                        class="btn btn-choice-primary rounded-none border-x-0">가운데</label>
                                                 </div>
 
                                                 <div>
                                                     <input type="radio" name="radiotoggle" id="radioRight"
                                                         class="peer hidden" />
                                                     <label for="radioRight"
-                                                        class="btn btn-choice-secondary rounded-s-none">오른쪽</label>
+                                                        class="btn btn-choice-primary rounded-s-none">오른쪽</label>
                                                 </div>
                                             </div>
                                         </div>

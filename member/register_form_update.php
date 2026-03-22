@@ -124,7 +124,7 @@ if ($w == '' || $w == 'u') {
 }
 
 // 사용자 코드 실행
-@include_once($member_skin_path.'/register_form_update.head.skin.php');
+MemberSkinHookController::includeOptional($member_skin_path, 'register_form_update.head.skin.php');
 
 //===============================================================
 //  본인확인
@@ -220,20 +220,7 @@ if ($w == '') {
     sql_query($sql);
 
     if ($config['cf_use_email_certify']) {
-        $mb_md5 = md5(pack('V*', rand(), rand(), rand(), rand()));
-        sql_query(" update {$g5['member_table']} set mb_email_certify2 = '$mb_md5' where mb_id = '$mb_id' ");
-        $certify_href = G5_MEMBER_URL.'/email_certify.php?mb_id='.$mb_id.'&amp;mb_md5='.$mb_md5;
-
-        ob_start();
-        include_once ('./register_form_update_mail1.php');
-        $content = ob_get_contents();
-        ob_end_clean();
-
-        $content = run_replace('register_form_update_mail_mb_content', $content, $mb_id);
-
-        mailer($config['cf_admin_email_name'], $config['cf_admin_email'], $mb_email, '['.$config['cf_title'].'] 인증확인 메일입니다.', $content, 1);
-
-        run_event('register_form_update_send_mb_mail', $config['cf_admin_email_name'], $config['cf_admin_email'], $mb_email, '['.$config['cf_title'].'] 인증확인 메일입니다.', $content);
+        MemberNotificationService::sendRegisterEmailCertify($mb_id, $mb_name, $mb_email);
 
         // 가입 직후 인증 메일을 이미 발송했으므로 아래 공통 인증 메일 재발송을 생략한다.
         $old_email = $mb_email;
@@ -329,25 +316,7 @@ $msg = "";
 
 // 인증메일 발송
 if ($config['cf_use_email_certify'] && $old_email != $mb_email) {
-    $subject = '['.$config['cf_title'].'] 인증확인 메일입니다.';
-
-    // 어떠한 회원정보도 포함되지 않은 일회용 난수를 생성하여 인증에 사용
-    $mb_md5 = md5(pack('V*', rand(), rand(), rand(), rand()));
-
-    sql_query(" update {$g5['member_table']} set mb_email_certify2 = '$mb_md5' where mb_id = '$mb_id' ");
-
-    $certify_href = G5_MEMBER_URL.'/email_certify.php?mb_id='.$mb_id.'&amp;mb_md5='.$mb_md5;
-
-    ob_start();
-    include_once ('./register_form_update_mail3.php');
-    $content = ob_get_contents();
-    ob_end_clean();
-    
-    $content = run_replace('register_form_update_mail_certify_content', $content, $mb_id);
-
-    mailer($config['cf_admin_email_name'], $config['cf_admin_email'], $mb_email, $subject, $content, 1);
-
-    run_event('register_form_update_send_certify_mail', $config['cf_admin_email_name'], $config['cf_admin_email'], $mb_email, $subject, $content);
+    MemberNotificationService::sendRegisterEmailChange($mb_id, $mb_name, $mb_email, $w);
 }
 
 
@@ -357,39 +326,4 @@ if(isset($_SESSION['ss_cert_hash'])) unset($_SESSION['ss_cert_hash']);
 if(isset($_SESSION['ss_cert_birth'])) unset($_SESSION['ss_cert_birth']);
 if(isset($_SESSION['ss_cert_adult'])) unset($_SESSION['ss_cert_adult']);
 
-if ($msg)
-    echo '<script>alert(\''.$msg.'\');</script>';
-
-run_event('register_form_update_after', $mb_id, $w);
-
-if ($w == '') {
-    goto_url(G5_HTTP_MEMBER_URL.'/register_result.php');
-} else if ($w == 'u') {
-    $row  = sql_fetch(" select mb_password from {$g5['member_table']} where mb_id = '{$member['mb_id']}' ");
-    $tmp_password = $row['mb_password'];
-
-    if ($old_email != $mb_email && $config['cf_use_email_certify']) {
-        set_session('ss_mb_id', '');
-        alert('회원 정보가 수정 되었습니다.\n\nE-mail 주소가 변경되었으므로 다시 인증하셔야 합니다.', G5_URL);
-    } else {
-        echo '
-        <!doctype html>
-        <html lang="ko">
-        <head>
-        <meta charset="utf-8">
-        <title>회원정보수정</title>
-        <body>
-        <form name="fregisterupdate" method="post" action="'.G5_HTTP_MEMBER_URL.'/register_form.php">
-        <input type="hidden" name="w" value="u">
-        <input type="hidden" name="mb_id" value="'.$mb_id.'">
-        <input type="hidden" name="mb_password" value="'.$tmp_password.'">
-        <input type="hidden" name="is_update" value="1">
-        </form>
-        <script>
-        alert("회원 정보가 수정 되었습니다.");
-        document.fregisterupdate.submit();
-        </script>
-        </body>
-        </html>';
-    }
-}
+MemberRegisterResponseFlow::finishSubmit($mb_id, $member, $w, $old_email, $mb_email, $msg);

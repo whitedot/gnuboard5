@@ -1,4 +1,3 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 @import "tailwindcss" source(none);
 @plugin "@tailwindcss/typography";
 
@@ -228,6 +227,22 @@
 
     .btn-solid-info {
         @apply bg-info text-white hover:bg-info-hover;
+    }
+
+    .btn-primary {
+        @apply border border-transparent bg-primary text-white hover:bg-primary-hover;
+    }
+
+    .btn-secondary {
+        @apply border border-default-300 bg-white text-default-700 hover:bg-default-100;
+    }
+
+    .btn-tertiary {
+        @apply border border-default-300 bg-default-100 text-default-700 hover:bg-default-200;
+    }
+
+    .btn-inline {
+        @apply inline-flex items-center rounded-lg border border-default-300 bg-white px-2.5 py-1 text-xs font-medium text-default-700 hover:bg-default-100;
     }
 
     .btn-solid-dark {
@@ -627,14 +642,374 @@
         @apply !h-11.75 !text-base;
     }
 
+    .hint-text {
+        @apply mt-1 block text-xs text-default-400;
+    }
+
+    .caption-sr-only,
+    table > caption {
+        @apply sr-only;
+    }
+
+    .ui-form-theme .form-label {
+        margin-bottom: 0.45rem;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--color-default-700);
+    }
+
+    .ui-form-theme .form-input,
+    .ui-form-theme .form-select,
+    .ui-form-theme .form-textarea {
+        width: 100%;
+        border: 2px solid #111111;
+        border-radius: 0;
+        background: #ffffff;
+        padding: 0.65rem 0.8rem;
+        color: #111111;
+        box-shadow: none;
+    }
+
+    .ui-form-theme .form-input,
+    .ui-form-theme .form-select {
+        min-height: 2.75rem;
+    }
+
+    .ui-form-theme .form-textarea {
+        min-height: 7rem;
+        resize: vertical;
+    }
+
+    .ui-form-theme select.form-input,
+    .ui-form-theme .form-select {
+        padding-inline-end: 2.5rem !important;
+    }
+
+    .ui-form-theme .form-input:focus,
+    .ui-form-theme .form-select:focus,
+    .ui-form-theme .form-textarea:focus {
+        border-color: #111111;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.12);
+    }
+
+    .ui-form-theme .form-input:disabled,
+    .ui-form-theme .form-select:disabled,
+    .ui-form-theme .form-textarea:disabled {
+        border-color: #4b5563;
+        background: #f3f4f6;
+        color: #6b7280;
+    }
+
+    .ui-form-theme .ui-label-stack .form-label {
+        margin-bottom: 0.45rem;
+    }
+
+    .ui-form-theme .form-input::placeholder,
+    .ui-form-theme .form-select::placeholder,
+    .ui-form-theme .form-textarea::placeholder {
+        color: #6b7280;
+    }
+
+    .ui-form-theme input[type="file"].form-input {
+        padding: 0.4rem 0.65rem;
+    }
+
+    .ui-form-theme input[type="file"].form-input::file-selector-button {
+        margin-right: 0.75rem;
+        border: 2px solid #111111;
+        border-radius: 0;
+        background: #f3f4f6;
+        padding: 0.4rem 0.8rem;
+        color: #111111;
+    }
+
+    .ui-form-theme .input-group {
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
+        align-items: stretch;
+    }
+
+    .ui-form-theme .input-group > * {
+        min-width: 0;
+    }
+
+    .ui-form-theme .input-group > :not(:first-child) {
+        margin-left: -1px;
+    }
+
+    .ui-form-theme .input-group > .form-input,
+    .ui-form-theme .input-group > .form-select,
+    .ui-form-theme .input-group > .form-textarea {
+        position: relative;
+        flex: 1 1 auto;
+    }
+
+    .ui-form-theme .input-group-text {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.75rem;
+        padding: 0.65rem 0.8rem;
+        border: 2px solid #111111;
+        border-radius: 0;
+        background: #f3f4f6;
+        color: #111111;
+        white-space: nowrap;
+        line-height: 1.4;
+    }
+
+    .ui-form-theme .input-group > .btn,
+    .ui-form-theme .input-group > .hs-dropdown,
+    .ui-form-theme .input-group > .hs-dropdown > .btn {
+        flex: 0 0 auto;
+    }
+
+    .ui-form-theme .input-group > .btn,
+    .ui-form-theme .input-group > .hs-dropdown > .btn {
+        min-height: 2.75rem;
+        border-radius: 0 !important;
+    }
+
+    .ui-form-theme .input-group > .hs-dropdown {
+        display: flex;
+    }
+
+    .ui-form-theme .input-group > .hs-dropdown > .btn {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .ui-floating-field {
+        position: relative;
+    }
+
+    .ui-floating-control {
+        width: 100%;
+        min-height: 3.25rem;
+        border: 2px solid #111111;
+        border-radius: 0;
+        background: #ffffff;
+        padding: 1.15rem 0.8rem 0.45rem;
+        color: #111111;
+        box-shadow: none;
+    }
+
+    .ui-floating-control::placeholder {
+        color: transparent;
+    }
+
+    textarea.ui-floating-control {
+        min-height: 7rem;
+        resize: vertical;
+    }
+
+    .ui-floating-control:focus {
+        border-color: #111111;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.12);
+    }
+
+    .ui-floating-label {
+        pointer-events: none;
+        position: absolute;
+        left: 0.8rem;
+        top: 0.9rem;
+        background: #ffffff;
+        padding: 0 0.2rem;
+        font-size: 0.8125rem;
+        color: #6b7280;
+        line-height: 1;
+        transition: transform var(--default-transition-duration), color var(--default-transition-duration), top var(--default-transition-duration);
+        transform-origin: left top;
+    }
+
+    .ui-floating-control:focus + .ui-floating-label,
+    .ui-floating-control:not(:placeholder-shown) + .ui-floating-label,
+    .ui-floating-field select.ui-floating-control + .ui-floating-label {
+        top: 0;
+        transform: translateY(-50%) scale(0.92);
+        color: #111111;
+    }
+
+    [data-theme="dark"] .ui-form-theme .form-label {
+        color: #e5e7eb;
+    }
+
+    [data-theme="dark"] .ui-form-theme .form-input,
+    [data-theme="dark"] .ui-form-theme .form-select,
+    [data-theme="dark"] .ui-form-theme .form-textarea {
+        border-color: #f3f4f6;
+        background: #111827;
+        color: #f9fafb;
+    }
+
+    [data-theme="dark"] .ui-form-theme .form-input::placeholder,
+    [data-theme="dark"] .ui-form-theme .form-select::placeholder,
+    [data-theme="dark"] .ui-form-theme .form-textarea::placeholder {
+        color: #9ca3af;
+    }
+
+    [data-theme="dark"] .ui-form-theme .form-input:focus,
+    [data-theme="dark"] .ui-form-theme .form-select:focus,
+    [data-theme="dark"] .ui-form-theme .form-textarea:focus {
+        border-color: #ffffff;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
+    }
+
+    [data-theme="dark"] .ui-form-theme .form-input:disabled,
+    [data-theme="dark"] .ui-form-theme .form-select:disabled,
+    [data-theme="dark"] .ui-form-theme .form-textarea:disabled {
+        border-color: #6b7280;
+        background: #1f2937;
+        color: #9ca3af;
+    }
+
+    [data-theme="dark"] .ui-form-theme input[type="file"].form-input::file-selector-button,
+    [data-theme="dark"] .ui-form-theme .input-group-text {
+        border-color: #f3f4f6;
+        background: #1f2937;
+        color: #f9fafb;
+    }
+
+    [data-theme="dark"] .ui-floating-control {
+        border-color: #f3f4f6;
+        background: #111827;
+        color: #f9fafb;
+    }
+
+    [data-theme="dark"] .ui-floating-control:focus {
+        border-color: #ffffff;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
+    }
+
+    [data-theme="dark"] .ui-floating-label {
+        background: #111827;
+        color: #9ca3af;
+    }
+
+    [data-theme="dark"] .ui-floating-control:focus + .ui-floating-label,
+    [data-theme="dark"] .ui-floating-control:not(:placeholder-shown) + .ui-floating-label,
+    [data-theme="dark"] .ui-floating-field select.ui-floating-control + .ui-floating-label {
+        color: #ffffff;
+    }
+
+    .ui-form-grid,
+    .af-grid {
+        @apply divide-y divide-default-200;
+    }
+
+    .ui-form-row,
+    .af-row {
+        @apply grid grid-cols-1 gap-1.5 px-5 lg:grid-cols-3 lg:gap-9;
+    }
+
+    .ui-form-row-double,
+    .af-row-double {
+        @apply grid gap-4 px-5 lg:grid-cols-2;
+    }
+
+    .ui-form-label,
+    .af-label {
+        @apply min-w-0;
+    }
+
+    .ui-form-label .form-label,
+    .af-label .form-label {
+        @apply mb-0 py-2;
+    }
+
+    .ui-form-field,
+    .af-field {
+        @apply min-w-0 space-y-2 lg:col-span-2;
+    }
+
+    .ui-form-field .hint-text,
+    .af-field .hint-text {
+        margin-top: 0.55rem;
+        font-size: 0.75rem;
+        line-height: 1.6;
+        color: var(--color-default-400);
+    }
+
+    .ui-form-inline,
+    .af-inline {
+        @apply inline-flex flex-wrap items-center gap-2;
+    }
+
+    .ui-form-inline .form-input,
+    .ui-form-inline .form-select,
+    .ui-form-inline select,
+    .af-inline .form-input,
+    .af-inline .form-select,
+    .af-inline select {
+        @apply w-auto;
+    }
+
+    .ui-form-inline-sentence,
+    .af-inline-sentence {
+        @apply gap-1.5;
+    }
+
+    .ui-form-inline-sentence .form-input,
+    .af-inline-sentence .form-input {
+        @apply text-right;
+    }
+
+    .ui-form-inline-note,
+    .af-inline-note {
+        @apply mb-0 text-sm font-medium text-default-600;
+    }
+
+    .ui-form-input-xs,
+    .af-input-xs {
+        width: 4.5rem;
+        min-width: 4.5rem;
+    }
+
+    .ui-form-input-sm,
+    .af-input-sm {
+        width: 8rem;
+        min-width: 8rem;
+    }
+
+    .ui-form-check,
+    .af-check {
+        @apply inline-flex items-center gap-1.5;
+    }
+
+    .ui-form-check.form-label,
+    .ui-form-check .form-label,
+    .af-check.form-label,
+    .af-check .form-label {
+        @apply mb-0 font-medium;
+    }
+
+    .ui-form-check:has(> input.form-radio:checked),
+    .ui-form-check:has(> input.form-checkbox:checked),
+    .af-check:has(> input.form-radio:checked),
+    .af-check:has(> input.form-checkbox:checked) {
+        color: var(--color-primary);
+    }
+
+    .ui-form-check:has(> input.form-radio:checked) > .form-label,
+    .ui-form-check:has(> input.form-checkbox:checked) > .form-label,
+    .af-check:has(> input.form-radio:checked) > .form-label,
+    .af-check:has(> input.form-checkbox:checked) > .form-label {
+        color: inherit;
+    }
+
     .form-radio,
     .form-checkbox {
         @apply inline-block size-4.5 appearance-none bg-center bg-no-repeat align-middle;
-        @apply shrink-0 border border-default-300 bg-transparent ring-offset-white focus-visible:outline-none;
+        @apply shrink-0 border bg-transparent ring-offset-white focus-visible:outline-none;
         @apply focus-visible:ring-2 focus-visible:ring-inherit focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-90;
         @apply aria-invalid:border-danger/60 aria-invalid:ring-danger/10;
-        @apply cursor-pointer checked:border-inherit focus:ring-0 focus:ring-offset-0;
-        @apply checked:bg-primary checked:border-transparent;
+        @apply cursor-pointer focus:ring-0 focus:ring-offset-0;
+        border-width: 2px;
+        border-color: #111111;
+        background-color: #ffffff;
 
         &:not([class*="size-"]) {
             @apply text-lg;
@@ -642,11 +1017,31 @@
     }
 
     .form-checkbox {
-        @apply rounded-sm;
+        @apply relative rounded-sm;
 
         &:checked {
-            background-size: 0.9rem 0.9rem;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.3 6.6 11.3 12.6 5.3' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            border-color: var(--color-primary);
+            background-color: var(--color-primary);
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 46%;
+            width: 0.28rem;
+            height: 0.58rem;
+            border-right: 2px solid #ffffff;
+            border-bottom: 2px solid #ffffff;
+            transform: translate(-50%, -50%) rotate(45deg) scale(0);
+            transform-origin: center;
+            transition: transform 0.12s ease-out;
+        }
+
+        &:checked {
+            &::after {
+                transform: translate(-50%, -50%) rotate(45deg) scale(1);
+            }
         }
 
         &.form-checkbox-light {
@@ -672,9 +1067,24 @@
         @apply rounded-full;
 
         &:checked {
-            background-size: 0.8rem 0.8rem;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='4.1' fill='white'/%3E%3C/svg%3E");
+            border-color: var(--color-primary);
+            background-color: var(--color-primary);
+            background-image: radial-gradient(circle at center, #ffffff 0 28%, transparent 30%);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
         }
+    }
+
+    .form-checkbox[class*="checked:bg-"]:checked,
+    .form-radio[class*="checked:bg-"]:checked {
+        border-color: transparent;
+    }
+
+    [data-theme="dark"] .form-radio:not(:checked),
+    [data-theme="dark"] .form-checkbox:not(:checked) {
+        border-color: #f3f4f6;
+        background-color: #111827;
     }
 
     .form-switch {
@@ -819,15 +1229,30 @@
     }
 
     .input-icon-group {
-        @apply relative flex items-center;
+        position: relative;
+        width: 100%;
 
         >.form-input,
         >.form-select {
             @apply w-full;
         }
 
-        >.input-icon:first-child {
-            @apply pointer-events-none absolute start-3 top-1/2 -translate-y-1/2 text-lg text-default-400;
+        >.input-icon:first-child,
+        >.input-icon.is-start {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0.8rem;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1em;
+            height: 1em;
+            margin-block: auto;
+            line-height: 1;
+            color: var(--color-default-500);
         }
 
         >.input-icon:first-child+.form-input,
@@ -835,8 +1260,23 @@
             @apply !ps-10;
         }
 
-        >.input-icon:last-child {
-            @apply pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 text-lg text-default-400;
+        >.input-icon:last-child,
+        >.input-icon.is-end {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0.8rem;
+            left: auto;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1em;
+            height: 1em;
+            margin-block: auto;
+            line-height: 1;
+            color: var(--color-default-500);
         }
 
         >.form-input:not(:last-child),
@@ -844,9 +1284,52 @@
             @apply pe-10;
         }
 
+        &.has-end-icon {
+            >.form-input,
+            >.form-select {
+                padding-left: 0.8rem;
+                padding-right: 2.4rem;
+            }
+        }
+
         >.form-select:not(:last-child) {
             background-size: 4rem 1.5rem;
         }
+    }
+
+    .validation-icon,
+    .input-group-icon,
+    .password-toggle-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1em;
+        height: 1em;
+        line-height: 1;
+        flex: 0 0 auto;
+    }
+
+    .password-toggle-icon:not(.hidden) {
+        display: inline-flex;
+    }
+
+    .input-icon-group .input-icon svg,
+    .input-icon-group .input-icon .iconify-icon,
+    .validation-icon svg,
+    .validation-icon .iconify-icon,
+    .password-toggle-icon svg,
+    .password-toggle-icon .iconify-icon,
+    .input-group-icon svg,
+    .input-group-icon .iconify-icon {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .input-group-trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
     }
 
     /* --- Modals --- */

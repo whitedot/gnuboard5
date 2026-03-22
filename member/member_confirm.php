@@ -12,9 +12,6 @@ while (1) {
 
 $url = run_replace('member_confirm_next_url', $url);
 
-$g5['title'] = '회원 비밀번호 확인';
-include_once('./_head.sub.php');
-
 // url 체크
 check_url_host($url, '', G5_URL, true);
 
@@ -31,7 +28,8 @@ if($url){
 }
 
 $url = get_text($url);
-
-include_once($member_skin_path.'/member_confirm.skin.php');
-
-include_once('./_tail.sub.php');
+MemberPageController::render('회원 비밀번호 확인', 'member_confirm.skin.php', array(
+    'url' => $url,
+), array(
+    'sub' => true,
+));

@@ -135,32 +135,11 @@ $pg_anchor_menu = admin_build_anchor_menu($member_tabs, array(
 ));
 ?>
 
-<style>
-    #member_tabs_bar {
-        border: 0;
-        border-radius: 0;
-        background: transparent;
-        box-shadow: none;
-        -webkit-backdrop-filter: none;
-        backdrop-filter: none;
-        padding: 0;
-    }
-
-    #member_tabs_bar,
-    #member_tabs_bar .tab-nav-justified {
-        background-color: var(--color-body-bg) !important;
-    }
-
-    #member_tabs_bar .tab-trigger-underline-justified:not(.active):not([aria-selected="true"]) {
-        background-color: var(--color-body-bg) !important;
-    }
-</style>
-
 <div id="member_tabs_bar">
     <?php echo $pg_anchor_menu; ?>
 </div>
 
-<form name="fmember" id="fmember" action="./member_form_update.php" onsubmit="return fmember_submit(this);" method="post" class="admin-form-layout space-y-5">
+<form name="fmember" id="fmember" action="./member_form_update.php" onsubmit="return fmember_submit(this);" method="post" class="admin-form-layout ui-form-theme space-y-5" autocomplete="off">
     <input type="hidden" name="w" value="<?php echo $w ?>">
     <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
     <input type="hidden" name="stx" value="<?php echo $stx ?>">
@@ -168,6 +147,12 @@ $pg_anchor_menu = admin_build_anchor_menu($member_tabs, array(
     <input type="hidden" name="sod" value="<?php echo $sod ?>">
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="token" value="<?php echo get_admin_token(); ?>" id="token">
+    <div class="sr-only" aria-hidden="true">
+        <label for="member_form_fake_username">자동완성 방지 아이디</label>
+        <input type="text" id="member_form_fake_username" name="member_form_fake_username" tabindex="-1" autocomplete="username">
+        <label for="member_form_fake_password">자동완성 방지 비밀번호</label>
+        <input type="password" id="member_form_fake_password" name="member_form_fake_password" tabindex="-1" autocomplete="current-password">
+    </div>
 
     <?php // 기본 정보
     include_once G5_ADMIN_PATH.'/member_form_parts/basic.php';

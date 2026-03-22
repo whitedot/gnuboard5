@@ -19,7 +19,7 @@
                 </div>
                 <div class="af-field">
                     <div>
-                        <input type="password" name="mb_password" id="mb_password" <?php echo $required_mb_password ?> class="<?php echo $required_mb_password ?> form-input" size="15" maxlength="20">
+                        <input type="password" name="mb_password" id="mb_password" <?php echo $required_mb_password ?> class="<?php echo $required_mb_password ?> form-input" size="15" maxlength="20" autocomplete="new-password" readonly data-lpignore="true" data-1p-ignore="true">
                     </div>
                     <div id="mb_password_captcha_wrap" style="display:none">
                         <?php
@@ -55,7 +55,7 @@
                     <label for="mb_level" class="form-label">회원 권한</label>
                 </div>
                 <div class="af-field">
-                    <?php echo get_member_level_select('mb_level', 1, $member['mb_level'], $mb['mb_level']) ?>
+                    <?php echo get_member_level_select('mb_level', 1, $member['mb_level'], $mb['mb_level'], 'class="form-select"') ?>
                 </div>
             </div>
 

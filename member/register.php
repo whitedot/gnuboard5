@@ -9,10 +9,7 @@ if ($is_member) {
 // 세션을 지웁니다.
 set_session("ss_mb_reg", "");
 
-$g5['title'] = '회원가입약관';
-include_once('./_head.php');
-
 $register_action_url = G5_MEMBER_URL.'/register_form.php';
-include_once($member_skin_path.'/register.skin.php');
-
-include_once('./_tail.php');
+MemberPageController::render('회원가입약관', 'register.skin.php', array(
+    'register_action_url' => $register_action_url,
+));

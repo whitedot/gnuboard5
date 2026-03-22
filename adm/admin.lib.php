@@ -44,9 +44,15 @@ function get_member_level_select($name, $start_id = 0, $end_id = 10, $selected =
 {
     global $g5;
 
+    $attr = trim((string) $event);
+    if (strpos($attr, 'class=') === false) {
+        $attr = trim('class="form-select" ' . $attr);
+    } else {
+        $attr = preg_replace('/class=("|\')(.*?)(\1)/', 'class=$1form-select $2$1', $attr, 1);
+    }
     $str = "\n<select id=\"{$name}\" name=\"{$name}\"";
-    if ($event) {
-        $str .= " $event";
+    if ($attr !== '') {
+        $str .= " {$attr}";
     }
     $str .= ">\n";
     for ($i = $start_id; $i <= $end_id; $i++) {
@@ -68,7 +74,17 @@ function get_member_id_select($name, $level, $selected = "", $event = "")
 
     $sql = " select mb_id from {$g5['member_table']} where mb_level >= '{$level}' ";
     $result = sql_query($sql);
-    $str = '<select id="' . $name . '" name="' . $name . '" ' . $event . '><option value="">선택안함</option>';
+    $attr = trim((string) $event);
+    if (strpos($attr, 'class=') === false) {
+        $attr = trim('class="form-select" ' . $attr);
+    } else {
+        $attr = preg_replace('/class=("|\')(.*?)(\1)/', 'class=$1form-select $2$1', $attr, 1);
+    }
+    $str = '<select id="' . $name . '" name="' . $name . '"';
+    if ($attr !== '') {
+        $str .= ' ' . $attr;
+    }
+    $str .= '><option value="">선택안함</option>';
     for ($i = 0; $row = sql_fetch_array($result); $i++) {
         $str .= '<option value="' . $row['mb_id'] . '"';
         if ($row['mb_id'] == $selected) {

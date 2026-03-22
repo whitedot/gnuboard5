@@ -18,7 +18,7 @@
                     <label for="cf_admin" class="form-label">최고관리자<strong>필수</strong></label>
                 </div>
                 <div class="af-field">
-                    <?php echo get_member_id_select('cf_admin', 10, $config['cf_admin'], 'required') ?>
+                    <?php echo get_member_id_select('cf_admin', 10, $config['cf_admin'], 'required class="form-select"') ?>
                 </div>
             </div>
 

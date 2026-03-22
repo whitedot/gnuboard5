@@ -39,32 +39,11 @@ $pg_anchor_menu = admin_build_anchor_menu($config_tabs, array(
 
 ?>
 
-<style>
-    #config_tabs_bar {
-        border: 0;
-        border-radius: 0;
-        background: transparent;
-        box-shadow: none;
-        -webkit-backdrop-filter: none;
-        backdrop-filter: none;
-        padding: 0;
-    }
-
-    #config_tabs_bar,
-    #config_tabs_bar .tab-nav-justified {
-        background-color: var(--color-body-bg) !important;
-    }
-
-    #config_tabs_bar .tab-trigger-underline-justified:not(.active):not([aria-selected="true"]) {
-        background-color: var(--color-body-bg) !important;
-    }
-</style>
-
 <div id="config_tabs_bar">
     <?php echo $pg_anchor_menu; ?>
 </div>
 
-<form name="fconfigform" id="fconfigform" method="post" action="./config_form_update.php" onsubmit="return fconfigform_submit(this);" class="admin-form-layout space-y-5">
+<form name="fconfigform" id="fconfigform" method="post" action="./config_form_update.php" onsubmit="return fconfigform_submit(this);" class="admin-form-layout ui-form-theme space-y-5">
     <input type="hidden" name="token" value="" id="token">
 
     <?php

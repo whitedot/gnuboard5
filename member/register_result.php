@@ -8,7 +8,6 @@ if (isset($_SESSION['ss_mb_reg']))
 if (!(isset($mb['mb_id']) && $mb['mb_id']))
     goto_url(G5_URL);
 
-$g5['title'] = '회원가입 완료';
-include_once('./_head.php');
-include_once($member_skin_path.'/register_result.skin.php');
-include_once('./_tail.php');
+MemberPageController::render('회원가입 완료', 'register_result.skin.php', array(
+    'mb' => $mb,
+));

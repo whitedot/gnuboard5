@@ -45,7 +45,7 @@ if ( is_use_email_certify() && !preg_match("/[1-9]/", $mb['mb_email_certify'])) 
 
 run_event('login_session_before', $mb, false);
 
-@include_once($member_skin_path.'/login_check.skin.php');
+MemberSkinHookController::includeOptional($member_skin_path, 'login_check.skin.php');
 
 if (! (defined('SKIP_SESSION_REGENERATE_ID') && SKIP_SESSION_REGENERATE_ID)) {
     session_regenerate_id(false);

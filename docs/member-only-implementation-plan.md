@@ -31,7 +31,7 @@
 - `adm/member_list.php`, `adm/auth_list.php` 는 고정 상수 `G5_ADMIN_PAGING_PAGES` 를 사용하도록 변경
 - 신규 설치 기준에서도 제거된 설정 컬럼/초기값이 다시 생기지 않도록 `install/gnuboard5.sql`, `install/install_db.php` 정리
 - `adm/member_form_update.php` 에서 관리 메모 입력값을 명시적으로 수집해 저장 경로 복구
-- `member/register_form_update_mail1.php` 를 이메일 인증 안내용 문구로 정리
+- 이메일 인증 메일 템플릿을 회원 전용 스킨 경로로 정리
 - `lib/common.util.lib.php` 에서 본인인증 변경이력 테이블 키 확인을 실제 설정 키 기준으로 보정
 
 ## QA 포인트

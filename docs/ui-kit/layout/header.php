@@ -24,10 +24,11 @@
             document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
         })();
     </script>
-    <!-- Tailwind CSS (compiled or CDN depending on setup) -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" crossorigin>
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/ui-kit.css">
-    <!-- UI Guide Custom CSS -->
     <link rel="stylesheet" href="css/ui-guide.css">
     <!-- Iconify -->
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>

@@ -26,6 +26,11 @@ if (G5_IS_MOBILE) {
 ?>
 <title><?php echo $g5_head_title; ?></title>
 <?php
+$pretendard_font_href = 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css';
+echo '<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>'.PHP_EOL;
+echo '<link rel="preload" as="style" href="'.$pretendard_font_href.'" crossorigin>'.PHP_EOL;
+echo '<link rel="stylesheet" href="'.$pretendard_font_href.'" crossorigin>'.PHP_EOL;
+
 $common_css_path = G5_CSS_PATH.'/common.css';
 $common_css_ver = is_file($common_css_path) ? filemtime($common_css_path) : G5_CSS_VER;
 echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_CSS_URL.'/common.css?ver='.$common_css_ver, G5_URL).'">'.PHP_EOL;

@@ -40,38 +40,6 @@ $mb_nonce = md5(pack('V*', rand(), rand(), rand(), rand()));
 $sql = " update {$g5['member_table']} set mb_lost_certify = '$mb_nonce $mb_lost_certify' where mb_id = '{$mb['mb_id']}' ";
 sql_query($sql);
 
-// 인증 링크 생성
-$href = G5_MEMBER_URL.'/password_lost_certify.php?mb_no='.$mb['mb_no'].'&amp;mb_nonce='.$mb_nonce;
-
-$subject = "[".$config['cf_title']."] 요청하신 회원정보 찾기 안내 메일입니다.";
-
-$content = "";
-
-$content .= '<div>';
-$content .= '<div>';
-$content .= '<h1>';
-$content .= '회원정보 찾기 안내';
-$content .= '</h1>';
-$content .= '<span>';
-$content .= '<a href="'.G5_URL.'" target="_blank">'.$config['cf_title'].'</a>';
-$content .= '</span>';
-$content .= '<p>';
-$content .= addslashes($mb['mb_name'])." (".addslashes($mb['mb_nick']).")"." 회원님은 ".G5_TIME_YMDHIS." 에 회원정보 찾기 요청을 하셨습니다.<br>";
-$content .= '저희 사이트는 관리자라도 회원님의 비밀번호를 알 수 없기 때문에, 비밀번호를 알려드리는 대신 새로운 비밀번호를 생성하여 안내 해드리고 있습니다.<br>';
-$content .= '아래에서 변경될 비밀번호를 확인하신 후, <span><strong>비밀번호 변경</strong> 링크를 클릭 하십시오.</span><br>';
-$content .= '비밀번호가 변경되었다는 인증 메세지가 출력되면, 홈페이지에서 회원아이디와 변경된 비밀번호를 입력하시고 로그인 하십시오.<br>';
-$content .= '로그인 후에는 정보수정 메뉴에서 새로운 비밀번호로 변경해 주십시오.';
-$content .= '</p>';
-$content .= '<p>';
-$content .= '<span>회원아이디</span> '.$mb['mb_id'].'<br>';
-$content .= '<span>변경될 비밀번호</span> <strong>'.$change_password.'</strong>';
-$content .= '</p>';
-$content .= '<a href="'.$href.'" target="_blank">비밀번호 변경</a>';
-$content .= '</div>';
-$content .= '</div>';
-
-mailer($config['cf_admin_email_name'], $config['cf_admin_email'], $mb['mb_email'], $subject, $content, 1);
-
-run_event('password_lost2_after', $mb, $mb_nonce, $mb_lost_certify);
+MemberNotificationService::sendPasswordLostMail($email, $mb, $change_password, $mb_nonce, $mb_lost_certify);
 
 alert_close($email.' 메일로 회원아이디와 비밀번호를 인증할 수 있는 메일이 발송 되었습니다.\\n\\n메일을 확인하여 주십시오.');
