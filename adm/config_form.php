@@ -61,7 +61,7 @@ $pg_anchor_menu = admin_build_anchor_menu($config_tabs, array(
         ?>
     </div>
 
-    <div class="flex items-center justify-end border-default-300 border-t border-dashed pt-4">
+    <div class="admin-form-sticky-actions flex items-center justify-end border-default-300 border-t border-dashed pt-4">
         <button type="submit" class="btn btn-solid-primary" accesskey="s">저장</button>
     </div>
 </form>

@@ -5,7 +5,7 @@ class MemberPageController
 {
     public static function render($title, $template_name, array $data = array(), array $options = array())
     {
-        global $g5, $member_skin_path;
+        global $g5, $config, $member, $is_member, $is_admin, $member_skin_path;
 
         $g5['title'] = $title;
 

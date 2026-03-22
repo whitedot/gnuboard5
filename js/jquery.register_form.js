@@ -1,5 +1,9 @@
 var g5_register_url = typeof g5_member_url !== "undefined" && g5_member_url ? g5_member_url : g5_url;
 
+function normalizeRegisterCheckMessage(data) {
+    return String(data == null ? "" : data).replace(/^\uFEFF/, "").trim();
+}
+
 var reg_mb_id_check = function() {
     var result = "";
     $.ajax({
@@ -11,7 +15,7 @@ var reg_mb_id_check = function() {
         cache: false,
         async: false,
         success: function(data) {
-            result = data;
+            result = normalizeRegisterCheckMessage(data);
         }
     });
     return result;
@@ -30,7 +34,7 @@ var reg_mb_recommend_check = function() {
         cache: false,
         async: false,
         success: function(data) {
-            result = data;
+            result = normalizeRegisterCheckMessage(data);
         }
     });
     return result;
@@ -49,7 +53,7 @@ var reg_mb_nick_check = function() {
         cache: false,
         async: false,
         success: function(data) {
-            result = data;
+            result = normalizeRegisterCheckMessage(data);
         }
     });
     return result;
@@ -68,7 +72,7 @@ var reg_mb_email_check = function() {
         cache: false,
         async: false,
         success: function(data) {
-            result = data;
+            result = normalizeRegisterCheckMessage(data);
         }
     });
     return result;
@@ -87,7 +91,7 @@ var reg_mb_hp_check = function() {
         cache: false,
         async: false,
         success: function(data) {
-            result = data;
+            result = normalizeRegisterCheckMessage(data);
         }
     });
     return result;

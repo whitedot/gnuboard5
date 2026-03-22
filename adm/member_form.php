@@ -168,7 +168,7 @@ $pg_anchor_menu = admin_build_anchor_menu($member_tabs, array(
     include_once G5_ADMIN_PATH.'/member_form_parts/history.php';
     ?>
 
-    <div class="flex items-center justify-between border-default-300 border-t border-dashed pt-4">
+    <div class="admin-form-sticky-actions flex items-center justify-between border-default-300 border-t border-dashed pt-4">
         <a href="./member_list.php?<?php echo $qstr ?>" class="btn btn-surface-default-soft">목록</a>
         <button type="submit" class="btn btn-solid-primary" accesskey="s">저장</button>
     </div>

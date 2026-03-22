@@ -589,6 +589,18 @@
         scroll-margin-top: calc(var(--admin-shell-bar-height) + var(--config-tabs-height, 3.25rem) + 0.75rem);
     }
 
+    .admin-form-layout > .admin-form-sticky-actions {
+        @apply sticky bottom-0 z-20 px-1 pb-5 pt-4;
+        background-color: var(--color-body-bg);
+        background-image: linear-gradient(
+            to bottom,
+            color-mix(in oklab, var(--color-body-bg) 0%, transparent) 0%,
+            color-mix(in oklab, var(--color-body-bg) 88%, transparent) 0.9rem,
+            var(--color-body-bg) 2rem
+        );
+        backdrop-filter: blur(10px);
+    }
+
     .admin-form-layout > section.card {
         @apply overflow-hidden;
     }

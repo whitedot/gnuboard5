@@ -634,9 +634,24 @@ if (isset($config['cf_cert_hp']) && $config['cf_cert_hp'] === 'lg') {
 
 //==============================================================================
 // Mobile 모바일 설정
-// 회원 전용 앱 셸에서는 접속 기기만 판별합니다.
+// 회원 전용 앱 셸에서는 device 파라미터 또는 세션값으로 기기 모드를 강제할 수 있습니다.
 //------------------------------------------------------------------------------
-define('G5_IS_MOBILE', G5_USE_MOBILE && is_mobile());
+$is_mobile = false;
+
+if (G5_USE_MOBILE) {
+    if (isset($_REQUEST['device']) && $_REQUEST['device'] === 'pc') {
+        $is_mobile = false;
+    } elseif (isset($_REQUEST['device']) && $_REQUEST['device'] === 'mobile') {
+        $is_mobile = true;
+    } elseif (isset($_SESSION['ss_is_mobile'])) {
+        $is_mobile = (bool) $_SESSION['ss_is_mobile'];
+    } elseif (is_mobile()) {
+        $is_mobile = true;
+    }
+}
+
+$_SESSION['ss_is_mobile'] = $is_mobile;
+define('G5_IS_MOBILE', $is_mobile);
 //==============================================================================
 
 

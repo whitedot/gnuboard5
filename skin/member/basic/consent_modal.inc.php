@@ -1,85 +1,91 @@
-<!-- HTML -->
 <?php if (!defined('_GNUBOARD_')) exit; ?>
-<dialog id="consentDialog" aria-labelledby="consentDialogTitle" aria-describedby="consentDialogBody">
-  <form method="dialog">
-    <header>
-      <h3 id="consentDialogTitle">안내</h3>
-    </header>
-    <div id="consentDialogBody"></div>
-    <footer>
-      <button type="button" class="cd-agree">동의합니다</button>
-      <button value="close">닫기</button>
-    </footer>
-  </form>
-</dialog>
+<div id="consentDialog"
+    class="modal-overlay modal-overlay-fade hs-overlay hidden pointer-events-none opacity-0"
+    role="dialog"
+    tabindex="-1"
+    aria-hidden="true"
+    aria-labelledby="consentDialogTitle">
+    <div class="modal-dialog modal-dialog-center">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="consentDialogTitle" class="modal-title">안내</h3>
+                <button type="button" class="modal-close" aria-label="닫기" data-hs-overlay="#consentDialog">
+                    <span class="sr-only">닫기</span>
+                    <span class="close-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div id="consentDialogBody" class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary modal-action" data-hs-overlay="#consentDialog">닫기</button>
+                <button type="button" class="btn btn-primary modal-action js-consent-agree">동의합니다</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- 스타일 -->
-<style>
-#consentDialog { padding:0; border:none; border-radius:12px; }
-#consentDialog::backdrop { background: rgba(0,0,0,.45); backdrop-filter: blur(5px);}
-.cd-card { min-width: 320px; max-width: 560px; background:#fff; border-radius:12px; }
-.cd-head { display:flex; align-items:center; justify-content:space-between; padding:16px; }
-.cd-title { margin:0; font-size:18px; font-weight:bold; }
-.cd-body { max-height:500px; overflow-y:auto; padding:16px; border-top:1px solid #e6e6e9; border-bottom:1px solid #e6e6e9; line-height:1.6; font-size:14px; color:#222; }
-.cd-actions { display:flex; gap:8px; justify-content:flex-end; padding:12px 16px 16px; }
-.cd-actions .cd-agree { padding:8px 14px; border:1px solid #3a8afd; background:#3a8afd; color:#fff; border-radius:8px; }
-.cd-actions .cd-close { padding:8px 14px; border:1px solid #ccc; background:#fff; color:#111; border-radius:8px; }
-</style>
-
-<!-- JS -->
 <script>
-(function(){
-  const dlg = document.getElementById('consentDialog');
-  if (!dlg) return;
+(function () {
+  var overlay = document.getElementById('consentDialog');
+  if (!overlay) return;
 
-  const body   = document.getElementById('consentDialogBody');
-  const titleE = document.getElementById('consentDialogTitle');
-  let opener   = null;
+  var body = document.getElementById('consentDialogBody');
+  var title = document.getElementById('consentDialogTitle');
 
-  const openFrom = (btn) => {
-    opener = btn;
-    const tplSel = btn.getAttribute('data-template');
-    const title  = btn.getAttribute('data-title') || '안내';
-    const tpl    = tplSel ? document.querySelector(tplSel) : null;
-
-    titleE.textContent = title;
-    body.innerHTML     = tpl ? tpl.innerHTML : '';
-
-    dlg.dataset.check      = btn.getAttribute('data-check') || '';
-    dlg.dataset.checkGroup = btn.getAttribute('data-check-group') || '';
-
-    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
+  var normalizeSelector = function (selector) {
+    return selector && selector.charAt(0) === '#' ? selector : '#' + selector;
   };
 
-  const closeDialog = () => {
-    if (dlg.close) dlg.close(); else dlg.removeAttribute('open');
-    if (opener) opener.focus();
-  };
+  document.addEventListener('click', function (event) {
+    var trigger = event.target.closest('.js-open-consent');
+    if (trigger) {
+      var templateSelector = trigger.getAttribute('data-template');
+      var template = templateSelector ? document.querySelector(templateSelector) : null;
 
-  document.addEventListener('click', (e)=>{
-    const trigger = e.target.closest('.js-open-consent');
-    if (trigger) { openFrom(trigger); return; }
-
-    if (e.target.classList.contains('cd-agree')) {
-      const sel      = dlg.dataset.check;
-      const groupSel = dlg.dataset.checkGroup;
-
-      if (groupSel) {
-        document.querySelectorAll(groupSel).forEach(cb => {
-          cb.checked = true;
-          cb.dispatchEvent(new Event('change', {bubbles:true}));
-        });
-      }
-      if (sel) {
-        const cb = document.querySelector(sel);
-        if (cb) { cb.checked = true; cb.dispatchEvent(new Event('change', {bubbles:true})); }
-      }
-      closeDialog();
-      e.preventDefault();
+      title.textContent = trigger.getAttribute('data-title') || '안내';
+      body.innerHTML = template ? template.innerHTML : '';
+      overlay.dataset.check = trigger.getAttribute('data-check') || '';
+      overlay.dataset.checkGroup = trigger.getAttribute('data-check-group') || '';
+      trigger.setAttribute('data-hs-overlay', '#consentDialog');
       return;
+    }
+
+    var agreeButton = event.target.closest('.js-consent-agree');
+    if (!agreeButton) {
+      return;
+    }
+
+    var checkSelector = overlay.dataset.check;
+    var checkGroupSelector = overlay.dataset.checkGroup;
+
+    if (checkGroupSelector) {
+      document.querySelectorAll(checkGroupSelector).forEach(function (checkbox) {
+        checkbox.checked = true;
+        checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+    }
+
+    if (checkSelector) {
+      var checkbox = document.querySelector(checkSelector);
+      if (checkbox) {
+        checkbox.checked = true;
+        checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }
+
+    var closeButton = overlay.querySelector('[data-hs-overlay="#consentDialog"]');
+    if (closeButton) {
+      closeButton.click();
     }
   });
 
-  dlg.addEventListener('cancel', (e)=>{ e.preventDefault(); closeDialog(); });
+  overlay.addEventListener('transitionend', function () {
+    if (overlay.classList.contains('hs-overlay-open') || overlay.classList.contains('open')) {
+      return;
+    }
+
+    body.innerHTML = '';
+    overlay.dataset.check = '';
+    overlay.dataset.checkGroup = '';
+  });
 })();
 </script>

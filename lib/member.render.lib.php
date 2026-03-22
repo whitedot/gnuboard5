@@ -5,6 +5,8 @@ class MemberTemplateRenderer
 {
     public static function capture($template_path, array $data = array())
     {
+        global $g5, $config, $member, $is_member, $is_admin;
+
         if (!is_file($template_path)) {
             return '';
         }

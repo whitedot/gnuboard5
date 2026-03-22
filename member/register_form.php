@@ -98,6 +98,19 @@ if ($w == "") {
     alert('w 값이 제대로 넘어오지 않았습니다.');
 }
 
+$member_defaults = array(
+    'mb_marketing_agree' => '0',
+    'mb_marketing_date' => '0000-00-00 00:00:00',
+    'mb_mailling' => '0',
+    'mb_mailling_date' => '0000-00-00 00:00:00',
+);
+
+foreach ($member_defaults as $member_key => $member_default_value) {
+    if (!isset($member[$member_key])) {
+        $member[$member_key] = $member_default_value;
+    }
+}
+
 $register_action_url = G5_HTTPS_MEMBER_URL.'/register_form_update.php';
 $register_form_view = MemberRegisterFormViewDataFactory::build($w, $member, $config);
 MemberPageController::render(
