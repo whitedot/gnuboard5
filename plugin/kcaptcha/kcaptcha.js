@@ -11,10 +11,23 @@ function syncCaptchaRequest(url, data) {
     return "";
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+function initKcaptcha() {
     var mp3_url = "";
     var reloadButton = document.getElementById("captcha_reload");
     var mp3Button = document.getElementById("captcha_mp3");
+
+    if (!reloadButton) {
+        return;
+    }
+
+    if (reloadButton.dataset.kcaptchaBound === "true") {
+        return;
+    }
+
+    reloadButton.dataset.kcaptchaBound = "true";
+    if (mp3Button) {
+        mp3Button.dataset.kcaptchaBound = "true";
+    }
 
     function reloadCaptcha() {
         syncCaptchaRequest(g5_captcha_url + "/kcaptcha_session.php");
@@ -34,14 +47,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    if (reloadButton) {
-        reloadButton.addEventListener("click", function(event) {
-            event.preventDefault();
-            reloadCaptcha();
-        });
-    }
+    reloadButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        reloadCaptcha();
+    });
 
-    if (mp3Button) {
+    if (mp3Button && mp3Button.dataset.kcaptchaAudioBound !== "true") {
+        mp3Button.dataset.kcaptchaAudioBound = "true";
         mp3Button.style.cursor = "pointer";
         mp3Button.addEventListener("click", function(event) {
             event.preventDefault();
@@ -91,10 +103,14 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    if (reloadButton) {
-        reloadButton.click();
-    }
-});
+    reloadCaptcha();
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initKcaptcha);
+} else {
+    initKcaptcha();
+}
 
 // 출력된 캡챠이미지의 키값과 입력한 키값이 같은지 비교한다.
 function chk_captcha()

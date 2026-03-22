@@ -256,6 +256,10 @@ $admin_token = get_admin_token();
         white-space: nowrap;
     }
 
+    #fmemberlist .member-cell-manage {
+        min-width: 9.75rem;
+    }
+
     #fmemberlist .member-cell-email {
         white-space: normal;
         word-break: break-all;
@@ -337,9 +341,15 @@ $admin_token = get_admin_token();
 
     #fmemberlist .member-manage {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         gap: 0.375rem;
         justify-content: flex-end;
+        align-items: center;
+        white-space: nowrap;
+    }
+
+    #fmemberlist .member-manage .btn {
+        flex: 0 0 auto;
     }
 
     #fmemberlist .member-manage form {
@@ -457,7 +467,7 @@ $admin_token = get_admin_token();
                     <col>
                     <col style="width: 6rem;">
                     <col style="width: 6rem;">
-                    <col style="width: 6.5rem;">
+                    <col style="width: 10rem;">
                 </colgroup>
                 <thead class="border-default-300 bg-default-100 border-b font-semibold text-xs">
                     <tr>
