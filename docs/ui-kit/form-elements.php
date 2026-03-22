@@ -1,7 +1,7 @@
 <?php include 'layout/header.php'; ?>
 <?php include 'layout/sidebar.php'; ?>
 
-<div class="container-fluid ui-form-theme">
+<div class="container-fluid ui-form-theme ui-form-showcase">
                     <div class="grid grid-cols-1 gap-base">
                         <div class="card">
                             <div class="card-header">

@@ -26,7 +26,7 @@
 
         if (window.CommonUI && typeof window.CommonUI.initStickyAnchorTabs === "function") {
             window.CommonUI.initStickyAnchorTabs({
-                tabBarSelector: "#config_tabs_bar",
+                tabBarSelector: "#config_tabs_nav",
                 tabNavSelector: "#config_tabs_nav",
                 tabLinkSelector: "a.js-config-tab-link[href^='#']",
                 topbarSelector: "#hd_top",

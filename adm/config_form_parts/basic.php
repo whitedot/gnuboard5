@@ -6,7 +6,7 @@
         <div class="af-grid">
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_title" class="form-label">홈페이지 제목<strong>필수</strong></label>
+                    <label for="cf_title" class="form-label">홈페이지 제목<strong class="caption-sr-only">필수</strong></label>
                 </div>
                 <div class="af-field">
                     <input type="text" name="cf_title" value="<?php echo get_sanitize_input($config['cf_title']); ?>" id="cf_title" required size="40" class="form-input">
@@ -15,7 +15,7 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_admin" class="form-label">최고관리자<strong>필수</strong></label>
+                    <label for="cf_admin" class="form-label">최고관리자<strong class="caption-sr-only">필수</strong></label>
                 </div>
                 <div class="af-field">
                     <?php echo get_member_id_select('cf_admin', 10, $config['cf_admin'], 'required class="form-select"') ?>
@@ -24,7 +24,7 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_admin_email" class="form-label">관리자 메일 주소<strong>필수</strong></label>
+                    <label for="cf_admin_email" class="form-label">관리자 메일 주소<strong class="caption-sr-only">필수</strong></label>
                 </div>
                 <div class="af-field">
                     <?php echo help('관리자가 보내고 받는 용도로 사용하는 메일 주소를 입력합니다. (회원가입, 인증메일, 테스트 등에서 사용)') ?>
@@ -37,7 +37,7 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_admin_email_name" class="form-label">관리자 메일 발송이름<strong>필수</strong></label>
+                    <label for="cf_admin_email_name" class="form-label">관리자 메일 발송이름<strong class="caption-sr-only">필수</strong></label>
                 </div>
                 <div class="af-field">
                     <?php echo help('관리자가 보내고 받는 용도로 사용하는 메일의 발송이름을 입력합니다. (회원가입, 인증메일, 테스트 등에서 사용)') ?>
@@ -98,7 +98,7 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_captcha" class="form-label">캡챠 선택<strong>필수</strong></label>
+                    <label for="cf_captcha" class="form-label">캡챠 선택<strong class="caption-sr-only">필수</strong></label>
                 </div>
                 <div class="af-field">
                     <?php echo help('사용할 캡챠를 선택합니다.<br>1) Kcaptcha 는 그누보드5의 기본캡챠입니다. ( 문자입력 )<br>2) reCAPTCHA V2 는 구글에서 서비스하는 원클릭 형식의 간편한 캡챠입니다. ( 모바일 친화적 UI )<br>3) Invisible reCAPTCHA 는 구글에서 서비스하는 안보이는 형식의 캡챠입니다. ( 간혹 퀴즈를 풀어야 합니다. )<br>') ?>
@@ -112,7 +112,7 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_captcha_mp3" class="form-label">음성캡챠 선택<strong>필수</strong></label>
+                    <label for="cf_captcha_mp3" class="form-label">음성캡챠 선택<strong class="caption-sr-only">필수</strong></label>
                 </div>
                 <div class="af-field">
                     <?php echo help('kcaptcha 사용시 ' . str_replace(array('recaptcha_inv', 'recaptcha'), 'kcaptcha', G5_CAPTCHA_URL) . '/mp3 밑의 음성 폴더를 선택합니다.') ?>

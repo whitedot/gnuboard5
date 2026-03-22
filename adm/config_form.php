@@ -39,11 +39,9 @@ $pg_anchor_menu = admin_build_anchor_menu($config_tabs, array(
 
 ?>
 
-<div id="config_tabs_bar">
-    <?php echo $pg_anchor_menu; ?>
-</div>
+<?php echo $pg_anchor_menu; ?>
 
-<form name="fconfigform" id="fconfigform" method="post" action="./config_form_update.php" onsubmit="return fconfigform_submit(this);" class="admin-form-layout ui-form-theme space-y-5">
+<form name="fconfigform" id="fconfigform" method="post" action="./config_form_update.php" onsubmit="return fconfigform_submit(this);" class="admin-form-layout ui-form-theme ui-form-showcase space-y-5">
     <input type="hidden" name="token" value="" id="token">
 
     <?php

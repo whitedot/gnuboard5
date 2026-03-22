@@ -131,7 +131,7 @@
 
         if (window.CommonUI && typeof window.CommonUI.initStickyAnchorTabs === "function") {
             window.CommonUI.initStickyAnchorTabs({
-                tabBarSelector: "#member_tabs_bar",
+                tabBarSelector: "#member_tabs_nav",
                 tabNavSelector: "#member_tabs_nav",
                 tabLinkSelector: "a.js-member-tab-link[href^='#']",
                 topbarSelector: "#hd_top",

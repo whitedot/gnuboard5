@@ -34,7 +34,7 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <label for="mb_name" class="form-label">이름(실명)<strong>필수</strong></label>
+                    <label for="mb_name" class="form-label">이름(실명)<strong class="caption-sr-only">필수</strong></label>
                 </div>
                 <div class="af-field">
                     <input type="text" name="mb_name" value="<?php echo $mb['mb_name'] ?>" id="mb_name" required class="required form-input" size="15" maxlength="20">
@@ -43,7 +43,7 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <label for="mb_nick" class="form-label">닉네임<strong>필수</strong></label>
+                    <label for="mb_nick" class="form-label">닉네임<strong class="caption-sr-only">필수</strong></label>
                 </div>
                 <div class="af-field">
                     <input type="text" name="mb_nick" value="<?php echo $mb['mb_nick'] ?>" id="mb_nick" required class="required form-input" size="15" maxlength="20">
@@ -61,7 +61,7 @@
 
             <div class="af-row">
                 <div class="af-label">
-                    <label for="mb_email" class="form-label">E-mail<strong>필수</strong></label>
+                    <label for="mb_email" class="form-label">E-mail<strong class="caption-sr-only">필수</strong></label>
                 </div>
                 <div class="af-field">
                     <input type="text" name="mb_email" value="<?php echo $mb['mb_email'] ?>" id="mb_email" maxlength="100" required class="required form-input" size="30">

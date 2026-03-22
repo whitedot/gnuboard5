@@ -60,6 +60,7 @@
     let isScrollSpySuspended = false;
     let pendingTabId = "";
     let scrollReleaseTimer = 0;
+    const hashlessUrl = window.location.pathname + window.location.search;
 
     function getScrollOffset() {
       const topbarHeight = $(settings.topbarSelector).outerHeight() || 0;
@@ -184,7 +185,7 @@
       pendingTabId = tabId;
       clearScrollReleaseTimer();
       setActiveTab(tabId, true);
-      window.history.replaceState(null, "", tabId);
+      window.history.replaceState(window.history.state, "", hashlessUrl);
 
       let isSettled = false;
       const finalizeScroll = function (finalizeOptions) {

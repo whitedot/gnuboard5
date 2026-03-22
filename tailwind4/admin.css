@@ -405,7 +405,7 @@
     #container > section > table thead th,
     #container > form > section > table thead th,
     #container > .section-card > table thead th {
-        @apply border-b border-default-300 bg-default-100 px-3 py-2 text-left text-sm font-semibold text-default-700;
+        @apply border-b border-default-300 bg-default-100 px-3 py-2 align-middle text-left text-sm font-semibold text-default-700;
     }
 
     #container > section > table tbody td,
@@ -425,8 +425,21 @@
         @apply mb-0 border-0 bg-transparent p-0 shadow-none;
     }
 
-    #config_tabs_bar,
-    #member_tabs_bar,
+    #config_tabs_nav,
+    #member_tabs_nav {
+        @apply sticky relative w-full;
+        background-color: var(--color-body-bg);
+        top: var(--admin-shell-bar-height);
+        z-index: 15;
+        margin: 0 0 0.375rem;
+        transition: box-shadow 140ms ease, border-color 140ms ease;
+    }
+
+    #config_tabs_nav.is-stuck,
+    #member_tabs_nav.is-stuck {
+        @apply shadow-none;
+    }
+
     #content_tabs_bar {
         @apply sticky relative w-full rounded-[var(--radius)] border border-default-300 bg-default-100/95 shadow backdrop-blur;
         --config-tabs-inline-pad: 0.75rem;
@@ -438,8 +451,6 @@
     }
 
     @media (min-width: 64rem) {
-        #config_tabs_bar,
-        #member_tabs_bar,
         #content_tabs_bar {
             --config-tabs-inline-pad: 1.25rem;
             margin-left: 0;
@@ -449,16 +460,10 @@
         }
     }
 
-    #config_tabs_bar.is-stuck,
-    #member_tabs_bar.is-stuck,
     #content_tabs_bar.is-stuck {
         @apply shadow;
     }
 
-    #config_tabs_bar::before,
-    #config_tabs_bar::after,
-    #member_tabs_bar::before,
-    #member_tabs_bar::after,
     #content_tabs_bar::before,
     #content_tabs_bar::after {
         content: "";
@@ -472,8 +477,6 @@
         z-index: 2;
     }
 
-    #config_tabs_bar::before,
-    #member_tabs_bar::before,
     #content_tabs_bar::before {
         left: var(--config-tabs-inline-pad);
         border-top-left-radius: var(--radius);
@@ -487,8 +490,6 @@
         );
     }
 
-    #config_tabs_bar::after,
-    #member_tabs_bar::after,
     #content_tabs_bar::after {
         right: var(--config-tabs-inline-pad);
         border-top-right-radius: var(--radius);
@@ -502,10 +503,6 @@
         );
     }
 
-    #config_tabs_bar.has-overflow.is-overflow-left::before,
-    #config_tabs_bar.has-overflow.is-overflow-right::after,
-    #member_tabs_bar.has-overflow.is-overflow-left::before,
-    #member_tabs_bar.has-overflow.is-overflow-right::after,
     #content_tabs_bar.has-overflow.is-overflow-left::before,
     #content_tabs_bar.has-overflow.is-overflow-right::after {
         opacity: 0.78;
@@ -526,48 +523,48 @@
         height: 0;
     }
 
-    #config_tabs_bar:hover #config_tabs_nav,
-    #config_tabs_bar:focus-within #config_tabs_nav,
-    #member_tabs_bar:hover #member_tabs_nav,
-    #member_tabs_bar:focus-within #member_tabs_nav,
+    #config_tabs_nav:hover,
+    #config_tabs_nav:focus-within,
+    #member_tabs_nav:hover,
+    #member_tabs_nav:focus-within,
     #content_tabs_bar:hover #content_tabs_nav,
     #content_tabs_bar:focus-within #content_tabs_nav {
         scrollbar-width: thin;
     }
 
-    #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar,
-    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar,
-    #member_tabs_bar:hover #member_tabs_nav::-webkit-scrollbar,
-    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar,
+    #config_tabs_nav:hover::-webkit-scrollbar,
+    #config_tabs_nav:focus-within::-webkit-scrollbar,
+    #member_tabs_nav:hover::-webkit-scrollbar,
+    #member_tabs_nav:focus-within::-webkit-scrollbar,
     #content_tabs_bar:hover #content_tabs_nav::-webkit-scrollbar,
     #content_tabs_bar:focus-within #content_tabs_nav::-webkit-scrollbar {
         width: 0.35rem;
         height: 0.35rem;
     }
 
-    #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar-track,
-    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-track,
-    #member_tabs_bar:hover #member_tabs_nav::-webkit-scrollbar-track,
-    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar-track,
+    #config_tabs_nav:hover::-webkit-scrollbar-track,
+    #config_tabs_nav:focus-within::-webkit-scrollbar-track,
+    #member_tabs_nav:hover::-webkit-scrollbar-track,
+    #member_tabs_nav:focus-within::-webkit-scrollbar-track,
     #content_tabs_bar:hover #content_tabs_nav::-webkit-scrollbar-track,
     #content_tabs_bar:focus-within #content_tabs_nav::-webkit-scrollbar-track {
         background: transparent;
     }
 
-    #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar-thumb,
-    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-thumb,
-    #member_tabs_bar:hover #member_tabs_nav::-webkit-scrollbar-thumb,
-    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar-thumb,
+    #config_tabs_nav:hover::-webkit-scrollbar-thumb,
+    #config_tabs_nav:focus-within::-webkit-scrollbar-thumb,
+    #member_tabs_nav:hover::-webkit-scrollbar-thumb,
+    #member_tabs_nav:focus-within::-webkit-scrollbar-thumb,
     #content_tabs_bar:hover #content_tabs_nav::-webkit-scrollbar-thumb,
     #content_tabs_bar:focus-within #content_tabs_nav::-webkit-scrollbar-thumb {
         border-radius: 9999px;
         background: color-mix(in oklab, var(--color-default-500) 72%, transparent);
     }
 
-    #config_tabs_bar:hover #config_tabs_nav::-webkit-scrollbar-thumb:hover,
-    #config_tabs_bar:focus-within #config_tabs_nav::-webkit-scrollbar-thumb:hover,
-    #member_tabs_bar:hover #member_tabs_nav::-webkit-scrollbar-thumb:hover,
-    #member_tabs_bar:focus-within #member_tabs_nav::-webkit-scrollbar-thumb:hover,
+    #config_tabs_nav:hover::-webkit-scrollbar-thumb:hover,
+    #config_tabs_nav:focus-within::-webkit-scrollbar-thumb:hover,
+    #member_tabs_nav:hover::-webkit-scrollbar-thumb:hover,
+    #member_tabs_nav:focus-within::-webkit-scrollbar-thumb:hover,
     #content_tabs_bar:hover #content_tabs_nav::-webkit-scrollbar-thumb:hover,
     #content_tabs_bar:focus-within #content_tabs_nav::-webkit-scrollbar-thumb:hover {
         background: color-mix(in oklab, var(--color-default-500) 82%, transparent);
@@ -604,12 +601,24 @@
         @apply p-0;
     }
 
+    .admin-form-layout.ui-form-showcase > section.card > .card-body {
+        @apply p-5;
+    }
+
     .admin-form-layout > section.card > .card-body > p {
         @apply border-b border-default-200 px-5 py-3 text-xs text-default-400;
     }
 
+    .admin-form-layout.ui-form-showcase > section.card > .card-body > p {
+        @apply mb-base border-0 px-0 py-0;
+    }
+
     .admin-form-layout > section.card > .card-body > div:not(.ui-form-grid):not(.af-grid) {
         @apply border-b border-default-200 px-5 py-4;
+    }
+
+    .admin-form-layout.ui-form-showcase > section.card > .card-body > div:not(.ui-form-grid):not(.af-grid) {
+        @apply border-0 px-0 py-0;
     }
 
     .admin-form-layout > section.card > .card-body > div:not(.ui-form-grid):not(.af-grid):last-child {

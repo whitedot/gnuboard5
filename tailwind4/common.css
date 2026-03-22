@@ -665,14 +665,14 @@
         border: 2px solid #111111;
         border-radius: 0;
         background: #ffffff;
-        padding: 0.65rem 0.8rem;
+        padding: 0.55rem 0.75rem;
         color: #111111;
         box-shadow: none;
     }
 
     .ui-form-theme .form-input,
     .ui-form-theme .form-select {
-        min-height: 2.75rem;
+        min-height: 2.5rem;
     }
 
     .ui-form-theme .form-textarea {
@@ -712,7 +712,7 @@
     }
 
     .ui-form-theme input[type="file"].form-input {
-        padding: 0.4rem 0.65rem;
+        padding: 0.35rem 0.6rem;
     }
 
     .ui-form-theme input[type="file"].form-input::file-selector-button {
@@ -720,7 +720,7 @@
         border: 2px solid #111111;
         border-radius: 0;
         background: #f3f4f6;
-        padding: 0.4rem 0.8rem;
+        padding: 0.35rem 0.7rem;
         color: #111111;
     }
 
@@ -750,8 +750,8 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 2.75rem;
-        padding: 0.65rem 0.8rem;
+        min-height: 2.5rem;
+        padding: 0.55rem 0.75rem;
         border: 2px solid #111111;
         border-radius: 0;
         background: #f3f4f6;
@@ -900,14 +900,44 @@
         @apply divide-y divide-default-200;
     }
 
+    .ui-form-showcase .ui-form-grid,
+    .ui-form-showcase .af-grid {
+        @apply divide-y-0 rounded-none border-0 bg-transparent shadow-none;
+    }
+
     .ui-form-row,
     .af-row {
-        @apply grid grid-cols-1 gap-1.5 px-5 lg:grid-cols-3 lg:gap-9;
+        @apply grid grid-cols-1 gap-1.5 px-5 lg:grid-cols-3 lg:items-center lg:gap-9;
+    }
+
+    .ui-form-showcase .ui-form-row,
+    .ui-form-showcase .af-row {
+        @apply px-0;
+    }
+
+    .ui-form-showcase .ui-form-row + .ui-form-row,
+    .ui-form-showcase .af-row + .af-row {
+        @apply border-default-300 border-t border-dashed;
+        margin-top: 0.875rem;
+        padding-top: 0.875rem;
     }
 
     .ui-form-row-double,
     .af-row-double {
-        @apply grid gap-4 px-5 lg:grid-cols-2;
+        @apply grid gap-4 px-5 lg:grid-cols-2 lg:items-center;
+    }
+
+    .ui-form-row:has(.form-textarea),
+    .ui-form-row:has(textarea),
+    .ui-form-row:has(.hint-text),
+    .ui-form-row:has(table),
+    .ui-form-row:has(#sodr_request_log_wrap),
+    .af-row:has(.form-textarea),
+    .af-row:has(textarea),
+    .af-row:has(.hint-text),
+    .af-row:has(table),
+    .af-row:has(#sodr_request_log_wrap) {
+        @apply lg:items-start;
     }
 
     .ui-form-label,
@@ -917,7 +947,7 @@
 
     .ui-form-label .form-label,
     .af-label .form-label {
-        @apply mb-0 py-2;
+        @apply mb-0 py-1.5;
     }
 
     .ui-form-field,

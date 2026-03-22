@@ -27,7 +27,7 @@ if ($w == '') {
     $required_mb_id = 'required';
     $required_mb_id_class = 'required alnum_';
     $required_mb_password = 'required';
-    $sound_only = '<strong>필수</strong>';
+    $sound_only = '<strong class="caption-sr-only">필수</strong>';
 
     $mb['mb_mailling'] = 1;
     $mb['mb_open'] = 1;
@@ -135,11 +135,9 @@ $pg_anchor_menu = admin_build_anchor_menu($member_tabs, array(
 ));
 ?>
 
-<div id="member_tabs_bar">
-    <?php echo $pg_anchor_menu; ?>
-</div>
+<?php echo $pg_anchor_menu; ?>
 
-<form name="fmember" id="fmember" action="./member_form_update.php" onsubmit="return fmember_submit(this);" method="post" class="admin-form-layout ui-form-theme space-y-5" autocomplete="off">
+<form name="fmember" id="fmember" action="./member_form_update.php" onsubmit="return fmember_submit(this);" method="post" class="admin-form-layout ui-form-theme ui-form-showcase space-y-5" autocomplete="off">
     <input type="hidden" name="w" value="<?php echo $w ?>">
     <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
     <input type="hidden" name="stx" value="<?php echo $stx ?>">
