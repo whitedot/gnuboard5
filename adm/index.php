@@ -3,6 +3,8 @@ $sub_menu = '100000';
 require_once './_common.php';
 
 $g5['title'] = '관리자메인';
+$admin_container_class = 'admin-page-dashboard';
+$admin_page_subtitle = '신규 가입 회원 현황을 빠르게 확인하고 회원 관리 화면으로 자연스럽게 이어가세요.';
 require_once './admin.head.php';
 
 $new_member_rows = 5;
@@ -47,16 +49,99 @@ if (!auth_check_menu($auth, '200100', 'r', true)) {
     $colspan = 8;
     ?>
 
-    <section>
-        <h2>신규가입회원 <?php echo $new_member_rows ?>건 목록</h2>
-        <div>
-            총회원수 <?php echo number_format($total_count) ?>명 중 차단 <?php echo number_format($intercept_count) ?>명, 탈퇴 : <?php echo number_format($leave_count) ?>명
+    <style>
+        .admin-dashboard-card {
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .admin-dashboard-intro {
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .admin-dashboard-meta {
+            margin: 0;
+            font-size: 0.8125rem;
+            color: var(--color-default-700);
+        }
+
+        .admin-dashboard-summary {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem 1rem;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--color-default-300);
+            background: var(--color-default-50);
+        }
+
+        .admin-dashboard-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+        }
+
+        .admin-dashboard-stat {
+            font-size: 0.8125rem;
+            color: var(--color-default-700);
+        }
+
+        .admin-dashboard-stat strong {
+            color: var(--color-default-900);
+        }
+
+        .admin-dashboard-member-id {
+            font-weight: 600;
+            color: var(--color-default-900);
+        }
+
+        .admin-dashboard-card .table thead th {
+            font-size: 0.75rem;
+        }
+
+        .admin-dashboard-card .table tbody td {
+            font-size: 0.875rem;
+        }
+
+        .admin-dashboard-card .table th:first-child,
+        .admin-dashboard-card .table td:first-child {
+            padding-left: 0;
+        }
+
+        .admin-dashboard-card .table th:last-child,
+        .admin-dashboard-card .table td:last-child {
+            padding-right: 0;
+        }
+
+        .admin-dashboard-empty {
+            text-align: center;
+            color: var(--color-default-600);
+        }
+    </style>
+
+    <section class="card admin-dashboard-card">
+        <div class="card-header">
+            <div class="admin-dashboard-intro">
+                <h2 class="card-title">신규가입회원 <?php echo $new_member_rows ?>건 목록</h2>
+                <p class="admin-dashboard-meta">최근 가입한 회원을 빠르게 확인하고 필요한 관리 작업으로 이어질 수 있도록 구성했습니다.</p>
+            </div>
+            <a href="./member_list.php" class="btn btn-sm btn-surface-default-soft">회원 전체보기</a>
         </div>
 
-        
-            <table>
+        <div class="admin-dashboard-summary">
+            <div class="admin-dashboard-stats">
+                <span class="admin-dashboard-stat">총회원수 <strong><?php echo number_format($total_count) ?>명</strong></span>
+                <span class="admin-dashboard-stat">차단 <strong><?php echo number_format($intercept_count) ?>명</strong></span>
+                <span class="admin-dashboard-stat">탈퇴 <strong><?php echo number_format($leave_count) ?>명</strong></span>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="table">
                 <caption>신규가입회원</caption>
-                <thead>
+                <thead class="border-default-300 bg-default-100 border-b font-semibold text-xs">
                     <tr>
                         <th scope="col">회원아이디</th>
                         <th scope="col">이름</th>
@@ -87,7 +172,7 @@ if (!auth_check_menu($auth, '200100', 'r', true)) {
                         $mb_id = $row['mb_id'];
                         ?>
                         <tr>
-                            <td><?php echo $mb_id ?></td>
+                            <td class="admin-dashboard-member-id"><?php echo $mb_id ?></td>
                             <td><?php echo get_text($row['mb_name']); ?></td>
                             <td>
                                 <?php echo $mb_nick ?>
@@ -101,16 +186,12 @@ if (!auth_check_menu($auth, '200100', 'r', true)) {
                         <?php
                     }
                     if ($i == 0) {
-                        echo '<tr><td colspan="' . $colspan . '">자료가 없습니다.</td></tr>';
+                        echo '<tr><td colspan="' . $colspan . '" class="admin-dashboard-empty">자료가 없습니다.</td></tr>';
                     }
                     ?>
                 </tbody>
             </table>
-        
-
-        
-            <a href="./member_list.php">회원 전체보기</a>
-        
+        </div>
     </section>
 
     <?php
