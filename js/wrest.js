@@ -364,7 +364,6 @@ function wrestInitialized()
 }
 
 // 폼필드 자동검사
-$(document).ready(function(){
-    // onload
+document.addEventListener("DOMContentLoaded", function() {
     wrestInitialized();
 });

@@ -3,7 +3,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 
-add_javascript('<script src="'.G5_JS_URL.'/jquery.register_form.js"></script>', 0);
+add_javascript('<script src="'.G5_JS_URL.'/register_form.js"></script>', 0);
 if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipin'] || $config['cf_cert_hp']))
     add_javascript('<script src="'.G5_JS_URL.'/certify.js?v='.G5_JS_VER.'"></script>', 0);
 ?>
@@ -255,46 +255,44 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
 <?php include_once(__DIR__ . '/consent_modal.inc.php'); ?>
 
 <script>
-$(function() {
+document.addEventListener("DOMContentLoaded", function() {
     var pageTypeParam = "pageType=register";
 
 	<?php if($config['cf_cert_use'] && $config['cf_cert_simple']) { ?>
-	// 이니시스 간편인증
-	var url = "<?php echo G5_INICERT_URL; ?>/ini_request.php";
-	var type = "";    
-    var params = "";
-    var request_url = "";
+	var certifyButtons = document.querySelectorAll(".win_sa_cert");
+	var simpleCertUrl = "<?php echo G5_INICERT_URL; ?>/ini_request.php";
 
-	$(".win_sa_cert").click(function() {
-		if(!cert_confirm()) return false;
-		type = $(this).data("type");
-		params = "?directAgency=" + type + "&" + pageTypeParam;
-        request_url = url + params;
-        call_sa(request_url);
+	certifyButtons.forEach(function(button) {
+		button.addEventListener("click", function() {
+			if(!cert_confirm()) return;
+			var type = this.dataset.type || "";
+			var requestUrl = simpleCertUrl + "?directAgency=" + encodeURIComponent(type) + "&" + pageTypeParam;
+			call_sa(requestUrl);
+		});
 	});
     <?php } ?>
     <?php if($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
-    // 휴대폰인증
-    var params = "";
-    $("#win_hp_cert").click(function() {
-		if(!cert_confirm()) return false;
-        params = "?" + pageTypeParam;
-        <?php     
-	        switch($config['cf_cert_hp']) {
-	            case 'kcp':
-	                $cert_url = G5_KCPCERT_URL.'/kcpcert_form.php';
-	                $cert_type = 'kcp-hp';
-	                break;
-	            default:
-	                echo 'alert("기본환경설정에서 휴대폰 본인확인 설정을 해주십시오");';
-                echo 'return false;';
-                break;
-        }
-        ?>
-        
-        certify_win_open("<?php echo $cert_type; ?>", "<?php echo $cert_url; ?>"+params);
-        return;
-    });
+    var hpCertButton = document.getElementById("win_hp_cert");
+    if (hpCertButton) {
+        hpCertButton.addEventListener("click", function() {
+		    if(!cert_confirm()) return;
+            var params = "?" + pageTypeParam;
+            <?php     
+	            switch($config['cf_cert_hp']) {
+	                case 'kcp':
+	                    $cert_url = G5_KCPCERT_URL.'/kcpcert_form.php';
+	                    $cert_type = 'kcp-hp';
+	                    break;
+	                default:
+	                    echo 'alert("기본환경설정에서 휴대폰 본인확인 설정을 해주십시오");';
+                    echo 'return;';
+                    break;
+            }
+            ?>
+            
+            certify_win_open("<?php echo $cert_type; ?>", "<?php echo $cert_url; ?>" + params);
+        });
+    }
     <?php } ?>
 });
 
@@ -364,7 +362,7 @@ function fregisterform_submit(f)
         var msg = reg_mb_nick_check();
         if (msg) {
             alert(msg);
-            f.reg_mb_nick.select();
+            f.mb_nick.select();
             return false;
         }
     }
@@ -374,7 +372,7 @@ function fregisterform_submit(f)
         var msg = reg_mb_email_check();
         if (msg) {
             alert(msg);
-            f.reg_mb_email.select();
+            f.mb_email.select();
             return false;
         }
     }
@@ -384,7 +382,7 @@ function fregisterform_submit(f)
     var msg = reg_mb_hp_check();
     if (msg) {
         alert(msg);
-        f.reg_mb_hp.select();
+        f.mb_hp.select();
         return false;
     }
     <?php } ?>
@@ -396,12 +394,39 @@ function fregisterform_submit(f)
     return true;
 }
 
-jQuery(function($){
-	//tooltip
-    $(document).on("click", ".tooltip_icon", function(e){
-        $(this).next(".tooltip").fadeIn(400).css("display","inline-block");
-    }).on("mouseout", ".tooltip_icon", function(e){
-        $(this).next(".tooltip").fadeOut();
+document.addEventListener("DOMContentLoaded", function() {
+    function hideAllTooltips() {
+        document.querySelectorAll(".tooltip").forEach(function(tooltip) {
+            tooltip.style.display = "none";
+        });
+    }
+
+    document.addEventListener("click", function(event) {
+        var trigger = event.target.closest(".tooltip_icon");
+        if (!trigger) {
+            hideAllTooltips();
+            return;
+        }
+
+        event.preventDefault();
+        hideAllTooltips();
+
+        var tooltip = trigger.nextElementSibling;
+        if (tooltip && tooltip.classList.contains("tooltip")) {
+            tooltip.style.display = "inline-block";
+        }
+    });
+
+    document.addEventListener("mouseout", function(event) {
+        var trigger = event.target.closest(".tooltip_icon");
+        if (!trigger) {
+            return;
+        }
+
+        var tooltip = trigger.nextElementSibling;
+        if (tooltip && tooltip.classList.contains("tooltip")) {
+            tooltip.style.display = "none";
+        }
     });
 });
 

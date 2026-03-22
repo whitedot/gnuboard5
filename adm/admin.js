@@ -190,46 +190,65 @@ function get_ajax_token()
     var token = "",
         admin_csrf_token_key = (typeof g5_admin_csrf_token_key !== "undefined") ? g5_admin_csrf_token_key : "";
 
-    $.ajax({
-        type: "POST",
-        url: g5_admin_url+"/ajax.token.php",
-        data : {admin_csrf_token_key:admin_csrf_token_key},
-        cache: false,
-        async: false,
-        dataType: "json",
-        success: function(data) {
-            if(data.error) {
-                alert(data.error);
-                if(data.url)
-                    document.location.href = data.url;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", g5_admin_url + "/ajax.token.php", false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    xhr.send(new URLSearchParams({
+        admin_csrf_token_key: admin_csrf_token_key
+    }).toString());
 
-                return false;
-            }
+    if (xhr.status >= 200 && xhr.status < 400) {
+        var data = {};
 
-            token = data.token;
+        try {
+            data = JSON.parse(xhr.responseText || "{}");
+        } catch (e) {
+            data = {};
         }
-    });
+
+        if (data.error) {
+            alert(data.error);
+            if (data.url)
+                document.location.href = data.url;
+
+            return false;
+        }
+
+        token = data.token || "";
+    }
 
     return token;
 }
 
-$(function() {
-    $(document).on("click", "form input:submit, form button:submit", function() {
-        var f = this.form;
+document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("click", function(event) {
+        var submitButton = event.target.closest("form input[type='submit'], form button[type='submit']");
+        if (!submitButton) {
+            return;
+        }
+
+        var f = submitButton.form;
+        if (!f) {
+            return;
+        }
+
         var token = get_ajax_token();
 
         if(!token) {
             alert("토큰 정보가 올바르지 않습니다.");
-            return false;
+            event.preventDefault();
+            return;
         }
 
-        var $f = $(f);
+        var tokenField = f.querySelector("input[name=token]");
 
-        if(typeof f.token === "undefined")
-            $f.prepend('<input type="hidden" name="token" value="">');
+        if (!tokenField) {
+            tokenField = document.createElement("input");
+            tokenField.type = "hidden";
+            tokenField.name = "token";
+            f.prepend(tokenField);
+        }
 
-        $f.find("input[name=token]").val(token);
-
-        return true;
+        tokenField.value = token;
     });
 });

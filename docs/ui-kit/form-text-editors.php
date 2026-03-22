@@ -61,7 +61,7 @@
                                 <div class="alert bg-warning/15 text-warning alert-dismissible p-4 rounded"
                                     role="alert">
                                     <strong>참고:</strong>
-                                    이것은 jQuery 기반 플러그인이므로 작동하려면 jQuery를 포함해야 합니다.
+                                    이것은 레거시 의존성이 필요한 플러그인이므로 현재 기본 UI 스택에서는 별도 호환 작업이 필요합니다.
                                     <button type="button" class="btn-close" data-bs-dismiss="alert"
                                         aria-label="Close"></button>
                                 </div>

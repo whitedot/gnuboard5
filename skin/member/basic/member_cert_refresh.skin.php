@@ -67,48 +67,46 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
     </form>
 
     <script>
-        $(function() {
+        document.addEventListener("DOMContentLoaded", function() {
             var pageTypeParam = "pageType=register";
             var f = document.fcertrefreshform;
 
             <?php if ($config['cf_cert_use'] && $config['cf_cert_simple']) { ?>
-                // 이니시스 간편인증
-                var url = "<?php echo G5_INICERT_URL; ?>/ini_request.php";
-                var type = "";
-                var params = "";
-                var request_url = "";
+                var simpleCertButtons = document.querySelectorAll(".win_sa_cert");
+                var simpleCertUrl = "<?php echo G5_INICERT_URL; ?>/ini_request.php";
 
-                $(".win_sa_cert").click(function() {
-                    if (!fcertrefreshform_submit(f)) return false;
-                    type = $(this).data("type");
-                    params = "?directAgency=" + type + "&" + pageTypeParam;
-                    request_url = url + params;
-                    call_sa(request_url);
+                simpleCertButtons.forEach(function(button) {
+                    button.addEventListener("click", function() {
+                        if (!fcertrefreshform_submit(f)) return;
+                        var type = this.dataset.type || "";
+                        var requestUrl = simpleCertUrl + "?directAgency=" + encodeURIComponent(type) + "&" + pageTypeParam;
+                        call_sa(requestUrl);
+                    });
                 });
             <?php } ?>
 
             <?php if ($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
-                // 휴대폰인증
-                var params = "";
-                $("#win_hp_cert").click(function() {
-                    if (!fcertrefreshform_submit(f)) return false;
-                    params = "?" + pageTypeParam;
-                    <?php
-	                    switch ($config['cf_cert_hp']) {
-	                        case 'kcp':
-	                            $cert_url = G5_KCPCERT_URL.'/kcpcert_form.php';
-	                            $cert_type = 'kcp-hp';
-	                            break;
-	                        default:
-	                            echo 'alert("기본환경설정에서 휴대폰 본인확인 설정을 해주십시오");';
-                            echo 'return false;';
-                            break;
-                    }
-                    ?>
+                var hpCertButton = document.getElementById("win_hp_cert");
+                if (hpCertButton) {
+                    hpCertButton.addEventListener("click", function() {
+                        if (!fcertrefreshform_submit(f)) return;
+                        var params = "?" + pageTypeParam;
+                        <?php
+	                        switch ($config['cf_cert_hp']) {
+	                            case 'kcp':
+	                                $cert_url = G5_KCPCERT_URL.'/kcpcert_form.php';
+	                                $cert_type = 'kcp-hp';
+	                                break;
+	                            default:
+	                                echo 'alert("기본환경설정에서 휴대폰 본인확인 설정을 해주십시오");';
+                                echo 'return;';
+                                break;
+                        }
+                        ?>
 
-                    certify_win_open("<?php echo $cert_type; ?>", "<?php echo $cert_url; ?>" + params);
-                    return;
-                });
+                        certify_win_open("<?php echo $cert_type; ?>", "<?php echo $cert_url; ?>" + params);
+                    });
+                }
             <?php } ?>
         });
         

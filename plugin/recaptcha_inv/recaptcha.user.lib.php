@@ -14,7 +14,7 @@ function captcha_html($class="captcha")
     $html .= '<script src="https://www.google.com/recaptcha/api.js?hl=ko"></script>';
     $html .= '<script src="'.G5_CAPTCHA_URL.'/recaptcha.js"></script>';
     $html .= '<div id="recaptcha" class="g-recaptcha" data-sitekey="' . $config['cf_recaptcha_site_key'] . '" data-callback="recaptcha_validate" data-badge="inline" data-size="invisible"></div>';
-    $html .= '<script>jQuery("#recaptcha").hide().parent(".invisible_recaptcha").hide().closest(".is_captcha_use").hide();</script>';
+    $html .= '<script>(function(){var init=function(){var recaptcha=document.getElementById("recaptcha");if(!recaptcha){return;}recaptcha.style.display="none";var fieldset=recaptcha.closest(".invisible_recaptcha");if(fieldset){fieldset.style.display="none";}var wrap=recaptcha.closest(".is_captcha_use");if(wrap){wrap.style.display="none";}};if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}})();</script>';
     $html .= '</fieldset>';
 
 	return $html;

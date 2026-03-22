@@ -1,4 +1,16 @@
 <script>
+    function postSync(url) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, false);
+        xhr.send(null);
+
+        return {
+            ok: xhr.status >= 200 && xhr.status < 400,
+            status: xhr.status,
+            url: url
+        };
+    }
+
     function refresh_member_password_captcha() {
         var candidates = [],
             captchaUrl = window.g5_captcha_url || "",
@@ -20,7 +32,7 @@
             candidates.push(pathBase + "/plugin/kcaptcha");
         }
 
-        candidates = $.grep(candidates, function(url, idx) {
+        candidates = candidates.filter(function(url, idx) {
             return candidates.indexOf(url) === idx;
         });
 
@@ -42,17 +54,10 @@
                 continue;
             }
 
-            $.ajax({
-                type: "POST",
-                url: captchaUrl + "/kcaptcha_session.php",
-                cache: false,
-                async: false,
-                complete: function(xhr) {
-                    if (!resolved && xhr && xhr.status >= 200 && xhr.status < 400) {
-                        resolved = this.url.replace(/\/kcaptcha_session\.php(?:\?.*)?$/, "");
-                    }
-                }
-            });
+            var response = postSync(captchaUrl + "/kcaptcha_session.php");
+            if (!resolved && response.ok) {
+                resolved = response.url.replace(/\/kcaptcha_session\.php(?:\?.*)?$/, "");
+            }
 
             if (resolved) {
                 break;
@@ -63,63 +68,83 @@
             return;
         }
 
-        $("#captcha_img")
-            .css({
-                display: "inline-block",
-                verticalAlign: "middle",
-                marginRight: "8px"
-            })
-            .attr("src", resolved + "/kcaptcha_image.php?t=" + (new Date()).getTime());
+        var captchaImage = document.getElementById("captcha_img");
+        if (!captchaImage) {
+            return;
+        }
+
+        captchaImage.style.display = "inline-block";
+        captchaImage.style.verticalAlign = "middle";
+        captchaImage.style.marginRight = "8px";
+        captchaImage.src = resolved + "/kcaptcha_image.php?t=" + (new Date()).getTime();
     }
 
     function fmember_submit(f) {
-        if( jQuery("#mb_password").val() ){
+        var passwordField = document.getElementById("mb_password");
+        if (passwordField && passwordField.value) {
             <?php echo $captcha_js; // 캡챠 사용시 자바스크립트에서 입력된 캡챠를 검사함 ?>
         }
 
         return true;
     }
 
-    jQuery(function($){
-        var $passwordField = $("#mb_password"),
-            passwordFieldUnlocked = false;
+    document.addEventListener("DOMContentLoaded", function() {
+        var passwordField = document.getElementById("mb_password");
+        var passwordFieldUnlocked = false;
 
         function hideMemberPasswordCaptcha() {
-            var $warp = $("#mb_password_captcha_wrap"),
-                is_invisible_recaptcha = $("#captcha").hasClass("invisible_recaptcha");
+            var wrap = document.getElementById("mb_password_captcha_wrap");
+            var captcha = document.getElementById("captcha");
+            var is_invisible_recaptcha = captcha ? captcha.classList.contains("invisible_recaptcha") : false;
 
-            $warp.hide();
+            if (wrap) {
+                wrap.style.display = "none";
+            }
             if (!is_invisible_recaptcha) {
-                $("#mp_captcha_tooltip").remove();
+                var tooltip = document.getElementById("mp_captcha_tooltip");
+                if (tooltip) {
+                    tooltip.remove();
+                }
             }
         }
 
         function unlockMemberPasswordField() {
-            if (passwordFieldUnlocked || !$passwordField.length) {
+            if (passwordFieldUnlocked || !passwordField) {
                 return;
             }
 
             passwordFieldUnlocked = true;
-            $passwordField.prop("readonly", false).removeAttr("readonly");
+            passwordField.readOnly = false;
+            passwordField.removeAttribute("readonly");
         }
 
         function toggleMemberPasswordCaptcha() {
-            var $warp = $("#mb_password_captcha_wrap"),
-                tooptipid = "mp_captcha_tooltip",
-                $span_text = $("<span>", {id:tooptipid, style:"font-size:0.95em;letter-spacing:-0.1em"}).html("비밀번호를 수정할 경우 캡챠를 입력해야 합니다."),
-                $parent = $passwordField.parent(),
-                is_invisible_recaptcha = $("#captcha").hasClass("invisible_recaptcha"),
-                was_hidden = !$warp.is(":visible");
+            var wrap = document.getElementById("mb_password_captcha_wrap");
+            var captcha = document.getElementById("captcha");
+            var parent = passwordField ? passwordField.parentElement : null;
+            var tooltipId = "mp_captcha_tooltip";
+            var captchaImage = document.getElementById("captcha_img");
+            var is_invisible_recaptcha = captcha ? captcha.classList.contains("invisible_recaptcha") : false;
+            var was_hidden = !wrap || wrap.style.display === "none" || window.getComputedStyle(wrap).display === "none";
 
-            if ($passwordField.val()) {
-                $warp.show();
-                if (was_hidden || ($("#captcha_img").attr("src") || "").indexOf("dot.gif") !== -1) {
+            if (!wrap || !passwordField) {
+                return;
+            }
+
+            if (passwordField.value) {
+                wrap.style.display = "";
+                if (was_hidden || ((captchaImage && captchaImage.getAttribute("src")) || "").indexOf("dot.gif") !== -1) {
                     refresh_member_password_captcha();
                 }
                 if (!is_invisible_recaptcha) {
-                    $warp.css("margin-top", "1em");
-                    if (!$("#" + tooptipid).length) {
-                        $parent.append($span_text);
+                    wrap.style.marginTop = "1em";
+                    if (!document.getElementById(tooltipId) && parent) {
+                        var tooltip = document.createElement("span");
+                        tooltip.id = tooltipId;
+                        tooltip.style.fontSize = "0.95em";
+                        tooltip.style.letterSpacing = "-0.1em";
+                        tooltip.innerHTML = "비밀번호를 수정할 경우 캡챠를 입력해야 합니다.";
+                        parent.appendChild(tooltip);
                     }
                 }
             } else {
@@ -127,7 +152,12 @@
             }
         }
 
-        $("#captcha_key").prop('required', false).removeAttr("required").removeClass("required");
+        var captchaKey = document.getElementById("captcha_key");
+        if (captchaKey) {
+            captchaKey.required = false;
+            captchaKey.removeAttribute("required");
+            captchaKey.classList.remove("required");
+        }
 
         if (window.CommonUI && typeof window.CommonUI.initStickyAnchorTabs === "function") {
             window.CommonUI.initStickyAnchorTabs({
@@ -144,23 +174,31 @@
 
         hideMemberPasswordCaptcha();
 
-        $passwordField.on("focus pointerdown keydown", function() {
-            unlockMemberPasswordField();
+        if (!passwordField) {
+            return;
+        }
+
+        ["focus", "pointerdown", "keydown"].forEach(function(eventName) {
+            passwordField.addEventListener(eventName, function() {
+                unlockMemberPasswordField();
+            });
         });
 
-        $passwordField.on("input keyup change", function() {
-            if (!passwordFieldUnlocked && $(this).val()) {
-                $(this).val("");
-                hideMemberPasswordCaptcha();
-                return;
-            }
+        ["input", "keyup", "change"].forEach(function(eventName) {
+            passwordField.addEventListener(eventName, function() {
+                if (!passwordFieldUnlocked && passwordField.value) {
+                    passwordField.value = "";
+                    hideMemberPasswordCaptcha();
+                    return;
+                }
 
-            toggleMemberPasswordCaptcha();
+                toggleMemberPasswordCaptcha();
+            });
         });
 
         window.setTimeout(function() {
-            if (!passwordFieldUnlocked && $passwordField.val()) {
-                $passwordField.val("");
+            if (!passwordFieldUnlocked && passwordField.value) {
+                passwordField.value = "";
                 hideMemberPasswordCaptcha();
             }
         }, 150);

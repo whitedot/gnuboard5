@@ -204,8 +204,7 @@ else if( $cert_enc_use != "Y" )
     // 암호화 인증 안함
     if( G5_IS_MOBILE ){
         echo '<script>'.PHP_EOL;
-        echo 'window.parent.$("#cert_info").css("display", "");'.PHP_EOL;
-        echo 'window.parent.$("#kcp_cert" ).css("display", "none");'.PHP_EOL;
+        echo 'if (window.parent && window.parent.document) { var certInfo = window.parent.document.getElementById("cert_info"); var kcpCert = window.parent.document.getElementById("kcp_cert"); if (certInfo) certInfo.style.display = ""; if (kcpCert) kcpCert.style.display = "none"; }'.PHP_EOL;
         echo '</script>'.PHP_EOL;
     } else {
         alert_close("휴대폰 본인확인을 취소 하셨습니다.");
@@ -220,11 +219,11 @@ $ct_cert->mf_clear();
     <?php echo $sbParam; ?>   
 </form>
 <script>
-    jQuery(function($) {
-        
-        var $opener = window.opener;
-        var is_mobile = false;        
-        $opener.name="parentPage";
+    document.addEventListener("DOMContentLoaded", function() {
+        var openerWindow = window.opener;
+        if (openerWindow) {
+            openerWindow.name = "parentPage";
+        }
 
         // 안드로이드 웹뷰에서 거의 다 새창을 지원하므로 더 이상 iframe 을 사용하지 않습니다.
         /*
@@ -237,7 +236,13 @@ $ct_cert->mf_clear();
         */
         
         // up_hash 검증
-        if( document.mbFindForm.up_hash.value != $opener.$("input[name=veri_up_hash]").val() ) {
+        if (!openerWindow || !openerWindow.document) {
+            window.close();
+            return;
+        }
+
+        var verificationField = openerWindow.document.querySelector("input[name=veri_up_hash]");
+        if( verificationField && document.mbFindForm.up_hash.value != verificationField.value ) {
             alert("up_hash 변조 위험있음");
         }
             

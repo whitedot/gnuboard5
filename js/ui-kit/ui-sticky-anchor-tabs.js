@@ -3,13 +3,8 @@
 
   window.CommonUI = window.CommonUI || {};
 
-  window.CommonUI.initStickyAnchorTabs = function (options = {}) {
-    if (typeof window.jQuery === "undefined") {
-      return null;
-    }
-
-    const $ = window.jQuery;
-    const settings = $.extend(
+  window.CommonUI.initStickyAnchorTabs = function (options) {
+    var settings = Object.assign(
       {
         tabBarSelector: "",
         tabNavSelector: "",
@@ -23,54 +18,77 @@
       options || {}
     );
 
-    const $tabBar = $(settings.tabBarSelector);
-    const $tabNav = $(settings.tabNavSelector);
+    var tabBar = document.querySelector(settings.tabBarSelector);
+    var tabNav = document.querySelector(settings.tabNavSelector);
 
-    if (!$tabBar.length || !$tabNav.length) {
+    if (!tabBar || !tabNav) {
       return null;
     }
 
-    const $tabLinks = $tabNav.find(settings.tabLinkSelector);
-    if (!$tabLinks.length) {
-      return null;
+    if (tabBar.__stickyAnchorTabs && typeof tabBar.__stickyAnchorTabs.destroy === "function") {
+      tabBar.__stickyAnchorTabs.destroy();
     }
 
-    const sections = [];
-    $tabLinks.each(function () {
-      const targetId = $(this).attr("href");
-      const $target = $(targetId);
-
-      if ($target.length) {
-        sections.push({
-          id: targetId,
-          $section: $target
-        });
-      }
+    var tabLinks = Array.prototype.slice.call(tabNav.querySelectorAll(settings.tabLinkSelector)).filter(function (link) {
+      var targetId = link.getAttribute("href");
+      return targetId && targetId.charAt(0) === "#";
     });
+
+    if (!tabLinks.length) {
+      return null;
+    }
+
+    var sections = tabLinks
+      .map(function (link) {
+        var targetId = link.getAttribute("href");
+        var target = document.querySelector(targetId);
+
+        if (!target) {
+          return null;
+        }
+
+        return {
+          id: targetId,
+          section: target
+        };
+      })
+      .filter(Boolean);
 
     if (!sections.length) {
       return null;
     }
 
-    const namespace = "." + settings.namespace;
-    let currentTabId = "";
-    let scrollTicking = false;
-    let stickyStartTop = 0;
-    let isProgrammaticScroll = false;
-    let isScrollSpySuspended = false;
-    let pendingTabId = "";
-    let scrollReleaseTimer = 0;
-    const hashlessUrl = window.location.pathname + window.location.search;
+    var currentTabId = "";
+    var scrollTicking = false;
+    var stickyStartTop = 0;
+    var isProgrammaticScroll = false;
+    var isScrollSpySuspended = false;
+    var pendingTabId = "";
+    var scrollReleaseTimer = 0;
+    var hashlessUrl = window.location.pathname + window.location.search;
+    var resizeHandler = null;
+    var scrollHandler = null;
+
+    function getOuterHeight(element) {
+      return element ? element.getBoundingClientRect().height : 0;
+    }
+
+    function getOffsetTop(element) {
+      var rect = element.getBoundingClientRect();
+      return rect.top + window.pageYOffset;
+    }
 
     function getScrollOffset() {
-      const topbarHeight = $(settings.topbarSelector).outerHeight() || 0;
-      const tabbarHeight = $tabBar.outerHeight() || 0;
+      var topbar = document.querySelector(settings.topbarSelector);
+      var topbarHeight = getOuterHeight(topbar);
+      var tabbarHeight = getOuterHeight(tabBar);
       return topbarHeight + tabbarHeight + settings.scrollGap;
     }
 
     function updateStickyStartTop() {
-      const topbarHeight = $(settings.topbarSelector).outerHeight() || 0;
-      stickyStartTop = Math.max(0, $tabBar.offset().top - topbarHeight);
+      var topbar = document.querySelector(settings.topbarSelector);
+      var topbarHeight = getOuterHeight(topbar);
+      stickyStartTop = Math.max(0, getOffsetTop(tabBar) - topbarHeight);
     }
 
     function updateTabbarHeightVar() {
@@ -78,41 +96,30 @@
         return;
       }
 
-      const tabbarHeight = $tabBar.outerHeight() || 0;
-      document.documentElement.style.setProperty(settings.heightVarName, tabbarHeight + "px");
+      document.documentElement.style.setProperty(settings.heightVarName, getOuterHeight(tabBar) + "px");
     }
 
     function updateStickyVisualState() {
-      $tabBar.toggleClass("is-stuck", $(window).scrollTop() > stickyStartTop);
+      tabBar.classList.toggle("is-stuck", window.pageYOffset > stickyStartTop);
     }
 
     function updateOverflowIndicators() {
-      const navEl = $tabNav.get(0);
-      if (!navEl) {
-        return;
-      }
+      var maxScroll = tabNav.scrollWidth - tabNav.clientWidth;
+      var hasOverflow = maxScroll > 0.5;
+      var isLeftOverflow = tabNav.scrollLeft > 0.5;
+      var isRightOverflow = tabNav.scrollLeft < maxScroll - 0.5;
 
-      const maxScroll = navEl.scrollWidth - navEl.clientWidth;
-      const hasOverflow = maxScroll > 0.5;
-      const isLeftOverflow = navEl.scrollLeft > 0.5;
-      const isRightOverflow = navEl.scrollLeft < maxScroll - 0.5;
-
-      $tabBar.toggleClass("has-overflow", hasOverflow);
-      $tabBar.toggleClass("is-overflow-left", hasOverflow && isLeftOverflow);
-      $tabBar.toggleClass("is-overflow-right", hasOverflow && isRightOverflow);
+      tabBar.classList.toggle("has-overflow", hasOverflow);
+      tabBar.classList.toggle("is-overflow-left", hasOverflow && isLeftOverflow);
+      tabBar.classList.toggle("is-overflow-right", hasOverflow && isRightOverflow);
     }
 
-    function ensureTabVisible($tabLink, smooth) {
-      if (
-        !$tabLink ||
-        !$tabLink.length ||
-        !$tabLink[0] ||
-        typeof $tabLink[0].scrollIntoView !== "function"
-      ) {
+    function ensureTabVisible(tabLink, smooth) {
+      if (!tabLink || typeof tabLink.scrollIntoView !== "function") {
         return;
       }
 
-      $tabLink[0].scrollIntoView({
+      tabLink.scrollIntoView({
         behavior: smooth ? "smooth" : "auto",
         block: "nearest",
         inline: "center"
@@ -125,18 +132,17 @@
       }
 
       currentTabId = tabId;
-      $tabLinks
-        .removeClass("active")
-        .attr("aria-selected", "false")
-        .attr("tabindex", "-1");
 
-      const $activeTab = $tabLinks.filter("[href='" + tabId + "']");
-      $activeTab
-        .addClass("active")
-        .attr("aria-selected", "true")
-        .attr("tabindex", "0");
+      tabLinks.forEach(function (link) {
+        var isActive = link.getAttribute("href") === tabId;
+        link.classList.toggle("active", isActive);
+        link.setAttribute("aria-selected", isActive ? "true" : "false");
+        link.setAttribute("tabindex", isActive ? "0" : "-1");
 
-      ensureTabVisible($activeTab, !!smoothTab);
+        if (isActive) {
+          ensureTabVisible(link, !!smoothTab);
+        }
+      });
     }
 
     function clearScrollReleaseTimer() {
@@ -148,15 +154,29 @@
       scrollReleaseTimer = 0;
     }
 
-    function releaseProgrammaticScroll(options = {}) {
-      const shouldSyncWithScrollSpy = !!options.syncWithScrollSpy;
-      const keepScrollSpySuspended = !!options.keepScrollSpySuspended;
+    function findActiveTabByScroll() {
+      var marker = window.pageYOffset + getScrollOffset();
+      var activeTabId = sections[0].id;
+
+      sections.forEach(function (entry) {
+        if (getOffsetTop(entry.section) <= marker) {
+          activeTabId = entry.id;
+        }
+      });
+
+      return activeTabId;
+    }
+
+    function releaseProgrammaticScroll(options) {
+      var releaseOptions = options || {};
+      var shouldSyncWithScrollSpy = !!releaseOptions.syncWithScrollSpy;
+      var keepScrollSpySuspended = !!releaseOptions.keepScrollSpySuspended;
 
       if (!isProgrammaticScroll && !pendingTabId) {
         return;
       }
 
-      const fallbackTabId = pendingTabId;
+      var fallbackTabId = pendingTabId;
       isProgrammaticScroll = false;
       isScrollSpySuspended = keepScrollSpySuspended;
       pendingTabId = "";
@@ -171,14 +191,12 @@
       updateStickyVisualState();
     }
 
-    function startProgrammaticScroll(tabId, $targetSection) {
-      if (!$targetSection || !$targetSection.length) {
+    function startProgrammaticScroll(tabId, targetSection) {
+      if (!targetSection) {
         return;
       }
 
-      const targetScrollTop = Math.max(0, $targetSection.offset().top - getScrollOffset());
-
-      $("html, body").stop(true);
+      var targetScrollTop = Math.max(0, getOffsetTop(targetSection) - getScrollOffset());
 
       isProgrammaticScroll = true;
       isScrollSpySuspended = true;
@@ -187,58 +205,25 @@
       setActiveTab(tabId, true);
       window.history.replaceState(window.history.state, "", hashlessUrl);
 
-      let isSettled = false;
-      const finalizeScroll = function (finalizeOptions) {
-        if (isSettled) {
-          return;
-        }
-
-        isSettled = true;
-        releaseProgrammaticScroll(finalizeOptions);
-      };
-
       scrollReleaseTimer = window.setTimeout(function () {
-        finalizeScroll({
+        releaseProgrammaticScroll({
           syncWithScrollSpy: false,
           keepScrollSpySuspended: true
         });
-      }, settings.scrollDuration + 120);
+      }, settings.scrollDuration + 160);
 
-      $("html, body").animate(
-        {
-          scrollTop: targetScrollTop
-        },
-        settings.scrollDuration,
-        function () {
-          finalizeScroll({
-            syncWithScrollSpy: false,
-            keepScrollSpySuspended: true
-          });
-        }
-      );
-    }
-
-    function findActiveTabByScroll() {
-      const marker = $(window).scrollTop() + getScrollOffset();
-      let activeTabId = sections[0].id;
-
-      for (let idx = 0; idx < sections.length; idx++) {
-        if (sections[idx].$section.offset().top <= marker) {
-          activeTabId = sections[idx].id;
-        } else {
-          break;
-        }
-      }
-
-      return activeTabId;
+      window.scrollTo({
+        top: targetScrollTop,
+        behavior: "smooth"
+      });
     }
 
     function handleScroll() {
       if (scrollTicking) {
         return;
       }
-      scrollTicking = true;
 
+      scrollTicking = true;
       window.requestAnimationFrame(function () {
         if (!isProgrammaticScroll && !isScrollSpySuspended) {
           setActiveTab(findActiveTabByScroll());
@@ -260,7 +245,10 @@
 
     function interruptProgrammaticScroll() {
       if (isProgrammaticScroll) {
-        $("html, body").stop(true);
+        window.scrollTo({
+          top: window.pageYOffset,
+          behavior: "auto"
+        });
         releaseProgrammaticScroll({
           syncWithScrollSpy: false,
           keepScrollSpySuspended: false
@@ -270,96 +258,83 @@
       }
     }
 
-    $tabLinks.off(namespace);
-    $tabNav.off(namespace);
-    $tabBar.off(namespace);
-    $(window).off(namespace);
+    tabLinks.forEach(function (link) {
+      var targetId = link.getAttribute("href");
+      var target = document.querySelector(targetId);
+      var tabId = link.getAttribute("id");
 
-    $tabLinks.on("click" + namespace, function (e) {
-      const tabId = $(this).attr("href");
-      const $target = $(tabId);
-      if (!$target.length) {
-        return;
+      if (target && tabId) {
+        target.setAttribute("role", "tabpanel");
+        target.setAttribute("aria-labelledby", tabId);
       }
 
-      e.preventDefault();
-      startProgrammaticScroll(tabId, $target);
+      link.addEventListener("click", function (event) {
+        if (!target) {
+          return;
+        }
+
+        event.preventDefault();
+        startProgrammaticScroll(targetId, target);
+      });
+
+      link.addEventListener("keydown", function (event) {
+        var key = event.key;
+        var currentIndex = tabLinks.indexOf(link);
+        var targetIndex = -1;
+
+        if (key === "ArrowRight") {
+          targetIndex = (currentIndex + 1) % tabLinks.length;
+        } else if (key === "ArrowLeft") {
+          targetIndex = (currentIndex - 1 + tabLinks.length) % tabLinks.length;
+        } else if (key === "Home") {
+          targetIndex = 0;
+        } else if (key === "End") {
+          targetIndex = tabLinks.length - 1;
+        } else if (key === " " || key === "Enter") {
+          targetIndex = currentIndex;
+        } else {
+          return;
+        }
+
+        event.preventDefault();
+
+        var targetTab = tabLinks[targetIndex];
+        var tabTargetId = targetTab.getAttribute("href");
+        var targetSection = document.querySelector(tabTargetId);
+        if (!targetSection) {
+          return;
+        }
+
+        targetTab.focus();
+        startProgrammaticScroll(tabTargetId, targetSection);
+      });
     });
 
-    $tabLinks.on("keydown" + namespace, function (e) {
-      const key = e.key;
-      const currentIndex = $tabLinks.index(this);
-      let targetIndex = -1;
-
-      if (key === "ArrowRight") {
-        targetIndex = (currentIndex + 1) % $tabLinks.length;
-      } else if (key === "ArrowLeft") {
-        targetIndex = (currentIndex - 1 + $tabLinks.length) % $tabLinks.length;
-      } else if (key === "Home") {
-        targetIndex = 0;
-      } else if (key === "End") {
-        targetIndex = $tabLinks.length - 1;
-      } else if (key === " " || key === "Enter") {
-        targetIndex = currentIndex;
-      } else {
+    tabNav.addEventListener("wheel", function (event) {
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
         return;
       }
 
-      e.preventDefault();
-
-      const $targetTab = $tabLinks.eq(targetIndex);
-      const tabId = $targetTab.attr("href");
-      const $targetSection = $(tabId);
-      if (!$targetSection.length) {
+      if (tabNav.scrollWidth <= tabNav.clientWidth + 1) {
         return;
       }
 
-      $targetTab.trigger("focus");
-      startProgrammaticScroll(tabId, $targetSection);
-    });
-
-    $tabNav.on("wheel" + namespace, function (e) {
-      const evt = e.originalEvent;
-      const navEl = this;
-
-      if (!evt || !navEl) {
-        return;
-      }
-
-      if (Math.abs(evt.deltaY) <= Math.abs(evt.deltaX)) {
-        return;
-      }
-
-      if (navEl.scrollWidth <= navEl.clientWidth + 1) {
-        return;
-      }
-
-      navEl.scrollLeft += evt.deltaY;
-      e.preventDefault();
+      tabNav.scrollLeft += event.deltaY;
+      event.preventDefault();
       updateOverflowIndicators();
-    });
+    }, { passive: false });
 
-    $tabNav.on("scroll" + namespace, updateOverflowIndicators);
-    $tabBar.on("mouseenter" + namespace + " focusin" + namespace, updateOverflowIndicators);
-    $(window).on("wheel" + namespace + " touchstart" + namespace, interruptProgrammaticScroll);
+    tabNav.addEventListener("scroll", updateOverflowIndicators);
+    tabBar.addEventListener("mouseenter", updateOverflowIndicators);
+    tabBar.addEventListener("focusin", updateOverflowIndicators);
+    window.addEventListener("wheel", interruptProgrammaticScroll, { passive: true });
+    window.addEventListener("touchstart", interruptProgrammaticScroll, { passive: true });
 
-    $tabLinks.each(function () {
-      const $tab = $(this);
-      const targetId = $tab.attr("href");
-      const $target = $(targetId);
+    scrollHandler = function () {
+      handleScroll();
+    };
 
-      if (!$target.length) {
-        return;
-      }
-
-      const tabId = $tab.attr("id");
-      if (tabId) {
-        $target.attr("role", "tabpanel").attr("aria-labelledby", tabId);
-      }
-    });
-
-    $(window).on("scroll" + namespace, handleScroll);
-    $(window).on("resize" + namespace, function () {
+    resizeHandler = function () {
       updateStickyStartTop();
       updateTabbarHeightVar();
       if (!isScrollSpySuspended) {
@@ -367,7 +342,10 @@
       }
       updateStickyVisualState();
       updateOverflowIndicators();
-    });
+    };
+
+    window.addEventListener("scroll", scrollHandler, { passive: true });
+    window.addEventListener("resize", resizeHandler);
 
     updateStickyStartTop();
     updateTabbarHeightVar();
@@ -380,13 +358,13 @@
       document.fonts.ready.then(updateOverflowIndicators);
     }
 
-    const initialHash = window.location.hash;
-    if (initialHash && $tabLinks.filter("[href='" + initialHash + "']").length) {
+    var initialHash = window.location.hash;
+    if (initialHash && tabLinks.some(function (link) { return link.getAttribute("href") === initialHash; })) {
       setActiveTab(initialHash);
       window.setTimeout(function () {
-        const $initialTarget = $(initialHash);
-        if ($initialTarget.length) {
-          $("html, body").stop().scrollTop($initialTarget.offset().top - getScrollOffset());
+        var initialTarget = document.querySelector(initialHash);
+        if (initialTarget) {
+          window.scrollTo(0, Math.max(0, getOffsetTop(initialTarget) - getScrollOffset()));
         }
         updateOverflowIndicators();
       }, 0);
@@ -394,7 +372,7 @@
       setActiveTab(findActiveTabByScroll());
     }
 
-    return {
+    var api = {
       refresh: function () {
         updateStickyStartTop();
         updateTabbarHeightVar();
@@ -406,11 +384,18 @@
       },
       destroy: function () {
         clearScrollReleaseTimer();
-        $tabLinks.off(namespace);
-        $tabNav.off(namespace);
-        $tabBar.off(namespace);
-        $(window).off(namespace);
+        window.removeEventListener("scroll", scrollHandler);
+        window.removeEventListener("resize", resizeHandler);
+        window.removeEventListener("wheel", interruptProgrammaticScroll, { passive: true });
+        window.removeEventListener("touchstart", interruptProgrammaticScroll, { passive: true });
+        if (tabBar.__stickyAnchorTabs === api) {
+          delete tabBar.__stickyAnchorTabs;
+        }
       }
     };
+
+    tabBar.__stickyAnchorTabs = api;
+
+    return api;
   };
 })(window);

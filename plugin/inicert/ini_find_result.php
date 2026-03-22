@@ -101,25 +101,22 @@ include_once(G5_PATH.'/head.sub.php');
 <input type="hidden" name="mb_id" value="<?php echo isset($row["mb_id"]) ? get_text($row["mb_id"]) : ''; ?>">
 </form>
 <script>
-    jQuery(function($) {
-        
-        var $opener = window.opener;
-        var is_mobile = false;        
-        $opener.name="parentPage";
-
-        if (typeof g5_is_mobile != "undefined" && g5_is_mobile ) {
-            $opener = window.parent;
-            is_mobile = true;
-        } else {
-            $opener = window.opener;
+    document.addEventListener("DOMContentLoaded", function() {
+        var openerWindow = window.opener;
+        if (typeof g5_is_mobile != "undefined" && g5_is_mobile) {
+            openerWindow = window.parent;
         }
-            
+
+        if (openerWindow) {
+            openerWindow.name = "parentPage";
+        }
+
         document.mbFindForm.target = "parentPage";
         document.mbFindForm.action = "<?php echo G5_MEMBER_URL.'/password_reset.php'?>";
         document.mbFindForm.submit();
 
         alert("본인인증이 완료되었습니다.");
-        window.close();        
+        window.close();
     });
 </script>
 <?php

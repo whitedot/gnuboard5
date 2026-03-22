@@ -113,20 +113,40 @@ $g5['title'] = 'KG이니시스 간편인증 결과';
 include_once(G5_PATH.'/head.sub.php');
 ?>    
 <script>
-    jQuery(function($) {        
-        var $opener = window.opener;
+    document.addEventListener("DOMContentLoaded", function() {
+        var openerWindow = window.opener;
+        if (!openerWindow || !openerWindow.document) {
+            window.close();
+            return;
+        }
 
-        // 인증정보
-        $opener.$("input[name=cert_type]").val("<?php echo $cert_type; ?>");
-        $opener.$("input[name=mb_name]").val("<?php echo $user_name; ?>").attr("readonly", true);
-        $opener.$("input[name=mb_hp]").val("<?php echo $phone_no; ?>").attr("readonly", true);
-        $opener.$("input[name=cert_no]").val("<?php echo $md5_cert_no; ?>");
+        function openerQuery(selector) {
+            return openerWindow.document.querySelector(selector);
+        }
+
+        var certTypeField = openerQuery("input[name=cert_type]");
+        var nameField = openerQuery("input[name=mb_name]");
+        var phoneField = openerQuery("input[name=mb_hp]");
+        var certNoField = openerQuery("input[name=cert_no]");
+        var refreshForm = openerQuery("form[name=fcertrefreshform]");
+
+        if (certTypeField) certTypeField.value = "<?php echo $cert_type; ?>";
+        if (nameField) {
+            nameField.value = "<?php echo $user_name; ?>";
+            nameField.readOnly = true;
+        }
+        if (phoneField) {
+            phoneField.value = "<?php echo $phone_no; ?>";
+            phoneField.readOnly = true;
+        }
+        if (certNoField) certNoField.value = "<?php echo $md5_cert_no; ?>";
         
         alert("본인인증이 완료되었습니다.");
 
-        if($opener.$("form[name=fcertrefreshform]") != undefined){
-            $opener.$("form[name=fcertrefreshform]").submit();
-        }   
+        if (refreshForm) {
+            refreshForm.submit();
+        }
+
         window.close();
     });
 </script>

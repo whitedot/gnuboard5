@@ -1,70 +1,55 @@
 <script>
-    $(function() {
-        <?php
-        if (!$config['cf_cert_use']) {
-            echo '$(".cf_cert_service").addClass("cf_cert_hide");';
-        }
-        ?>
-        $("#cf_cert_use").change(function() {
-            switch ($(this).val()) {
-                case "0":
-                    $(".cf_cert_service").addClass("cf_cert_hide");
-                    break;
-                default:
-                    $(".cf_cert_service").removeClass("cf_cert_hide");
-                    break;
-            }
-        });
-
-        $("#cf_captcha").on("change", function() {
-            if ($(this).val() == 'recaptcha' || $(this).val() == 'recaptcha_inv') {
-                $("[class^='kcaptcha_']").hide();
-            } else {
-                $("[class^='kcaptcha_']").show();
-            }
-        }).trigger("change");
-
-        if (window.CommonUI && typeof window.CommonUI.initStickyAnchorTabs === "function") {
-            window.CommonUI.initStickyAnchorTabs({
-                tabBarSelector: "#config_tabs_nav",
-                tabNavSelector: "#config_tabs_nav",
-                tabLinkSelector: "a.js-config-tab-link[href^='#']",
-                topbarSelector: "#hd_top",
-                heightVarName: "--config-tabs-height",
-                scrollGap: 8,
-                scrollDuration: 180,
-                namespace: "configTabs"
-            });
-        }
-    });
-
-    // 각 요소의 초기값 저장
     var initialValues = {
-        cf_admin: $('#cf_admin').val()
+        cf_admin: ""
     };
+
+    function toggleConfigCaptchaFields(isRecaptcha) {
+        document.querySelectorAll("[class^='kcaptcha_']").forEach(function(element) {
+            element.style.display = isRecaptcha ? "none" : "";
+        });
+    }
 
     function check_config_captcha_open() {
         var isChanged = false;
+        var adminField = document.getElementById("cf_admin");
+        var wrap = document.getElementById("config_captcha_wrap");
+        var captcha = document.getElementById("captcha");
+        var tooptipid = "mp_captcha_tooltip";
+        var children = wrap ? wrap.firstElementChild : null;
+        var is_invisible_recaptcha = captcha ? captcha.classList.contains("invisible_recaptcha") : false;
 
         // 현재 값이 있는 경우에만 변경 여부 체크
-        if ($('#cf_admin').val()) {
-            isChanged = isChanged || $('#cf_admin').val() !== initialValues.cf_admin;
+        if (adminField && adminField.value) {
+            isChanged = isChanged || adminField.value !== initialValues.cf_admin;
         }
-        var $wrap = $("#config_captcha_wrap"),
-            tooptipid = "mp_captcha_tooltip",
-            $p_text = $("<p>", {id:tooptipid, style:"font-size:0.95em;letter-spacing:-0.1em"}).html("중요정보를 수정할 경우 캡챠를 입력해야 합니다."),
-            $children = $wrap.children(':first'),
-            is_invisible_recaptcha = $("#captcha").hasClass("invisible_recaptcha");
 
-        if(isChanged){
-            $wrap.show();
+        if (!wrap) {
+            return isChanged;
+        }
+
+        if(isChanged) {
+            wrap.style.display = "";
             if(! is_invisible_recaptcha) {
-                $wrap.css("margin-top","1em");
-                if(! $("#"+tooptipid).length){ $children.after($p_text) }
+                wrap.style.marginTop = "1em";
+                if (!document.getElementById(tooptipid)) {
+                    var tooltip = document.createElement("p");
+                    tooltip.id = tooptipid;
+                    tooltip.style.fontSize = "0.95em";
+                    tooltip.style.letterSpacing = "-0.1em";
+                    tooltip.innerHTML = "중요정보를 수정할 경우 캡챠를 입력해야 합니다.";
+                    if (children) {
+                        children.insertAdjacentElement("afterend", tooltip);
+                    } else {
+                        wrap.appendChild(tooltip);
+                    }
+                }
             }
         } else {
-            $wrap.hide();
-            if($("#"+tooptipid).length && ! is_invisible_recaptcha){ $children.next("#"+tooptipid).remove(); }
+            wrap.style.display = "none";
+            var existingTooltip = document.getElementById(tooptipid);
+            if(existingTooltip && !is_invisible_recaptcha) {
+                existingTooltip.remove();
+            }
         }
         
         return isChanged;
@@ -75,7 +60,10 @@
         var cf_intercept_ip_val = f.cf_intercept_ip.value;
         
         if (check_config_captcha_open()){
-            jQuery("html, body").scrollTop(jQuery("#config_captcha_wrap").offset().top);
+            var captchaWrap = document.getElementById("config_captcha_wrap");
+            if (captchaWrap) {
+                window.scrollTo(0, captchaWrap.getBoundingClientRect().top + window.pageYOffset);
+            }
             
             <?php echo $captcha_js; // 캡챠 사용시 자바스크립트에서 입력된 캡챠를 검사함 ?>
         }
@@ -101,11 +89,62 @@
         return true;
     }
     
-    jQuery(function($){
-        $("#captcha_key").prop('required', false).removeAttr("required").removeClass("required");
-        
-        // 최고관리자 변경시
-        $(document).on('change', '#cf_admin', check_config_captcha_open);
+    document.addEventListener("DOMContentLoaded", function() {
+        var certUseField = document.getElementById("cf_cert_use");
+        var captchaField = document.getElementById("cf_captcha");
+        var adminField = document.getElementById("cf_admin");
+        var captchaKey = document.getElementById("captcha_key");
+
+        <?php
+        if (!$config['cf_cert_use']) {
+            echo 'document.querySelectorAll(".cf_cert_service").forEach(function(element) { element.classList.add("cf_cert_hide"); });';
+        }
+        ?>
+
+        if (adminField) {
+            initialValues.cf_admin = adminField.value;
+            adminField.addEventListener("change", check_config_captcha_open);
+        }
+
+        if (certUseField) {
+            certUseField.addEventListener("change", function() {
+                var hideServices = this.value === "0";
+                document.querySelectorAll(".cf_cert_service").forEach(function(element) {
+                    element.classList.toggle("cf_cert_hide", hideServices);
+                });
+            });
+        }
+
+        if (captchaField) {
+            var syncCaptchaFields = function() {
+                var isRecaptcha = captchaField.value === "recaptcha" || captchaField.value === "recaptcha_inv";
+                toggleConfigCaptchaFields(isRecaptcha);
+            };
+
+            captchaField.addEventListener("change", syncCaptchaFields);
+            syncCaptchaFields();
+        }
+
+        if (captchaKey) {
+            captchaKey.required = false;
+            captchaKey.removeAttribute("required");
+            captchaKey.classList.remove("required");
+        }
+
+        if (window.CommonUI && typeof window.CommonUI.initStickyAnchorTabs === "function") {
+            window.CommonUI.initStickyAnchorTabs({
+                tabBarSelector: "#config_tabs_nav",
+                tabNavSelector: "#config_tabs_nav",
+                tabLinkSelector: "a.js-config-tab-link[href^='#']",
+                topbarSelector: "#hd_top",
+                heightVarName: "--config-tabs-height",
+                scrollGap: 8,
+                scrollDuration: 180,
+                namespace: "configTabs"
+            });
+        }
+
+        check_config_captcha_open();
     });
 </script>
 

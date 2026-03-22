@@ -7,7 +7,7 @@
                             <div class="card-header block">
                                 <h4 class="card-title mb-1.25">Choices.Js</h4>
                                 <p class="text-default-400">Choices.js는 가볍고 설정 가능한 셀렉트 박스/텍스트 입력 플러그인입니다. Select2 및
-                                    Selectize와 유사하지만 jQuery 의존성이 없습니다.
+                                    Selectize와 유사하지만 별도 레거시 라이브러리 의존성이 없습니다.
                                 </p>
                             </div>
 
@@ -304,7 +304,7 @@
 
                                 <div class="bg-warning/15 text-warning rounded px-4 py-3" role="alert">
                                     <strong>참고:</strong>
-                                    이것은 jQuery 기반 플러그인이므로 작동하려면 jQuery를 포함해야 합니다.
+                                    이것은 레거시 의존성이 필요한 플러그인이므로 현재 기본 UI 스택에서는 별도 호환 작업이 필요합니다.
                                 </div>
                             </div>
 

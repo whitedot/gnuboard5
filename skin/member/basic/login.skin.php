@@ -40,8 +40,13 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 </div>
 
 <script>
-jQuery(function($){
-    $("#login_auto_login").click(function(){
+document.addEventListener("DOMContentLoaded", function() {
+    var autoLogin = document.getElementById("login_auto_login");
+    if (!autoLogin) {
+        return;
+    }
+
+    autoLogin.addEventListener("click", function() {
         if (this.checked) {
             this.checked = confirm("자동로그인을 사용하시면 다음부터 회원아이디와 비밀번호를 입력하실 필요가 없습니다.\n\n공공장소에서는 개인정보가 유출될 수 있으니 사용을 자제하여 주십시오.\n\n자동로그인을 사용하시겠습니까?");
         }
@@ -50,10 +55,17 @@ jQuery(function($){
 
 function flogin_submit(f)
 {
-    if( $( document.body ).triggerHandler( 'login_sumit', [f, 'flogin'] ) !== false ){
-        return true;
-    }
-    return false;
+    var loginSubmitEvent = new CustomEvent("login_sumit", {
+        bubbles: true,
+        cancelable: true,
+        detail: {
+            form: f,
+            formId: "flogin"
+        }
+    });
+
+    document.body.dispatchEvent(loginSubmitEvent);
+    return !loginSubmitEvent.defaultPrevented;
 }
 </script>
 <!-- } 로그인 끝 -->

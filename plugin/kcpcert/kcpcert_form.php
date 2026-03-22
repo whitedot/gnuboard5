@@ -152,12 +152,22 @@ function cert_page()
     {
         if(use_iframe && ( navigator.userAgent.indexOf("Android") > - 1 || navigator.userAgent.indexOf("iPhone") > - 1 ) )
         {
-            window.parent.$("input[name=veri_up_hash]").val(frm.up_hash.value); // up_hash 데이터 검증을 위한 필드
+            if (window.parent && window.parent.document) {
+                var parentVerificationField = window.parent.document.querySelector("input[name=veri_up_hash]");
+                if (parentVerificationField) {
+                    parentVerificationField.value = frm.up_hash.value;
+                }
+            }
             self.name="auth_popup";
         }
         else
         {
-            window.opener.$("input[name=veri_up_hash]").val(frm.up_hash.value); // up_hash 데이터 검증을 위한 필드
+            if (window.opener && window.opener.document) {
+                var openerVerificationField = window.opener.document.querySelector("input[name=veri_up_hash]");
+                if (openerVerificationField) {
+                    openerVerificationField.value = frm.up_hash.value;
+                }
+            }
             frm.target = "auth_popup";
         }
 

@@ -28,7 +28,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 <script>
 function fpasswordreset_submit(f) {
-    if ($("#mb_pw").val() == $("#mb_pw2").val()) {
+    var passwordField = document.getElementById("mb_pw");
+    var passwordConfirmField = document.getElementById("mb_pw2");
+
+    if (passwordField && passwordConfirmField && passwordField.value == passwordConfirmField.value) {
         alert("비밀번호 변경되었습니다. 다시 로그인해 주세요.");
     } else {
         alert("새 비밀번호와 비밀번호 확인이 일치하지 않습니다.");

@@ -205,8 +205,7 @@ else if( $cert_enc_use != "Y" )
     // 암호화 인증 안함
     if( G5_IS_MOBILE ){
         echo '<script>'.PHP_EOL;
-        echo 'window.parent.$("#cert_info").css("display", "");'.PHP_EOL;
-        echo 'window.parent.$("#kcp_cert" ).css("display", "none");'.PHP_EOL;
+        echo 'if (window.parent && window.parent.document) { var certInfo = window.parent.document.getElementById("cert_info"); var kcpCert = window.parent.document.getElementById("kcp_cert"); if (certInfo) certInfo.style.display = ""; if (kcpCert) kcpCert.style.display = "none"; }'.PHP_EOL;
         echo '</script>'.PHP_EOL;
     } else {
         alert_close("휴대폰 본인확인을 취소 하셨습니다.");
@@ -222,39 +221,63 @@ $ct_cert->mf_clear();
 </form>
 
 <script>
-$(function() {
-    var $opener;
+document.addEventListener("DOMContentLoaded", function() {
+    var openerWindow;
     var is_mobile = false;
     // iframe에서 세션공유 문제가 있어서 더 이상 iframe 을 사용하지 않습니다.
     var use_iframe = false;
 
     if(use_iframe && ( navigator.userAgent.indexOf("Android") > - 1 || navigator.userAgent.indexOf("iPhone") > - 1 ) ) {
-        $opener = window.parent;
+        openerWindow = window.parent;
         is_mobile = true;
     } else {
-        $opener = window.opener;
+        openerWindow = window.opener;
+    }
+
+    if (!openerWindow || !openerWindow.document) {
+        window.close();
+        return;
+    }
+
+    function openerQuery(selector) {
+        return openerWindow.document.querySelector(selector);
     }
 
     // up_hash 검증
-    if( document.form_auth.up_hash.value != $opener.$("input[name=veri_up_hash]").val() ) {
+    var verificationField = openerQuery("input[name=veri_up_hash]");
+    if( verificationField && document.form_auth.up_hash.value != verificationField.value ) {
         alert("up_hash 변조 위험있음");
     }
 
     // 인증정보
-    $opener.$("input[name=cert_type]").val("<?php echo $cert_type; ?>");
-    $opener.$("input[name=mb_name]").val("<?php echo $user_name; ?>").attr("readonly", true);
-    $opener.$("input[name=mb_hp]").val("<?php echo $phone_no; ?>").attr("readonly", true);
-    $opener.$("input[name=cert_no]").val("<?php echo $md5_cert_no; ?>");
+    var certTypeField = openerQuery("input[name=cert_type]");
+    var nameField = openerQuery("input[name=mb_name]");
+    var phoneField = openerQuery("input[name=mb_hp]");
+    var certNoField = openerQuery("input[name=cert_no]");
+    var refreshForm = openerQuery("form[name=fcertrefreshform]");
+    var certInfo = openerWindow.document.getElementById("cert_info");
+    var kcpCert = openerWindow.document.getElementById("kcp_cert");
+
+    if (certTypeField) certTypeField.value = "<?php echo $cert_type; ?>";
+    if (nameField) {
+        nameField.value = "<?php echo $user_name; ?>";
+        nameField.readOnly = true;
+    }
+    if (phoneField) {
+        phoneField.value = "<?php echo $phone_no; ?>";
+        phoneField.readOnly = true;
+    }
+    if (certNoField) certNoField.value = "<?php echo $md5_cert_no; ?>";
 
     if(is_mobile) {
-        $opener.$("#cert_info").css("display", "");
-        $opener.$("#kcp_cert" ).css("display", "none");
+        if (certInfo) certInfo.style.display = "";
+        if (kcpCert) kcpCert.style.display = "none";
     }
 
     alert("본인의 휴대폰번호로 확인 되었습니다.");
 
-    if($opener.$("form[name=fcertrefreshform]") != undefined){
-        $opener.$("form[name=fcertrefreshform]").submit();
+    if (refreshForm) {
+        refreshForm.submit();
     }
 
     window.close();

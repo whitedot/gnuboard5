@@ -1,19 +1,3 @@
-// jQuery가 없는 환경에서 오류 방지
-if (typeof jQuery === 'undefined') {
-    var $ = function(selector) {
-        var noop = function() { return this; };
-        return {
-            ready: noop, click: noop, on: noop, off: noop,
-            mouseover: noop, mouseout: noop, hover: noop,
-            focusin: noop, focusout: noop,
-            addClass: noop, removeClass: noop, toggleClass: noop,
-            attr: noop, val: noop, find: noop, closest: noop, siblings: noop,
-            prepend: noop, append: noop
-        };
-    };
-    $.fn = {};
-}
-
 // 전역 변수
 var errmsg = "";
 var errfld = null;
@@ -288,15 +272,6 @@ win_password_lost = function (href) {
  * 스크린리더 미사용자를 위한 스크립트 - 지운아빠 2013-04-22
  * alt 값만 갖는 그래픽 링크에 마우스오버 시 title 값 부여, 마우스아웃 시 title 값 제거
  **/
-$(function () {
-    $('a img').mouseover(function () {
-        $a_img_title = $(this).attr('alt');
-        $(this).attr('title', $a_img_title);
-    }).mouseout(function () {
-        $(this).attr('title', '');
-    });
-});
-
 /**
  * 텍스트 리사이즈
 **/
@@ -307,91 +282,163 @@ function set_comment_token(f) {
     return true;
 }
 
-$(function () {
-    $(".win_password_lost").click(function () {
-        win_password_lost(this.href);
-        return false;
-    });
-
-    // 사이드뷰
+document.addEventListener("DOMContentLoaded", function () {
     var sv_hide = false;
-    $(".sv_member, .sv_guest").click(function () {
-        $(".sv").removeClass("sv_on");
-        $(this).closest(".sv_wrap").find(".sv").addClass("sv_on");
+    var sel_hide = false;
+
+    function closeSideViews() {
+        var sideViews = document.querySelectorAll(".sv.sv_on");
+        sideViews.forEach(function (sideView) {
+            sideView.classList.remove("sv_on");
+        });
+    }
+
+    function closeSelectLists() {
+        var selectLists = document.querySelectorAll(".sel_ul.sel_on");
+        selectLists.forEach(function (selectList) {
+            selectList.classList.remove("sel_on");
+        });
+    }
+
+    function openSideView(trigger) {
+        var wrap = trigger ? trigger.closest(".sv_wrap") : null;
+        var sideView = wrap ? wrap.querySelector(".sv") : null;
+
+        closeSideViews();
+
+        if (sideView) {
+            sideView.classList.add("sv_on");
+        }
+    }
+
+    function openSelectList(trigger) {
+        var wrap = trigger ? trigger.parentElement : null;
+        var selectList = wrap ? wrap.querySelector(".sel_ul") : null;
+
+        closeSelectLists();
+
+        if (selectList) {
+            selectList.classList.add("sel_on");
+        }
+    }
+
+    function enforceTextareaMaxlength(target) {
+        if (!target || !target.matches("textarea#wr_content[maxlength]")) {
+            return;
+        }
+
+        var maxLength = parseInt(target.getAttribute("maxlength"), 10);
+        if (!maxLength || target.value.length <= maxLength) {
+            return;
+        }
+
+        target.value = target.value.substr(0, maxLength);
+    }
+
+    document.addEventListener("mouseover", function (event) {
+        var image = event.target.closest("a img");
+        if (image) {
+            image.setAttribute("title", image.getAttribute("alt") || "");
+        }
+
+        if (event.target.closest(".sv, .sv_wrap")) {
+            sv_hide = false;
+        }
+
+        if (event.target.closest(".sel_wrap")) {
+            sel_hide = false;
+        }
     });
 
-    $(".sv, .sv_wrap").hover(
-        function () {
-            sv_hide = false;
-        },
-        function () {
+    document.addEventListener("mouseout", function (event) {
+        var image = event.target.closest("a img");
+        if (image) {
+            image.setAttribute("title", "");
+        }
+
+        if (event.target.closest(".sv, .sv_wrap")) {
             sv_hide = true;
         }
-    );
 
-    $(".sv_member, .sv_guest").focusin(function () {
-        sv_hide = false;
-        $(".sv").removeClass("sv_on");
-        $(this).closest(".sv_wrap").find(".sv").addClass("sv_on");
-    });
-
-    $(".sv a").focusin(function () {
-        sv_hide = false;
-    });
-
-    $(".sv a").focusout(function () {
-        sv_hide = true;
-    });
-
-    // 셀렉트 ul
-    var sel_hide = false;
-    $('.sel_btn').click(function () {
-        $('.sel_ul').removeClass('sel_on');
-        $(this).siblings('.sel_ul').addClass('sel_on');
-    });
-
-    $(".sel_wrap").hover(
-        function () {
-            sel_hide = false;
-        },
-        function () {
+        if (event.target.closest(".sel_wrap")) {
             sel_hide = true;
         }
-    );
-
-    $('.sel_a').focusin(function () {
-        sel_hide = false;
     });
 
-    $('.sel_a').focusout(function () {
-        sel_hide = true;
+    document.addEventListener("click", function (event) {
+        var passwordLostLink = event.target.closest("#login_password_lost, #ol_password_lost, .win_password_lost");
+        if (passwordLostLink) {
+            event.preventDefault();
+            win_password_lost(passwordLostLink.href);
+            return;
+        }
+
+        var sideViewTrigger = event.target.closest(".sv_member, .sv_guest");
+        if (sideViewTrigger) {
+            sv_hide = false;
+            openSideView(sideViewTrigger);
+            return;
+        }
+
+        var selectTrigger = event.target.closest(".sel_btn");
+        if (selectTrigger) {
+            sel_hide = false;
+            openSelectList(selectTrigger);
+            return;
+        }
+
+        if (sv_hide) {
+            closeSideViews();
+        }
+
+        if (sel_hide) {
+            closeSelectLists();
+        }
     });
 
-    $(document).click(function () {
-        if (sv_hide) { // 사이드뷰 해제
-            $(".sv").removeClass("sv_on");
+    document.addEventListener("focusin", function (event) {
+        var sideViewTrigger = event.target.closest(".sv_member, .sv_guest");
+        if (sideViewTrigger) {
+            sv_hide = false;
+            openSideView(sideViewTrigger);
+            return;
         }
-        if (sel_hide) { // 셀렉트 ul 해제
-            $('.sel_ul').removeClass('sel_on');
+
+        if (event.target.closest(".sv a")) {
+            sv_hide = false;
+            return;
+        }
+
+        if (event.target.closest(".sel_a")) {
+            sel_hide = false;
+            return;
+        }
+
+        if (sv_hide) {
+            closeSideViews();
+        }
+
+        if (sel_hide) {
+            closeSelectLists();
         }
     });
 
-    $(document).focusin(function () {
-        if (sv_hide) { // 사이드뷰 해제
-            $(".sv").removeClass("sv_on");
+    document.addEventListener("focusout", function (event) {
+        if (event.target.closest(".sv a")) {
+            sv_hide = true;
         }
-        if (sel_hide) { // 셀렉트 ul 해제
-            $('.sel_ul').removeClass('sel_on');
+
+        if (event.target.closest(".sel_a")) {
+            sel_hide = true;
         }
     });
 
-    $(document).on("keyup change", "textarea#wr_content[maxlength]", function () {
-        var str = $(this).val();
-        var mx = parseInt($(this).attr("maxlength"));
-        if (str.length > mx) {
-            $(this).val(str.substr(0, mx));
-            return false;
-        }
+    document.addEventListener("input", function (event) {
+        enforceTextareaMaxlength(event.target);
+    });
+
+    document.addEventListener("change", function (event) {
+        enforceTextareaMaxlength(event.target);
     });
 });
 

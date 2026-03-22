@@ -37,10 +37,19 @@ $print_version = ($is_admin == 'super') ? 'Version ' . G5_GNUBOARD_VER : '';
 </div>
 
 <script>
-    $(".scroll_top").click(function() {
-        $("body,html").animate({
-            scrollTop: 0
-        }, 400);
+    document.addEventListener("DOMContentLoaded", function() {
+        var scrollTopButton = document.querySelector(".scroll_top");
+        if (!scrollTopButton) {
+            return;
+        }
+
+        scrollTopButton.addEventListener("click", function(event) {
+            event.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
     });
 </script>
 

@@ -18,10 +18,18 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         <i aria-hidden="true"></i><span>상단으로</span>
     </button>
     <script>
-    $(function() {
-        $("#top_btn").on("click", function() {
-            $("html, body").animate({scrollTop:0}, "500");
-            return false;
+    document.addEventListener("DOMContentLoaded", function() {
+        var topButton = document.getElementById("top_btn");
+        if (!topButton) {
+            return;
+        }
+
+        topButton.addEventListener("click", function(event) {
+            event.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         });
     });
     </script>

@@ -120,8 +120,62 @@ $ajax_token = md5($tmp_str.$_SERVER['REMOTE_ADDR'].dirname(dirname(__FILE__).'/'
     </div>
 </div>
 
-<script src="../js/jquery-1.8.3.min.js"></script>
 <script>
+function submit_install_form(f)
+{
+    f.submit();
+}
+
+function serialize_install_form(f)
+{
+    return new URLSearchParams(new FormData(f)).toString();
+}
+
+function post_install_check(f)
+{
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "ajax.install.check.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState !== 4) {
+            return;
+        }
+
+        if (xhr.status < 200 || xhr.status >= 400) {
+            alert(xhr.responseText);
+            return;
+        }
+
+        var data = {};
+
+        try {
+            data = JSON.parse(xhr.responseText || "{}");
+        } catch (e) {
+            alert(xhr.responseText || "설치 확인 중 오류가 발생했습니다.");
+            return;
+        }
+
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+
+        if (data.exists) {
+            if (confirm(data.exists)) {
+                submit_install_form(f);
+            }
+            return;
+        }
+
+        if (data.success) {
+            submit_install_form(f);
+        }
+    };
+
+    xhr.send(serialize_install_form(f));
+}
+
 function frm_install_submit(f)
 {
     if (f.mysql_host.value == '')
@@ -181,31 +235,9 @@ function frm_install_submit(f)
         f.admin_id.focus();
         return false;
     }
-    
-    if (window.jQuery) {
 
-        var jqxhr = jQuery.post( "ajax.install.check.php", $(f).serialize(), function(data) {
-            
-            if( data.error ){
-                alert(data.error);
-            } else if( data.exists ) {
-                if( confirm(data.exists) ){
-                    f.submit();
-                }
-            } else if( data.success ) {
-                f.submit();
-            }
-
-        }, "json");
-
-        jqxhr.fail(function(xhr) {
-            alert( xhr.responseText );
-        });
-
-        return false;
-    }
-
-    return true;
+    post_install_check(f);
+    return false;
 }
 </script>
 

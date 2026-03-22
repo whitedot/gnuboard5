@@ -1,6 +1,7 @@
 function chk_captcha()
 {
-	if ( ! jQuery('#g-recaptcha-response').val()) {
+	var responseField = document.getElementById("g-recaptcha-response");
+	if (!responseField || !responseField.value) {
 		grecaptcha.execute();
 		return false;
 	}
@@ -9,12 +10,11 @@ function chk_captcha()
 }
 
 function recaptcha_validate(token) {
-    var $form = jQuery("#g-recaptcha-response").closest("form"),
-        form_id = $form.attr("id");
+    var responseField = document.getElementById("g-recaptcha-response");
+    var form = responseField ? responseField.closest("form") : null;
 
-
-    if( $form.length ){
-        $form.submit();
+    if (form) {
+        form.submit();
     }
 
 }

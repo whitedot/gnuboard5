@@ -45,29 +45,26 @@ if($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipin
     <?php } ?>
 </div>
 <script>    
-$(function() {
+document.addEventListener("DOMContentLoaded", function() {
     var pageTypeParam = "pageType=find";
 
 	<?php if($config['cf_cert_use'] && $config['cf_cert_simple']) { ?>
-	// TOSS 간편인증
-	var url = "<?php echo G5_INICERT_URL; ?>/ini_request.php";
-	var type = "";    
-    var params = "";
-    var request_url = "";
-    
-	
-	$(".win_sa_cert").click(function() {
-		type = $(this).data("type");
-		params = "?directAgency=" + type + "&" + pageTypeParam;
-        request_url = url + params;
-        call_sa(request_url);
+	var simpleButtons = document.querySelectorAll(".win_sa_cert");
+	var simpleUrl = "<?php echo G5_INICERT_URL; ?>/ini_request.php";
+
+	simpleButtons.forEach(function(button) {
+		button.addEventListener("click", function() {
+			var type = this.dataset.type || "";
+			var requestUrl = simpleUrl + "?directAgency=" + encodeURIComponent(type) + "&" + pageTypeParam;
+            call_sa(requestUrl);
+		});
 	});
     <?php } ?>
     <?php if($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
-    // 휴대폰인증
-    var params = "";
-    $("#win_hp_cert").click(function() {
-        params = "?" + pageTypeParam;
+    var hpButton = document.getElementById("win_hp_cert");
+    if (hpButton) {
+        hpButton.addEventListener("click", function() {
+            var params = "?" + pageTypeParam;
         <?php     
 	        switch($config['cf_cert_hp']) {
 	            case 'kcp':
@@ -81,9 +78,9 @@ $(function() {
         }
         ?>
         
-        certify_win_open("<?php echo $cert_type; ?>", "<?php echo $cert_url; ?>"+params);
-        return;
-    });
+            certify_win_open("<?php echo $cert_type; ?>", "<?php echo $cert_url; ?>" + params);
+        });
+    }
     <?php } ?>
 });
 function fpasswordlost_submit(f)

@@ -84,14 +84,17 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         return true;
     }
     
-    jQuery(function($){
-        // 모두선택
-        $("input[name=chk_all]").click(function() {
-            if ($(this).prop('checked')) {
-                $("input[name^=agree]").prop('checked', true);
-            } else {
-                $("input[name^=agree]").prop("checked", false);
-            }
+    document.addEventListener("DOMContentLoaded", function() {
+        var checkAll = document.querySelector("input[name=chk_all]");
+        if (!checkAll) {
+            return;
+        }
+
+        checkAll.addEventListener("click", function() {
+            var agreements = document.querySelectorAll("input[name^=agree]");
+            agreements.forEach(function(agreement) {
+                agreement.checked = checkAll.checked;
+            });
         });
     });
 
