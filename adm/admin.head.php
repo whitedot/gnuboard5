@@ -184,6 +184,16 @@ if ($admin_site_title === '') {
                 <path d="M7 12h10"></path>
                 <path d="M7 16h10"></path>
             </symbol>
+            <symbol id="admin-menu-icon-home" viewBox="0 0 24 24">
+                <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
+                <path d="M5 12v7a2 2 0 0 0 2 2h3m4 0h3a2 2 0 0 0 2 -2v-7"></path>
+                <path d="M10 12h4v9h-4z"></path>
+            </symbol>
+            <symbol id="admin-menu-icon-logout" viewBox="0 0 24 24">
+                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-5a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5a2 2 0 0 0 2 -2v-2"></path>
+                <path d="M9 12h12l-3 -3"></path>
+                <path d="M18 15l3 -3"></path>
+            </symbol>
             <symbol id="admin-menu-icon-folder" viewBox="0 0 24 24">
                 <path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2"></path>
             </symbol>
@@ -285,7 +295,11 @@ if ($admin_site_title === '') {
                 <strong><?php echo $admin_profile_name ?: $admin_profile_id; ?></strong>
                 <span><?php echo $admin_profile_mail; ?></span>
             </div>
-            <a class="gnb_profile_logout" href="<?php echo G5_MEMBER_URL; ?>/logout.php" title="로그아웃">↗</a>
+            <a class="gnb_profile_logout" href="<?php echo G5_MEMBER_URL; ?>/logout.php" title="로그아웃" aria-label="로그아웃">
+                <svg class="admin-shell-control-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                    <use href="#admin-menu-icon-logout"></use>
+                </svg>
+            </a>
         </div>
     </nav>
 
@@ -318,9 +332,9 @@ if ($admin_site_title === '') {
                         </button>
                     </li>
                     <li class="tnb_li">
-                        <a class="tnb_icon_btn" href="<?php echo G5_URL; ?>/" target="_blank" title="서비스 바로가기" aria-label="서비스 바로가기">
+                        <a class="tnb_icon_btn" href="<?php echo G5_URL; ?>/" target="_blank" title="메인" aria-label="메인">
                             <svg class="admin-shell-control-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
-                                <use href="#admin-menu-icon-article"></use>
+                                <use href="#admin-menu-icon-home"></use>
                             </svg>
                         </a>
                     </li>
