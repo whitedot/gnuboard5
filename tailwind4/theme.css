@@ -7,7 +7,7 @@
 @source "../tail.php";
 @source "../tail.sub.php";
 @source "../mobile/**/*.php";
+@source "../member/**/*.php";
 @source "../skin/**/*.php";
 @source "../lib/**/*.php";
 @source "../plugin/**/*.php";
-@source "../theme/**/*.php";

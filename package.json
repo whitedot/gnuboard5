@@ -10,8 +10,8 @@
     "build": "npm run build:root && npm run build:root:uikit && npm run build:theme && npm run build:theme:site && npm run build:admin",
     "build:root": "tailwindcss -i ./tailwind4/common.css -o ./docs/ui-kit/css/common.css --minify",
     "build:root:uikit": "tailwindcss -i ./tailwind4/ui-kit.css -o ./docs/ui-kit/css/ui-kit.css --minify",
-    "build:theme": "tailwindcss -i ./tailwind4/common.css -o ./theme/css/common.css --minify",
-    "build:theme:site": "tailwindcss -i ./tailwind4/theme.css -o ./theme/css/theme.css --minify",
+    "build:theme": "tailwindcss -i ./tailwind4/common.css -o ./css/common.css --minify",
+    "build:theme:site": "tailwindcss -i ./tailwind4/theme.css -o ./css/theme.css --minify",
     "build:admin": "tailwindcss -i ./tailwind4/admin.css -o ./adm/css/admin.css --minify",
     "watch": "tailwindcss -i ./tailwind4/ui-kit.css -o ./docs/ui-kit/css/ui-kit.css --watch"
   },

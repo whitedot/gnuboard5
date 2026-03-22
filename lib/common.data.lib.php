@@ -253,17 +253,31 @@ function is_admin($mb_id)
 // 스킨 path (단일 반응형 - 테마 스킨만 사용)
 function get_skin_path($dir, $skin)
 {
-    $theme_path = G5_THEME_PATH;
+    $skin_name = $skin ?: 'basic';
+    $candidates = array();
 
-    if(preg_match('#^theme/(.+)$#', $skin, $match)) { // 테마에 포함된 스킨이라면
-        $skin_path = $theme_path.'/'.G5_SKIN_DIR.'/'.$dir.'/'.$match[1];
-    } else {
-        // 레거시 호환: 'basic' -> theme/skin/ 경로로 변환
-        $skin_name = $skin ?: 'basic';
-        $skin_path = $theme_path.'/'.G5_SKIN_DIR.'/'.$dir.'/'.$skin_name;
+    if (preg_match('#^theme/(.+)$#', $skin_name, $match)) {
+        $skin_name = $match[1];
+        if (defined('G5_THEME_PATH')) {
+            $candidates[] = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/'.$dir.'/'.$skin_name;
+        }
     }
 
-    return $skin_path;
+    $candidates[] = G5_SKIN_PATH.'/'.$dir.'/'.$skin_name;
+
+    if (!preg_match('#^theme/(.+)$#', $skin ?: '')) {
+        if (defined('G5_THEME_PATH')) {
+            $candidates[] = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/'.$dir.'/'.$skin_name;
+        }
+    }
+
+    foreach ($candidates as $candidate) {
+        if (is_dir($candidate)) {
+            return $candidate;
+        }
+    }
+
+    return $candidates[0];
 }
 
 // 스킨 url
