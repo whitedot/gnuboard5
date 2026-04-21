@@ -640,6 +640,279 @@
         @apply hidden;
     }
 
+    .admin-dashboard-card {
+        @apply mb-4 overflow-hidden;
+    }
+
+    .admin-dashboard-intro {
+        @apply grid gap-[0.35rem];
+    }
+
+    .admin-dashboard-meta {
+        @apply m-0 text-[0.8125rem] text-default-700;
+    }
+
+    .admin-dashboard-summary {
+        @apply flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-b border-default-300 bg-default-50 px-5 py-4;
+    }
+
+    .admin-dashboard-stats {
+        @apply flex flex-wrap gap-x-4 gap-y-2;
+    }
+
+    .admin-dashboard-stat {
+        @apply text-[0.8125rem] text-default-700;
+    }
+
+    .admin-dashboard-stat strong,
+    .admin-dashboard-member-id {
+        @apply text-default-900;
+    }
+
+    .admin-dashboard-member-id {
+        @apply font-semibold;
+    }
+
+    .admin-dashboard-card .table thead th {
+        @apply text-xs;
+    }
+
+    .admin-dashboard-card .table tbody td {
+        @apply text-sm;
+    }
+
+    .admin-dashboard-card .table th:first-child,
+    .admin-dashboard-card .table td:first-child {
+        @apply pl-0;
+    }
+
+    .admin-dashboard-card .table th:last-child,
+    .admin-dashboard-card .table td:last-child {
+        @apply pr-0;
+    }
+
+    .admin-dashboard-empty {
+        @apply text-center text-default-600;
+    }
+
+    .member-summary,
+    .member-search-card,
+    .member-notice {
+        @apply mb-4;
+    }
+
+    .member-summary {
+        @apply flex flex-wrap items-center justify-between gap-x-4 gap-y-3;
+    }
+
+    .member-summary-links,
+    .member-summary-stats {
+        @apply flex flex-wrap items-center gap-2;
+    }
+
+    .member-summary-meta {
+        @apply inline-flex items-center gap-[0.35rem] text-[0.8125rem] text-default-700;
+    }
+
+    .member-summary-meta strong {
+        @apply text-default-900;
+    }
+
+    .member-search-card form {
+        @apply grid gap-[0.875rem];
+    }
+
+    .member-search-fields {
+        display: grid;
+        gap: 0.875rem;
+        grid-template-columns: minmax(0, 11rem) minmax(0, 1fr) auto;
+        align-items: end;
+    }
+
+    .member-field {
+        @apply grid min-w-0 gap-[0.45rem];
+    }
+
+    .member-field label {
+        @apply m-0 text-[0.8125rem] font-semibold text-default-700;
+    }
+
+    .member-field select,
+    .member-field input[type="text"] {
+        width: 100%;
+        min-height: 2.75rem;
+        border: 1px solid var(--color-default-300);
+        border-radius: 0;
+        background: var(--color-card);
+        padding: 0.65rem 0.8rem;
+        color: var(--color-default-900);
+    }
+
+    .member-field select:focus,
+    .member-field input[type="text"]:focus {
+        border-color: color-mix(in oklab, var(--color-primary) 38%, var(--color-default-300));
+        outline: none;
+        box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-primary) 12%, transparent);
+    }
+
+    .member-search-submit {
+        min-height: 2.75rem;
+        align-self: end;
+        white-space: nowrap;
+    }
+
+    .member-notice {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: flex-start;
+        gap: 0.875rem;
+        padding: 0.875rem 1rem;
+        background: var(--color-default-50);
+        border: 1px solid var(--color-default-300);
+    }
+
+    .member-notice-copy {
+        @apply grid gap-[0.3rem];
+    }
+
+    .member-notice-copy strong,
+    .member-notice-copy p {
+        @apply m-0;
+    }
+
+    .member-notice-copy p {
+        @apply text-default-600;
+    }
+
+    .member-notice-icon {
+        @apply inline-flex h-8 w-8 items-center justify-center border border-default-300 bg-card text-sm font-bold text-info-hover;
+        border-radius: 0;
+    }
+
+    .member-table-card {
+        @apply mb-4 overflow-hidden border border-default-300 bg-card shadow-sm;
+    }
+
+    .member-table-card .table-wrapper {
+        @apply w-full overflow-auto;
+    }
+
+    #fmemberlist .table {
+        width: 100%;
+        border-radius: 0 !important;
+        border-collapse: collapse;
+    }
+
+    #fmemberlist .table thead th {
+        @apply border-b border-default-300 bg-default-100 px-2.5 py-3 text-left align-middle text-xs font-semibold text-default-700;
+    }
+
+    #fmemberlist .table tbody td {
+        @apply border-b border-default-300 px-2.5 py-3 text-sm align-middle;
+    }
+
+    #fmemberlist .table tbody tr:last-child td {
+        @apply border-b-0;
+    }
+
+    #fmemberlist .table :is(th, td):first-child {
+        @apply pl-4;
+    }
+
+    #fmemberlist .table :is(th, td):last-child {
+        @apply pr-4;
+    }
+
+    #fmemberlist .table thead th.text-end,
+    #fmemberlist .table tbody td.text-end {
+        @apply text-right;
+    }
+
+    #fmemberlist .member-cell-fixed,
+    #fmemberlist .member-cell-manage {
+        white-space: nowrap;
+    }
+
+    #fmemberlist .member-cell-manage {
+        min-width: 9.75rem;
+    }
+
+    #fmemberlist .member-cell-email {
+        white-space: normal;
+        word-break: break-all;
+    }
+
+    #fmemberlist .sv_wrap {
+        @apply static inline-flex items-center;
+    }
+
+    #fmemberlist .sv_member {
+        @apply inline-flex items-center border-0 bg-transparent p-0 text-left align-baseline shadow-none;
+        color: inherit;
+        font: inherit;
+        line-height: inherit;
+        cursor: pointer;
+    }
+
+    #fmemberlist .sv_member:hover,
+    #fmemberlist .sv_member:focus {
+        @apply text-primary underline outline-none;
+    }
+
+    #fmemberlist .sv {
+        z-index: 140;
+        min-width: 8.5rem;
+        width: max-content;
+        max-width: 18rem;
+        white-space: nowrap;
+    }
+
+    #fmemberlist .hs-dropdown.hs-dropdown-open .hs-dropdown-menu,
+    #fmemberlist .hs-dropdown.open .hs-dropdown-menu {
+        @apply block opacity-100;
+    }
+
+    #fmemberlist .member-level {
+        @apply font-semibold text-default-700;
+    }
+
+    #fmemberlist .member-status {
+        @apply inline-flex items-center justify-center whitespace-nowrap px-[0.7rem] py-[0.35rem] text-xs font-semibold leading-none;
+        border-radius: 999px;
+    }
+
+    #fmemberlist .member-status.is-normal {
+        background: color-mix(in oklab, var(--color-success) 14%, white);
+        color: var(--color-success-hover);
+    }
+
+    #fmemberlist .member-status.is-blocked {
+        background: color-mix(in oklab, var(--color-warning) 14%, white);
+        color: var(--color-warning-hover);
+    }
+
+    #fmemberlist .member-status.is-left {
+        background: color-mix(in oklab, var(--color-danger) 12%, white);
+        color: var(--color-danger-hover);
+    }
+
+    #fmemberlist .member-manage {
+        @apply flex flex-nowrap items-center justify-end gap-1.5 whitespace-nowrap;
+    }
+
+    #fmemberlist .member-manage .btn {
+        flex: 0 0 auto;
+    }
+
+    #fmemberlist .member-manage form {
+        @apply m-0;
+    }
+
+    .member-list-actions {
+        @apply flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-t border-default-300 px-4 py-4;
+        background: color-mix(in oklab, var(--color-default-50) 70%, white);
+    }
+
     #ft {
         @apply px-4 pb-6 pt-2 text-xs text-default-500 lg:px-8;
     }
@@ -791,6 +1064,15 @@
     }
 
     @media (max-width: 1023px) {
+        .member-search-fields {
+            grid-template-columns: 1fr;
+        }
+
+        .member-search-submit {
+            width: 100%;
+            justify-content: center;
+        }
+
         #hd {
             width: var(--admin-sidebar-width);
         }
@@ -829,6 +1111,28 @@
 
         #gnb .gnb_scrollbar {
             display: none;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .member-summary {
+            align-items: flex-start;
+        }
+
+        .member-notice {
+            grid-template-columns: 1fr;
+        }
+
+        .member-list-actions {
+            @apply flex-col items-stretch;
+        }
+
+        .member-list-actions > * {
+            width: 100%;
+        }
+
+        .member-list-actions .btn {
+            justify-content: center;
         }
     }
 }

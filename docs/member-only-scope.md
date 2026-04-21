@@ -14,7 +14,6 @@
 - 회원정보 조회 / 수정
 - 회원탈퇴
 - 관리자 회원 CRUD
-- 관리자 권한 관리
 - 정보공개 동의, 이메일 수신 동의, 마케팅 동의와 동의 이력 관리
 
 ## 제외 범위
@@ -34,7 +33,6 @@
 - `config.php`
 - `member/`
 - `adm/member_*`
-- `adm/auth_*`
 - `lib/common.*.lib.php`
 - `lib/uri.lib.php`
 - `lib/URI/uri.class.php`

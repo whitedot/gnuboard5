@@ -27,7 +27,7 @@
 - `member/register_form_update.php` 에서 가입 축하/관리자 알림 메일 제거, 이메일 인증 메일만 유지
 - `adm/config_form_parts/mail.php` 를 인증 메일 중심 설정으로 정리
 - `adm/config_form_parts/basic.php`, `adm/config_form_update.php` 에서 `cf_write_pages` 및 가입 운영 메일 설정 제거
-- `adm/member_list.php`, `adm/auth_list.php` 는 고정 상수 `G5_ADMIN_PAGING_PAGES` 를 사용하도록 변경
+- `adm/member_list.php` 는 회원관리 범위 안에서 일관된 페이징 기준을 사용하도록 정리
 - 신규 설치 기준에서도 제거된 설정 컬럼/초기값이 다시 생기지 않도록 `install/gnuboard5.sql`, `install/install_db.php` 정리
 - `adm/member_form_update.php` 에서 관리 메모 입력값을 명시적으로 수집해 저장 경로 복구
 - 이메일 인증 메일 템플릿을 회원 전용 스킨 경로로 정리
@@ -37,7 +37,7 @@
 
 - 비밀번호 재설정은 `mb_password` 와 `mb_password_re` 불일치 시 반드시 차단되어야 한다.
 - 회원가입 직후에는 이메일 인증 메일만 발송되고, 가입 축하 메일/관리자 가입 알림 메일은 더 이상 발송되지 않아야 한다.
-- 관리자 회원 목록과 권한 목록은 `cf_write_pages` 없이 정상 페이징되어야 한다.
+- 관리자 회원 목록은 제거된 설정 참조 없이 정상 페이징되어야 한다.
 - 관리자 회원 수정 시 관리 메모가 저장되고 재진입 시 값이 유지되어야 한다.
 - 이메일 인증 메일 제목/본문/CTA가 실제 인증 흐름과 일치해야 한다.
 - 본인인증 변경이력 기록 시 `dbconfig.php` 의 `member_cert_history_table` 정의를 임의로 덮어쓰지 않아야 한다.
@@ -46,7 +46,7 @@
 
 1. 회원 흐름이 `member/` 기준으로 끝까지 동작한다.
 2. 신규 설치가 현재 유지 범위에 필요한 스키마만 만든다.
-3. 관리자 설정/권한 관리가 제거된 기능 테이블이나 비핵심 런타임을 참조하지 않는다.
+3. 관리자 설정/회원 관리가 제거된 기능 테이블이나 비핵심 런타임을 참조하지 않는다.
 4. BBS, SHOP 전용 엔트리포인트와 업그레이드 파일이 저장소에 남아 있지 않다.
 5. 개발용 UI 레퍼런스와 연동된 문서 전용 빌드는 제거하고, 운영용 스타일 출력만 유지한다.
 

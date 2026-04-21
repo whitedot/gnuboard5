@@ -9,7 +9,6 @@ Member-only 전환 이후 이 문서는 현재 운영 중인 관리자 화면만
 - Target rule: files containing `tbl_frm01|tbl_frm02` with `input/select/textarea`
 
 ## Priority 1 (Core Admin)
-- `adm\auth_list.php`
 - `adm\config_form_parts\basic.php`
 - `adm\config_form_parts\cert.php`
 - `adm\config_form_parts\join.php`
