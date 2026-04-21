@@ -208,18 +208,23 @@ function get_uniqid()
         return $get_uniqid_key;
     }
     
-    sql_query(" LOCK TABLE {$g5['uniqid_table']} WRITE ");
+    if (!sql_lock_tables_write($g5['uniqid_table'])) {
+        return '';
+    }
     while (1) {
         // 년월일시분초에 100분의 1초 두자리를 추가함 (1/100 초 앞에 자리가 모자르면 0으로 채움)
         $key = date('YmdHis', time()) . str_pad((int)((float)microtime()*100), 2, "0", STR_PAD_LEFT);
 
-        $result = sql_query(" insert into {$g5['uniqid_table']} set uq_id = '$key', uq_ip = '{$_SERVER['REMOTE_ADDR']}' ", false);
+        $result = sql_query_prepared(" insert into {$g5['uniqid_table']} set uq_id = :uq_id, uq_ip = :uq_ip ", array(
+            'uq_id' => $key,
+            'uq_ip' => $_SERVER['REMOTE_ADDR'],
+        ), false);
         if ($result) break; // 쿼리가 정상이면 빠진다.
 
         // insert 하지 못했으면 일정시간 쉰다음 다시 유일키를 만든다.
         usleep(10000); // 100분의 1초를 쉰다
     }
-    sql_query(" UNLOCK TABLES ");
+    sql_unlock_tables();
 
     return $key;
 }
@@ -284,14 +289,26 @@ function insert_cert_history($mb_id, $company, $method)
 {
     global $g5;
 
-    $sql = " insert into {$g5['cert_history_table']}
-                set mb_id = '$mb_id',
-                    cr_company = '$company',
-                    cr_method = '$method',
-                    cr_ip = '{$_SERVER['REMOTE_ADDR']}',
-                    cr_date = '".G5_TIME_YMD."',
-                    cr_time = '".G5_TIME_HIS."' ";
-    sql_query($sql);
+    $cert_history_table = sql_quote_identifier($g5['cert_history_table']);
+    if (!$cert_history_table) {
+        return;
+    }
+
+    $sql = " insert into {$cert_history_table}
+                set mb_id = :mb_id,
+                    cr_company = :cr_company,
+                    cr_method = :cr_method,
+                    cr_ip = :cr_ip,
+                    cr_date = :cr_date,
+                    cr_time = :cr_time ";
+    sql_query_prepared($sql, array(
+        'mb_id' => $mb_id,
+        'cr_company' => $company,
+        'cr_method' => $method,
+        'cr_ip' => $_SERVER['REMOTE_ADDR'],
+        'cr_date' => G5_TIME_YMD,
+        'cr_time' => G5_TIME_HIS,
+    ));
 }
 
 // 본인확인 변경내역 기록
@@ -305,8 +322,10 @@ function insert_member_cert_history($mb_id, $name, $hp, $birth, $type)
     }
     
     // 멤버 본인인증 정보 변경 내역 테이블 없을 경우 생성
-    if(isset($g5['member_cert_history_table']) && !sql_query(" DESC {$g5['member_cert_history_table']} ", false)) {
-        sql_query(" CREATE TABLE IF NOT EXISTS `{$g5['member_cert_history_table']}` (
+    $member_cert_history_table = isset($g5['member_cert_history_table']) ? sql_quote_identifier($g5['member_cert_history_table']) : '';
+
+    if($member_cert_history_table && !sql_describe_table($g5['member_cert_history_table'], false)) {
+        sql_query(" CREATE TABLE IF NOT EXISTS {$member_cert_history_table} (
                         `ch_id` int(11) NOT NULL auto_increment,
                         `mb_id` varchar(20) NOT NULL DEFAULT '',
                         `ch_name` varchar(255) NOT NULL DEFAULT '',
@@ -319,14 +338,25 @@ function insert_member_cert_history($mb_id, $name, $hp, $birth, $type)
                     ) ", true);
     }
 
-    $sql = " insert into {$g5['member_cert_history_table']}
-                set mb_id = '{$mb_id}',
-                    ch_name = '{$name}',
-                    ch_hp = '{$hp}',
-                    ch_birth = '{$birth}',
-                    ch_type = '{$type}',
-                    ch_datetime = '".G5_TIME_YMD." ".G5_TIME_HIS."'";
-    sql_query($sql);
+    if (!$member_cert_history_table) {
+        return;
+    }
+
+    $sql = " insert into {$member_cert_history_table}
+                set mb_id = :mb_id,
+                    ch_name = :ch_name,
+                    ch_hp = :ch_hp,
+                    ch_birth = :ch_birth,
+                    ch_type = :ch_type,
+                    ch_datetime = :ch_datetime";
+    sql_query_prepared($sql, array(
+        'mb_id' => $mb_id,
+        'ch_name' => $name,
+        'ch_hp' => $hp,
+        'ch_birth' => $birth,
+        'ch_type' => $type,
+        'ch_datetime' => G5_TIME_YMD . ' ' . G5_TIME_HIS,
+    ));
 }
 
 // 인증시도회수 체크
@@ -341,16 +371,22 @@ function certify_count_check($mb_id, $type)
         return;
 
     $sql = " select count(*) as cnt from {$g5['cert_history_table']} ";
+    $params = array(
+        'cr_method' => $type,
+        'cr_date' => G5_TIME_YMD,
+    );
 
     if($mb_id) {
-        $sql .= " where mb_id = '$mb_id' ";
+        $sql .= " where mb_id = :mb_id ";
+        $params['mb_id'] = $mb_id;
     } else {
-        $sql .= " where cr_ip = '{$_SERVER['REMOTE_ADDR']}' ";
+        $sql .= " where cr_ip = :cr_ip ";
+        $params['cr_ip'] = $_SERVER['REMOTE_ADDR'];
     }
 
-    $sql .= " and cr_method = '".$type."' and cr_date = '".G5_TIME_YMD."' ";
+    $sql .= " and cr_method = :cr_method and cr_date = :cr_date ";
 
-    $row = sql_fetch($sql);
+    $row = sql_fetch_prepared($sql, $params);
 
     switch($type) {
         case 'simple' :
@@ -544,20 +580,26 @@ function member_delete($mb_id)
     global $config;
     global $g5;
 
-    $sql = " select mb_name, mb_nick, mb_ip, mb_memo, mb_level from {$g5['member_table']} where mb_id= '".$mb_id."' ";
-    $mb = sql_fetch($sql);
+    $sql = " select mb_name, mb_nick, mb_ip, mb_memo, mb_level from {$g5['member_table']} where mb_id = :mb_id ";
+    $mb = sql_fetch_prepared($sql, array(
+        'mb_id' => $mb_id,
+    ));
 
     // 이미 삭제된 회원은 제외
     if(preg_match('#^[0-9]{8}.*삭제함#', $mb['mb_memo']))
         return;
 
     // 회원자료는 정보만 없앤 후 아이디는 보관하여 다른 사람이 사용하지 못하도록 함 : 061025
-    $sql = " update {$g5['member_table']} set mb_password = '', mb_level = 1, mb_email = '', mb_hp = '', mb_birth = '', mb_sex = '', mb_memo = '".date('Ymd', G5_SERVER_TIME)." 삭제함\n".sql_real_escape_string($mb['mb_memo'])."', mb_certify = '', mb_adult = 0, mb_dupinfo = '' where mb_id = '{$mb_id}' ";
-
-    sql_query($sql);
+    $delete_memo = date('Ymd', G5_SERVER_TIME) . " 삭제함\n" . $mb['mb_memo'];
+    sql_query_prepared(" update {$g5['member_table']} set mb_password = '', mb_level = 1, mb_email = '', mb_hp = '', mb_birth = '', mb_sex = '', mb_memo = :mb_memo, mb_certify = '', mb_adult = 0, mb_dupinfo = '' where mb_id = :mb_id ", array(
+        'mb_memo' => $delete_memo,
+        'mb_id' => $mb_id,
+    ));
 
     // 관리권한 삭제
-    sql_query(" delete from {$g5['auth_table']} where mb_id = '$mb_id' ");
+    sql_query_prepared(" delete from {$g5['auth_table']} where mb_id = :mb_id ", array(
+        'mb_id' => $mb_id,
+    ));
 
     // 아이콘 삭제
     @unlink(G5_DATA_PATH.'/member/'.substr($mb_id,0,2).'/'.$mb_id.'.gif');

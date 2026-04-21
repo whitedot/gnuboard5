@@ -52,6 +52,7 @@ catch (Exception $e)
 function main_member_export($params) 
 {
     $total = member_export_get_total_count($params);
+    $pages = 1;
 
     if($total > MEMBER_EXPORT_MAX_SIZE){
         throw new Exception("엑셀 다운로드 가능 범위(최대 " . number_format(MEMBER_EXPORT_MAX_SIZE) . "건)를 초과했습니다.<br>조건을 추가로 설정하신 후 다시 시도해 주세요.");
@@ -210,15 +211,18 @@ function member_export_get_data($params)
     }
     $field_list = implode(', ', $sqlFields);
 
-    $where = member_export_build_where($params);
+    $where_data = member_export_build_where($params);
 
     $page = (int)(isset($params['page']) ? $params['page'] : 1);
     if ($page < 1) $page = 1;
     $offset = ($page - 1) * MEMBER_EXPORT_PAGE_SIZE;
 
-    $sql = "SELECT {$field_list} FROM {$g5['member_table']} {$where} ORDER BY mb_no DESC LIMIT {$offset}, " . MEMBER_EXPORT_PAGE_SIZE;
-    
-    $result = sql_query($sql);
+    $sql = "SELECT {$field_list} FROM {$g5['member_table']} {$where_data['clause']} ORDER BY mb_no DESC LIMIT :offset, :page_size";
+    $query_params = $where_data['params'];
+    $query_params['offset'] = (int) $offset;
+    $query_params['page_size'] = (int) MEMBER_EXPORT_PAGE_SIZE;
+
+    $result = sql_query_prepared($sql, $query_params);
     if (!$result) {
         throw new Exception("데이터 조회에 실패하였습니다");
     }

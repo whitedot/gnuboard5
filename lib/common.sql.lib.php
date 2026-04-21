@@ -1,25 +1,167 @@
 <?php
 if (!defined('_GNUBOARD_')) exit;
 
-// DB 연결
-function sql_connect($host, $user, $pass, $db=G5_MYSQL_DB)
+class G5PdoResult
+{
+    public $num_rows = 0;
+
+    private $rows = array();
+    private $position = 0;
+    private $field_index = 0;
+    private $fields = array();
+
+    public function __construct(array $rows, array $fields = array())
+    {
+        $this->rows = array_values($rows);
+        $this->num_rows = count($this->rows);
+        $this->fields = array_values($fields);
+    }
+
+    public function fetchAssoc()
+    {
+        if (!isset($this->rows[$this->position])) {
+            return null;
+        }
+
+        return $this->rows[$this->position++];
+    }
+
+    public function dataSeek($offset = 0)
+    {
+        $offset = (int) $offset;
+
+        if ($offset < 0) {
+            $offset = 0;
+        }
+
+        if ($offset > $this->num_rows) {
+            $offset = $this->num_rows;
+        }
+
+        $this->position = $offset;
+    }
+
+    public function fetchField()
+    {
+        if (!isset($this->fields[$this->field_index])) {
+            return false;
+        }
+
+        return $this->fields[$this->field_index++];
+    }
+
+    public function free()
+    {
+        $this->rows = array();
+        $this->fields = array();
+        $this->num_rows = 0;
+        $this->position = 0;
+        $this->field_index = 0;
+    }
+}
+
+function sql_get_connection($link = null)
 {
     global $g5;
 
-    if(function_exists('mysqli_connect') && G5_MYSQLI_USE) {
-        mysqli_report(MYSQLI_REPORT_OFF);
-        $link = @mysqli_connect($host, $user, $pass, $db) or die('MySQL Host, User, Password, DB 정보에 오류가 있습니다.');
-
-        // 연결 오류 발생 시 스크립트 종료
-        if (mysqli_connect_errno()) {
-            die('Connect Error: '.mysqli_connect_error());
-        }
-    } else {
-        if (!function_exists('mysql_connect')) {
-            die('MySQL이 설치되지 않아 mysql_connect 함수를 사용할 수 없습니다.');
-        }
-        $link = mysql_connect($host, $user, $pass) or die('MySQL Host, User, Password 정보에 오류가 있습니다.');
+    if ($link instanceof PDO) {
+        return $link;
     }
+
+    if (isset($g5['connect_db']) && $g5['connect_db'] instanceof PDO) {
+        return $g5['connect_db'];
+    }
+
+    return null;
+}
+
+function sql_store_error($link = null, $statement = null, $exception = null)
+{
+    global $g5;
+
+    $error = array(
+        'error_code' => '',
+        'error_message' => '',
+    );
+
+    if ($exception instanceof Exception) {
+        $error['error_code'] = (string) $exception->getCode();
+        $error['error_message'] = $exception->getMessage();
+    } elseif ($statement instanceof PDOStatement) {
+        $info = $statement->errorInfo();
+        $error['error_code'] = isset($info[1]) ? (string) $info[1] : (isset($info[0]) ? (string) $info[0] : '');
+        $error['error_message'] = isset($info[2]) ? $info[2] : '';
+    } elseif ($link instanceof PDO) {
+        $info = $link->errorInfo();
+        $error['error_code'] = isset($info[1]) ? (string) $info[1] : (isset($info[0]) ? (string) $info[0] : '');
+        $error['error_message'] = isset($info[2]) ? $info[2] : '';
+    }
+
+    if ($error['error_code'] === '00000') {
+        $error['error_code'] = '';
+    }
+    if ($error['error_message'] === null) {
+        $error['error_message'] = '';
+    }
+
+    $g5['pdo_last_error'] = $error;
+
+    return $error;
+}
+
+function sql_get_last_error()
+{
+    global $g5;
+
+    if (!isset($g5['pdo_last_error']) || !is_array($g5['pdo_last_error'])) {
+        return array(
+            'error_code' => '',
+            'error_message' => '',
+        );
+    }
+
+    return $g5['pdo_last_error'];
+}
+
+function sql_collect_field_meta(PDOStatement $statement)
+{
+    $fields = array();
+    $count = $statement->columnCount();
+
+    for ($i = 0; $i < $count; $i++) {
+        $meta = $statement->getColumnMeta($i);
+        $field = new stdClass();
+        $field->name = isset($meta['name']) ? $meta['name'] : '';
+        $fields[] = $field;
+    }
+
+    return $fields;
+}
+
+// DB 연결
+function sql_connect($host, $user, $pass, $db=G5_MYSQL_DB)
+{
+    $charset = defined('G5_DB_CHARSET') ? G5_DB_CHARSET : 'utf8';
+    $dsn = 'mysql:host=' . $host;
+
+    if ($db !== null && $db !== '') {
+        $dsn .= ';dbname=' . $db;
+    }
+
+    $dsn .= ';charset=' . $charset;
+
+    try {
+        $link = new PDO($dsn, $user, $pass, array(
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_CASE => PDO::CASE_NATURAL,
+            PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+        ));
+    } catch (PDOException $e) {
+        die('MySQL Host, User, Password, DB 정보에 오류가 있습니다.');
+    }
+
+    sql_store_error($link);
 
     return $link;
 }
@@ -27,112 +169,185 @@ function sql_connect($host, $user, $pass, $db=G5_MYSQL_DB)
 // DB 선택
 function sql_select_db($db, $connect)
 {
-    global $g5;
+    $connect = sql_get_connection($connect);
 
-    if(function_exists('mysqli_select_db') && G5_MYSQLI_USE)
-        return @mysqli_select_db($connect, $db);
-    else
-        return @mysql_select_db($db, $connect);
+    if (!$connect) {
+        return false;
+    }
+
+    try {
+        return $connect->exec('USE `' . str_replace('`', '``', $db) . '`') !== false;
+    } catch (PDOException $e) {
+        sql_store_error($connect, null, $e);
+        return false;
+    }
 }
 
 function sql_set_charset($charset, $link=null)
 {
-    global $g5;
+    $link = sql_get_connection($link);
 
-    if(!$link)
-        $link = $g5['connect_db'];
+    if (!$link) {
+        return false;
+    }
 
-    if(function_exists('mysqli_set_charset') && G5_MYSQLI_USE)
-        mysqli_set_charset($link, $charset);
-    else
-        mysql_query(" set names {$charset} ", $link);
+    try {
+        return $link->exec("SET NAMES {$charset}") !== false;
+    } catch (PDOException $e) {
+        sql_store_error($link, null, $e);
+        return false;
+    }
 }
 
 function sql_data_seek($result, $offset=0)
 {
-    if ( ! $result ) return;
-
-    if(function_exists('mysqli_set_charset') && G5_MYSQLI_USE)
-        mysqli_data_seek($result, $offset);
-    else
-        mysql_data_seek($result, $offset);
+    if ($result instanceof G5PdoResult) {
+        $result->dataSeek($offset);
+    }
 }
 
-// mysqli_query 와 mysqli_error 를 한꺼번에 처리
-// mysql connect resource 지정 - 명랑폐인님 제안
-function sql_query($sql, $error=G5_DISPLAY_SQL_ERROR, $link=null)
+function sql_normalize_params($params)
+{
+    $normalized = array();
+
+    foreach ((array) $params as $key => $value) {
+        if (is_int($key)) {
+            $normalized[$key + 1] = $value;
+            continue;
+        }
+
+        $key = (string) $key;
+        if ($key !== '' && $key[0] !== ':') {
+            $key = ':' . $key;
+        }
+
+        $normalized[$key] = $value;
+    }
+
+    return $normalized;
+}
+
+function sql_bind_prepared_params(PDOStatement $statement, $params)
+{
+    foreach (sql_normalize_params($params) as $key => $value) {
+        if (is_int($value)) {
+            $type = PDO::PARAM_INT;
+        } elseif (is_bool($value)) {
+            $type = PDO::PARAM_BOOL;
+        } elseif ($value === null) {
+            $type = PDO::PARAM_NULL;
+        } else {
+            $type = PDO::PARAM_STR;
+        }
+
+        $statement->bindValue($key, $value, $type);
+    }
+}
+
+function sql_quote_identifier($identifier)
+{
+    $identifier = trim((string) $identifier);
+    if ($identifier === '') {
+        return '';
+    }
+
+    $parts = explode('.', $identifier);
+    $quoted = array();
+
+    foreach ($parts as $part) {
+        $part = trim($part);
+        if ($part === '' || !preg_match('/^[A-Za-z0-9_$]+$/', $part)) {
+            return '';
+        }
+
+        $quoted[] = '`' . $part . '`';
+    }
+
+    return implode('.', $quoted);
+}
+
+function sql_execute_query($sql, $params=array(), $error=G5_DISPLAY_SQL_ERROR, $link=null)
 {
     global $g5, $g5_debug;
 
-    if(!$link)
-        $link = $g5['connect_db'];
+    if ($error instanceof PDO && $link === null) {
+        $link = $error;
+        $error = G5_DISPLAY_SQL_ERROR;
+    }
+
+    $link = sql_get_connection($link);
+
+    if (!$link) {
+        if ($error) {
+            die('DB 연결 정보가 올바르지 않습니다.');
+        }
+
+        sql_store_error();
+        return false;
+    }
 
     // Blind SQL Injection 취약점 해결
     $sql = trim($sql);
-    // union의 사용을 허락하지 않습니다.
-    //$sql = preg_replace("#^select.*from.*union.*#i", "select 1", $sql);
     $sql = preg_replace("#^select.*from.*[\s\(]+union[\s\)]+.*#i ", "select 1", $sql);
-    // `information_schema` DB로의 접근을 허락하지 않습니다.
     $sql = preg_replace("#^select.*from.*where.*`?information_schema`?.*#i", "select 1", $sql);
 
     $is_debug = get_permission_debug_show();
-    
     $start_time = ($is_debug || G5_COLLECT_QUERY) ? get_microtime() : 0;
 
-    if(function_exists('mysqli_query') && G5_MYSQLI_USE) {
-        if ($error) {
-            $result = @mysqli_query($link, $sql) or die("<p>$sql<p>" . mysqli_errno($link) . " : " .  mysqli_error($link) . "<p>error file : {$_SERVER['SCRIPT_NAME']}");
+    $result = false;
+    $statement = null;
+    $source = array();
+
+    try {
+        $statement = $link->prepare($sql);
+        sql_bind_prepared_params($statement, $params);
+        $statement->execute();
+        sql_store_error($link, $statement);
+
+        if ($statement->columnCount() > 0) {
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $fields = sql_collect_field_meta($statement);
+            $result = new G5PdoResult($rows, $fields);
         } else {
-            try {
-                $result = @mysqli_query($link, $sql);
-            } catch (Exception $e) {
-                $result = null;
-            }
+            $result = true;
         }
-    } else {
+    } catch (Exception $e) {
+        $result = false;
+        $error_info = sql_store_error($link, $statement, $e);
+
         if ($error) {
-            $result = @mysql_query($sql, $link) or die("<p>$sql<p>" . mysql_errno() . " : " .  mysql_error() . "<p>error file : {$_SERVER['SCRIPT_NAME']}");
-        } else {
-            $result = @mysql_query($sql, $link);
+            die("<p>{$sql}<p>" . $error_info['error_code'] . " : " . $error_info['error_message'] . "<p>error file : {$_SERVER['SCRIPT_NAME']}");
         }
     }
 
     $end_time = ($is_debug || G5_COLLECT_QUERY) ? get_microtime() : 0;
+    $error_info = sql_get_last_error();
 
-    $error = null;
-    $source = array();
     if ($is_debug || G5_COLLECT_QUERY) {
-        if(function_exists('mysqli_error') && G5_MYSQLI_USE) {
-            $error = array(
-                'error_code' => mysqli_errno($link),
-                'error_message' => mysqli_error($link),
-            );
-        } else {
-            $error = array(
-                'error_code' => mysql_errno($link),
-                'error_message' => mysql_error($link),
-            );
-        }
-
         $stack = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
         $found = false;
+        $sql_functions = array('sql_query', 'sql_query_prepared', 'sql_fetch', 'sql_fetch_prepared');
 
         foreach ($stack as $index => $trace) {
-            if ($trace['function'] === 'sql_query') {
+            if (isset($trace['function']) && in_array($trace['function'], $sql_functions, true)) {
                 $found = true;
             }
-            if (isset($stack[$index + 1]) && $stack[$index + 1]['function'] === 'sql_fetch') {
+            if (isset($stack[$index + 1]['function']) && in_array($stack[$index + 1]['function'], array('sql_fetch', 'sql_fetch_prepared'), true)) {
                 continue;
             }
 
             if ($found) {
-                $trace['file'] = str_replace($_SERVER['DOCUMENT_ROOT'], '', $trace['file']);
-                $source['file'] = $trace['file'];
-                $source['line'] = $trace['line'];
+                if (isset($trace['file'])) {
+                    $trace['file'] = str_replace($_SERVER['DOCUMENT_ROOT'], '', $trace['file']);
+                    $source['file'] = $trace['file'];
+                }
+                if (isset($trace['line'])) {
+                    $source['line'] = $trace['line'];
+                }
 
-                $parent = (isset($stack[$index + 1])) ? $stack[$index + 1] : array();
+                $parent = isset($stack[$index + 1]) ? $stack[$index + 1] : array();
                 if (isset($parent['function'])) {
-                    if (in_array($trace['function'], array('sql_query', 'sql_fetch')) && (isset($parent['function']) && !in_array($parent['function'], array('sql_fetch', 'include', 'include_once', 'require', 'require_once')))) {
+                    if (in_array($trace['function'], $sql_functions, true) && !in_array($parent['function'], array('sql_fetch', 'sql_fetch_prepared', 'include', 'include_once', 'require', 'require_once'), true)) {
                         if (isset($parent['class']) && $parent['class']) {
                             $source['class'] = $parent['class'];
                             $source['function'] = $parent['function'];
@@ -151,106 +366,168 @@ function sql_query($sql, $error=G5_DISPLAY_SQL_ERROR, $link=null)
             'result' => $result,
             'success' => !!$result,
             'source' => $source,
-            'error_code' => $error['error_code'],
-            'error_message' => $error['error_message'],
+            'error_code' => $error_info['error_code'],
+            'error_message' => $error_info['error_message'],
             'start_time' => $start_time,
             'end_time' => $end_time,
         );
     }
 
-    run_event('sql_query_after', $result, $sql, $start_time, $end_time, $error, $source);
+    run_event('sql_query_after', $result, $sql, $start_time, $end_time, $error_info, $source);
 
     return $result;
+}
+
+// PDO 기반 쿼리 처리
+function sql_query($sql, $error=G5_DISPLAY_SQL_ERROR, $link=null)
+{
+    return sql_execute_query($sql, array(), $error, $link);
+}
+
+function sql_query_prepared($sql, $params=array(), $error=G5_DISPLAY_SQL_ERROR, $link=null)
+{
+    return sql_execute_query($sql, $params, $error, $link);
+}
+
+function sql_table_exists($table_name, $link=null)
+{
+    $result = sql_query_prepared('SHOW TABLES LIKE :table_name', array(
+        'table_name' => $table_name,
+    ), false, $link);
+
+    return $result && sql_num_rows($result) > 0;
+}
+
+function sql_set_time_zone($timezone, $link=null)
+{
+    return sql_query_prepared('SET time_zone = :time_zone', array(
+        'time_zone' => $timezone,
+    ), G5_DISPLAY_SQL_ERROR, $link);
+}
+
+function sql_reset_session_sql_mode($link=null)
+{
+    return sql_query("SET SESSION sql_mode = ''", G5_DISPLAY_SQL_ERROR, $link);
+}
+
+function sql_lock_tables_write($tables, $link=null)
+{
+    $tables = (array) $tables;
+    $parts = array();
+
+    foreach ($tables as $table) {
+        $quoted_table = sql_quote_identifier($table);
+        if (!$quoted_table) {
+            return false;
+        }
+
+        $parts[] = $quoted_table . ' WRITE';
+    }
+
+    if (empty($parts)) {
+        return false;
+    }
+
+    return sql_query('LOCK TABLE ' . implode(', ', $parts), G5_DISPLAY_SQL_ERROR, $link);
+}
+
+function sql_unlock_tables($link=null)
+{
+    return sql_query('UNLOCK TABLES', G5_DISPLAY_SQL_ERROR, $link);
+}
+
+function sql_describe_table($table_name, $error=false, $link=null)
+{
+    $quoted_table = sql_quote_identifier($table_name);
+    if (!$quoted_table) {
+        return false;
+    }
+
+    return sql_query('DESC ' . $quoted_table, $error, $link);
 }
 
 // 쿼리를 실행한 후 결과값에서 한행을 얻는다.
 function sql_fetch($sql, $error=G5_DISPLAY_SQL_ERROR, $link=null)
 {
-    global $g5;
-
-    if(!$link)
-        $link = $g5['connect_db'];
+    if ($error instanceof PDO && $link === null) {
+        $link = $error;
+        $error = G5_DISPLAY_SQL_ERROR;
+    }
 
     $result = sql_query($sql, $error, $link);
-    //$row = @sql_fetch_array($result) or die("<p>$sql<p>" . mysqli_errno() . " : " .  mysqli_error() . "<p>error file : $_SERVER['SCRIPT_NAME']");
     $row = sql_fetch_array($result);
+
+    return $row;
+}
+
+function sql_fetch_prepared($sql, $params=array(), $error=G5_DISPLAY_SQL_ERROR, $link=null)
+{
+    $result = sql_query_prepared($sql, $params, $error, $link);
+    $row = sql_fetch_array($result);
+
     return $row;
 }
 
 // 결과값에서 한행 연관배열(이름으로)로 얻는다.
 function sql_fetch_array($result)
 {
-    if( ! $result) return array();
+    if (!$result) {
+        return array();
+    }
 
-    if(function_exists('mysqli_fetch_assoc') && G5_MYSQLI_USE)
-        try {
-            $row = @mysqli_fetch_assoc($result);
-        } catch (Exception $e) {
-            $row = null;
-        }
-    else
-        $row = @mysql_fetch_assoc($result);
+    if ($result instanceof G5PdoResult) {
+        $row = $result->fetchAssoc();
+        return $row ? $row : null;
+    }
 
-    return $row;
+    return array();
 }
 
-// $result에 대한 메모리(memory)에 있는 내용을 모두 제거한다.
-// sql_free_result()는 결과로부터 얻은 질의 값이 커서 많은 메모리를 사용할 염려가 있을 때 사용된다.
-// 단, 결과 값은 스크립트(script) 실행부가 종료되면서 메모리에서 자동적으로 지워진다.
+// 결과 메모리 해제
 function sql_free_result($result)
 {
-    if(!is_resource($result)) return;
+    if ($result instanceof G5PdoResult) {
+        $result->free();
+    }
 
-    if(function_exists('mysqli_free_result') && G5_MYSQLI_USE)
-        return mysqli_free_result($result);
-    else
-        return mysql_free_result($result);
+    return true;
 }
 
 function sql_insert_id($link=null)
 {
-    global $g5;
+    $link = sql_get_connection($link);
 
-    if(!$link)
-        $link = $g5['connect_db'];
+    if (!$link) {
+        return 0;
+    }
 
-    if(function_exists('mysqli_insert_id') && G5_MYSQLI_USE)
-        return mysqli_insert_id($link);
-    else
-        return mysql_insert_id($link);
+    return (int) $link->lastInsertId();
 }
 
 function sql_num_rows($result)
 {
-    if(function_exists('mysqli_num_rows') && G5_MYSQLI_USE)
-        return mysqli_num_rows($result);
-    else
-        return mysql_num_rows($result);
+    if ($result instanceof G5PdoResult) {
+        return $result->num_rows;
+    }
+
+    return 0;
 }
 
 function sql_field_names($table, $link=null)
 {
-    global $g5;
-
-    if(!$link)
-        $link = $g5['connect_db'];
-
     $columns = array();
+    $quoted_table = sql_quote_identifier($table);
 
-    $sql = " select * from `$table` limit 1 ";
-    $result = sql_query($sql, $link);
+    if (!$quoted_table) {
+        return $columns;
+    }
 
-    if(function_exists('mysqli_fetch_field') && G5_MYSQLI_USE) {
-        while($field = mysqli_fetch_field($result)) {
+    $sql = " select * from {$quoted_table} limit 1 ";
+    $result = sql_query($sql, G5_DISPLAY_SQL_ERROR, $link);
+
+    if ($result instanceof G5PdoResult) {
+        while ($field = $result->fetchField()) {
             $columns[] = $field->name;
-        }
-    } else {
-        $i = 0;
-        $cnt = mysql_num_fields($result);
-        while($i < $cnt) {
-            $field = mysql_fetch_field($result, $i);
-            $columns[] = $field->name;
-            $i++;
         }
     }
 
@@ -259,27 +536,28 @@ function sql_field_names($table, $link=null)
 
 function sql_error_info($link=null)
 {
-    global $g5;
+    $link = sql_get_connection($link);
+    $error = sql_get_last_error();
 
-    if(!$link)
-        $link = $g5['connect_db'];
-
-    if(function_exists('mysqli_error') && G5_MYSQLI_USE) {
-        return mysqli_errno($link) . ' : ' . mysqli_error($link);
-    } else {
-        return mysql_errno($link) . ' : ' . mysql_error($link);
+    if ((!$error['error_code'] && !$error['error_message']) && $link instanceof PDO) {
+        $error = sql_store_error($link);
     }
+
+    return $error['error_code'] . ' : ' . $error['error_message'];
 }
 
 // PHPMyAdmin 참고
 function get_table_define($table, $crlf="\n")
 {
-    global $g5;
+    $quoted_table = sql_quote_identifier($table);
+    if (!$quoted_table) {
+        return '';
+    }
 
     // For MySQL < 3.23.20
-    $schema_create = 'CREATE TABLE ' . $table . ' (' . $crlf;
+    $schema_create = 'CREATE TABLE ' . $quoted_table . ' (' . $crlf;
 
-    $sql = 'SHOW FIELDS FROM ' . $table;
+    $sql = 'SHOW FIELDS FROM ' . $quoted_table;
     $result = sql_query($sql);
     while ($row = sql_fetch_array($result))
     {
@@ -297,18 +575,18 @@ function get_table_define($table, $crlf="\n")
             $schema_create .= ' ' . $row['Extra'];
         }
         $schema_create     .= ',' . $crlf;
-    } // end while
+    }
     sql_free_result($result);
 
     $schema_create = preg_replace('/,' . $crlf . '$/', '', $schema_create);
 
-    $sql = 'SHOW KEYS FROM ' . $table;
+    $sql = 'SHOW KEYS FROM ' . $quoted_table;
     $result = sql_query($sql);
     while ($row = sql_fetch_array($result))
     {
         $kname    = $row['Key_name'];
-        $comment  = (isset($row['Comment'])) ? $row['Comment'] : '';
-        $sub_part = (isset($row['Sub_part'])) ? $row['Sub_part'] : '';
+        $comment  = isset($row['Comment']) ? $row['Comment'] : '';
+        $sub_part = isset($row['Sub_part']) ? $row['Sub_part'] : '';
 
         if ($kname != 'PRIMARY' && $row['Non_unique'] == 0) {
             $kname = "UNIQUE|$kname";
@@ -324,10 +602,10 @@ function get_table_define($table, $crlf="\n")
         } else {
             $index[$kname][] = $row['Column_name'];
         }
-    } // end while
+    }
     sql_free_result($result);
 
-    foreach((array) $index as $x => $columns){
+    foreach ((array) $index as $x => $columns) {
         $schema_create     .= ',' . $crlf;
         if ($x == 'PRIMARY') {
             $schema_create .= '    PRIMARY KEY (';
@@ -339,12 +617,12 @@ function get_table_define($table, $crlf="\n")
             $schema_create .= '    KEY ' . $x . ' (';
         }
         $schema_create     .= implode(', ', $columns) . ')';
-    } // end while
+    }
 
     $schema_create .= $crlf . ') ENGINE=MyISAM DEFAULT CHARSET=utf8';
 
     return get_db_create_replace($schema_create);
-} // end of the 'PMA_getTableDef()' function
+}
 
 // 테이블에서 INDEX(키) 사용여부 검사
 function explain($sql)
@@ -358,19 +636,21 @@ function explain($sql)
     }
 }
 
-// mysqli_real_escape_string 의 alias 기능을 한다.
+// PDO::quote 의 alias 기능을 한다.
 function sql_real_escape_string($str, $link=null)
 {
-    global $g5;
+    $link = sql_get_connection($link);
 
-    if(!$link)
-        $link = $g5['connect_db'];
-    
-    if(function_exists('mysqli_connect') && G5_MYSQLI_USE) {
-        return mysqli_real_escape_string($link, $str);
+    if (!$link) {
+        return addslashes($str);
     }
 
-    return mysql_real_escape_string($str, $link);
+    $quoted = $link->quote($str);
+    if ($quoted === false) {
+        return addslashes($str);
+    }
+
+    return substr($quoted, 1, -1);
 }
 
 function escape_trim($field)

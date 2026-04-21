@@ -6,36 +6,57 @@ auth_check_menu($auth, $sub_menu, 'r');
 
 $sql_common = " from {$g5['member_table']} ";
 
+$allowed_search_fields = array(
+    'mb_id',
+    'mb_nick',
+    'mb_name',
+    'mb_level',
+    'mb_email',
+    'mb_hp',
+    'mb_datetime',
+    'mb_ip',
+);
+$allowed_sort_fields = array(
+    'mb_id',
+    'mb_name',
+    'mb_nick',
+    'mb_email',
+    'mb_level',
+    'mb_datetime',
+    'mb_intercept_date',
+    'mb_leave_date',
+);
+
+$search_params = array();
 $sql_search = " where (1) ";
-if ($stx) {
-    $sql_search .= " and ( ";
-    switch ($sfl) {
-        case 'mb_level':
-            $sql_search .= " ({$sfl} = '{$stx}') ";
-            break;
-        case 'mb_hp':
-            $sql_search .= " ({$sfl} like '%{$stx}') ";
-            break;
-        default:
-            $sql_search .= " ({$sfl} like '{$stx}%') ";
-            break;
+$sfl = in_array($sfl, $allowed_search_fields, true) ? $sfl : 'mb_id';
+$stx = isset($stx) ? trim((string) $stx) : '';
+
+if ($stx !== '') {
+    if ($sfl === 'mb_level') {
+        $sql_search .= " and {$sfl} = :stx_exact ";
+        $search_params['stx_exact'] = (int) $stx;
+    } elseif ($sfl === 'mb_hp') {
+        $sql_search .= " and {$sfl} like :stx_suffix ";
+        $search_params['stx_suffix'] = '%' . $stx;
+    } else {
+        $sql_search .= " and {$sfl} like :stx_prefix ";
+        $search_params['stx_prefix'] = $stx . '%';
     }
-    $sql_search .= " ) ";
 }
 
 if ($is_admin != 'super') {
-    $sql_search .= " and mb_level <= '{$member['mb_level']}' ";
+    $sql_search .= " and mb_level <= :max_member_level ";
+    $search_params['max_member_level'] = (int) $member['mb_level'];
 }
 
-if (!$sst) {
-    $sst = "mb_datetime";
-    $sod = "desc";
-}
+$sst = in_array($sst, $allowed_sort_fields, true) ? $sst : 'mb_datetime';
+$sod = strtolower((string) $sod) === 'asc' ? 'asc' : 'desc';
 
 $sql_order = " order by {$sst} {$sod} ";
 
 $sql = " select count(*) as cnt {$sql_common} {$sql_search} {$sql_order} ";
-$row = sql_fetch($sql);
+$row = sql_fetch_prepared($sql, $search_params);
 $total_count = $row['cnt'];
 
 $rows = $config['cf_page_rows'];
@@ -47,12 +68,12 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
 
 // 탈퇴회원수
 $sql = " select count(*) as cnt {$sql_common} {$sql_search} and mb_leave_date <> '' {$sql_order} ";
-$row = sql_fetch($sql);
+$row = sql_fetch_prepared($sql, $search_params);
 $leave_count = $row['cnt'];
 
 // 차단회원수
 $sql = " select count(*) as cnt {$sql_common} {$sql_search} and mb_intercept_date <> '' {$sql_order} ";
-$row = sql_fetch($sql);
+$row = sql_fetch_prepared($sql, $search_params);
 $intercept_count = $row['cnt'];
 
 $listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="btn btn-surface-default-soft">전체 보기</a>';
@@ -68,8 +89,11 @@ $admin_container_class = 'admin-page-member-list';
 $admin_page_subtitle = '회원 상태를 한눈에 확인하고, 조건 검색과 빠른 관리 동선을 자연스럽게 이어가세요.';
 require_once './admin.head.php';
 
-$sql = " select * {$sql_common} {$sql_search} {$sql_order} limit {$from_record}, {$rows} ";
-$result = sql_query($sql);
+$sql = " select * {$sql_common} {$sql_search} {$sql_order} limit :from_record, :page_rows ";
+$list_params = $search_params;
+$list_params['from_record'] = (int) $from_record;
+$list_params['page_rows'] = (int) $rows;
+$result = sql_query_prepared($sql, $list_params);
 
 $colspan = 8;
 $admin_token = get_admin_token();

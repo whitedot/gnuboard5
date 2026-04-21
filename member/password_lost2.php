@@ -16,13 +16,17 @@ $email = get_email_address(trim($_POST['mb_email']));
 if (!$email)
     alert_close('메일주소 오류입니다.');
 
-$sql = " select count(*) as cnt from {$g5['member_table']} where mb_email = '$email' ";
-$row = sql_fetch($sql);
+$sql = " select count(*) as cnt from {$g5['member_table']} where mb_email = :mb_email ";
+$row = sql_fetch_prepared($sql, array(
+    'mb_email' => $email,
+));
 if ($row['cnt'] > 1)
     alert('동일한 메일주소가 2개 이상 존재합니다.\\n\\n관리자에게 문의하여 주십시오.');
 
-$sql = " select mb_no, mb_id, mb_name, mb_nick, mb_email, mb_datetime, mb_leave_date from {$g5['member_table']} where mb_email = '$email' ";
-$mb = sql_fetch($sql);
+$sql = " select mb_no, mb_id, mb_name, mb_nick, mb_email, mb_datetime, mb_leave_date from {$g5['member_table']} where mb_email = :mb_email ";
+$mb = sql_fetch_prepared($sql, array(
+    'mb_email' => $email,
+));
 if (empty($mb['mb_id']) || $mb['mb_leave_date']) {
     alert('존재하지 않는 회원입니다.');
 } elseif (is_admin($mb['mb_id'])) {
@@ -37,8 +41,10 @@ $mb_lost_certify = get_encrypt_string($change_password);
 $mb_nonce = md5(pack('V*', rand(), rand(), rand(), rand()));
 
 // 임시비밀번호와 난수를 mb_lost_certify 필드에 저장
-$sql = " update {$g5['member_table']} set mb_lost_certify = '$mb_nonce $mb_lost_certify' where mb_id = '{$mb['mb_id']}' ";
-sql_query($sql);
+sql_query_prepared(" update {$g5['member_table']} set mb_lost_certify = :mb_lost_certify where mb_id = :mb_id ", array(
+    'mb_lost_certify' => $mb_nonce . ' ' . $mb_lost_certify,
+    'mb_id' => $mb['mb_id'],
+));
 
 MemberNotificationService::sendPasswordLostMail($email, $mb, $change_password, $mb_nonce, $mb_lost_certify);
 

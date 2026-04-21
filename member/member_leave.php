@@ -14,8 +14,12 @@ if (!($post_mb_password && check_password($post_mb_password, $member['mb_passwor
 
 // 회원탈퇴일을 저장
 $date = date("Ymd");
-$sql = " update {$g5['member_table']} set mb_leave_date = '{$date}', mb_memo = '".date('Ymd', G5_SERVER_TIME)." 탈퇴함\n".sql_real_escape_string($member['mb_memo'])."', mb_certify = '', mb_adult = 0, mb_dupinfo = '' where mb_id = '{$member['mb_id']}' ";
-sql_query($sql);
+$leave_memo = date('Ymd', G5_SERVER_TIME) . " 탈퇴함\n" . $member['mb_memo'];
+sql_query_prepared(" update {$g5['member_table']} set mb_leave_date = :mb_leave_date, mb_memo = :mb_memo, mb_certify = '', mb_adult = 0, mb_dupinfo = '' where mb_id = :mb_id ", array(
+    'mb_leave_date' => $date,
+    'mb_memo' => $leave_memo,
+    'mb_id' => $member['mb_id'],
+));
 
 run_event('member_leave', $member);
 

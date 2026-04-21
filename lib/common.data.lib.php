@@ -159,9 +159,11 @@ function get_member($mb_id, $fields = '*', $is_cache = false)
         return $cache[$mb_id][$key];
     }
 
-    $sql = " SELECT {$fields} from {$g5['member_table']} where mb_id = '{$mb_id}' ";
+    $sql = " SELECT {$fields} from {$g5['member_table']} where mb_id = :mb_id ";
 
-    $cache[$mb_id][$key] = run_replace('get_member', sql_fetch($sql), $mb_id, $fields, $is_cache);
+    $cache[$mb_id][$key] = run_replace('get_member', sql_fetch_prepared($sql, array(
+        'mb_id' => $mb_id,
+    )), $mb_id, $fields, $is_cache);
 
     return $cache[$mb_id][$key];
 }
@@ -221,12 +223,16 @@ function get_admin($admin='super', $fields='*')
 
     $is = false;
     if ($admin == 'group') {
-        $mb = sql_fetch("select {$fields} from {$g5['member_table']} where mb_id in ('{$group['gr_admin']}') limit 1 ");
+        $mb = sql_fetch_prepared("select {$fields} from {$g5['member_table']} where mb_id = :gr_admin limit 1 ", array(
+            'gr_admin' => $group['gr_admin'],
+        ));
         $is = true;
     }
 
     if (($is && !isset($mb['mb_id'])) || $admin == 'super') {
-        $mb = sql_fetch("select {$fields} from {$g5['member_table']} where mb_id in ('{$config['cf_admin']}') limit 1 ");
+        $mb = sql_fetch_prepared("select {$fields} from {$g5['member_table']} where mb_id = :cf_admin limit 1 ", array(
+            'cf_admin' => $config['cf_admin'],
+        ));
     }
 
     return $mb;

@@ -12,18 +12,25 @@ $mb_no = isset($_GET['mb_no']) ? preg_replace('#[^0-9]#', '', trim($_GET['mb_no'
 $mb_nonce = isset($_GET['mb_nonce']) ? trim($_GET['mb_nonce']) : '';
 
 // 회원아이디가 아닌 회원고유번호로 회원정보를 구한다.
-$sql = " select mb_id, mb_lost_certify from {$g5['member_table']} where mb_no = '$mb_no' ";
-$mb  = sql_fetch($sql);
+$sql = " select mb_id, mb_lost_certify from {$g5['member_table']} where mb_no = :mb_no ";
+$mb  = sql_fetch_prepared($sql, array(
+    'mb_no' => $mb_no,
+));
 if (strlen($mb['mb_lost_certify']) < 33)
     die("Error");
 
 // 인증 링크는 한번만 처리가 되게 한다.
-sql_query(" update {$g5['member_table']} set mb_lost_certify = '' where mb_no = '$mb_no' ");
+sql_query_prepared(" update {$g5['member_table']} set mb_lost_certify = '' where mb_no = :mb_no ", array(
+    'mb_no' => $mb_no,
+));
 
 // 인증을 위한 난수가 제대로 넘어온 경우 임시비밀번호를 실제 비밀번호로 바꿔준다.
 if ($mb_nonce === substr($mb['mb_lost_certify'], 0, 32)) {
     $new_password_hash = substr($mb['mb_lost_certify'], 33);
-    sql_query(" update {$g5['member_table']} set mb_password = '$new_password_hash' where mb_no = '$mb_no' ");
+    sql_query_prepared(" update {$g5['member_table']} set mb_password = :mb_password where mb_no = :mb_no ", array(
+        'mb_password' => $new_password_hash,
+        'mb_no' => $mb_no,
+    ));
 
     run_event('password_lost_certify_after', $mb, $mb_nonce);
 

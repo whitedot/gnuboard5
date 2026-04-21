@@ -18,7 +18,9 @@ function sql_password($value)
 {
     // mysql 4.0x 이하 버전에서는 password() 함수의 결과가 16bytes
     // mysql 4.1x 이상 버전에서는 password() 함수의 결과가 41bytes
-    $row = sql_fetch(" SELECT password('{$value}') as pass ");
+    $row = sql_fetch_prepared(" SELECT password(:value) as pass ", array(
+        'value' => $value,
+    ));
 
     return $row['pass'];
 }
@@ -61,13 +63,17 @@ function login_password_check($mb, $pass, $hash)
         if( sql_password($pass) === $hash ){
 
             if( ! isset($mb['mb_password2']) ){
-                $sql = "ALTER TABLE `{$g5['member_table']}` ADD `mb_password2` varchar(255) NOT NULL default '' AFTER `mb_password`";
+                $sql = "ALTER TABLE " . sql_quote_identifier($g5['member_table']) . " ADD `mb_password2` varchar(255) NOT NULL default '' AFTER `mb_password`";
                 sql_query($sql);
             }
             
             $new_password = create_hash($pass);
-            $sql = " update {$g5['member_table']} set mb_password = '$new_password', mb_password2 = '$hash' where mb_id = '$mb_id' ";
-            sql_query($sql);
+            $sql = " update {$g5['member_table']} set mb_password = :mb_password, mb_password2 = :mb_password2 where mb_id = :mb_id ";
+            sql_query_prepared($sql, array(
+                'mb_password' => $new_password,
+                'mb_password2' => $hash,
+                'mb_id' => $mb_id,
+            ));
             return true;
         }
     }

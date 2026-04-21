@@ -164,8 +164,8 @@ if (file_exists($dbconfig_file)) {
     $g5['connect_db'] = $connect_db;
 
     sql_set_charset(G5_DB_CHARSET, $connect_db);
-    if(defined('G5_MYSQL_SET_MODE') && G5_MYSQL_SET_MODE) sql_query("SET SESSION sql_mode = ''");
-    if (defined('G5_TIMEZONE')) sql_query(" set time_zone = '".G5_TIMEZONE."'");
+    if(defined('G5_MYSQL_SET_MODE') && G5_MYSQL_SET_MODE) sql_reset_session_sql_mode($connect_db);
+    if (defined('G5_TIMEZONE')) sql_set_time_zone(G5_TIMEZONE);
 } else {
 ?>
 
@@ -511,8 +511,11 @@ if (isset($_SESSION['ss_mb_id']) && $_SESSION['ss_mb_id']) { // 로그인중이�
         if (substr($member['mb_today_login'], 0, 10) != G5_TIME_YMD) {
             // 오늘의 로그인이 될 수도 있으며 마지막 로그인일 수도 있음
             // 해당 회원의 접근일시와 IP 를 저장
-            $sql = " update {$g5['member_table']} set mb_today_login = '".G5_TIME_YMDHIS."', mb_login_ip = '{$_SERVER['REMOTE_ADDR']}' where mb_id = '{$member['mb_id']}' ";
-            sql_query($sql);
+            sql_query_prepared(" update {$g5['member_table']} set mb_today_login = :mb_today_login, mb_login_ip = :mb_login_ip where mb_id = :mb_id ", array(
+                'mb_today_login' => G5_TIME_YMDHIS,
+                'mb_login_ip' => $_SERVER['REMOTE_ADDR'],
+                'mb_id' => $member['mb_id'],
+            ));
         }
     }
 } else {
@@ -523,8 +526,10 @@ if (isset($_SESSION['ss_mb_id']) && $_SESSION['ss_mb_id']) { // 로그인중이�
         $tmp_mb_id = substr(preg_replace("/[^a-zA-Z0-9_]*/", "", $tmp_mb_id), 0, 20);
         // 최고관리자는 자동로그인 금지
         if (strtolower($tmp_mb_id) !== strtolower($config['cf_admin'])) {
-            $sql = " select mb_password, mb_intercept_date, mb_leave_date, mb_email_certify, mb_datetime from {$g5['member_table']} where mb_id = '{$tmp_mb_id}' ";
-            $row = sql_fetch($sql);
+            $sql = " select mb_password, mb_intercept_date, mb_leave_date, mb_email_certify, mb_datetime from {$g5['member_table']} where mb_id = :mb_id ";
+            $row = sql_fetch_prepared($sql, array(
+                'mb_id' => $tmp_mb_id,
+            ));
             if($row['mb_password']){
                 $key = md5($_SERVER['SERVER_ADDR'] . $_SERVER['SERVER_SOFTWARE'] . $_SERVER['HTTP_USER_AGENT'] . $row['mb_password']);
                 // 쿠키에 저장된 키와 같다면

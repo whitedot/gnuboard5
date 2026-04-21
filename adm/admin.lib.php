@@ -72,8 +72,10 @@ function get_member_id_select($name, $level, $selected = "", $event = "")
 {
     global $g5;
 
-    $sql = " select mb_id from {$g5['member_table']} where mb_level >= '{$level}' ";
-    $result = sql_query($sql);
+    $sql = " select mb_id from {$g5['member_table']} where mb_level >= :mb_level ";
+    $result = sql_query_prepared($sql, array(
+        'mb_level' => (int) $level,
+    ));
     $attr = trim((string) $event);
     if (strpos($attr, 'class=') === false) {
         $attr = trim('class="form-select" ' . $attr);
@@ -533,8 +535,10 @@ if (!$member['mb_id']) {
     alert('로그인 하십시오.', G5_MEMBER_URL . '/login.php?url=' . urlencode(correct_goto_url(G5_ADMIN_URL)));
 } else if ($is_admin != 'super') {
     $auth = array();
-    $sql = " select au_menu, au_auth from {$g5['auth_table']} where mb_id = '{$member['mb_id']}' ";
-    $result = sql_query($sql);
+    $sql = " select au_menu, au_auth from {$g5['auth_table']} where mb_id = :mb_id ";
+    $result = sql_query_prepared($sql, array(
+        'mb_id' => $member['mb_id'],
+    ));
     for ($i = 0; $row = sql_fetch_array($result); $i++) {
         $auth[$row['au_menu']] = $row['au_auth'];
     }
@@ -609,4 +613,3 @@ if (isset($_REQUEST) && $_REQUEST) {
         admin_check_xss_params($_REQUEST);
     }
 }
-

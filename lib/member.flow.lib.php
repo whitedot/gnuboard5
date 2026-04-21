@@ -25,7 +25,10 @@ class MemberNotificationService
 
         $subject = '['.$config['cf_title'].'] 인증확인 메일입니다.';
         $mb_md5 = md5(pack('V*', rand(), rand(), rand(), rand()));
-        sql_query(" update {$GLOBALS['g5']['member_table']} set mb_email_certify2 = '$mb_md5' where mb_id = '$mb_id' ");
+        sql_query_prepared(" update {$GLOBALS['g5']['member_table']} set mb_email_certify2 = :mb_email_certify2 where mb_id = :mb_id ", array(
+            'mb_email_certify2' => $mb_md5,
+            'mb_id' => $mb_id,
+        ));
 
         $certify_href = G5_MEMBER_URL.'/email_certify.php?mb_id='.$mb_id.'&amp;mb_md5='.$mb_md5;
         $content = MemberMailRenderer::capture('register_email_certify.mail.php', array(
@@ -44,7 +47,10 @@ class MemberNotificationService
 
         $subject = '['.$config['cf_title'].'] 인증확인 메일입니다.';
         $mb_md5 = md5(pack('V*', rand(), rand(), rand(), rand()));
-        sql_query(" update {$GLOBALS['g5']['member_table']} set mb_email_certify2 = '$mb_md5' where mb_id = '$mb_id' ");
+        sql_query_prepared(" update {$GLOBALS['g5']['member_table']} set mb_email_certify2 = :mb_email_certify2 where mb_id = :mb_id ", array(
+            'mb_email_certify2' => $mb_md5,
+            'mb_id' => $mb_id,
+        ));
 
         $certify_href = G5_MEMBER_URL.'/email_certify.php?mb_id='.$mb_id.'&amp;mb_md5='.$mb_md5;
         $content = MemberMailRenderer::capture('register_email_change.mail.php', array(
@@ -79,7 +85,9 @@ class MemberRegisterResponseFlow
             return;
         }
 
-        $row = sql_fetch(" select mb_password from {$GLOBALS['g5']['member_table']} where mb_id = '{$member['mb_id']}' ");
+        $row = sql_fetch_prepared(" select mb_password from {$GLOBALS['g5']['member_table']} where mb_id = :mb_id ", array(
+            'mb_id' => $member['mb_id'],
+        ));
         $tmp_password = $row['mb_password'];
 
         if ($old_email != $mb_email && $config['cf_use_email_certify']) {

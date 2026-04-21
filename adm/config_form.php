@@ -9,8 +9,7 @@ if ($is_admin != 'super') {
 }
 
 // https://github.com/gnuboard/gnuboard5/issues/296 대응
-$sql = " select * from {$g5['config_table']} limit 1";
-$config = sql_fetch($sql);
+$config = sql_fetch_prepared(" select * from {$g5['config_table']} limit 1", array());
 
 $g5['title'] = '환경설정';
 $admin_container_class = 'admin-page-config-form';

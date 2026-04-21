@@ -14,37 +14,50 @@ if ($addtional_content_before) {
 }
 
 if (!auth_check_menu($auth, '200100', 'r', true)) {
-    $sql_common = " from {$g5['member_table']} ";
+    $allowed_sort_fields = array(
+        'mb_datetime',
+        'mb_id',
+        'mb_name',
+        'mb_nick',
+        'mb_level',
+        'mb_mailling',
+        'mb_open',
+        'mb_email_certify',
+        'mb_intercept_date',
+    );
+    $sort_field = (isset($sst) && in_array($sst, $allowed_sort_fields, true)) ? $sst : 'mb_datetime';
+    $sort_direction = (isset($sod) && strtolower((string) $sod) === 'asc') ? 'asc' : 'desc';
 
-    $sql_search = " where (1) ";
+    $sql_common = " from {$g5['member_table']} ";
+    $conditions = array('(1)');
+    $query_params = array();
 
     if ($is_admin != 'super') {
-        $sql_search .= " and mb_level <= '{$member['mb_level']}' ";
+        $conditions[] = 'mb_level <= :admin_mb_level';
+        $query_params['admin_mb_level'] = (int) $member['mb_level'];
     }
 
-    if (!$sst) {
-        $sst = "mb_datetime";
-        $sod = "desc";
-    }
+    $sql_search = ' where ' . implode(' and ', $conditions);
+    $sql_order = " order by {$sort_field} {$sort_direction} ";
 
-    $sql_order = " order by {$sst} {$sod} ";
-
-    $sql = " SELECT count(*) as cnt {$sql_common} {$sql_search} {$sql_order} ";
-    $row = sql_fetch($sql);
+    $sql = " SELECT count(*) as cnt {$sql_common} {$sql_search} ";
+    $row = sql_fetch_prepared($sql, $query_params);
     $total_count = $row['cnt'];
 
     // 탈퇴회원수
-    $sql = " select count(*) as cnt {$sql_common} {$sql_search} and mb_leave_date <> '' {$sql_order} ";
-    $row = sql_fetch($sql);
+    $sql = " select count(*) as cnt {$sql_common} {$sql_search} and mb_leave_date <> '' ";
+    $row = sql_fetch_prepared($sql, $query_params);
     $leave_count = $row['cnt'];
 
     // 차단회원수
-    $sql = " SELECT count(*) as cnt {$sql_common} {$sql_search} and mb_intercept_date <> '' {$sql_order} ";
-    $row = sql_fetch($sql);
+    $sql = " SELECT count(*) as cnt {$sql_common} {$sql_search} and mb_intercept_date <> '' ";
+    $row = sql_fetch_prepared($sql, $query_params);
     $intercept_count = $row['cnt'];
 
-    $sql = " SELECT * {$sql_common} {$sql_search} {$sql_order} limit {$new_member_rows} ";
-    $result = sql_query($sql);
+    $sql = " SELECT * {$sql_common} {$sql_search} {$sql_order} limit :new_member_rows ";
+    $list_params = $query_params;
+    $list_params['new_member_rows'] = (int) $new_member_rows;
+    $result = sql_query_prepared($sql, $list_params);
 
     $colspan = 8;
     ?>

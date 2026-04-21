@@ -32,8 +32,10 @@ function exist_mb_id($reg_mb_id)
     $reg_mb_id = trim($reg_mb_id);
     if ($reg_mb_id == "") return "";
 
-    $sql = " select count(*) as cnt from `{$g5['member_table']}` where mb_id = '$reg_mb_id' ";
-    $row = sql_fetch($sql);
+    $sql = " select count(*) as cnt from `{$g5['member_table']}` where mb_id = :mb_id ";
+    $row = sql_fetch_prepared($sql, array(
+        'mb_id' => $reg_mb_id,
+    ));
     if ($row['cnt'])
         return "이미 사용중인 회원아이디 입니다.";
     else
@@ -76,7 +78,10 @@ function count_mb_nick($reg_mb_nick)
 function exist_mb_nick($reg_mb_nick, $reg_mb_id)
 {
     global $g5;
-    $row = sql_fetch(" select count(*) as cnt from {$g5['member_table']} where mb_nick = '$reg_mb_nick' and mb_id <> '$reg_mb_id' ");
+    $row = sql_fetch_prepared(" select count(*) as cnt from {$g5['member_table']} where mb_nick = :mb_nick and mb_id <> :mb_id ", array(
+        'mb_nick' => $reg_mb_nick,
+        'mb_id' => $reg_mb_id,
+    ));
     if ($row['cnt'])
         return "이미 존재하는 닉네임입니다.";
     else
@@ -128,7 +133,10 @@ function prohibit_mb_email($reg_mb_email)
 function exist_mb_email($reg_mb_email, $reg_mb_id)
 {
     global $g5;
-    $row = sql_fetch(" select count(*) as cnt from `{$g5['member_table']}` where mb_email = '$reg_mb_email' and mb_id <> '$reg_mb_id' ");
+    $row = sql_fetch_prepared(" select count(*) as cnt from `{$g5['member_table']}` where mb_email = :mb_email and mb_id <> :mb_id ", array(
+        'mb_email' => $reg_mb_email,
+        'mb_id' => $reg_mb_id,
+    ));
     if ($row['cnt'])
         return "이미 사용중인 E-mail 주소입니다.";
     else
@@ -172,8 +180,11 @@ function exist_mb_hp($reg_mb_hp, $reg_mb_id)
 
     $reg_mb_hp = hyphen_hp_number($reg_mb_hp);
 
-    $sql = "select count(*) as cnt from {$g5['member_table']} where mb_hp = '$reg_mb_hp' and mb_id <> '$reg_mb_id' ";
-    $row = sql_fetch($sql);
+    $sql = "select count(*) as cnt from {$g5['member_table']} where mb_hp = :mb_hp and mb_id <> :mb_id ";
+    $row = sql_fetch_prepared($sql, array(
+        'mb_hp' => $reg_mb_hp,
+        'mb_id' => $reg_mb_id,
+    ));
 
     if($row['cnt'])
         return " 이미 사용 중인 휴대폰번호입니다. ".$reg_mb_hp;

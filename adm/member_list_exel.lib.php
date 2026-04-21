@@ -112,10 +112,10 @@ function member_export_get_total_count($params)
 {
     global $g5;
     
-    $where = member_export_build_where($params);
-    $sql = "SELECT COUNT(*) as cnt FROM {$g5['member_table']} {$where}";
+    $where_data = member_export_build_where($params);
+    $sql = "SELECT COUNT(*) as cnt FROM {$g5['member_table']} {$where_data['clause']}";
     
-    $result = sql_query($sql);
+    $result = sql_query_prepared($sql, $where_data['params']);
     if (!$result) {
         throw new Exception("데이터 조회에 실패하였습니다. 다시 시도해주세요.");
     }
@@ -131,21 +131,24 @@ function member_export_build_where($params)
 {
     global $config;
     $conditions = [];
+    $query_params = [];
     
     // 기본 조건 - 탈퇴하지 않은 사용자
     $conditions[] = "mb_leave_date = ''";
     
-    // 검색어 조건 (sql_escape_string 사용으로 보안 강화)
+    // 검색어 조건
     if (!empty($params['use_stx']) && $params['use_stx'] === '1') {
         $sfl_list = get_export_config('sfl_list');
         $sfl = in_array($params['sfl'], array_keys($sfl_list)) ? $params['sfl'] : '';
-        $stx = sql_escape_string($params['stx']);
+        $stx = isset($params['stx']) ? trim((string) $params['stx']) : '';
 
         if(!empty($sfl) && !empty($stx)){
             if ($params['stx_cond'] === 'like') {
-                $conditions[] = "{$sfl} LIKE '%{$stx}%'";
+                $conditions[] = "{$sfl} LIKE :search_like";
+                $query_params['search_like'] = '%' . $stx . '%';
             } else {
-                $conditions[] = "{$sfl} = '{$stx}'";
+                $conditions[] = "{$sfl} = :search_exact";
+                $query_params['search_exact'] = $stx;
             }
         }
     }
@@ -155,20 +158,26 @@ function member_export_build_where($params)
         $level_start = max(1, (int)$params['level_start']);
         $level_end = min(10, (int)$params['level_end']);
 
-        $conditions[] = "(mb_level BETWEEN {$level_start} AND {$level_end})";
+        $conditions[] = "(mb_level BETWEEN :level_start AND :level_end)";
+        $query_params['level_start'] = $level_start;
+        $query_params['level_end'] = $level_end;
     }
     
     // 가입기간 조건
     if (!empty($params['use_date']) && $params['use_date'] === '1') {
-        $date_start = isset($params['date_start']) ? sql_escape_string(trim($params['date_start'])) : '';
-        $date_end = isset($params['date_end']) ? sql_escape_string(trim($params['date_end'])) : '';
+        $date_start = isset($params['date_start']) ? trim($params['date_start']) : '';
+        $date_end = isset($params['date_end']) ? trim($params['date_end']) : '';
 
         if ($date_start && $date_end) {
-            $conditions[] = "mb_datetime BETWEEN '{$date_start} 00:00:00' AND '{$date_end} 23:59:59'";
+            $conditions[] = "mb_datetime BETWEEN :date_start_range AND :date_end_range";
+            $query_params['date_start_range'] = $date_start . ' 00:00:00';
+            $query_params['date_end_range'] = $date_end . ' 23:59:59';
         } elseif ($date_start) {
-            $conditions[] = "mb_datetime >= '{$date_start} 00:00:00'";
+            $conditions[] = "mb_datetime >= :date_start_only";
+            $query_params['date_start_only'] = $date_start . ' 00:00:00';
         } elseif ($date_end) {
-            $conditions[] = "mb_datetime <= '{$date_end} 23:59:59'";
+            $conditions[] = "mb_datetime <= :date_end_only";
+            $query_params['date_end_only'] = $date_end . ' 23:59:59';
         }
     }
     
@@ -193,17 +202,23 @@ function member_export_build_where($params)
             if ($range === 'month_confirm') {
                 $start = date('Y-m-01 00:00:00', strtotime('-23 months'));
                 $end   = date('Y-m-t 23:59:59', strtotime('-23 months'));
-                $emailDateCond = "mb_mailling_date BETWEEN '{$start}' AND '{$end}'";
+                $emailDateCond = "mb_mailling_date BETWEEN :mailling_month_start AND :mailling_month_end";
+                $query_params['mailling_month_start'] = $start;
+                $query_params['mailling_month_end'] = $end;
             } else {
                 $date_start = isset($params['agree_date_start']) ? $params['agree_date_start'] : '';
                 $date_end   = isset($params['agree_date_end']) ? $params['agree_date_end'] : '';
 
                 if ($date_start && $date_end) {
-                    $emailDateCond = "mb_mailling_date BETWEEN '{$date_start} 00:00:00' AND '{$date_end} 23:59:59'";
+                    $emailDateCond = "mb_mailling_date BETWEEN :agree_date_start_range AND :agree_date_end_range";
+                    $query_params['agree_date_start_range'] = $date_start . ' 00:00:00';
+                    $query_params['agree_date_end_range'] = $date_end . ' 23:59:59';
                 } elseif ($date_start) {
-                    $emailDateCond = "mb_mailling_date >= '{$date_start} 00:00:00'";
+                    $emailDateCond = "mb_mailling_date >= :agree_date_start_only";
+                    $query_params['agree_date_start_only'] = $date_start . ' 00:00:00';
                 } elseif ($date_end) {
-                    $emailDateCond = "mb_mailling_date <= '{$date_end} 23:59:59'";
+                    $emailDateCond = "mb_mailling_date <= :agree_date_end_only";
+                    $query_params['agree_date_end_only'] = $date_end . ' 23:59:59';
                 } else {
                     $emailDateCond = "mb_mailling_date <> '0000-00-00 00:00:00'";
                 }
@@ -229,5 +244,8 @@ function member_export_build_where($params)
         }
     } 
 
-    return empty($conditions) ? '' : 'WHERE ' . implode(' AND ', $conditions);
+    return array(
+        'clause' => empty($conditions) ? '' : 'WHERE ' . implode(' AND ', $conditions),
+        'params' => $query_params,
+    );
 }

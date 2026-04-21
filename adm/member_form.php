@@ -102,8 +102,10 @@ $mb_marketing_agree_no      = !$mb['mb_marketing_agree'] ? 'checked="checked"' :
 
 $mb_cert_history = '';
 if (isset($mb_id) && $mb_id) {
-    $sql = "select * from {$g5['member_cert_history_table']} where mb_id = '{$mb_id}' order by ch_id asc";
-    $mb_cert_history = sql_query($sql);
+    $sql = "select * from {$g5['member_cert_history_table']} where mb_id = :mb_id order by ch_id asc";
+    $mb_cert_history = sql_query_prepared($sql, array(
+        'mb_id' => $mb_id,
+    ));
 }
 
 if ($mb['mb_intercept_date']) {

@@ -73,13 +73,11 @@ if (!$select_db) {
 
 $mysql_set_mode = 'false';
 sql_set_charset(G5_DB_CHARSET, $dblink);
-$result = sql_query(" SELECT @@sql_mode as mode ", true, $dblink);
-$row = sql_fetch_array($result);
+$row = sql_fetch_prepared(" SELECT @@sql_mode as mode ", array(), true, $dblink);
 if($row['mode']) {
-    sql_query("SET SESSION sql_mode = ''", true, $dblink);
+    sql_reset_session_sql_mode($dblink);
     $mysql_set_mode = 'true';
 }
-unset($result);
 unset($row);
 ?>
 
@@ -88,8 +86,7 @@ unset($row);
 
     <ol>
 <?php
-$sql = "SHOW TABLES LIKE '{$table_prefix}config'";
-$is_install = sql_query($sql, false, $dblink)->num_rows > 0;
+$is_install = sql_table_exists($table_prefix . 'config', $dblink);
 
 // 그누보드5 재설치에 체크하였거나 그누보드5가 설치되어 있지 않다면
 if ($g5_install || $is_install === false) {
@@ -127,10 +124,10 @@ if ($g5_install || $is_install === false) {
     }
 
     $sql = " insert into `{$table_prefix}config`
-                set cf_title = '".G5_VERSION."',
-                    cf_admin = '$admin_id',
-                    cf_admin_email = '$admin_email',
-                    cf_admin_email_name = '".G5_VERSION.'_'.substr(base_convert(mt_rand(), 10, 36), 0, 6)."',
+                set cf_title = :cf_title,
+                    cf_admin = :cf_admin,
+                    cf_admin_email = :cf_admin_email,
+                    cf_admin_email_name = :cf_admin_email_name,
                     cf_cut_name = '15',
                     cf_nick_modify = '60',
                     cf_possible_ip = '',
@@ -141,7 +138,7 @@ if ($g5_install || $is_install === false) {
                     cf_email_use = '1',
                     cf_prohibit_id = 'admin,administrator,관리자,운영자,어드민,주인장,webmaster,웹마스터,sysop,시삽,시샵,manager,매니저,메니저,root,루트,su,guest,방문객',
                     cf_prohibit_email = '',
-                    cf_image_extension = '{$image_extension}',
+                    cf_image_extension = :cf_image_extension,
                     cf_flash_extension = 'swf',
                     cf_movie_extension = 'asx|asf|wmv|wma|mpg|mpeg|mov|avi|mp3',
                     cf_page_rows = '15',
@@ -149,24 +146,40 @@ if ($g5_install || $is_install === false) {
                     cf_stipulation = '해당 홈페이지에 맞는 회원가입약관을 입력합니다.',
                     cf_privacy = '해당 홈페이지에 맞는 개인정보처리방침을 입력합니다.'
                     ";
-    sql_query($sql, true, $dblink);
+    sql_query_prepared($sql, array(
+        'cf_title' => G5_VERSION,
+        'cf_admin' => $admin_id,
+        'cf_admin_email' => $admin_email,
+        'cf_admin_email_name' => G5_VERSION . '_' . substr(base_convert(mt_rand(), 10, 36), 0, 6),
+        'cf_image_extension' => $image_extension,
+    ), true, $dblink);
 
     // 관리자 회원가입
     $sql = " insert into `{$table_prefix}member`
-                set mb_id = '$admin_id',
-                     mb_password = '".get_encrypt_string($admin_pass)."',
-                     mb_name = '$admin_name',
-                     mb_nick = '$admin_name',
-                     mb_email = '$admin_email',
+                set mb_id = :mb_id,
+                     mb_password = :mb_password,
+                     mb_name = :mb_name,
+                     mb_nick = :mb_nick,
+                     mb_email = :mb_email,
                      mb_level = '10',
                      mb_mailling = '1',
                      mb_open = '1',
-                     mb_nick_date = '".G5_TIME_YMDHIS."',
-                     mb_email_certify = '".G5_TIME_YMDHIS."',
-                     mb_datetime = '".G5_TIME_YMDHIS."',
-                     mb_ip = '{$_SERVER['REMOTE_ADDR']}'
+                     mb_nick_date = :mb_nick_date,
+                     mb_email_certify = :mb_email_certify,
+                     mb_datetime = :mb_datetime,
+                     mb_ip = :mb_ip
                      ";
-    sql_query($sql, true, $dblink);
+    sql_query_prepared($sql, array(
+        'mb_id' => $admin_id,
+        'mb_password' => get_encrypt_string($admin_pass),
+        'mb_name' => $admin_name,
+        'mb_nick' => $admin_name,
+        'mb_email' => $admin_email,
+        'mb_nick_date' => G5_TIME_YMDHIS,
+        'mb_email_certify' => G5_TIME_YMDHIS,
+        'mb_datetime' => G5_TIME_YMDHIS,
+        'mb_ip' => $_SERVER['REMOTE_ADDR'],
+    ), true, $dblink);
 
 }
 

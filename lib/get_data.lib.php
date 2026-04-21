@@ -13,7 +13,7 @@ function get_config($is_cache=false){
     }
 
     $sql = " select * from {$g5['config_table']} ";
-    $cache = run_replace('get_config', sql_fetch($sql));
+    $cache = run_replace('get_config', sql_fetch_prepared($sql));
 
     return $cache;
 }
@@ -105,5 +105,4 @@ function get_mb_icon_name($mb_id){
 
     return $mb_id;
 }
-
 

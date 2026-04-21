@@ -31,7 +31,7 @@ if ($_POST['act_button'] == "선택수정") {
         $post_mb_mailling_default = isset($_POST['mb_mailling_default'][$k]) ? (int) $_POST['mb_mailling_default'][$k] : 0;
         $sql_mailling_date = "";
         if ($post_mb_mailling_default != $post_mb_mailling) {
-            $sql_mailling_date =  " , mb_mailling_date = '".G5_TIME_YMDHIS."' ";
+            $sql_mailling_date =  " , mb_mailling_date = :mb_mailling_date ";
             $agree_items[] = "광고성 이메일 수신(" . ($post_mb_mailling == 1 ? "동의" : "철회") . ")";
         }
 
@@ -39,7 +39,7 @@ if ($_POST['act_button'] == "선택수정") {
         $sql_agree_log = "";
         if (!empty($agree_items)) {
             $agree_log = "[".G5_TIME_YMDHIS.", 회원관리 선택수정] " . implode(' | ', $agree_items) . "\n";
-            $sql_agree_log .= " , mb_agree_log = CONCAT('{$agree_log}', IFNULL(mb_agree_log, ''))";
+            $sql_agree_log .= " , mb_agree_log = :mb_agree_log";
         }
 
         $mb_datas[] = $mb = get_member($_POST['mb_id'][$k]);
@@ -58,16 +58,31 @@ if ($_POST['act_button'] == "선택수정") {
             }
 
             $sql = " update {$g5['member_table']}
-                        set mb_level = '" . $post_mb_level . "',
-                            mb_intercept_date = '" . sql_real_escape_string($post_mb_intercept_date) . "',
-                            mb_mailling = '" . $post_mb_mailling . "',
-                            mb_open = '" . $post_mb_open . "',
-                            mb_certify = '" . sql_real_escape_string($post_mb_certify) . "',
-                            mb_adult = '{$mb_adult}'
+                        set mb_level = :mb_level,
+                            mb_intercept_date = :mb_intercept_date,
+                            mb_mailling = :mb_mailling,
+                            mb_open = :mb_open,
+                            mb_certify = :mb_certify,
+                            mb_adult = :mb_adult
                             {$sql_mailling_date}
                             {$sql_agree_log}
-                        where mb_id = '" . sql_real_escape_string($mb['mb_id']) . "' ";
-            sql_query($sql);
+                        where mb_id = :mb_id ";
+            $params = array(
+                'mb_level' => $post_mb_level,
+                'mb_intercept_date' => $post_mb_intercept_date,
+                'mb_mailling' => $post_mb_mailling,
+                'mb_open' => $post_mb_open,
+                'mb_certify' => $post_mb_certify,
+                'mb_adult' => $mb_adult,
+                'mb_id' => $mb['mb_id'],
+            );
+            if ($post_mb_mailling_default != $post_mb_mailling) {
+                $params['mb_mailling_date'] = G5_TIME_YMDHIS;
+            }
+            if (!empty($agree_items)) {
+                $params['mb_agree_log'] = $agree_log . (isset($mb['mb_agree_log']) ? $mb['mb_agree_log'] : '');
+            }
+            sql_query_prepared($sql, $params);
         }
     }
 } elseif ($_POST['act_button'] == "선택삭제") {
