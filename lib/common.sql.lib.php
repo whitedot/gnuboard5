@@ -208,8 +208,15 @@ function sql_collect_field_meta(PDOStatement $statement)
 function sql_validate_database_name($db)
 {
     $db = trim((string) $db);
+    if ($db === '') {
+        return '';
+    }
 
-    return ($db !== '' && preg_match('/^[A-Za-z0-9_$]+$/', $db)) ? $db : '';
+    if (preg_match('/[\x00-\x1F\x7F]/', $db)) {
+        return '';
+    }
+
+    return $db;
 }
 
 function sql_validate_charset($charset)
@@ -271,7 +278,7 @@ function sql_select_db($db, $connect)
             return false;
         }
 
-        return $connect->exec('USE `' . $validated_db . '`') !== false;
+        return $connect->exec('USE `' . str_replace('`', '``', $validated_db) . '`') !== false;
     } catch (PDOException $e) {
         sql_store_error($connect, null, $e);
         return false;

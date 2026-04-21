@@ -35,7 +35,7 @@ $updated = sql_query_prepared(" update {$g5['member_table']} set mb_lost_certify
     'mb_lost_certify' => $mb['mb_lost_certify'],
 ), false);
 
-if (!$updated) {
+if (!$updated || (int) sql_fetch_value_prepared(" select row_count() as affected_rows ", array(), false) < 1) {
     sql_rollback();
     die("Error");
 }

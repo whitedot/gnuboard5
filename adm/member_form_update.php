@@ -111,22 +111,21 @@ if ($w == '') {
         alert('이미 존재하는 이메일입니다.\\nＩＤ : ' . $row['mb_id'] . '\\n이름 : ' . $row['mb_name'] . '\\n닉네임 : ' . $row['mb_nick'] . '\\n메일 : ' . $row['mb_email']);
     }
 
-    $agree_items = [];
+    $agree_items = array();
     // 마케팅 목적의 개인정보 수집 및 이용
     if ($mb_marketing_agree == 1) {
         $sql_common .=  " , mb_marketing_date = :mb_marketing_date ";
-        $agree_items[] = "마케팅 목적의 개인정보 수집 및 이용(동의)";
+        $agree_items[] = '마케팅 목적의 개인정보 수집 및 이용(동의)';
     }
 
     // 광고성 이메일 수신
     if ($mb_mailling == 1) {
         $sql_common .=  " , mb_mailling_date = :mb_mailling_date ";
-        $agree_items[] = "광고성 이메일 수신(동의)";
+        $agree_items[] = '광고성 이메일 수신(동의)';
     }
 
     // 동의 로그 추가
     if (!empty($agree_items)) {
-        $agree_log = "[".G5_TIME_YMDHIS.", 관리자 회원추가] " . implode(' | ', $agree_items) . "\n";
         $sql_common .= " , mb_agree_log = :mb_agree_log";
     }
     $insert_params = array(
@@ -157,7 +156,7 @@ if ($w == '') {
         $insert_params['mb_mailling_date'] = G5_TIME_YMDHIS;
     }
     if (!empty($agree_items)) {
-        $insert_params['mb_agree_log'] = $agree_log;
+        $insert_params['mb_agree_log'] = build_member_agree_log_entry('관리자 회원추가', $agree_items);
     }
 
     if (!sql_begin_transaction()) {
@@ -233,26 +232,25 @@ if ($w == '') {
     $row = sql_fetch_prepared("select * from {$g5['member_table']} where mb_id = :mb_id ", array(
         'mb_id' => $mb_id,
     ));
-    $agree_items = [];
+    $agree_items = array();
         
     // 마케팅 목적의 개인정보 수집 및 이용
     $sql_marketing_date = "";
     if ($row['mb_marketing_agree'] !== $mb_marketing_agree) {
         $sql_marketing_date .= " , mb_marketing_date = :mb_marketing_date ";
-        $agree_items[] = "마케팅 목적의 개인정보 수집 및 이용(" . ($mb_marketing_agree == 1 ? "동의" : "철회") . ")";
+        $agree_items[] = '마케팅 목적의 개인정보 수집 및 이용(' . ($mb_marketing_agree == 1 ? '동의' : '철회') . ')';
     }
 
     // 광고성 이메일 수신
     $sql_mailling_date = "";
     if ((string) $row['mb_mailling'] !== (string) $posts['mb_mailling']) {
         $sql_mailling_date .= " , mb_mailling_date = :mb_mailling_date ";
-        $agree_items[] = "광고성 이메일 수신(" . ($posts['mb_mailling'] == 1 ? "동의" : "철회") . ")";
+        $agree_items[] = '광고성 이메일 수신(' . ($posts['mb_mailling'] == 1 ? '동의' : '철회') . ')';
     }
     
     // 동의 로그 추가
     $sql_agree_log = "";
     if (!empty($agree_items)) {
-        $agree_log = "[".G5_TIME_YMDHIS.", 관리자 회원수정] " . implode(' | ', $agree_items) . "\n";
         $sql_agree_log .= " , mb_agree_log = :mb_agree_log";
     }
     
@@ -294,7 +292,7 @@ if ($w == '') {
         $update_params['mb_mailling_date'] = G5_TIME_YMDHIS;
     }
     if (!empty($agree_items)) {
-        $update_params['mb_agree_log'] = $agree_log . (isset($row['mb_agree_log']) ? $row['mb_agree_log'] : '');
+        $update_params['mb_agree_log'] = append_member_agree_log('관리자 회원수정', $agree_items, isset($row['mb_agree_log']) ? $row['mb_agree_log'] : '');
     }
 
     if (!sql_begin_transaction()) {

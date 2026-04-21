@@ -37,6 +37,15 @@ include_once(G5_LIB_PATH.'/common.mobile.lib.php');
 // Database functions (SQL)
 include_once(G5_LIB_PATH.'/common.sql.lib.php');
 
+// Certification/history functions - requires SQL
+include_once(G5_LIB_PATH.'/common.cert.lib.php');
+
+// Network and URL helpers
+include_once(G5_LIB_PATH.'/common.net.lib.php');
+
+// External module checks
+include_once(G5_LIB_PATH.'/common.module.lib.php');
+
 // String manipulation (text, cleaning, conversion)
 include_once(G5_LIB_PATH.'/common.string.lib.php');
 
