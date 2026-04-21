@@ -142,6 +142,63 @@ function get_sql_search($search_ca_name, $search_field, $search_text, $search_op
  * 
  * @return array
  */
+function get_member_select_fields($fields = '*')
+{
+    global $g5;
+
+    static $member_columns = null;
+
+    $fields = trim((string) $fields);
+    if ($fields === '' || $fields === '*') {
+        return '*';
+    }
+
+    if ($member_columns === null) {
+        $member_columns = sql_field_names($g5['member_table']);
+    }
+
+    if (empty($member_columns)) {
+        return '*';
+    }
+
+    $resolved = array();
+    $parts = explode(',', $fields);
+
+    foreach ($parts as $part) {
+        $part = trim($part);
+        if ($part === '') {
+            return '*';
+        }
+
+        if (!preg_match('/^([A-Za-z0-9_]+)(?:\s+(?:as\s+)?([A-Za-z0-9_]+))?$/i', $part, $matches)) {
+            return '*';
+        }
+
+        $column = $matches[1];
+        if (!in_array($column, $member_columns, true)) {
+            return '*';
+        }
+
+        $quoted_column = sql_quote_identifier($column);
+        if (!$quoted_column) {
+            return '*';
+        }
+
+        if (!empty($matches[2])) {
+            $quoted_alias = sql_quote_identifier($matches[2]);
+            if (!$quoted_alias) {
+                return '*';
+            }
+
+            $resolved[] = $quoted_column . ' as ' . $quoted_alias;
+        } else {
+            $resolved[] = $quoted_column;
+        }
+    }
+
+    return empty($resolved) ? '*' : implode(', ', $resolved);
+}
+
 function get_member($mb_id, $fields = '*', $is_cache = false)
 {
     global $g5;
@@ -159,7 +216,8 @@ function get_member($mb_id, $fields = '*', $is_cache = false)
         return $cache[$mb_id][$key];
     }
 
-    $sql = " SELECT {$fields} from {$g5['member_table']} where mb_id = :mb_id ";
+    $select_fields = get_member_select_fields($fields);
+    $sql = " SELECT {$select_fields} from {$g5['member_table']} where mb_id = :mb_id ";
 
     $cache[$mb_id][$key] = run_replace('get_member', sql_fetch_prepared($sql, array(
         'mb_id' => $mb_id,
@@ -221,16 +279,17 @@ function get_admin($admin='super', $fields='*')
     global $config, $group;
     global $g5;
 
+    $select_fields = get_member_select_fields($fields);
     $is = false;
     if ($admin == 'group') {
-        $mb = sql_fetch_prepared("select {$fields} from {$g5['member_table']} where mb_id = :gr_admin limit 1 ", array(
+        $mb = sql_fetch_prepared("select {$select_fields} from {$g5['member_table']} where mb_id = :gr_admin limit 1 ", array(
             'gr_admin' => $group['gr_admin'],
         ));
         $is = true;
     }
 
     if (($is && !isset($mb['mb_id'])) || $admin == 'super') {
-        $mb = sql_fetch_prepared("select {$fields} from {$g5['member_table']} where mb_id = :cf_admin limit 1 ", array(
+        $mb = sql_fetch_prepared("select {$select_fields} from {$g5['member_table']} where mb_id = :cf_admin limit 1 ", array(
             'cf_admin' => $config['cf_admin'],
         ));
     }

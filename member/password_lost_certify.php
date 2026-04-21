@@ -19,23 +19,32 @@ $mb  = sql_fetch_prepared($sql, array(
 if (strlen($mb['mb_lost_certify']) < 33)
     die("Error");
 
-// 인증 링크는 한번만 처리가 되게 한다.
-sql_query_prepared(" update {$g5['member_table']} set mb_lost_certify = '' where mb_no = :mb_no ", array(
-    'mb_no' => $mb_no,
-));
-
 // 인증을 위한 난수가 제대로 넘어온 경우 임시비밀번호를 실제 비밀번호로 바꿔준다.
-if ($mb_nonce === substr($mb['mb_lost_certify'], 0, 32)) {
-    $new_password_hash = substr($mb['mb_lost_certify'], 33);
-    sql_query_prepared(" update {$g5['member_table']} set mb_password = :mb_password where mb_no = :mb_no ", array(
-        'mb_password' => $new_password_hash,
-        'mb_no' => $mb_no,
-    ));
-
-    run_event('password_lost_certify_after', $mb, $mb_nonce);
-
-    alert('비밀번호가 변경됐습니다.\\n\\n회원아이디와 변경된 비밀번호로 로그인 하시기 바랍니다.', G5_MEMBER_URL.'/login.php');
-}
-else {
+if ($mb_nonce !== substr($mb['mb_lost_certify'], 0, 32)) {
     die("Error");
 }
+
+$new_password_hash = substr($mb['mb_lost_certify'], 33);
+if (!sql_begin_transaction()) {
+    die("Error");
+}
+
+$updated = sql_query_prepared(" update {$g5['member_table']} set mb_lost_certify = '', mb_password = :mb_password where mb_no = :mb_no and mb_lost_certify = :mb_lost_certify ", array(
+    'mb_password' => $new_password_hash,
+    'mb_no' => $mb_no,
+    'mb_lost_certify' => $mb['mb_lost_certify'],
+), false);
+
+if (!$updated) {
+    sql_rollback();
+    die("Error");
+}
+
+if (!sql_commit()) {
+    sql_rollback();
+    die("Error");
+}
+
+run_event('password_lost_certify_after', $mb, $mb_nonce);
+
+alert('비밀번호가 변경됐습니다.\\n\\n회원아이디와 변경된 비밀번호로 로그인 하시기 바랍니다.', G5_MEMBER_URL.'/login.php');

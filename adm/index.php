@@ -41,18 +41,15 @@ if (!auth_check_menu($auth, '200100', 'r', true)) {
     $sql_order = " order by {$sort_field} {$sort_direction} ";
 
     $sql = " SELECT count(*) as cnt {$sql_common} {$sql_search} ";
-    $row = sql_fetch_prepared($sql, $query_params);
-    $total_count = $row['cnt'];
+    $total_count = (int) sql_fetch_value_prepared($sql, $query_params);
 
     // 탈퇴회원수
     $sql = " select count(*) as cnt {$sql_common} {$sql_search} and mb_leave_date <> '' ";
-    $row = sql_fetch_prepared($sql, $query_params);
-    $leave_count = $row['cnt'];
+    $leave_count = (int) sql_fetch_value_prepared($sql, $query_params);
 
     // 차단회원수
     $sql = " SELECT count(*) as cnt {$sql_common} {$sql_search} and mb_intercept_date <> '' ";
-    $row = sql_fetch_prepared($sql, $query_params);
-    $intercept_count = $row['cnt'];
+    $intercept_count = (int) sql_fetch_value_prepared($sql, $query_params);
 
     $sql = " SELECT * {$sql_common} {$sql_search} {$sql_order} limit :new_member_rows ";
     $list_params = $query_params;

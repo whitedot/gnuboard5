@@ -73,12 +73,12 @@ if (!$select_db) {
 
 $mysql_set_mode = 'false';
 sql_set_charset(G5_DB_CHARSET, $dblink);
-$row = sql_fetch_prepared(" SELECT @@sql_mode as mode ", array(), true, $dblink);
-if($row['mode']) {
+$sql_mode = sql_fetch_value_prepared(" SELECT @@sql_mode as mode ", array(), true, $dblink);
+if($sql_mode) {
     sql_reset_session_sql_mode($dblink);
     $mysql_set_mode = 'true';
 }
-unset($row);
+unset($sql_mode);
 ?>
 
 <div class="ins_inner">

@@ -22,11 +22,11 @@ if (!chk_captcha()) {
 }
 
 $sql = " select count(*) as cnt from {$g5['member_table']} where mb_id <> :mb_id and mb_email = :mb_email ";
-$row = sql_fetch_prepared($sql, array(
+$count = (int) sql_fetch_value_prepared($sql, array(
     'mb_id' => $mb_id,
     'mb_email' => $mb_email,
 ));
-if ($row['cnt']) {
+if ($count) {
     alert("{$mb_email} 메일은 이미 존재하는 메일주소 입니다.\\n\\n다른 메일주소를 입력해 주십시오.");
 }
 

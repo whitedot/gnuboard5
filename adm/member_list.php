@@ -56,8 +56,7 @@ $sod = strtolower((string) $sod) === 'asc' ? 'asc' : 'desc';
 $sql_order = " order by {$sst} {$sod} ";
 
 $sql = " select count(*) as cnt {$sql_common} {$sql_search} {$sql_order} ";
-$row = sql_fetch_prepared($sql, $search_params);
-$total_count = $row['cnt'];
+$total_count = (int) sql_fetch_value_prepared($sql, $search_params);
 
 $rows = $config['cf_page_rows'];
 $total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
@@ -68,13 +67,11 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
 
 // 탈퇴회원수
 $sql = " select count(*) as cnt {$sql_common} {$sql_search} and mb_leave_date <> '' {$sql_order} ";
-$row = sql_fetch_prepared($sql, $search_params);
-$leave_count = $row['cnt'];
+$leave_count = (int) sql_fetch_value_prepared($sql, $search_params);
 
 // 차단회원수
 $sql = " select count(*) as cnt {$sql_common} {$sql_search} and mb_intercept_date <> '' {$sql_order} ";
-$row = sql_fetch_prepared($sql, $search_params);
-$intercept_count = $row['cnt'];
+$intercept_count = (int) sql_fetch_value_prepared($sql, $search_params);
 
 $listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="btn btn-surface-default-soft">전체 보기</a>';
 $quick_view = 'all';

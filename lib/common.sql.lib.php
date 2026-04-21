@@ -5,20 +5,69 @@ class G5PdoResult
 {
     public $num_rows = 0;
 
+    private $statement = null;
     private $rows = array();
     private $position = 0;
     private $field_index = 0;
     private $fields = array();
+    private $loaded_all = false;
 
-    public function __construct(array $rows, array $fields = array())
+    public function __construct(PDOStatement $statement, array $fields = array())
     {
-        $this->rows = array_values($rows);
-        $this->num_rows = count($this->rows);
+        $this->statement = $statement;
         $this->fields = array_values($fields);
+
+        $row_count = (int) $statement->rowCount();
+        if ($row_count > 0) {
+            $this->num_rows = $row_count;
+        }
+    }
+
+    private function loadNextRow()
+    {
+        if ($this->loaded_all || !$this->statement) {
+            return null;
+        }
+
+        $row = $this->statement->fetch(PDO::FETCH_ASSOC);
+        if ($row === false) {
+            $this->loaded_all = true;
+            $this->num_rows = count($this->rows);
+            $this->statement->closeCursor();
+            return null;
+        }
+
+        $this->rows[] = $row;
+
+        return $row;
+    }
+
+    private function ensureRowsLoadedUntil($offset)
+    {
+        while (!$this->loaded_all && count($this->rows) <= $offset) {
+            if ($this->loadNextRow() === null) {
+                break;
+            }
+        }
+    }
+
+    private function ensureAllRowsLoaded()
+    {
+        while (!$this->loaded_all) {
+            if ($this->loadNextRow() === null) {
+                break;
+            }
+        }
     }
 
     public function fetchAssoc()
     {
+        if (isset($this->rows[$this->position])) {
+            return $this->rows[$this->position++];
+        }
+
+        $this->ensureRowsLoadedUntil($this->position);
+
         if (!isset($this->rows[$this->position])) {
             return null;
         }
@@ -34,8 +83,11 @@ class G5PdoResult
             $offset = 0;
         }
 
-        if ($offset > $this->num_rows) {
-            $offset = $this->num_rows;
+        $this->ensureRowsLoadedUntil($offset);
+
+        $max_offset = $this->loaded_all ? count($this->rows) : max($offset, count($this->rows));
+        if ($offset > $max_offset) {
+            $offset = $max_offset;
         }
 
         $this->position = $offset;
@@ -52,11 +104,26 @@ class G5PdoResult
 
     public function free()
     {
+        if ($this->statement instanceof PDOStatement) {
+            $this->statement->closeCursor();
+        }
+
+        $this->statement = null;
         $this->rows = array();
         $this->fields = array();
         $this->num_rows = 0;
         $this->position = 0;
         $this->field_index = 0;
+        $this->loaded_all = true;
+    }
+
+    public function getNumRows()
+    {
+        if (!$this->loaded_all && $this->num_rows === 0) {
+            $this->ensureAllRowsLoaded();
+        }
+
+        return $this->loaded_all ? count($this->rows) : $this->num_rows;
     }
 }
 
@@ -138,14 +205,36 @@ function sql_collect_field_meta(PDOStatement $statement)
     return $fields;
 }
 
+function sql_validate_database_name($db)
+{
+    $db = trim((string) $db);
+
+    return ($db !== '' && preg_match('/^[A-Za-z0-9_$]+$/', $db)) ? $db : '';
+}
+
+function sql_validate_charset($charset)
+{
+    $charset = trim((string) $charset);
+
+    return ($charset !== '' && preg_match('/^[A-Za-z0-9_]+$/', $charset)) ? $charset : '';
+}
+
 // DB 연결
 function sql_connect($host, $user, $pass, $db=G5_MYSQL_DB)
 {
-    $charset = defined('G5_DB_CHARSET') ? G5_DB_CHARSET : 'utf8';
+    $charset = sql_validate_charset(defined('G5_DB_CHARSET') ? G5_DB_CHARSET : 'utf8');
+    if (!$charset) {
+        $charset = 'utf8';
+    }
     $dsn = 'mysql:host=' . $host;
 
     if ($db !== null && $db !== '') {
-        $dsn .= ';dbname=' . $db;
+        $validated_db = sql_validate_database_name($db);
+        if (!$validated_db) {
+            die('MySQL DB 정보에 오류가 있습니다.');
+        }
+
+        $dsn .= ';dbname=' . $validated_db;
     }
 
     $dsn .= ';charset=' . $charset;
@@ -155,6 +244,7 @@ function sql_connect($host, $user, $pass, $db=G5_MYSQL_DB)
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_CASE => PDO::CASE_NATURAL,
+            PDO::ATTR_EMULATE_PREPARES => false,
             PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
         ));
     } catch (PDOException $e) {
@@ -176,7 +266,12 @@ function sql_select_db($db, $connect)
     }
 
     try {
-        return $connect->exec('USE `' . str_replace('`', '``', $db) . '`') !== false;
+        $validated_db = sql_validate_database_name($db);
+        if (!$validated_db) {
+            return false;
+        }
+
+        return $connect->exec('USE `' . $validated_db . '`') !== false;
     } catch (PDOException $e) {
         sql_store_error($connect, null, $e);
         return false;
@@ -192,7 +287,12 @@ function sql_set_charset($charset, $link=null)
     }
 
     try {
-        return $link->exec("SET NAMES {$charset}") !== false;
+        $validated_charset = sql_validate_charset($charset);
+        if (!$validated_charset) {
+            return false;
+        }
+
+        return $link->exec("SET NAMES {$validated_charset}") !== false;
     } catch (PDOException $e) {
         sql_store_error($link, null, $e);
         return false;
@@ -305,9 +405,8 @@ function sql_execute_query($sql, $params=array(), $error=G5_DISPLAY_SQL_ERROR, $
         sql_store_error($link, $statement);
 
         if ($statement->columnCount() > 0) {
-            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
             $fields = sql_collect_field_meta($statement);
-            $result = new G5PdoResult($rows, $fields);
+            $result = new G5PdoResult($statement, $fields);
         } else {
             $result = true;
         }
@@ -468,6 +567,56 @@ function sql_fetch_prepared($sql, $params=array(), $error=G5_DISPLAY_SQL_ERROR, 
     return $row;
 }
 
+function sql_fetch_all($sql, $error=G5_DISPLAY_SQL_ERROR, $link=null)
+{
+    $result = sql_query($sql, $error, $link);
+    $rows = array();
+
+    while ($row = sql_fetch_array($result)) {
+        $rows[] = $row;
+    }
+
+    sql_free_result($result);
+
+    return $rows;
+}
+
+function sql_fetch_all_prepared($sql, $params=array(), $error=G5_DISPLAY_SQL_ERROR, $link=null)
+{
+    $result = sql_query_prepared($sql, $params, $error, $link);
+    $rows = array();
+
+    while ($row = sql_fetch_array($result)) {
+        $rows[] = $row;
+    }
+
+    sql_free_result($result);
+
+    return $rows;
+}
+
+function sql_fetch_value($sql, $error=G5_DISPLAY_SQL_ERROR, $link=null)
+{
+    $row = sql_fetch($sql, $error, $link);
+
+    if (!is_array($row) || empty($row)) {
+        return null;
+    }
+
+    return reset($row);
+}
+
+function sql_fetch_value_prepared($sql, $params=array(), $error=G5_DISPLAY_SQL_ERROR, $link=null)
+{
+    $row = sql_fetch_prepared($sql, $params, $error, $link);
+
+    if (!is_array($row) || empty($row)) {
+        return null;
+    }
+
+    return reset($row);
+}
+
 // 결과값에서 한행 연관배열(이름으로)로 얻는다.
 function sql_fetch_array($result)
 {
@@ -504,10 +653,23 @@ function sql_insert_id($link=null)
     return (int) $link->lastInsertId();
 }
 
+function sql_affected_rows($statement_or_result)
+{
+    if ($statement_or_result instanceof PDOStatement) {
+        return (int) $statement_or_result->rowCount();
+    }
+
+    if ($statement_or_result instanceof G5PdoResult) {
+        return $statement_or_result->getNumRows();
+    }
+
+    return 0;
+}
+
 function sql_num_rows($result)
 {
     if ($result instanceof G5PdoResult) {
-        return $result->num_rows;
+        return $result->getNumRows();
     }
 
     return 0;
@@ -544,6 +706,73 @@ function sql_error_info($link=null)
     }
 
     return $error['error_code'] . ' : ' . $error['error_message'];
+}
+
+function sql_begin_transaction($link=null)
+{
+    $link = sql_get_connection($link);
+
+    if (!$link) {
+        return false;
+    }
+
+    try {
+        if ($link->inTransaction()) {
+            return true;
+        }
+
+        return $link->beginTransaction();
+    } catch (PDOException $e) {
+        sql_store_error($link, null, $e);
+        return false;
+    }
+}
+
+function sql_commit($link=null)
+{
+    $link = sql_get_connection($link);
+
+    if (!$link) {
+        return false;
+    }
+
+    try {
+        if (!$link->inTransaction()) {
+            return true;
+        }
+
+        return $link->commit();
+    } catch (PDOException $e) {
+        sql_store_error($link, null, $e);
+        return false;
+    }
+}
+
+function sql_rollback($link=null)
+{
+    $link = sql_get_connection($link);
+
+    if (!$link) {
+        return false;
+    }
+
+    try {
+        if (!$link->inTransaction()) {
+            return true;
+        }
+
+        return $link->rollBack();
+    } catch (PDOException $e) {
+        sql_store_error($link, null, $e);
+        return false;
+    }
+}
+
+function sql_in_transaction($link=null)
+{
+    $link = sql_get_connection($link);
+
+    return $link ? $link->inTransaction() : false;
 }
 
 // PHPMyAdmin 참고

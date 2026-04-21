@@ -159,7 +159,20 @@ if ($w == '') {
     if (!empty($agree_items)) {
         $insert_params['mb_agree_log'] = $agree_log;
     }
-    sql_query_prepared(" insert into {$g5['member_table']} set mb_id = :mb_id, mb_password = :mb_password, mb_datetime = :mb_datetime, mb_ip = :mb_ip, mb_email_certify = :mb_email_certify, {$sql_common} ", $insert_params);
+
+    if (!sql_begin_transaction()) {
+        alert('회원정보를 저장하는 중 오류가 발생했습니다.');
+    }
+
+    if (!sql_query_prepared(" insert into {$g5['member_table']} set mb_id = :mb_id, mb_password = :mb_password, mb_datetime = :mb_datetime, mb_ip = :mb_ip, mb_email_certify = :mb_email_certify, {$sql_common} ", $insert_params, false)) {
+        sql_rollback();
+        alert('회원정보를 저장하는 중 오류가 발생했습니다.');
+    }
+
+    if (!sql_commit()) {
+        sql_rollback();
+        alert('회원정보를 저장하는 중 오류가 발생했습니다.');
+    }
 } elseif ($w == 'u') {
     $mb = get_member($mb_id);
     if (!(isset($mb['mb_id']) && $mb['mb_id'])) {
@@ -284,7 +297,19 @@ if ($w == '') {
         $update_params['mb_agree_log'] = $agree_log . (isset($row['mb_agree_log']) ? $row['mb_agree_log'] : '');
     }
 
-    sql_query_prepared($sql, $update_params);
+    if (!sql_begin_transaction()) {
+        alert('회원정보를 수정하는 중 오류가 발생했습니다.');
+    }
+
+    if (!sql_query_prepared($sql, $update_params, false)) {
+        sql_rollback();
+        alert('회원정보를 수정하는 중 오류가 발생했습니다.');
+    }
+
+    if (!sql_commit()) {
+        sql_rollback();
+        alert('회원정보를 수정하는 중 오류가 발생했습니다.');
+    }
 } else {
     alert('제대로 된 값이 넘어오지 않았습니다.');
 }

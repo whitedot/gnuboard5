@@ -18,11 +18,9 @@ function sql_password($value)
 {
     // mysql 4.0x 이하 버전에서는 password() 함수의 결과가 16bytes
     // mysql 4.1x 이상 버전에서는 password() 함수의 결과가 41bytes
-    $row = sql_fetch_prepared(" SELECT password(:value) as pass ", array(
+    return sql_fetch_value_prepared(" SELECT password(:value) as pass ", array(
         'value' => $value,
     ));
-
-    return $row['pass'];
 }
 
 // 문자열 암호화

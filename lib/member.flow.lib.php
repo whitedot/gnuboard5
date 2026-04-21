@@ -85,10 +85,9 @@ class MemberRegisterResponseFlow
             return;
         }
 
-        $row = sql_fetch_prepared(" select mb_password from {$GLOBALS['g5']['member_table']} where mb_id = :mb_id ", array(
+        $tmp_password = sql_fetch_value_prepared(" select mb_password from {$GLOBALS['g5']['member_table']} where mb_id = :mb_id ", array(
             'mb_id' => $member['mb_id'],
         ));
-        $tmp_password = $row['mb_password'];
 
         if ($old_email != $mb_email && $config['cf_use_email_certify']) {
             set_session('ss_mb_id', '');

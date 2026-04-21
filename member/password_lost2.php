@@ -17,10 +17,10 @@ if (!$email)
     alert_close('메일주소 오류입니다.');
 
 $sql = " select count(*) as cnt from {$g5['member_table']} where mb_email = :mb_email ";
-$row = sql_fetch_prepared($sql, array(
+$count = (int) sql_fetch_value_prepared($sql, array(
     'mb_email' => $email,
 ));
-if ($row['cnt'] > 1)
+if ($count > 1)
     alert('동일한 메일주소가 2개 이상 존재합니다.\\n\\n관리자에게 문의하여 주십시오.');
 
 $sql = " select mb_no, mb_id, mb_name, mb_nick, mb_email, mb_datetime, mb_leave_date from {$g5['member_table']} where mb_email = :mb_email ";
