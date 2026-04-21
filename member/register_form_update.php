@@ -20,30 +20,27 @@ if (run_replace('register_member_chk_captcha', !chk_captcha(), $w)) {
     alert('자동등록방지 숫자가 틀렸습니다.');
 }
 
-if($w == 'u')
-    $mb_id = isset($_SESSION['ss_mb_id']) ? trim($_SESSION['ss_mb_id']) : '';
-else if($w == '')
-    $mb_id = isset($_POST['mb_id']) ? trim($_POST['mb_id']) : '';
-else
-    alert('잘못된 접근입니다', G5_URL);
+$register_request = member_read_registration_request($w, $_POST, $_SESSION);
 
+$mb_id = $register_request['mb_id'];
 if(!$mb_id)
     alert('회원아이디 값이 없습니다. 올바른 방법으로 이용해 주십시오.');
 
-$mb_password    = isset($_POST['mb_password']) ? trim($_POST['mb_password']) : '';
-$mb_password_re = isset($_POST['mb_password_re']) ? trim($_POST['mb_password_re']) : '';
-$mb_name        = isset($_POST['mb_name']) ? trim($_POST['mb_name']) : '';
-$mb_nick        = isset($_POST['mb_nick']) ? trim($_POST['mb_nick']) : '';
-$mb_email       = isset($_POST['mb_email']) ? trim($_POST['mb_email']) : '';
-$mb_sex         = isset($_POST['mb_sex'])           ? trim($_POST['mb_sex'])         : "";
-$mb_birth       = isset($_POST['mb_birth'])         ? trim($_POST['mb_birth'])       : "";
-$mb_hp          = isset($_POST['mb_hp'])            ? trim($_POST['mb_hp'])          : "";
-$mb_mailling    = isset($_POST['mb_mailling'])      ? trim($_POST['mb_mailling'])    : "0";
-$mb_open        = isset($_POST['mb_open'])          ? trim($_POST['mb_open'])        : "0";
-$mb_name        = clean_xss_tags($mb_name, 1, 1);
-$mb_email       = get_email_address($mb_email);
-
-$mb_marketing_agree     = isset($_POST['mb_marketing_agree'])   ? trim($_POST['mb_marketing_agree'])    : "0";
+$mb_password = $register_request['mb_password'];
+$mb_password_re = $register_request['mb_password_re'];
+$mb_name = $register_request['mb_name'];
+$mb_nick = $register_request['mb_nick'];
+$mb_email = $register_request['mb_email'];
+$mb_sex = $register_request['mb_sex'];
+$mb_birth = $register_request['mb_birth'];
+$mb_hp = $register_request['mb_hp'];
+$mb_mailling = $register_request['mb_mailling'];
+$mb_open = $register_request['mb_open'];
+$mb_marketing_agree = $register_request['mb_marketing_agree'];
+$mb_nick_default = $register_request['mb_nick_default'];
+$mb_open_default = $register_request['mb_open_default'];
+$mb_marketing_agree_default = $register_request['mb_marketing_agree_default'];
+$mb_mailling_default = $register_request['mb_mailling_default'];
 
 run_event('register_form_update_before', $mb_id, $w);
 
@@ -103,7 +100,7 @@ if ($w == '' || $w == 'u') {
 
         // 본인확인 체크
         if($config['cf_cert_use'] && $config['cf_cert_req']) {
-            $post_cert_no = isset($_POST['cert_no']) ? trim($_POST['cert_no']) : '';
+            $post_cert_no = $register_request['cert_no'];
             if($post_cert_no !== get_session('ss_cert_no') || ! get_session('ss_cert_no'))
                 alert("회원가입을 위해서는 본인확인을 해주셔야 합니다.");
         }
@@ -249,10 +246,6 @@ if ($config['cf_use_email_certify'] && $old_email != $mb_email) {
 }
 
 
-if(isset($_SESSION['ss_cert_type'])) unset($_SESSION['ss_cert_type']);
-if(isset($_SESSION['ss_cert_no'])) unset($_SESSION['ss_cert_no']);
-if(isset($_SESSION['ss_cert_hash'])) unset($_SESSION['ss_cert_hash']);
-if(isset($_SESSION['ss_cert_birth'])) unset($_SESSION['ss_cert_birth']);
-if(isset($_SESSION['ss_cert_adult'])) unset($_SESSION['ss_cert_adult']);
+member_clear_certification_session();
 
 MemberRegisterResponseFlow::finishSubmit($mb_id, $member, $w, $old_email, $mb_email, $msg);

@@ -38,7 +38,7 @@ function ensure_member_cert_history_table()
     }
 
     $member_cert_history_table = isset($g5['member_cert_history_table']) ? sql_quote_identifier($g5['member_cert_history_table']) : '';
-    if ($member_cert_history_table && !sql_describe_table($g5['member_cert_history_table'], false)) {
+    if ($member_cert_history_table && !sql_table_exists($g5['member_cert_history_table'])) {
         sql_query(" CREATE TABLE IF NOT EXISTS {$member_cert_history_table} (
                         `ch_id` int(11) NOT NULL auto_increment,
                         `mb_id` varchar(20) NOT NULL DEFAULT '',

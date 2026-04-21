@@ -11,13 +11,19 @@ auth_check_menu($auth, $sub_menu, 'w');
 
 check_admin_token();
 
-$mb_id          = isset($_POST['mb_id']) ? trim($_POST['mb_id']) : '';
-$mb_password    = isset($_POST['mb_password']) ? trim($_POST['mb_password']) : '';
-$mb_certify_case = isset($_POST['mb_certify_case']) ? preg_replace('/[^0-9a-z_]/i', '', $_POST['mb_certify_case']) : '';
-$mb_certify     = isset($_POST['mb_certify']) ? preg_replace('/[^0-9a-z_]/i', '', $_POST['mb_certify']) : '';
-
-// 광고성 정보 수신
-$mb_marketing_agree         = isset($_POST['mb_marketing_agree']) ? clean_xss_tags($_POST['mb_marketing_agree'], 1, 1) : '0';
+$member_request = member_read_admin_member_request($_POST);
+$mb_id = $member_request['mb_id'];
+$mb_password = $member_request['mb_password'];
+$mb_certify_case = $member_request['mb_certify_case'];
+$mb_certify = $member_request['mb_certify'];
+$mb_marketing_agree = $member_request['mb_marketing_agree'];
+$mb_email = $member_request['mb_email'];
+$mb_nick = $member_request['mb_nick'];
+$mb_memo = $member_request['mb_memo'];
+$mb_hp = $member_request['mb_hp'];
+$passive_certify = $member_request['passive_certify'];
+$posts = $member_request['posts'];
+$mb_adult = $member_request['mb_adult'];
 
 // 관리자가 자동등록방지를 사용해야 할 경우 ( 회원의 비밀번호 변경시 캡챠를 체크한다 )
 if ($mb_password) {
@@ -28,8 +34,6 @@ if ($mb_password) {
     }
 }
 
-// 휴대폰번호 체크
-$mb_hp = hyphen_hp_number($_POST['mb_hp']);
 if ($mb_hp) {
     $result = exist_mb_hp($mb_hp, $mb_id);
     if ($result) {
@@ -37,39 +41,8 @@ if ($mb_hp) {
     }
 }
 
-// 인증정보처리
-if ($mb_certify_case && $mb_certify) {
-    $mb_certify = isset($_POST['mb_certify_case']) ? preg_replace('/[^0-9a-z_]/i', '', (string)$_POST['mb_certify_case']) : '';
-    $mb_adult = isset($_POST['mb_adult']) ? preg_replace('/[^0-9a-z_]/i', '', (string)$_POST['mb_adult']) : '';
-} else {
-    $mb_certify = '';
-    $mb_adult = 0;
-}
-
-$mb_email = isset($_POST['mb_email']) ? get_email_address(trim($_POST['mb_email'])) : '';
-$mb_nick = isset($_POST['mb_nick']) ? trim(strip_tags($_POST['mb_nick'])) : '';
-$mb_memo = isset($_POST['mb_memo']) ? clean_xss_tags(trim($_POST['mb_memo']), 1, 1) : '';
-
 if ($msg = valid_mb_nick($mb_nick)) {
     alert($msg, "", true, true);
-}
-
-$posts = array();
-$check_keys = array(
-    'mb_name',
-    'mb_leave_date',
-    'mb_intercept_date',
-    'mb_mailling',
-    'mb_open',
-    'mb_level'
-);
-
-for ($i = 1; $i <= 10; $i++) {
-    $check_keys[] = 'mb_' . $i;
-}
-
-foreach ($check_keys as $key) {
-    $posts[$key] = isset($_POST[$key]) ? clean_xss_tags($_POST[$key], 1, 1) : '';
 }
 
 $sql_common = "  mb_name = :mb_name,

@@ -11,6 +11,7 @@ class G5PdoResult
     private $field_index = 0;
     private $fields = array();
     private $loaded_all = false;
+    private $cache_rows = false;
 
     public function __construct(PDOStatement $statement, array $fields = array())
     {
@@ -32,18 +33,28 @@ class G5PdoResult
         $row = $this->statement->fetch(PDO::FETCH_ASSOC);
         if ($row === false) {
             $this->loaded_all = true;
-            $this->num_rows = count($this->rows);
+            if ($this->cache_rows) {
+                $this->num_rows = count($this->rows);
+            } elseif ($this->num_rows === 0) {
+                $this->num_rows = $this->position;
+            }
             $this->statement->closeCursor();
             return null;
         }
 
-        $this->rows[] = $row;
+        if ($this->cache_rows) {
+            $this->rows[] = $row;
+        }
 
         return $row;
     }
 
     private function ensureRowsLoadedUntil($offset)
     {
+        if (!$this->cache_rows) {
+            return;
+        }
+
         while (!$this->loaded_all && count($this->rows) <= $offset) {
             if ($this->loadNextRow() === null) {
                 break;
@@ -60,19 +71,46 @@ class G5PdoResult
         }
     }
 
+    private function beginCachingRows()
+    {
+        if ($this->cache_rows) {
+            return;
+        }
+
+        // Backward seeking is only safe before rows have been consumed.
+        if ($this->position > 0) {
+            $this->cache_rows = true;
+            $this->rows = array();
+            return;
+        }
+
+        $this->cache_rows = true;
+        $this->rows = array();
+    }
+
     public function fetchAssoc()
     {
-        if (isset($this->rows[$this->position])) {
+        if ($this->cache_rows) {
+            if (isset($this->rows[$this->position])) {
+                return $this->rows[$this->position++];
+            }
+
+            $this->ensureRowsLoadedUntil($this->position);
+
+            if (!isset($this->rows[$this->position])) {
+                return null;
+            }
+
             return $this->rows[$this->position++];
         }
 
-        $this->ensureRowsLoadedUntil($this->position);
-
-        if (!isset($this->rows[$this->position])) {
+        $row = $this->loadNextRow();
+        if ($row === null) {
             return null;
         }
 
-        return $this->rows[$this->position++];
+        $this->position++;
+        return $row;
     }
 
     public function dataSeek($offset = 0)
@@ -83,6 +121,11 @@ class G5PdoResult
             $offset = 0;
         }
 
+        if ($offset === 0 && $this->position === 0 && !$this->cache_rows) {
+            return;
+        }
+
+        $this->beginCachingRows();
         $this->ensureRowsLoadedUntil($offset);
 
         $max_offset = $this->loaded_all ? count($this->rows) : max($offset, count($this->rows));
@@ -119,7 +162,12 @@ class G5PdoResult
 
     public function getNumRows()
     {
-        if (!$this->loaded_all && $this->num_rows === 0) {
+        if ($this->num_rows > 0) {
+            return $this->num_rows;
+        }
+
+        if (!$this->loaded_all) {
+            $this->beginCachingRows();
             $this->ensureAllRowsLoaded();
         }
 

@@ -247,9 +247,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-/**
- * 쪽지 창
- **/
 var check_goto_new = function (href, event) {
     if (!(typeof g5_is_mobile != "undefined" && g5_is_mobile)) {
         if (window.opener && window.opener.document && window.opener.document.getElementById) {
@@ -274,9 +271,6 @@ win_password_lost = function (href) {
  **/
 /**
  * 텍스트 리사이즈
-**/
-/**
- * 댓글 수정 토큰
 **/
 function set_comment_token(f) {
     return true;
@@ -323,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function enforceTextareaMaxlength(target) {
-        if (!target || !target.matches("textarea#wr_content[maxlength]")) {
+        if (!target || !target.matches("textarea[maxlength]")) {
             return;
         }
 
@@ -441,4 +435,3 @@ document.addEventListener("DOMContentLoaded", function () {
         enforceTextareaMaxlength(event.target);
     });
 });
-

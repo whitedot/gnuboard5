@@ -22,6 +22,7 @@ $required_mb_id = '';
 $required_mb_id_class = '';
 $required_mb_password = '';
 $html_title = '';
+$mb_id = isset($_REQUEST['mb_id']) && !is_array($_REQUEST['mb_id']) ? trim((string) $_REQUEST['mb_id']) : '';
 
 if ($w == '') {
     $required_mb_id = 'required';

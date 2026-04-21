@@ -103,10 +103,30 @@ function sql_escape_string($str)
 
 function g5_extract_request_globals()
 {
-    // PHP 4.1.0 부터 지원됨
-    // php.ini 의 register_globals=off 일 경우
-    extract($_GET, EXTR_SKIP);
-    extract($_POST, EXTR_SKIP);
+    $allowed_keys = array(
+        'device',
+        'gr_id',
+        'page',
+        'sca',
+        'sfl',
+        'sod',
+        'sop',
+        'spt',
+        'sst',
+        'stx',
+        'url',
+        'w',
+    );
+
+    foreach (array($_GET, $_POST) as $source) {
+        foreach ($allowed_keys as $key) {
+            if (!array_key_exists($key, $source) || is_array($source[$key])) {
+                continue;
+            }
+
+            $GLOBALS[$key] = $source[$key];
+        }
+    }
 }
 
 function g5_initialize_runtime_globals()
