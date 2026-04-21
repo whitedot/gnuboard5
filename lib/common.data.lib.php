@@ -276,23 +276,13 @@ function subject_sort_link($col, $query_string='', $flag='asc')
 // 관리자 정보를 얻음
 function get_admin($admin='super', $fields='*')
 {
-    global $config, $group;
+    global $config;
     global $g5;
 
     $select_fields = get_member_select_fields($fields);
-    $is = false;
-    if ($admin == 'group') {
-        $mb = sql_fetch_prepared("select {$select_fields} from {$g5['member_table']} where mb_id = :gr_admin limit 1 ", array(
-            'gr_admin' => $group['gr_admin'],
-        ));
-        $is = true;
-    }
-
-    if (($is && !isset($mb['mb_id'])) || $admin == 'super') {
-        $mb = sql_fetch_prepared("select {$select_fields} from {$g5['member_table']} where mb_id = :cf_admin limit 1 ", array(
-            'cf_admin' => $config['cf_admin'],
-        ));
-    }
+    $mb = sql_fetch_prepared("select {$select_fields} from {$g5['member_table']} where mb_id = :cf_admin limit 1 ", array(
+        'cf_admin' => $config['cf_admin'],
+    ));
 
     return $mb;
 }
@@ -300,7 +290,7 @@ function get_admin($admin='super', $fields='*')
 // 관리자인가?
 function is_admin($mb_id)
 {
-    global $config, $group;
+    global $config;
 
     if (!$mb_id) return '';
 
@@ -308,8 +298,6 @@ function is_admin($mb_id)
 
     if ($config['cf_admin'] == $mb_id){
         $is_authority = 'super';
-    } else if (isset($group['gr_admin']) && ($group['gr_admin'] == $mb_id)){
-        $is_authority = 'group';
     }
 
     return run_replace('is_admin', $is_authority, $mb_id);

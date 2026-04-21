@@ -18,7 +18,7 @@
                                         <li class="flex items-center gap-1.25 px-4 py-2.5">Slack 팀 협업</li>
                                         <li class="flex items-center gap-1.25 px-4 py-2.5">Microsoft Windows OS</li>
                                         <li class="flex items-center gap-1.25 px-4 py-2.5">Zendesk 고객 지원</li>
-                                        <li class="flex items-center gap-1.25 px-4 py-2.5">Stripe 결제 통합
+                                        <li class="flex items-center gap-1.25 px-4 py-2.5">Zoom 화상 회의 연동
                                         </li>
                                     </ul>
                                 </div>
@@ -69,7 +69,7 @@
                                         <li class="flex items-center gap-1.25 px-4 py-2.5">Slack 팀 협업</li>
                                         <li class="flex items-center gap-1.25 px-4 py-2.5">Microsoft Windows OS</li>
                                         <li class="flex items-center gap-1.25 px-4 py-2.5">Zendesk 고객 지원</li>
-                                        <li class="flex items-center gap-1.25 px-4 py-2.5">Stripe 결제 통합
+                                        <li class="flex items-center gap-1.25 px-4 py-2.5">Zoom 화상 회의 연동
                                         </li>
                                     </ul>
                                 </div>
@@ -90,8 +90,8 @@
                                         만듭니다.</p>
 
                                     <div class="border-default-300 divide-default-300 divide-y rounded border">
-                                        <a href="#" class="bg-default-100 flex items-center gap-1.25 px-4 py-2.5">Stripe
-                                            결제 통합</a>
+                                        <a href="#" class="bg-default-100 flex items-center gap-1.25 px-4 py-2.5">Zoom
+                                            화상 회의 연동</a>
                                         <a href="#"
                                             class="hover:bg-default-100 flex items-center gap-1.25 px-4 py-2.5">Dropbox
                                             클라우드 서비스</a>
@@ -127,7 +127,7 @@
                                         <li class="flex items-center gap-1.25 px-4 py-2.5">Dropbox 클라우드 스토리지</li>
                                         <li class="flex items-center gap-1.25 px-4 py-2.5">Notion 워크스페이스 정리</li>
                                         <li class="flex items-center gap-1.25 px-4 py-2.5">Zendesk 고객 지원</li>
-                                        <li class="flex items-center gap-1.25 px-4 py-2.5">Stripe 결제 처리기</li>
+                                        <li class="flex items-center gap-1.25 px-4 py-2.5">Zoom 회의 도구</li>
                                     </ul>
                                 </div>
                                 <!-- end card-body-->
@@ -156,7 +156,7 @@
                                     <ul
                                         class="divide-default-300 border-default-300 mb-5 inline-flex divide-x rounded border">
                                         <li class="px-4 py-2.5">Figma</li>
-                                        <li class="px-4 py-2.5">Stripe</li>
+                                        <li class="px-4 py-2.5">Zoom</li>
                                         <li class="px-4 py-2.5">Zendesk</li>
                                     </ul>
 
@@ -328,7 +328,7 @@
                                         </li>
 
                                         <li class="flex items-center justify-between gap-1.25 px-4 py-2.5">
-                                            미처리 주문
+                                            미확인 알림
                                             <span class="badge bg-success text-white rounded-full">2</span>
                                         </li>
 

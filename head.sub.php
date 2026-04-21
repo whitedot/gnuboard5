@@ -61,8 +61,6 @@ if ($is_member) {
     $sr_admin_msg = '';
     if ($is_admin == 'super') {
         $sr_admin_msg = '최고관리자 ';
-    } else if ($is_admin == 'group') {
-        $sr_admin_msg = '그룹관리자 ';
     }
     echo '<div class="sr-only">'.$sr_admin_msg.get_text($member['mb_nick']).'님 로그인 중 ';
     echo '<a href="'.G5_MEMBER_URL.'/logout.php">로그아웃</a></div>';

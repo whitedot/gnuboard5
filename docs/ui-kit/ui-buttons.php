@@ -534,7 +534,7 @@
                                 <button type="button"
                                     class="btn border btn-outline-info">
                                     <i data-icon="tabler:credit-card" class="iconify tabler--credit-card text-base"></i>
-                                    결제
+                                    확인
                                 </button>
 
                                 <button type="button" class="btn btn-solid-danger">

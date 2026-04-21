@@ -803,7 +803,7 @@
                                                     <a href="#">기본환경설정</a>
                                                     <ul class="admin-nav-third-list">
                                                         <li class="admin-nav-third-item is-current"><a href="#">사이트 기본설정</a></li>
-                                                        <li class="admin-nav-third-item"><a href="#">결제 기본설정</a></li>
+                                                        <li class="admin-nav-third-item"><a href="#">인증 기본설정</a></li>
                                                     </ul>
                                                 </li>
                                                 <li class="admin-nav-sub-item"><a href="#">권한설정</a></li>

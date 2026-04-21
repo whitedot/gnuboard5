@@ -196,7 +196,7 @@ function get_checked($field, $value)
 
     사용하는 곳 :
     1. 파일 업로드 전에 미리 유일키를 얻어 업로드 필드에 넣는다.
-    2. 주문번호 생성시에 사용한다.
+    2. 별도의 고유 식별자가 필요한 값 생성에 사용한다.
     3. 기타 유일키가 필요한 곳에서 사용한다.
 *******************************************************************************/
 // 기존의 get_unique_id() 함수를 사용하지 않고 get_uniqid() 를 사용한다.
@@ -632,7 +632,7 @@ function is_include_path_check($path='', $is_input='')
                 return false;
             }
             
-            if (preg_match('/\/data\/(file|editor|qa|cache|member|member_image|session|tmp)\/[A-Za-z0-9_]{1,20}\//i', $replace_path) || preg_match('/pe(?:ar|cl)(?:cmd)?\.php/i', $replace_path)){
+            if (preg_match('/\/data\/(file|editor|cache|member|member_image|session|tmp)\/[A-Za-z0-9_]{1,20}\//i', $replace_path) || preg_match('/pe(?:ar|cl)(?:cmd)?\.php/i', $replace_path)){
                 return false;
             }
             if( preg_match('/'.G5_PLUGIN_DIR.'\//i', $replace_path) && preg_match('/'.G5_KCPCERT_DIR.'\//i', $replace_path) || (preg_match('/search\.skin\.php/i', $replace_path) ) ){

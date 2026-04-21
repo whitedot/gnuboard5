@@ -461,10 +461,6 @@ function clean_query_string($query, $amp=true)
             $val = trim($val);
 
             switch($key) {
-                case 'wr_id':
-                    $val = (int)preg_replace('/[^0-9]/', '', $val);
-                    $q[$key] = $val;
-                    break;
                 case 'sca':
                     $val = clean_xss_tags($val);
                     $q[$key] = $val;

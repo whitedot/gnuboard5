@@ -657,8 +657,8 @@
                                         <div data-theme="dark" class="hs-dropdown-menu" role="menu"
                                             aria-orientation="vertical">
                                             <a class="dropdown-item" href="#">대시보드</a>
-                                            <a class="dropdown-item" href="#">내 주문</a>
-                                            <a class="dropdown-item" href="#">Billing 설정</a>
+                                            <a class="dropdown-item" href="#">내 작업</a>
+                                            <a class="dropdown-item" href="#">프로필 설정</a>
                                             <hr class="dropdown-divider" />
                                             <a class="dropdown-item" href="#">로그아웃</a>
                                         </div>

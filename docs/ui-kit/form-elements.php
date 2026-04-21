@@ -1145,15 +1145,15 @@
                                                 <!-- 16px Radios -->
                                                 <div class="flex items-center space-x-4">
                                                     <div class="flex items-center gap-2">
-                                                        <input type="radio" name="paymentMethod" id="radioCash"
-                                                            value="cash" class="form-radio rounded-full! size-5!"
+                                                        <input type="radio" name="deliveryMethod" id="radioEmail"
+                                                            value="email" class="form-radio rounded-full! size-5!"
                                                             checked />
-                                                        <label for="radioCash">현금</label>
+                                                        <label for="radioEmail">이메일</label>
                                                     </div>
                                                     <div class="flex items-center gap-2">
-                                                        <input type="radio" name="paymentMethod" id="radioCard"
-                                                            value="card" class="form-radio rounded-full! size-5!" />
-                                                        <label for="radioCard">카드</label>
+                                                        <input type="radio" name="deliveryMethod" id="radioSms"
+                                                            value="sms" class="form-radio rounded-full! size-5!" />
+                                                        <label for="radioSms">문자</label>
                                                     </div>
                                                 </div>
 

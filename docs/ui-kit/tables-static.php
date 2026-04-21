@@ -13,7 +13,7 @@
                                     <table class="table">
                                         <thead class="font-semibold text-xs">
                                             <tr>
-                                                <th>상품명</th>
+                                                <th>항목명</th>
                                                 <th>카테고리</th>
                                                 <th>가격</th>
                                                 <th>재고</th>
@@ -125,7 +125,7 @@
                                 <table class="table">
                                     <thead class="border-default-300 bg-default-100 border-b font-semibold text-xs">
                                         <tr>
-                                            <th>상품명</th>
+                                            <th>항목명</th>
                                             <th>카테고리</th>
                                             <th>가격</th>
                                             <th>재고</th>
@@ -339,7 +339,7 @@
                                     <table class="table">
                                         <thead class="border-default-300 bg-default-100 border-b font-semibold text-xs">
                                             <tr>
-                                                <th>상품명</th>
+                                                <th>항목명</th>
                                                 <th>카테고리</th>
                                                 <th>가격</th>
                                                 <th>재고</th>
@@ -557,7 +557,7 @@
                                     <table class="table">
                                         <thead class="font-semibold text-xs">
                                             <tr>
-                                                <th>상품명</th>
+                                                <th>항목명</th>
                                                 <th>카테고리</th>
                                                 <th>가격</th>
                                                 <th>재고</th>
@@ -698,7 +698,7 @@
                                     <table class="table">
                                         <thead class="font-semibold text-xs">
                                             <tr>
-                                                <th>상품명</th>
+                                                <th>항목명</th>
                                                 <td class="bg-default-100 p-2 text-start">카테고리</td>
                                                 <th>가격</th>
                                                 <td class="bg-default-100 p-2 text-start">재고</td>
@@ -839,7 +839,7 @@
                                     <table class="table table-hover">
                                         <thead class="font-semibold text-xs">
                                             <tr>
-                                                <th>상품명</th>
+                                                <th>항목명</th>
                                                 <th>카테고리</th>
                                                 <th>가격</th>
                                                 <th>재고</th>
@@ -980,7 +980,7 @@
                                     <table class="table">
                                         <thead class="font-semibold text-xs">
                                             <tr>
-                                                <th>상품명</th>
+                                                <th>항목명</th>
                                                 <th>카테고리</th>
                                                 <th>가격</th>
                                                 <th>재고</th>
@@ -1121,7 +1121,7 @@
                                     <table class="table">
                                         <thead class="border-default-300 border font-semibold text-xs">
                                             <tr class="divide-default-300 divide-x">
-                                                <th>상품명</th>
+                                                <th>항목명</th>
                                                 <th>카테고리</th>
                                                 <th>가격</th>
                                                 <th>재고</th>
@@ -1262,7 +1262,7 @@
                                     <table class="table">
                                         <thead class="font-semibold text-xs">
                                             <tr>
-                                                <th>상품명</th>
+                                                <th>항목명</th>
                                                 <th>카테고리</th>
                                                 <th>가격</th>
                                                 <th>재고</th>
@@ -1403,7 +1403,7 @@
                                     <table class="table">
                                         <thead class="font-semibold text-xs">
                                             <tr>
-                                                <th>상품명</th>
+                                                <th>항목명</th>
                                                 <th>카테고리</th>
                                                 <th>가격</th>
                                                 <th>재고</th>
@@ -1451,7 +1451,7 @@
                                     <table class="table">
                                         <thead class="border-default-600 border-b-2 font-semibold text-xs">
                                             <tr>
-                                                <th>상품명</th>
+                                                <th>항목명</th>
                                                 <th>카테고리</th>
                                                 <th>가격</th>
                                                 <th>재고</th>
@@ -1592,7 +1592,7 @@
                                     <table class="table">
                                         <thead class="font-semibold text-xs">
                                             <tr>
-                                                <th>상품명</th>
+                                                <th>항목명</th>
                                                 <th>카테고리</th>
                                                 <th>가격</th>
                                                 <th>재고</th>
@@ -1763,7 +1763,7 @@
                                     <table class="table">
                                         <thead class="bg-dark">
                                             <tr class="*:text-white!">
-                                                <th class="text-start">상품명</th>
+                                                <th class="text-start">항목명</th>
                                                 <th>카테고리</th>
                                                 <th>가격</th>
                                                 <th>재고</th>
@@ -1903,11 +1903,11 @@
                                 <div class="table-wrapper">
                                     <table class="w-full table table-hover">
                                         <caption class="text-default-400 caption-bottom py-3 text-start">
-                                            이커머스 상품 목록
+                                            운영 항목 목록
                                         </caption>
                                         <thead class="font-semibold text-xs">
                                             <tr>
-                                                <th>상품명</th>
+                                                <th>항목명</th>
                                                 <th>카테고리</th>
                                                 <th>가격</th>
                                                 <th>재고</th>
