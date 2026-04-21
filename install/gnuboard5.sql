@@ -157,9 +157,3 @@ CREATE TABLE IF NOT EXISTS `g5_uniqid` (
   `uq_ip` varchar(255) NOT NULL,
   PRIMARY KEY (`uq_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_new_win`
---

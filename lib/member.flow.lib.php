@@ -194,3 +194,101 @@ function append_member_agree_log($prefix, array $agree_items, $existing_log = ''
 
     return $entry . (string) $existing_log;
 }
+
+function member_build_create_agree_updates(array &$insert_fields, $mb_marketing_agree, $mb_mailling)
+{
+    $agree_items = array();
+
+    if ($mb_marketing_agree == 1) {
+        $insert_fields['mb_marketing_date'] = G5_TIME_YMDHIS;
+        $agree_items[] = '마케팅 목적의 개인정보 수집 및 이용(동의)';
+    }
+
+    if ($mb_mailling == 1) {
+        $insert_fields['mb_mailling_date'] = G5_TIME_YMDHIS;
+        $agree_items[] = '광고성 이메일 수신(동의)';
+    }
+
+    if (!empty($agree_items)) {
+        $insert_fields['mb_agree_log'] = build_member_agree_log_entry('회원가입', $agree_items);
+    }
+}
+
+function member_build_update_agree_updates(array &$update_fields, $mb_id, $mb_marketing_agree_default, $mb_marketing_agree, $mb_mailling_default, $mb_mailling)
+{
+    $agree_items = array();
+
+    if ($mb_marketing_agree_default !== $mb_marketing_agree) {
+        $update_fields['mb_marketing_date'] = G5_TIME_YMDHIS;
+        $agree_items[] = '마케팅 목적의 개인정보 수집 및 이용(' . ($mb_marketing_agree == 1 ? '동의' : '철회') . ')';
+    }
+
+    if ($mb_mailling_default !== $mb_mailling) {
+        $update_fields['mb_mailling_date'] = G5_TIME_YMDHIS;
+        $agree_items[] = '광고성 이메일 수신(' . ($mb_mailling == 1 ? '동의' : '철회') . ')';
+    }
+
+    if (!empty($agree_items)) {
+        $member_agree_row = get_member($mb_id, 'mb_agree_log');
+        $existing_agree_log = isset($member_agree_row['mb_agree_log']) ? $member_agree_row['mb_agree_log'] : '';
+        $update_fields['mb_agree_log'] = append_member_agree_log('회원 정보 수정', $agree_items, $existing_agree_log);
+    }
+}
+
+function member_insert_account_with_history($mb_id, array $insert_fields, $mb_name, $mb_hp, $cert_type, $md5_cert_no)
+{
+    $insert_parts = array();
+    foreach ($insert_fields as $field => $value) {
+        $insert_parts[] = $field . ' = :' . $field;
+    }
+
+    if (!sql_begin_transaction()) {
+        return false;
+    }
+
+    $sql = " insert into {$GLOBALS['g5']['member_table']} set " . implode(', ', $insert_parts);
+    if (!sql_query_prepared($sql, $insert_fields, false)) {
+        sql_rollback();
+        return false;
+    }
+
+    member_insert_cert_history_if_verified($mb_id, $mb_name, $mb_hp, $cert_type, $md5_cert_no);
+
+    if (!sql_commit()) {
+        sql_rollback();
+        return false;
+    }
+
+    return true;
+}
+
+function member_update_account_with_history($mb_id, array $update_fields, $mb_name, $mb_hp, $cert_type, $md5_cert_no)
+{
+    $update_parts = array();
+    foreach ($update_fields as $field => $value) {
+        $update_parts[] = $field . ' = :' . $field;
+    }
+
+    $update_fields['mb_id'] = $mb_id;
+    $sql = " update {$GLOBALS['g5']['member_table']}
+                set " . implode(",\n                    ", $update_parts) . "
+              where mb_id = :mb_id ";
+
+    if (!sql_begin_transaction()) {
+        return false;
+    }
+
+    if (!sql_query_prepared($sql, $update_fields, false)) {
+        sql_rollback();
+        return false;
+    }
+
+    member_insert_cert_history_if_verified($mb_id, $mb_name, $mb_hp, $cert_type, $md5_cert_no);
+
+    if (!sql_commit()) {
+        sql_rollback();
+        return false;
+    }
+
+    return true;
+}

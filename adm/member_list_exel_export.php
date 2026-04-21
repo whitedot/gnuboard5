@@ -76,8 +76,7 @@ function main_member_export($params)
             
             member_export_send_progress("progress", "", 2, $total, ($pages == $i ? $total : $i * MEMBER_EXPORT_PAGE_SIZE), $pages, $i);            
             try {
-                $data = member_export_get_data($params);
-                $fileList[] = member_export_create_excel($data, $fileName, $i);                
+                $fileList[] = member_export_create_excel($params, $fileName, $i);
             } catch (Exception $e) {
                 throw new Exception("총 {$pages}개 중 {$i}번째 파일을 생성하지 못했습니다<br>" . $e->getMessage());
             }
@@ -102,9 +101,8 @@ function main_member_export($params)
     } else {
         // 소용량 데이터 - 단일 파일
         member_export_send_progress("progress", "", 1, $total, 0);                
-        $data = member_export_get_data($params);
         member_export_send_progress("progress", "", 1, $total, $total/2);                
-        $fileList[] = member_export_create_excel($data, $fileName, 0);
+        $fileList[] = member_export_create_excel($params, $fileName, 0);
         member_export_send_progress("progress", "", 1, $total, $total);                
     }
     
@@ -184,9 +182,9 @@ function member_export_column_char($i)
 }
 
 /**
- * 회원 데이터 조회
+ * 회원 데이터 조회용 statement 생성
  */
-function member_export_get_data($params) 
+function member_export_open_statement($params, &$fields = array())
 {
     global $g5;
 
@@ -222,30 +220,43 @@ function member_export_get_data($params)
     $query_params['offset'] = (int) $offset;
     $query_params['page_size'] = (int) MEMBER_EXPORT_PAGE_SIZE;
 
-    $result = sql_query_prepared($sql, $query_params);
-    if (!$result) {
+    $statement = sql_statement_prepared($sql, $query_params, false);
+    if (!$statement) {
         throw new Exception("데이터 조회에 실패하였습니다");
     }
 
-    $excelData = [$config['title'], $config['headers']];
+    return $statement;
+}
 
-    while ($row = sql_fetch_array($result)) {
-        $rowData = [];
-        foreach ($fields as $field) {
-            $rowData[] = isset($row[$field]) ? $row[$field] : '';
+function member_export_write_sheet_rows(PHPExcel_Worksheet $sheet, $params, array $fields, $start_row = 3)
+{
+    $statement = member_export_open_statement($params, $fields);
+    $row_index = (int) $start_row;
+
+    try {
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $rowData = array();
+            foreach ($fields as $field) {
+                $rowData[] = isset($row[$field]) ? $row[$field] : '';
+            }
+
+            $sheet->fromArray(array($rowData), null, 'A' . $row_index);
+            $row_index++;
         }
-        $excelData[] = $rowData;
+    } finally {
+        $statement->closeCursor();
     }
 
-    return $excelData;
+    return $row_index - 1;
 }
 
 /**
  * 엑셀 파일 생성
  */
-function member_export_create_excel($data, $fileName, $index = 0) 
+function member_export_create_excel($params, $fileName, $index = 0)
 {
     $config = member_export_get_config();
+    $fields = array_unique($config['fields']);
     
     if (!class_exists('PHPExcel')) {
         error_log('[Member Export Error] PHPExcel 라이브러리를 찾을 수 없습니다.');
@@ -288,8 +299,9 @@ function member_export_create_excel($data, $fileName, $index = 0)
             $sheet->getColumnDimension(member_export_column_char($i))->setWidth($width);
         }
         
-        // 데이터 입력
-        $sheet->fromArray($data, NULL, 'A1');
+        // 제목/헤더 입력 후 결과를 순차적으로 시트에 기록한다.
+        $sheet->fromArray(array($config['title'], $config['headers']), NULL, 'A1');
+        member_export_write_sheet_rows($sheet, $params, $fields, 3);
 
         // 디렉토리 확인
         member_export_ensure_directory(MEMBER_EXPORT_DIR);

@@ -190,6 +190,22 @@ function sql_get_last_error()
     return $g5['pdo_last_error'];
 }
 
+function sql_store_affected_rows($affected_rows = 0)
+{
+    global $g5;
+
+    $g5['pdo_last_affected_rows'] = (int) $affected_rows;
+
+    return $g5['pdo_last_affected_rows'];
+}
+
+function sql_get_last_affected_rows()
+{
+    global $g5;
+
+    return isset($g5['pdo_last_affected_rows']) ? (int) $g5['pdo_last_affected_rows'] : 0;
+}
+
 function sql_collect_field_meta(PDOStatement $statement)
 {
     $fields = array();
@@ -373,7 +389,7 @@ function sql_quote_identifier($identifier)
     return implode('.', $quoted);
 }
 
-function sql_execute_query($sql, $params=array(), $error=G5_DISPLAY_SQL_ERROR, $link=null)
+function sql_execute_query($sql, $params=array(), $error=G5_DISPLAY_SQL_ERROR, $link=null, $return_statement=false)
 {
     global $g5, $g5_debug;
 
@@ -385,6 +401,7 @@ function sql_execute_query($sql, $params=array(), $error=G5_DISPLAY_SQL_ERROR, $
     $link = sql_get_connection($link);
 
     if (!$link) {
+        sql_store_affected_rows(0);
         if ($error) {
             die('DB 연결 정보가 올바르지 않습니다.');
         }
@@ -410,8 +427,11 @@ function sql_execute_query($sql, $params=array(), $error=G5_DISPLAY_SQL_ERROR, $
         sql_bind_prepared_params($statement, $params);
         $statement->execute();
         sql_store_error($link, $statement);
+        sql_store_affected_rows($statement->rowCount());
 
-        if ($statement->columnCount() > 0) {
+        if ($return_statement) {
+            $result = $statement;
+        } elseif ($statement->columnCount() > 0) {
             $fields = sql_collect_field_meta($statement);
             $result = new G5PdoResult($statement, $fields);
         } else {
@@ -419,6 +439,7 @@ function sql_execute_query($sql, $params=array(), $error=G5_DISPLAY_SQL_ERROR, $
         }
     } catch (Exception $e) {
         $result = false;
+        sql_store_affected_rows(0);
         $error_info = sql_store_error($link, $statement, $e);
 
         if ($error) {
@@ -493,6 +514,16 @@ function sql_query($sql, $error=G5_DISPLAY_SQL_ERROR, $link=null)
 function sql_query_prepared($sql, $params=array(), $error=G5_DISPLAY_SQL_ERROR, $link=null)
 {
     return sql_execute_query($sql, $params, $error, $link);
+}
+
+function sql_statement($sql, $error=G5_DISPLAY_SQL_ERROR, $link=null)
+{
+    return sql_execute_query($sql, array(), $error, $link, true);
+}
+
+function sql_statement_prepared($sql, $params=array(), $error=G5_DISPLAY_SQL_ERROR, $link=null)
+{
+    return sql_execute_query($sql, $params, $error, $link, true);
 }
 
 function sql_table_exists($table_name, $link=null)
@@ -670,7 +701,7 @@ function sql_affected_rows($statement_or_result)
         return $statement_or_result->getNumRows();
     }
 
-    return 0;
+    return sql_get_last_affected_rows();
 }
 
 function sql_num_rows($result)

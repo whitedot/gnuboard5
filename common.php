@@ -105,9 +105,8 @@ function g5_extract_request_globals()
 {
     // PHP 4.1.0 부터 지원됨
     // php.ini 의 register_globals=off 일 경우
-    @extract($_GET);
-    @extract($_POST);
-    @extract($_SERVER);
+    extract($_GET, EXTR_SKIP);
+    extract($_POST, EXTR_SKIP);
 }
 
 function g5_initialize_runtime_globals()
