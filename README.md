@@ -1,7 +1,5 @@
 # Member-Only Refactor
 
-> UI Guide: [docs/ui-kit/](docs/ui-kit/)
-
 ## 1. 프로젝트 개요
 이 프로젝트는 비개발자 출신 지운아빠가 개인적으로 진행하는 사이드 프로젝트입니다.
 

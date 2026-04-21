@@ -1,5 +1,4 @@
 @import "./common.css";
-@import "./ui-kit.css";
 @source "../adm/**/*.php";
 
 @layer components {
