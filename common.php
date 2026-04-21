@@ -164,6 +164,9 @@ function g5_include_core_libraries()
 {
     include_once(G5_LIB_PATH.'/common.lib.php');
     include_once(G5_LIB_PATH.'/member.render.lib.php');
+    include_once(G5_LIB_PATH.'/member.request.lib.php');
+    include_once(G5_LIB_PATH.'/member.validation.lib.php');
+    include_once(G5_LIB_PATH.'/member.persist.lib.php');
     include_once(G5_LIB_PATH.'/member.flow.lib.php');
     include_once(G5_LIB_PATH.'/member.page.lib.php');
 }
