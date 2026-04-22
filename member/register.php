@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include_once('./_common.php');
 
 member_validate_register_page_access($is_member);

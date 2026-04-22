@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include_once('./_common.php');
 
 $request = member_read_register_result_request($_SESSION);

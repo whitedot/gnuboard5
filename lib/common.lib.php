@@ -16,7 +16,7 @@ include_once(G5_LIB_PATH.'/common.mobile.lib.php');
 include_once(G5_LIB_PATH.'/support/sql.lib.php');
 include_once(G5_LIB_PATH.'/support/string.lib.php');
 include_once(G5_LIB_PATH.'/support/file.lib.php');
-include_once(G5_LIB_PATH.'/support/html.lib.php');
+include_once(G5_LIB_PATH.'/common.html.lib.php');
 
 // Certification/history functions - requires SQL
 include_once(G5_LIB_PATH.'/common.cert.lib.php');

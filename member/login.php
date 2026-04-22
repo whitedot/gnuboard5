@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include_once('./_common.php');
 
 $request = member_read_login_page_request($url);

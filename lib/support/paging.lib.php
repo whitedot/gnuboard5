@@ -6,6 +6,10 @@ if (!defined('_GNUBOARD_')) {
 // 한페이지에 보여줄 행, 현재페이지, 총페이지수, URL
 function get_paging($write_pages, $cur_page, $total_page, $url, $add = "")
 {
+    $write_pages = max(1, (int) $write_pages);
+    $cur_page = max(1, (int) $cur_page);
+    $total_page = max(0, (int) $total_page);
+
     //$url = preg_replace('#&amp;page=[0-9]*(&amp;page=)$#', '$1', $url);
     $url = preg_replace('#(&amp;)?page=[0-9]*#', '', $url);
     $url .= substr($url, -1) === '?' ? 'page=' : '&amp;page=';

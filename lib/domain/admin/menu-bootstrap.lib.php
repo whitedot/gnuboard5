@@ -31,8 +31,8 @@ function admin_bootstrap_load_menus()
 {
     global $menu;
 
-    unset($menu);
-    unset($amenu);
+    $menu = array();
+    $amenu = array();
 
     $menu_state = admin_bootstrap_collect_menu_files();
     foreach ($menu_state['menu_files'] as $file) {

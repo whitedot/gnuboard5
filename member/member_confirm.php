@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include_once('./_common.php');
 
 member_validate_confirm_access($is_guest);
