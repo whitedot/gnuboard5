@@ -167,14 +167,7 @@ function member_update_admin_account($mb_id, array $update_fields)
 
 function member_mark_leave($mb_id, $leave_date, $leave_memo)
 {
-    return sql_query_prepared(
-        " update {$GLOBALS['g5']['member_table']} set mb_leave_date = :mb_leave_date, mb_memo = :mb_memo, mb_certify = '', mb_adult = 0, mb_dupinfo = '' where mb_id = :mb_id ",
-        array(
-            'mb_leave_date' => $leave_date,
-            'mb_memo' => $leave_memo,
-            'mb_id' => $mb_id,
-        )
-    );
+    return member_anonymize_account($mb_id, $leave_date, '탈퇴');
 }
 
 function member_find_dupinfo_owner($member_mb_id, $mb_dupinfo)

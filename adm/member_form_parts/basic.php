@@ -9,7 +9,13 @@
                     <label for="mb_id" class="form-label">아이디<?php echo $sound_only ?></label>
                 </div>
                 <div class="af-field">
-                    <input type="text" name="mb_id" value="<?php echo $mb['mb_id'] ?>" id="mb_id" <?php echo $required_mb_id ?> class="<?php echo $required_mb_id_class ?> form-input" size="15" maxlength="20">
+                    <?php if (!empty($mask_preserved_id)) { ?>
+                        <input type="hidden" name="mb_id" value="<?php echo $mb['mb_id'] ?>">
+                        <input type="text" value="<?php echo $display_mb_id ?>" id="mb_id" readonly class="form-input" size="15" maxlength="20">
+                        <p class="hint-text">탈퇴 회원 아이디는 내부 식별용으로만 유지되고 화면에서는 일부 마스킹됩니다.</p>
+                    <?php } else { ?>
+                        <input type="text" name="mb_id" value="<?php echo $mb['mb_id'] ?>" id="mb_id" <?php echo $required_mb_id ?> class="<?php echo $required_mb_id_class ?> form-input" size="15" maxlength="20">
+                    <?php } ?>
                 </div>
             </div>
 

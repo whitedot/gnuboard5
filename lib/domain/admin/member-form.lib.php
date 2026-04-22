@@ -100,6 +100,8 @@ function admin_build_member_form_view(array $request, array $member, $is_admin, 
 
     return array(
         'mb' => $mb,
+        'display_mb_id' => member_get_display_id($mb),
+        'mask_preserved_id' => member_should_mask_preserved_id($mb),
         'sound_only' => $sound_only,
         'required_mb_id' => $required_mb_id,
         'required_mb_id_class' => $required_mb_id_class,
@@ -178,10 +180,6 @@ function admin_validate_member_delete_request(array $request, array $member)
 
 function admin_build_member_delete_redirect($url, $qstr, $mb_id)
 {
-    if ($url) {
-        return "{$url}?{$qstr}&amp;w=u&amp;mb_id={$mb_id}";
-    }
-
     return "./member_list.php?{$qstr}";
 }
 

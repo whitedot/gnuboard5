@@ -266,6 +266,7 @@ function admin_build_member_list_item(array $row, array $member, $is_admin, $qst
 
     return array(
         'mb_id' => $row['mb_id'],
+        'display_mb_id' => member_get_display_id($row),
         'mb_name' => get_text($row['mb_name']),
         'mb_nick' => get_sideview($row['mb_id'], get_text($row['mb_nick']), $row['mb_email']),
         'mb_email' => get_text($row['mb_email']),

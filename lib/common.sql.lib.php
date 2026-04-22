@@ -576,9 +576,10 @@ function sql_statement_prepared($sql, $params=array(), $error=G5_DISPLAY_SQL_ERR
 
 function sql_table_exists($table_name, $link=null)
 {
-    $result = sql_query_prepared('SHOW TABLES LIKE :table_name', array(
-        'table_name' => $table_name,
-    ), false, $link);
+    $link = sql_get_connection($link);
+    $escaped_table_name = sql_real_escape_string($table_name, $link);
+    $escaped_table_name = str_replace(array('\\', '_', '%'), array('\\\\', '\\_', '\\%'), $escaped_table_name);
+    $result = sql_query("SHOW TABLES LIKE '{$escaped_table_name}'", false, $link);
 
     return $result && sql_num_rows($result) > 0;
 }

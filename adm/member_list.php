@@ -60,7 +60,7 @@ require_once './admin.head.php';
     <span class="member-notice-icon" aria-hidden="true">i</span>
     <div class="member-notice-copy">
         <strong>회원 삭제 안내</strong>
-        <p>회원자료 삭제 시 다른 회원이 기존 회원아이디를 사용하지 못하도록 회원아이디, 이름, 닉네임은 삭제하지 않고 영구 보관합니다.</p>
+        <p>회원자료 삭제 시 로그인은 즉시 차단되며, 운영상 필요한 회원아이디와 상태 정보만 남기고 이름·닉네임·이메일·휴대폰·생년월일·IP·인증이력 등 식별 가능한 개인정보는 비식별 처리 또는 삭제됩니다.</p>
     </div>
 </div>
 
@@ -109,7 +109,7 @@ require_once './admin.head.php';
                                 <label for="chk_<?php echo $index; ?>" class="sr-only"><?php echo $item['mb_name']; ?> <?php echo strip_tags($item['mb_nick']); ?>님</label>
                                 <input type="checkbox" name="chk[]" value="<?php echo $index; ?>" id="chk_<?php echo $index; ?>">
                             </td>
-                            <td headers="mb_list_id" class="member-cell-fixed font-medium"><?php echo $item['mb_id']; ?></td>
+                            <td headers="mb_list_id" class="member-cell-fixed font-medium"><?php echo $item['display_mb_id']; ?></td>
                             <td headers="mb_list_name" class="member-cell-fixed"><?php echo $item['mb_name']; ?></td>
                             <td headers="mb_list_nick" class="member-cell-fixed"><?php echo $item['mb_nick']; ?></td>
                             <td headers="mb_list_email" class="member-cell-email"><?php echo $item['mb_email']; ?></td>

@@ -57,7 +57,7 @@ function member_build_leave_state(array $member)
 {
     return array(
         'leave_date' => date('Ymd'),
-        'leave_memo' => date('Ymd', G5_SERVER_TIME) . " 탈퇴함\n" . $member['mb_memo'],
+        'leave_memo' => member_build_deleted_account_memo('탈퇴'),
     );
 }
 
