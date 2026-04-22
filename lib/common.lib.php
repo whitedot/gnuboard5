@@ -12,14 +12,22 @@ if (!defined('_GNUBOARD_')) exit;
  *   - support/url.lib.php: URL/리다이렉트 관련 헬퍼
  *   - support/member.lib.php: 회원 삭제 및 회원 관련 유틸리티
  *   - support/security.lib.php: 입력/경로/콜백 보안 유틸리티
+ *   - support/sql.lib.php: 데이터베이스 헬퍼 로더
+ *   - support/string.lib.php: 문자열 처리 헬퍼 로더
+ *   - support/file.lib.php: 파일 처리 헬퍼 로더
+ *   - support/html.lib.php: HTML/UI 헬퍼 로더
+ *   - support/mail.lib.php: 메일 전송 헬퍼 로더
+ *   - support/paging.lib.php: 페이징 헬퍼 로더
+ *   - support/skin.lib.php: 스킨 asset 헬퍼 로더
+ *   - support/form.lib.php: 폼 select/date/time 헬퍼 로더
+ *   - support/html-process.lib.php: HTML 후처리 헬퍼 로더
  * - common.session.lib.php: 세션 및 쿠키 처리
  * - common.mobile.lib.php: 모바일 기기 감지
- * - common.sql.lib.php: 데이터베이스 관련 함수
  * - common.string.lib.php: 문자열 처리 및 변환
  * - common.crypto.lib.php: 암호화 및 비밀번호 처리
- * - common.file.lib.php: 파일 업로드 및 관리
  * - common.data.lib.php: 회원, 콘텐츠 등 주요 데이터 엔티티 접근
- * - common.html.lib.php: UI 요소 생성 및 HTML 헬퍼 (페이징, 알림 등)
+ * - common.html.lib.php: UI 요소 생성 및 HTML 헬퍼 (기존 호환 경로)
+ * - mailer.lib.php: 메일 전송 구현 (기존 호환 경로)
  */
 
 /**
@@ -38,8 +46,11 @@ include_once(G5_LIB_PATH.'/common.session.lib.php');
 // Mobile device detection
 include_once(G5_LIB_PATH.'/common.mobile.lib.php');
 
-// Database functions (SQL)
-include_once(G5_LIB_PATH.'/common.sql.lib.php');
+// Support-layer wrappers for shared utilities
+include_once(G5_LIB_PATH.'/support/sql.lib.php');
+include_once(G5_LIB_PATH.'/support/string.lib.php');
+include_once(G5_LIB_PATH.'/support/file.lib.php');
+include_once(G5_LIB_PATH.'/support/html.lib.php');
 
 // Certification/history functions - requires SQL
 include_once(G5_LIB_PATH.'/common.cert.lib.php');
@@ -50,17 +61,8 @@ include_once(G5_LIB_PATH.'/common.net.lib.php');
 // External module checks
 include_once(G5_LIB_PATH.'/common.module.lib.php');
 
-// String manipulation (text, cleaning, conversion)
-include_once(G5_LIB_PATH.'/common.string.lib.php');
-
 // Cryptography (password, encryption) - requires SQL
 include_once(G5_LIB_PATH.'/common.crypto.lib.php');
 
-// File handling (upload, download, view) - requires SQL
-include_once(G5_LIB_PATH.'/common.file.lib.php');
-
 // Data entities (Member, Content access) - requires SQL
 include_once(G5_LIB_PATH.'/common.data.lib.php');
-
-// HTML/UI functions (paging, alerts, selects) - requires Data/SQL
-include_once(G5_LIB_PATH.'/common.html.lib.php');

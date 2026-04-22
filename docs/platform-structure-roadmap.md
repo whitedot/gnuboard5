@@ -34,7 +34,10 @@ lib/
 │  ├─ security.lib.php
 │  ├─ file.lib.php
 │  ├─ mail.lib.php
-│  └─ paging.lib.php
+│  ├─ paging.lib.php
+│  ├─ skin.lib.php
+│  ├─ form.lib.php
+│  └─ html-process.lib.php
 ├─ domain/
 │  ├─ member/
 │  │  ├─ request.lib.php
@@ -72,7 +75,7 @@ lib/
 ### 2단계. support 레이어 정렬
 
 - `common.base.util.lib.php`, `common.url.lib.php`, `common.member.lib.php`, `common.security.lib.php`를 `lib/support/`로 재배치
-- `common.sql.lib.php`, `common.string.lib.php`, `common.html.lib.php`도 `support` 기준으로 설명과 로드 경로 정리
+- `common.sql.lib.php`, `common.string.lib.php`, `common.html.lib.php`, `mailer.lib.php`도 `support` 기준으로 설명과 로드 경로 정리
 
 완료 기준:
 
@@ -133,3 +136,5 @@ lib/
 - 기존 경로 래퍼 유지
 - `common.php`와 `adm/admin.lib.php` 로더 정렬
 - `common.util.lib.php`를 support 로더로 전환
+- `common.lib.php`에서 `sql/string/file/html`도 support 래퍼를 통해 로드
+- `mail`, `paging`, `alert/confirm`, `skin asset`, `form helper`, `html process` 계열도 support 함수 단위로 순차 분리

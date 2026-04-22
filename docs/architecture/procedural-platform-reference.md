@@ -35,7 +35,10 @@ lib/
 │  ├─ html.lib.php
 │  ├─ file.lib.php
 │  ├─ mail.lib.php
-│  └─ paging.lib.php
+│  ├─ paging.lib.php
+│  ├─ skin.lib.php
+│  ├─ form.lib.php
+│  └─ html-process.lib.php
 ├─ domain/
 │  ├─ member/
 │  │  ├─ request.lib.php
@@ -111,4 +114,5 @@ lib/
 - `domain/member`, `domain/admin` 도입 시작
 - 기존 경로는 호환 래퍼로 유지
 - support 레이어는 순차적으로 실제 경로로 이동 중
+- `sql`, `string`, `file`, `mail`은 support 경유 경로를 열었고, `html`, `paging`, `skin asset`, `form helper`, `html process`는 실제 함수 단위를 support로 분리함
 - `member` 도메인은 화면형, 완료형, AJAX형 controller 패턴의 기준 레퍼런스로 정리 중

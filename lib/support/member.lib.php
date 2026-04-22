@@ -64,3 +64,35 @@ function is_use_email_certify()
 
     return $config['cf_use_email_certify'];
 }
+
+// 회원 사이드뷰 UI 조각을 생성한다.
+function get_sideview($mb_id, $name, $email = '', $homepage = '')
+{
+    $mb_id = clean_xss_tags($mb_id);
+    $email = base64_encode($email);
+    $homepage = set_http(clean_xss_tags($homepage));
+
+    $name = clean_xss_tags($name);
+    if (!$mb_id) {
+        return $name;
+    }
+
+    $tmp_name = "<span class=\"sv_wrap hs-dropdown [--placement:bottom-left]\">";
+    $tmp_name .= "<button type=\"button\" class=\"sv_member hs-dropdown-toggle\" aria-haspopup=\"menu\" aria-expanded=\"false\">";
+    $tmp_name .= $name;
+    $tmp_name .= "<span class=\"sr-only\"> 메뉴 열기</span>";
+    $tmp_name .= "</button>";
+    $tmp_name .= "<div class=\"sv hs-dropdown-menu\" role=\"menu\" aria-orientation=\"vertical\">";
+
+    if ($homepage) {
+        $tmp_name .= "<a href=\"".$homepage."\" target=\"_blank\" rel=\"noopener\">홈페이지</a>";
+    }
+
+    if (is_admin($mb_id)) {
+        $tmp_name .= "<a href=\"".G5_ADMIN_URL."/member_form.php?w=u&mb_id=".$mb_id."\" target=\"_blank\" rel=\"noopener\">회원정보변경</a>";
+    }
+
+    $tmp_name .= "</div></span>";
+
+    return $tmp_name;
+}

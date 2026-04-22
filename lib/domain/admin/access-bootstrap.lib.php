@@ -46,7 +46,7 @@ function admin_bootstrap_verify_client(array $member)
     }
 
     session_destroy();
-    include_once G5_LIB_PATH . '/mailer.lib.php';
+    include_once G5_LIB_PATH . '/support/mail.lib.php';
 
     mailer(
         $member['mb_nick'],
