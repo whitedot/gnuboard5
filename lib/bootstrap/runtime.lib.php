@@ -6,7 +6,6 @@ if (!defined('_GNUBOARD_')) {
 function g5_extract_request_globals()
 {
     $allowed_keys = array(
-        'device',
         'gr_id',
         'page',
         'sca',
@@ -197,9 +196,6 @@ function g5_normalize_cert_vendor_config()
 {
     global $config;
 
-    if (isset($config['cf_cert_ipin']) && $config['cf_cert_ipin'] === 'kcb') {
-        $config['cf_cert_ipin'] = '';
-    }
     if (isset($config['cf_cert_hp']) && $config['cf_cert_hp'] === 'kcb') {
         $config['cf_cert_hp'] = '';
     }
@@ -213,11 +209,7 @@ function g5_resolve_mobile_state()
     $is_mobile = false;
 
     if (G5_USE_MOBILE) {
-        if (isset($_REQUEST['device']) && $_REQUEST['device'] === 'pc') {
-            $is_mobile = false;
-        } elseif (isset($_REQUEST['device']) && $_REQUEST['device'] === 'mobile') {
-            $is_mobile = true;
-        } elseif (isset($_SESSION['ss_is_mobile'])) {
+        if (isset($_SESSION['ss_is_mobile'])) {
             $is_mobile = (bool) $_SESSION['ss_is_mobile'];
         } elseif (is_mobile()) {
             $is_mobile = true;

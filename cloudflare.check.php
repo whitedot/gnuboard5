@@ -1,5 +1,4 @@
 <?php
-// CloudFlare를 사용시, 사용자 환경에 맞는 $_SERVER['REMOTE_ADDR']과 $_SERVER['HTTPS'] 사용 여부를 수정합니다.
 class G5CloudflareRequestHandler {
     public static function check_cloudflare_ips($user_ip){
         

@@ -12,10 +12,6 @@ function member_certify_hash_matches($cert_type, $mb_name, $mb_hp, $md5_cert_no)
     $cert_birth = get_session('ss_cert_birth');
     $cert_hash = get_session('ss_cert_hash');
 
-    if ($cert_type === 'ipin') {
-        return $cert_hash === md5($mb_name . $cert_type . $cert_birth . $md5_cert_no);
-    }
-
     return $cert_hash === md5($mb_name . $cert_type . $cert_birth . $mb_hp . $md5_cert_no);
 }
 

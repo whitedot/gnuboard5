@@ -14,10 +14,6 @@ if( version_compare( PHP_VERSION, '5.2.17' , '<' ) ){
     die(sprintf('PHP 5.2.17 or higher required. Your PHP version is %s', PHP_VERSION));
 }
 
-//==========================================================================================================================
-// extract($_GET); 명령으로 인해 page.php?_POST[var1]=data1&_POST[var2]=data2 와 같은 코드가 _POST 변수로 사용되는 것을 막음
-// 081029 : letsgolee 님께서 도움 주셨습니다.
-//--------------------------------------------------------------------------------------------------------------------------
 $ext_arr = array ('PHP_SELF', '_ENV', '_GET', '_POST', '_FILES', '_SERVER', '_COOKIE', '_SESSION', '_REQUEST',
                   'HTTP_ENV_VARS', 'HTTP_GET_VARS', 'HTTP_POST_VARS', 'HTTP_POST_FILES', 'HTTP_SERVER_VARS',
                   'HTTP_COOKIE_VARS', 'HTTP_SESSION_VARS', 'GLOBALS');
@@ -27,8 +23,6 @@ for ($i=0; $i<$ext_cnt; $i++) {
     if (isset($_GET[$ext_arr[$i]]))  unset($_GET[$ext_arr[$i]]);
     if (isset($_POST[$ext_arr[$i]])) unset($_POST[$ext_arr[$i]]);
 }
-//==========================================================================================================================
-
 // Cloudflare 사용시 REMOTE_ADDR 에 사용자 IP 적용과 https 사용 여부
 if (isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
     include_once('cloudflare.check.php');    // cloudflare 의 ip 대역인지 체크
@@ -72,10 +66,6 @@ if (!isset($_SERVER['SERVER_ADDR'])) {
 }
 
 
-//==============================================================================
-// SQL Injection 등으로 부터 보호를 위해 sql_escape_string() 적용
-//------------------------------------------------------------------------------
-// magic_quotes_gpc 에 의한 backslashes 제거
 if (7.0 > (float)phpversion()) {
     if (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc()) {
         $_POST    = array_map_deep('stripslashes',  $_POST);
@@ -85,52 +75,28 @@ if (7.0 > (float)phpversion()) {
     }
 }
 
-// sql_escape_string 적용
 $_POST    = array_map_deep(G5_ESCAPE_FUNCTION,  $_POST);
 $_GET     = array_map_deep(G5_ESCAPE_FUNCTION,  $_GET);
 $_COOKIE  = array_map_deep(G5_ESCAPE_FUNCTION,  $_COOKIE);
 $_REQUEST = array_map_deep(G5_ESCAPE_FUNCTION,  $_REQUEST);
-//==============================================================================
 
 
 g5_extract_request_globals();
-
-
-// 완두콩님이 알려주신 보안관련 오류 수정
-// $member 에 값을 직접 넘길 수 있음
 
 g5_initialize_runtime_globals();
 g5_include_bootstrap_libraries();
 
 $g5_object = new G5_object_cache();
 
-//==============================================================================
-// 공통
-//------------------------------------------------------------------------------
 g5_bootstrap_database();
-//==============================================================================
-
-
-//==============================================================================
-// SESSION 설정
-//------------------------------------------------------------------------------
 g5_configure_session_environment();
 
-// 세션파일 저장 디렉토리를 지정할 경우
-// session_save_path(G5_SESSION_PATH);
 g5_apply_chrome_session_name_workaround();
 
 g5_handle_special_post_session_recovery();
-
-//==============================================================================
-// 공용 변수
-//------------------------------------------------------------------------------
-// 기본환경설정
-// 기본적으로 사용하는 필드만 얻은 후 상황에 따라 필드를 추가로 얻음
 $config = get_config(true);
 
 g5_start_session_with_samesite_support();
-//==============================================================================
 
 define('G5_HTTP_MEMBER_URL',  https_url(G5_MEMBER_DIR, false));
 define('G5_HTTPS_MEMBER_URL', https_url(G5_MEMBER_DIR, true));
@@ -138,9 +104,6 @@ define('G5_HTTPS_MEMBER_URL', https_url(G5_MEMBER_DIR, true));
 define('G5_CAPTCHA_DIR',    !empty($config['cf_captcha']) ? $config['cf_captcha'] : 'kcaptcha');
 define('G5_CAPTCHA_URL',    G5_PLUGIN_URL.'/'.G5_CAPTCHA_DIR);
 define('G5_CAPTCHA_PATH',   G5_PLUGIN_PATH.'/'.G5_CAPTCHA_DIR);
-
-// 4.00.03 : [보안관련] PHPSESSID 가 틀리면 로그아웃한다. php5.2 버전 이하에서만 해당되는 코드이며, 오히려 무한리다이렉트 오류가 일어날수 있으므로 주석처리합니다.
-// if( method_exists('XenoPostToForm', 'php52_request_check') ) XenoPostToForm::php52_request_check();
 
 $request_state = g5_build_query_state();
 $qstr = $request_state['qstr'];
@@ -180,20 +143,10 @@ g5_apply_theme_constants();
 
 g5_normalize_cert_vendor_config();
 
-//==============================================================================
-// Mobile 모바일 설정
-// 회원 전용 앱 셸에서는 device 파라미터 또는 세션값으로 기기 모드를 강제할 수 있습니다.
-//------------------------------------------------------------------------------
+// 현재 기기 모드는 세션값 또는 user agent 판별을 기준으로 유지합니다.
 $is_mobile = g5_resolve_mobile_state();
 define('G5_IS_MOBILE', $is_mobile);
-//==============================================================================
-
-
-//==============================================================================
-// 스킨경로
-//------------------------------------------------------------------------------
-    $member_skin_path = G5_SKIN_PATH.'/member/basic';
-//==============================================================================
+$member_skin_path = G5_SKIN_PATH.'/member/basic';
 
 if (!defined('KGINICIS_USE_CERT_SEED')) {
     define('KGINICIS_USE_CERT_SEED', isset($config['cf_cert_use_seed']) ? (int) $config['cf_cert_use_seed'] : 1);
@@ -207,8 +160,6 @@ if($is_member && !$is_admin && (!defined("G5_CERT_IN_PROG") || !G5_CERT_IN_PROG)
 
 ob_start();
 
-// 자바스크립트에서 go(-1) 함수를 쓰면 폼값이 사라질때 해당 폼의 상단에 사용하면
-// 캐쉬의 내용을 가져옴. 완전한지는 검증되지 않음
 header('Content-Type: text/html; charset=utf-8');
 $gmnow = gmdate('D, d M Y H:i:s') . ' GMT';
 header('Expires: 0'); // rfc2616 - Section 14.21

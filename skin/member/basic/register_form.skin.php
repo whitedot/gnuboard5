@@ -4,14 +4,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 
 add_javascript('<script src="'.G5_JS_URL.'/register_form.js"></script>', 0);
-if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipin'] || $config['cf_cert_hp']))
+if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_hp']))
     add_javascript('<script src="'.G5_JS_URL.'/certify.js?v='.G5_JS_VER.'"></script>', 0);
 ?>
-
-<!-- 회원정보 입력/수정 시작 { -->
-
-
-	<form id="fregisterform" name="fregisterform" action="<?php echo $register_action_url ?>" onsubmit="return fregisterform_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off">
+		<form id="fregisterform" name="fregisterform" action="<?php echo $register_action_url ?>" onsubmit="return fregisterform_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off">
 	<input type="hidden" name="w" value="<?php echo $w ?>">
 	<input type="hidden" name="url" value="<?php echo $urlencode ?>">
 	<input type="hidden" name="agree" value="<?php echo $agree ?>">
@@ -73,24 +69,22 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
                         echo '<span>(필수)</span>';
 	                    echo '<noscript>본인확인을 위해서는 자바스크립트 사용이 가능해야합니다.</noscript>'.PHP_EOL;
 	                ?>
-	                <?php
-	                if ($member['mb_certify']) {
-						switch ($member['mb_certify']) {
-							case "simple": 
-								$mb_cert = "간편인증";
-								break;
-							case "ipin": 
-								$mb_cert = "아이핀";
-								break;
-							case "hp": 
-								$mb_cert = "휴대폰";
-								break;
-						}                 
-	                ?>
-	                <div id="msg_certify">
-	                    <strong><?php echo $mb_cert; ?> 본인확인</strong><?php if ($member['mb_adult']) { ?> 및 <strong>성인인증</strong><?php } ?> 완료
-	                </div>
-					<?php } ?>
+		                <?php
+		                if ($member['mb_certify']) {
+							$mb_cert = '';
+							switch ($member['mb_certify']) {
+								case "simple":
+									$mb_cert = "간편인증";
+									break;
+								case "hp":
+									$mb_cert = "휴대폰";
+									break;
+							}
+		                ?>
+		                <div id="msg_certify">
+		                    <strong><?php echo $mb_cert ? $mb_cert . ' 본인확인' : '본인확인'; ?></strong><?php if ($member['mb_adult']) { ?> 및 <strong>성인인증</strong><?php } ?> 완료
+		                </div>
+						<?php } ?>
 				</li>
 				<?php } ?>
 	            <li>
@@ -339,14 +333,6 @@ function fregisterform_submit(f)
             return false;
         }
 
-        /*
-        var pattern = /([^가-힣\x20])/i;
-        if (pattern.test(f.mb_name.value)) {
-            alert("이름은 한글로 입력하십시오.");
-            f.mb_name.select();
-            return false;
-        }
-        */
     }
 
     <?php if($w == '' && $config['cf_cert_use'] && $config['cf_cert_req']) { ?>
@@ -456,5 +442,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 </script>
-
-<!-- } 회원정보 입력/수정 끝 -->

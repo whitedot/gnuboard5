@@ -489,7 +489,6 @@ function member_export_write_log($params, $result = [])
         if (in_array($params['ad_range_type'], ["month_confirm", "custom_period"])){
             $channels = array_filter([
                 !empty($params['ad_mailling']) && (int)$params['ad_mailling'] === 1 ? '이메일' : null,
-                !empty($params['ad_sms']) && (int)$params['ad_sms'] === 1 ? 'SMS/카카오톡' : null,
             ]);
         
             if ($channels) {

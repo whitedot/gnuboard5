@@ -5,7 +5,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 ?>
 
-<!-- 회원가입결과 시작 { -->
 <div id="reg_result">
     <p>
     	<i aria-hidden="true"></i><br>
@@ -38,6 +37,5 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         감사합니다.
     </p>
 </div>
-<!-- } 회원가입결과 끝 -->
-
-	<a href="<?php echo G5_URL ?>/">메인으로</a>
+	
+		<a href="<?php echo G5_URL ?>/">메인으로</a>

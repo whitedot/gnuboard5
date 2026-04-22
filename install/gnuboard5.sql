@@ -49,7 +49,6 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_captcha_mp3` varchar(255) NOT NULL DEFAULT '',
   `cf_cert_use` tinyint(4) NOT NULL DEFAULT '0',
   `cf_cert_find` tinyint(4) NOT NULL DEFAULT '0',
-  `cf_cert_ipin` varchar(255) NOT NULL DEFAULT '',
   `cf_cert_hp` varchar(255) NOT NULL DEFAULT '',
   `cf_cert_simple` varchar(255) NOT NULL DEFAULT '',
   `cf_cert_kg_cd` varchar(255) NOT NULL DEFAULT '',

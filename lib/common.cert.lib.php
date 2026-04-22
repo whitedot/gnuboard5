@@ -119,9 +119,6 @@ function certify_count_check($mb_id, $type)
         case 'hp':
             $cert = '휴대폰';
             break;
-        case 'ipin':
-            $cert = '아이핀';
-            break;
         default:
             $cert = '';
             break;

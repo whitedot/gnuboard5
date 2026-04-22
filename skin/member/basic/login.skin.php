@@ -5,7 +5,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 ?>
 
-<!-- 로그인 시작 { -->
 <div id="mb_login">
     <div>
         <h1><?php echo $g5['title'] ?></h1>
@@ -68,4 +67,3 @@ function flogin_submit(f)
     return !loginSubmitEvent.defaultPrevented;
 }
 </script>
-<!-- } 로그인 끝 -->

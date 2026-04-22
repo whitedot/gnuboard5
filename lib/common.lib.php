@@ -1,41 +1,7 @@
 <?php
 if (!defined('_GNUBOARD_')) exit;
 
-/**
- * @ai-context
- * 이 파일은 그누보드5의 핵심 공통 함수들을 모듈화하여 로드하는 중앙 허브 역할을 합니다.
- * 기존의 거대한 Monolithic 구조였던 common.lib.php를 기능별로 분리된 라이브러리 파일들로 나누어 포함하고 있습니다.
- *
- * 주요 포함 모듈 및 역할:
- * - common.util.lib.php: support 유틸리티 모듈 로더
- *   - support/base.util.lib.php: 기본 헬퍼와 범용 유틸리티
- *   - support/url.lib.php: URL/리다이렉트 관련 헬퍼
- *   - support/member.lib.php: 회원 삭제 및 회원 관련 유틸리티
- *   - support/security.lib.php: 입력/경로/콜백 보안 유틸리티
- *   - support/sql.lib.php: 데이터베이스 헬퍼 로더
- *   - support/string.lib.php: 문자열 처리 헬퍼 로더
- *   - support/file.lib.php: 파일 처리 헬퍼 로더
- *   - support/html.lib.php: HTML/UI 헬퍼 로더
- *   - support/mail.lib.php: 메일 전송 헬퍼 로더
- *   - support/paging.lib.php: 페이징 헬퍼 로더
- *   - support/skin.lib.php: 스킨 asset 헬퍼 로더
- *   - support/form.lib.php: 폼 select/date/time 헬퍼 로더
- *   - support/html-process.lib.php: HTML 후처리 헬퍼 로더
- * - common.session.lib.php: 세션 및 쿠키 처리
- * - common.mobile.lib.php: 모바일 기기 감지
- * - common.string.lib.php: 문자열 처리 및 변환
- * - common.crypto.lib.php: 암호화 및 비밀번호 처리
- * - common.data.lib.php: 회원, 콘텐츠 등 주요 데이터 엔티티 접근
- * - common.html.lib.php: UI 요소 생성 및 HTML 헬퍼 (기존 호환 경로)
- * - mailer.lib.php: 메일 전송 구현 (기존 호환 경로)
- */
-
-/**
- * Common Library Modules
- * 
- * The functions previously contained in this file have been moved to separate module files
- * in the lib/ directory for better maintainability and organization.
- */
+// 공용 라이브러리 로더
 
 // Utility functions (basic helpers, microtime, etc)
 include_once(G5_LIB_PATH.'/common.util.lib.php');
@@ -43,7 +9,7 @@ include_once(G5_LIB_PATH.'/common.util.lib.php');
 // Session and Cookie handling
 include_once(G5_LIB_PATH.'/common.session.lib.php');
 
-// Mobile device detection
+// Mobile detection
 include_once(G5_LIB_PATH.'/common.mobile.lib.php');
 
 // Support-layer wrappers for shared utilities

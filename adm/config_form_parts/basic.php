@@ -1,12 +1,12 @@
 <section id="anc_cf_basic" class="card">
     <div class="card-header">
-        <h2 class="card-title">홈페이지 기본환경 설정</h2>
+        <h2 class="card-title">기본환경 설정</h2>
     </div>
     <div class="card-body">
         <div class="af-grid">
             <div class="af-row">
                 <div class="af-label">
-                    <label for="cf_title" class="form-label">홈페이지 제목<strong class="caption-sr-only">필수</strong></label>
+                    <label for="cf_title" class="form-label">서비스 제목<strong class="caption-sr-only">필수</strong></label>
                 </div>
                 <div class="af-field">
                     <input type="text" name="cf_title" value="<?php echo get_sanitize_input($config['cf_title']); ?>" id="cf_title" required size="40" class="form-input">

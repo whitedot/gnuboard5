@@ -2,10 +2,8 @@
 if (!defined('_GNUBOARD_')) exit;
 
 // 파일의 용량을 구한다.
-//function get_filesize($file)
 function get_filesize($size)
 {
-    //$size = @filesize(addslashes($file));
     if ($size >= 1048576) {
         $size = number_format($size/1048576, 1) . "M";
     } else if ($size >= 1024) {
@@ -101,4 +99,3 @@ function delete_editor_thumbnail($contents)
 
     run_event('delete_editor_thumbnail_after', $contents, $matchs);
 }
-

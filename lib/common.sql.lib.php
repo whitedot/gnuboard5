@@ -861,7 +861,6 @@ function sql_in_transaction($link=null)
     return $link ? $link->inTransaction() : false;
 }
 
-// PHPMyAdmin 참고
 function get_table_define($table, $crlf="\n")
 {
     $quoted_table = sql_quote_identifier($table);

@@ -5,7 +5,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 ?>
 
-<!-- 비밀번호 재설정 시작 { -->
 <div id="pw_reset">
     
         <form name="fpasswordreset" action="<?php echo $action_url; ?>" onsubmit="return fpasswordreset_submit(this);" method="post" autocomplete="off">
@@ -39,4 +38,3 @@ function fpasswordreset_submit(f) {
     }
 }
 </script>
-<!-- } 비밀번호 재설정 끝 -->

@@ -4,11 +4,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 
 
-if($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipin'] || $config['cf_cert_hp'])) { ?>
+if($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_hp'])) { ?>
     <script src="<?php echo G5_JS_URL ?>/certify.js?v=<?php echo G5_JS_VER; ?>"></script>    
 <?php } ?>
-
-<!-- 회원정보 찾기 시작 { -->
 <div id="find_info" class="<?php if($config['cf_cert_use'] != 0 && $config['cf_cert_find'] != 0) { ?> <?php } ?>">
     
         <form name="fpasswordlost" action="<?php echo $action_url ?>" onsubmit="return fpasswordlost_submit(this);" method="post" autocomplete="off">
@@ -90,4 +88,3 @@ function fpasswordlost_submit(f)
     return true;
 }
 </script>
-<!-- } 회원정보 찾기 끝 -->

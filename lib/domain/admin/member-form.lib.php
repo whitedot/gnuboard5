@@ -80,10 +80,6 @@ function admin_build_member_form_view(array $request, array $member, $is_admin, 
             $mb_certify_case = '휴대폰';
             $mb_certify_val = 'hp';
             break;
-        case 'ipin':
-            $mb_certify_case = '아이핀';
-            $mb_certify_val = 'ipin';
-            break;
         case 'admin':
             $mb_certify_case = '관리자 수정';
             $mb_certify_val = 'admin';

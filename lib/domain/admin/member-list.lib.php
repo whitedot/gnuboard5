@@ -267,7 +267,7 @@ function admin_build_member_list_item(array $row, array $member, $is_admin, $qst
     return array(
         'mb_id' => $row['mb_id'],
         'mb_name' => get_text($row['mb_name']),
-        'mb_nick' => get_sideview($row['mb_id'], get_text($row['mb_nick']), $row['mb_email'], ''),
+        'mb_nick' => get_sideview($row['mb_id'], get_text($row['mb_nick']), $row['mb_email']),
         'mb_email' => get_text($row['mb_email']),
         'mb_level' => (int) $row['mb_level'],
         'status_label' => $status_label,
@@ -381,7 +381,7 @@ function admin_build_dashboard_view(array $request, array $member, $is_admin, ar
         $view['items'][] = array(
             'mb_id' => $row['mb_id'],
             'mb_name' => get_text($row['mb_name']),
-            'mb_nick' => get_sideview($row['mb_id'], get_text($row['mb_nick']), $row['mb_email'], ''),
+            'mb_nick' => get_sideview($row['mb_id'], get_text($row['mb_nick']), $row['mb_email']),
             'mb_level' => $row['mb_level'],
             'mb_mailling' => $row['mb_mailling'] ? '예' : '아니오',
             'mb_open' => $row['mb_open'] ? '예' : '아니오',

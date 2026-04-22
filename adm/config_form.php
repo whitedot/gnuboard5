@@ -6,7 +6,6 @@ auth_check_menu($auth, $sub_menu, 'r');
 
 admin_require_super_admin($is_admin);
 
-// https://github.com/gnuboard/gnuboard5/issues/296 대응
 $config = admin_read_config_row();
 $config_form_view = admin_build_config_form_page_view();
 extract($config_form_view, EXTR_SKIP);

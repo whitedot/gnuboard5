@@ -47,7 +47,7 @@ function get_export_config($type = null)
 /**
  * 파라미터 수집 및 유효성 검사
  */
-function get_member_export_params(array $query = null) 
+function get_member_export_params(?array $query = null) 
 {
     if ($query === null) {
         $query = $_GET;
@@ -79,7 +79,6 @@ function get_member_export_params(array $query = null)
         'ad_range_only'     => isset($query['ad_range_only']) ? $query['ad_range_only'] : 0,
         'ad_range_type'     => clean_xss_tags(isset($query['ad_range_type']) ? $query['ad_range_type'] : 'all'),
         'ad_mailling'       => isset($query['ad_mailling']) ? $query['ad_mailling'] : 0,
-        'ad_sms'            => isset($query['ad_sms']) ? $query['ad_sms'] : 0,
         'agree_date_start'  => clean_xss_tags(isset($query['agree_date_start']) ? $query['agree_date_start'] : ''),
         'agree_date_end'    => clean_xss_tags(isset($query['agree_date_end']) ? $query['agree_date_end'] : ''),
         'use_intercept'     => isset($query['use_intercept']) ? $query['use_intercept'] : 0,

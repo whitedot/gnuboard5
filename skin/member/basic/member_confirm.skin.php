@@ -5,7 +5,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 ?>
 
-<!-- 회원 비밀번호 확인 시작 { -->
 <div id="mb_confirm">
     <h1><?php echo $g5['title'] ?></h1>
 
@@ -42,4 +41,3 @@ function fmemberconfirm_submit(f)
     return true;
 }
 </script>
-<!-- } 회원 비밀번호 확인 끝 -->

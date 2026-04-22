@@ -88,7 +88,6 @@ unset($sql_mode);
 <?php
 $is_install = sql_table_exists($table_prefix . 'config', $dblink);
 
-// 그누보드5 재설치에 체크하였거나 그누보드5가 설치되어 있지 않다면
 if ($g5_install || $is_install === false) {
     // 테이블 생성 ------------------------------------
     $file = implode('', file('./gnuboard5.sql'));
@@ -143,8 +142,8 @@ if ($g5_install || $is_install === false) {
                     cf_movie_extension = 'asx|asf|wmv|wma|mpg|mpeg|mov|avi|mp3',
                     cf_page_rows = '15',
                     cf_cert_limit = '2',
-                    cf_stipulation = '해당 홈페이지에 맞는 회원가입약관을 입력합니다.',
-                    cf_privacy = '해당 홈페이지에 맞는 개인정보처리방침을 입력합니다.'
+                    cf_stipulation = '현재 서비스에 맞는 회원가입약관을 입력합니다.',
+                    cf_privacy = '현재 서비스에 맞는 개인정보처리방침을 입력합니다.'
                     ";
     sql_query_prepared($sql, array(
         'cf_title' => G5_VERSION,

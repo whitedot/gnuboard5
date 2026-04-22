@@ -23,8 +23,8 @@
                                 case 'hp':
                                     $cert_type = '휴대폰';
                                     break;
-                                case 'ipin':
-                                    $cert_type = '아이핀';
+                                default:
+                                    $cert_type = '기타';
                                     break;
                             }
                     ?>

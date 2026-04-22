@@ -146,7 +146,6 @@ function get_checked($field, $value)
     return ($field === $value) ? ' checked="checked"' : '';
 }
 
-// 기존의 get_unique_id() 함수를 사용하지 않고 get_uniqid() 를 사용한다.
 function get_uniqid()
 {
     global $g5;

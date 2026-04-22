@@ -6,11 +6,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         </div>
     </div>
 </div>
-<!-- } 콘텐츠 끝 -->
 
 <hr>
 
-<!-- 하단 시작 { -->
 <div id="ft">
     <div id="ft_copy">Copyright &copy; <b><?php echo get_text($config['cf_title']); ?></b> All rights reserved.</div>
 
@@ -34,7 +32,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     });
     </script>
 </div>
-<!-- } 하단 끝 -->
 
 <?php
 include_once(G5_PATH.'/tail.sub.php');

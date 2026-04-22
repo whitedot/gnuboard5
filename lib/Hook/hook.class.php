@@ -81,19 +81,6 @@ class Hook
      *
      * @return object → instance
      */
-    // 이부분 수정
-    /*
-    public static function getInstance($id = '0')
-    {
-        self::$id = $id;
-        if (isset(self::$instances[self::$id])) {
-            return self::$instances[self::$id];
-        }
-
-        return self::$instances[self::$id] = new self;
-    }
-    */
-
     public static function getInstance($id = '0')
     {
         self::$id = $id;
@@ -179,8 +166,6 @@ class Hook
 
         $that->actions[$tag]++;
         $actions = $that->getActions($tag, $remove);
-        //asort($actions);
-        // 이 부분 수정 priority 로 정렬 하려면 ksort를 써야함
         ksort($actions);
 
         foreach ($actions as $priority) {

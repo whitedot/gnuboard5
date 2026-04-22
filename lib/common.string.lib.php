@@ -1,7 +1,5 @@
 <?php
 if (!defined('_GNUBOARD_')) exit;
-
-// way.co.kr 의 wayboard 참고
 function url_auto_link($str)
 {
     global $g5;
@@ -12,13 +10,9 @@ function url_auto_link($str)
     
     $ori_str = $str;
     
-    // 140326 유창화님 제안코드로 수정
-    // http://sir.kr/pg_lecture/461
-    // http://sir.kr/pg_lecture/463
     $attr_nofollow = (function_exists('check_html_link_nofollow') && check_html_link_nofollow('url_auto_link')) ? ' rel="nofollow"' : '';
     $link_target = '_blank';
     $str = str_replace(array("&lt;", "&gt;", "&amp;", "&quot;", "&nbsp;", "&#039;"), array("\t_lt_\t", "\t_gt_\t", "&", "\"", "\t_nbsp_\t", "'"), $str);
-    //$str = preg_replace("`(?:(?:(?:href|src)\s*=\s*(?:\"|'|)){0})((http|https|ftp|telnet|news|mms)://[^\"'\s()]+)`", "<A HREF=\"\\1\" TARGET='{$link_target}'>\\1</A>", $str);
     $str = preg_replace("/([^(href=\"?'?)|(src=\"?'?)]|\(|^)((http|https|ftp|telnet|news|mms):\/\/[a-zA-Z0-9\.-]+\.[가-힣\xA1-\xFEa-zA-Z0-9\.:&#!=_\?\/~\+%@;\-\|\,\(\)]+)/i", "\\1<A HREF=\"\\2\" TARGET=\"{$link_target}\" $attr_nofollow>\\2</A>", $str);
     $str = preg_replace("/(^|[\"'\s(])(www\.[^\"'\s()]+)/i", "\\1<A HREF=\"http://\\2\" TARGET=\"{$link_target}\" $attr_nofollow>\\2</A>", $str);
     $str = preg_replace("/[0-9a-z_-]+@[a-z0-9._-]{4,}/i", "<a href=\"mailto:\\0\" $attr_nofollow>\\0</a>", $str);
@@ -70,7 +64,6 @@ function conv_content($content, $html, $filter=true)
         $content = html_symbol($content);
 
         // 공백 처리
-		//$content = preg_replace("/  /", "&nbsp; ", $content);
 		$content = str_replace("  ", "&nbsp; ", $content);
 		$content = str_replace("\n ", "\n&nbsp;", $content);
 
@@ -216,8 +209,6 @@ function bad_tag_convert($code)
     global $member, $is_admin;
 
     if ($is_admin && $member['mb_id'] !== $view['mb_id']) {
-        //$code = preg_replace_callback("#(\<(embed|object)[^\>]*)\>(\<\/(embed|object)\>)?#i",
-        // embed 또는 object 태그를 막지 않는 경우 필터링이 되도록 수정
         $code = preg_replace_callback("#(\<(embed|object)[^\>]*)\>?(\<\/(embed|object)\>)?#i", '_callback_bad_tag_convert', $code);
     }
 
@@ -271,8 +262,6 @@ function is_utf8($str)
     return true;
 }
 
-// UTF-8 문자열 자르기
-// 출처 : https://www.google.co.kr/search?q=utf8_strcut&aq=f&oq=utf8_strcut&aqs=chrome.0.57j0l3.826j0&sourceid=chrome&ie=UTF-8
 function utf8_strcut( $str, $size, $suffix='...' )
 {
     if( function_exists('mb_strlen') && function_exists('mb_substr') ){

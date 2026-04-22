@@ -6,7 +6,6 @@ run_event('pre_head');
 include_once(G5_PATH.'/head.sub.php');
 ?>
 
-<!-- 상단 시작 { -->
 <div id="hd">
     <h1 id="hd_h1"><?php echo $g5['title'] ?></h1>
     <div id="skip_to_container"><a href="#container">본문 바로가기</a></div>
@@ -57,11 +56,9 @@ include_once(G5_PATH.'/head.sub.php');
         </div>
     </nav>
 </div>
-<!-- } 상단 끝 -->
 
 <hr>
 
-<!-- 콘텐츠 시작 { -->
 <div id="wrapper">
     <div id="container_wr">
         <div id="container">

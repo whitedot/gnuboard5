@@ -70,7 +70,6 @@ function admin_read_config_form_update_request(array $post, array $ori_config)
         'cf_cert_req' => 'int',
         'cf_cert_use' => 'int',
         'cf_cert_find' => 'int',
-        'cf_cert_ipin' => 'char',
         'cf_cert_hp' => 'char',
         'cf_cert_simple' => 'char',
         'cf_cert_use_seed' => 'int',
@@ -157,18 +156,13 @@ function admin_validate_config_intercept_ip($cf_intercept_ip, $remote_addr)
 
 function admin_normalize_config_cert_settings(array $request)
 {
-    if ($request['cf_cert_use'] && !$request['cf_cert_ipin'] && !$request['cf_cert_hp'] && !$request['cf_cert_simple']) {
+    if ($request['cf_cert_use'] && !$request['cf_cert_hp'] && !$request['cf_cert_simple']) {
         alert('본인확인을 위해 휴대폰 본인확인 또는 KG이니시스 간편인증 서비스 중 하나 이상 선택해 주십시오.');
     }
 
     if (!$request['cf_cert_use']) {
-        $request['cf_cert_ipin'] = '';
         $request['cf_cert_hp'] = '';
         $request['cf_cert_simple'] = '';
-    }
-
-    if ($request['cf_cert_ipin'] === 'kcb') {
-        $request['cf_cert_ipin'] = '';
     }
 
     if ($request['cf_cert_hp'] === 'kcb') {
@@ -225,7 +219,6 @@ function admin_build_config_update_params(array $request)
         'cf_captcha_mp3' => $request['cf_captcha_mp3'],
         'cf_cert_use' => $request['cf_cert_use'],
         'cf_cert_find' => $request['cf_cert_find'],
-        'cf_cert_ipin' => $request['cf_cert_ipin'],
         'cf_cert_hp' => $request['cf_cert_hp'],
         'cf_cert_simple' => $request['cf_cert_simple'],
         'cf_cert_use_seed' => (int) $request['cf_cert_use_seed'],
@@ -273,7 +266,6 @@ function admin_apply_config_update(array $update_params)
                     cf_captcha_mp3 = :cf_captcha_mp3,
                     cf_cert_use = :cf_cert_use,
                     cf_cert_find = :cf_cert_find,
-                    cf_cert_ipin = :cf_cert_ipin,
                     cf_cert_hp = :cf_cert_hp,
                     cf_cert_simple = :cf_cert_simple,
                     cf_cert_use_seed = :cf_cert_use_seed,

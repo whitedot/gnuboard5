@@ -5,7 +5,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 ?>
 
-<!-- 회원가입약관 동의 시작 { -->
 <div>
 
     <form  name="fregister" id="fregister" action="<?php echo $register_action_url ?>" onsubmit="return fregister_submit(this);" method="POST" autocomplete="off">
@@ -36,7 +35,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 <tbody>
                 <tr>
                     <td>이용자 식별 및 본인여부 확인</td>
-                    <td>아이디, 이름, 비밀번호<?php echo ($config['cf_cert_use'])? ", 생년월일, 휴대폰 번호(본인인증 할 때만, 아이핀 제외), 암호화된 개인식별부호(CI)" : ""; ?></td>
+                    <td>아이디, 이름, 비밀번호<?php echo ($config['cf_cert_use'])? ", 생년월일, 휴대폰 번호(본인확인 시), 암호화된 개인식별부호(CI)" : ""; ?></td>
                     <td>회원 탈퇴 시까지</td>
                 </tr>
                 <tr>
@@ -100,4 +99,3 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
     </script>
 </div>
-<!-- } 회원가입 약관 동의 끝 -->

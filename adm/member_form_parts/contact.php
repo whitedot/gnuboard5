@@ -27,10 +27,6 @@
                             <input type="radio" name="mb_certify_case" value="hp" id="mb_certify_hp" <?php if ($mb['mb_certify'] == 'hp') { echo 'checked="checked"'; } ?> class="form-radio">
                             <span class="form-label">휴대폰</span>
                         </label>
-                        <label for="mb_certify_ipin" class="af-check form-label">
-                            <input type="radio" name="mb_certify_case" value="ipin" id="mb_certify_ipin" <?php if ($mb['mb_certify'] == 'ipin') { echo 'checked="checked"'; } ?> class="form-radio">
-                            <span class="form-label">아이핀</span>
-                        </label>
                     </div>
                 </div>
             </div>
