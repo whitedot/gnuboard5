@@ -1,31 +1,10 @@
 ﻿<?php
 include_once('./_common.php');
 
-// url 체크
-check_url_host($url);
+$request = member_read_login_page_request($url);
+member_validate_login_page_request($request);
+member_redirect_if_logged_in($is_member, $request['url']);
 
-// 이미 로그인 중이라면
-if ($is_member) {
-    if ($url)
-        goto_url($url);
-    else
-        goto_url(G5_URL);
-}
-
-$login_url        = login_url($url);
-$login_action_url = G5_HTTPS_MEMBER_URL."/login_check.php";
-
-// 로그인 스킨이 없는 경우 관리자 페이지 접속이 안되는 것을 막기 위하여 기본 스킨으로 대체
-$login_file = $member_skin_path.'/login.skin.php';
-if (!file_exists($login_file))
-    $member_skin_path = G5_SKIN_PATH.'/member/basic';
-
-MemberPageController::render('로그인', 'login.skin.php', array(
-    'login_action_url' => $login_action_url,
-    'login_url' => $login_url,
-), array(
-    'sub' => true,
-    'skin_path' => $member_skin_path,
-    'after_event' => 'member_login_tail',
-    'after_args' => array($login_url, $login_action_url, $member_skin_path, $url),
-));
+$login_view = member_build_login_page_view($member_skin_path, $request['url']);
+$page_view = member_build_login_render_page_view($login_view, $request['url']);
+MemberPageController::render($page_view['title'], 'login.skin.php', $page_view['data'], $page_view['options']);

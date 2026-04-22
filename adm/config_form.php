@@ -4,38 +4,15 @@ require_once './_common.php';
 
 auth_check_menu($auth, $sub_menu, 'r');
 
-if ($is_admin != 'super') {
-    alert('최고관리자만 접근 가능합니다.');
-}
+admin_require_super_admin($is_admin);
 
 // https://github.com/gnuboard/gnuboard5/issues/296 대응
-$config = sql_fetch_prepared(" select * from {$g5['config_table']} limit 1", array());
+$config = admin_read_config_row();
+$config_form_view = admin_build_config_form_page_view();
+extract($config_form_view, EXTR_SKIP);
 
-$g5['title'] = '환경설정';
-$admin_container_class = 'admin-page-config-form';
-$admin_page_subtitle = '기본, 회원, 보안, 연동 설정을 탭에서 빠르게 관리하세요.';
+$g5['title'] = $title;
 require_once './admin.head.php';
-?>
-<?php
-
-$pg_anchor = '';
-$config_tabs = array(
-    array('id' => 'anc_cf_basic', 'label' => '기본'),
-    array('id' => 'anc_cf_join', 'label' => '회원'),
-    array('id' => 'anc_cf_cert', 'label' => '본인확인'),
-    array('id' => 'anc_cf_mail', 'label' => '메일'),
-);
-
-$pg_anchor_menu = admin_build_anchor_menu($config_tabs, array(
-    'nav_id' => 'config_tabs_nav',
-    'nav_class' => 'tab-nav-justified',
-    'nav_aria_label' => '환경설정 탭',
-    'link_class' => 'tab-trigger-underline-justified js-config-tab-link',
-    'active_class' => 'active',
-    'as_tabs' => true,
-    'link_id_prefix' => 'config_tab_',
-));
-
 ?>
 
 <?php echo $pg_anchor_menu; ?>

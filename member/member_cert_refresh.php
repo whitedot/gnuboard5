@@ -2,15 +2,7 @@
 define('G5_CERT_IN_PROG', true);
 include_once('./_common.php');
 
-if(!$is_member) { alert("잘못된 접근입니다.", G5_URL); }
+member_validate_cert_refresh_page_access($is_member, $member, $config);
+$page_view = member_build_cert_refresh_page_view();
 
-if (!empty($member['mb_certify']) && strlen($member['mb_dupinfo']) != 64) { // 본인인증 안된 계정이거나 ci로 인증된 계정일 경우
-    alert("잘못된 접근입니다.", G5_URL);
-}
-
-if($config['cf_cert_use'] == 0) alert("본인인증을 이용 할 수 없습니다. 관리자에게 문의 하십시오.", G5_URL);
-
-$action_url = G5_HTTPS_MEMBER_URL."/member_cert_refresh_update.php";
-MemberPageController::render('본인인증을 다시 해주세요.', 'member_cert_refresh.skin.php', array(
-    'action_url' => $action_url,
-));
+MemberPageController::render($page_view['title'], 'member_cert_refresh.skin.php', $page_view['data']);

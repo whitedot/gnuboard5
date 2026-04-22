@@ -47,10 +47,14 @@ function get_export_config($type = null)
 /**
  * 파라미터 수집 및 유효성 검사
  */
-function get_member_export_params() 
+function get_member_export_params(array $query = null) 
 {
+    if ($query === null) {
+        $query = $_GET;
+    }
+
     // 친구톡 양식 - 엑셀 양식에 포함할 항목
-    $fieldArray = array_map('trim', explode(',',  isset($_GET['fields']) ? $_GET['fields'] : ''));
+    $fieldArray = array_map('trim', explode(',', isset($query['fields']) ? $query['fields'] : ''));
     $vars = [];
     foreach ($fieldArray as $index => $field) {
         if(!empty($field)){
@@ -60,26 +64,26 @@ function get_member_export_params()
 
     $params = [    
         'page'              => 1,
-        'formatType'        => (int)(isset($_GET['formatType']) ? $_GET['formatType'] : 1),
-        'use_stx'           => isset($_GET['use_stx']) ? $_GET['use_stx'] : 0,
-        'stx_cond'          => clean_xss_tags(isset($_GET['stx_cond']) ? $_GET['stx_cond'] : 'like'),
-        'sfl'               => clean_xss_tags(isset($_GET['sfl']) ? $_GET['sfl'] : ''),
-        'stx'               => clean_xss_tags(isset($_GET['stx']) ? $_GET['stx'] : ''),
-        'use_level'         => isset($_GET['use_level']) ? $_GET['use_level'] : 0,
-        'level_start'       => (int)(isset($_GET['level_start']) ? $_GET['level_start'] : 1),
-        'level_end'         => (int)(isset($_GET['level_end']) ? $_GET['level_end'] : 10),
-        'use_date'          => isset($_GET['use_date']) ? $_GET['use_date'] : 0,
-        'date_start'        => clean_xss_tags(isset($_GET['date_start']) ? $_GET['date_start'] : ''),
-        'date_end'          => clean_xss_tags(isset($_GET['date_end']) ? $_GET['date_end'] : ''),
-        'use_hp_exist'      => isset($_GET['use_hp_exist']) ? $_GET['use_hp_exist'] : 0,
-        'ad_range_only'     => isset($_GET['ad_range_only']) ? $_GET['ad_range_only'] : 0,
-        'ad_range_type'     => clean_xss_tags(isset($_GET['ad_range_type']) ? $_GET['ad_range_type'] : 'all'),
-        'ad_mailling'       => isset($_GET['ad_mailling']) ? $_GET['ad_mailling'] : 0,
-        'ad_sms'            => isset($_GET['ad_sms']) ? $_GET['ad_sms'] : 0,
-        'agree_date_start'  => clean_xss_tags(isset($_GET['agree_date_start']) ? $_GET['agree_date_start'] : ''),
-        'agree_date_end'    => clean_xss_tags(isset($_GET['agree_date_end']) ? $_GET['agree_date_end'] : ''),
-        'use_intercept'     => isset($_GET['use_intercept']) ? $_GET['use_intercept'] : 0,
-        'intercept'         => clean_xss_tags(isset($_GET['intercept']) ? $_GET['intercept'] : 'exclude'),
+        'formatType'        => (int)(isset($query['formatType']) ? $query['formatType'] : 1),
+        'use_stx'           => isset($query['use_stx']) ? $query['use_stx'] : 0,
+        'stx_cond'          => clean_xss_tags(isset($query['stx_cond']) ? $query['stx_cond'] : 'like'),
+        'sfl'               => clean_xss_tags(isset($query['sfl']) ? $query['sfl'] : ''),
+        'stx'               => clean_xss_tags(isset($query['stx']) ? $query['stx'] : ''),
+        'use_level'         => isset($query['use_level']) ? $query['use_level'] : 0,
+        'level_start'       => (int)(isset($query['level_start']) ? $query['level_start'] : 1),
+        'level_end'         => (int)(isset($query['level_end']) ? $query['level_end'] : 10),
+        'use_date'          => isset($query['use_date']) ? $query['use_date'] : 0,
+        'date_start'        => clean_xss_tags(isset($query['date_start']) ? $query['date_start'] : ''),
+        'date_end'          => clean_xss_tags(isset($query['date_end']) ? $query['date_end'] : ''),
+        'use_hp_exist'      => isset($query['use_hp_exist']) ? $query['use_hp_exist'] : 0,
+        'ad_range_only'     => isset($query['ad_range_only']) ? $query['ad_range_only'] : 0,
+        'ad_range_type'     => clean_xss_tags(isset($query['ad_range_type']) ? $query['ad_range_type'] : 'all'),
+        'ad_mailling'       => isset($query['ad_mailling']) ? $query['ad_mailling'] : 0,
+        'ad_sms'            => isset($query['ad_sms']) ? $query['ad_sms'] : 0,
+        'agree_date_start'  => clean_xss_tags(isset($query['agree_date_start']) ? $query['agree_date_start'] : ''),
+        'agree_date_end'    => clean_xss_tags(isset($query['agree_date_end']) ? $query['agree_date_end'] : ''),
+        'use_intercept'     => isset($query['use_intercept']) ? $query['use_intercept'] : 0,
+        'intercept'         => clean_xss_tags(isset($query['intercept']) ? $query['intercept'] : 'exclude'),
         'vars'              => $vars,
     ];
     

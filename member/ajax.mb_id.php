@@ -2,14 +2,5 @@
 include_once('./_common.php');
 include_once(G5_LIB_PATH.'/register.lib.php');
 
-$mb_id = isset($_POST['reg_mb_id']) ? trim($_POST['reg_mb_id']) : '';
-
-set_session('ss_check_mb_id', '');
-
-if ($msg = empty_mb_id($mb_id))     die($msg);
-if ($msg = valid_mb_id($mb_id))     die($msg);
-if ($msg = count_mb_id($mb_id))     die($msg);
-if ($msg = exist_mb_id($mb_id))     die($msg);
-if ($msg = reserve_mb_id($mb_id))   die($msg);
-
-set_session('ss_check_mb_id', $mb_id);
+$request = member_read_ajax_identity_request($_POST);
+member_process_ajax_mb_id($request);

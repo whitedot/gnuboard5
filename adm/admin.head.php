@@ -5,20 +5,7 @@ if (!defined('_GNUBOARD_')) {
 
 $g5_debug['php']['begin_time'] = $begin_time = get_microtime();
 
-$files = glob(G5_ADMIN_PATH . '/css/admin_extend_*');
-if (is_array($files)) {
-    foreach ((array) $files as $k => $css_file) {
-        $fileinfo = pathinfo($css_file);
-        $ext = $fileinfo['extension'];
-
-        if ($ext !== 'css') {
-            continue;
-        }
-
-        $css_file = str_replace(G5_ADMIN_PATH, G5_ADMIN_URL, $css_file);
-        add_stylesheet('<link rel="stylesheet" href="' . $css_file . '">', $k);
-    }
-}
+admin_enqueue_extend_stylesheets();
 
 require_once G5_ADMIN_PATH . '/head.sub.admin.php';
 
@@ -53,7 +40,7 @@ function print_menu2($key, $no = '')
             continue;
         }
 
-        if ($is_admin != 'super' && (!array_key_exists($menu[$key][$i][0], $auth) || !strstr($auth[$menu[$key][$i][0]], 'r'))) {
+        if (!admin_menu_is_readable($auth, $is_admin, $menu[$key][$i][0])) {
             continue;
         }
 
@@ -71,37 +58,14 @@ function print_menu2($key, $no = '')
     return $str;
 }
 
-$adm_menu_cookie = array(
-    'container' => '',
-    'gnb'       => '',
-    'btn_gnb'   => '',
+$admin_head_view = admin_build_head_view(
+    $member,
+    $config,
+    $_COOKIE,
+    isset($admin_container_class) ? $admin_container_class : '',
+    isset($admin_page_subtitle) ? $admin_page_subtitle : ''
 );
-$admin_sidebar_collapsed = false;
-
-if (!empty($_COOKIE['g5_admin_btn_gnb'])) {
-    $admin_sidebar_collapsed = true;
-    $adm_menu_cookie['container'] = 'container-small';
-    $adm_menu_cookie['gnb'] = 'gnb_small';
-    $adm_menu_cookie['btn_gnb'] = 'btn_gnb_open';
-}
-
-$admin_profile_name = get_text((string) $member['mb_nick']);
-$admin_profile_id = get_text((string) $member['mb_id']);
-$admin_profile_mail = !empty($member['mb_email']) ? get_text((string) $member['mb_email']) : ($admin_profile_id . '@admin');
-$admin_profile_seed = $admin_profile_name ?: $admin_profile_id;
-$admin_profile_initial = 'A';
-if ($admin_profile_seed !== '') {
-    if (function_exists('mb_substr')) {
-        $admin_profile_initial = mb_substr($admin_profile_seed, 0, 1, 'UTF-8');
-    } else {
-        $admin_profile_initial = substr($admin_profile_seed, 0, 1);
-    }
-}
-
-$admin_site_title = get_text((string) ($config['cf_title'] ?? ''));
-if ($admin_site_title === '') {
-    $admin_site_title = 'G5 AIF';
-}
+extract($admin_head_view, EXTR_SKIP);
 ?>
 
 <script>
@@ -354,10 +318,9 @@ if ($admin_site_title === '') {
         </div>
     </div>
 
-    <?php $admin_container_class_attr = trim($adm_menu_cookie['container'] . ' ' . (isset($admin_container_class) ? $admin_container_class : '')); ?>
     <div id="container" class="<?php echo $admin_container_class_attr; ?>">
         <h1 id="container_title"><?php echo $g5['title']; ?></h1>
-        <p id="container_subtitle"><?php echo isset($admin_page_subtitle) ? $admin_page_subtitle : '사이트 운영과 설정을 한 곳에서 관리하세요.'; ?></p>
+        <p id="container_subtitle"><?php echo $admin_page_subtitle_text; ?></p>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

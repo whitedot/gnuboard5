@@ -1,35 +1,10 @@
 ﻿<?php
 include_once('./_common.php');
 
-if ($is_guest)
-    alert('로그인 한 회원만 접근하실 수 있습니다.', G5_MEMBER_URL.'/login.php');
+member_validate_confirm_access($is_guest);
 
-while (1) {
-    $tmp = preg_replace('/&#[^;]+;/', '', $url);
-    if ($tmp == $url) break;
-    $url = $tmp;
-}
+$request = member_read_confirm_request($url);
+$url = member_prepare_confirm_url($request['url']);
+$page_view = member_build_confirm_page_view($url);
 
-$url = run_replace('member_confirm_next_url', $url);
-
-// url 체크
-check_url_host($url, '', G5_URL, true);
-
-if($url){
-    $url = preg_replace('#^/\\\{1,}#', '/', $url);
-
-    if( preg_match('#^/{3,}#', $url) ){
-        $url = preg_replace('#^/{3,}#', '/', $url);
-    }
-
-    if (function_exists('safe_filter_url_host')) {
-        $url = safe_filter_url_host($url);
-    }
-}
-
-$url = get_text($url);
-MemberPageController::render('회원 비밀번호 확인', 'member_confirm.skin.php', array(
-    'url' => $url,
-), array(
-    'sub' => true,
-));
+MemberPageController::render($page_view['title'], 'member_confirm.skin.php', $page_view['data'], $page_view['options']);

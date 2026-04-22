@@ -61,10 +61,10 @@ include_once($g5_path['path'].'/config.php');   // 설정 파일
 
 unset($g5_path);
 
-include_once(G5_LIB_PATH.'/common.bootstrap.lib.php');
-include_once(G5_LIB_PATH.'/common.runtime.lib.php');
-include_once(G5_LIB_PATH.'/common.auth.lib.php');
-include_once(G5_LIB_PATH.'/common.session_bootstrap.lib.php');
+include_once(G5_LIB_PATH.'/bootstrap/core.lib.php');
+include_once(G5_LIB_PATH.'/bootstrap/runtime.lib.php');
+include_once(G5_LIB_PATH.'/bootstrap/auth.lib.php');
+include_once(G5_LIB_PATH.'/bootstrap/session.lib.php');
 
 // IIS 에서 SERVER_ADDR 서버변수가 없다면
 if (!isset($_SERVER['SERVER_ADDR'])) {

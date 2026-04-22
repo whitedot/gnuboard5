@@ -4,96 +4,19 @@ require_once './_common.php';
 
 auth_check_menu($auth, $sub_menu, 'r');
 
-$sql_common = " from {$g5['member_table']} ";
+$member_list_request = admin_read_member_list_request(array(
+    'sfl' => isset($sfl) ? $sfl : '',
+    'stx' => isset($stx) ? $stx : '',
+    'sst' => isset($sst) ? $sst : '',
+    'sod' => isset($sod) ? $sod : '',
+    'page' => isset($page) ? $page : 1,
+), $config);
+$member_list_view = admin_build_member_list_page_view($member_list_request, $member, $is_admin, $config, $qstr);
+extract($member_list_view, EXTR_SKIP);
+extract($member_list_request, EXTR_SKIP);
 
-$allowed_search_fields = array(
-    'mb_id',
-    'mb_nick',
-    'mb_name',
-    'mb_level',
-    'mb_email',
-    'mb_hp',
-    'mb_datetime',
-    'mb_ip',
-);
-$allowed_sort_fields = array(
-    'mb_id',
-    'mb_name',
-    'mb_nick',
-    'mb_email',
-    'mb_level',
-    'mb_datetime',
-    'mb_intercept_date',
-    'mb_leave_date',
-);
-
-$search_params = array();
-$sql_search = " where (1) ";
-$sfl = in_array($sfl, $allowed_search_fields, true) ? $sfl : 'mb_id';
-$stx = isset($stx) ? trim((string) $stx) : '';
-
-if ($stx !== '') {
-    if ($sfl === 'mb_level') {
-        $sql_search .= " and {$sfl} = :stx_exact ";
-        $search_params['stx_exact'] = (int) $stx;
-    } elseif ($sfl === 'mb_hp') {
-        $sql_search .= " and {$sfl} like :stx_suffix ";
-        $search_params['stx_suffix'] = '%' . $stx;
-    } else {
-        $sql_search .= " and {$sfl} like :stx_prefix ";
-        $search_params['stx_prefix'] = $stx . '%';
-    }
-}
-
-if ($is_admin != 'super') {
-    $sql_search .= " and mb_level <= :max_member_level ";
-    $search_params['max_member_level'] = (int) $member['mb_level'];
-}
-
-$sst = in_array($sst, $allowed_sort_fields, true) ? $sst : 'mb_datetime';
-$sod = strtolower((string) $sod) === 'asc' ? 'asc' : 'desc';
-
-$sql_order = " order by {$sst} {$sod} ";
-
-$sql = " select count(*) as cnt {$sql_common} {$sql_search} {$sql_order} ";
-$total_count = (int) sql_fetch_value_prepared($sql, $search_params);
-
-$rows = $config['cf_page_rows'];
-$total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
-if ($page < 1) {
-    $page = 1; // 페이지가 없으면 첫 페이지 (1 페이지)
-}
-$from_record = ($page - 1) * $rows; // 시작 열을 구함
-
-// 탈퇴회원수
-$sql = " select count(*) as cnt {$sql_common} {$sql_search} and mb_leave_date <> '' {$sql_order} ";
-$leave_count = (int) sql_fetch_value_prepared($sql, $search_params);
-
-// 차단회원수
-$sql = " select count(*) as cnt {$sql_common} {$sql_search} and mb_intercept_date <> '' {$sql_order} ";
-$intercept_count = (int) sql_fetch_value_prepared($sql, $search_params);
-
-$listall = '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="btn btn-surface-default-soft">전체 보기</a>';
-$quick_view = 'all';
-if ($sst === 'mb_intercept_date' && $sod === 'desc') {
-    $quick_view = 'blocked';
-} elseif ($sst === 'mb_leave_date' && $sod === 'desc') {
-    $quick_view = 'left';
-}
-
-$g5['title'] = '회원관리';
-$admin_container_class = 'admin-page-member-list';
-$admin_page_subtitle = '회원 상태를 한눈에 확인하고, 조건 검색과 빠른 관리 동선을 자연스럽게 이어가세요.';
+$g5['title'] = $title;
 require_once './admin.head.php';
-
-$sql = " select * {$sql_common} {$sql_search} {$sql_order} limit :from_record, :page_rows ";
-$list_params = $search_params;
-$list_params['from_record'] = (int) $from_record;
-$list_params['page_rows'] = (int) $rows;
-$result = sql_query_prepared($sql, $list_params);
-
-$colspan = 8;
-$admin_token = get_admin_token();
 ?>
 
 <div class="member-summary">
@@ -103,8 +26,8 @@ $admin_token = get_admin_token();
 
     <div class="member-summary-stats">
         <span class="member-summary-meta">총회원 <strong><?php echo number_format($total_count); ?>명</strong></span>
-        <a href="?sst=mb_intercept_date&amp;sod=desc&amp;sfl=<?php echo $sfl ?>&amp;stx=<?php echo $stx ?>" class="member-summary-meta"<?php echo $quick_view === 'blocked' ? ' aria-current="page"' : ''; ?>>차단 <?php echo number_format($intercept_count); ?>명</a>
-        <a href="?sst=mb_leave_date&amp;sod=desc&amp;sfl=<?php echo $sfl ?>&amp;stx=<?php echo $stx ?>" class="member-summary-meta"<?php echo $quick_view === 'left' ? ' aria-current="page"' : ''; ?>>탈퇴 <?php echo number_format($leave_count); ?>명</a>
+        <a href="<?php echo $blocked_url; ?>" class="member-summary-meta"<?php echo $quick_view === 'blocked' ? ' aria-current="page"' : ''; ?>>차단 <?php echo number_format($intercept_count); ?>명</a>
+        <a href="<?php echo $left_url; ?>" class="member-summary-meta"<?php echo $quick_view === 'left' ? ' aria-current="page"' : ''; ?>>탈퇴 <?php echo number_format($leave_count); ?>명</a>
     </div>
 </div>
 
@@ -179,62 +102,33 @@ $admin_token = get_admin_token();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    for ($i = 0; $row = sql_fetch_array($result); $i++) {
-                        $mb_nick = get_sideview($row['mb_id'], get_text($row['mb_nick']), $row['mb_email'], '');
-
-                        $status_label = '정상';
-                        $status_class = 'is-normal';
-                        if ($row['mb_leave_date']) {
-                            $status_label = '탈퇴';
-                            $status_class = 'is-left';
-                        } elseif ($row['mb_intercept_date']) {
-                            $status_label = '차단';
-                            $status_class = 'is-blocked';
-                        }
-
-                        $manage_links = [];
-                        if ($is_admin != 'group') {
-                            $manage_links[] = '<a href="./member_form.php?' . $qstr . '&amp;w=u&amp;mb_id=' . $row['mb_id'] . '" class="btn btn-sm btn-surface-default-soft">수정</a>';
-                        }
-
-                        if (
-                            $member['mb_id'] != $row['mb_id']
-                            && is_admin($row['mb_id']) != 'super'
-                            && ($is_admin == 'super' || $row['mb_level'] < $member['mb_level'])
-                        ) {
-                            $manage_links[] = '<button type="button" class="btn btn-sm btn-outline-danger" onclick="deleteMember(\'' . $row['mb_id'] . '\')">삭제</button>';
-                        }
-
-                    ?>
+                    <?php foreach ($items as $index => $item) { ?>
                         <tr>
                             <td headers="mb_list_chk" class="member-cell-fixed">
-                                <input type="hidden" name="mb_id[<?php echo $i; ?>]" value="<?php echo $row['mb_id']; ?>" id="mb_id_<?php echo $i; ?>">
-                                <label for="chk_<?php echo $i; ?>" class="sr-only"><?php echo get_text($row['mb_name']); ?> <?php echo get_text($row['mb_nick']); ?>님</label>
-                                <input type="checkbox" name="chk[]" value="<?php echo $i; ?>" id="chk_<?php echo $i; ?>">
+                                <input type="hidden" name="mb_id[<?php echo $index; ?>]" value="<?php echo $item['mb_id']; ?>" id="mb_id_<?php echo $index; ?>">
+                                <label for="chk_<?php echo $index; ?>" class="sr-only"><?php echo $item['mb_name']; ?> <?php echo strip_tags($item['mb_nick']); ?>님</label>
+                                <input type="checkbox" name="chk[]" value="<?php echo $index; ?>" id="chk_<?php echo $index; ?>">
                             </td>
-                            <td headers="mb_list_id" class="member-cell-fixed font-medium"><?php echo $row['mb_id']; ?></td>
-                            <td headers="mb_list_name" class="member-cell-fixed"><?php echo get_text($row['mb_name']); ?></td>
-                            <td headers="mb_list_nick" class="member-cell-fixed"><?php echo $mb_nick; ?></td>
-                            <td headers="mb_list_email" class="member-cell-email"><?php echo get_text($row['mb_email']); ?></td>
+                            <td headers="mb_list_id" class="member-cell-fixed font-medium"><?php echo $item['mb_id']; ?></td>
+                            <td headers="mb_list_name" class="member-cell-fixed"><?php echo $item['mb_name']; ?></td>
+                            <td headers="mb_list_nick" class="member-cell-fixed"><?php echo $item['mb_nick']; ?></td>
+                            <td headers="mb_list_email" class="member-cell-email"><?php echo $item['mb_email']; ?></td>
                             <td headers="mb_list_level" class="member-cell-fixed">
-                                <span class="member-level">Lv.<?php echo (int) $row['mb_level']; ?></span>
+                                <span class="member-level">Lv.<?php echo $item['mb_level']; ?></span>
                             </td>
                             <td headers="mb_list_status" class="member-cell-fixed">
-                                <span class="member-status <?php echo $status_class; ?>"><?php echo $status_label; ?></span>
+                                <span class="member-status <?php echo $item['status_class']; ?>"><?php echo $item['status_label']; ?></span>
                             </td>
                             <td headers="mb_list_mng" class="member-cell-manage text-end">
                                 <div class="member-manage">
-                                    <?php echo $manage_links ? implode('', $manage_links) : '<span>-</span>'; ?>
+                                    <?php echo $item['manage_links'] ? implode('', $item['manage_links']) : '<span>-</span>'; ?>
                                 </div>
                             </td>
                         </tr>
-                    <?php
-                    }
-                    if ($i == 0) {
-                        echo "<tr><td colspan=\"" . $colspan . "\">자료가 없습니다.</td></tr>";
-                    }
-                    ?>
+                    <?php } ?>
+                    <?php if (empty($items)) { ?>
+                        <tr><td colspan="<?php echo $colspan; ?>">자료가 없습니다.</td></tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
@@ -255,7 +149,7 @@ $admin_token = get_admin_token();
     <input type="hidden" name="mb_id" value="">
 </form>
 
-<?php echo get_paging(G5_ADMIN_PAGING_PAGES, $page, $total_page, '?' . $qstr . '&amp;page='); ?>
+<?php echo get_paging(G5_ADMIN_PAGING_PAGES, $page, $total_page, $paging_url); ?>
 
 <script>
     function fmemberlist_submit(f) {

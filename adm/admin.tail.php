@@ -3,7 +3,8 @@ if (!defined('_GNUBOARD_')) {
     exit;
 }
 
-$print_version = ($is_admin == 'super') ? 'Version ' . G5_GNUBOARD_VER : '';
+$admin_tail_view = admin_build_tail_view($is_admin);
+extract($admin_tail_view, EXTR_SKIP);
 ?>
 
 <noscript>
@@ -53,10 +54,6 @@ $print_version = ($is_admin == 'super') ? 'Version ' . G5_GNUBOARD_VER : '';
     });
 </script>
 
-<?php
-$admin_js_path = G5_ADMIN_PATH . '/admin.js';
-$admin_js_ver = is_file($admin_js_path) ? filemtime($admin_js_path) : G5_JS_VER;
-?>
 <script src="<?php echo G5_ADMIN_URL ?>/admin.js?ver=<?php echo $admin_js_ver; ?>"></script>
 
 <?php

@@ -2,11 +2,7 @@
 include_once('./_common.php');
 include_once(G5_CAPTCHA_PATH.'/captcha.lib.php');
 
-if ($is_member) {
-    alert("이미 로그인중입니다.", G5_URL);
-}
+member_validate_password_lost_page_access($is_member);
 
-$action_url = G5_HTTPS_MEMBER_URL."/password_lost2.php";
-MemberPageController::render('회원정보 찾기', 'password_lost.skin.php', array(
-    'action_url' => $action_url,
-));
+$page_view = member_build_password_lost_page_view();
+MemberPageController::render($page_view['title'], 'password_lost.skin.php', $page_view['data']);
