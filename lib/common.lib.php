@@ -7,7 +7,11 @@ if (!defined('_GNUBOARD_')) exit;
  * 기존의 거대한 Monolithic 구조였던 common.lib.php를 기능별로 분리된 라이브러리 파일들로 나누어 포함하고 있습니다.
  *
  * 주요 포함 모듈 및 역할:
- * - common.util.lib.php: 유틸리티 함수 (기본 헬퍼, 시간 등)
+ * - common.util.lib.php: 하위 utility 모듈 로더
+ *   - common.base.util.lib.php: 기본 헬퍼와 범용 유틸리티
+ *   - common.url.lib.php: URL/리다이렉트 관련 헬퍼
+ *   - common.member.lib.php: 회원 삭제 및 회원 관련 유틸리티
+ *   - common.security.lib.php: 입력/경로/콜백 보안 유틸리티
  * - common.session.lib.php: 세션 및 쿠키 처리
  * - common.mobile.lib.php: 모바일 기기 감지
  * - common.sql.lib.php: 데이터베이스 관련 함수
