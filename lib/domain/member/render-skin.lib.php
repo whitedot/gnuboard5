@@ -20,6 +20,6 @@ class MemberMailRenderer
 {
     public static function capture($template_name, array $data = array())
     {
-        return MemberTemplateRenderer::capture(G5_SKIN_PATH . '/member/mail/' . $template_name, $data);
+        return MemberTemplateRenderer::capture(G5_MEMBER_VIEW_PATH . '/mail/' . $template_name, $data);
     }
 }

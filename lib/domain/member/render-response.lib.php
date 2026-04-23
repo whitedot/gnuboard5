@@ -17,7 +17,7 @@ class MemberResponseRenderer
     public static function autoPost($action, array $fields, $message = '', $title = '처리중')
     {
         echo MemberTemplateRenderer::capture(
-            G5_SKIN_PATH . '/member/basic/auto_post_form.skin.php',
+            G5_MEMBER_VIEW_PATH . '/basic/auto_post_form.skin.php',
             array(
                 'action' => $action,
                 'fields' => $fields,

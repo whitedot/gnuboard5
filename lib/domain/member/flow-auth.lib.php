@@ -176,7 +176,7 @@ function member_build_login_page_view($member_skin_path, $url)
     $login_file = $login_skin_path . '/login.skin.php';
 
     if (!file_exists($login_file)) {
-        $login_skin_path = G5_SKIN_PATH . '/member/basic';
+        $login_skin_path = G5_MEMBER_VIEW_PATH . '/basic';
     }
 
     return array(

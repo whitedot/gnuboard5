@@ -28,7 +28,7 @@
   - 이전 함수 시그니처와 `filesize()` 호출 주석
 - `member/password_reset.php`
   - 주석 처리된 `captcha.lib.php` include
-- `skin/member/basic/register_form.skin.php`
+- `member/views/basic/register_form.skin.php`
   - 이름 한글 검증용 주석 처리 JS 블록
 
 ### 2. 출처/역사성 주석 제거 대상
@@ -52,17 +52,17 @@
 
 주석은 아니지만 이번 점검에서 함께 확인된 오해 유발 표현이다. 이 항목은 실제 범위 정합성에 직접 영향을 주므로 우선순위를 높게 둔다.
 
-- `skin/member/basic/register.skin.php`
+- `member/views/basic/register.skin.php`
   - 개인정보 처리 항목 설명의 `아이핀 제외` 문구 제거
-- `skin/member/basic/register_form.skin.php`
+- `member/views/basic/register_form.skin.php`
   - `cf_cert_ipin` 조건 참조 제거
   - 인증 상태 표시의 `아이핀` 분기 제거
   - `회원정보 입력/수정` HTML 구획 주석 제거
-- `skin/member/basic/member_cert_refresh.skin.php`
+- `member/views/basic/member_cert_refresh.skin.php`
   - `cf_cert_ipin` 조건 참조 제거
   - `아이핀 제외` 문구 제거
   - `기존 회원 본인인증` HTML 구획 주석 제거
-- `skin/member/basic/password_lost.skin.php`
+- `member/views/basic/password_lost.skin.php`
   - `cf_cert_ipin` 조건 참조 제거
 
 ### 4. 저위험 정리 대상
@@ -71,7 +71,7 @@
 
 - `head.php`, `tail.php`
   - 상단/하단/콘텐츠 시작·끝 HTML 주석
-- `skin/member/basic/*.skin.php`
+- `member/views/basic/*.skin.php`
   - 화면 시작·끝을 표시하는 HTML 주석
 - 기타 first-party 파일의 범용 구획 주석 중 현재 탐색 가치가 낮은 항목
 
@@ -83,10 +83,10 @@
 
 이 단계에서 수정 대상:
 
-- `skin/member/basic/register.skin.php`
-- `skin/member/basic/register_form.skin.php`
-- `skin/member/basic/member_cert_refresh.skin.php`
-- `skin/member/basic/password_lost.skin.php`
+- `member/views/basic/register.skin.php`
+- `member/views/basic/register_form.skin.php`
+- `member/views/basic/member_cert_refresh.skin.php`
+- `member/views/basic/password_lost.skin.php`
 
 검증:
 
@@ -103,7 +103,7 @@
 - `lib/Hook/hook.class.php`
 - `lib/common.file.lib.php`
 - `member/password_reset.php`
-- `skin/member/basic/register_form.skin.php`
+- `member/views/basic/register_form.skin.php`
 
 검증:
 
@@ -136,7 +136,7 @@
 
 - `head.php`
 - `tail.php`
-- `skin/member/basic/*.skin.php`
+- `member/views/basic/*.skin.php`
 
 검증:
 
