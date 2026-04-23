@@ -2,7 +2,6 @@
 $sub_menu = "200400";
 require_once './_common.php';
 require_once './member_list_exel.lib.php'; // 회원관리파일 공통 라이브러리 (상수, 검색 옵션 설정, SQL WHERE 등)
-include_once(G5_LIB_PATH.'/PHPExcel.php');
 
 check_demo();
 $stream_context = admin_complete_member_export_stream_request($_GET, $auth, $sub_menu);
@@ -52,7 +51,7 @@ function main_member_export($params)
             
             member_export_send_progress("progress", "", 2, $total, ($pages == $i ? $total : $i * MEMBER_EXPORT_PAGE_SIZE), $pages, $i);            
             try {
-                $fileList[] = member_export_create_excel($params, $fileName, $i);
+                $fileList[] = member_export_create_xlsx($params, $fileName, $i);
             } catch (Exception $e) {
                 throw new Exception("총 {$pages}개 중 {$i}번째 파일을 생성하지 못했습니다<br>" . $e->getMessage());
             }
@@ -78,7 +77,7 @@ function main_member_export($params)
         // 소용량 데이터 - 단일 파일
         member_export_send_progress("progress", "", 1, $total, 0);                
         member_export_send_progress("progress", "", 1, $total, $total/2);                
-        $fileList[] = member_export_create_excel($params, $fileName, 0);
+        $fileList[] = member_export_create_xlsx($params, $fileName, 0);
         member_export_send_progress("progress", "", 1, $total, $total);                
     }
     
@@ -150,14 +149,6 @@ function member_export_set_sse_headers()
 }
 
 /**
- * 엑셀 컬럼 문자 반환
- */
-function member_export_column_char($i) 
-{
-    return chr(65 + $i);
-}
-
-/**
  * 회원 데이터 조회용 statement 생성
  */
 function member_export_open_statement($params, &$fields = array())
@@ -204,108 +195,54 @@ function member_export_open_statement($params, &$fields = array())
     return $statement;
 }
 
-function member_export_write_sheet_rows(PHPExcel_Worksheet $sheet, $params, array $fields, $start_row = 3)
+/**
+ * xlsx 데이터 행 조회
+ */
+function member_export_fetch_sheet_rows($params, array $fields)
 {
     $statement = member_export_open_statement($params, $fields);
-    $row_index = (int) $start_row;
+    $rows = array();
 
     try {
         while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-            $rowData = array();
+            $row_data = array();
             foreach ($fields as $field) {
-                $rowData[] = isset($row[$field]) ? $row[$field] : '';
+                $row_data[] = isset($row[$field]) ? (string) $row[$field] : '';
             }
-
-            $sheet->fromArray(array($rowData), null, 'A' . $row_index);
-            $row_index++;
+            $rows[] = $row_data;
         }
     } finally {
         $statement->closeCursor();
     }
 
-    return $row_index - 1;
+    return $rows;
 }
 
 /**
- * 엑셀 파일 생성
+ * xlsx 파일 생성
  */
-function member_export_create_excel($params, $fileName, $index = 0)
+function member_export_create_xlsx($params, $fileName, $index = 0)
 {
     $config = member_export_get_config();
     $fields = array_unique($config['fields']);
-    
-    if (!class_exists('PHPExcel')) {
-        error_log('[Member Export Error] PHPExcel 라이브러리를 찾을 수 없습니다.');
-        throw new Exception('파일 생성 중 내부 오류가 발생했습니다: PHPExcel 라이브러리를 찾을 수 없습니다.');
-    }
-
-    // 현재 설정값 백업
-    $currentCache = PHPExcel_Settings::getCacheStorageMethod();
-    
-    // 캐싱 모드 설정 (엑셀 생성 전용)
-    $cacheMethods = [
-        PHPExcel_CachedObjectStorageFactory::cache_to_discISAM,
-        PHPExcel_CachedObjectStorageFactory::cache_in_memory_serialized
-    ];
-
-    foreach ($cacheMethods as $method) {
-        if (PHPExcel_Settings::setCacheStorageMethod($method)) {
-            break;
-        }
-    }
 
     try {
-        $excel = new PHPExcel();
-        $sheet = $excel->setActiveSheetIndex(0);
-        
-        // 헤더 스타일 적용
-        $last_char = member_export_column_char(count($config['headers']) - 1);
-        $sheet->getStyle("A2:{$last_char}2")->applyFromArray([
-            'fill' => [
-                'type' => PHPExcel_Style_Fill::FILL_SOLID,
-                'startcolor' => ['rgb' => 'D9E1F2'], // 연파랑 배경
-            ],
-        ]);
-        
-        // 셀 정렬 및 줄바꿈 설정
-        $sheet->getStyle("A:{$last_char}")->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER)->setWrapText(true);
-        
-        // 컬럼 너비 설정
-        foreach ($config['widths'] as $i => $width) {
-            $sheet->getColumnDimension(member_export_column_char($i))->setWidth($width);
-        }
-        
-        // 제목/헤더 입력 후 결과를 순차적으로 시트에 기록한다.
-        $sheet->fromArray(array($config['title'], $config['headers']), NULL, 'A1');
-        member_export_write_sheet_rows($sheet, $params, $fields, 3);
+        $rows = array_merge(
+            array($config['title'], $config['headers']),
+            member_export_fetch_sheet_rows($params, $fields)
+        );
 
-        // 디렉토리 확인
         member_export_ensure_directory(MEMBER_EXPORT_DIR);
-        
-        // 파일명 생성
+
         $subname = $index == 0 ? 'all' : sprintf("%02d", $index);
         $filename = $fileName . "_" . $subname . ".xlsx";
         $filePath = MEMBER_EXPORT_DIR . "/" . $filename;
 
-        // 파일 저장
-        $writer = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
-        $writer->setPreCalculateFormulas(false);
-        $writer->save($filePath);
-
-        unset($excel, $sheet, $writer); // 생성 완료 후 메모리 해제        
-    } 
-    catch (Exception $e) 
-    {
-        throw new Exception("엑셀 파일 생성에 실패하였습니다: " . $e->getMessage());
-    } 
-    finally 
-    {
-        // 캐싱 모드 원래 상태로 복원
-        if ($currentCache) {
-            PHPExcel_Settings::setCacheStorageMethod($currentCache);
-        }
+        admin_xlsx_write_file($filePath, $rows, $config['widths'], '회원관리파일', 2);
+    } catch (Exception $e) {
+        throw new Exception("XLSX 파일 생성에 실패하였습니다: " . $e->getMessage());
     }
-    
+
     return $filename;
 }
 

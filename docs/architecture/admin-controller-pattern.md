@@ -33,6 +33,7 @@ controller
 - 완료형 controller는 가능하면 `admin_complete_*()` 호출 1회로 끝낸다
 - AJAX controller는 가능하면 `admin_complete_*()` 또는 `admin_process_*()` 호출 1회로 끝낸다
 - stream controller는 가능하면 스트림 시작 준비까지 `admin_complete_*()` 호출 1회로 끝낸다
+- controller 파일 안에 재사용 가능한 helper/function 을 새로 정의하지 않는다
 
 ### domain/admin/helper.lib.php
 
@@ -44,6 +45,7 @@ controller
 - 화면형 controller는 가능하면 여기서 `title`, 화면 메타데이터, 폼 상태를 한 번에 받아 렌더한다
 - 가능하면 `page_view`와 실제 폼/리스트 데이터는 구분한다
 - `member_list.php`, `config_form.php`, `index.php`는 `admin_build_*_page_view()` 이름을 우선 사용한다
+- view helper 는 가능하면 HTML 문자열보다 화면용 데이터 구조를 우선 반환한다
 
 ### domain/admin/security.lib.php
 
@@ -101,9 +103,10 @@ controller
 - 관리자 화면 파일에서 직접 대량 SQL 조립
 - 토큰 검사와 권한 검사를 화면마다 제각각 재구현
 - `adm/admin.lib.php`에 새 비즈니스 규칙 추가
+- `lib/domain/admin/*` 에서 controller 파일 내부 함수에 의존
 
 ## 다음 정리 우선순위
 
-1. `community` 도입 시 admin 콘솔 패턴 초안 추가
-2. `shop`, `booking` 관리자 화면의 stream 필요 여부 기준 정리
-3. 공용 wrapper 경로 정리 범위 확정
+1. `member_list_exel_export.php` 의 재사용 로직을 `lib/domain/admin/` 으로 이동해 stream controller 를 얇게 만든다.
+2. `admin.head.php` 메뉴/셸 계산 로직을 `lib/domain/admin/` 으로 더 이동시켜 공통 규칙이 화면 파일에 다시 쌓이지 않게 한다.
+3. `member_list.php`, `member_form.php`, `config_form.php`, `member_list_exel.php`, `index.php` 의 화면 계약을 더 명시적으로 정리하고 `extract()` 의존을 줄인다.

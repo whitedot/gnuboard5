@@ -15,6 +15,12 @@
 - 기존 URL과 진입점은 단계적으로 유지
 - 리라이트보다 점진 이행 우선
 
+## 현재 판단
+
+- `member-only` 범위 정리는 현재 플랫폼화의 기준선으로 본다.
+- 다음 사이클은 신규 도메인 추가보다 `admin` 도메인 표준화 미완료 구간을 끝내는 데 집중한다.
+- 구체 판단과 코드 품질 전수조사 결과는 `docs/platformization-readiness-report-2026-04-23.md`에 정리한다.
+
 ## 목표 구조
 
 ```text
@@ -101,6 +107,8 @@ lib/
 완료 기준:
 
 - 관리자 공통 규칙이 화면 파일에 다시 퍼지지 않음
+- stream/download 공통 로직이 controller 파일 내부 함수에 의존하지 않음
+- `domain/admin` 이 가능한 한 화면용 데이터 계약을 반환하고, HTML 조립은 화면 파일 또는 명시적 view helper 로 제한됨
 
 ### 5단계. community 도메인 도입
 
@@ -124,16 +132,12 @@ lib/
 - 신규 도메인은 `request`, `validation`, `persist` 최소 3분할 필수
 - 기존 경로 호환은 유지하되, 새 개발은 목표 구조 기준으로만 추가
 
-## 이번 착수 범위
+## 다음 실행 사이클
 
-이번 작업에서는 아래까지 실제 반영한다.
+다음 작업에서는 아래 순서로 실제 반영한다.
 
-- `lib/bootstrap/` 도입
-- `lib/support/` 1차 도입
-- `lib/domain/member/` 도입
-- `lib/domain/admin/` 도입
-- 기존 경로 래퍼 유지
-- `common.php`와 `adm/admin.lib.php` 로더 정렬
-- `common.util.lib.php`를 support 로더로 전환
-- `common.lib.php`에서 `sql/string/file/html`도 support 래퍼를 통해 로드
-- `mail`, `paging`, `alert/confirm`, `form helper`, `html process` 계열도 support 함수 단위로 순차 분리
+- `admin` export stream 경계 복구
+- `adm/admin.head.php` 셸/메뉴 책임 추가 이동
+- 관리자 화면 데이터 계약 명시화와 `extract()` 의존 축소
+- `xlsx` 다운로드 경로 운영 호환성 검증
+- 확장 전 최소 회귀 가드 추가
