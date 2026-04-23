@@ -30,7 +30,7 @@
                     ?>
                     <div>
                         [<?php echo $row['ch_datetime']; ?>]
-                        <?php echo $row['mb_id']; ?> /
+                        <?php echo $display_mb_id; ?> /
                         <?php echo $row['ch_name']; ?> /
                         <?php echo $row['ch_hp']; ?> /
                         <?php echo $cert_type; ?>

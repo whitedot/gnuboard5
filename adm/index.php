@@ -55,7 +55,7 @@ if ($can_read_member_menu) {
                 <tbody>
                     <?php foreach ($items as $item) { ?>
                         <tr>
-                            <td class="admin-dashboard-member-id"><?php echo $item['mb_id'] ?></td>
+                            <td class="admin-dashboard-member-id"><?php echo $item['display_mb_id'] ?></td>
                             <td><?php echo $item['mb_name']; ?></td>
                             <td>
                                 <?php echo $item['mb_nick'] ?>
