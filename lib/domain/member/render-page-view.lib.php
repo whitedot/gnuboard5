@@ -23,12 +23,12 @@ function member_build_login_render_page_view(array $login_view, $url)
         ),
         'options' => array(
             'sub' => true,
-            'skin_path' => $login_view['skin_path'],
+            'view_path' => $login_view['view_path'],
             'after_event' => 'member_login_tail',
             'after_args' => array(
                 $login_view['login_url'],
                 $login_view['login_action_url'],
-                $login_view['skin_path'],
+                $login_view['view_path'],
                 $url,
             ),
         ),

@@ -3,23 +3,24 @@ if (!defined('_GNUBOARD_')) {
     exit;
 }
 
-function get_skin_dir($skin, $skin_path = G5_SKIN_PATH)
+function get_subdirectory_names($directory_path)
 {
-    global $g5;
-
     $result_array = array();
-    $dirname = $skin_path . '/' . $skin . '/';
-    if (!is_dir($dirname)) {
+    if (!is_dir($directory_path)) {
         return array();
     }
 
-    $handle = opendir($dirname);
+    $handle = opendir($directory_path);
+    if ($handle === false) {
+        return array();
+    }
+
     while ($file = readdir($handle)) {
         if ($file == '.' || $file == '..') {
             continue;
         }
 
-        if (is_dir($dirname . $file)) {
+        if (is_dir($directory_path . '/' . $file)) {
             $result_array[] = $file;
         }
     }

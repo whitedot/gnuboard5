@@ -101,7 +101,6 @@ g5_start_session_with_samesite_support();
 define('G5_HTTP_MEMBER_URL',  https_url(G5_MEMBER_DIR, false));
 define('G5_HTTPS_MEMBER_URL', https_url(G5_MEMBER_DIR, true));
 define('G5_MEMBER_VIEW_PATH', G5_MEMBER_PATH . '/views');
-define('G5_MEMBER_VIEW_URL', G5_MEMBER_URL . '/views');
 
 define('G5_CAPTCHA_DIR',    !empty($config['cf_captcha']) ? $config['cf_captcha'] : 'kcaptcha');
 define('G5_CAPTCHA_URL',    G5_PLUGIN_URL.'/'.G5_CAPTCHA_DIR);
@@ -148,7 +147,7 @@ g5_normalize_cert_vendor_config();
 // 현재 기기 모드는 세션값 또는 user agent 판별을 기준으로 유지합니다.
 $is_mobile = g5_resolve_mobile_state();
 define('G5_IS_MOBILE', $is_mobile);
-$member_skin_path = G5_MEMBER_VIEW_PATH . '/basic';
+$member_view_path = G5_MEMBER_VIEW_PATH . '/basic';
 
 if (!defined('KGINICIS_USE_CERT_SEED')) {
     define('KGINICIS_USE_CERT_SEED', isset($config['cf_cert_use_seed']) ? (int) $config['cf_cert_use_seed'] : 1);

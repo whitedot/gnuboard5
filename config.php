@@ -58,7 +58,6 @@ define('G5_IMG_DIR',        'img');
 define('G5_JS_DIR',         'js');
 define('G5_LIB_DIR',        'lib');
 define('G5_PLUGIN_DIR',     'plugin');
-define('G5_SKIN_DIR',       'skin');
 
 define('G5_KCPCERT_DIR',    'kcpcert');
 define('G5_INICERT_DIR',     'inicert');
@@ -89,7 +88,6 @@ define('G5_CSS_URL',        G5_URL.'/'.G5_CSS_DIR);
 define('G5_DATA_URL',       G5_URL.'/'.G5_DATA_DIR);
 define('G5_IMG_URL',        G5_URL.'/'.G5_IMG_DIR);
 define('G5_JS_URL',         G5_URL.'/'.G5_JS_DIR);
-define('G5_SKIN_URL',       G5_URL.'/'.G5_SKIN_DIR);
 define('G5_PLUGIN_URL',     G5_URL.'/'.G5_PLUGIN_DIR);
 define('G5_KCPCERT_URL',    G5_PLUGIN_URL.'/'.G5_KCPCERT_DIR);
 define('G5_INICERT_URL',     G5_PLUGIN_URL.'/'.G5_INICERT_DIR);
@@ -103,7 +101,6 @@ define('G5_IMG_PATH',       G5_PATH.'/'.G5_IMG_DIR);
 define('G5_JS_PATH',        G5_PATH.'/'.G5_JS_DIR);
 define('G5_LIB_PATH',       G5_PATH.'/'.G5_LIB_DIR);
 define('G5_PLUGIN_PATH',    G5_PATH.'/'.G5_PLUGIN_DIR);
-define('G5_SKIN_PATH',      G5_PATH.'/'.G5_SKIN_DIR);
 define('G5_SESSION_PATH',   G5_DATA_PATH.'/'.G5_SESSION_DIR);
 
 define('G5_KCPCERT_PATH',   G5_PLUGIN_PATH.'/'.G5_KCPCERT_DIR);

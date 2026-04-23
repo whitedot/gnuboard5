@@ -83,11 +83,11 @@ function member_complete_password_reset_request(array $request)
     goto_url(G5_MEMBER_URL . '/login.php');
 }
 
-function member_begin_login_session(array $mb, $member_skin_path)
+function member_begin_login_session(array $mb, $member_view_path)
 {
     run_event('login_session_before', $mb, false);
 
-    MemberSkinHookController::includeOptional($member_skin_path, 'login_check.skin.php');
+    MemberViewHookController::includeOptional($member_view_path, 'login_check.skin.php');
 
     if (!(defined('SKIP_SESSION_REGENERATE_ID') && SKIP_SESSION_REGENERATE_ID)) {
         session_regenerate_id(false);
@@ -170,19 +170,19 @@ function member_redirect_if_logged_in($is_member, $url = '')
     goto_url($url ? $url : G5_URL);
 }
 
-function member_build_login_page_view($member_skin_path, $url)
+function member_build_login_page_view($member_view_path, $url)
 {
-    $login_skin_path = $member_skin_path;
-    $login_file = $login_skin_path . '/login.skin.php';
+    $login_view_path = $member_view_path;
+    $login_file = $login_view_path . '/login.skin.php';
 
     if (!file_exists($login_file)) {
-        $login_skin_path = G5_MEMBER_VIEW_PATH . '/basic';
+        $login_view_path = G5_MEMBER_VIEW_PATH . '/basic';
     }
 
     return array(
         'login_url' => login_url($url),
         'login_action_url' => G5_HTTPS_MEMBER_URL . '/login_check.php',
-        'skin_path' => $login_skin_path,
+        'view_path' => $login_view_path,
     );
 }
 
@@ -208,11 +208,11 @@ function member_complete_password_lost_certify_request(array $request)
     alert('비밀번호가 변경됐습니다.\\n\\n회원아이디와 변경된 비밀번호로 로그인 하시기 바랍니다.', G5_MEMBER_URL . '/login.php');
 }
 
-function member_complete_login(array $request, array $mb, $member_skin_path, array $post)
+function member_complete_login(array $request, array $mb, $member_view_path, array $post)
 {
     $link = member_build_login_redirect_url($request['url'], $post);
 
-    member_begin_login_session($mb, $member_skin_path);
+    member_begin_login_session($mb, $member_view_path);
     member_apply_login_auto_cookie($mb, $request['auto_login']);
 
     run_event('member_login_check', $mb, $link, false);
@@ -221,7 +221,7 @@ function member_complete_login(array $request, array $mb, $member_skin_path, arr
     goto_url($link);
 }
 
-function member_complete_login_request(array $request, $member_skin_path, array $post)
+function member_complete_login_request(array $request, $member_view_path, array $post)
 {
     member_validate_login_request($request);
 
@@ -230,5 +230,5 @@ function member_complete_login_request(array $request, $member_skin_path, array 
     member_validate_login_status($mb);
     member_validate_login_email_certify($mb, $request['mb_id']);
 
-    member_complete_login($request, $mb, $member_skin_path, $post);
+    member_complete_login($request, $mb, $member_view_path, $post);
 }

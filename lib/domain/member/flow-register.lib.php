@@ -232,7 +232,7 @@ function member_finish_register_submit($mb_id, $mb_name, array $member, $w, $old
     MemberRegisterResponseFlow::finishSubmit($mb_id, $member, $w, $old_email, $mb_email, $msg);
 }
 
-function member_complete_register_submit_request($w, array $request, array $member, array $config, $is_admin, $member_skin_path)
+function member_complete_register_submit_request($w, array $request, array $member, array $config, $is_admin, $member_view_path)
 {
     member_validate_register_submit_request($w, $request, $is_admin);
 
@@ -248,8 +248,6 @@ function member_complete_register_submit_request($w, array $request, array $memb
 
     run_event('register_form_update_valid', $w, $mb_id, $mb_nick, $mb_email);
     member_validate_register_uniqueness($mb_id, $mb_nick, $mb_email);
-
-    MemberSkinHookController::includeOptional($member_skin_path, 'register_form_update.head.skin.php');
 
     $submit_state = member_prepare_register_submit_state($w, $request, $member, $config);
 

@@ -118,7 +118,7 @@
                     <?php echo help('kcaptcha 사용시 ' . str_replace(array('recaptcha_inv', 'recaptcha'), 'kcaptcha', G5_CAPTCHA_URL) . '/mp3 밑의 음성 폴더를 선택합니다.') ?>
                     <select name="cf_captcha_mp3" id="cf_captcha_mp3" required class="form-select">
                     <?php
-                    $arr = get_skin_dir('mp3', str_replace(array('recaptcha_inv', 'recaptcha'), 'kcaptcha', G5_CAPTCHA_PATH));
+                    $arr = get_subdirectory_names(str_replace(array('recaptcha_inv', 'recaptcha'), 'kcaptcha', G5_CAPTCHA_PATH) . '/mp3');
                     for ($i = 0; $i < count($arr); $i++) {
                         if ($i == 0) {
                             echo "<option value=\"\">선택</option>";

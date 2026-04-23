@@ -4,7 +4,7 @@ if (!defined('_GNUBOARD_')) {
 }
 
 require_once __DIR__ . '/render-template.lib.php';
-require_once __DIR__ . '/render-skin.lib.php';
+require_once __DIR__ . '/render-view.lib.php';
 require_once __DIR__ . '/render-response.lib.php';
 require_once __DIR__ . '/render-register-form.lib.php';
 require_once __DIR__ . '/render-page-view.lib.php';

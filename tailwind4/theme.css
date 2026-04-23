@@ -2,5 +2,5 @@
 @import "tailwindcss/utilities" source(none);
 
 @source "../head.sub.php";
-@source "../skin/**/*.php";
+@source "../member/**/*.php";
 @source "../lib/**/*.php";

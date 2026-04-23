@@ -56,10 +56,10 @@ controller
 
 ### page.lib.php / render.lib.php
 
-- skin 렌더링
+- view 렌더링
 - 공통 페이지 조합
 - 자동 post, 공통 alert script 같은 응답 보조
-- 현재 `render.lib.php`는 `render-template.lib.php`, `render-skin.lib.php`, `render-response.lib.php`, `render-register-form.lib.php`, `render-page-view.lib.php`를 로드하는 진입 로더 역할만 수행
+- 현재 `render.lib.php`는 `render-template.lib.php`, `render-view.lib.php`, `render-response.lib.php`, `render-register-form.lib.php`, `render-page-view.lib.php`를 로드하는 진입 로더 역할만 수행
 - 화면 컨트롤러가 직접 템플릿 데이터 조합을 만들지 않고, 가능하면 `render-page-view.lib.php` 계열 helper에서 `title`, `data`, `options`를 반환받아 사용
 - 현재 `page.lib.php`는 `page-controller.lib.php`, `page-hook.lib.php`, `page-shell.lib.php`를 로드하는 진입 로더 역할만 수행
 - `member/_head.php`, `_tail.php`, `_head.sub.php`, `_tail.sub.php`는 레이아웃 include를 직접 결정하지 않고 `page-shell.lib.php` 함수만 호출

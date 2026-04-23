@@ -206,44 +206,6 @@ function is_admin($mb_id)
     return run_replace('is_admin', $is_authority, $mb_id);
 }
 
-// 스킨 path (단일 반응형 - 테마 스킨만 사용)
-function get_skin_path($dir, $skin)
-{
-    $skin_name = $skin ?: 'basic';
-    $candidates = array();
-
-    if (preg_match('#^theme/(.+)$#', $skin_name, $match)) {
-        $skin_name = $match[1];
-        if (defined('G5_THEME_PATH')) {
-            $candidates[] = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/'.$dir.'/'.$skin_name;
-        }
-    }
-
-    $candidates[] = G5_SKIN_PATH.'/'.$dir.'/'.$skin_name;
-
-    if (!preg_match('#^theme/(.+)$#', $skin ?: '')) {
-        if (defined('G5_THEME_PATH')) {
-            $candidates[] = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/'.$dir.'/'.$skin_name;
-        }
-    }
-
-    foreach ($candidates as $candidate) {
-        if (is_dir($candidate)) {
-            return $candidate;
-        }
-    }
-
-    return $candidates[0];
-}
-
-// 스킨 url
-function get_skin_url($dir, $skin)
-{
-    $skin_path = get_skin_path($dir, $skin);
-
-    return str_replace(G5_PATH, G5_URL, $skin_path);
-}
-
 function get_member_profile_img($mb_id='', $width='', $height='', $alt='profile_image', $title=''){
     static $no_profile_cache = '';
     $src = '';
