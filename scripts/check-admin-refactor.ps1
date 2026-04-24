@@ -81,6 +81,12 @@ if ($memberFormAliasMatches) {
     throw ("legacy member form aliases found:`n" + ($details -join "`n"))
 }
 
+$memberFormViewModelMatches = Select-String -Path (Join-Path $projectRoot 'lib\domain\admin\member-form.lib.php') -Pattern "'sound_only'|'required_mb_id'|'required_mb_id_class'|'required_mb_password'|'mb_certify_yes'|'mb_certify_no'|'mb_adult_yes'|'mb_adult_no'|'mb_mailling_yes'|'mb_mailling_no'|'mb_open_yes'|'mb_open_no'|'mb_marketing_agree_yes'|'mb_marketing_agree_no'"
+if ($memberFormViewModelMatches) {
+    $details = $memberFormViewModelMatches | ForEach-Object { "$($_.Path):$($_.LineNumber): $($_.Line.Trim())" }
+    throw ("legacy member form view-model keys found:`n" + ($details -join "`n"))
+}
+
 $explicitRequestPages = @(
     (Join-Path $projectRoot 'adm\index.php')
     (Join-Path $projectRoot 'adm\member_list.php')
@@ -112,6 +118,54 @@ $memberExportPageMatches = Select-String -Path (Join-Path $projectRoot 'adm\memb
 if ($memberExportPageMatches) {
     $details = $memberExportPageMatches | ForEach-Object { "$($_.Path):$($_.LineNumber): $($_.Line.Trim())" }
     throw ("legacy member export page wiring found:`n" + ($details -join "`n"))
+}
+
+$memberListInlineBehaviorMatches = Select-String -Path (Join-Path $projectRoot 'adm\member_list.php') -Pattern '<script>|onclick=|onsubmit=|function deleteMember|function fmemberlist_submit'
+if ($memberListInlineBehaviorMatches) {
+    $details = $memberListInlineBehaviorMatches | ForEach-Object { "$($_.Path):$($_.LineNumber): $($_.Line.Trim())" }
+    throw ("legacy member list inline behavior found:`n" + ($details -join "`n"))
+}
+
+$memberExportInlineBehaviorMatches = Select-String -Path (Join-Path $projectRoot 'adm\member_list_exel.php') -Pattern '<script>|EventSource\(|function startExcelDownload|function showDownloadPopup|function handleProgressUpdate'
+if ($memberExportInlineBehaviorMatches) {
+    $details = $memberExportInlineBehaviorMatches | ForEach-Object { "$($_.Path):$($_.LineNumber): $($_.Line.Trim())" }
+    throw ("legacy member export inline behavior found:`n" + ($details -join "`n"))
+}
+
+$memberFormInlineBehaviorMatches = Select-String -Path (Join-Path $projectRoot 'adm\member_form.php'), (Join-Path $projectRoot 'adm\member_form_parts\history.php') -Pattern 'onsubmit=|onclick=|fmember_submit\(|member_form_parts/script\.php'
+if ($memberFormInlineBehaviorMatches) {
+    $details = $memberFormInlineBehaviorMatches | ForEach-Object { "$($_.Path):$($_.LineNumber): $($_.Line.Trim())" }
+    throw ("legacy member form inline behavior found:`n" + ($details -join "`n"))
+}
+
+$memberFormUpdateShellMatches = Select-String -Path (Join-Path $projectRoot 'adm\member_form_update.php') -Pattern 'register\.lib\.php|admin_read_member_form_request\(\$_POST\)|member_read_admin_member_request\(\$_POST\)|admin_build_member_list_qstr\(\$_POST|admin_complete_member_form_update_request\(\$member_form_request'
+if ($memberFormUpdateShellMatches) {
+    $details = $memberFormUpdateShellMatches | ForEach-Object { "$($_.Path):$($_.LineNumber): $($_.Line.Trim())" }
+    throw ("legacy member form update shell wiring found:`n" + ($details -join "`n"))
+}
+
+$memberDeleteShellMatches = Select-String -Path (Join-Path $projectRoot 'adm\member_delete.php') -Pattern 'check_demo\(|admin_build_member_list_qstr\(\$_POST|admin_read_member_delete_request\(\$_POST\)|admin_complete_member_delete_request\(\$request,'
+if ($memberDeleteShellMatches) {
+    $details = $memberDeleteShellMatches | ForEach-Object { "$($_.Path):$($_.LineNumber): $($_.Line.Trim())" }
+    throw ("legacy member delete shell wiring found:`n" + ($details -join "`n"))
+}
+
+$memberExportShellMatches = Select-String -Path (Join-Path $projectRoot 'adm\member_list_exel.php'), (Join-Path $projectRoot 'adm\member_list_exel_export.php') -Pattern 'member_list_exel\.lib\.php|check_demo\(|admin_build_member_export_runtime_context\(\$g5|admin_complete_member_export_stream_request\(\$_GET|admin_run_member_export\('
+if ($memberExportShellMatches) {
+    $details = $memberExportShellMatches | ForEach-Object { "$($_.Path):$($_.LineNumber): $($_.Line.Trim())" }
+    throw ("legacy member export shell wiring found:`n" + ($details -join "`n"))
+}
+
+$legacyMemberExportLibPath = Join-Path $projectRoot 'adm\member_list_exel.lib.php'
+if (Test-Path $legacyMemberExportLibPath) {
+    throw ("legacy member export helper file found:`n" + $legacyMemberExportLibPath)
+}
+
+$legacyExportNamingMatches = Get-ChildItem -Path (Join-Path $projectRoot 'lib\domain\admin') -Filter export*.php -File |
+    Select-String -Pattern '\bget_export_config\s*\(|\bget_member_export_params\s*\(|\bmember_export_get_total_count\s*\(|\bmember_export_build_where\s*\(|\bmember_export_get_config\s*\(|\bmember_export_open_statement\s*\(|\bmember_export_fetch_sheet_rows\s*\(|\bmember_export_create_xlsx\s*\(|\bmember_export_create_zip\s*\(|\bmember_export_ensure_directory\s*\(|\bmember_export_delete\s*\(|\bmember_export_delete_directory\s*\(|\bmember_export_write_log\s*\(|\bmember_export_send_progress\s*\(|\bmember_export_set_sse_headers\s*\('
+if ($legacyExportNamingMatches) {
+    $details = $legacyExportNamingMatches | ForEach-Object { "$($_.Path):$($_.LineNumber): $($_.Line.Trim())" }
+    throw ("legacy export naming found:`n" + ($details -join "`n"))
 }
 
 $exportDomainGlobalMatches = Select-String -Path (Join-Path $projectRoot 'lib\domain\admin\export.lib.php') -Pattern 'global \$g5|global \$member'

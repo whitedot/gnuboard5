@@ -9,7 +9,7 @@
                     <label for="mb_memo" class="form-label">메모</label>
                 </div>
                 <div class="af-field">
-                    <textarea name="mb_memo" id="mb_memo" class="form-textarea"><?php echo html_purifier($member_form_view['mb']['mb_memo']); ?></textarea>
+                    <textarea name="mb_memo" id="mb_memo" class="form-textarea"><?php echo $profile_view['memo_value']; ?></textarea>
                 </div>
             </div>
         </div>

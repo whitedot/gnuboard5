@@ -3,18 +3,18 @@ if (!defined('_GNUBOARD_')) {
     exit;
 }
 
-function member_export_create_xlsx($params, $file_name, $index = 0, $member_table = '')
+function admin_create_member_export_xlsx($params, $file_name, $index = 0, $member_table = '')
 {
-    $config = member_export_get_config();
+    $config = admin_get_member_export_sheet_config();
     $fields = array_unique($config['fields']);
 
     try {
         $rows = array_merge(
             array($config['title'], $config['headers']),
-            member_export_fetch_sheet_rows($params, $fields, $member_table)
+            admin_fetch_member_export_sheet_rows($params, $fields, $member_table)
         );
 
-        member_export_ensure_directory(MEMBER_EXPORT_DIR);
+        admin_ensure_member_export_directory(MEMBER_EXPORT_DIR);
 
         $sub_name = $index == 0 ? 'all' : sprintf('%02d', $index);
         $filename = $file_name . '_' . $sub_name . '.xlsx';
@@ -28,29 +28,29 @@ function member_export_create_xlsx($params, $file_name, $index = 0, $member_tabl
     return $filename;
 }
 
-function member_export_create_zip($files, $zip_file_name)
+function admin_create_member_export_zip($files, $zip_file_name)
 {
-    if (!class_exists('ZipArchive')) {
-        error_log('[Member Export Error]  ZipArchive 클래스를 사용할 수 없습니다.');
-        return array('error' => '파일을 압축하는 중 문제가 발생했습니다. 개별 파일로 제공됩니다.<br>: ZipArchive 클래스를 사용할 수 없습니다.');
+    if (!admin_archive_supports_zip()) {
+        error_log('[Member Export Error]  ZIP archive 지원을 사용할 수 없습니다.');
+        return array('error' => '파일을 압축하는 중 문제가 발생했습니다. 개별 파일로 제공됩니다.<br>: ZipArchive 또는 PharData 지원을 사용할 수 없습니다.');
     }
 
-    member_export_ensure_directory(MEMBER_EXPORT_DIR);
+    admin_ensure_member_export_directory(MEMBER_EXPORT_DIR);
     $destination_zip_path = rtrim(MEMBER_EXPORT_DIR, '/') . '/' . $zip_file_name . '.zip';
-
-    $zip = new ZipArchive();
-    if ($zip->open($destination_zip_path, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {
-        return array('error' => '파일을 압축하는 중 문제가 발생했습니다. 개별 파일로 제공됩니다.');
-    }
-
+    $archive_files = array();
     foreach ($files as $file) {
         $file_path = MEMBER_EXPORT_DIR . '/' . $file;
         if (file_exists($file_path)) {
-            $zip->addFile($file_path, basename($file_path));
+            $archive_files[$file_path] = basename($file_path);
         }
     }
 
-    $result = $zip->close();
+    try {
+        admin_archive_write_from_files($destination_zip_path, $archive_files);
+        $result = true;
+    } catch (Exception $e) {
+        return array('error' => '파일을 압축하는 중 문제가 발생했습니다. 개별 파일로 제공됩니다.<br>: ' . $e->getMessage());
+    }
 
     return array(
         'result' => $result,
@@ -60,7 +60,7 @@ function member_export_create_zip($files, $zip_file_name)
     );
 }
 
-function member_export_ensure_directory($dir)
+function admin_ensure_member_export_directory($dir)
 {
     if (!is_dir($dir)) {
         if (!@mkdir($dir, G5_DIR_PERMISSION, true)) {
@@ -74,7 +74,7 @@ function member_export_ensure_directory($dir)
     }
 }
 
-function member_export_delete($file_list = array())
+function admin_delete_member_export_files($file_list = array())
 {
     $count = 0;
 
@@ -106,7 +106,7 @@ function member_export_delete($file_list = array())
         }
 
         if (is_dir($file)) {
-            member_export_delete_directory($file);
+            admin_delete_member_export_directory($file);
             $count++;
         }
     }
@@ -114,7 +114,7 @@ function member_export_delete($file_list = array())
     return $count;
 }
 
-function member_export_delete_directory($dir)
+function admin_delete_member_export_directory($dir)
 {
     foreach (glob($dir . '/{.,}*', GLOB_BRACE) as $item) {
         if (in_array(basename($item), array('.', '..'), true)) {
@@ -122,7 +122,7 @@ function member_export_delete_directory($dir)
         }
 
         if (is_dir($item)) {
-            member_export_delete_directory($item);
+            admin_delete_member_export_directory($item);
             continue;
         }
 
@@ -132,7 +132,7 @@ function member_export_delete_directory($dir)
     rmdir($dir);
 }
 
-function member_export_write_log($params, $result = array(), $actor_id = 'guest')
+function admin_write_member_export_log($params, $result = array(), $actor_id = 'guest')
 {
     $max_size = 1024 * 1024 * 2;
     $max_files = 10;
@@ -171,7 +171,7 @@ function member_export_write_log($params, $result = array(), $actor_id = 'guest'
     $condition = array();
 
     if ($params['use_stx'] == 1 && !empty($params['stx'])) {
-        $sfl_list = get_export_config('sfl_list');
+        $sfl_list = admin_get_member_export_config('sfl_list');
         $label = isset($sfl_list[$params['sfl']]) ? $sfl_list[$params['sfl']] : '';
         $condition[] = '검색(' . $params['stx_cond'] . ') : ' . $label . ' - ' . $params['stx'];
     }
@@ -189,7 +189,7 @@ function member_export_write_log($params, $result = array(), $actor_id = 'guest'
     }
 
     if ($params['ad_range_only'] == 1) {
-        $ad_range_list = get_export_config('ad_range_list');
+        $ad_range_list = admin_get_member_export_config('ad_range_list');
         $label = isset($ad_range_list[$params['ad_range_type']]) ? $ad_range_list[$params['ad_range_type']] : '';
         $condition[] = '수신동의: 예 (' . $label . ')';
 
@@ -208,7 +208,7 @@ function member_export_write_log($params, $result = array(), $actor_id = 'guest'
     }
 
     if ($params['use_intercept'] == 1) {
-        $intercept_list = get_export_config('intercept_list');
+        $intercept_list = admin_get_member_export_config('intercept_list');
         $label = isset($intercept_list[$params['intercept']]) ? $intercept_list[$params['intercept']] : '';
         if ($label) {
             $condition[] = $label;

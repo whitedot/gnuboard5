@@ -11,6 +11,15 @@ function admin_read_member_form_request(array $request)
     );
 }
 
+function admin_read_member_form_update_request(array $post, array $config)
+{
+    return array(
+        'form' => admin_read_member_form_request($post),
+        'member' => member_read_admin_member_request($post),
+        'list_qstr' => admin_build_member_list_qstr($post, $config),
+    );
+}
+
 function admin_get_member_form_defaults()
 {
     return array(
@@ -27,6 +36,40 @@ function admin_get_member_form_defaults()
     );
 }
 
+function admin_build_member_form_binary_options($selected_value)
+{
+    return array(
+        array(
+            'value' => '1',
+            'label' => '예',
+            'checked' => (bool) $selected_value,
+        ),
+        array(
+            'value' => '0',
+            'label' => '아니오',
+            'checked' => !$selected_value,
+        ),
+    );
+}
+
+function admin_build_member_form_certify_case_options($selected_value)
+{
+    return array(
+        array(
+            'value' => 'simple',
+            'label' => '간편인증',
+            'id' => 'mb_certify_sa',
+            'checked' => $selected_value === 'simple',
+        ),
+        array(
+            'value' => 'hp',
+            'label' => '휴대폰',
+            'id' => 'mb_certify_hp',
+            'checked' => $selected_value === 'hp',
+        ),
+    );
+}
+
 function admin_build_member_form_view(array $request, array $member, $is_admin, array $config)
 {
     global $g5;
@@ -34,23 +77,37 @@ function admin_build_member_form_view(array $request, array $member, $is_admin, 
     $w = $request['w'];
     $mb_id = $request['mb_id'];
     $mb = admin_get_member_form_defaults();
-    $sound_only = '';
-    $required_mb_id = '';
-    $required_mb_id_class = '';
-    $required_mb_password = '';
     $html_title = '';
+    $is_create = false;
+    $is_update = false;
+    $mb_id_input = array(
+        'required' => false,
+        'readonly' => false,
+        'classes' => 'form-input',
+    );
+    $password_input = array(
+        'required' => false,
+        'classes' => 'form-input',
+    );
 
     if ($w == '') {
-        $required_mb_id = 'required';
-        $required_mb_id_class = 'required alnum_';
-        $required_mb_password = 'required';
-        $sound_only = '<strong class="caption-sr-only">필수</strong>';
+        $is_create = true;
+        $mb_id_input = array(
+            'required' => true,
+            'readonly' => false,
+            'classes' => 'required alnum_ form-input',
+        );
+        $password_input = array(
+            'required' => true,
+            'classes' => 'required form-input',
+        );
         $mb['mb_mailling'] = 1;
         $mb['mb_open'] = 1;
         $mb['mb_level'] = $config['cf_register_level'];
         $mb['mb_marketing_agree'] = 0;
         $html_title = '추가';
     } elseif ($w == 'u') {
+        $is_update = true;
         $mb = get_member($mb_id);
         if (!$mb['mb_id']) {
             alert('존재하지 않는 회원자료입니다.');
@@ -60,7 +117,11 @@ function admin_build_member_form_view(array $request, array $member, $is_admin, 
             alert('자신보다 권한이 높거나 같은 회원은 수정할 수 없습니다.');
         }
 
-        $required_mb_id = 'readonly';
+        $mb_id_input = array(
+            'required' => false,
+            'readonly' => true,
+            'classes' => 'form-input',
+        );
         $html_title = '수정';
         $mb['mb_name'] = get_text($mb['mb_name']);
         $mb['mb_nick'] = get_text($mb['mb_nick']);
@@ -69,25 +130,6 @@ function admin_build_member_form_view(array $request, array $member, $is_admin, 
         $mb['mb_hp'] = get_text($mb['mb_hp']);
     } else {
         alert('제대로 된 값이 넘어오지 않았습니다.');
-    }
-
-    switch ($mb['mb_certify']) {
-        case 'simple':
-            $mb_certify_case = '간편인증';
-            $mb_certify_val = 'simple';
-            break;
-        case 'hp':
-            $mb_certify_case = '휴대폰';
-            $mb_certify_val = 'hp';
-            break;
-        case 'admin':
-            $mb_certify_case = '관리자 수정';
-            $mb_certify_val = 'admin';
-            break;
-        default:
-            $mb_certify_case = '';
-            $mb_certify_val = 'admin';
-            break;
     }
 
     $mb_cert_history = '';
@@ -102,30 +144,123 @@ function admin_build_member_form_view(array $request, array $member, $is_admin, 
         'mb' => $mb,
         'display_mb_id' => member_get_display_id($mb),
         'mask_preserved_id' => member_should_mask_preserved_id($mb),
+        'is_create' => $is_create,
+        'is_update' => $is_update,
+        'mb_id_input' => $mb_id_input,
+        'password_input' => $password_input,
         'member_level_options' => admin_build_member_level_options(1, (int) $member['mb_level'], isset($mb['mb_level']) ? $mb['mb_level'] : ''),
-        'sound_only' => $sound_only,
-        'required_mb_id' => $required_mb_id,
-        'required_mb_id_class' => $required_mb_id_class,
-        'required_mb_password' => $required_mb_password,
         'html_title' => $html_title,
-        'mb_certify_case' => $mb_certify_case,
-        'mb_certify_val' => $mb_certify_val,
-        'mb_certify_yes' => $mb['mb_certify'] ? 'checked="checked"' : '',
-        'mb_certify_no' => !$mb['mb_certify'] ? 'checked="checked"' : '',
-        'mb_adult_yes' => $mb['mb_adult'] ? 'checked="checked"' : '',
-        'mb_adult_no' => !$mb['mb_adult'] ? 'checked="checked"' : '',
-        'mb_mailling_yes' => $mb['mb_mailling'] ? 'checked="checked"' : '',
-        'mb_mailling_no' => !$mb['mb_mailling'] ? 'checked="checked"' : '',
-        'mb_open_yes' => $mb['mb_open'] ? 'checked="checked"' : '',
-        'mb_open_no' => !$mb['mb_open'] ? 'checked="checked"' : '',
-        'mb_marketing_agree_yes' => $mb['mb_marketing_agree'] ? 'checked="checked"' : '',
-        'mb_marketing_agree_no' => !$mb['mb_marketing_agree'] ? 'checked="checked"' : '',
+        'certify_case_options' => admin_build_member_form_certify_case_options(isset($mb['mb_certify']) ? $mb['mb_certify'] : ''),
+        'mb_certify_options' => admin_build_member_form_binary_options(!empty($mb['mb_certify'])),
+        'mb_adult_options' => admin_build_member_form_binary_options(!empty($mb['mb_adult'])),
+        'mb_mailling_options' => admin_build_member_form_binary_options(!empty($mb['mb_mailling'])),
+        'mb_open_options' => admin_build_member_form_binary_options(!empty($mb['mb_open'])),
+        'mb_marketing_agree_options' => admin_build_member_form_binary_options(!empty($mb['mb_marketing_agree'])),
         'mb_cert_history' => $mb_cert_history,
         'title' => $title_prefix . '회원 ' . $html_title,
     );
 }
 
-function admin_build_member_form_page_view(array $member_form_view)
+function admin_member_certify_type_label($type)
+{
+    switch ($type) {
+        case 'simple':
+            return '간편인증';
+        case 'hp':
+            return '휴대폰';
+        default:
+            return '기타';
+    }
+}
+
+function admin_build_member_form_basic_section_view(array $member_form_view)
+{
+    return array(
+        'is_create' => $member_form_view['is_create'],
+        'member' => $member_form_view['mb'],
+        'mask_preserved_id' => $member_form_view['mask_preserved_id'],
+        'display_mb_id' => $member_form_view['display_mb_id'],
+        'mb_id_input' => $member_form_view['mb_id_input'],
+        'password_input' => $member_form_view['password_input'],
+        'member_level_options' => $member_form_view['member_level_options'],
+    );
+}
+
+function admin_build_member_form_contact_section_view(array $member_form_view)
+{
+    return array(
+        'member' => $member_form_view['mb'],
+        'certify_case_options' => $member_form_view['certify_case_options'],
+        'mb_certify_options' => $member_form_view['mb_certify_options'],
+        'mb_adult_options' => $member_form_view['mb_adult_options'],
+    );
+}
+
+function admin_build_member_form_consent_section_view(array $member_form_view)
+{
+    $member = $member_form_view['mb'];
+
+    return array(
+        'is_update' => $member_form_view['is_update'],
+        'mailing_options' => $member_form_view['mb_mailling_options'],
+        'mailing_agree_date' => (!empty($member['mb_mailling']) && isset($member['mb_mailling_date']) && $member['mb_mailling_date'] !== '0000-00-00 00:00:00') ? $member['mb_mailling_date'] : '',
+        'marketing_agree_options' => $member_form_view['mb_marketing_agree_options'],
+        'marketing_agree_date' => (!empty($member['mb_marketing_agree']) && isset($member['mb_marketing_date']) && $member['mb_marketing_date'] !== '0000-00-00 00:00:00') ? $member['mb_marketing_date'] : '',
+        'agree_log_html' => !empty($member['mb_agree_log']) ? conv_content($member['mb_agree_log'], 0) : '',
+        'open_options' => $member_form_view['mb_open_options'],
+        'open_date' => (!empty($member['mb_open']) && isset($member['mb_open_date']) && $member['mb_open_date'] !== '0000-00-00 00:00:00') ? $member['mb_open_date'] : '',
+    );
+}
+
+function admin_build_member_form_profile_section_view(array $member_form_view)
+{
+    return array(
+        'memo_value' => html_purifier(isset($member_form_view['mb']['mb_memo']) ? $member_form_view['mb']['mb_memo'] : ''),
+    );
+}
+
+function admin_build_member_form_history_rows($mb_cert_history, $display_mb_id)
+{
+    $rows = array();
+
+    if (!$mb_cert_history) {
+        return $rows;
+    }
+
+    sql_data_seek($mb_cert_history, 0);
+    while ($row = sql_fetch_array($mb_cert_history)) {
+        $rows[] = array(
+            'datetime' => $row['ch_datetime'],
+            'display_mb_id' => $display_mb_id,
+            'name' => $row['ch_name'],
+            'hp' => $row['ch_hp'],
+            'cert_type_label' => admin_member_certify_type_label($row['ch_type']),
+        );
+    }
+
+    return $rows;
+}
+
+function admin_build_member_form_history_section_view(array $member_form_view, array $config)
+{
+    $member = $member_form_view['mb'];
+
+    return array(
+        'is_update' => $member_form_view['is_update'],
+        'cert_history_rows' => admin_build_member_form_history_rows($member_form_view['mb_cert_history'], $member_form_view['display_mb_id']),
+        'member_joined_at' => isset($member['mb_datetime']) ? $member['mb_datetime'] : '',
+        'member_last_login_at' => isset($member['mb_today_login']) ? $member['mb_today_login'] : '',
+        'member_ip' => isset($member['mb_ip']) ? $member['mb_ip'] : '',
+        'show_email_certify' => !empty($config['cf_use_email_certify']),
+        'email_certify_at' => isset($member['mb_email_certify']) ? $member['mb_email_certify'] : '',
+        'leave_date' => isset($member['mb_leave_date']) ? $member['mb_leave_date'] : '',
+        'intercept_date' => isset($member['mb_intercept_date']) ? $member['mb_intercept_date'] : '',
+        'today_ymd' => date('Ymd'),
+        'event_member' => $member,
+    );
+}
+
+function admin_build_member_form_page_view(array $member_form_view, array $config)
 {
     return array(
         'title' => $member_form_view['title'],
@@ -140,6 +275,13 @@ function admin_build_member_form_page_view(array $member_form_view)
             'as_tabs' => true,
             'link_id_prefix' => 'member_tab_',
         )),
+        'sections' => array(
+            'basic' => admin_build_member_form_basic_section_view($member_form_view),
+            'contact' => admin_build_member_form_contact_section_view($member_form_view),
+            'consent' => admin_build_member_form_consent_section_view($member_form_view),
+            'profile' => admin_build_member_form_profile_section_view($member_form_view),
+            'history' => admin_build_member_form_history_section_view($member_form_view, $config),
+        ),
     );
 }
 
@@ -158,6 +300,14 @@ function admin_read_member_delete_request(array $post)
 {
     return array(
         'mb_id' => isset($post['mb_id']) ? trim((string) $post['mb_id']) : '',
+    );
+}
+
+function admin_read_member_delete_action_request(array $post, array $config)
+{
+    return array(
+        'delete' => admin_read_member_delete_request($post),
+        'list_qstr' => admin_build_member_list_qstr($post, $config),
     );
 }
 
@@ -183,27 +333,35 @@ function admin_build_member_delete_redirect($qstr)
     return "./member_list.php?{$qstr}";
 }
 
-function admin_complete_member_delete_request(array $request, array $member, $auth, $sub_menu, $qstr)
+function admin_validate_member_delete_action()
 {
+    check_demo();
+}
+
+function admin_complete_member_delete_request(array $delete_action_request, array $member, $auth, $sub_menu)
+{
+    admin_validate_member_delete_action();
+
     auth_check_menu($auth, $sub_menu, 'd');
 
+    $request = $delete_action_request['delete'];
     $mb = admin_validate_member_delete_request($request, $member);
     check_admin_token();
 
     member_delete($mb['mb_id']);
 
-    goto_url(admin_build_member_delete_redirect($qstr));
+    goto_url(admin_build_member_delete_redirect($delete_action_request['list_qstr']));
 }
 
-function admin_complete_member_form_update_request($w, array $request, array $member, $is_admin, $auth, $sub_menu, $qstr)
+function admin_validate_member_form_update_action($w)
 {
     if ($w == 'u') {
         check_demo();
     }
+}
 
-    auth_check_menu($auth, $sub_menu, 'w');
-    check_admin_token();
-
+function admin_persist_member_form_request($w, array $request, array $member, $is_admin)
+{
     $mb_id = $request['mb_id'];
     $mb_email = $request['mb_email'];
     $mb_nick = $request['mb_nick'];
@@ -217,20 +375,46 @@ function admin_complete_member_form_update_request($w, array $request, array $me
         if (!member_insert_admin_account($insert_params)) {
             alert('회원정보를 저장하는 중 오류가 발생했습니다.');
         }
-    } elseif ($w == 'u') {
+
+        return $mb_id;
+    }
+
+    if ($w == 'u') {
         $update_params = member_build_admin_update_fields($request, $existing_member);
 
         if (!member_update_admin_account($mb_id, $update_params)) {
             alert('회원정보를 수정하는 중 오류가 발생했습니다.');
         }
-    } else {
-        alert('제대로 된 값이 넘어오지 않았습니다.');
+
+        return $mb_id;
     }
+
+    alert('제대로 된 값이 넘어오지 않았습니다.');
+
+    return '';
+}
+
+function admin_build_member_form_update_redirect($qstr, $mb_id)
+{
+    return './member_form.php?' . $qstr . '&amp;w=u&amp;mb_id=' . $mb_id;
+}
+
+function admin_complete_member_form_update_request(array $update_request, array $member, $is_admin, $auth, $sub_menu)
+{
+    $w = $update_request['form']['w'];
+    $request = $update_request['member'];
+
+    admin_validate_member_form_update_action($w);
+
+    auth_check_menu($auth, $sub_menu, 'w');
+    check_admin_token();
+
+    $mb_id = admin_persist_member_form_request($w, $request, $member, $is_admin);
 
     if (function_exists('get_admin_captcha_by')) {
         get_admin_captcha_by('remove');
     }
 
     run_event('admin_member_form_update', $w, $mb_id);
-    goto_url('./member_form.php?' . $qstr . '&amp;w=u&amp;mb_id=' . $mb_id, false);
+    goto_url(admin_build_member_form_update_redirect($update_request['list_qstr'], $mb_id), false);
 }

@@ -3,8 +3,17 @@ if (!defined('_GNUBOARD_')) {
     exit;
 }
 
+if (!function_exists('member_require_register_lib')) {
+    function member_require_register_lib()
+    {
+        require_once G5_LIB_PATH . '/register.lib.php';
+    }
+}
+
 function member_read_admin_member_request(array $post)
 {
+    member_require_register_lib();
+
     $request = array(
         'mb_id' => isset($post['mb_id']) ? trim($post['mb_id']) : '',
         'mb_password' => isset($post['mb_password']) ? trim($post['mb_password']) : '',

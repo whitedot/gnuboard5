@@ -191,9 +191,85 @@ function admin_member_list_allowed_search_fields()
     return array('mb_id', 'mb_nick', 'mb_name', 'mb_level', 'mb_email', 'mb_hp', 'mb_datetime', 'mb_ip');
 }
 
+function admin_member_list_search_field_labels()
+{
+    return array(
+        'mb_id' => '회원아이디',
+        'mb_nick' => '닉네임',
+        'mb_name' => '이름',
+        'mb_level' => '권한',
+        'mb_email' => 'E-MAIL',
+        'mb_hp' => '휴대폰번호',
+        'mb_datetime' => '가입일시',
+        'mb_ip' => 'IP',
+    );
+}
+
 function admin_member_list_allowed_sort_fields()
 {
     return array('mb_id', 'mb_name', 'mb_nick', 'mb_email', 'mb_level', 'mb_datetime', 'mb_intercept_date', 'mb_leave_date');
+}
+
+function admin_build_member_list_search_field_options(array $request)
+{
+    $options = array();
+    foreach (admin_member_list_search_field_labels() as $value => $label) {
+        $options[] = array(
+            'value' => $value,
+            'label' => $label,
+            'selected' => $request['sfl'] === $value,
+        );
+    }
+
+    return $options;
+}
+
+function admin_build_member_list_table_columns(array $request)
+{
+    return array(
+        array(
+            'id' => 'mb_list_id',
+            'label' => '아이디',
+            'href' => admin_build_member_list_sort_url($request, 'mb_id'),
+            'class' => '',
+        ),
+        array(
+            'id' => 'mb_list_name',
+            'label' => '이름',
+            'href' => admin_build_member_list_sort_url($request, 'mb_name'),
+            'class' => '',
+        ),
+        array(
+            'id' => 'mb_list_nick',
+            'label' => '닉네임',
+            'href' => admin_build_member_list_sort_url($request, 'mb_nick'),
+            'class' => '',
+        ),
+        array(
+            'id' => 'mb_list_email',
+            'label' => '이메일 주소',
+            'href' => admin_build_member_list_sort_url($request, 'mb_email'),
+            'class' => '',
+        ),
+        array(
+            'id' => 'mb_list_level',
+            'label' => '권한',
+            'href' => admin_build_member_list_sort_url($request, 'mb_level', 'desc'),
+            'class' => '',
+        ),
+        array(
+            'id' => 'mb_list_status',
+            'label' => '상태',
+            'href' => '',
+            'class' => '',
+        ),
+        array(
+            'id' => 'mb_list_mng',
+            'label' => '관리',
+            'href' => '',
+            'class' => 'text-end',
+        ),
+    );
 }
 
 function admin_read_member_list_request(array $request, array $config)
@@ -375,6 +451,8 @@ function admin_build_member_list_view(array $request, array $member, $is_admin, 
             'mb_email' => admin_build_member_list_sort_url($request, 'mb_email'),
             'mb_level' => admin_build_member_list_sort_url($request, 'mb_level', 'desc'),
         ),
+        'search_field_options' => admin_build_member_list_search_field_options($request),
+        'table_columns' => admin_build_member_list_table_columns($request),
         'total_count' => $total_count,
         'total_page' => $total_page,
         'leave_count' => $leave_count,
@@ -387,6 +465,10 @@ function admin_build_member_list_view(array $request, array $member, $is_admin, 
         'title' => '회원관리',
         'admin_container_class' => 'admin-page-member-list',
         'admin_page_subtitle' => '회원 상태를 한눈에 확인하고, 조건 검색과 빠른 관리 동선을 자연스럽게 이어가세요.',
+        'show_add_button' => $is_admin == 'super',
+        'add_member_url' => './member_form.php',
+        'notice_title' => '회원 삭제 안내',
+        'notice_body' => '회원자료 삭제 시 로그인은 즉시 차단되며, 운영상 필요한 회원아이디와 상태 정보만 남기고 이름·닉네임·이메일·휴대폰·생년월일·IP·인증이력 등 식별 가능한 개인정보는 비식별 처리 또는 삭제됩니다.',
     );
 }
 

@@ -5,6 +5,8 @@ if (!defined('_GNUBOARD_')) {
 
 function member_validate_admin_member_request(array $request, array $member, $is_admin, $w)
 {
+    member_require_register_lib();
+
     $mb_id = $request['mb_id'];
     $mb_password = $request['mb_password'];
     $mb_hp = $request['mb_hp'];

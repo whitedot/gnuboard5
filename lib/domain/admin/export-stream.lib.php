@@ -13,7 +13,7 @@ function admin_read_member_export_stream_request(array $query)
 {
     return array(
         'mode' => isset($query['mode']) ? trim((string) $query['mode']) : '',
-        'params' => get_member_export_params($query),
+        'params' => admin_read_member_export_params($query),
     );
 }
 
@@ -38,8 +38,8 @@ function admin_validate_member_export_stream_request(array $request, array $runt
 
 function admin_fail_member_export_stream(array $params, $message, array $runtime)
 {
-    member_export_send_progress('error', $message);
-    member_export_write_log($params, array(
+    admin_send_member_export_progress('error', $message);
+    admin_write_member_export_log($params, array(
         'success' => false,
         'error' => $message,
     ), $runtime['actor_id']);
@@ -54,8 +54,8 @@ function admin_complete_member_export_stream_request(array $query, $auth, $sub_m
     $request = admin_read_member_export_stream_request($query);
     $params = $request['params'];
 
-    member_export_delete();
-    member_export_set_sse_headers();
+    admin_delete_member_export_files();
+    admin_set_member_export_sse_headers();
 
     $stream_error = admin_validate_member_export_stream_request($request, $runtime);
     if ($stream_error !== '') {
@@ -70,9 +70,37 @@ function admin_complete_member_export_stream_request(array $query, $auth, $sub_m
     );
 }
 
+function admin_build_member_export_stream_page_request(array $query, array $tables, array $member_row = array())
+{
+    return array(
+        'query' => $query,
+        'runtime' => admin_build_member_export_runtime_context($tables, $member_row),
+    );
+}
+
+function admin_complete_member_export_stream_page(array $page_request, $auth, $sub_menu)
+{
+    check_demo();
+
+    $stream_context = admin_complete_member_export_stream_request($page_request['query'], $auth, $sub_menu, $page_request['runtime']);
+    $params = $stream_context['params'];
+    $runtime = $stream_context['runtime'];
+
+    try {
+        admin_run_member_export($params, $runtime);
+    } catch (Exception $e) {
+        error_log('[Member Export Error] ' . $e->getMessage());
+        admin_send_member_export_progress('error', $e->getMessage());
+        admin_write_member_export_log($params, array(
+            'success' => false,
+            'error' => $e->getMessage(),
+        ), $runtime['actor_id']);
+    }
+}
+
 function admin_run_member_export(array $params, array $runtime)
 {
-    $total = member_export_get_total_count($params, $runtime['member_table']);
+    $total = admin_count_member_export_members($params, $runtime['member_table']);
     $pages = 1;
 
     if ($total > MEMBER_EXPORT_MAX_SIZE) {
@@ -89,50 +117,50 @@ function admin_run_member_export(array $params, array $runtime)
 
     if ($total > MEMBER_EXPORT_PAGE_SIZE) {
         $pages = (int) ceil($total / MEMBER_EXPORT_PAGE_SIZE);
-        member_export_send_progress('progress', '', 2, $total, 0, $pages, 0);
+        admin_send_member_export_progress('progress', '', 2, $total, 0, $pages, 0);
 
         for ($i = 1; $i <= $pages; $i++) {
             $params['page'] = $i;
-            member_export_send_progress('progress', '', 2, $total, ($pages == $i ? $total : $i * MEMBER_EXPORT_PAGE_SIZE), $pages, $i);
+            admin_send_member_export_progress('progress', '', 2, $total, ($pages == $i ? $total : $i * MEMBER_EXPORT_PAGE_SIZE), $pages, $i);
 
             try {
-                $file_list[] = member_export_create_xlsx($params, $file_name, $i, $runtime['member_table']);
+                $file_list[] = admin_create_member_export_xlsx($params, $file_name, $i, $runtime['member_table']);
             } catch (Exception $e) {
                 throw new Exception('총 ' . $pages . '개 중 ' . $i . '번째 파일을 생성하지 못했습니다<br>' . $e->getMessage());
             }
         }
 
         if (count($file_list) > 1) {
-            member_export_send_progress('zipping', '', 2, $total, $total, $pages, $i);
-            $zip_result = member_export_create_zip($file_list, $file_name);
+            admin_send_member_export_progress('zipping', '', 2, $total, $total, $pages, $i);
+            $zip_result = admin_create_member_export_zip($file_list, $file_name);
 
             if ($zip_result['error']) {
-                member_export_write_log($params, array('success' => false, 'error' => $zip_result['error']), $runtime['actor_id']);
-                member_export_send_progress('zippingError', $zip_result['error']);
+                admin_write_member_export_log($params, array('success' => false, 'error' => $zip_result['error']), $runtime['actor_id']);
+                admin_send_member_export_progress('zippingError', $zip_result['error']);
             }
 
             if ($zip_result && $zip_result['result']) {
-                member_export_delete($file_list);
+                admin_delete_member_export_files($file_list);
                 $zip_file_name = $zip_result['zipFile'];
             }
         }
     } else {
-        member_export_send_progress('progress', '', 1, $total, 0);
-        member_export_send_progress('progress', '', 1, $total, $total / 2);
-        $file_list[] = member_export_create_xlsx($params, $file_name, 0, $runtime['member_table']);
-        member_export_send_progress('progress', '', 1, $total, $total);
+        admin_send_member_export_progress('progress', '', 1, $total, 0);
+        admin_send_member_export_progress('progress', '', 1, $total, $total / 2);
+        $file_list[] = admin_create_member_export_xlsx($params, $file_name, 0, $runtime['member_table']);
+        admin_send_member_export_progress('progress', '', 1, $total, $total);
     }
 
-    member_export_write_log($params, array(
+    admin_write_member_export_log($params, array(
         'success' => true,
         'total' => $total,
         'files' => $file_list,
         'zip' => $zip_file_name !== '' ? $zip_file_name : null,
     ), $runtime['actor_id']);
-    member_export_send_progress('done', '', 2, $total, $total, $pages, $pages, $file_list, $zip_file_name);
+    admin_send_member_export_progress('done', '', 2, $total, $total, $pages, $pages, $file_list, $zip_file_name);
 }
 
-function member_export_send_progress($status, $message = '', $downloadType = 1, $total = 1, $current = 1, $totalChunks = 1, $currentChunk = 1, $files = array(), $zipFile = '')
+function admin_send_member_export_progress($status, $message = '', $downloadType = 1, $total = 1, $current = 1, $totalChunks = 1, $currentChunk = 1, $files = array(), $zipFile = '')
 {
     if (connection_aborted()) {
         return;
@@ -159,7 +187,7 @@ function member_export_send_progress($status, $message = '', $downloadType = 1, 
     flush();
 }
 
-function member_export_set_sse_headers()
+function admin_set_member_export_sse_headers()
 {
     header('Content-Type: text/event-stream');
     header('Cache-Control: no-cache');

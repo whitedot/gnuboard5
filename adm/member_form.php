@@ -7,10 +7,15 @@ auth_check_menu($auth, $sub_menu, 'w');
 $member_list_request = admin_read_member_list_request($_GET, $config);
 $member_form_request = admin_read_member_form_request($_GET);
 $member_form_view = admin_build_member_form_view($member_form_request, $member, $is_admin, $config);
-$page_view = admin_build_member_form_page_view($member_form_view);
+$page_view = admin_build_member_form_page_view($member_form_view, $config);
 $member_form_page_state = array(
     'list_url' => './member_list.php?' . admin_bootstrap_build_qstr($member_list_request),
 );
+$basic_view = $page_view['sections']['basic'];
+$contact_view = $page_view['sections']['contact'];
+$consent_view = $page_view['sections']['consent'];
+$profile_view = $page_view['sections']['profile'];
+$history_view = $page_view['sections']['history'];
 
 $g5['title'] = $page_view['title'];
 $admin_container_class = $page_view['admin_container_class'];
@@ -18,9 +23,10 @@ $admin_page_subtitle = $page_view['admin_page_subtitle'];
 require_once './admin.head.php';
 ?>
 
+<div data-admin-member-form>
 <?php echo admin_render_anchor_menu($page_view['pg_anchor_menu_view']); ?>
 
-<form name="fmember" id="fmember" action="./member_form_update.php" onsubmit="return fmember_submit(this);" method="post" class="admin-form-layout ui-form-theme ui-form-showcase space-y-5" autocomplete="off">
+<form name="fmember" id="fmember" action="./member_form_update.php" method="post" class="admin-form-layout ui-form-theme ui-form-showcase space-y-5" autocomplete="off">
     <input type="hidden" name="w" value="<?php echo $member_form_request['w'] ?>">
     <input type="hidden" name="sfl" value="<?php echo $member_list_request['sfl'] ?>">
     <input type="hidden" name="stx" value="<?php echo $member_list_request['stx'] ?>">
@@ -56,10 +62,9 @@ require_once './admin.head.php';
         <button type="submit" class="btn btn-solid-primary" accesskey="s">저장</button>
     </div>
 </form>
+</div>
 
 <?php
-// 자바스크립트
-include_once G5_ADMIN_PATH.'/member_form_parts/script.php';
 
 run_event('admin_member_form_after', $member_form_view['mb'], $member_form_request['w']);
 

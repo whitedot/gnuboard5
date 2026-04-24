@@ -3,7 +3,7 @@ if (!defined('_GNUBOARD_')) {
     exit;
 }
 
-function member_export_get_config()
+function admin_get_member_export_sheet_config()
 {
     $type = 1;
     $configs = array(
@@ -18,9 +18,9 @@ function member_export_get_config()
     return isset($configs[$type]) ? $configs[$type] : $configs[1];
 }
 
-function member_export_open_statement($params, $member_table, &$fields = array())
+function admin_open_member_export_statement($params, $member_table, &$fields = array())
 {
-    $config = member_export_get_config();
+    $config = admin_get_member_export_sheet_config();
     $fields = array_unique($config['fields']);
 
     $sql_transform_map = array(
@@ -38,7 +38,7 @@ function member_export_open_statement($params, $member_table, &$fields = array()
     }
     $field_list = implode(', ', $sql_fields);
 
-    $where_data = member_export_build_where($params);
+    $where_data = admin_build_member_export_where($params);
 
     $page = (int) (isset($params['page']) ? $params['page'] : 1);
     if ($page < 1) {
@@ -58,9 +58,9 @@ function member_export_open_statement($params, $member_table, &$fields = array()
     return $statement;
 }
 
-function member_export_fetch_sheet_rows($params, array $fields, $member_table)
+function admin_fetch_member_export_sheet_rows($params, array $fields, $member_table)
 {
-    $statement = member_export_open_statement($params, $member_table, $fields);
+    $statement = admin_open_member_export_statement($params, $member_table, $fields);
     $rows = array();
 
     try {

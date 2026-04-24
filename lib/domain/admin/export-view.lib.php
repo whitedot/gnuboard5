@@ -43,9 +43,37 @@ function admin_build_member_export_links()
     );
 }
 
+function admin_build_member_export_select_options(array $options, $selected_value)
+{
+    $items = array();
+    foreach ($options as $value => $label) {
+        $items[] = array(
+            'value' => (string) $value,
+            'label' => (string) $label,
+            'selected' => (string) $selected_value === (string) $value,
+        );
+    }
+
+    return $items;
+}
+
+function admin_build_member_export_level_options($selected_value)
+{
+    $items = array();
+    for ($i = 1; $i <= 10; $i++) {
+        $items[] = array(
+            'value' => $i,
+            'label' => (string) $i,
+            'selected' => (string) $selected_value === (string) $i,
+        );
+    }
+
+    return $items;
+}
+
 function admin_member_export_supports_xlsx()
 {
-    return class_exists('ZipArchive');
+    return admin_archive_supports_zip();
 }
 
 function admin_member_export_runtime_error_message()
@@ -54,7 +82,7 @@ function admin_member_export_runtime_error_message()
         return '';
     }
 
-    return 'ZipArchive 확장이 비활성화되어 회원 엑셀 내보내기를 실행할 수 없습니다. 서버 PHP 설정에서 zip 확장을 활성화한 뒤 다시 시도해 주세요.';
+    return 'ZIP archive 지원을 사용할 수 없어 회원 엑셀 내보내기를 실행할 수 없습니다. 서버 PHP 설정에서 zip 또는 phar 지원 상태를 확인한 뒤 다시 시도해 주세요.';
 }
 
 function admin_build_member_export_client_config(array $links)
@@ -82,20 +110,31 @@ function admin_build_member_export_runtime_context(array $tables, array $member_
     );
 }
 
+function admin_build_member_export_page_request(array $query, array $config, array $tables, array $member_row = array())
+{
+    $runtime = admin_build_member_export_runtime_context($tables, $member_row);
+
+    return array(
+        'runtime' => $runtime,
+        'view' => admin_build_member_export_page_view($query, $config, $runtime),
+    );
+}
+
 function admin_build_member_export_page_view(array $query, array $config, array $runtime)
 {
-    $params = get_member_export_params($query);
+    $params = admin_read_member_export_params($query);
     $total_count = 0;
     $total_error = '';
 
     try {
-        $total_count = member_export_get_total_count($params, $runtime['member_table']);
+        $total_count = admin_count_member_export_members($params, $runtime['member_table']);
     } catch (Exception $e) {
         $total_error = $e->getMessage();
     }
 
     $filter_state = admin_build_member_export_filter_state($query, $config, $params);
     $links = admin_build_member_export_links();
+    $client_config = admin_build_member_export_client_config($links);
 
     return array(
         'title' => '회원관리파일',
@@ -105,13 +144,43 @@ function admin_build_member_export_page_view(array $query, array $config, array 
         'form_token' => get_token(),
         'total_count' => $total_count,
         'total_error' => $total_error,
-        'sfl_options' => get_export_config('sfl_list'),
-        'intercept_options' => get_export_config('intercept_list'),
-        'ad_range_options' => get_export_config('ad_range_list'),
+        'sfl_options' => admin_get_member_export_config('sfl_list'),
+        'intercept_options' => admin_get_member_export_config('intercept_list'),
+        'ad_range_options' => admin_get_member_export_config('ad_range_list'),
+        'sfl_option_items' => admin_build_member_export_select_options(admin_get_member_export_config('sfl_list'), $params['sfl']),
+        'intercept_option_items' => admin_build_member_export_select_options(admin_get_member_export_config('intercept_list'), $params['intercept']),
+        'ad_range_option_items' => admin_build_member_export_select_options(admin_get_member_export_config('ad_range_list'), $params['ad_range_type']),
+        'level_start_options' => admin_build_member_export_level_options($params['level_start']),
+        'level_end_options' => admin_build_member_export_level_options($params['level_end']),
         'filter_state' => $filter_state,
         'links' => $links,
-        'client_config' => admin_build_member_export_client_config($links),
+        'client_config' => $client_config,
+        'client_config_attrs' => array(
+            'stream-url' => $client_config['stream_url'],
+            'popup-progress-title' => $client_config['popup_progress_title'],
+            'popup-done-title' => $client_config['popup_done_title'],
+            'close-confirm-message' => $client_config['close_confirm_message'],
+            'download-stopped-message' => $client_config['download_stopped_message'],
+            'download-failed-summary' => $client_config['download_failed_summary'],
+            'download-failed-message' => $client_config['download_failed_message'],
+            'estimated-seconds-multiplier' => (string) $client_config['estimated_seconds_multiplier'],
+            'estimated-seconds-min' => (string) $client_config['estimated_seconds_min'],
+        ),
         'environment_ready' => !empty($runtime['environment_ready']),
         'environment_error' => isset($runtime['environment_error']) ? $runtime['environment_error'] : '',
+        'intro_items' => array(
+            array(
+                'html' => '<strong>회원수 ' . number_format(MEMBER_EXPORT_PAGE_SIZE) . '건 초과 시</strong> ' . number_format(MEMBER_EXPORT_PAGE_SIZE) . '건 단위로 분리 저장되며, <strong>엑셀 생성 최대 건수는 ' . number_format(MEMBER_EXPORT_MAX_SIZE) . '건</strong>입니다. 초과 시 조건 추가 설정 후 재시도하시기 바랍니다.',
+            ),
+            array(
+                'html' => '<strong>수신동의 확인 대상은 만료일까지 1달 미만인 회원</strong>을 기준으로 필터링됩니다.',
+            ),
+            array(
+                'html' => '파일 생성 시 서버에 임시 생성된 파일 중 <strong>오늘 날짜를 제외 한 파일은 자동 삭제</strong>되며, 수동 삭제가 필요하면 <a href="' . $links['file_delete_url'] . '" class="font-semibold text-primary hover:underline">회원관리파일 일괄삭제</a>를 이용해 주세요.',
+            ),
+            array(
+                'html' => '회원 정보 수정은 <a href="' . $links['member_list_url'] . '" class="font-semibold text-primary hover:underline">회원 관리</a>에서 진행하실 수 있습니다.',
+            ),
+        ),
     );
 }
