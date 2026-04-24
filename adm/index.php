@@ -2,10 +2,7 @@
 $sub_menu = '100000';
 require_once './_common.php';
 
-$dashboard_request = admin_read_dashboard_request(array(
-    'sst' => isset($sst) ? $sst : '',
-    'sod' => isset($sod) ? $sod : '',
-));
+$dashboard_request = admin_read_dashboard_request($_GET);
 $dashboard_view = admin_build_dashboard_page_view($dashboard_request, $member, $is_admin, $auth);
 
 $g5['title'] = $dashboard_view['title'];
@@ -58,9 +55,7 @@ if ($dashboard_view['can_read_member_menu']) {
                         <tr>
                             <td class="admin-dashboard-member-id"><?php echo $item['display_mb_id'] ?></td>
                             <td><?php echo $item['mb_name']; ?></td>
-                            <td>
-                                <?php echo get_sideview($item['mb_id'], $item['mb_nick_text'], $item['mb_email']); ?>
-                            </td>
+                            <td><?php echo $item['sideview_html']; ?></td>
                             <td><?php echo $item['mb_level'] ?></td>
                             <td><?php echo $item['mb_mailling']; ?></td>
                             <td><?php echo $item['mb_open']; ?></td>

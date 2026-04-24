@@ -3,19 +3,17 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 
-
-if($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_hp'])) { ?>
-    <script src="<?php echo G5_JS_URL ?>/certify.js?v=<?php echo G5_JS_VER; ?>"></script>    
-<?php } ?>
-<div id="find_info" class="<?php if($config['cf_cert_use'] != 0 && $config['cf_cert_find'] != 0) { ?> <?php } ?>">
+if ($use_certify_js)
+    add_javascript('<script src="' . $certify_script_url . '"></script>', 0);
+?>
+<div id="find_info">
     
         <form name="fpasswordlost" action="<?php echo $action_url ?>" onsubmit="return fpasswordlost_submit(this);" method="post" autocomplete="off">
         <input type="hidden" name="cert_no" value="">
         <h3>이메일로 찾기</h3>
         <fieldset id="info_fs">
             <p>
-                회원가입 시 등록하신 이메일 주소를 입력해 주세요.<br>
-                해당 이메일로 아이디와 비밀번호 정보를 보내드립니다.
+                <?php echo nl2br($email_description_text); ?>
             </p>
             <label for="mb_email">E-mail 주소<strong>필수</strong></label>
             <input type="text" name="mb_email" id="mb_email" required size="30" placeholder="E-mail 주소">
@@ -23,20 +21,19 @@ if($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_hp']
         <?php echo captcha_html();  ?>
 
         
-            <button type="submit">인증메일 보내기</button>
+            <button type="submit"><?php echo $email_submit_label; ?></button>
         
         </form>
     
-    <?php if($config['cf_cert_use'] != 0 && $config['cf_cert_find'] != 0) { ?> 
+    <?php if ($show_certify_options) { ?> 
     <div>
         <h3>본인인증으로 찾기</h3>
         <div>
-        <?php if(!empty($config['cf_cert_simple'])) { ?>
+        <?php if ($show_simple_cert_button) { ?>
             <button type="button" id="win_sa_kakao_cert" class="win_sa_cert" data-type="">간편인증</button>
-        <?php } if(!empty($config['cf_cert_hp'])) { ?>
-            <?php if(!empty($config['cf_cert_hp'])) { ?>
+        <?php } ?>
+        <?php if ($show_hp_cert_button) { ?>
             <button type="button" id="win_hp_cert">휴대폰 본인확인</button>
-            <?php } ?>
         <?php } ?>
         </div>
     </div>
@@ -44,11 +41,11 @@ if($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_hp']
 </div>
 <script>    
 document.addEventListener("DOMContentLoaded", function() {
-    var pageTypeParam = "pageType=find";
+    var pageTypeParam = "pageType=<?php echo $page_type; ?>";
 
-	<?php if($config['cf_cert_use'] && $config['cf_cert_simple']) { ?>
+	<?php if ($show_simple_cert_button) { ?>
 	var simpleButtons = document.querySelectorAll(".win_sa_cert");
-	var simpleUrl = "<?php echo G5_INICERT_URL; ?>/ini_request.php";
+	var simpleUrl = "<?php echo $simple_cert_url; ?>";
 
 	simpleButtons.forEach(function(button) {
 		button.addEventListener("click", function() {
@@ -58,25 +55,17 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 	});
     <?php } ?>
-    <?php if($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
+    <?php if ($show_hp_cert_button) { ?>
     var hpButton = document.getElementById("win_hp_cert");
     if (hpButton) {
         hpButton.addEventListener("click", function() {
             var params = "?" + pageTypeParam;
-        <?php     
-	        switch($config['cf_cert_hp']) {
-	            case 'kcp':
-	                $cert_url = G5_KCPCERT_URL.'/kcpcert_form.php';
-	                $cert_type = 'kcp-hp';
-	                break;
-	            default:
-	                echo 'alert("기본환경설정에서 휴대폰 본인확인 설정을 해주십시오");';
-                echo 'return false;';
-                break;
-        }
-        ?>
+        <?php if ($hp_cert_error_message !== '') { ?>
+            alert("<?php echo $hp_cert_error_message; ?>");
+            return false;
+        <?php } ?>
         
-            certify_win_open("<?php echo $cert_type; ?>", "<?php echo $cert_url; ?>" + params);
+            certify_win_open("<?php echo $hp_cert_type; ?>", "<?php echo $hp_cert_url; ?>" + params);
         });
     }
     <?php } ?>

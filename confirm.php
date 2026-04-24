@@ -1,31 +1,15 @@
 <?php
 include_once('./_common.php');
+$g5['title'] = isset($confirm_view['header_text']) ? $confirm_view['header_text'] : '';
 include_once(G5_PATH.'/head.sub.php');
-
-$pattern1 = "/[\<\>\'\"\\\'\\\"\(\)]/";
-$pattern2 = "/\r\n|\r|\n|[^\x20-\x7e]/";
-
-$url1 = isset($url1) ? preg_replace($pattern1, "", clean_xss_tags($url1, 1)) : '';
-$url1 = preg_replace($pattern2, "", $url1);
-$url2 = isset($url2) ? preg_replace($pattern1, "", clean_xss_tags($url2, 1)) : '';
-$url2 = preg_replace($pattern2, "", $url2);
-$url3 = isset($url3) ? preg_replace($pattern1, "", clean_xss_tags($url3, 1)) : '';
-$url3 = preg_replace($pattern2, "", $url3);
-
-$msg = isset($msg) ? $msg : '';
-$header = isset($header) ? $msg : '';
-
-check_url_host($url1);
-check_url_host($url2);
-check_url_host($url3);
 ?>
 
 <script>
-var conf = "<?php echo strip_tags($msg); ?>";
+var conf = "<?php echo $confirm_view['confirm_message']; ?>";
 if (confirm(conf)) {
-    document.location.replace("<?php echo $url1; ?>");
+    document.location.replace("<?php echo $confirm_view['confirm_url']; ?>");
 } else {
-    document.location.replace("<?php echo $url2; ?>");
+    document.location.replace("<?php echo $confirm_view['cancel_url']; ?>");
 }
 </script>
 
@@ -33,17 +17,17 @@ if (confirm(conf)) {
 <article id="confirm_check">
 <header>
     <hgroup>
-        <h1><?php echo get_text(strip_tags($header)); ?></h1>
+        <h1><?php echo $confirm_view['header_text']; ?></h1>
         <h2>아래 내용을 확인해 주세요.</h2>
     </hgroup>
 </header>
 <p>
-    <?php echo get_text(strip_tags($msg)); ?>
+    <?php echo $confirm_view['message_text']; ?>
 </p>
 
-<a href="<?php echo $url1; ?>">확인</a>
-<a href="<?php echo $url2; ?>">취소</a><br><br>
-<a href="<?php echo $url3; ?>">돌아가기</a>
+<a href="<?php echo $confirm_view['confirm_url']; ?>">확인</a>
+<a href="<?php echo $confirm_view['cancel_url']; ?>">취소</a><br><br>
+<a href="<?php echo $confirm_view['back_url']; ?>">돌아가기</a>
 </article>
 </noscript>
 

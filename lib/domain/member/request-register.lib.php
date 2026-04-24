@@ -3,8 +3,9 @@ if (!defined('_GNUBOARD_')) {
     exit;
 }
 
-function member_read_registration_request($w, array $post, array $session)
+function member_read_registration_request(array $post, array $session, array $query_state = array())
 {
+    $w = member_read_request_w($post, $query_state);
     $request = array(
         'mb_id' => '',
         'posted_mb_id' => isset($post['mb_id']) ? trim($post['mb_id']) : '',
@@ -37,19 +38,13 @@ function member_read_registration_request($w, array $post, array $session)
 
 function member_clear_certification_session()
 {
-    $session_keys = array(
+    member_clear_session_keys(array(
         'ss_cert_type',
         'ss_cert_no',
         'ss_cert_hash',
         'ss_cert_birth',
         'ss_cert_adult',
-    );
-
-    foreach ($session_keys as $session_key) {
-        if (isset($_SESSION[$session_key])) {
-            unset($_SESSION[$session_key]);
-        }
-    }
+    ));
 }
 
 function member_read_register_result_request(array $session)
@@ -83,8 +78,10 @@ function member_read_register_email_update_request(array $post)
     );
 }
 
-function member_read_register_form_request($w, array $post)
+function member_read_register_form_request(array $post, array $query_state = array())
 {
+    $w = member_read_request_w($post, $query_state);
+
     return array(
         'w' => $w,
         'agree' => isset($post['agree']) ? preg_replace('#[^0-9]#', '', $post['agree']) : '',

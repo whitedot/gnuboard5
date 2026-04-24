@@ -3,31 +3,13 @@ if (!defined('_GNUBOARD_')) {
     exit;
 }
 
-function g5_extract_request_globals()
+function g5_read_request_scalar(array $source, $key, $default = '')
 {
-    $allowed_keys = array(
-        'gr_id',
-        'page',
-        'sca',
-        'sfl',
-        'sod',
-        'sop',
-        'spt',
-        'sst',
-        'stx',
-        'url',
-        'w',
-    );
-
-    foreach (array($_GET, $_POST) as $source) {
-        foreach ($allowed_keys as $key) {
-            if (!array_key_exists($key, $source) || is_array($source[$key])) {
-                continue;
-            }
-
-            $GLOBALS[$key] = $source[$key];
-        }
+    if (!isset($source[$key]) || is_array($source[$key])) {
+        return $default;
     }
+
+    return $source[$key];
 }
 
 function g5_initialize_runtime_globals()
@@ -53,7 +35,7 @@ function g5_initialize_runtime_globals()
     $g5_debug = array('php' => array(), 'sql' => array());
 }
 
-function g5_build_query_state()
+function g5_build_query_state(array $source, $request_uri = '')
 {
     $state = array(
         'qstr' => '',
@@ -67,78 +49,78 @@ function g5_build_query_state()
         'page' => '',
         'w' => '',
         'url' => '',
-        'urlencode' => urlencode($_SERVER['REQUEST_URI']),
+        'urlencode' => urlencode((string) $request_uri),
         'gr_id' => '',
     );
 
-    if (isset($_REQUEST['sca'])) {
-        $state['sca'] = clean_xss_tags(trim($_REQUEST['sca']));
+    if (isset($source['sca']) && !is_array($source['sca'])) {
+        $state['sca'] = clean_xss_tags(trim((string) $source['sca']));
         if ($state['sca']) {
             $state['sca'] = preg_replace("/[\<\>\'\"\\\'\\\"\%\=\(\)\/\^\*]/", "", $state['sca']);
             $state['qstr'] .= '&amp;sca=' . urlencode($state['sca']);
         }
     }
 
-    if (isset($_REQUEST['sfl'])) {
-        $state['sfl'] = trim($_REQUEST['sfl']);
+    if (isset($source['sfl']) && !is_array($source['sfl'])) {
+        $state['sfl'] = trim((string) $source['sfl']);
         $state['sfl'] = preg_replace("/[\<\>\'\"\\\'\\\"\%\=\(\)\/\^\*\s\#]/", "", $state['sfl']);
         if ($state['sfl']) {
             $state['qstr'] .= '&amp;sfl=' . urlencode($state['sfl']);
         }
     }
 
-    if (isset($_REQUEST['stx'])) {
-        $state['stx'] = get_search_string(trim($_REQUEST['stx']));
+    if (isset($source['stx']) && !is_array($source['stx'])) {
+        $state['stx'] = get_search_string(trim((string) $source['stx']));
         if ($state['stx'] || $state['stx'] === '0') {
             $state['qstr'] .= '&amp;stx=' . urlencode(cut_str($state['stx'], 20, ''));
         }
     }
 
-    if (isset($_REQUEST['sst'])) {
-        $state['sst'] = trim($_REQUEST['sst']);
+    if (isset($source['sst']) && !is_array($source['sst'])) {
+        $state['sst'] = trim((string) $source['sst']);
         $state['sst'] = preg_replace("/[\<\>\'\"\\\'\\\"\%\=\(\)\/\^\*\s]/", "", $state['sst']);
         if ($state['sst']) {
             $state['qstr'] .= '&amp;sst=' . urlencode($state['sst']);
         }
     }
 
-    if (isset($_REQUEST['sod'])) {
-        $request_sod = isset($_REQUEST['sod']) ? (string) $_REQUEST['sod'] : '';
+    if (isset($source['sod']) && !is_array($source['sod'])) {
+        $request_sod = (string) $source['sod'];
         $state['sod'] = preg_match("/^(asc|desc)$/i", $request_sod) ? $request_sod : '';
         if ($state['sod']) {
             $state['qstr'] .= '&amp;sod=' . urlencode($state['sod']);
         }
     }
 
-    if (isset($_REQUEST['sop'])) {
-        $request_sop = isset($_REQUEST['sop']) ? (string) $_REQUEST['sop'] : '';
+    if (isset($source['sop']) && !is_array($source['sop'])) {
+        $request_sop = (string) $source['sop'];
         $state['sop'] = preg_match("/^(or|and)$/i", $request_sop) ? $request_sop : '';
         if ($state['sop']) {
             $state['qstr'] .= '&amp;sop=' . urlencode($state['sop']);
         }
     }
 
-    if (isset($_REQUEST['spt'])) {
-        $state['spt'] = (int) $_REQUEST['spt'];
+    if (isset($source['spt']) && !is_array($source['spt'])) {
+        $state['spt'] = (int) $source['spt'];
         if ($state['spt']) {
             $state['qstr'] .= '&amp;spt=' . urlencode($state['spt']);
         }
     }
 
-    if (isset($_REQUEST['page'])) {
-        $state['page'] = (int) $_REQUEST['page'];
+    if (isset($source['page']) && !is_array($source['page'])) {
+        $state['page'] = (int) $source['page'];
         if ($state['page']) {
             $state['qstr'] .= '&amp;page=' . urlencode($state['page']);
         }
     }
 
-    if (isset($_REQUEST['w'])) {
-        $request_w = isset($_REQUEST['w']) ? (string) $_REQUEST['w'] : '';
+    if (isset($source['w']) && !is_array($source['w'])) {
+        $request_w = (string) $source['w'];
         $state['w'] = substr($request_w, 0, 2);
     }
 
-    if (isset($_REQUEST['url'])) {
-        $state['url'] = preg_replace('|[^a-z0-9-~+_.?#=!&;,/:%@$\|*\'()\[\]\\x80-\\xff]|i', '', trim($_REQUEST['url']));
+    if (isset($source['url']) && !is_array($source['url'])) {
+        $state['url'] = preg_replace('|[^a-z0-9-~+_.?#=!&;,/:%@$\|*\'()\[\]\\x80-\\xff]|i', '', trim((string) $source['url']));
         $state['urlencode'] = urlencode($state['url']);
     } elseif (G5_DOMAIN) {
         $parsed_domain = @parse_url(G5_DOMAIN);
@@ -146,11 +128,42 @@ function g5_build_query_state()
         $state['urlencode'] = rtrim(G5_DOMAIN, '%2F') . '%2F' . ltrim(urldecode(preg_replace("/^" . urlencode($parsed_domain['path']) . "/", "", $state['urlencode'])), '%2F');
     }
 
-    if (isset($_REQUEST['gr_id']) && !is_array($_REQUEST['gr_id'])) {
-        $state['gr_id'] = preg_replace('/[^a-z0-9_]/i', '', trim($_REQUEST['gr_id']));
+    if (isset($source['gr_id']) && !is_array($source['gr_id'])) {
+        $state['gr_id'] = preg_replace('/[^a-z0-9_]/i', '', trim((string) $source['gr_id']));
     }
 
     return $state;
+}
+
+function g5_build_runtime_request_context(array $source)
+{
+    $request_uri = isset($_SERVER['REQUEST_URI']) ? (string) $_SERVER['REQUEST_URI'] : '';
+
+    return array(
+        'request' => $source,
+        'query_state' => g5_build_query_state($source, $request_uri),
+        'token' => g5_read_request_scalar($source, 'token', ''),
+    );
+}
+
+function g5_get_runtime_request_context()
+{
+    global $g5;
+
+    if (isset($g5['request_context']) && is_array($g5['request_context'])) {
+        return $g5['request_context'];
+    }
+
+    return g5_build_runtime_request_context($_REQUEST);
+}
+
+function g5_get_runtime_query_state()
+{
+    $request_context = g5_get_runtime_request_context();
+
+    return isset($request_context['query_state']) && is_array($request_context['query_state'])
+        ? $request_context['query_state']
+        : array();
 }
 
 function g5_resolve_member_state(array $member)

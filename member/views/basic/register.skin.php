@@ -9,11 +9,11 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
     <form  name="fregister" id="fregister" action="<?php echo $register_action_url ?>" onsubmit="return fregister_submit(this);" method="POST" autocomplete="off">
 
-    <p><i aria-hidden="true"></i> 회원가입약관 및 개인정보 수집 및 이용의 내용에 동의하셔야 회원가입 하실 수 있습니다.</p>
+    <p><i aria-hidden="true"></i> <?php echo $page_notice_text; ?></p>
     
     <section id="fregister_term">
         <h2>(필수) 회원가입약관</h2>
-        <textarea readonly><?php echo get_text($config['cf_stipulation']) ?></textarea>
+        <textarea readonly><?php echo $stipulation_text; ?></textarea>
         <fieldset>
             <input type="checkbox" name="agree" value="1" id="agree11">
             <label for="agree11"><span></span><b>회원가입약관의 내용에 동의합니다.</b></label>
@@ -35,7 +35,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 <tbody>
                 <tr>
                     <td>이용자 식별 및 본인여부 확인</td>
-                    <td>아이디, 이름, 비밀번호<?php echo ($config['cf_cert_use'])? ", 생년월일, 휴대폰 번호(본인확인 시), 암호화된 개인식별부호(CI)" : ""; ?></td>
+                    <td><?php echo $private_info_item_text; ?></td>
                     <td>회원 탈퇴 시까지</td>
                 </tr>
                 <tr>
@@ -59,7 +59,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     </div>
 	    
     <div>
-    	<a href="<?php echo G5_URL ?>">취소</a>
+    	<a href="<?php echo $cancel_url ?>">취소</a>
         <button type="submit">회원가입</button>
     </div>
 
@@ -69,13 +69,13 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     function fregister_submit(f)
     {
         if (!f.agree.checked) {
-            alert("회원가입약관의 내용에 동의하셔야 회원가입 하실 수 있습니다.");
+            alert(<?php echo json_encode($agree_alert_message, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>);
             f.agree.focus();
             return false;
         }
 
         if (!f.agree2.checked) {
-            alert("개인정보 수집 및 이용의 내용에 동의하셔야 회원가입 하실 수 있습니다.");
+            alert(<?php echo json_encode($agree2_alert_message, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>);
             f.agree2.focus();
             return false;
         }

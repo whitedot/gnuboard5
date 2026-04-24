@@ -3,6 +3,22 @@ if (!defined('_GNUBOARD_')) {
     exit;
 }
 
+function admin_get_runtime_session_snapshot()
+{
+    return isset($_SESSION) && is_array($_SESSION) ? $_SESSION : array();
+}
+
+function admin_read_session_value($key, $default = '')
+{
+    $session = admin_get_runtime_session_snapshot();
+
+    if (!array_key_exists($key, $session) || is_array($session[$key])) {
+        return $default;
+    }
+
+    return (string) $session[$key];
+}
+
 function get_admin_token()
 {
     $token = md5(uniqid(rand(), true));
@@ -19,7 +35,7 @@ function get_admin_captcha_by($type = 'get')
         set_session($captcha_name, '');
     }
 
-    return get_session($captcha_name);
+    return admin_read_session_value($captcha_name);
 }
 
 function get_sanitize_input($s, $is_html = false)
@@ -33,10 +49,16 @@ function get_sanitize_input($s, $is_html = false)
 
 function check_admin_token()
 {
-    $token = get_session('ss_admin_token');
+    $token = admin_read_session_value('ss_admin_token');
     set_session('ss_admin_token', '');
+    $request_context = g5_get_runtime_request_context();
+    $request_token = '';
 
-    if (!$token || !$_REQUEST['token'] || $token != $_REQUEST['token']) {
+    if (isset($request_context['token']) && !is_array($request_context['token'])) {
+        $request_token = (string) $request_context['token'];
+    }
+
+    if (!$token || $request_token === '' || $token != $request_token) {
         alert('올바른 방법으로 이용해 주십시오.', G5_URL);
     }
 

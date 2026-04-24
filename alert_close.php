@@ -1,21 +1,11 @@
 <?php
 include_once('./_common.php');
+$g5['title'] = isset($alert_close_view['title']) ? $alert_close_view['title'] : '결과안내 페이지';
 include_once(G5_PATH.'/head.sub.php');
-
-$msg = isset($msg) ? strip_tags($msg) : '';
-$msg2 = str_replace("\\n", "<br>", $msg);
-
-if($error) {
-    $header2 = "다음 항목에 오류가 있습니다.";
-    $msg3 = "새창을 닫으시고 이전 작업을 다시 시도해 주세요.";
-} else {
-    $header2 = "다음 내용을 확인해 주세요.";
-    $msg3 = "새창을 닫으신 후 서비스를 이용해 주세요.";
-}
 ?>
 
 <script>
-alert("<?php echo $msg; ?>");
+alert("<?php echo $alert_close_view['message_text']; ?>");
 try {
     window.close();
 } catch(error) {
@@ -31,12 +21,12 @@ setTimeout(function() {
 
 <noscript>
 <div id="validation_check">
-    <h1><?php echo $header2 ?></h1>
+    <h1><?php echo $alert_close_view['header_text'] ?></h1>
     <p>
-        <?php echo $msg2 ?>
+        <?php echo $alert_close_view['message_html'] ?>
     </p>
     <p>
-        <?php echo $msg3 ?>
+        <?php echo $alert_close_view['description_text'] ?>
     </p>
 </div>
 </noscript>

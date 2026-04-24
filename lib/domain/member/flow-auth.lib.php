@@ -7,7 +7,7 @@ class MemberNotificationService
 {
     public static function sendPasswordLostMail($email, array $mb, $change_password, $mb_nonce, $mb_lost_certify)
     {
-        global $config;
+        $config = member_get_runtime_config();
 
         $subject = '[' . $config['cf_title'] . '] 요청하신 회원정보 찾기 안내 메일입니다.';
         $href = G5_MEMBER_URL . '/password_lost_certify.php?mb_no=' . $mb['mb_no'] . '&amp;mb_nonce=' . $mb_nonce;

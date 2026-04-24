@@ -11,9 +11,9 @@
                 <div class="af-field">
                     <?php
                     $cnt = 0;
-                    if ($mb_cert_history) {
-                        sql_data_seek($mb_cert_history, 0);
-                        while ($row = sql_fetch_array($mb_cert_history)) {
+                    if ($member_form_view['mb_cert_history']) {
+                        sql_data_seek($member_form_view['mb_cert_history'], 0);
+                        while ($row = sql_fetch_array($member_form_view['mb_cert_history'])) {
                             $cnt++;
                             $cert_type = '';
                             switch ($row['ch_type']) {
@@ -30,7 +30,7 @@
                     ?>
                     <div>
                         [<?php echo $row['ch_datetime']; ?>]
-                        <?php echo $display_mb_id; ?> /
+                        <?php echo $member_form_view['display_mb_id']; ?> /
                         <?php echo $row['ch_name']; ?> /
                         <?php echo $row['ch_hp']; ?> /
                         <?php echo $cert_type; ?>
@@ -45,34 +45,34 @@
                 </div>
             </div>
 
-            <?php if ($w == 'u') { ?>
+            <?php if ($member_form_request['w'] == 'u') { ?>
             <div class="af-row">
                 <div class="af-label"><label class="form-label">회원가입일</label></div>
-                <div class="af-field"><?php echo $mb['mb_datetime'] ?></div>
+                <div class="af-field"><?php echo $member_form_view['mb']['mb_datetime'] ?></div>
             </div>
 
             <div class="af-row">
                 <div class="af-label"><label class="form-label">최근접속일</label></div>
-                <div class="af-field"><?php echo $mb['mb_today_login'] ?></div>
+                <div class="af-field"><?php echo $member_form_view['mb']['mb_today_login'] ?></div>
             </div>
 
             <div class="af-row">
                 <div class="af-label"><label class="form-label">IP</label></div>
-                <div class="af-field"><?php echo $mb['mb_ip'] ?></div>
+                <div class="af-field"><?php echo $member_form_view['mb']['mb_ip'] ?></div>
             </div>
 
             <?php if ($config['cf_use_email_certify']) { ?>
             <div class="af-row">
                 <div class="af-label"><span class="form-label">인증일시</span></div>
                 <div class="af-field">
-                    <?php if ($mb['mb_email_certify'] == '0000-00-00 00:00:00') { ?>
+                    <?php if ($member_form_view['mb']['mb_email_certify'] == '0000-00-00 00:00:00') { ?>
                         <p class="hint-text">회원님이 메일을 수신할 수 없는 경우 등에 직접 인증처리를 하실 수 있습니다.</p>
                         <label for="passive_certify" class="af-check form-label">
                             <input type="checkbox" name="passive_certify" id="passive_certify" class="form-checkbox">
                             <span class="form-label">수동인증</span>
                         </label>
                     <?php } else { ?>
-                        <?php echo $mb['mb_email_certify'] ?>
+                        <?php echo $member_form_view['mb']['mb_email_certify'] ?>
                     <?php } ?>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="af-field">
                     <div class="af-inline">
-                        <input type="text" name="mb_leave_date" value="<?php echo $mb['mb_leave_date'] ?>" id="mb_leave_date" maxlength="8" class="form-input">
+                        <input type="text" name="mb_leave_date" value="<?php echo $member_form_view['mb']['mb_leave_date'] ?>" id="mb_leave_date" maxlength="8" class="form-input">
                         <label for="mb_leave_date_set_today" class="af-check form-label">
                             <input type="checkbox" value="<?php echo date("Ymd"); ?>" id="mb_leave_date_set_today" class="form-checkbox" onclick="if (this.form.mb_leave_date.value==this.form.mb_leave_date.defaultValue) { this.form.mb_leave_date.value=this.value; } else { this.form.mb_leave_date.value=this.form.mb_leave_date.defaultValue; }">
                             <span class="form-label">탈퇴일을 오늘로 지정</span>
@@ -100,7 +100,7 @@
                 </div>
                 <div class="af-field">
                     <div class="af-inline">
-                        <input type="text" name="mb_intercept_date" value="<?php echo $mb['mb_intercept_date'] ?>" id="mb_intercept_date" maxlength="8" class="form-input">
+                        <input type="text" name="mb_intercept_date" value="<?php echo $member_form_view['mb']['mb_intercept_date'] ?>" id="mb_intercept_date" maxlength="8" class="form-input">
                         <label for="mb_intercept_date_set_today" class="af-check form-label">
                             <input type="checkbox" value="<?php echo date("Ymd"); ?>" id="mb_intercept_date_set_today" class="form-checkbox" onclick="if (this.form.mb_intercept_date.value==this.form.mb_intercept_date.defaultValue) { this.form.mb_intercept_date.value=this.value; } else { this.form.mb_intercept_date.value=this.form.mb_intercept_date.defaultValue; }">
                             <span class="form-label">접근차단일을 오늘로 지정</span>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
             </div>
-            <?php run_event('admin_member_form_add', $mb, $w, 'div'); ?>
+            <?php run_event('admin_member_form_add', $member_form_view['mb'], $member_form_request['w'], 'div'); ?>
         </div>
     </div>
 </section>

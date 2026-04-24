@@ -39,6 +39,8 @@ function member_validate_register_submit_request($w, array $request, $is_admin)
 
 function member_validate_register_request($w, array &$request, array $member, array $config)
 {
+    $register_validation_session = member_read_register_validation_session_state();
+    $certification_session = member_read_certification_session_state();
     $mb_id = $request['mb_id'];
     $mb_password = $request['mb_password'];
     $mb_password_re = $request['mb_password_re'];
@@ -79,7 +81,7 @@ function member_validate_register_request($w, array &$request, array $member, ar
     if ($w == '') {
         if ($msg = exist_mb_id($mb_id)) alert($msg);
 
-        if (get_session('ss_check_mb_id') != $mb_id || get_session('ss_check_mb_nick') != $mb_nick || get_session('ss_check_mb_email') != $mb_email) {
+        if ($register_validation_session['checked_mb_id'] != $mb_id || $register_validation_session['checked_mb_nick'] != $mb_nick || $register_validation_session['checked_mb_email'] != $mb_email) {
             set_session('ss_check_mb_id', '');
             set_session('ss_check_mb_nick', '');
             set_session('ss_check_mb_email', '');
@@ -87,7 +89,7 @@ function member_validate_register_request($w, array &$request, array $member, ar
         }
 
         if ($config['cf_cert_use'] && $config['cf_cert_req']) {
-            if ($request['cert_no'] !== get_session('ss_cert_no') || !get_session('ss_cert_no')) {
+            if ($request['cert_no'] !== $certification_session['cert_no'] || !$certification_session['cert_no']) {
                 alert("회원가입을 위해서는 본인확인을 해주셔야 합니다.");
             }
         }
@@ -111,7 +113,9 @@ function member_validate_register_uniqueness($mb_id, $mb_nick, $mb_email)
 
 function member_validate_register_update_submission(array $request)
 {
-    if (!trim(get_session('ss_mb_id'))) {
+    $register_validation_session = member_read_register_validation_session_state();
+
+    if (!$register_validation_session['current_mb_id']) {
         alert('로그인 되어 있지 않습니다.');
     }
 

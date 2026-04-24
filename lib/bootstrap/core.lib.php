@@ -46,6 +46,27 @@ function g5_include_bootstrap_libraries()
     include_once(G5_LIB_PATH . '/uri.lib.php');
 }
 
+function g5_get_runtime_tables()
+{
+    global $g5;
+
+    return is_array($g5) ? $g5 : array();
+}
+
+function g5_get_runtime_config()
+{
+    global $config;
+
+    return is_array($config) ? $config : array();
+}
+
+function g5_get_runtime_table_name($table_key)
+{
+    $tables = g5_get_runtime_tables();
+
+    return isset($tables[$table_key]) ? $tables[$table_key] : '';
+}
+
 function g5_include_core_libraries()
 {
     include_once(G5_LIB_PATH . '/common.lib.php');

@@ -47,12 +47,8 @@ function get_export_config($type = null)
 /**
  * 파라미터 수집 및 유효성 검사
  */
-function get_member_export_params(?array $query = null) 
+function get_member_export_params(array $query) 
 {
-    if ($query === null) {
-        $query = $_GET;
-    }
-
     // 친구톡 양식 - 엑셀 양식에 포함할 항목
     $fieldArray = array_map('trim', explode(',', isset($query['fields']) ? $query['fields'] : ''));
     $vars = [];
@@ -111,12 +107,10 @@ function get_member_export_params(?array $query = null)
 /**
  * 전체 데이터 개수 조회
  */
-function member_export_get_total_count($params) 
+function member_export_get_total_count(array $params, $member_table) 
 {
-    global $g5;
-    
     $where_data = member_export_build_where($params);
-    $sql = "SELECT COUNT(*) as cnt FROM {$g5['member_table']} {$where_data['clause']}";
+    $sql = "SELECT COUNT(*) as cnt FROM {$member_table} {$where_data['clause']}";
     
     $result = sql_query_prepared($sql, $where_data['params']);
     if (!$result) {
@@ -130,9 +124,8 @@ function member_export_get_total_count($params)
 /**
  * WHERE 조건절 생성
  */
-function member_export_build_where($params) 
+function member_export_build_where(array $params) 
 {
-    global $config;
     $conditions = [];
     $query_params = [];
     

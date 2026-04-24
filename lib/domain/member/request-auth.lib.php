@@ -12,43 +12,47 @@ function member_read_password_lost_request(array $post)
 
 function member_read_password_reset_request(array $post, array $session)
 {
+    $certification_session = member_read_certification_session_state($session);
+
     return array(
-        'mb_id' => isset($session['ss_cert_mb_id']) ? trim(get_session('ss_cert_mb_id')) : '',
-        'mb_dupinfo' => isset($session['ss_cert_dupinfo']) ? trim(get_session('ss_cert_dupinfo')) : '',
+        'mb_id' => $certification_session['cert_mb_id'],
+        'mb_dupinfo' => $certification_session['cert_dupinfo'],
         'mb_password' => isset($post['mb_password']) ? trim($post['mb_password']) : '',
         'mb_password_re' => isset($post['mb_password_re']) ? trim($post['mb_password_re']) : '',
     );
 }
 
-function member_read_login_request(array $post, $fallback_url = '')
+function member_read_login_request(array $post, array $query_state = array())
 {
     return array(
         'mb_id' => isset($post['mb_id']) ? trim($post['mb_id']) : '',
         'mb_password' => isset($post['mb_password']) ? trim($post['mb_password']) : '',
         'auto_login' => !empty($post['auto_login']),
-        'url' => isset($post['url']) ? trim($post['url']) : $fallback_url,
+        'url' => member_read_request_url($post, $query_state),
     );
 }
 
 function member_read_password_reset_page_request(array $post, array $session)
 {
+    $certification_session = member_read_certification_session_state($session);
+
     return array(
         'mb_id' => isset($post['mb_id']) ? trim($post['mb_id']) : '',
-        'session_mb_id' => isset($session['ss_cert_mb_id']) ? trim(get_session('ss_cert_mb_id')) : '',
+        'session_mb_id' => $certification_session['cert_mb_id'],
     );
 }
 
-function member_read_login_page_request($url = '')
+function member_read_login_page_request(array $query_state = array())
 {
     return array(
-        'url' => $url,
+        'url' => member_read_request_url(array(), $query_state),
     );
 }
 
-function member_read_logout_request($url = '')
+function member_read_logout_request(array $query_state = array())
 {
     return array(
-        'url' => $url,
+        'url' => member_read_request_url(array(), $query_state),
     );
 }
 

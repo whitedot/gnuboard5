@@ -80,9 +80,6 @@ $_GET     = array_map_deep(G5_ESCAPE_FUNCTION,  $_GET);
 $_COOKIE  = array_map_deep(G5_ESCAPE_FUNCTION,  $_COOKIE);
 $_REQUEST = array_map_deep(G5_ESCAPE_FUNCTION,  $_REQUEST);
 
-
-g5_extract_request_globals();
-
 g5_initialize_runtime_globals();
 g5_include_bootstrap_libraries();
 
@@ -106,20 +103,7 @@ define('G5_CAPTCHA_DIR',    !empty($config['cf_captcha']) ? $config['cf_captcha'
 define('G5_CAPTCHA_URL',    G5_PLUGIN_URL.'/'.G5_CAPTCHA_DIR);
 define('G5_CAPTCHA_PATH',   G5_PLUGIN_PATH.'/'.G5_CAPTCHA_DIR);
 
-$request_state = g5_build_query_state();
-$qstr = $request_state['qstr'];
-$sca = $request_state['sca'];
-$sfl = $request_state['sfl'];
-$stx = $request_state['stx'];
-$sst = $request_state['sst'];
-$sod = $request_state['sod'];
-$sop = $request_state['sop'];
-$spt = $request_state['spt'];
-$page = $request_state['page'];
-$w = $request_state['w'];
-$url = $request_state['url'];
-$urlencode = $request_state['urlencode'];
-$gr_id = $request_state['gr_id'];
+$g5['request_context'] = g5_build_runtime_request_context($_REQUEST);
 //===================================
 
 $restored_member = g5_restore_logged_in_member();

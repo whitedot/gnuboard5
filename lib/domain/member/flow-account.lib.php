@@ -34,7 +34,7 @@ function member_prepare_confirm_url($url)
 function member_complete_leave(array $member, $url = '')
 {
     $target_url = $url ? $url : G5_URL;
-    unset($_SESSION['ss_mb_id']);
+    member_clear_session_keys(array('ss_mb_id'));
 
     alert(
         $member['mb_nick'] . '님께서는 ' . date('Y년 m월 d일') . '에 회원에서 탈퇴 하셨습니다.',
@@ -64,14 +64,15 @@ function member_build_leave_state(array $member)
 function member_prepare_cert_refresh_update(array $request, array $member, array $config)
 {
     $mb_hp = hyphen_hp_number($request['mb_hp']);
+    $certification_session = member_read_certification_session_state();
 
-    if ($config['cf_cert_use'] && get_session('ss_cert_type') && get_session('ss_cert_dupinfo')) {
-        $row = member_find_dupinfo_owner($member['mb_id'], get_session('ss_cert_dupinfo'));
+    if ($config['cf_cert_use'] && $certification_session['cert_type'] && $certification_session['cert_dupinfo']) {
+        $row = member_find_dupinfo_owner($member['mb_id'], $certification_session['cert_dupinfo']);
         member_validate_cert_refresh_dupinfo_conflict(isset($row['mb_id']) ? $row['mb_id'] : '');
     }
 
-    $md5_cert_no = get_session('ss_cert_no');
-    $cert_type = get_session('ss_cert_type');
+    $md5_cert_no = $certification_session['cert_no'];
+    $cert_type = $certification_session['cert_type'];
     $update_fields = build_member_certify_fields('', $request['mb_name'], $mb_hp, $cert_type, $md5_cert_no);
 
     return array(

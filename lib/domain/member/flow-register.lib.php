@@ -7,11 +7,12 @@ class MemberRegisterNotificationService
 {
     public static function sendRegisterEmailCertify($mb_id, $mb_name, $mb_email)
     {
-        global $config;
+        $config = member_get_runtime_config();
+        $member_table = member_get_member_table_name();
 
         $subject = '[' . $config['cf_title'] . '] 인증확인 메일입니다.';
         $mb_md5 = md5(pack('V*', rand(), rand(), rand(), rand()));
-        sql_query_prepared(" update {$GLOBALS['g5']['member_table']} set mb_email_certify2 = :mb_email_certify2 where mb_id = :mb_id ", array(
+        sql_query_prepared(" update {$member_table} set mb_email_certify2 = :mb_email_certify2 where mb_id = :mb_id ", array(
             'mb_email_certify2' => $mb_md5,
             'mb_id' => $mb_id,
         ));
@@ -29,11 +30,12 @@ class MemberRegisterNotificationService
 
     public static function sendRegisterEmailChange($mb_id, $mb_name, $mb_email, $w = 'u')
     {
-        global $config;
+        $config = member_get_runtime_config();
+        $member_table = member_get_member_table_name();
 
         $subject = '[' . $config['cf_title'] . '] 인증확인 메일입니다.';
         $mb_md5 = md5(pack('V*', rand(), rand(), rand(), rand()));
-        sql_query_prepared(" update {$GLOBALS['g5']['member_table']} set mb_email_certify2 = :mb_email_certify2 where mb_id = :mb_id ", array(
+        sql_query_prepared(" update {$member_table} set mb_email_certify2 = :mb_email_certify2 where mb_id = :mb_id ", array(
             'mb_email_certify2' => $mb_md5,
             'mb_id' => $mb_id,
         ));
@@ -55,7 +57,8 @@ class MemberRegisterResponseFlow
 {
     public static function finishSubmit($mb_id, array $member, $w, $old_email, $mb_email, $msg = '')
     {
-        global $config;
+        $config = member_get_runtime_config();
+        $member_table = member_get_member_table_name();
 
         if ($msg) {
             MemberResponseRenderer::alertScript($msg);
@@ -71,7 +74,7 @@ class MemberRegisterResponseFlow
             return;
         }
 
-        $tmp_password = sql_fetch_value_prepared(" select mb_password from {$GLOBALS['g5']['member_table']} where mb_id = :mb_id ", array(
+        $tmp_password = sql_fetch_value_prepared(" select mb_password from {$member_table} where mb_id = :mb_id ", array(
             'mb_id' => $member['mb_id'],
         ));
 
@@ -158,14 +161,15 @@ function member_prepare_register_form_entry()
 function member_prepare_register_submit_state($w, array $request, array $member, array $config)
 {
     $mb_hp = hyphen_hp_number($request['mb_hp']);
+    $certification_session = member_read_certification_session_state();
 
-    if ($config['cf_cert_use'] && get_session('ss_cert_type') && get_session('ss_cert_dupinfo')) {
-        $row = member_find_dupinfo_owner(isset($member['mb_id']) ? $member['mb_id'] : '', get_session('ss_cert_dupinfo'));
+    if ($config['cf_cert_use'] && $certification_session['cert_type'] && $certification_session['cert_dupinfo']) {
+        $row = member_find_dupinfo_owner(isset($member['mb_id']) ? $member['mb_id'] : '', $certification_session['cert_dupinfo']);
         member_validate_cert_refresh_dupinfo_conflict(isset($row['mb_id']) ? $row['mb_id'] : '');
     }
 
-    $md5_cert_no = get_session('ss_cert_no');
-    $cert_type = get_session('ss_cert_type');
+    $md5_cert_no = $certification_session['cert_no'];
+    $cert_type = $certification_session['cert_type'];
 
     return array(
         'mb_hp' => $mb_hp,
@@ -222,7 +226,7 @@ function member_submit_register_update(array $request, array $config, array $sub
 
 function member_finish_register_submit($mb_id, $mb_name, array $member, $w, $old_email, $mb_email, $msg = '')
 {
-    global $config;
+    $config = member_get_runtime_config();
 
     if ($config['cf_use_email_certify'] && $old_email != $mb_email) {
         MemberNotificationService::sendRegisterEmailChange($mb_id, $mb_name, $mb_email, $w);

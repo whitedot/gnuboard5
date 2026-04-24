@@ -4,14 +4,9 @@ require_once './_common.php';
 
 auth_check_menu($auth, $sub_menu, 'r');
 
-$member_list_request = admin_read_member_list_request(array(
-    'sfl' => isset($sfl) ? $sfl : '',
-    'stx' => isset($stx) ? $stx : '',
-    'sst' => isset($sst) ? $sst : '',
-    'sod' => isset($sod) ? $sod : '',
-    'page' => isset($page) ? $page : 1,
-), $config);
-$member_list_view = admin_build_member_list_page_view($member_list_request, $member, $is_admin, $config, $qstr);
+$member_list_request = admin_read_member_list_request($_GET, $config);
+$member_list_qstr = admin_bootstrap_build_qstr($member_list_request);
+$member_list_view = admin_build_member_list_page_view($member_list_request, $member, $is_admin, $config, $member_list_qstr);
 
 $g5['title'] = $member_list_view['title'];
 $admin_container_class = $member_list_view['admin_container_class'];
@@ -92,11 +87,11 @@ require_once './admin.head.php';
                             <label for="chkall" class="sr-only">회원 전체</label>
                             <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
                         </th>
-                        <th scope="col" id="mb_list_id"><?php echo subject_sort_link('mb_id') ?>아이디</a></th>
-                        <th scope="col" id="mb_list_name"><?php echo subject_sort_link('mb_name') ?>이름</a></th>
-                        <th scope="col" id="mb_list_nick"><?php echo subject_sort_link('mb_nick') ?>닉네임</a></th>
-                        <th scope="col" id="mb_list_email"><?php echo subject_sort_link('mb_email') ?>이메일 주소</a></th>
-                        <th scope="col" id="mb_list_level"><?php echo subject_sort_link('mb_level', '', 'desc') ?>권한</a></th>
+                        <th scope="col" id="mb_list_id"><a href="<?php echo $member_list_view['sort_urls']['mb_id']; ?>">아이디</a></th>
+                        <th scope="col" id="mb_list_name"><a href="<?php echo $member_list_view['sort_urls']['mb_name']; ?>">이름</a></th>
+                        <th scope="col" id="mb_list_nick"><a href="<?php echo $member_list_view['sort_urls']['mb_nick']; ?>">닉네임</a></th>
+                        <th scope="col" id="mb_list_email"><a href="<?php echo $member_list_view['sort_urls']['mb_email']; ?>">이메일 주소</a></th>
+                        <th scope="col" id="mb_list_level"><a href="<?php echo $member_list_view['sort_urls']['mb_level']; ?>">권한</a></th>
                         <th scope="col" id="mb_list_status">상태</th>
                         <th scope="col" id="mb_list_mng" class="text-end">관리</th>
                     </tr>
@@ -106,12 +101,12 @@ require_once './admin.head.php';
                         <tr>
                             <td headers="mb_list_chk" class="member-cell-fixed">
                                 <input type="hidden" name="mb_id[<?php echo $index; ?>]" value="<?php echo $item['mb_id']; ?>" id="mb_id_<?php echo $index; ?>">
-                                <label for="chk_<?php echo $index; ?>" class="sr-only"><?php echo $item['mb_name']; ?> <?php echo strip_tags($item['mb_nick']); ?>님</label>
+                                <label for="chk_<?php echo $index; ?>" class="sr-only"><?php echo $item['mb_name']; ?> <?php echo $item['mb_nick_text']; ?>님</label>
                                 <input type="checkbox" name="chk[]" value="<?php echo $index; ?>" id="chk_<?php echo $index; ?>">
                             </td>
                             <td headers="mb_list_id" class="member-cell-fixed font-medium"><?php echo $item['display_mb_id']; ?></td>
                             <td headers="mb_list_name" class="member-cell-fixed"><?php echo $item['mb_name']; ?></td>
-                            <td headers="mb_list_nick" class="member-cell-fixed"><?php echo get_sideview($item['mb_id'], $item['mb_nick_text'], $item['mb_email']); ?></td>
+                            <td headers="mb_list_nick" class="member-cell-fixed"><?php echo $item['sideview_html']; ?></td>
                             <td headers="mb_list_email" class="member-cell-email"><?php echo $item['mb_email']; ?></td>
                             <td headers="mb_list_level" class="member-cell-fixed">
                                 <span class="member-level">Lv.<?php echo $item['mb_level']; ?></span>

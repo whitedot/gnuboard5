@@ -9,17 +9,20 @@ function member_certify_hash_matches($cert_type, $mb_name, $mb_hp, $md5_cert_no)
         return false;
     }
 
-    $cert_birth = get_session('ss_cert_birth');
-    $cert_hash = get_session('ss_cert_hash');
+    $certification_session = member_read_certification_session_state();
+    $cert_birth = $certification_session['cert_birth'];
+    $cert_hash = $certification_session['cert_hash'];
 
     return $cert_hash === md5($mb_name . $cert_type . $cert_birth . $mb_hp . $md5_cert_no);
 }
 
 function build_member_certify_fields($w, $mb_name, $mb_hp, $cert_type, $md5_cert_no)
 {
-    global $config;
+    $config = member_get_runtime_config();
 
     $sql_certify = array();
+    $certification_session = member_read_certification_session_state();
+    $register_validation_session = member_read_register_validation_session_state();
 
     if ($config['cf_cert_use'] && $cert_type && $md5_cert_no) {
         if (!member_certify_hash_matches($cert_type, $mb_name, $mb_hp, $md5_cert_no)) {
@@ -28,10 +31,10 @@ function build_member_certify_fields($w, $mb_name, $mb_hp, $cert_type, $md5_cert
 
         $sql_certify['mb_hp'] = $mb_hp;
         $sql_certify['mb_certify'] = $cert_type;
-        $sql_certify['mb_adult'] = get_session('ss_cert_adult');
-        $sql_certify['mb_birth'] = get_session('ss_cert_birth');
-        $sql_certify['mb_sex'] = get_session('ss_cert_sex');
-        $sql_certify['mb_dupinfo'] = get_session('ss_cert_dupinfo');
+        $sql_certify['mb_adult'] = $certification_session['cert_adult'];
+        $sql_certify['mb_birth'] = $certification_session['cert_birth'];
+        $sql_certify['mb_sex'] = $certification_session['cert_sex'];
+        $sql_certify['mb_dupinfo'] = $certification_session['cert_dupinfo'];
 
         if ($w == 'u') {
             $sql_certify['mb_name'] = $mb_name;
@@ -40,7 +43,7 @@ function build_member_certify_fields($w, $mb_name, $mb_hp, $cert_type, $md5_cert
         return $sql_certify;
     }
 
-    if (get_session('ss_reg_mb_name') != $mb_name || get_session('ss_reg_mb_hp') != $mb_hp) {
+    if ($register_validation_session['registered_mb_name'] != $mb_name || $register_validation_session['registered_mb_hp'] != $mb_hp) {
         $sql_certify['mb_hp'] = $mb_hp;
         $sql_certify['mb_certify'] = '';
         $sql_certify['mb_adult'] = 0;

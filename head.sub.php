@@ -13,6 +13,11 @@ if (!isset($g5['title'])) {
 
 $g5['title'] = strip_tags($g5['title']);
 $g5_head_title = strip_tags($g5_head_title);
+$head_request_context = function_exists('g5_get_runtime_request_context') ? g5_get_runtime_request_context() : array();
+$head_query_state = isset($head_request_context['query_state']) && is_array($head_request_context['query_state'])
+    ? $head_request_context['query_state']
+    : array();
+$head_sca = isset($head_query_state['sca']) && !is_array($head_query_state['sca']) ? (string) $head_query_state['sca'] : '';
 ?>
 <!doctype html>
 <html lang="ko">
@@ -45,7 +50,7 @@ var g5_member_url = "<?php echo G5_MEMBER_URL ?>";
 var g5_is_member = "<?php echo isset($is_member) ? $is_member : ''; ?>";
 var g5_is_admin = "<?php echo isset($is_admin) ? $is_admin : ''; ?>";
 var g5_is_mobile = "<?php echo G5_IS_MOBILE ?>";
-var g5_sca = "<?php echo isset($sca) ? $sca : ''; ?>";
+var g5_sca = "<?php echo $head_sca; ?>";
 var g5_cookie_domain = "<?php echo G5_COOKIE_DOMAIN ?>";
 </script>
 <?php

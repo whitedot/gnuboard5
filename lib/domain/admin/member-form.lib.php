@@ -3,10 +3,10 @@ if (!defined('_GNUBOARD_')) {
     exit;
 }
 
-function admin_read_member_form_request(array $request, $w)
+function admin_read_member_form_request(array $request)
 {
     return array(
-        'w' => $w,
+        'w' => isset($request['w']) && !is_array($request['w']) ? substr(trim((string) $request['w']), 0, 1) : '',
         'mb_id' => isset($request['mb_id']) && !is_array($request['mb_id']) ? trim((string) $request['mb_id']) : '',
     );
 }
@@ -154,11 +154,10 @@ function admin_member_form_tabs()
     );
 }
 
-function admin_read_member_delete_request(array $post, $url = '')
+function admin_read_member_delete_request(array $post)
 {
     return array(
         'mb_id' => isset($post['mb_id']) ? trim((string) $post['mb_id']) : '',
-        'url' => $url,
     );
 }
 
@@ -179,7 +178,7 @@ function admin_validate_member_delete_request(array $request, array $member)
     return $mb;
 }
 
-function admin_build_member_delete_redirect($url, $qstr, $mb_id)
+function admin_build_member_delete_redirect($qstr)
 {
     return "./member_list.php?{$qstr}";
 }
@@ -193,7 +192,7 @@ function admin_complete_member_delete_request(array $request, array $member, $au
 
     member_delete($mb['mb_id']);
 
-    goto_url(admin_build_member_delete_redirect($request['url'], $qstr, $mb['mb_id']));
+    goto_url(admin_build_member_delete_redirect($qstr));
 }
 
 function admin_complete_member_form_update_request($w, array $request, array $member, $is_admin, $auth, $sub_menu, $qstr)

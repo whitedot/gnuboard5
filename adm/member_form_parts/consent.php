@@ -11,16 +11,16 @@
                 <div class="af-field">
                     <div class="af-inline">
                         <label for="mb_mailling_yes" class="af-check form-label">
-                            <input type="radio" name="mb_mailling" value="1" id="mb_mailling_yes" <?php echo $mb_mailling_yes; ?> class="form-radio">
+                            <input type="radio" name="mb_mailling" value="1" id="mb_mailling_yes" <?php echo $member_form_view['mb_mailling_yes']; ?> class="form-radio">
                             <span class="form-label">예</span>
                         </label>
                         <label for="mb_mailling_no" class="af-check form-label">
-                            <input type="radio" name="mb_mailling" value="0" id="mb_mailling_no" <?php echo $mb_mailling_no; ?> class="form-radio">
+                            <input type="radio" name="mb_mailling" value="0" id="mb_mailling_no" <?php echo $member_form_view['mb_mailling_no']; ?> class="form-radio">
                             <span class="form-label">아니오</span>
                         </label>
                     </div>
-                    <?php if ($w == "u" && $mb['mb_mailling_date'] != "0000-00-00 00:00:00" && $mb['mb_mailling'] == 1) { ?>
-                    <p class="hint-text">(동의 일자: <?php echo $mb['mb_mailling_date']; ?>)</p>
+                    <?php if ($member_form_request['w'] == "u" && $member_form_view['mb']['mb_mailling_date'] != "0000-00-00 00:00:00" && $member_form_view['mb']['mb_mailling'] == 1) { ?>
+                    <p class="hint-text">(동의 일자: <?php echo $member_form_view['mb']['mb_mailling_date']; ?>)</p>
                     <?php } ?>
                 </div>
             </div>
@@ -32,28 +32,28 @@
                 <div class="af-field">
                     <div class="af-inline">
                         <label for="mb_marketing_agree_yes" class="af-check form-label">
-                            <input type="radio" name="mb_marketing_agree" value="1" id="mb_marketing_agree_yes" <?php echo $mb_marketing_agree_yes; ?> class="form-radio">
+                            <input type="radio" name="mb_marketing_agree" value="1" id="mb_marketing_agree_yes" <?php echo $member_form_view['mb_marketing_agree_yes']; ?> class="form-radio">
                             <span class="form-label">예</span>
                         </label>
                         <label for="mb_marketing_agree_no" class="af-check form-label">
-                            <input type="radio" name="mb_marketing_agree" value="0" id="mb_marketing_agree_no" <?php echo $mb_marketing_agree_no; ?> class="form-radio">
+                            <input type="radio" name="mb_marketing_agree" value="0" id="mb_marketing_agree_no" <?php echo $member_form_view['mb_marketing_agree_no']; ?> class="form-radio">
                             <span class="form-label">아니오</span>
                         </label>
                     </div>
-                    <?php if ($w == "u" && $mb['mb_marketing_date'] != "0000-00-00 00:00:00" && $mb['mb_marketing_agree'] == 1) { ?>
-                    <p class="hint-text">(동의 일자: <?php echo $mb['mb_marketing_date']; ?>)</p>
+                    <?php if ($member_form_request['w'] == "u" && $member_form_view['mb']['mb_marketing_date'] != "0000-00-00 00:00:00" && $member_form_view['mb']['mb_marketing_agree'] == 1) { ?>
+                    <p class="hint-text">(동의 일자: <?php echo $member_form_view['mb']['mb_marketing_date']; ?>)</p>
                     <?php } ?>
                 </div>
             </div>
 
-            <?php if ($w == "u") { ?>
+            <?php if ($member_form_request['w'] == "u") { ?>
             <div class="af-row">
                 <div class="af-label">
                     <label class="form-label">약관동의 변경내역</label>
                 </div>
                 <div class="af-field">
                     <section id="sodr_request_log_wrap">
-                        <?php echo conv_content($mb['mb_agree_log'], 0); ?>
+                        <?php echo conv_content($member_form_view['mb']['mb_agree_log'], 0); ?>
                     </section>
                 </div>
             </div>
@@ -66,16 +66,16 @@
                 <div class="af-field">
                     <div class="af-inline">
                         <label for="mb_open_yes" class="af-check form-label">
-                            <input type="radio" name="mb_open" value="1" id="mb_open_yes" <?php echo $mb_open_yes; ?> class="form-radio">
+                            <input type="radio" name="mb_open" value="1" id="mb_open_yes" <?php echo $member_form_view['mb_open_yes']; ?> class="form-radio">
                             <span class="form-label">예</span>
                         </label>
                         <label for="mb_open_no" class="af-check form-label">
-                            <input type="radio" name="mb_open" value="0" id="mb_open_no" <?php echo $mb_open_no; ?> class="form-radio">
+                            <input type="radio" name="mb_open" value="0" id="mb_open_no" <?php echo $member_form_view['mb_open_no']; ?> class="form-radio">
                             <span class="form-label">아니오</span>
                         </label>
                     </div>
-                    <?php if ($w == "u" && $mb['mb_open_date'] != "0000-00-00 00:00:00" && $mb['mb_open'] == 1) { ?>
-                    <p class="hint-text">(동의 일자: <?php echo $mb['mb_open_date']; ?>)</p>
+                    <?php if ($member_form_request['w'] == "u" && $member_form_view['mb']['mb_open_date'] != "0000-00-00 00:00:00" && $member_form_view['mb']['mb_open'] == 1) { ?>
+                    <p class="hint-text">(동의 일자: <?php echo $member_form_view['mb']['mb_open_date']; ?>)</p>
                     <?php } ?>
                 </div>
             </div>

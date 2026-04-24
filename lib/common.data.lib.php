@@ -132,9 +132,31 @@ function get_member($mb_id, $fields = '*', $is_cache = false)
 // 날짜, 조회수의 경우 높은 순서대로 보여져야 하므로 $flag 를 추가
 // $flag : asc 낮은 순서 , desc 높은 순서
 // 제목별로 컬럼 정렬하는 QUERY STRING
+function build_subject_sort_link_query_state()
+{
+    if (function_exists('g5_get_runtime_query_state')) {
+        return g5_get_runtime_query_state();
+    }
+
+    if (function_exists('g5_build_query_state')) {
+        $source = isset($_REQUEST) && is_array($_REQUEST) ? $_REQUEST : array();
+        $request_uri = isset($_SERVER['REQUEST_URI']) ? (string) $_SERVER['REQUEST_URI'] : '';
+
+        return g5_build_query_state($source, $request_uri);
+    }
+
+    return array();
+}
+
 function subject_sort_link($col, $query_string='', $flag='asc')
 {
-    global $sst, $sod, $sfl, $stx, $page, $sca;
+    $query_state = build_subject_sort_link_query_state();
+    $sst = isset($query_state['sst']) ? $query_state['sst'] : '';
+    $sod = isset($query_state['sod']) ? $query_state['sod'] : '';
+    $sfl = isset($query_state['sfl']) ? $query_state['sfl'] : '';
+    $stx = isset($query_state['stx']) ? $query_state['stx'] : '';
+    $page = isset($query_state['page']) ? $query_state['page'] : '';
+    $sca = isset($query_state['sca']) ? $query_state['sca'] : '';
 
     $q1 = "sst=$col";
     if ($flag == 'asc')

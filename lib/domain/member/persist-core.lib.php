@@ -9,12 +9,14 @@ function member_insert_cert_history_if_verified($mb_id, $mb_name, $mb_hp, $cert_
         return;
     }
 
+    $certification_session = member_read_certification_session_state();
+
     insert_member_cert_history(
         $mb_id,
         $mb_name,
         $mb_hp,
-        get_session('ss_cert_birth'),
-        get_session('ss_cert_type')
+        $certification_session['cert_birth'],
+        $certification_session['cert_type']
     );
 }
 
@@ -40,6 +42,7 @@ function append_member_agree_log($prefix, array $agree_items, $existing_log = ''
 
 function member_insert_account_with_history($mb_id, array $insert_fields, $mb_name, $mb_hp, $cert_type, $md5_cert_no)
 {
+    $member_table = member_get_member_table_name();
     $insert_parts = array();
     foreach ($insert_fields as $field => $value) {
         $insert_parts[] = $field . ' = :' . $field;
@@ -49,7 +52,7 @@ function member_insert_account_with_history($mb_id, array $insert_fields, $mb_na
         return false;
     }
 
-    $sql = " insert into {$GLOBALS['g5']['member_table']} set " . implode(', ', $insert_parts);
+    $sql = " insert into {$member_table} set " . implode(', ', $insert_parts);
     if (!sql_query_prepared($sql, $insert_fields, false)) {
         sql_rollback();
         return false;
@@ -67,13 +70,14 @@ function member_insert_account_with_history($mb_id, array $insert_fields, $mb_na
 
 function member_update_account_with_history($mb_id, array $update_fields, $mb_name, $mb_hp, $cert_type, $md5_cert_no)
 {
+    $member_table = member_get_member_table_name();
     $update_parts = array();
     foreach ($update_fields as $field => $value) {
         $update_parts[] = $field . ' = :' . $field;
     }
 
     $update_fields['mb_id'] = $mb_id;
-    $sql = " update {$GLOBALS['g5']['member_table']}
+    $sql = " update {$member_table}
                 set " . implode(",\n                    ", $update_parts) . "
               where mb_id = :mb_id ";
 

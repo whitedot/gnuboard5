@@ -113,6 +113,7 @@ function member_build_admin_update_fields(array $request, array $existing_member
 
 function member_insert_admin_account(array $insert_fields)
 {
+    $member_table = member_get_member_table_name();
     $insert_parts = array();
     foreach ($insert_fields as $field => $value) {
         $insert_parts[] = $field . ' = :' . $field;
@@ -122,7 +123,7 @@ function member_insert_admin_account(array $insert_fields)
         return false;
     }
 
-    $sql = " insert into {$GLOBALS['g5']['member_table']} set " . implode(', ', $insert_parts);
+    $sql = " insert into {$member_table} set " . implode(', ', $insert_parts);
     if (!sql_query_prepared($sql, $insert_fields, false)) {
         sql_rollback();
         return false;
@@ -138,13 +139,14 @@ function member_insert_admin_account(array $insert_fields)
 
 function member_update_admin_account($mb_id, array $update_fields)
 {
+    $member_table = member_get_member_table_name();
     $update_parts = array();
     foreach ($update_fields as $field => $value) {
         $update_parts[] = $field . ' = :' . $field;
     }
 
     $update_fields['mb_id'] = $mb_id;
-    $sql = " update {$GLOBALS['g5']['member_table']}
+    $sql = " update {$member_table}
                 set " . implode(",\n                    ", $update_parts) . "
               where mb_id = :mb_id ";
 
@@ -172,8 +174,10 @@ function member_mark_leave($mb_id, $leave_date, $leave_memo)
 
 function member_find_dupinfo_owner($member_mb_id, $mb_dupinfo)
 {
+    $member_table = member_get_member_table_name();
+
     return sql_fetch_prepared(
-        " select mb_id from {$GLOBALS['g5']['member_table']} where mb_id <> :member_mb_id and mb_dupinfo = :mb_dupinfo ",
+        " select mb_id from {$member_table} where mb_id <> :member_mb_id and mb_dupinfo = :mb_dupinfo ",
         array(
             'member_mb_id' => $member_mb_id,
             'mb_dupinfo' => $mb_dupinfo,
@@ -192,16 +196,20 @@ function member_update_cert_refresh_fields($mb_id, array $update_fields, $mb_nam
 
 function member_find_email_stop_member($mb_id)
 {
+    $member_table = member_get_member_table_name();
+
     return sql_fetch_prepared(
-        " select mb_id, mb_email, mb_datetime from {$GLOBALS['g5']['member_table']} where mb_id = :mb_id ",
+        " select mb_id, mb_email, mb_datetime from {$member_table} where mb_id = :mb_id ",
         array('mb_id' => $mb_id)
     );
 }
 
 function member_disable_mailling($mb_id)
 {
+    $member_table = member_get_member_table_name();
+
     return sql_query_prepared(
-        " update {$GLOBALS['g5']['member_table']} set mb_mailling = 0 where mb_id = :mb_id ",
+        " update {$member_table} set mb_mailling = 0 where mb_id = :mb_id ",
         array('mb_id' => $mb_id)
     );
 }

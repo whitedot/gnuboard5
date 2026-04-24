@@ -7,10 +7,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 <div id="mb_login">
     <div>
-        <h1><?php echo $g5['title'] ?></h1>
+        <h1><?php echo $page_title ?></h1>
         <div>
             <h2><span>회원</span>로그인</h2>
-            <a href="<?php echo G5_MEMBER_URL ?>/register.php">회원가입</a>
+            <a href="<?php echo $register_url ?>">회원가입</a>
         </div>
         <form name="flogin" action="<?php echo $login_action_url ?>" onsubmit="return flogin_submit(this);" method="post">
         <input type="hidden" name="url" value="<?php echo $login_url ?>">
@@ -29,7 +29,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                     <label for="login_auto_login"><span></span> 자동로그인</label>  
                 </div>
                 
-                    <a href="<?php echo G5_MEMBER_URL ?>/password_lost.php">ID/PW 찾기</a>  
+                    <a href="<?php echo $password_lost_url ?>">ID/PW 찾기</a>  
                 
             </div>
         </fieldset> 
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     autoLogin.addEventListener("click", function() {
         if (this.checked) {
-            this.checked = confirm("자동로그인을 사용하시면 다음부터 회원아이디와 비밀번호를 입력하실 필요가 없습니다.\n\n공공장소에서는 개인정보가 유출될 수 있으니 사용을 자제하여 주십시오.\n\n자동로그인을 사용하시겠습니까?");
+            this.checked = confirm(<?php echo json_encode($auto_login_confirm_message, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>);
         }
     });
 });

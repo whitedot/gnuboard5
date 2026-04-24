@@ -4,36 +4,13 @@ require_once './_common.php';
 
 auth_check_menu($auth, $sub_menu, 'w');
 
-$member_form_request = admin_read_member_form_request($_REQUEST, isset($w) ? $w : '');
+$member_list_request = admin_read_member_list_request($_GET, $config);
+$member_form_request = admin_read_member_form_request($_GET);
 $member_form_view = admin_build_member_form_view($member_form_request, $member, $is_admin, $config);
 $page_view = admin_build_member_form_page_view($member_form_view);
-
-$w = $member_form_request['w'];
-$mb_id = $member_form_request['mb_id'];
-$mb = $member_form_view['mb'];
-$display_mb_id = $member_form_view['display_mb_id'];
-$mask_preserved_id = $member_form_view['mask_preserved_id'];
-$member_level_options = $member_form_view['member_level_options'];
-$sound_only = $member_form_view['sound_only'];
-$required_mb_id = $member_form_view['required_mb_id'];
-$required_mb_id_class = $member_form_view['required_mb_id_class'];
-$required_mb_password = $member_form_view['required_mb_password'];
-$mb_certify_yes = $member_form_view['mb_certify_yes'];
-$mb_certify_no = $member_form_view['mb_certify_no'];
-$mb_adult_yes = $member_form_view['mb_adult_yes'];
-$mb_adult_no = $member_form_view['mb_adult_no'];
-$mb_mailling_yes = $member_form_view['mb_mailling_yes'];
-$mb_mailling_no = $member_form_view['mb_mailling_no'];
-$mb_open_yes = $member_form_view['mb_open_yes'];
-$mb_open_no = $member_form_view['mb_open_no'];
-$mb_marketing_agree_yes = $member_form_view['mb_marketing_agree_yes'];
-$mb_marketing_agree_no = $member_form_view['mb_marketing_agree_no'];
-$mb_cert_history = $member_form_view['mb_cert_history'];
-$sfl = isset($sfl) ? $sfl : '';
-$stx = isset($stx) ? $stx : '';
-$sst = isset($sst) ? $sst : '';
-$sod = isset($sod) ? $sod : '';
-$page = isset($page) ? $page : '';
+$member_form_page_state = array(
+    'list_url' => './member_list.php?' . admin_bootstrap_build_qstr($member_list_request),
+);
 
 $g5['title'] = $page_view['title'];
 $admin_container_class = $page_view['admin_container_class'];
@@ -44,12 +21,12 @@ require_once './admin.head.php';
 <?php echo admin_render_anchor_menu($page_view['pg_anchor_menu_view']); ?>
 
 <form name="fmember" id="fmember" action="./member_form_update.php" onsubmit="return fmember_submit(this);" method="post" class="admin-form-layout ui-form-theme ui-form-showcase space-y-5" autocomplete="off">
-    <input type="hidden" name="w" value="<?php echo $w ?>">
-    <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
-    <input type="hidden" name="stx" value="<?php echo $stx ?>">
-    <input type="hidden" name="sst" value="<?php echo $sst ?>">
-    <input type="hidden" name="sod" value="<?php echo $sod ?>">
-    <input type="hidden" name="page" value="<?php echo $page ?>">
+    <input type="hidden" name="w" value="<?php echo $member_form_request['w'] ?>">
+    <input type="hidden" name="sfl" value="<?php echo $member_list_request['sfl'] ?>">
+    <input type="hidden" name="stx" value="<?php echo $member_list_request['stx'] ?>">
+    <input type="hidden" name="sst" value="<?php echo $member_list_request['sst'] ?>">
+    <input type="hidden" name="sod" value="<?php echo $member_list_request['sod'] ?>">
+    <input type="hidden" name="page" value="<?php echo $member_list_request['page'] ?>">
     <input type="hidden" name="token" value="<?php echo get_admin_token(); ?>" id="token">
     <div class="sr-only" aria-hidden="true">
         <label for="member_form_fake_username">자동완성 방지 아이디</label>
@@ -75,7 +52,7 @@ require_once './admin.head.php';
     ?>
 
     <div class="admin-form-sticky-actions flex items-center justify-between border-default-300 border-t border-dashed pt-4">
-        <a href="./member_list.php?<?php echo $qstr ?>" class="btn btn-surface-default-soft">목록</a>
+        <a href="<?php echo $member_form_page_state['list_url']; ?>" class="btn btn-surface-default-soft">목록</a>
         <button type="submit" class="btn btn-solid-primary" accesskey="s">저장</button>
     </div>
 </form>
@@ -84,6 +61,6 @@ require_once './admin.head.php';
 // 자바스크립트
 include_once G5_ADMIN_PATH.'/member_form_parts/script.php';
 
-run_event('admin_member_form_after', $mb, $w);
+run_event('admin_member_form_after', $member_form_view['mb'], $member_form_request['w']);
 
 require_once './admin.tail.php';

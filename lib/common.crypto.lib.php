@@ -70,6 +70,7 @@ function check_password($pass, $hash)
 function login_password_check($mb, $pass, $hash)
 {
     $mb_id = isset($mb['mb_id']) ? $mb['mb_id'] : '';
+    $member_table = function_exists('g5_get_runtime_table_name') ? g5_get_runtime_table_name('member_table') : '';
 
     if(!$mb_id)
         return false;
@@ -77,7 +78,7 @@ function login_password_check($mb, $pass, $hash)
     if(G5_STRING_ENCRYPT_FUNCTION === 'create_hash' && (strlen($hash) === G5_MYSQL_PASSWORD_LENGTH || strlen($hash) === 16)) {
         if (mysql_legacy_password_hash($pass, strlen($hash)) === $hash) {
             $new_password = create_hash($pass);
-            $sql = " update {$GLOBALS['g5']['member_table']} set mb_password = :mb_password where mb_id = :mb_id ";
+            $sql = " update {$member_table} set mb_password = :mb_password where mb_id = :mb_id ";
             sql_query_prepared($sql, array(
                 'mb_password' => $new_password,
                 'mb_id' => $mb_id,

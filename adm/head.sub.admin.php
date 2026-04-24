@@ -13,6 +13,10 @@ $admin_css_ver = $head_sub_view['admin_css_ver'];
 $sticky_anchor_tabs_ver = $head_sub_view['sticky_anchor_tabs_ver'];
 $login_status_text = $head_sub_view['login_status_text'];
 $g5['title'] = $page_title;
+$g5_sca = '';
+if (isset($g5['request_context']['query_state']['sca']) && !is_array($g5['request_context']['query_state']['sca'])) {
+    $g5_sca = (string) $g5['request_context']['query_state']['sca'];
+}
 ?>
 <!doctype html>
 <html lang="ko">
@@ -54,7 +58,7 @@ var g5_member_url = "<?php echo G5_MEMBER_URL ?>";
 var g5_is_member = "<?php echo isset($is_member)?$is_member:''; ?>";
 var g5_is_admin  = "<?php echo isset($is_admin)?$is_admin:''; ?>";
 var g5_is_mobile = "<?php echo G5_IS_MOBILE ?>";
-var g5_sca       = "<?php echo isset($sca)?$sca:''; ?>";
+var g5_sca       = "<?php echo $g5_sca; ?>";
 var g5_cookie_domain = "<?php echo G5_COOKIE_DOMAIN ?>";
 var g5_admin_url = "<?php echo G5_ADMIN_URL; ?>";
 </script>

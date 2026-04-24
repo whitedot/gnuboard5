@@ -1,5 +1,6 @@
 <?php
 include_once('./_common.php');
 
-$request = member_read_password_lost_certify_request($_GET);
+$member_request_context = member_get_runtime_request_context();
+$request = member_read_password_lost_certify_request($member_request_context['request']);
 member_complete_password_lost_certify_request($request);

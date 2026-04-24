@@ -39,36 +39,36 @@ function member_read_admin_member_request(array $post)
     return $request;
 }
 
-function member_read_confirm_request($url = '')
+function member_read_confirm_request(array $query_state = array())
 {
     return array(
-        'url' => $url,
+        'url' => member_read_request_url(array(), $query_state),
     );
 }
 
-function member_read_leave_request(array $post, $url = '')
+function member_read_leave_request(array $post, array $query_state = array())
 {
     return array(
         'mb_password' => isset($post['mb_password']) ? trim($post['mb_password']) : '',
-        'url' => $url,
+        'url' => member_read_request_url($post, $query_state),
     );
 }
 
-function member_read_cert_refresh_request($w, array $post, $url = '')
+function member_read_cert_refresh_request(array $post, array $query_state = array())
 {
     return array(
-        'w' => $w,
-        'url' => urldecode($url),
+        'w' => member_read_request_w($post, $query_state),
+        'url' => urldecode(member_read_request_url($post, $query_state)),
         'mb_id' => isset($post['mb_id']) ? trim($post['mb_id']) : '',
         'mb_name' => isset($post['mb_name']) ? trim($post['mb_name']) : '',
         'mb_hp' => isset($post['mb_hp']) ? trim($post['mb_hp']) : '',
     );
 }
 
-function member_read_email_stop_request(array $request, $mb_md5 = '')
+function member_read_email_stop_request(array $request)
 {
     return array(
         'mb_id' => isset($request['mb_id']) ? clean_xss_tags($request['mb_id'], 1, 1) : '',
-        'mb_md5' => $mb_md5,
+        'mb_md5' => isset($request['mb_md5']) ? trim((string) $request['mb_md5']) : '',
     );
 }

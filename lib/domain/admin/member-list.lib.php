@@ -215,6 +215,11 @@ function admin_read_member_list_request(array $request, array $config)
     );
 }
 
+function admin_build_member_list_qstr(array $request, array $config)
+{
+    return admin_bootstrap_build_qstr(admin_read_member_list_request($request, $config));
+}
+
 function admin_build_member_list_search(array $request, array $member, $is_admin)
 {
     $search_params = array();
@@ -244,6 +249,33 @@ function admin_build_member_list_search(array $request, array $member, $is_admin
 function admin_build_member_list_filter_query(array $request, array $overrides = array())
 {
     return http_build_query(array_merge(array('sfl' => $request['sfl'], 'stx' => $request['stx']), $overrides), '', '&');
+}
+
+function admin_build_member_list_sort_query(array $request, $column, $flag = 'asc')
+{
+    if (!in_array($column, admin_member_list_allowed_sort_fields(), true)) {
+        return admin_build_member_list_filter_query($request);
+    }
+
+    $default_direction = strtolower((string) $flag) === 'desc' ? 'desc' : 'asc';
+    $direction = $default_direction;
+
+    if ($request['sst'] === $column && $request['sod'] === $default_direction) {
+        $direction = $default_direction === 'asc' ? 'desc' : 'asc';
+    }
+
+    return http_build_query(array(
+        'sfl' => $request['sfl'],
+        'stx' => $request['stx'],
+        'sst' => $column,
+        'sod' => $direction,
+        'page' => $request['page'],
+    ), '', '&');
+}
+
+function admin_build_member_list_sort_url(array $request, $column, $flag = 'asc')
+{
+    return '?' . str_replace('&', '&amp;', admin_build_member_list_sort_query($request, $column, $flag));
 }
 
 function admin_build_member_list_actions(array $row, array $member, $is_admin, $qstr)
@@ -289,6 +321,7 @@ function admin_build_member_list_item(array $row, array $member, $is_admin, $qst
         'display_mb_id' => member_get_display_id($row),
         'mb_name' => get_text($row['mb_name']),
         'mb_nick_text' => get_text($row['mb_nick']),
+        'sideview_html' => get_sideview($row['mb_id'], get_text($row['mb_nick']), get_text($row['mb_email'])),
         'mb_email' => get_text($row['mb_email']),
         'mb_level' => (int) $row['mb_level'],
         'status_label' => $status_label,
@@ -335,6 +368,13 @@ function admin_build_member_list_view(array $request, array $member, $is_admin, 
         'quick_view' => $quick_view,
         'blocked_url' => '?' . admin_build_member_list_filter_query($request, array('sst' => 'mb_intercept_date', 'sod' => 'desc')),
         'left_url' => '?' . admin_build_member_list_filter_query($request, array('sst' => 'mb_leave_date', 'sod' => 'desc')),
+        'sort_urls' => array(
+            'mb_id' => admin_build_member_list_sort_url($request, 'mb_id'),
+            'mb_name' => admin_build_member_list_sort_url($request, 'mb_name'),
+            'mb_nick' => admin_build_member_list_sort_url($request, 'mb_nick'),
+            'mb_email' => admin_build_member_list_sort_url($request, 'mb_email'),
+            'mb_level' => admin_build_member_list_sort_url($request, 'mb_level', 'desc'),
+        ),
         'total_count' => $total_count,
         'total_page' => $total_page,
         'leave_count' => $leave_count,
@@ -405,6 +445,7 @@ function admin_build_dashboard_view(array $request, array $member, $is_admin, ar
             'display_mb_id' => member_get_display_id($row),
             'mb_name' => get_text($row['mb_name']),
             'mb_nick_text' => get_text($row['mb_nick']),
+            'sideview_html' => get_sideview($row['mb_id'], get_text($row['mb_nick']), get_text($row['mb_email'])),
             'mb_email' => get_text($row['mb_email']),
             'mb_level' => $row['mb_level'],
             'mb_mailling' => $row['mb_mailling'] ? '예' : '아니오',

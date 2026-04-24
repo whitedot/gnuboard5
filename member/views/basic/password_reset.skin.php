@@ -9,17 +9,17 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     
         <form name="fpasswordreset" action="<?php echo $action_url; ?>" onsubmit="return fpasswordreset_submit(this);" method="post" autocomplete="off">
             <fieldset id="info_fs">
-                <p>새로운 비밀번호를 입력해주세요.</p>
+                <p><?php echo $page_description_text; ?></p>
                 <label for="mb_id">아이디</label>
                 <br>
-                <b>회원 아이디 : <?php echo get_text($_POST['mb_id']); ?></b>
+                <b>회원 아이디 : <?php echo $member_id_text; ?></b>
                 <label for="mb_pw">새 비밀번호<strong>필수</strong></label>
                 <input type="password" name="mb_password" id="mb_pw" required size="30" placeholder="새 비밀번호">
                 <label for="mb_pw2">새 비밀번호 확인<strong>필수</strong></label>
                 <input type="password" name="mb_password_re" id="mb_pw2" required size="30" placeholder="새 비밀번호 확인">
             </fieldset>
             
-                <button type="submit">확인</button>
+                <button type="submit"><?php echo $submit_label; ?></button>
             
         </form>
     
@@ -31,9 +31,9 @@ function fpasswordreset_submit(f) {
     var passwordConfirmField = document.getElementById("mb_pw2");
 
     if (passwordField && passwordConfirmField && passwordField.value == passwordConfirmField.value) {
-        alert("비밀번호 변경되었습니다. 다시 로그인해 주세요.");
+        alert(<?php echo json_encode($password_reset_success_message, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>);
     } else {
-        alert("새 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+        alert(<?php echo json_encode($password_reset_mismatch_message, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>);
         return false;
     }
 }

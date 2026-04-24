@@ -59,18 +59,20 @@ function member_validate_admin_member_request(array $request, array $member, $is
 
 function member_validate_admin_uniqueness($mb_id, $mb_nick, $mb_email, $w)
 {
+    $member_table = member_get_member_table_name();
+
     if ($w == '') {
         $mb = get_member($mb_id);
         if (isset($mb['mb_id']) && $mb['mb_id']) {
             alert('이미 존재하는 회원아이디입니다.\\nＩＤ : ' . $mb['mb_id'] . '\\n이름 : ' . $mb['mb_name'] . '\\n닉네임 : ' . $mb['mb_nick'] . '\\n메일 : ' . $mb['mb_email']);
         }
 
-        $row = sql_fetch_prepared(" select mb_id, mb_name, mb_nick, mb_email from {$GLOBALS['g5']['member_table']} where mb_nick = :mb_nick ", array('mb_nick' => $mb_nick));
+        $row = sql_fetch_prepared(" select mb_id, mb_name, mb_nick, mb_email from {$member_table} where mb_nick = :mb_nick ", array('mb_nick' => $mb_nick));
         if (isset($row['mb_id']) && $row['mb_id']) {
             alert('이미 존재하는 닉네임입니다.\\nＩＤ : ' . $row['mb_id'] . '\\n이름 : ' . $row['mb_name'] . '\\n닉네임 : ' . $row['mb_nick'] . '\\n메일 : ' . $row['mb_email']);
         }
 
-        $row = sql_fetch_prepared(" select mb_id, mb_name, mb_nick, mb_email from {$GLOBALS['g5']['member_table']} where mb_email = :mb_email ", array('mb_email' => $mb_email));
+        $row = sql_fetch_prepared(" select mb_id, mb_name, mb_nick, mb_email from {$member_table} where mb_email = :mb_email ", array('mb_email' => $mb_email));
         if (isset($row['mb_id']) && $row['mb_id']) {
             alert('이미 존재하는 이메일입니다.\\nＩＤ : ' . $row['mb_id'] . '\\n이름 : ' . $row['mb_name'] . '\\n닉네임 : ' . $row['mb_nick'] . '\\n메일 : ' . $row['mb_email']);
         }
@@ -78,12 +80,12 @@ function member_validate_admin_uniqueness($mb_id, $mb_nick, $mb_email, $w)
         return;
     }
 
-    $row = sql_fetch_prepared(" select mb_id, mb_name, mb_nick, mb_email from {$GLOBALS['g5']['member_table']} where mb_nick = :mb_nick and mb_id <> :mb_id ", array('mb_nick' => $mb_nick, 'mb_id' => $mb_id));
+    $row = sql_fetch_prepared(" select mb_id, mb_name, mb_nick, mb_email from {$member_table} where mb_nick = :mb_nick and mb_id <> :mb_id ", array('mb_nick' => $mb_nick, 'mb_id' => $mb_id));
     if (isset($row['mb_id']) && $row['mb_id']) {
         alert('이미 존재하는 닉네임입니다.\\nＩＤ : ' . $row['mb_id'] . '\\n이름 : ' . $row['mb_name'] . '\\n닉네임 : ' . $row['mb_nick'] . '\\n메일 : ' . $row['mb_email']);
     }
 
-    $row = sql_fetch_prepared(" select mb_id, mb_name, mb_nick, mb_email from {$GLOBALS['g5']['member_table']} where mb_email = :mb_email and mb_id <> :mb_id ", array('mb_email' => $mb_email, 'mb_id' => $mb_id));
+    $row = sql_fetch_prepared(" select mb_id, mb_name, mb_nick, mb_email from {$member_table} where mb_email = :mb_email and mb_id <> :mb_id ", array('mb_email' => $mb_email, 'mb_id' => $mb_id));
     if (isset($row['mb_id']) && $row['mb_id']) {
         alert('이미 존재하는 이메일입니다.\\nＩＤ : ' . $row['mb_id'] . '\\n이름 : ' . $row['mb_name'] . '\\n닉네임 : ' . $row['mb_nick'] . '\\n메일 : ' . $row['mb_email']);
     }

@@ -5,16 +5,20 @@ if (!defined('_GNUBOARD_')) {
 
 function member_find_password_lost_candidate($email)
 {
+    $member_table = member_get_member_table_name();
+
     return sql_fetch_prepared(
-        " select mb_no, mb_id, mb_name, mb_nick, mb_email, mb_datetime, mb_leave_date from {$GLOBALS['g5']['member_table']} where mb_email = :mb_email ",
+        " select mb_no, mb_id, mb_name, mb_nick, mb_email, mb_datetime, mb_leave_date from {$member_table} where mb_email = :mb_email ",
         array('mb_email' => $email)
     );
 }
 
 function member_store_password_lost_certify($mb_id, $mb_lost_certify)
 {
+    $member_table = member_get_member_table_name();
+
     return sql_query_prepared(
-        " update {$GLOBALS['g5']['member_table']} set mb_lost_certify = :mb_lost_certify where mb_id = :mb_id ",
+        " update {$member_table} set mb_lost_certify = :mb_lost_certify where mb_id = :mb_id ",
         array(
             'mb_lost_certify' => $mb_lost_certify,
             'mb_id' => $mb_id,
@@ -24,8 +28,10 @@ function member_store_password_lost_certify($mb_id, $mb_lost_certify)
 
 function member_find_by_id_and_dupinfo($mb_id, $mb_dupinfo)
 {
+    $member_table = member_get_member_table_name();
+
     return sql_fetch_prepared(
-        "select * from {$GLOBALS['g5']['member_table']} where mb_id = :mb_id AND mb_dupinfo = :mb_dupinfo",
+        "select * from {$member_table} where mb_id = :mb_id AND mb_dupinfo = :mb_dupinfo",
         array(
             'mb_id' => $mb_id,
             'mb_dupinfo' => $mb_dupinfo,
@@ -35,8 +41,10 @@ function member_find_by_id_and_dupinfo($mb_id, $mb_dupinfo)
 
 function member_update_password_by_dupinfo($mb_id, $mb_dupinfo, $mb_password)
 {
+    $member_table = member_get_member_table_name();
+
     return sql_query_prepared(
-        "update {$GLOBALS['g5']['member_table']} set mb_password = :mb_password where mb_id = :mb_id AND mb_dupinfo = :mb_dupinfo",
+        "update {$member_table} set mb_password = :mb_password where mb_id = :mb_id AND mb_dupinfo = :mb_dupinfo",
         array(
             'mb_password' => $mb_password,
             'mb_id' => $mb_id,
@@ -52,20 +60,24 @@ function member_find_login_member($mb_id)
 
 function member_find_password_lost_certify_row($mb_no)
 {
+    $member_table = member_get_member_table_name();
+
     return sql_fetch_prepared(
-        " select mb_id, mb_lost_certify from {$GLOBALS['g5']['member_table']} where mb_no = :mb_no ",
+        " select mb_id, mb_lost_certify from {$member_table} where mb_no = :mb_no ",
         array('mb_no' => $mb_no)
     );
 }
 
 function member_confirm_password_lost_certify($mb_no, $lost_certify, $new_password_hash)
 {
+    $member_table = member_get_member_table_name();
+
     if (!sql_begin_transaction()) {
         die('Error');
     }
 
     $updated = sql_query_prepared(
-        " update {$GLOBALS['g5']['member_table']} set mb_lost_certify = '', mb_password = :mb_password where mb_no = :mb_no and mb_lost_certify = :mb_lost_certify ",
+        " update {$member_table} set mb_lost_certify = '', mb_password = :mb_password where mb_no = :mb_no and mb_lost_certify = :mb_lost_certify ",
         array(
             'mb_password' => $new_password_hash,
             'mb_no' => $mb_no,
