@@ -42,6 +42,13 @@ require_once './admin.head.php';
     <?php } ?>
 </div>
 
+<?php if (!$member_export_view['environment_ready']) { ?>
+<div class="mb-5 rounded-lg border border-danger/30 bg-danger/5 px-4 py-3 text-sm leading-6 text-danger">
+    <strong>내보내기 실행 환경 확인 필요</strong>
+    <p class="mt-1"><?php echo $member_export_view['environment_error']; ?></p>
+</div>
+<?php } ?>
+
 
 <!-- 회원 검색 필터링 폼 -->
 <form id="fsearch" name="fsearch" method="get" class="card ui-form-theme ui-form-showcase">
@@ -222,7 +229,7 @@ require_once './admin.head.php';
             </div>
 
             <div class="flex items-center justify-end gap-2 px-0 pt-2">
-                <button type="button" id="btnExcelDownload" class="btn btn-solid-primary">엑셀파일 다운로드</button>
+                <button type="button" id="btnExcelDownload" class="btn btn-solid-primary" <?php echo !$member_export_view['environment_ready'] ? 'disabled aria-disabled="true"' : ''; ?>>엑셀파일 다운로드</button>
                 <a href="<?php echo $member_export_links['reset_url']; ?>" class="btn btn-surface-default-soft">초기화</a>
             </div>
         </div>
@@ -231,6 +238,10 @@ require_once './admin.head.php';
 
 <script>
 const memberExportClientConfig = <?php echo json_encode($member_export_client_config, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
+const memberExportRuntimeState = <?php echo json_encode(array(
+    'environment_ready' => $member_export_view['environment_ready'],
+    'environment_error' => $member_export_view['environment_error'],
+), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
 
 document.querySelector('input[name="ad_range_only"]').addEventListener('change', function () {
   document.querySelectorAll('.ad_range_wrap').forEach(el => {
@@ -280,6 +291,11 @@ function buildDownloadParams() {
 
 // 3. 메인 함수
 function startExcelDownload() {
+    if (!memberExportRuntimeState.environment_ready) {
+        alert(memberExportRuntimeState.environment_error || memberExportClientConfig.download_failed_message);
+        return;
+    }
+
     closePreviousEventSource();
 
     const query = buildDownloadParams();
