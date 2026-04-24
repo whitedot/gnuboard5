@@ -4,7 +4,8 @@ if (!defined('_GNUBOARD_')) {
 }
 
 $admin_tail_view = admin_build_tail_view($is_admin);
-extract($admin_tail_view, EXTR_SKIP);
+$print_version = $admin_tail_view['print_version'];
+$admin_js_ver = $admin_tail_view['admin_js_ver'];
 ?>
 
 <noscript>

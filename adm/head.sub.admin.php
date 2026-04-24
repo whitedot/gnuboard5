@@ -5,7 +5,13 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 $g5_debug['php']['begin_time'] = $begin_time = get_microtime();
 
 $head_sub_view = admin_build_head_sub_view($g5, $config, $is_member, $is_admin, $member);
-extract($head_sub_view, EXTR_SKIP);
+$page_title = $head_sub_view['page_title'];
+$head_title = $head_sub_view['head_title'];
+$pretendard_font_href = $head_sub_view['pretendard_font_href'];
+$common_css_ver = $head_sub_view['common_css_ver'];
+$admin_css_ver = $head_sub_view['admin_css_ver'];
+$sticky_anchor_tabs_ver = $head_sub_view['sticky_anchor_tabs_ver'];
+$login_status_text = $head_sub_view['login_status_text'];
 $g5['title'] = $page_title;
 ?>
 <!doctype html>

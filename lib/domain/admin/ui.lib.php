@@ -30,77 +30,44 @@ function get_subdirectory_names($directory_path)
     return $result_array;
 }
 
-function get_member_level_select($name, $start_id = 0, $end_id = 10, $selected = "", $event = "")
-{
-    global $g5;
-
-    $attr = trim((string) $event);
-    if (strpos($attr, 'class=') === false) {
-        $attr = trim('class="form-select" ' . $attr);
-    } else {
-        $attr = preg_replace('/class=("|\')(.*?)(\1)/', 'class=$1form-select $2$1', $attr, 1);
-    }
-    $str = "\n<select id=\"{$name}\" name=\"{$name}\"";
-    if ($attr !== '') {
-        $str .= " {$attr}";
-    }
-    $str .= ">\n";
-    for ($i = $start_id; $i <= $end_id; $i++) {
-        $str .= '<option value="' . $i . '"';
-        if ($i == $selected) {
-            $str .= ' selected="selected"';
-        }
-        $str .= ">{$i}</option>\n";
-    }
-    $str .= "</select>\n";
-
-    return $str;
-}
-
-function get_member_id_select($name, $level, $selected = "", $event = "")
-{
-    global $g5;
-
-    $sql = " select mb_id from {$g5['member_table']} where mb_level >= :mb_level ";
-    $result = sql_query_prepared($sql, array(
-        'mb_level' => (int) $level,
-    ));
-    $attr = trim((string) $event);
-    if (strpos($attr, 'class=') === false) {
-        $attr = trim('class="form-select" ' . $attr);
-    } else {
-        $attr = preg_replace('/class=("|\')(.*?)(\1)/', 'class=$1form-select $2$1', $attr, 1);
-    }
-    $str = '<select id="' . $name . '" name="' . $name . '"';
-    if ($attr !== '') {
-        $str .= ' ' . $attr;
-    }
-    $str .= '><option value="">선택안함</option>';
-    for ($i = 0; $row = sql_fetch_array($result); $i++) {
-        $str .= '<option value="' . $row['mb_id'] . '"';
-        if ($row['mb_id'] == $selected) {
-            $str .= ' selected';
-        }
-        $str .= '>' . $row['mb_id'] . '</option>';
-    }
-    $str .= '</select>';
-
-    return $str;
-}
-
-function admin_build_anchor_menu($tabs, $options = array())
+function admin_build_anchor_menu_view($tabs, $options = array())
 {
     if (!is_array($tabs) || empty($tabs)) {
+        return array(
+            'tabs' => array(),
+            'options' => array(),
+        );
+    }
+
+    return array(
+        'tabs' => $tabs,
+        'options' => array(
+            'nav_id' => isset($options['nav_id']) ? trim((string) $options['nav_id']) : '',
+            'nav_class' => isset($options['nav_class']) ? trim((string) $options['nav_class']) : 'tab-nav',
+            'nav_aria_label' => isset($options['nav_aria_label']) ? trim((string) $options['nav_aria_label']) : '탭 메뉴',
+            'link_class' => isset($options['link_class']) ? trim((string) $options['link_class']) : 'tab-trigger-line-primary',
+            'active_class' => isset($options['active_class']) ? trim((string) $options['active_class']) : 'active',
+            'as_tabs' => !empty($options['as_tabs']),
+            'link_id_prefix' => isset($options['link_id_prefix']) ? trim((string) $options['link_id_prefix']) : 'admin_tab_',
+        ),
+    );
+}
+
+function admin_render_anchor_menu(array $menu_view)
+{
+    $tabs = isset($menu_view['tabs']) && is_array($menu_view['tabs']) ? $menu_view['tabs'] : array();
+    if (empty($tabs)) {
         return '';
     }
 
-    $nav_id = isset($options['nav_id']) ? trim((string) $options['nav_id']) : '';
-    $nav_class = isset($options['nav_class']) ? trim((string) $options['nav_class']) : 'tab-nav';
-    $nav_aria_label = isset($options['nav_aria_label']) ? trim((string) $options['nav_aria_label']) : '탭 메뉴';
-    $link_class = isset($options['link_class']) ? trim((string) $options['link_class']) : 'tab-trigger-line-primary';
-    $active_class = isset($options['active_class']) ? trim((string) $options['active_class']) : 'active';
+    $options = isset($menu_view['options']) && is_array($menu_view['options']) ? $menu_view['options'] : array();
+    $nav_id = isset($options['nav_id']) ? $options['nav_id'] : '';
+    $nav_class = isset($options['nav_class']) ? $options['nav_class'] : 'tab-nav';
+    $nav_aria_label = isset($options['nav_aria_label']) ? $options['nav_aria_label'] : '탭 메뉴';
+    $link_class = isset($options['link_class']) ? $options['link_class'] : 'tab-trigger-line-primary';
+    $active_class = isset($options['active_class']) ? $options['active_class'] : 'active';
     $as_tabs = !empty($options['as_tabs']);
-    $link_id_prefix = isset($options['link_id_prefix']) ? trim((string) $options['link_id_prefix']) : 'admin_tab_';
+    $link_id_prefix = isset($options['link_id_prefix']) ? $options['link_id_prefix'] : 'admin_tab_';
 
     $nav_attr = array();
     if ($nav_id !== '') {
@@ -161,13 +128,9 @@ function admin_build_anchor_menu($tabs, $options = array())
     return implode(PHP_EOL, $menu);
 }
 
-function icon($act, $link = '', $target = '_parent')
+function admin_build_anchor_menu($tabs, $options = array())
 {
-    global $g5;
-
-    $img = array('입력' => 'insert', '추가' => 'insert', '생성' => 'insert', '수정' => 'modify', '삭제' => 'delete', '이동' => 'move', '그룹' => 'move', '보기' => 'view', '미리보기' => 'view', '복사' => 'copy');
-    $icon = '<img src="' . G5_ADMIN_PATH . '/img/icon_' . $img[$act] . '.gif" title="' . $act . '">';
-    return $link ? '<a href="' . $link . '">' . $icon . '</a>' : $icon;
+    return admin_render_anchor_menu(admin_build_anchor_menu_view($tabs, $options));
 }
 
 function rm_rf($file)
@@ -188,32 +151,6 @@ function rm_rf($file)
             @unlink($file);
         }
     }
-}
-
-function help($help = "")
-{
-    global $g5;
-
-    return '<span class="hint-text">' . str_replace("\n", "<br>", $help) . '</span>';
-}
-
-function order_select($fld, $sel = '')
-{
-    $s = '<select name="' . $fld . '" id="' . $fld . '">';
-    for ($i = 1; $i <= 100; $i++) {
-        $s .= '<option value="' . $i . '" ';
-        if ($sel) {
-            if ($i == $sel) {
-                $s .= 'selected';
-            }
-        } elseif ($i == 50) {
-            $s .= 'selected';
-        }
-        $s .= '>' . $i . '</option>';
-    }
-    $s .= '</select>';
-
-    return $s;
 }
 
 function domain_mail_host($is_at = true)
@@ -316,7 +253,72 @@ function admin_enqueue_extend_stylesheets()
     }
 }
 
-function admin_build_head_view(array $member, array $config, array $cookies, $admin_container_class = '', $admin_page_subtitle = '')
+function admin_menu_icon_id($menu_code)
+{
+    $prefix = substr((string) $menu_code, 0, 3);
+    $map = array(
+        '100' => 'settings',
+        '200' => 'users',
+        '300' => 'content',
+        '400' => 'folder',
+        '500' => 'stats',
+        '900' => 'message',
+    );
+
+    return isset($map[$prefix]) ? $map[$prefix] : 'folder';
+}
+
+function admin_build_head_submenu_items(array $menu_group, array $auth, $is_admin, $sub_menu)
+{
+    $submenu_items = array();
+
+    foreach ($menu_group as $index => $menu_item) {
+        if ($index === 0 || !isset($menu_item[0], $menu_item[1], $menu_item[2])) {
+            continue;
+        }
+
+        if (!admin_menu_is_readable($auth, $is_admin, $menu_item[0])) {
+            continue;
+        }
+
+        $submenu_items[] = array(
+            'menu_code' => (string) $menu_item[0],
+            'title' => (string) $menu_item[1],
+            'href' => (string) $menu_item[2],
+            'is_current' => ((string) $menu_item[0] === (string) $sub_menu),
+        );
+    }
+
+    return $submenu_items;
+}
+
+function admin_build_head_navigation(array $amenu, array $menu, array $auth, $is_admin, $sub_menu)
+{
+    $navigation_items = array();
+
+    foreach ($amenu as $key => $value) {
+        $group_key = 'menu' . $key;
+        if (!isset($menu[$group_key][0][0], $menu[$group_key][0][1], $menu[$group_key][0][2]) || !$menu[$group_key][0][2]) {
+            continue;
+        }
+
+        $menu_group = $menu[$group_key];
+        $menu_code = (string) $menu_group[0][0];
+        $submenu_items = admin_build_head_submenu_items($menu_group, $auth, $is_admin, $sub_menu);
+
+        $navigation_items[] = array(
+            'menu_key' => $group_key,
+            'title' => (string) $menu_group[0][1],
+            'icon_id' => admin_menu_icon_id($menu_code),
+            'is_open' => (substr((string) $sub_menu, 0, 3) === substr($menu_code, 0, 3)),
+            'sub_items' => $submenu_items,
+        );
+    }
+
+    return $navigation_items;
+}
+
+function admin_build_head_view(array $member, array $config, array $cookies, $admin_container_class = '', $admin_page_subtitle = '', array $amenu = array(), array $menu = array(), array $auth = array(), $is_admin = '', $sub_menu = '')
 {
     $adm_menu_cookie = array(
         'container' => '',
@@ -356,6 +358,7 @@ function admin_build_head_view(array $member, array $config, array $cookies, $ad
         'admin_profile_mail' => $admin_profile_mail,
         'admin_profile_initial' => $admin_profile_initial,
         'admin_site_title' => $admin_site_title,
+        'admin_navigation_items' => admin_build_head_navigation($amenu, $menu, $auth, $is_admin, $sub_menu),
         'admin_container_class_attr' => trim($adm_menu_cookie['container'] . ' ' . $admin_container_class),
         'admin_page_subtitle_text' => $admin_page_subtitle !== '' ? $admin_page_subtitle : '사이트 운영과 설정을 한 곳에서 관리하세요.',
     );

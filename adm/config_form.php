@@ -7,14 +7,15 @@ auth_check_menu($auth, $sub_menu, 'r');
 admin_require_super_admin($is_admin);
 
 $config = admin_read_config_row();
-$config_form_view = admin_build_config_form_page_view();
-extract($config_form_view, EXTR_SKIP);
+$config_form_view = admin_build_config_form_page_view($config);
 
-$g5['title'] = $title;
+$g5['title'] = $config_form_view['title'];
+$admin_container_class = $config_form_view['admin_container_class'];
+$admin_page_subtitle = $config_form_view['admin_page_subtitle'];
 require_once './admin.head.php';
 ?>
 
-<?php echo $pg_anchor_menu; ?>
+<?php echo admin_render_anchor_menu($config_form_view['pg_anchor_menu_view']); ?>
 
 <form name="fconfigform" id="fconfigform" method="post" action="./config_form_update.php" onsubmit="return fconfigform_submit(this);" class="admin-form-layout ui-form-theme ui-form-showcase space-y-5">
     <input type="hidden" name="token" value="" id="token">

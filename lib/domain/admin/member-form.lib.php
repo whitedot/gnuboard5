@@ -102,6 +102,7 @@ function admin_build_member_form_view(array $request, array $member, $is_admin, 
         'mb' => $mb,
         'display_mb_id' => member_get_display_id($mb),
         'mask_preserved_id' => member_should_mask_preserved_id($mb),
+        'member_level_options' => admin_build_member_level_options(1, (int) $member['mb_level'], isset($mb['mb_level']) ? $mb['mb_level'] : ''),
         'sound_only' => $sound_only,
         'required_mb_id' => $required_mb_id,
         'required_mb_id_class' => $required_mb_id_class,
@@ -130,7 +131,7 @@ function admin_build_member_form_page_view(array $member_form_view)
         'title' => $member_form_view['title'],
         'admin_container_class' => 'admin-page-member-form',
         'admin_page_subtitle' => '기본정보, 인증 연락처, 동의 상태, 활동 이력을 탭에서 빠르게 관리하세요.',
-        'pg_anchor_menu' => admin_build_anchor_menu(admin_member_form_tabs(), array(
+        'pg_anchor_menu_view' => admin_build_anchor_menu_view(admin_member_form_tabs(), array(
             'nav_id' => 'member_tabs_nav',
             'nav_class' => 'tab-nav-justified',
             'nav_aria_label' => '회원 등록/수정 탭',

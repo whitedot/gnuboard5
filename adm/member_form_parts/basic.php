@@ -61,7 +61,11 @@
                     <label for="mb_level" class="form-label">회원 권한</label>
                 </div>
                 <div class="af-field">
-                    <?php echo get_member_level_select('mb_level', 1, $member['mb_level'], $mb['mb_level'], 'class="form-select"') ?>
+                    <select id="mb_level" name="mb_level" class="form-select">
+                        <?php foreach ($member_level_options as $option) { ?>
+                            <option value="<?php echo $option['value']; ?>"<?php echo $option['selected'] ? ' selected="selected"' : ''; ?>><?php echo $option['label']; ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
             </div>
 

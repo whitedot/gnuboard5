@@ -9,63 +9,28 @@ admin_enqueue_extend_stylesheets();
 
 require_once G5_ADMIN_PATH . '/head.sub.admin.php';
 
-function print_menu1($key, $no = '')
-{
-    return print_menu2($key, $no);
-}
-
-function admin_menu_icon_id($menu_code)
-{
-    $prefix = substr((string) $menu_code, 0, 3);
-    $map = array(
-        '100' => 'settings',
-        '200' => 'users',
-        '300' => 'content',
-        '400' => 'folder',
-        '500' => 'stats',
-        '900' => 'message',
-    );
-
-    return isset($map[$prefix]) ? $map[$prefix] : 'folder';
-}
-
-function print_menu2($key, $no = '')
-{
-    global $menu, $is_admin, $auth, $sub_menu;
-
-    $str = '<ul class="admin-nav-sub-list">';
-
-    for ($i = 1; $i < count($menu[$key]); $i++) {
-        if (!isset($menu[$key][$i])) {
-            continue;
-        }
-
-        if (!admin_menu_is_readable($auth, $is_admin, $menu[$key][$i][0])) {
-            continue;
-        }
-
-        $current_class = '';
-        if ($menu[$key][$i][0] == $sub_menu) {
-            $current_class = ' is-current';
-        }
-
-        $str .= '<li class="admin-nav-sub-item' . $current_class . '" data-menu="' . $menu[$key][$i][0] . '"><a href="' . $menu[$key][$i][2] . '">' . $menu[$key][$i][1] . '</a></li>';
-
-    }
-
-    $str .= '</ul>';
-
-    return $str;
-}
-
 $admin_head_view = admin_build_head_view(
     $member,
     $config,
     $_COOKIE,
     isset($admin_container_class) ? $admin_container_class : '',
-    isset($admin_page_subtitle) ? $admin_page_subtitle : ''
+    isset($admin_page_subtitle) ? $admin_page_subtitle : '',
+    isset($amenu) && is_array($amenu) ? $amenu : array(),
+    isset($menu) && is_array($menu) ? $menu : array(),
+    isset($auth) && is_array($auth) ? $auth : array(),
+    isset($is_admin) ? $is_admin : '',
+    isset($sub_menu) ? $sub_menu : ''
 );
-extract($admin_head_view, EXTR_SKIP);
+$adm_menu_cookie = $admin_head_view['adm_menu_cookie'];
+$admin_sidebar_collapsed = $admin_head_view['admin_sidebar_collapsed'];
+$admin_profile_name = $admin_head_view['admin_profile_name'];
+$admin_profile_id = $admin_head_view['admin_profile_id'];
+$admin_profile_mail = $admin_head_view['admin_profile_mail'];
+$admin_profile_initial = $admin_head_view['admin_profile_initial'];
+$admin_site_title = $admin_head_view['admin_site_title'];
+$admin_navigation_items = $admin_head_view['admin_navigation_items'];
+$admin_container_class_attr = $admin_head_view['admin_container_class_attr'];
+$admin_page_subtitle_text = $admin_head_view['admin_page_subtitle_text'];
 ?>
 
 <script>
@@ -207,31 +172,18 @@ extract($admin_head_view, EXTR_SKIP);
             <div class="gnb_menu_scroll" id="gnbMenuScroll">
                 <ul class="admin-nav-list" id="adminNavList">
                     <?php
-                    foreach ($amenu as $key => $value) {
-                        if (!isset($menu['menu' . $key][0][2]) || !$menu['menu' . $key][0][2]) {
-                            continue;
-                        }
-
-                        $current_class = '';
-                        $opened_utility = ' hidden';
-                        $expanded = 'false';
-                        if (isset($sub_menu) && (substr($sub_menu, 0, 3) == substr($menu['menu' . $key][0][0], 0, 3))) {
-                            $current_class = ' is-open';
-                            $opened_utility = '';
-                            $expanded = 'true';
-                        }
-
-                        $button_title = $menu['menu' . $key][0][1];
-                        $menu_code = (string) $menu['menu' . $key][0][0];
-                        $menu_icon_id = admin_menu_icon_id($menu_code);
+                    foreach ($admin_navigation_items as $nav_item) {
+                        $current_class = $nav_item['is_open'] ? ' is-open' : '';
+                        $opened_utility = $nav_item['is_open'] ? '' : ' hidden';
+                        $expanded = $nav_item['is_open'] ? 'true' : 'false';
                     ?>
                         <li class="admin-nav-item<?php echo $current_class; ?>">
-                            <button type="button" class="admin-nav-trigger" title="<?php echo $button_title; ?>" aria-expanded="<?php echo $expanded; ?>">
+                            <button type="button" class="admin-nav-trigger" title="<?php echo $nav_item['title']; ?>" aria-expanded="<?php echo $expanded; ?>">
                                 <span class="admin-nav-trigger-main">
                                     <svg class="admin-nav-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
-                                        <use href="#admin-menu-icon-<?php echo $menu_icon_id; ?>"></use>
+                                        <use href="#admin-menu-icon-<?php echo $nav_item['icon_id']; ?>"></use>
                                     </svg>
-                                    <span class="admin-nav-trigger-label"><?php echo $button_title; ?></span>
+                                    <span class="admin-nav-trigger-label"><?php echo $nav_item['title']; ?></span>
                                 </span>
                                 <span class="admin-nav-caret" aria-hidden="true">
                                     <svg class="admin-nav-caret-icon" focusable="false" viewBox="0 0 24 24">
@@ -240,7 +192,13 @@ extract($admin_head_view, EXTR_SKIP);
                                 </span>
                             </button>
                             <div class="admin-nav-panel<?php echo $opened_utility; ?>">
-                                <?php echo print_menu1('menu' . $key, 1); ?>
+                                <ul class="admin-nav-sub-list">
+                                    <?php foreach ($nav_item['sub_items'] as $sub_item) { ?>
+                                        <li class="admin-nav-sub-item<?php echo $sub_item['is_current'] ? ' is-current' : ''; ?>" data-menu="<?php echo $sub_item['menu_code']; ?>">
+                                            <a href="<?php echo $sub_item['href']; ?>"><?php echo $sub_item['title']; ?></a>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
                             </div>
                         </li>
                     <?php

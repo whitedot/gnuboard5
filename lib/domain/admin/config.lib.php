@@ -27,13 +27,15 @@ function admin_config_form_tabs()
     );
 }
 
-function admin_build_config_form_view()
+function admin_build_config_form_view(array $config)
 {
     return array(
         'title' => '환경설정',
         'admin_container_class' => 'admin-page-config-form',
         'admin_page_subtitle' => '기본, 회원, 보안, 연동 설정을 탭에서 빠르게 관리하세요.',
-        'pg_anchor_menu' => admin_build_anchor_menu(admin_config_form_tabs(), array(
+        'admin_member_options' => admin_read_member_id_options(10, isset($config['cf_admin']) ? $config['cf_admin'] : ''),
+        'register_level_options' => admin_build_member_level_options(1, 9, isset($config['cf_register_level']) ? $config['cf_register_level'] : ''),
+        'pg_anchor_menu_view' => admin_build_anchor_menu_view(admin_config_form_tabs(), array(
             'nav_id' => 'config_tabs_nav',
             'nav_class' => 'tab-nav-justified',
             'nav_aria_label' => '환경설정 탭',
@@ -45,9 +47,9 @@ function admin_build_config_form_view()
     );
 }
 
-function admin_build_config_form_page_view()
+function admin_build_config_form_page_view(array $config)
 {
-    return admin_build_config_form_view();
+    return admin_build_config_form_view($config);
 }
 
 function admin_read_config_form_update_request(array $post, array $ori_config)

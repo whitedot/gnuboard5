@@ -66,7 +66,7 @@
                 <div class="af-label"><span class="form-label">인증일시</span></div>
                 <div class="af-field">
                     <?php if ($mb['mb_email_certify'] == '0000-00-00 00:00:00') { ?>
-                        <?php echo help('회원님이 메일을 수신할 수 없는 경우 등에 직접 인증처리를 하실 수 있습니다.') ?>
+                        <p class="hint-text">회원님이 메일을 수신할 수 없는 경우 등에 직접 인증처리를 하실 수 있습니다.</p>
                         <label for="passive_certify" class="af-check form-label">
                             <input type="checkbox" name="passive_certify" id="passive_certify" class="form-checkbox">
                             <span class="form-label">수동인증</span>

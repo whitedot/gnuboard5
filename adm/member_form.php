@@ -4,21 +4,44 @@ require_once './_common.php';
 
 auth_check_menu($auth, $sub_menu, 'w');
 
-$member_form_request = admin_read_member_form_request($_REQUEST, $w);
+$member_form_request = admin_read_member_form_request($_REQUEST, isset($w) ? $w : '');
 $member_form_view = admin_build_member_form_view($member_form_request, $member, $is_admin, $config);
 $page_view = admin_build_member_form_page_view($member_form_view);
-extract($member_form_view, EXTR_SKIP);
 
+$w = $member_form_request['w'];
 $mb_id = $member_form_request['mb_id'];
+$mb = $member_form_view['mb'];
+$display_mb_id = $member_form_view['display_mb_id'];
+$mask_preserved_id = $member_form_view['mask_preserved_id'];
+$member_level_options = $member_form_view['member_level_options'];
+$sound_only = $member_form_view['sound_only'];
+$required_mb_id = $member_form_view['required_mb_id'];
+$required_mb_id_class = $member_form_view['required_mb_id_class'];
+$required_mb_password = $member_form_view['required_mb_password'];
+$mb_certify_yes = $member_form_view['mb_certify_yes'];
+$mb_certify_no = $member_form_view['mb_certify_no'];
+$mb_adult_yes = $member_form_view['mb_adult_yes'];
+$mb_adult_no = $member_form_view['mb_adult_no'];
+$mb_mailling_yes = $member_form_view['mb_mailling_yes'];
+$mb_mailling_no = $member_form_view['mb_mailling_no'];
+$mb_open_yes = $member_form_view['mb_open_yes'];
+$mb_open_no = $member_form_view['mb_open_no'];
+$mb_marketing_agree_yes = $member_form_view['mb_marketing_agree_yes'];
+$mb_marketing_agree_no = $member_form_view['mb_marketing_agree_no'];
+$mb_cert_history = $member_form_view['mb_cert_history'];
+$sfl = isset($sfl) ? $sfl : '';
+$stx = isset($stx) ? $stx : '';
+$sst = isset($sst) ? $sst : '';
+$sod = isset($sod) ? $sod : '';
+$page = isset($page) ? $page : '';
+
 $g5['title'] = $page_view['title'];
 $admin_container_class = $page_view['admin_container_class'];
 $admin_page_subtitle = $page_view['admin_page_subtitle'];
 require_once './admin.head.php';
-
-$pg_anchor_menu = $page_view['pg_anchor_menu'];
 ?>
 
-<?php echo $pg_anchor_menu; ?>
+<?php echo admin_render_anchor_menu($page_view['pg_anchor_menu_view']); ?>
 
 <form name="fmember" id="fmember" action="./member_form_update.php" onsubmit="return fmember_submit(this);" method="post" class="admin-form-layout ui-form-theme ui-form-showcase space-y-5" autocomplete="off">
     <input type="hidden" name="w" value="<?php echo $w ?>">

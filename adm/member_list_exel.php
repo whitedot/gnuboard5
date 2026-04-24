@@ -6,11 +6,11 @@ require_once './member_list_exel.lib.php'; // 회원관리파일 공통 라이�
 auth_check_menu($auth, $sub_menu, 'r');
 
 $member_export_view = admin_build_member_export_page_view($_GET, $config);
-$params = $member_export_view['params'];
-extract($member_export_view, EXTR_SKIP);
-extract($params, EXTR_SKIP);
+$filter_state = $member_export_view['filter_state'];
 
-$g5['title'] = $title;
+$g5['title'] = $member_export_view['title'];
+$admin_container_class = $member_export_view['admin_container_class'];
+$admin_page_subtitle = $member_export_view['admin_page_subtitle'];
 require_once './admin.head.php';
 ?>
 
@@ -32,17 +32,17 @@ require_once './admin.head.php';
 
 <div class="mb-5 inline-flex items-center gap-2 rounded-lg border border-default-300 bg-card px-4 py-2 text-sm font-medium text-default-700 shadow-sm">
     <span>총건수</span>
-    <?php if ($total_error != "") { ?>
-    <span class="text-danger"><?php echo $total_error ?></span>
+    <?php if ($member_export_view['total_error'] != "") { ?>
+    <span class="text-danger"><?php echo $member_export_view['total_error'] ?></span>
     <?php } else { ?>
-    <span><?php echo number_format($total_count) ?>건</span>
+    <span><?php echo number_format($member_export_view['total_count']) ?>건</span>
     <?php } ?>
 </div>
 
 
 <!-- 회원 검색 필터링 폼 -->
 <form id="fsearch" name="fsearch" method="get" class="card ui-form-theme ui-form-showcase">
-    <input type="hidden" name="token" value="<?php echo $form_token; ?>">
+    <input type="hidden" name="token" value="<?php echo $member_export_view['form_token']; ?>">
     <div class="card-header">
         <h2 class="card-title">회원 검색 필터링</h2>
     </div>
@@ -54,7 +54,7 @@ require_once './admin.head.php';
             <div class="af-row">
                 <div class="af-label">
                     <label class="af-check form-label">
-                        <input type="checkbox" name="use_stx" value="1" <?php echo !empty($use_stx) ? 'checked' : ''; ?> class="form-checkbox">
+                        <input type="checkbox" name="use_stx" value="1" <?php echo !empty($filter_state['params']['use_stx']) ? 'checked' : ''; ?> class="form-checkbox">
                         <span class="form-label">검색어 적용</span>
                     </label>
                 </div>
@@ -62,20 +62,20 @@ require_once './admin.head.php';
                     <div class="flex flex-col gap-2 lg:flex-row lg:flex-nowrap lg:items-center">
                     <select name="sfl" class="form-select lg:w-auto">
                         <?php
-                            foreach ($sfl_options as $val => $label) {
-                                $selected = $sfl === $val ? 'selected' : '';
+                            foreach ($member_export_view['sfl_options'] as $val => $label) {
+                                $selected = $filter_state['params']['sfl'] === $val ? 'selected' : '';
                                 echo "<option value=\"$val\" $selected>$label</option>";
                             }
                         ?>
                     </select>
-                    <input type="text" name="stx" value="<?php echo htmlspecialchars($stx); ?>" placeholder="검색어 입력" class="form-input lg:w-72 xl:w-80">
+                    <input type="text" name="stx" value="<?php echo htmlspecialchars($filter_state['params']['stx']); ?>" placeholder="검색어 입력" class="form-input lg:w-72 xl:w-80">
                     <div class="af-inline shrink-0 whitespace-nowrap">
                         <label class="af-check form-label">
-                            <input type="radio" name="stx_cond" value="like" <?php echo $stx_cond === 'like' ? 'checked' : ''; ?> class="form-radio">
+                            <input type="radio" name="stx_cond" value="like" <?php echo $filter_state['params']['stx_cond'] === 'like' ? 'checked' : ''; ?> class="form-radio">
                             <span class="form-label">포함</span>
                         </label>
                         <label class="af-check form-label">
-                            <input type="radio" name="stx_cond" value="equal" <?php echo $stx_cond === 'equal' ? 'checked' : ''; ?> class="form-radio">
+                            <input type="radio" name="stx_cond" value="equal" <?php echo $filter_state['params']['stx_cond'] === 'equal' ? 'checked' : ''; ?> class="form-radio">
                             <span class="form-label">일치</span>
                         </label>
                     </div>
@@ -87,7 +87,7 @@ require_once './admin.head.php';
             <div class="af-row">
                 <div class="af-label">
                     <label class="af-check form-label">
-                        <input type="checkbox" name="use_level" value="1" <?php echo !empty($use_level) ? 'checked' : ''; ?> class="form-checkbox">
+                        <input type="checkbox" name="use_level" value="1" <?php echo !empty($filter_state['params']['use_level']) ? 'checked' : ''; ?> class="form-checkbox">
                         <span class="form-label">레벨 적용</span>
                     </label>
                 </div>
@@ -95,13 +95,13 @@ require_once './admin.head.php';
                     <div class="af-inline">
                     <select name="level_start" class="form-select">
                         <?php for ($i = 1; $i <= 10; $i++): ?>
-                            <option value="<?php echo $i; ?>" <?php echo $level_start == $i ? 'selected' : ''; ?>><?php echo $i; ?></option>
+                            <option value="<?php echo $i; ?>" <?php echo $filter_state['params']['level_start'] == $i ? 'selected' : ''; ?>><?php echo $i; ?></option>
                         <?php endfor; ?>
                     </select>
                     <span class="ui-form-inline-note">~</span>
                     <select name="level_end" class="form-select">
                         <?php for ($i = 1; $i <= 10; $i++): ?>
-                            <option value="<?php echo $i; ?>" <?php echo $level_end == $i ? 'selected' : ''; ?>><?php echo $i; ?></option>
+                            <option value="<?php echo $i; ?>" <?php echo $filter_state['params']['level_end'] == $i ? 'selected' : ''; ?>><?php echo $i; ?></option>
                         <?php endfor; ?>
                     </select>
                     </div>
@@ -112,15 +112,15 @@ require_once './admin.head.php';
             <div class="af-row">
                 <div class="af-label">
                     <label class="af-check form-label">
-                        <input type="checkbox" name="use_date" value="1" <?php echo !empty($use_date) ? 'checked' : ''; ?> class="form-checkbox">
+                        <input type="checkbox" name="use_date" value="1" <?php echo !empty($filter_state['params']['use_date']) ? 'checked' : ''; ?> class="form-checkbox">
                         <span class="form-label">가입기간 적용</span>
                     </label>
                 </div>
                 <div class="af-field">
                     <div class="af-inline">
-                    <input type="date" name="date_start" max="9999-12-31" value="<?php echo htmlspecialchars($date_start); ?>" class="form-input">
+                    <input type="date" name="date_start" max="9999-12-31" value="<?php echo htmlspecialchars($filter_state['params']['date_start']); ?>" class="form-input">
                     <span class="ui-form-inline-note">~</span>
-                    <input type="date" name="date_end" max="9999-12-31" value="<?php echo htmlspecialchars($date_end); ?>" class="form-input">
+                    <input type="date" name="date_end" max="9999-12-31" value="<?php echo htmlspecialchars($filter_state['params']['date_end']); ?>" class="form-input">
                     </div>
                 </div>
             </div>
@@ -129,15 +129,15 @@ require_once './admin.head.php';
             <div class="af-row">
                 <div class="af-label">
                     <label class="af-check form-label">
-                        <input type="checkbox" name="use_intercept" value="1" <?php echo !empty($use_intercept) ? 'checked' : ''; ?> class="form-checkbox">
+                        <input type="checkbox" name="use_intercept" value="1" <?php echo !empty($filter_state['params']['use_intercept']) ? 'checked' : ''; ?> class="form-checkbox">
                         <span class="form-label">차단회원</span>
                     </label>
                 </div>
                 <div class="af-field">
                     <select name="intercept" id="intercept" class="form-select lg:w-auto">
                         <?php
-                            foreach ($intercept_options as $val => $label) {
-                                $selected = $intercept === $val ? 'selected' : '';
+                            foreach ($member_export_view['intercept_options'] as $val => $label) {
+                                $selected = $filter_state['params']['intercept'] === $val ? 'selected' : '';
                                 echo "<option value=\"$val\" $selected>$label</option>";
                             }
                         ?>
@@ -149,7 +149,7 @@ require_once './admin.head.php';
             <div class="af-row">
                 <div class="af-label">
                     <label class="af-check form-label">
-                        <input type="checkbox" name="use_hp_exist" value="1" <?php echo $use_hp_checked; ?> class="form-checkbox">
+                        <input type="checkbox" name="use_hp_exist" value="1" <?php echo $member_export_view['use_hp_checked']; ?> class="form-checkbox">
                         <span class="form-label">휴대폰 번호 있는 경우만</span>
                     </label>
                 </div>
@@ -162,7 +162,7 @@ require_once './admin.head.php';
             <div class="af-row">
                 <div class="af-label">
                     <label class="af-check form-label">
-                        <input type="checkbox" name="ad_range_only" value="1" <?php echo !empty($ad_range_only) ? 'checked' : ''; ?> class="form-checkbox">
+                        <input type="checkbox" name="ad_range_only" value="1" <?php echo !empty($filter_state['params']['ad_range_only']) ? 'checked' : ''; ?> class="form-checkbox">
                         <span class="form-label">정보수신동의에 동의한 경우만</span>
                     </label>
                 </div>
@@ -171,7 +171,7 @@ require_once './admin.head.php';
                 </div>
             </div>
 
-            <div class="af-row ad_range_wrap <?php echo !empty($ad_range_only) ? '' : 'is-hidden'; ?>">
+            <div class="af-row ad_range_wrap <?php echo !empty($filter_state['params']['ad_range_only']) ? '' : 'is-hidden'; ?>">
                 <div class="af-label">
                     <label for="ad_range_type" class="form-label">회원범위</label>
                 </div>
@@ -179,8 +179,8 @@ require_once './admin.head.php';
                     <div class="space-y-3">
                             <select name="ad_range_type" id="ad_range_type" class="form-select lg:w-auto">
                                 <?php 
-                                    foreach ($ad_range_options as $val => $label) {
-                                        $selected = $ad_range_type === $val ? 'selected' : '';
+                                    foreach ($member_export_view['ad_range_options'] as $val => $label) {
+                                        $selected = $filter_state['params']['ad_range_type'] === $val ? 'selected' : '';
                                         echo "<option value=\"$val\" $selected>$label</option>";
                                     }
                                 ?>
@@ -188,18 +188,18 @@ require_once './admin.head.php';
 
                             <div class="ad_range_wrap space-y-3">
                                 <!-- 기간 직접 입력 -->
-                                <div class="<?php echo !empty($ad_range_only) && $ad_range_type == 'custom_period' ? '' : 'is-hidden'; ?> space-y-2">
+                                <div class="<?php echo !empty($filter_state['params']['ad_range_only']) && $filter_state['params']['ad_range_type'] == 'custom_period' ? '' : 'is-hidden'; ?> space-y-2">
                                     <div class="af-inline">
-                                        <input type="date" name="agree_date_start" max="9999-12-31" value="<?php echo htmlspecialchars($agree_date_start_value); ?>" class="form-input">
+                                        <input type="date" name="agree_date_start" max="9999-12-31" value="<?php echo htmlspecialchars($filter_state['agree_date_start_value']); ?>" class="form-input">
                                         <span class="ui-form-inline-note">~</span>
-                                        <input type="date" name="agree_date_end" max="9999-12-31" value="<?php echo htmlspecialchars($agree_date_end_value); ?>" class="form-input">
+                                        <input type="date" name="agree_date_end" max="9999-12-31" value="<?php echo htmlspecialchars($filter_state['agree_date_end_value']); ?>" class="form-input">
                                     </div>
                                     <p class="hint-text">광고성 정보 수신(<strong>이메일</strong>) 동의일자 기준</p>
                                 </div>
 
                                 <!-- 설명 문구 -->
-                                <?php if ($active_ad_range_text !== '') { ?>
-                                    <div><p class="hint-text mt-0"><?php echo $active_ad_range_text; ?></p></div>
+                                <?php if ($filter_state['active_ad_range_text'] !== '') { ?>
+                                    <div><p class="hint-text mt-0"><?php echo $filter_state['active_ad_range_text']; ?></p></div>
                                 <?php } ?>
                             </div>
                     </div>
@@ -207,13 +207,13 @@ require_once './admin.head.php';
             </div>
 
             <!-- 채널 체크박스 -->
-            <div class="af-row ad_range_wrap <?php echo !empty($ad_range_only) && in_array($ad_range_type, ['month_confirm', 'custom_period'], true) ? '' : 'is-hidden'; ?>">
+            <div class="af-row ad_range_wrap <?php echo !empty($filter_state['params']['ad_range_only']) && in_array($filter_state['params']['ad_range_type'], ['month_confirm', 'custom_period'], true) ? '' : 'is-hidden'; ?>">
                 <div class="af-label">
                     <label class="form-label">확인 채널</label>
                 </div>
                 <div class="af-field">
                         <div class="af-inline">
-                            <label class="af-check form-label"><input type="checkbox" name="ad_mailling" value="1" <?php echo $ad_mailling_checked; ?> class="form-checkbox"><span class="form-label">광고성 이메일 수신</span></label>
+                            <label class="af-check form-label"><input type="checkbox" name="ad_mailling" value="1" <?php echo $filter_state['ad_mailling_checked']; ?> class="form-checkbox"><span class="form-label">광고성 이메일 수신</span></label>
                         </div>
                 </div>
             </div>

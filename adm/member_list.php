@@ -12,22 +12,22 @@ $member_list_request = admin_read_member_list_request(array(
     'page' => isset($page) ? $page : 1,
 ), $config);
 $member_list_view = admin_build_member_list_page_view($member_list_request, $member, $is_admin, $config, $qstr);
-extract($member_list_view, EXTR_SKIP);
-extract($member_list_request, EXTR_SKIP);
 
-$g5['title'] = $title;
+$g5['title'] = $member_list_view['title'];
+$admin_container_class = $member_list_view['admin_container_class'];
+$admin_page_subtitle = $member_list_view['admin_page_subtitle'];
 require_once './admin.head.php';
 ?>
 
 <div class="member-summary">
     <div class="member-summary-links">
-        <?php echo $listall; ?>
+        <a href="<?php echo $member_list_view['list_all_url']; ?>" class="btn btn-surface-default-soft">전체 보기</a>
     </div>
 
     <div class="member-summary-stats">
-        <span class="member-summary-meta">총회원 <strong><?php echo number_format($total_count); ?>명</strong></span>
-        <a href="<?php echo $blocked_url; ?>" class="member-summary-meta"<?php echo $quick_view === 'blocked' ? ' aria-current="page"' : ''; ?>>차단 <?php echo number_format($intercept_count); ?>명</a>
-        <a href="<?php echo $left_url; ?>" class="member-summary-meta"<?php echo $quick_view === 'left' ? ' aria-current="page"' : ''; ?>>탈퇴 <?php echo number_format($leave_count); ?>명</a>
+        <span class="member-summary-meta">총회원 <strong><?php echo number_format($member_list_view['total_count']); ?>명</strong></span>
+        <a href="<?php echo $member_list_view['blocked_url']; ?>" class="member-summary-meta"<?php echo $member_list_view['quick_view'] === 'blocked' ? ' aria-current="page"' : ''; ?>>차단 <?php echo number_format($member_list_view['intercept_count']); ?>명</a>
+        <a href="<?php echo $member_list_view['left_url']; ?>" class="member-summary-meta"<?php echo $member_list_view['quick_view'] === 'left' ? ' aria-current="page"' : ''; ?>>탈퇴 <?php echo number_format($member_list_view['leave_count']); ?>명</a>
     </div>
 </div>
 
@@ -37,19 +37,19 @@ require_once './admin.head.php';
             <div class="member-field">
                 <label for="sfl">검색대상</label>
                 <select name="sfl" id="sfl">
-                    <option value="mb_id" <?php echo get_selected($sfl, "mb_id"); ?>>회원아이디</option>
-                    <option value="mb_nick" <?php echo get_selected($sfl, "mb_nick"); ?>>닉네임</option>
-                    <option value="mb_name" <?php echo get_selected($sfl, "mb_name"); ?>>이름</option>
-                    <option value="mb_level" <?php echo get_selected($sfl, "mb_level"); ?>>권한</option>
-                    <option value="mb_email" <?php echo get_selected($sfl, "mb_email"); ?>>E-MAIL</option>
-                    <option value="mb_hp" <?php echo get_selected($sfl, "mb_hp"); ?>>휴대폰번호</option>
-                    <option value="mb_datetime" <?php echo get_selected($sfl, "mb_datetime"); ?>>가입일시</option>
-                    <option value="mb_ip" <?php echo get_selected($sfl, "mb_ip"); ?>>IP</option>
+                    <option value="mb_id" <?php echo get_selected($member_list_request['sfl'], "mb_id"); ?>>회원아이디</option>
+                    <option value="mb_nick" <?php echo get_selected($member_list_request['sfl'], "mb_nick"); ?>>닉네임</option>
+                    <option value="mb_name" <?php echo get_selected($member_list_request['sfl'], "mb_name"); ?>>이름</option>
+                    <option value="mb_level" <?php echo get_selected($member_list_request['sfl'], "mb_level"); ?>>권한</option>
+                    <option value="mb_email" <?php echo get_selected($member_list_request['sfl'], "mb_email"); ?>>E-MAIL</option>
+                    <option value="mb_hp" <?php echo get_selected($member_list_request['sfl'], "mb_hp"); ?>>휴대폰번호</option>
+                    <option value="mb_datetime" <?php echo get_selected($member_list_request['sfl'], "mb_datetime"); ?>>가입일시</option>
+                    <option value="mb_ip" <?php echo get_selected($member_list_request['sfl'], "mb_ip"); ?>>IP</option>
                 </select>
             </div>
             <div class="member-field">
                 <label for="stx">검색어</label>
-                <input type="text" name="stx" value="<?php echo $stx ?>" id="stx" required class="required" placeholder="검색어를 입력하세요">
+                <input type="text" name="stx" value="<?php echo $member_list_request['stx'] ?>" id="stx" required class="required" placeholder="검색어를 입력하세요">
             </div>
             <button type="submit" class="btn btn-solid-primary member-search-submit">검색</button>
         </div>
@@ -65,12 +65,12 @@ require_once './admin.head.php';
 </div>
 
 <form name="fmemberlist" id="fmemberlist" action="./member_list_update.php" onsubmit="return fmemberlist_submit(this);" method="post">
-    <input type="hidden" name="sst" value="<?php echo $sst ?>">
-    <input type="hidden" name="sod" value="<?php echo $sod ?>">
-    <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
-    <input type="hidden" name="stx" value="<?php echo $stx ?>">
-    <input type="hidden" name="page" value="<?php echo $page ?>">
-    <input type="hidden" name="token" value="<?php echo $admin_token ?>">
+    <input type="hidden" name="sst" value="<?php echo $member_list_request['sst'] ?>">
+    <input type="hidden" name="sod" value="<?php echo $member_list_request['sod'] ?>">
+    <input type="hidden" name="sfl" value="<?php echo $member_list_request['sfl'] ?>">
+    <input type="hidden" name="stx" value="<?php echo $member_list_request['stx'] ?>">
+    <input type="hidden" name="page" value="<?php echo $member_list_request['page'] ?>">
+    <input type="hidden" name="token" value="<?php echo $member_list_view['admin_token'] ?>">
 
     <div class="member-table-card">
         <div class="table-wrapper">
@@ -102,7 +102,7 @@ require_once './admin.head.php';
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($items as $index => $item) { ?>
+                    <?php foreach ($member_list_view['items'] as $index => $item) { ?>
                         <tr>
                             <td headers="mb_list_chk" class="member-cell-fixed">
                                 <input type="hidden" name="mb_id[<?php echo $index; ?>]" value="<?php echo $item['mb_id']; ?>" id="mb_id_<?php echo $index; ?>">
@@ -111,7 +111,7 @@ require_once './admin.head.php';
                             </td>
                             <td headers="mb_list_id" class="member-cell-fixed font-medium"><?php echo $item['display_mb_id']; ?></td>
                             <td headers="mb_list_name" class="member-cell-fixed"><?php echo $item['mb_name']; ?></td>
-                            <td headers="mb_list_nick" class="member-cell-fixed"><?php echo $item['mb_nick']; ?></td>
+                            <td headers="mb_list_nick" class="member-cell-fixed"><?php echo get_sideview($item['mb_id'], $item['mb_nick_text'], $item['mb_email']); ?></td>
                             <td headers="mb_list_email" class="member-cell-email"><?php echo $item['mb_email']; ?></td>
                             <td headers="mb_list_level" class="member-cell-fixed">
                                 <span class="member-level">Lv.<?php echo $item['mb_level']; ?></span>
@@ -121,13 +121,23 @@ require_once './admin.head.php';
                             </td>
                             <td headers="mb_list_mng" class="member-cell-manage text-end">
                                 <div class="member-manage">
-                                    <?php echo $item['manage_links'] ? implode('', $item['manage_links']) : '<span>-</span>'; ?>
+                                    <?php if (!empty($item['actions'])) { ?>
+                                        <?php foreach ($item['actions'] as $action) { ?>
+                                            <?php if ($action['type'] === 'link') { ?>
+                                                <a href="<?php echo $action['href']; ?>" class="<?php echo $action['class']; ?>"><?php echo $action['label']; ?></a>
+                                            <?php } elseif ($action['type'] === 'delete') { ?>
+                                                <button type="button" class="<?php echo $action['class']; ?>" onclick="deleteMember('<?php echo $action['mb_id']; ?>')"><?php echo $action['label']; ?></button>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <span>-</span>
+                                    <?php } ?>
                                 </div>
                             </td>
                         </tr>
                     <?php } ?>
-                    <?php if (empty($items)) { ?>
-                        <tr><td colspan="<?php echo $colspan; ?>">자료가 없습니다.</td></tr>
+                    <?php if (empty($member_list_view['items'])) { ?>
+                        <tr><td colspan="<?php echo $member_list_view['colspan']; ?>"><?php echo $member_list_view['empty_message']; ?></td></tr>
                     <?php } ?>
                 </tbody>
             </table>
@@ -145,11 +155,11 @@ require_once './admin.head.php';
 </form>
 
 <form id="member_delete_form" method="post" action="./member_delete.php" class="hidden">
-    <input type="hidden" name="token" value="<?php echo $admin_token; ?>">
+    <input type="hidden" name="token" value="<?php echo $member_list_view['admin_token']; ?>">
     <input type="hidden" name="mb_id" value="">
 </form>
 
-<?php echo get_paging(G5_ADMIN_PAGING_PAGES, $page, $total_page, $paging_url); ?>
+<?php echo get_paging(G5_ADMIN_PAGING_PAGES, $member_list_request['page'], $member_list_view['total_page'], $member_list_view['paging_url']); ?>
 
 <script>
     function fmemberlist_submit(f) {

@@ -246,6 +246,31 @@ function admin_build_member_list_filter_query(array $request, array $overrides =
     return http_build_query(array_merge(array('sfl' => $request['sfl'], 'stx' => $request['stx']), $overrides), '', '&');
 }
 
+function admin_build_member_list_actions(array $row, array $member, $is_admin, $qstr)
+{
+    $actions = array();
+
+    if ($is_admin != 'group') {
+        $actions[] = array(
+            'type' => 'link',
+            'href' => './member_form.php?' . $qstr . '&amp;w=u&amp;mb_id=' . $row['mb_id'],
+            'label' => '수정',
+            'class' => 'btn btn-sm btn-surface-default-soft',
+        );
+    }
+
+    if ($member['mb_id'] != $row['mb_id'] && is_admin($row['mb_id']) != 'super' && ($is_admin == 'super' || $row['mb_level'] < $member['mb_level'])) {
+        $actions[] = array(
+            'type' => 'delete',
+            'mb_id' => $row['mb_id'],
+            'label' => '삭제',
+            'class' => 'btn btn-sm btn-outline-danger',
+        );
+    }
+
+    return $actions;
+}
+
 function admin_build_member_list_item(array $row, array $member, $is_admin, $qstr)
 {
     $status_label = '정상';
@@ -259,25 +284,16 @@ function admin_build_member_list_item(array $row, array $member, $is_admin, $qst
         $status_class = 'is-blocked';
     }
 
-    $manage_links = array();
-    if ($is_admin != 'group') {
-        $manage_links[] = '<a href="./member_form.php?' . $qstr . '&amp;w=u&amp;mb_id=' . $row['mb_id'] . '" class="btn btn-sm btn-surface-default-soft">수정</a>';
-    }
-
-    if ($member['mb_id'] != $row['mb_id'] && is_admin($row['mb_id']) != 'super' && ($is_admin == 'super' || $row['mb_level'] < $member['mb_level'])) {
-        $manage_links[] = '<button type="button" class="btn btn-sm btn-outline-danger" onclick="deleteMember(\'' . $row['mb_id'] . '\')">삭제</button>';
-    }
-
     return array(
         'mb_id' => $row['mb_id'],
         'display_mb_id' => member_get_display_id($row),
         'mb_name' => get_text($row['mb_name']),
-        'mb_nick' => get_sideview($row['mb_id'], get_text($row['mb_nick']), $row['mb_email']),
+        'mb_nick_text' => get_text($row['mb_nick']),
         'mb_email' => get_text($row['mb_email']),
         'mb_level' => (int) $row['mb_level'],
         'status_label' => $status_label,
         'status_class' => $status_class,
-        'manage_links' => $manage_links,
+        'actions' => admin_build_member_list_actions($row, $member, $is_admin, $qstr),
     );
 }
 
@@ -315,7 +331,7 @@ function admin_build_member_list_view(array $request, array $member, $is_admin, 
     }
 
     return array(
-        'listall' => '<a href="' . $_SERVER['SCRIPT_NAME'] . '" class="btn btn-surface-default-soft">전체 보기</a>',
+        'list_all_url' => $_SERVER['SCRIPT_NAME'],
         'quick_view' => $quick_view,
         'blocked_url' => '?' . admin_build_member_list_filter_query($request, array('sst' => 'mb_intercept_date', 'sod' => 'desc')),
         'left_url' => '?' . admin_build_member_list_filter_query($request, array('sst' => 'mb_leave_date', 'sod' => 'desc')),
@@ -325,6 +341,7 @@ function admin_build_member_list_view(array $request, array $member, $is_admin, 
         'intercept_count' => $intercept_count,
         'items' => $items,
         'colspan' => 8,
+        'empty_message' => '자료가 없습니다.',
         'admin_token' => get_admin_token(),
         'paging_url' => '?' . $qstr . '&amp;page=',
         'title' => '회원관리',
@@ -387,7 +404,8 @@ function admin_build_dashboard_view(array $request, array $member, $is_admin, ar
             'mb_id' => $row['mb_id'],
             'display_mb_id' => member_get_display_id($row),
             'mb_name' => get_text($row['mb_name']),
-            'mb_nick' => get_sideview($row['mb_id'], get_text($row['mb_nick']), $row['mb_email']),
+            'mb_nick_text' => get_text($row['mb_nick']),
+            'mb_email' => get_text($row['mb_email']),
             'mb_level' => $row['mb_level'],
             'mb_mailling' => $row['mb_mailling'] ? '예' : '아니오',
             'mb_open' => $row['mb_open'] ? '예' : '아니오',
