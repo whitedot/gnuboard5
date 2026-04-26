@@ -30,7 +30,7 @@
 - 회원, 인증, 관리자 회원 관리 중심의 운영 범위는 현재 코드와 문서가 대체로 일치한다.
 - 관리자 회원/export 리팩토링은 entry shell, domain 분리, view 계약, request context 경계까지 상당 부분 완료됐다.
 - 다음 사이클은 신규 `community`, `shop`, `booking` 도메인 추가보다 관리자 export 운영 검증과 최소 회귀 가드 유지에 둔다.
-- `lib/PHPExcel` 활성 런타임 의존은 제거됐지만, 레거시 트리 삭제는 운영 export 검증 후 판단한다.
+- `lib/PHPExcel` 활성 런타임 의존과 레거시 트리는 제거됐다.
 
 ## 완료된 범위
 
@@ -57,7 +57,7 @@
 - XLSX 생성은 `lib/domain/admin/xlsx.lib.php`의 자체 writer를 사용한다.
 - `ZipArchive`가 있으면 확장을 사용하고, 없으면 순수 PHP ZIP writer fallback으로 압축 파일 생성을 시도한다.
 - export 런타임 상수는 `ADMIN_MEMBER_EXPORT_*` 기준으로 정리했다.
-- legacy `member_export_*`, `MEMBER_EXPORT_*`, `MEMBER_BASE_*`, `MEMBER_LOG_DIR`, `PHPExcel` 재유입은 check script에서 차단한다.
+- legacy `member_export_*`, `MEMBER_EXPORT_*`, `MEMBER_BASE_*`, `MEMBER_LOG_DIR`, `PHPExcel` 재유입과 `lib/PHPExcel` 복구는 check script에서 차단한다.
 
 ### 검증/가드
 
@@ -102,20 +102,20 @@
 - 대용량 분할과 ZIP 묶음에서 치명적인 호환성 문제가 없다.
 - 실패 시 사용자 메시지와 로그가 기대대로 남는다.
 
-### 2. `lib/PHPExcel` 삭제 판단
+### 2. `lib/PHPExcel` 재도입 방지
 
-현재 활성 코드의 `PHPExcel` 참조는 제거됐지만 `lib/PHPExcel` 트리는 남아 있다.
+현재 활성 코드의 `PHPExcel` 참조와 `lib/PHPExcel` 트리는 제거됐다.
 
-삭제 조건:
+유지 조건:
 
-- export 운영 호환성 확인 완료
 - `npm run check:refactor` 통과
-- 운영에서 legacy XLS/XLSX reader/writer 의존이 필요하지 않다는 판단 완료
+- `lib/PHPExcel` 또는 `lib/PHPExcel.php` 복구 금지
+- 운영에서 legacy XLS/XLSX reader/writer 의존을 새로 만들지 않음
 
 현재 판단:
 
-- 즉시 삭제하지 않는다.
-- export 운영 검증 후 별도 커밋으로 제거 여부를 결정한다.
+- 삭제 완료 상태를 유지한다.
+- export 운영 검증 중 문제가 나오더라도 먼저 자체 XLSX writer를 보정하고, PHPExcel 복구는 보류한다.
 
 ### 3. 빌드 재현성 정책 결정
 
@@ -155,7 +155,7 @@ GitHub Actions check는 존재한다. 운영 저장소 정책에서 필요하면
 ## 보류
 
 - 신규 `community`, `shop`, `booking` 도메인 추가
-- `lib/PHPExcel` 즉시 삭제
+- `lib/PHPExcel` 복구
 - 자동 브라우저 smoke 테스트 재도입
 - `mb_id` 암호화/복호화 방식 도입
 - Composer autoload 같은 근본 구조 전환
@@ -175,9 +175,9 @@ GitHub Actions check는 존재한다. 운영 저장소 정책에서 필요하면
    - 실패 메시지와 로그 확인
    - 결과를 이 문서 또는 별도 검증 기록에 남김
 
-3. PHPExcel 제거 판단
-   - export 검증 통과 후 `lib/PHPExcel` 삭제 여부 결정
-   - 삭제한다면 별도 커밋으로 진행
+3. PHPExcel 제거 상태 유지
+   - export 검증 중 문제가 나오면 자체 XLSX writer를 우선 보정
+   - legacy PHPExcel 복구가 필요하다고 판단되면 별도 근거를 문서화
 
 4. 빌드 재현성 결정
    - lockfile 추적 또는 Tailwind exact version 고정 중 선택

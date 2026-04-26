@@ -72,13 +72,18 @@ function matchFiles(files, pattern) {
 const auditedFiles = listFiles(projectRoot, file => {
   const normalized = rel(file);
   return normalized.endsWith('.php')
-    && !normalized.startsWith('lib/PHPExcel/')
-    && normalized !== 'lib/PHPExcel.php'
     && !normalized.startsWith('plugin/htmlpurifier/')
     && !normalized.startsWith('plugin/PHPMailer/');
 });
 
 runPhpLint(auditedFiles);
+
+const legacyTree = path.join(projectRoot, 'lib/PHPExcel');
+const legacyEntrypoint = path.join(projectRoot, 'lib/PHPExcel.php');
+if (fs.existsSync(legacyTree) || fs.existsSync(legacyEntrypoint)) {
+  console.error('legacy PHPExcel files must not be restored.');
+  process.exit(1);
+}
 
 const matches = matchFiles(auditedFiles, /PHPExcel|PHPEXCEL_ROOT/);
 if (matches.length) {
