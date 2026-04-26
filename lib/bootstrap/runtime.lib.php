@@ -141,6 +141,9 @@ function g5_build_runtime_request_context(array $source)
 
     return array(
         'request' => $source,
+        'get' => isset($_GET) && is_array($_GET) ? $_GET : array(),
+        'post' => isset($_POST) && is_array($_POST) ? $_POST : array(),
+        'server' => isset($_SERVER) && is_array($_SERVER) ? $_SERVER : array(),
         'query_state' => g5_build_query_state($source, $request_uri),
         'token' => g5_read_request_scalar($source, 'token', ''),
     );
@@ -163,6 +166,33 @@ function g5_get_runtime_query_state()
 
     return isset($request_context['query_state']) && is_array($request_context['query_state'])
         ? $request_context['query_state']
+        : array();
+}
+
+function g5_get_runtime_get_input()
+{
+    $request_context = g5_get_runtime_request_context();
+
+    return isset($request_context['get']) && is_array($request_context['get'])
+        ? $request_context['get']
+        : array();
+}
+
+function g5_get_runtime_post_input()
+{
+    $request_context = g5_get_runtime_request_context();
+
+    return isset($request_context['post']) && is_array($request_context['post'])
+        ? $request_context['post']
+        : array();
+}
+
+function g5_get_runtime_server_input()
+{
+    $request_context = g5_get_runtime_request_context();
+
+    return isset($request_context['server']) && is_array($request_context['server'])
+        ? $request_context['server']
         : array();
 }
 

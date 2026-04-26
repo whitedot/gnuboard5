@@ -87,7 +87,7 @@
                     </div>
                 </div>
             </div>
-            <?php run_event('admin_member_form_add', $history_view['event_member'], $member_form_request['w'], 'div'); ?>
+            <?php run_event('admin_member_form_add', $history_view['event_member'], $history_view['event_mode'], 'div'); ?>
         </div>
     </div>
 </section>

@@ -286,6 +286,7 @@ function admin_build_head_submenu_items(array $menu_group, array $auth, $is_admi
             'title' => (string) $menu_item[1],
             'href' => (string) $menu_item[2],
             'is_current' => ((string) $menu_item[0] === (string) $sub_menu),
+            'item_class' => ((string) $menu_item[0] === (string) $sub_menu) ? ' is-current' : '',
         );
     }
 
@@ -306,11 +307,16 @@ function admin_build_head_navigation(array $amenu, array $menu, array $auth, $is
         $menu_code = (string) $menu_group[0][0];
         $submenu_items = admin_build_head_submenu_items($menu_group, $auth, $is_admin, $sub_menu);
 
+        $is_open = (substr((string) $sub_menu, 0, 3) === substr($menu_code, 0, 3));
+
         $navigation_items[] = array(
             'menu_key' => $group_key,
             'title' => (string) $menu_group[0][1],
             'icon_id' => admin_menu_icon_id($menu_code),
-            'is_open' => (substr((string) $sub_menu, 0, 3) === substr($menu_code, 0, 3)),
+            'is_open' => $is_open,
+            'item_class' => $is_open ? ' is-open' : '',
+            'panel_class' => $is_open ? '' : ' hidden',
+            'aria_expanded' => $is_open ? 'true' : 'false',
             'sub_items' => $submenu_items,
         );
     }
@@ -334,8 +340,9 @@ function admin_build_head_view(array $member, array $config, array $cookies, $ad
         $adm_menu_cookie['btn_gnb'] = 'btn_gnb_open';
     }
 
-    $admin_profile_name = get_text((string) $member['mb_nick']);
-    $admin_profile_id = get_text((string) $member['mb_id']);
+    $admin_profile_raw_id = (string) (isset($member['mb_id']) ? $member['mb_id'] : '');
+    $admin_profile_name = get_text((string) (isset($member['mb_nick']) ? $member['mb_nick'] : ''));
+    $admin_profile_id = get_text($admin_profile_raw_id);
     $admin_profile_mail = !empty($member['mb_email']) ? get_text((string) $member['mb_email']) : ($admin_profile_id . '@admin');
     $admin_profile_seed = $admin_profile_name ?: $admin_profile_id;
     $admin_profile_initial = 'A';
@@ -357,7 +364,11 @@ function admin_build_head_view(array $member, array $config, array $cookies, $ad
         'admin_profile_id' => $admin_profile_id,
         'admin_profile_mail' => $admin_profile_mail,
         'admin_profile_initial' => $admin_profile_initial,
+        'admin_profile_manage_url' => G5_ADMIN_URL . '/member_form.php?w=u&amp;mb_id=' . rawurlencode($admin_profile_raw_id),
+        'admin_logout_url' => G5_MEMBER_URL . '/logout.php',
+        'admin_home_url' => G5_URL . '/',
         'admin_site_title' => $admin_site_title,
+        'admin_csrf_token_key' => function_exists('admin_csrf_token_key') ? admin_csrf_token_key() : '',
         'admin_navigation_items' => admin_build_head_navigation($amenu, $menu, $auth, $is_admin, $sub_menu),
         'admin_container_class_attr' => trim($adm_menu_cookie['container'] . ' ' . $admin_container_class),
         'admin_page_subtitle_text' => $admin_page_subtitle !== '' ? $admin_page_subtitle : '사이트 운영과 설정을 한 곳에서 관리하세요.',
@@ -372,10 +383,12 @@ function admin_menu_is_readable(array $auth, $is_admin, $menu_code)
 function admin_build_tail_view($is_admin)
 {
     $admin_js_path = G5_ADMIN_PATH . '/admin.js';
+    $host = isset($_SERVER['HTTP_HOST']) ? get_text((string) $_SERVER['HTTP_HOST']) : '';
 
     return array(
+        'copyright_host' => $host,
         'print_version' => ($is_admin == 'super') ? 'Version ' . G5_GNUBOARD_VER : '',
-        'admin_js_ver' => is_file($admin_js_path) ? filemtime($admin_js_path) : G5_JS_VER,
+        'admin_js_src' => G5_ADMIN_URL . '/admin.js?ver=' . (is_file($admin_js_path) ? filemtime($admin_js_path) : G5_JS_VER),
     );
 }
 
@@ -402,6 +415,8 @@ function admin_build_head_sub_view(array $g5, array $config, $is_member, $is_adm
     $page_title = strip_tags($page_title);
     $head_title = strip_tags($head_title);
     $pretendard_font_href = 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css';
+    $common_css_ver = admin_file_version(G5_PATH . '/css/common.css', G5_CSS_VER);
+    $admin_css_ver = admin_file_version(G5_ADMIN_PATH . '/css/admin.css', G5_CSS_VER);
 
     $login_status_text = '';
     if ($is_member) {
@@ -409,13 +424,31 @@ function admin_build_head_sub_view(array $g5, array $config, $is_member, $is_adm
         $login_status_text = $sr_admin_msg . get_text($member['mb_nick']) . '님 로그인 중 ';
     }
 
+    $g5_sca = '';
+    if (isset($g5['request_context']['query_state']['sca']) && !is_array($g5['request_context']['query_state']['sca'])) {
+        $g5_sca = (string) $g5['request_context']['query_state']['sca'];
+    }
+
     return array(
         'page_title' => $page_title,
         'head_title' => $head_title,
         'pretendard_font_href' => $pretendard_font_href,
-        'common_css_ver' => admin_file_version(G5_PATH . '/css/common.css', G5_CSS_VER),
-        'admin_css_ver' => admin_file_version(G5_ADMIN_PATH . '/css/admin.css', G5_CSS_VER),
+        'common_css_href' => run_replace('head_css_url', G5_CSS_URL . '/common.css?ver=' . $common_css_ver, G5_URL),
+        'admin_css_href' => run_replace('head_css_url', G5_ADMIN_URL . '/css/admin.css?ver=' . $admin_css_ver, G5_URL),
         'sticky_anchor_tabs_ver' => admin_file_version(G5_PATH . '/js/ui-kit/ui-sticky-anchor-tabs.js', G5_JS_VER),
         'login_status_text' => $login_status_text,
+        'member_logout_url' => G5_MEMBER_URL . '/logout.php',
+        'g5_sca' => $g5_sca,
+        'body_script' => isset($g5['body_script']) ? $g5['body_script'] : '',
+        'js_globals' => array(
+            'g5_url' => G5_URL,
+            'g5_member_url' => G5_MEMBER_URL,
+            'g5_is_member' => isset($is_member) ? $is_member : '',
+            'g5_is_admin' => isset($is_admin) ? $is_admin : '',
+            'g5_is_mobile' => G5_IS_MOBILE,
+            'g5_sca' => $g5_sca,
+            'g5_cookie_domain' => G5_COOKIE_DOMAIN,
+            'g5_admin_url' => G5_ADMIN_URL,
+        ),
     );
 }

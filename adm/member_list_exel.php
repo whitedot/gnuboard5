@@ -4,10 +4,9 @@ require_once './_common.php';
 
 auth_check_menu($auth, $sub_menu, 'r');
 
-$page_request = admin_build_member_export_page_request($_GET, $config, $g5, isset($member) && is_array($member) ? $member : array());
+$page_request = admin_build_member_export_page_request(g5_get_runtime_get_input(), $config, $g5, isset($member) && is_array($member) ? $member : array());
 $member_export_view = $page_request['view'];
-$filter_state = $member_export_view['filter_state'];
-$member_export_links = $member_export_view['links'];
+$member_export_filter_view = $member_export_view['filter_view'];
 
 $g5['title'] = $member_export_view['title'];
 $admin_container_class = $member_export_view['admin_container_class'];

@@ -1,15 +1,13 @@
 <form name="fmemberlist" id="fmemberlist" action="./member_list_update.php" method="post" data-admin-member-list="true">
-    <input type="hidden" name="sst" value="<?php echo $member_list_request['sst'] ?>">
-    <input type="hidden" name="sod" value="<?php echo $member_list_request['sod'] ?>">
-    <input type="hidden" name="sfl" value="<?php echo $member_list_request['sfl'] ?>">
-    <input type="hidden" name="stx" value="<?php echo $member_list_request['stx'] ?>">
-    <input type="hidden" name="page" value="<?php echo $member_list_request['page'] ?>">
+    <?php foreach ($member_list_view['hidden_fields'] as $name => $value) { ?>
+        <input type="hidden" name="<?php echo $name; ?>" value="<?php echo get_sanitize_input($value); ?>">
+    <?php } ?>
     <input type="hidden" name="token" value="<?php echo $member_list_view['admin_token'] ?>">
 
     <div class="member-table-card">
         <div class="table-wrapper">
             <table class="table">
-                <caption><?php echo $g5['title']; ?> 목록</caption>
+                <caption><?php echo $member_list_view['caption']; ?></caption>
                 <colgroup>
                     <col style="width: 3.5rem;">
                     <col style="width: 9rem;">
@@ -95,4 +93,4 @@
     <input type="hidden" name="mb_id" value="">
 </form>
 
-<?php echo get_paging(G5_ADMIN_PAGING_PAGES, $member_list_request['page'], $member_list_view['total_page'], $member_list_view['paging_url']); ?>
+<?php echo $member_list_view['paging_html']; ?>

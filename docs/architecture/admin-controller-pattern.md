@@ -106,6 +106,6 @@ controller
 
 ## 다음 정리 우선순위
 
-1. `admin.head.php` 메뉴/셸 계산 로직을 `lib/domain/admin/` 으로 더 이동시켜 공통 규칙이 화면 파일에 다시 쌓이지 않게 한다.
-2. `member_list.php`, `member_form.php`, `config_form.php`, `member_list_exel.php`, `index.php` 의 화면 계약을 더 명시적으로 정리하고 `extract()` 의존을 줄인다.
-3. export 흐름은 `docs/architecture/admin-export-pattern.md` 의 파일 책임과 naming 규칙을 기준으로 유지한다.
+1. export 흐름은 `docs/architecture/admin-export-pattern.md` 의 파일 책임과 naming 규칙을 기준으로 유지한다.
+2. 운영 Excel 열기, 대용량 분할, ZIP 묶음, 실패 메시지, 로그 기록을 수동 운영 시나리오로 확인한다.
+3. 신규 admin 화면을 추가할 때는 `adm/*.php` 에서 `$_GET`/`$_POST`/`$_SERVER` 를 직접 읽지 않고 runtime request context helper 와 page view 계약을 우선 사용한다.

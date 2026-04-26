@@ -33,6 +33,47 @@ function admin_build_member_export_filter_state(array $query, array $config, arr
     );
 }
 
+function admin_export_attr($value)
+{
+    return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
+}
+
+function admin_build_member_export_filter_view(array $filter_state, array $option_items, array $links, $form_token, $environment_ready)
+{
+    $params = $filter_state['params'];
+    $ad_range_only = !empty($params['ad_range_only']);
+    $ad_range_type = isset($params['ad_range_type']) ? (string) $params['ad_range_type'] : '';
+
+    return array(
+        'form_token' => $form_token,
+        'use_stx_checked' => !empty($params['use_stx']) ? 'checked' : '',
+        'stx_value' => admin_export_attr(isset($params['stx']) ? $params['stx'] : ''),
+        'stx_cond_like_checked' => (isset($params['stx_cond']) && $params['stx_cond'] === 'like') ? 'checked' : '',
+        'stx_cond_equal_checked' => (isset($params['stx_cond']) && $params['stx_cond'] === 'equal') ? 'checked' : '',
+        'use_level_checked' => !empty($params['use_level']) ? 'checked' : '',
+        'use_date_checked' => !empty($params['use_date']) ? 'checked' : '',
+        'date_start_value' => admin_export_attr(isset($params['date_start']) ? $params['date_start'] : ''),
+        'date_end_value' => admin_export_attr(isset($params['date_end']) ? $params['date_end'] : ''),
+        'use_intercept_checked' => !empty($params['use_intercept']) ? 'checked' : '',
+        'use_hp_checked' => $filter_state['use_hp_checked'],
+        'ad_range_only_checked' => $ad_range_only ? 'checked' : '',
+        'ad_range_wrap_class' => $ad_range_only ? '' : 'is-hidden',
+        'custom_period_class' => ($ad_range_only && $ad_range_type === 'custom_period') ? '' : 'is-hidden',
+        'channel_row_class' => ($ad_range_only && in_array($ad_range_type, array('month_confirm', 'custom_period'), true)) ? '' : 'is-hidden',
+        'agree_date_start_value' => admin_export_attr($filter_state['agree_date_start_value']),
+        'agree_date_end_value' => admin_export_attr($filter_state['agree_date_end_value']),
+        'active_ad_range_text' => $filter_state['active_ad_range_text'],
+        'ad_mailling_checked' => $filter_state['ad_mailling_checked'],
+        'sfl_option_items' => $option_items['sfl'],
+        'level_start_options' => $option_items['level_start'],
+        'level_end_options' => $option_items['level_end'],
+        'intercept_option_items' => $option_items['intercept'],
+        'ad_range_option_items' => $option_items['ad_range'],
+        'download_disabled_attr' => $environment_ready ? '' : 'disabled aria-disabled="true"',
+        'reset_url' => $links['reset_url'],
+    );
+}
+
 function admin_build_member_export_links()
 {
     return array(
@@ -135,26 +176,24 @@ function admin_build_member_export_page_view(array $query, array $config, array 
     $filter_state = admin_build_member_export_filter_state($query, $config, $params);
     $links = admin_build_member_export_links();
     $client_config = admin_build_member_export_client_config($links);
+    $option_items = array(
+        'sfl' => admin_build_member_export_select_options(admin_get_member_export_config('sfl_list'), $params['sfl']),
+        'intercept' => admin_build_member_export_select_options(admin_get_member_export_config('intercept_list'), $params['intercept']),
+        'ad_range' => admin_build_member_export_select_options(admin_get_member_export_config('ad_range_list'), $params['ad_range_type']),
+        'level_start' => admin_build_member_export_level_options($params['level_start']),
+        'level_end' => admin_build_member_export_level_options($params['level_end']),
+    );
+    $environment_ready = !empty($runtime['environment_ready']);
+    $form_token = get_token();
 
     return array(
         'title' => '회원관리파일',
         'admin_container_class' => 'admin-page-member-export',
         'admin_page_subtitle' => '회원 조건을 조합해 내보내기 범위를 좁히고, 대용량 다운로드 진행 상태까지 한 화면에서 확인하세요.',
-        'colspan' => 14,
-        'form_token' => get_token(),
+        'form_token' => $form_token,
         'total_count' => $total_count,
         'total_error' => $total_error,
-        'sfl_options' => admin_get_member_export_config('sfl_list'),
-        'intercept_options' => admin_get_member_export_config('intercept_list'),
-        'ad_range_options' => admin_get_member_export_config('ad_range_list'),
-        'sfl_option_items' => admin_build_member_export_select_options(admin_get_member_export_config('sfl_list'), $params['sfl']),
-        'intercept_option_items' => admin_build_member_export_select_options(admin_get_member_export_config('intercept_list'), $params['intercept']),
-        'ad_range_option_items' => admin_build_member_export_select_options(admin_get_member_export_config('ad_range_list'), $params['ad_range_type']),
-        'level_start_options' => admin_build_member_export_level_options($params['level_start']),
-        'level_end_options' => admin_build_member_export_level_options($params['level_end']),
-        'filter_state' => $filter_state,
-        'links' => $links,
-        'client_config' => $client_config,
+        'filter_view' => admin_build_member_export_filter_view($filter_state, $option_items, $links, $form_token, $environment_ready),
         'client_config_attrs' => array(
             'stream-url' => $client_config['stream_url'],
             'popup-progress-title' => $client_config['popup_progress_title'],
@@ -166,7 +205,7 @@ function admin_build_member_export_page_view(array $query, array $config, array 
             'estimated-seconds-multiplier' => (string) $client_config['estimated_seconds_multiplier'],
             'estimated-seconds-min' => (string) $client_config['estimated_seconds_min'],
         ),
-        'environment_ready' => !empty($runtime['environment_ready']),
+        'environment_ready' => $environment_ready,
         'environment_error' => isset($runtime['environment_error']) ? $runtime['environment_error'] : '',
         'intro_items' => array(
             array(

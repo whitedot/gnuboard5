@@ -4,7 +4,7 @@ require_once './_common.php';
 
 auth_check_menu($auth, $sub_menu, 'r');
 
-$member_list_request = admin_read_member_list_request($_GET, $config);
+$member_list_request = admin_read_member_list_request(g5_get_runtime_get_input(), $config);
 $member_list_qstr = admin_bootstrap_build_qstr($member_list_request);
 $member_list_view = admin_build_member_list_page_view($member_list_request, $member, $is_admin, $config, $member_list_qstr);
 

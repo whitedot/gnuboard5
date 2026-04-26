@@ -9,7 +9,7 @@
                     <label for="cf_title" class="form-label">서비스 제목<strong class="caption-sr-only">필수</strong></label>
                 </div>
                 <div class="af-field">
-                    <input type="text" name="cf_title" value="<?php echo get_sanitize_input($config['cf_title']); ?>" id="cf_title" required size="40" class="form-input">
+                    <input type="text" name="cf_title" value="<?php echo $config_basic_view['cf_title']; ?>" id="cf_title" required size="40" class="form-input">
                 </div>
             </div>
 
@@ -19,7 +19,7 @@
                 </div>
                 <div class="af-field">
                     <select id="cf_admin" name="cf_admin" required class="form-select">
-                        <?php foreach ($config_form_view['admin_member_options'] as $option) { ?>
+                        <?php foreach ($config_basic_view['admin_member_options'] as $option) { ?>
                             <option value="<?php echo $option['value']; ?>"<?php echo $option['selected'] ? ' selected' : ''; ?>><?php echo $option['label']; ?></option>
                         <?php } ?>
                     </select>
@@ -32,9 +32,9 @@
                 </div>
                 <div class="af-field">
                     <p class="hint-text">관리자가 보내고 받는 용도로 사용하는 메일 주소를 입력합니다. (회원가입, 인증메일, 테스트 등에서 사용)</p>
-                    <input type="text" name="cf_admin_email" value="<?php echo get_sanitize_input($config['cf_admin_email']); ?>" id="cf_admin_email" required size="40" class="form-input">
-                    <?php if (function_exists('domain_mail_host') && $config['cf_admin_email'] && stripos($config['cf_admin_email'], domain_mail_host()) === false) { ?>
-                    <p class="hint-text">외부메일설정이나 기타 설정을 하지 않았다면, 도메인과 다른 헤더로 여겨 스팸이나 차단될 가능성이 있습니다.<br>name<?php echo domain_mail_host(); ?> 과 같은 도메인 형식으로 설정할것을 권장합니다.</p>
+                    <input type="text" name="cf_admin_email" value="<?php echo $config_basic_view['cf_admin_email']; ?>" id="cf_admin_email" required size="40" class="form-input">
+                    <?php if ($config_basic_view['show_admin_email_domain_warning']) { ?>
+                    <p class="hint-text">외부메일설정이나 기타 설정을 하지 않았다면, 도메인과 다른 헤더로 여겨 스팸이나 차단될 가능성이 있습니다.<br>name<?php echo $config_basic_view['domain_mail_host']; ?> 과 같은 도메인 형식으로 설정할것을 권장합니다.</p>
                     <?php } ?>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="af-field">
                     <p class="hint-text">관리자가 보내고 받는 용도로 사용하는 메일의 발송이름을 입력합니다. (회원가입, 인증메일, 테스트 등에서 사용)</p>
-                    <input type="text" name="cf_admin_email_name" value="<?php echo get_sanitize_input($config['cf_admin_email_name']); ?>" id="cf_admin_email_name" required size="40" class="form-input">
+                    <input type="text" name="cf_admin_email_name" value="<?php echo $config_basic_view['cf_admin_email_name']; ?>" id="cf_admin_email_name" required size="40" class="form-input">
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
                 </div>
                 <div class="af-field">
                     <div class="af-inline">
-                        <input type="text" name="cf_cut_name" value="<?php echo (int) $config['cf_cut_name'] ?>" id="cf_cut_name" size="5" class="form-input">
+                        <input type="text" name="cf_cut_name" value="<?php echo $config_basic_view['cf_cut_name']; ?>" id="cf_cut_name" size="5" class="form-input">
                         <span>자리만 표시</span>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                 <div class="af-field">
                     <div class="af-inline">
                         <span>수정하면</span>
-                        <input type="text" name="cf_nick_modify" value="<?php echo (int) $config['cf_nick_modify'] ?>" id="cf_nick_modify" size="3" class="form-input">
+                        <input type="text" name="cf_nick_modify" value="<?php echo $config_basic_view['cf_nick_modify']; ?>" id="cf_nick_modify" size="3" class="form-input">
                         <span>일 동안 바꿀 수 없음</span>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                 <div class="af-field">
                     <div class="af-inline">
                         <span>수정하면</span>
-                        <input type="text" name="cf_open_modify" value="<?php echo (int) $config['cf_open_modify'] ?>" id="cf_open_modify" size="3" class="form-input">
+                        <input type="text" name="cf_open_modify" value="<?php echo $config_basic_view['cf_open_modify']; ?>" id="cf_open_modify" size="3" class="form-input">
                         <span>일 동안 바꿀 수 없음</span>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                 <div class="af-field">
                     <p class="hint-text">목록(리스트) 한페이지당 라인수</p>
                     <div class="af-inline">
-                        <input type="text" name="cf_page_rows" value="<?php echo (int) $config['cf_page_rows'] ?>" id="cf_page_rows" size="3" class="form-input">
+                        <input type="text" name="cf_page_rows" value="<?php echo $config_basic_view['cf_page_rows']; ?>" id="cf_page_rows" size="3" class="form-input">
                         <span>라인</span>
                     </div>
                 </div>
@@ -107,9 +107,9 @@
                 <div class="af-field">
                     <p class="hint-text">사용할 캡챠를 선택합니다.<br>1) Kcaptcha 는 그누보드5의 기본캡챠입니다. ( 문자입력 )<br>2) reCAPTCHA V2 는 구글에서 서비스하는 원클릭 형식의 간편한 캡챠입니다. ( 모바일 친화적 UI )<br>3) Invisible reCAPTCHA 는 구글에서 서비스하는 안보이는 형식의 캡챠입니다. ( 간혹 퀴즈를 풀어야 합니다. )</p>
                     <select name="cf_captcha" id="cf_captcha" required class="form-select">
-                        <option value="kcaptcha" <?php echo get_selected($config['cf_captcha'], 'kcaptcha'); ?>>Kcaptcha</option>
-                        <option value="recaptcha" <?php echo get_selected($config['cf_captcha'], 'recaptcha'); ?>>reCAPTCHA V2</option>
-                        <option value="recaptcha_inv" <?php echo get_selected($config['cf_captcha'], 'recaptcha_inv'); ?>>Invisible reCAPTCHA</option>
+                        <option value="kcaptcha" <?php echo get_selected($config_basic_view['cf_captcha'], 'kcaptcha'); ?>>Kcaptcha</option>
+                        <option value="recaptcha" <?php echo get_selected($config_basic_view['cf_captcha'], 'recaptcha'); ?>>reCAPTCHA V2</option>
+                        <option value="recaptcha_inv" <?php echo get_selected($config_basic_view['cf_captcha'], 'recaptcha_inv'); ?>>Invisible reCAPTCHA</option>
                     </select>
                 </div>
             </div>
@@ -119,17 +119,11 @@
                     <label for="cf_captcha_mp3" class="form-label">음성캡챠 선택<strong class="caption-sr-only">필수</strong></label>
                 </div>
                 <div class="af-field">
-                    <p class="hint-text">kcaptcha 사용시 <?php echo str_replace(array('recaptcha_inv', 'recaptcha'), 'kcaptcha', G5_CAPTCHA_URL); ?>/mp3 밑의 음성 폴더를 선택합니다.</p>
+                    <p class="hint-text">kcaptcha 사용시 <?php echo $config_basic_view['cf_captcha_mp3_hint']; ?> 밑의 음성 폴더를 선택합니다.</p>
                     <select name="cf_captcha_mp3" id="cf_captcha_mp3" required class="form-select">
-                    <?php
-                    $arr = get_subdirectory_names(str_replace(array('recaptcha_inv', 'recaptcha'), 'kcaptcha', G5_CAPTCHA_PATH) . '/mp3');
-                    for ($i = 0; $i < count($arr); $i++) {
-                        if ($i == 0) {
-                            echo "<option value=\"\">선택</option>";
-                        }
-                        echo "<option value=\"" . $arr[$i] . "\"" . get_selected($config['cf_captcha_mp3'], $arr[$i]) . ">" . $arr[$i] . "</option>\n";
-                    }
-                    ?>
+                        <?php foreach ($config_basic_view['cf_captcha_mp3_options'] as $option) { ?>
+                            <option value="<?php echo $option['value']; ?>"<?php echo $option['selected'] ? ' selected' : ''; ?>><?php echo $option['label']; ?></option>
+                        <?php } ?>
                     </select>
                 </div>
             </div>
@@ -140,7 +134,7 @@
                 </div>
                 <div class="af-field">
                     <p class="hint-text">reCAPTCHA V2와 Invisible reCAPTCHA 캡챠의 sitekey 와 secret 키는 동일하지 않고, 서로 발급받는 키가 다릅니다.</p>
-                    <input type="text" name="cf_recaptcha_site_key" value="<?php echo get_sanitize_input($config['cf_recaptcha_site_key']); ?>" id="cf_recaptcha_site_key" size="52" class="form-input">
+                    <input type="text" name="cf_recaptcha_site_key" value="<?php echo $config_basic_view['cf_recaptcha_site_key']; ?>" id="cf_recaptcha_site_key" size="52" class="form-input">
                     <a href="https://www.google.com/recaptcha/admin" target="_blank" rel="noopener noreferrer" class="btn btn-soft-primary btn-sm">reCAPTCHA 등록하기</a>
                 </div>
             </div>
@@ -150,7 +144,7 @@
                     <label for="cf_recaptcha_secret_key" class="form-label">구글 reCAPTCHA Secret key</label>
                 </div>
                 <div class="af-field">
-                    <input type="text" name="cf_recaptcha_secret_key" value="<?php echo get_sanitize_input($config['cf_recaptcha_secret_key']); ?>" id="cf_recaptcha_secret_key" size="52" class="form-input">
+                    <input type="text" name="cf_recaptcha_secret_key" value="<?php echo $config_basic_view['cf_recaptcha_secret_key']; ?>" id="cf_recaptcha_secret_key" size="52" class="form-input">
                 </div>
             </div>
 
@@ -160,7 +154,7 @@
                 </div>
                 <div class="af-field">
                     <p class="hint-text">입력된 IP의 컴퓨터만 접근할 수 있습니다.<br>123.123.+ 도 입력 가능. (엔터로 구분)</p>
-                    <textarea name="cf_possible_ip" id="cf_possible_ip" class="form-textarea"><?php echo get_sanitize_input($config['cf_possible_ip']); ?></textarea>
+                    <textarea name="cf_possible_ip" id="cf_possible_ip" class="form-textarea"><?php echo $config_basic_view['cf_possible_ip']; ?></textarea>
                 </div>
             </div>
 
@@ -170,7 +164,7 @@
                 </div>
                 <div class="af-field">
                     <p class="hint-text">입력된 IP의 컴퓨터는 접근할 수 없음.<br>123.123.+ 도 입력 가능. (엔터로 구분)</p>
-                    <textarea name="cf_intercept_ip" id="cf_intercept_ip" class="form-textarea"><?php echo get_sanitize_input($config['cf_intercept_ip']); ?></textarea>
+                    <textarea name="cf_intercept_ip" id="cf_intercept_ip" class="form-textarea"><?php echo $config_basic_view['cf_intercept_ip']; ?></textarea>
                 </div>
             </div>
         </div>

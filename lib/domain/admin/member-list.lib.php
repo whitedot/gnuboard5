@@ -439,6 +439,15 @@ function admin_build_member_list_view(array $request, array $member, $is_admin, 
         $quick_view = 'left';
     }
 
+    $hidden_fields = array(
+        'sst' => $request['sst'],
+        'sod' => $request['sod'],
+        'sfl' => $request['sfl'],
+        'stx' => $request['stx'],
+        'page' => $request['page'],
+    );
+    $paging_url = '?' . $qstr . '&amp;page=';
+
     return array(
         'list_all_url' => $_SERVER['SCRIPT_NAME'],
         'quick_view' => $quick_view,
@@ -451,8 +460,13 @@ function admin_build_member_list_view(array $request, array $member, $is_admin, 
             'mb_email' => admin_build_member_list_sort_url($request, 'mb_email'),
             'mb_level' => admin_build_member_list_sort_url($request, 'mb_level', 'desc'),
         ),
-        'search_field_options' => admin_build_member_list_search_field_options($request),
+        'search_view' => array(
+            'field_options' => admin_build_member_list_search_field_options($request),
+            'stx_value' => get_sanitize_input($request['stx']),
+        ),
         'table_columns' => admin_build_member_list_table_columns($request),
+        'hidden_fields' => $hidden_fields,
+        'caption' => '회원관리 목록',
         'total_count' => $total_count,
         'total_page' => $total_page,
         'leave_count' => $leave_count,
@@ -461,7 +475,8 @@ function admin_build_member_list_view(array $request, array $member, $is_admin, 
         'colspan' => 8,
         'empty_message' => '자료가 없습니다.',
         'admin_token' => get_admin_token(),
-        'paging_url' => '?' . $qstr . '&amp;page=',
+        'paging_url' => $paging_url,
+        'paging_html' => get_paging(G5_ADMIN_PAGING_PAGES, $request['page'], $total_page, $paging_url),
         'title' => '회원관리',
         'admin_container_class' => 'admin-page-member-list',
         'admin_page_subtitle' => '회원 상태를 한눈에 확인하고, 조건 검색과 빠른 관리 동선을 자연스럽게 이어가세요.',
@@ -486,6 +501,8 @@ function admin_build_dashboard_view(array $request, array $member, $is_admin, ar
         'title' => '관리자메인',
         'admin_container_class' => 'admin-page-dashboard',
         'admin_page_subtitle' => '신규 가입 회원 현황을 빠르게 확인하고 회원 관리 화면으로 자연스럽게 이어가세요.',
+        'additional_content_before' => run_replace('adm_index_addtional_content_before', '', $is_admin, $auth, $member),
+        'additional_content_after' => run_replace('adm_index_addtional_content_after', '', $is_admin, $auth, $member),
         'can_read_member_menu' => $can_read_member_menu,
         'new_member_rows' => 5,
         'total_count' => 0,

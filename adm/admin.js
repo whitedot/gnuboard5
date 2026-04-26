@@ -39,8 +39,532 @@ function setHtml(el, markup) {
     el.replaceChildren(range.createContextualFragment(markup));
 }
 
+window.tempX = window.tempX || 0;
+window.tempY = window.tempY || 0;
+
+window.imageview = function(id, w, h) {
+    if (typeof window.menu === 'function') {
+        window.menu(id);
+    }
+
+    const el = document.getElementById(id);
+    if (!el) {
+        return;
+    }
+
+    window.submenu = el.style;
+    window.submenu.left = window.tempX - (w + 11);
+    window.submenu.top = window.tempY - (h / 2);
+
+    if (typeof window.selectBoxVisible === 'function') {
+        window.selectBoxVisible();
+    }
+
+    if (el.style.display !== 'none' && typeof window.selectBoxHidden === 'function') {
+        window.selectBoxHidden(id);
+    }
+};
+
+window.AdminShell = {
+    initialized: false,
+
+    init() {
+        if (this.initialized) {
+            return;
+        }
+
+        this.initialized = true;
+
+        const menuCookieKey = 'g5_admin_btn_gnb';
+        const mobileQuery = window.matchMedia('(max-width: 1023px)');
+        const body = document.body;
+        const gnb = document.getElementById('gnb');
+        const container = document.getElementById('container');
+        const desktopToggle = document.getElementById('btn_gnb');
+        const mobileToggle = document.getElementById('btn_gnb_mobile');
+        const sidebarBackdrop = document.getElementById('adminSidebarBackdrop');
+        const profileButton = document.querySelector('.tnb_mb_btn');
+        const profileMenu = document.querySelector('.tnb_mb_area');
+        const scrollWrap = document.querySelector('#gnb .gnb_menu_scroll_wrap');
+        const menuScroll = document.getElementById('gnbMenuScroll');
+        const scrollbar = scrollWrap ? scrollWrap.querySelector('.gnb_scrollbar') : null;
+        const scrollThumb = scrollWrap ? scrollWrap.querySelector('.gnb_scrollbar_thumb') : null;
+        const themeToggle = document.getElementById('admin_theme_toggle');
+        const themeToggleIconUse = document.getElementById('admin_theme_toggle_icon_use');
+        const navRoot = document.getElementById('adminNavList');
+        const scrollTopButton = document.querySelector('.scroll_top');
+        let hideScrollbarTimer = null;
+
+        const isMobileViewport = () => mobileQuery.matches;
+
+        const updateMenuScrollbar = () => {
+            if (!scrollWrap || !menuScroll || !scrollbar || !scrollThumb) {
+                return;
+            }
+
+            const scrollHeight = menuScroll.scrollHeight;
+            const clientHeight = menuScroll.clientHeight;
+            const canScroll = scrollHeight > clientHeight + 1;
+
+            scrollWrap.classList.toggle('is-scrollable', canScroll);
+
+            if (!canScroll) {
+                scrollThumb.style.height = '0';
+                scrollThumb.style.transform = 'translateY(0)';
+                return;
+            }
+
+            const trackHeight = scrollbar.getBoundingClientRect().height;
+            const thumbHeight = Math.max(28, Math.round(trackHeight * (clientHeight / scrollHeight)));
+            const maxThumbTop = Math.max(0, trackHeight - thumbHeight);
+            const maxScrollTop = Math.max(1, scrollHeight - clientHeight);
+            const thumbTop = Math.round((menuScroll.scrollTop / maxScrollTop) * maxThumbTop);
+
+            scrollThumb.style.height = `${thumbHeight}px`;
+            scrollThumb.style.transform = `translateY(${thumbTop}px)`;
+        };
+
+        const syncDesktopSidebarState = () => {
+            if (!gnb || !container || !desktopToggle) {
+                return;
+            }
+
+            const collapsed = gnb.classList.contains('gnb_small');
+            const desktopCollapsed = !isMobileViewport() && collapsed;
+            body.classList.toggle('admin-sidebar-condensed', desktopCollapsed);
+            container.classList.toggle('container-small', desktopCollapsed);
+            desktopToggle.classList.toggle('btn_gnb_open', desktopCollapsed);
+            desktopToggle.setAttribute('aria-pressed', desktopCollapsed ? 'true' : 'false');
+        };
+
+        const setDesktopCollapsed = nextCollapsed => {
+            try {
+                if (nextCollapsed && typeof window.set_cookie === 'function') {
+                    window.set_cookie(menuCookieKey, 1, 60 * 60 * 24 * 365);
+                } else if (!nextCollapsed && typeof window.delete_cookie === 'function') {
+                    window.delete_cookie(menuCookieKey);
+                }
+            } catch (err) {}
+
+            if (gnb) {
+                gnb.classList.toggle('gnb_small', nextCollapsed);
+            }
+            syncDesktopSidebarState();
+        };
+
+        const setMobileSidebar = opened => {
+            if (!isMobileViewport()) {
+                return;
+            }
+
+            body.classList.toggle('admin-sidebar-open', opened);
+            body.classList.toggle('overflow-hidden', opened);
+
+            if (mobileToggle) {
+                mobileToggle.setAttribute('aria-expanded', opened ? 'true' : 'false');
+            }
+
+            if (sidebarBackdrop) {
+                sidebarBackdrop.classList.toggle('hidden', !opened);
+            }
+        };
+
+        const showMenuScrollbar = () => {
+            if (!scrollWrap || !scrollWrap.classList.contains('is-scrollable')) {
+                return;
+            }
+
+            clearTimeout(hideScrollbarTimer);
+            scrollWrap.classList.add('is-scrollbar-visible');
+        };
+
+        const hideMenuScrollbar = delay => {
+            if (!scrollWrap) {
+                return;
+            }
+
+            clearTimeout(hideScrollbarTimer);
+            hideScrollbarTimer = window.setTimeout(() => {
+                scrollWrap.classList.remove('is-scrollbar-visible');
+            }, delay || 140);
+        };
+
+        const syncThemeUI = () => {
+            if (!themeToggle || !themeToggleIconUse) {
+                return;
+            }
+
+            const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const nextModeLabel = dark ? '라이트 모드' : '다크 모드';
+            const iconHref = dark ? '#admin-menu-icon-sun' : '#admin-menu-icon-moon-stars';
+            themeToggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
+            themeToggle.setAttribute('aria-label', `${nextModeLabel} 전환`);
+            themeToggle.setAttribute('title', `${nextModeLabel} 전환`);
+            themeToggleIconUse.setAttribute('href', iconHref);
+            themeToggleIconUse.setAttribute('xlink:href', iconHref);
+        };
+
+        const setNavItemState = (item, opened) => {
+            if (!item) {
+                return;
+            }
+
+            item.classList.toggle('is-open', opened);
+
+            const panel = item.querySelector('.admin-nav-panel');
+            if (panel) {
+                panel.classList.toggle('hidden', !opened);
+            }
+
+            const trigger = item.querySelector('.admin-nav-trigger');
+            if (trigger) {
+                trigger.setAttribute('aria-expanded', opened ? 'true' : 'false');
+            }
+        };
+
+        if (profileButton && profileMenu) {
+            profileButton.addEventListener('click', () => {
+                profileMenu.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', event => {
+                if (!event.target.closest('.tnb_li.relative')) {
+                    profileMenu.classList.add('hidden');
+                }
+            });
+        }
+
+        if (desktopToggle) {
+            desktopToggle.addEventListener('click', () => {
+                const nextCollapsed = !(gnb && gnb.classList.contains('gnb_small'));
+                setDesktopCollapsed(nextCollapsed);
+            });
+        }
+
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', event => {
+                event.preventDefault();
+                event.stopPropagation();
+
+                if (isMobileViewport()) {
+                    setMobileSidebar(!body.classList.contains('admin-sidebar-open'));
+                    return;
+                }
+
+                if (gnb && gnb.classList.contains('gnb_small')) {
+                    setDesktopCollapsed(false);
+                }
+            });
+        }
+
+        if (sidebarBackdrop) {
+            sidebarBackdrop.addEventListener('click', () => {
+                setMobileSidebar(false);
+            });
+        }
+
+        window.addEventListener('resize', () => {
+            if (!isMobileViewport()) {
+                body.classList.remove('admin-sidebar-open', 'overflow-hidden');
+                if (mobileToggle) {
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                }
+                if (sidebarBackdrop) {
+                    sidebarBackdrop.classList.add('hidden');
+                }
+            }
+
+            syncDesktopSidebarState();
+            updateMenuScrollbar();
+        });
+
+        if (gnb) {
+            gnb.addEventListener('click', event => {
+                if (isMobileViewport() && event.target.closest('a')) {
+                    setMobileSidebar(false);
+                }
+            });
+        }
+
+        if (menuScroll) {
+            menuScroll.addEventListener('scroll', () => {
+                updateMenuScrollbar();
+                showMenuScrollbar();
+                hideMenuScrollbar(420);
+            });
+        }
+
+        if (scrollWrap) {
+            scrollWrap.addEventListener('mouseenter', () => {
+                updateMenuScrollbar();
+                showMenuScrollbar();
+            });
+
+            scrollWrap.addEventListener('mouseleave', () => {
+                hideMenuScrollbar(120);
+            });
+
+            scrollWrap.addEventListener('focusin', () => {
+                updateMenuScrollbar();
+                showMenuScrollbar();
+            });
+
+            scrollWrap.addEventListener('focusout', () => {
+                window.setTimeout(() => {
+                    if (!scrollWrap.contains(document.activeElement)) {
+                        hideMenuScrollbar(120);
+                    }
+                }, 0);
+            });
+        }
+
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+                const next = dark ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                try {
+                    localStorage.setItem('g5_admin_theme', next);
+                } catch (e) {}
+                syncThemeUI();
+            });
+        }
+
+        if (navRoot) {
+            const navItems = Array.prototype.slice.call(navRoot.querySelectorAll('.admin-nav-item'));
+            navItems.forEach(item => {
+                setNavItemState(item, item.classList.contains('is-open'));
+            });
+
+            navRoot.addEventListener('click', event => {
+                const trigger = event.target.closest('.admin-nav-trigger');
+                if (!trigger || !navRoot.contains(trigger)) {
+                    return;
+                }
+
+                const activeItem = trigger.closest('.admin-nav-item');
+                if (!activeItem) {
+                    return;
+                }
+
+                const willOpen = !activeItem.classList.contains('is-open');
+                navItems.forEach(item => {
+                    setNavItemState(item, item === activeItem ? willOpen : false);
+                });
+
+                updateMenuScrollbar();
+            });
+        }
+
+        if (scrollTopButton) {
+            scrollTopButton.addEventListener('click', event => {
+                event.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                });
+            });
+        }
+
+        syncDesktopSidebarState();
+        syncThemeUI();
+        updateMenuScrollbar();
+        window.requestAnimationFrame(updateMenuScrollbar);
+    }
+};
+
+window.AdminConfigForm = {
+    initialAdminId: '',
+
+    init() {
+        const form = document.getElementById('fconfigform');
+        if (!form) {
+            return;
+        }
+
+        const certUseField = document.getElementById('cf_cert_use');
+        const captchaField = document.getElementById('cf_captcha');
+        const adminField = document.getElementById('cf_admin');
+        const captchaKey = document.getElementById('captcha_key');
+
+        if (adminField) {
+            this.initialAdminId = adminField.value;
+            adminField.addEventListener('change', () => this.checkCaptchaOpen());
+        }
+
+        if (certUseField) {
+            const syncCertFields = () => {
+                const hideServices = certUseField.value === '0';
+                document.querySelectorAll('.cf_cert_service').forEach(element => {
+                    element.classList.toggle('cf_cert_hide', hideServices);
+                });
+            };
+
+            certUseField.addEventListener('change', syncCertFields);
+            syncCertFields();
+        }
+
+        if (captchaField) {
+            const syncCaptchaFields = () => {
+                const isRecaptcha = captchaField.value === 'recaptcha' || captchaField.value === 'recaptcha_inv';
+                this.toggleCaptchaFields(isRecaptcha);
+            };
+
+            captchaField.addEventListener('change', syncCaptchaFields);
+            syncCaptchaFields();
+        }
+
+        if (captchaKey) {
+            captchaKey.required = false;
+            captchaKey.removeAttribute('required');
+            captchaKey.classList.remove('required');
+        }
+
+        if (window.CommonUI && typeof window.CommonUI.initStickyAnchorTabs === 'function') {
+            window.CommonUI.initStickyAnchorTabs({
+                tabBarSelector: '#config_tabs_nav',
+                tabNavSelector: '#config_tabs_nav',
+                tabLinkSelector: "a.js-config-tab-link[href^='#']",
+                topbarSelector: '#hd_top',
+                heightVarName: '--config-tabs-height',
+                scrollGap: 8,
+                scrollDuration: 180,
+                namespace: 'configTabs',
+            });
+        }
+
+        form.addEventListener('submit', event => {
+            if (!this.submit(form)) {
+                event.preventDefault();
+            }
+        });
+
+        this.showWebpWarning();
+        this.checkCaptchaOpen();
+    },
+
+    toggleCaptchaFields(isRecaptcha) {
+        document.querySelectorAll("[class^='kcaptcha_']").forEach(element => {
+            element.style.display = isRecaptcha ? 'none' : '';
+        });
+    },
+
+    checkCaptchaOpen() {
+        let isChanged = false;
+        const adminField = document.getElementById('cf_admin');
+        const wrap = document.getElementById('config_captcha_wrap');
+        const captcha = document.getElementById('captcha');
+        const tooltipId = 'mp_captcha_tooltip';
+        const children = wrap ? wrap.firstElementChild : null;
+        const isInvisibleRecaptcha = captcha ? captcha.classList.contains('invisible_recaptcha') : false;
+
+        if (adminField && adminField.value) {
+            isChanged = isChanged || adminField.value !== this.initialAdminId;
+        }
+
+        if (!wrap) {
+            return isChanged;
+        }
+
+        wrap.hidden = !isChanged;
+        wrap.style.display = isChanged ? '' : 'none';
+
+        if (isChanged && !isInvisibleRecaptcha) {
+            wrap.style.marginTop = '1em';
+            if (!document.getElementById(tooltipId)) {
+                const tooltip = document.createElement('p');
+                tooltip.id = tooltipId;
+                tooltip.style.fontSize = '0.95em';
+                tooltip.style.letterSpacing = '-0.1em';
+                tooltip.textContent = '중요정보를 수정할 경우 캡챠를 입력해야 합니다.';
+                if (children) {
+                    children.insertAdjacentElement('afterend', tooltip);
+                } else {
+                    wrap.appendChild(tooltip);
+                }
+            }
+        } else {
+            const existingTooltip = document.getElementById(tooltipId);
+            if (existingTooltip && !isInvisibleRecaptcha) {
+                existingTooltip.remove();
+            }
+        }
+
+        return isChanged;
+    },
+
+    submit(form) {
+        const currentUserIp = form.dataset.currentUserIp || '';
+        const interceptIpField = form.elements.cf_intercept_ip;
+        const interceptIpValue = interceptIpField ? interceptIpField.value : '';
+
+        if (this.checkCaptchaOpen()) {
+            const captchaWrap = document.getElementById('config_captcha_wrap');
+            if (captchaWrap) {
+                window.scrollTo(0, captchaWrap.getBoundingClientRect().top + window.pageYOffset);
+            }
+
+            if (typeof window.chk_captcha === 'function' && !window.chk_captcha()) {
+                return false;
+            }
+        }
+
+        if (interceptIpValue && currentUserIp) {
+            const interceptIps = interceptIpValue.split('\n');
+
+            for (let i = 0; i < interceptIps.length; i++) {
+                const interceptIp = interceptIps[i].trim();
+                if (!interceptIp) {
+                    continue;
+                }
+
+                const pattern = interceptIp.replace('.', '\\.').replace('+', '[0-9\\.]+');
+                const re = new RegExp(pattern);
+                if (re.test(currentUserIp)) {
+                    alert(`현재 접속 IP : ${currentUserIp} 가 차단될수 있기 때문에, 다른 IP를 입력해 주세요.`);
+                    return false;
+                }
+            }
+        }
+
+        form.action = './config_form_update.php';
+        return true;
+    },
+
+    showWebpWarning() {
+        const form = document.getElementById('fconfigform');
+        if (!form || form.dataset.webpWarning !== '1') {
+            return;
+        }
+
+        alert('이 서버는 webp 이미지를 지원하고 있지 않습니다.\n이미지 업로드 확장자에서 webp 확장자를 제거해 주십시오.\n제거하지 않으면 이미지와 관련된 오류가 발생할 수 있습니다.');
+
+        const imageExtensionField = document.getElementById('cf_image_extension');
+        if (imageExtensionField) {
+            imageExtensionField.focus();
+        }
+    }
+};
+
 /** 팝업 관리 모듈 */
 window.PopupManager = {
+    init() {
+        const overlay = document.getElementById('popupOverlay');
+        if (overlay) {
+            overlay.addEventListener('click', event => {
+                if (event.target === overlay) {
+                    this.close('popupOverlay');
+                }
+            });
+        }
+
+        document.querySelectorAll('[data-popup-close]').forEach(button => {
+            button.addEventListener('click', () => {
+                this.close(button.dataset.popupClose);
+            });
+        });
+    },
+
     open(id, options = {}) {
         const el = document.getElementById(id);
         if (!el) {
@@ -887,6 +1411,9 @@ function get_ajax_token() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    window.AdminShell.init();
+    window.PopupManager.init();
+    window.AdminConfigForm.init();
     window.AdminMemberList.init();
     window.AdminMemberExport.init();
     window.AdminMemberForm.init();

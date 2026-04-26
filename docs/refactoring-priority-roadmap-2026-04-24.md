@@ -83,8 +83,12 @@
 
 ### Phase 3. Admin Page Contract Completion
 
-- Finish view-model driven admin pages.
-- Move page-local JS behavior out of mixed PHP templates where practical.
+- Current state:
+  - Admin head/tail shell behavior lives in `adm/admin.js` instead of mixed PHP templates.
+  - `member_list`, `member_form`, `config_form`, `member_list_exel`, and `index` use explicit page/section view contracts.
+  - Admin entry files read request data through runtime request context helpers instead of direct `$_GET`/`$_POST`/`$_SERVER` access.
+- Remaining condition:
+  - Keep the same contract shape for newly added admin pages and block regressions through `npm run check:refactor`.
 
 ### Phase 4. Shim And Vendor Cleanup
 

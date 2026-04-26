@@ -8,15 +8,14 @@ $head_sub_view = admin_build_head_sub_view($g5, $config, $is_member, $is_admin, 
 $page_title = $head_sub_view['page_title'];
 $head_title = $head_sub_view['head_title'];
 $pretendard_font_href = $head_sub_view['pretendard_font_href'];
-$common_css_ver = $head_sub_view['common_css_ver'];
-$admin_css_ver = $head_sub_view['admin_css_ver'];
+$common_css_href = $head_sub_view['common_css_href'];
+$admin_css_href = $head_sub_view['admin_css_href'];
 $sticky_anchor_tabs_ver = $head_sub_view['sticky_anchor_tabs_ver'];
 $login_status_text = $head_sub_view['login_status_text'];
+$member_logout_url = $head_sub_view['member_logout_url'];
+$body_script = $head_sub_view['body_script'];
+$js_globals = $head_sub_view['js_globals'];
 $g5['title'] = $page_title;
-$g5_sca = '';
-if (isset($g5['request_context']['query_state']['sca']) && !is_array($g5['request_context']['query_state']['sca'])) {
-    $g5_sca = (string) $g5['request_context']['query_state']['sca'];
-}
 ?>
 <!doctype html>
 <html lang="ko">
@@ -47,20 +46,15 @@ echo '<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>'.PHP_E
 echo '<link rel="preload" as="style" href="'.$pretendard_font_href.'" crossorigin>'.PHP_EOL;
 echo '<link rel="stylesheet" href="'.$pretendard_font_href.'" crossorigin>'.PHP_EOL;
 
-echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_CSS_URL.'/common.css?ver='.$common_css_ver, G5_URL).'">'.PHP_EOL;
+echo '<link rel="stylesheet" href="'.$common_css_href.'">'.PHP_EOL;
 
-echo '<link rel="stylesheet" href="'.run_replace('head_css_url', G5_ADMIN_URL.'/css/admin.css?ver='.$admin_css_ver, G5_URL).'">'.PHP_EOL;
+echo '<link rel="stylesheet" href="'.$admin_css_href.'">'.PHP_EOL;
 ?>
 <script>
 // 자바스크립트에서 사용하는 전역변수 선언
-var g5_url       = "<?php echo G5_URL ?>";
-var g5_member_url = "<?php echo G5_MEMBER_URL ?>";
-var g5_is_member = "<?php echo isset($is_member)?$is_member:''; ?>";
-var g5_is_admin  = "<?php echo isset($is_admin)?$is_admin:''; ?>";
-var g5_is_mobile = "<?php echo G5_IS_MOBILE ?>";
-var g5_sca       = "<?php echo $g5_sca; ?>";
-var g5_cookie_domain = "<?php echo G5_COOKIE_DOMAIN ?>";
-var g5_admin_url = "<?php echo G5_ADMIN_URL; ?>";
+<?php foreach ($js_globals as $name => $value) { ?>
+var <?php echo $name; ?> = <?php echo json_encode((string) $value); ?>;
+<?php } ?>
 </script>
 <?php
 add_javascript('<script src="'.G5_JS_URL.'/common.js?ver='.G5_JS_VER.'"></script>', 0);
@@ -69,9 +63,9 @@ add_javascript('<script src="'.G5_JS_URL.'/ui-kit/ui-sticky-anchor-tabs.js?ver='
 add_javascript('<script src="'.G5_JS_URL.'/wrest.js?ver='.G5_JS_VER.'"></script>', 0);
 ?>
 </head>
-<body<?php echo isset($g5['body_script']) ? $g5['body_script'] : ''; ?>>
+<body<?php echo $body_script; ?>>
 <?php
 if ($is_member) { // 회원이라면 로그인 중이라는 메세지를 출력해준다.
     echo '<div class="sr-only">'.$login_status_text;
-    echo '<a href="'.G5_MEMBER_URL.'/logout.php">로그아웃</a></div>';
+    echo '<a href="'.$member_logout_url.'">로그아웃</a></div>';
 }

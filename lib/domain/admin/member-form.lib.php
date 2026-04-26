@@ -257,15 +257,30 @@ function admin_build_member_form_history_section_view(array $member_form_view, a
         'intercept_date' => isset($member['mb_intercept_date']) ? $member['mb_intercept_date'] : '',
         'today_ymd' => date('Ymd'),
         'event_member' => $member,
+        'event_mode' => isset($member_form_view['w']) ? $member_form_view['w'] : '',
     );
 }
 
-function admin_build_member_form_page_view(array $member_form_view, array $config)
+function admin_build_member_form_page_view(array $member_form_view, array $config, array $member_list_request = array())
 {
+    $hidden_fields = array(
+        'w' => isset($member_form_view['w']) ? $member_form_view['w'] : '',
+        'sfl' => isset($member_list_request['sfl']) ? $member_list_request['sfl'] : '',
+        'stx' => isset($member_list_request['stx']) ? $member_list_request['stx'] : '',
+        'sst' => isset($member_list_request['sst']) ? $member_list_request['sst'] : '',
+        'sod' => isset($member_list_request['sod']) ? $member_list_request['sod'] : '',
+        'page' => isset($member_list_request['page']) ? $member_list_request['page'] : '',
+    );
+
     return array(
         'title' => $member_form_view['title'],
         'admin_container_class' => 'admin-page-member-form',
         'admin_page_subtitle' => '기본정보, 인증 연락처, 동의 상태, 활동 이력을 탭에서 빠르게 관리하세요.',
+        'list_url' => './member_list.php?' . admin_bootstrap_build_qstr($member_list_request),
+        'hidden_fields' => $hidden_fields,
+        'admin_token' => get_admin_token(),
+        'event_member' => $member_form_view['mb'],
+        'event_mode' => $hidden_fields['w'],
         'pg_anchor_menu_view' => admin_build_anchor_menu_view(admin_member_form_tabs(), array(
             'nav_id' => 'member_tabs_nav',
             'nav_class' => 'tab-nav-justified',

@@ -27,6 +27,17 @@
 - refactor check Node.js 전환
 - 자동 브라우저 검증 관련 코드, 문서, npm script 제거
 - 관련 문서의 다음 작업 방향을 수동 운영 검증과 정적 구조 가드 기준으로 정리
+- `admin.head.php` 의 프로필/링크/sidebar/nav 표시 상태 view-model 의존 정리 1차 완료
+- `admin.head.php` 의 사이드바/프로필/테마/nav 동작을 `adm/admin.js` 의 `AdminShell` 로 이동
+- `config_form.php` 의 submit/captcha/cert 탭 동작을 `adm/admin.js` 의 `AdminConfigForm` 으로 이동
+- `config_form_parts/*` 의 직접 `$config`/`$config_form_view` 의존 제거 및 legacy script partial 삭제
+- `index.php` 의 dashboard 추가 콘텐츠 hook 출력을 page view 계약으로 이동
+- `member_list_exel_parts/filter.php` 의 필터 표시 상태를 `filter_view` 계약으로 이동
+- `member_form.php` 의 hidden fields/list URL/token/event 인자를 page view 계약으로 이동
+- `member_list_parts/*` 의 검색어/hidden fields/paging 표시 상태를 page view 계약으로 이동
+- `admin.tail.php` 의 popup/scroll top inline 동작을 `adm/admin.js` 로 이동
+- `admin.tail.php`/`head.sub.admin.php` 의 일부 서버 상태 출력을 view 계약으로 이동
+- admin entry 의 직접 `$_GET`/`$_POST`/`$_SERVER` 접근을 runtime request context helper 로 이동
 
 ## 다음 작업 순서
 
@@ -44,13 +55,23 @@
 
 ### 3. admin head 구조 정리
 
-- `admin.head.php` 의 메뉴/셸 계산 로직을 `lib/domain/admin/` 으로 더 이동한다.
+- `admin.head.php` 의 프로필/링크/sidebar/nav 표시 상태 계산은 `admin_build_head_view()` 로 이동했다.
+- 사이드바/프로필/테마/nav 동작은 `adm/admin.js` 의 `AdminShell` 로 이동했다.
+- 남은 메뉴/셸 출력 계산 로직을 `lib/domain/admin/` 으로 더 이동한다.
 - 화면 파일에는 렌더링에 필요한 최소 변수만 남긴다.
 - 변경 시 `scripts/check-admin-refactor.js` 의 구조 가드도 함께 갱신한다.
 
 ### 4. 화면 계약 명시화
 
-- `member_list.php`, `member_form.php`, `config_form.php`, `member_list_exel.php`, `index.php` 의 page view 계약을 더 명시적으로 정리한다.
+- `config_form.php` 의 submit/captcha/cert 탭 동작은 `AdminConfigForm` 으로 이동했다.
+- `config_form_parts/*` 는 section view-model 을 읽도록 정리했다.
+- `index.php` 의 hook 출력 계약은 dashboard view 에 포함했다.
+- `member_list_exel.php` 의 필터 partial 은 `filter_view` 를 읽도록 정리했다.
+- `member_form.php` 의 폼 shell 값은 page view 에서 공급한다.
+- `member_list.php` 의 partial 요청 상태 의존을 page view 로 이동했다.
+- `admin.tail.php` 의 inline UI 동작은 `adm/admin.js` 에서 바인딩한다.
+- `admin.tail.php`/`head.sub.admin.php` 는 서버 상태를 view helper 에서 받아 출력한다.
+- admin entry 는 `g5_get_runtime_get_input()`/`g5_get_runtime_post_input()`/`g5_get_runtime_server_input()` 기반으로 request 를 읽는다.
 - partial 에서 숨은 전역이나 page-local 상태를 직접 읽지 않도록 유지한다.
 
 ## 보류

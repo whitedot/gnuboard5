@@ -2,7 +2,7 @@
 $sub_menu = '100000';
 require_once './_common.php';
 
-$dashboard_request = admin_read_dashboard_request($_GET);
+$dashboard_request = admin_read_dashboard_request(g5_get_runtime_get_input());
 $dashboard_view = admin_build_dashboard_page_view($dashboard_request, $member, $is_admin, $auth);
 
 $g5['title'] = $dashboard_view['title'];
@@ -10,9 +10,8 @@ $admin_container_class = $dashboard_view['admin_container_class'];
 $admin_page_subtitle = $dashboard_view['admin_page_subtitle'];
 require_once './admin.head.php';
 
-$addtional_content_before = run_replace('adm_index_addtional_content_before', '', $is_admin, $auth, $member);
-if ($addtional_content_before) {
-    echo $addtional_content_before;
+if ($dashboard_view['additional_content_before']) {
+    echo $dashboard_view['additional_content_before'];
 }
 
 if ($dashboard_view['can_read_member_menu']) {
@@ -74,8 +73,7 @@ if ($dashboard_view['can_read_member_menu']) {
     <?php
 } //endif
 
-$addtional_content_after = run_replace('adm_index_addtional_content_after', '', $is_admin, $auth, $member);
-if ($addtional_content_after) {
-    echo $addtional_content_after;
+if ($dashboard_view['additional_content_after']) {
+    echo $dashboard_view['additional_content_after'];
 }
 require_once './admin.tail.php';

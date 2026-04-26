@@ -171,10 +171,17 @@ const explicitRequestPages = [
   'member_list_update.php',
   'member_form_update.php',
   'member_delete.php',
+  'config_form.php',
   'member_list_exel.php',
   'member_list_exel_export.php',
   'member_list_file_delete.php',
 ].map(file => path.join(admDir, file));
+
+assertNoMatches(
+  'legacy admin entry superglobal request access',
+  explicitRequestPages.concat([path.join(admDir, 'ajax.token.php'), path.join(admDir, 'config_form_update.php')]),
+  /\$_GET|\$_POST|\$_REQUEST|\$_SERVER/
+);
 
 assertNoMatches(
   'legacy request global extract opt-out define',
@@ -201,15 +208,47 @@ assertNoMatches(
 );
 
 assertNoMatches(
+  'legacy member list partial request state',
+  phpFiles(path.join(admDir, 'member_list_parts'), false),
+  /\$member_list_request|\$g5\['title'\]|get_paging\(/
+);
+
+assertNoMatches(
   'legacy member export inline behavior',
   [path.join(admDir, 'member_list_exel.php')],
   /<script>|EventSource\(|function startExcelDownload|function showDownloadPopup|function handleProgressUpdate/
 );
 
 assertNoMatches(
+  'legacy member export partial hidden state',
+  phpFiles(path.join(admDir, 'member_list_exel_parts'), false),
+  /\$filter_state|\$member_export_links|\$member_export_view\['form_token'\]|\$member_export_view\['sfl_option_items'\]|\$member_export_view\['level_start_options'\]|\$member_export_view\['level_end_options'\]|\$member_export_view\['intercept_option_items'\]|\$member_export_view\['ad_range_option_items'\]/
+);
+
+assertNoMatches(
   'legacy member form inline behavior',
   [path.join(admDir, 'member_form.php'), path.join(admDir, 'member_form_parts/history.php')],
-  /onsubmit=|onclick=|fmember_submit\(|member_form_parts\/script\.php/
+  /onsubmit=|onclick=|fmember_submit\(|member_form_parts\/script\.php|\$member_form_page_state|get_admin_token\(\)|\$member_form_request\['w'\]|\$member_list_request\['sfl'\]|\$member_list_request\['stx'\]|\$member_list_request\['sst'\]|\$member_list_request\['sod'\]|\$member_list_request\['page'\]/
+);
+
+assertNoMatches(
+  'legacy config form inline behavior',
+  [path.join(admDir, 'config_form.php'), ...phpFiles(path.join(admDir, 'config_form_parts'), false)],
+  /onsubmit=|document\.addEventListener|function fconfigform_submit|check_config_captcha_open|toggleConfigCaptchaFields|\$captcha_js/
+);
+
+assertNoMatches(
+  'legacy config form partial hidden state',
+  phpFiles(path.join(admDir, 'config_form_parts'), false),
+  /\$config\[|\$config_form_view\[/
+);
+
+assertFileMissing(path.join(admDir, 'config_form_parts', 'script.php'), 'legacy config form script partial found');
+
+assertNoMatches(
+  'legacy dashboard shell hook wiring',
+  [path.join(admDir, 'index.php')],
+  /run_replace\('adm_index_addtional_content_/
 );
 
 assertNoMatches(
@@ -228,6 +267,30 @@ assertNoMatches(
   'legacy member export shell wiring',
   [path.join(admDir, 'member_list_exel.php'), path.join(admDir, 'member_list_exel_export.php')],
   /member_list_exel\.lib\.php|check_demo\(|admin_build_member_export_runtime_context\(\$g5|admin_complete_member_export_stream_request\(\$_GET|admin_run_member_export\(/
+);
+
+assertNoMatches(
+  'legacy admin head runtime link access',
+  [path.join(admDir, 'admin.head.php')],
+  /G5_MEMBER_URL|G5_URL|\$member\['mb_id'\]|\$config\['cf_title'\]|admin_csrf_token_key\(\)|\$adm_menu_cookie|\$admin_profile_|\$admin_navigation_items|\$admin_container_class_attr|\$admin_page_subtitle_text/
+);
+
+assertNoMatches(
+  'legacy admin head inline behavior',
+  [path.join(admDir, 'admin.head.php')],
+  /document\.addEventListener|function imageview|var tempX|var tempY|syncDesktopSidebarState|updateMenuScrollbar/
+);
+
+assertNoMatches(
+  'legacy admin tail inline behavior',
+  [path.join(admDir, 'admin.tail.php')],
+  /onclick=|document\.addEventListener|\$_SERVER\['HTTP_HOST'\]|G5_ADMIN_URL/
+);
+
+assertNoMatches(
+  'legacy admin head sub shell state',
+  [path.join(admDir, 'head.sub.admin.php')],
+  /\$g5\['request_context'\]\['query_state'\]|isset\(\$g5\['body_script'\]\)|var g5_url|var g5_member_url|G5_MEMBER_URL|G5_ADMIN_URL/
 );
 
 assertFileMissing(path.join(admDir, 'member_list_exel.lib.php'), 'legacy member export helper file found');

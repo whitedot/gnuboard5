@@ -46,8 +46,9 @@
 - `lib/bootstrap`, `lib/support`, `lib/domain/member`, `lib/domain/admin` 경계는 실제 코드에 존재한다.
 - 저장소 전체 PHP lint 는 1차 프로젝트 파일 기준으로 통과했다.
 - 관리자 내보내기 경로는 이제 `PHPExcel` 없이 `xlsx` 를 직접 생성한다.
-- 관리자 주요 화면은 `page_view`, `filter_state`, `items`, `actions` 같은 명시적 계약을 사용한다.
+- 관리자 주요 화면은 `page_view`, section view, `filter_view`, `items`, `actions` 같은 명시적 계약을 사용한다.
 - 관리자 폼과 설정 화면은 helper HTML 문자열보다 옵션 데이터와 화면 렌더링을 우선하는 구조로 이동했다.
+- 관리자 entry 파일의 request 입력은 runtime request context helper 를 통해 읽는다.
 
 ## 5. 다음 실행 계획
 
@@ -59,10 +60,10 @@
   - 운영 Excel 열기와 다운로드 완료 흐름에서 치명적인 호환성 이슈가 없다.
   - 실패 시 사용자 메시지와 로그가 기대대로 남는다.
 
-### 2단계. 최소 회귀 가드 추가
+### 2단계. 최소 회귀 가드 유지
 
-- 구조 정리 이후 되돌아오는 회귀를 얇게 감지할 수 있는 체크를 추가한다.
-- 후보는 관리자 관련 `PHP lint`, 금지 패턴 grep(`extract(`, legacy helper 호출)이다.
+- 구조 정리 이후 되돌아오는 회귀를 얇게 감지할 수 있는 체크를 유지한다.
+- 현재 기준은 관리자 관련 `PHP lint`, 금지 패턴 grep(`extract(`, legacy helper 호출, admin entry 직접 superglobal 접근)이다.
 - 완료 기준:
   - 구조 회귀를 CI 또는 로컬 스크립트로 빠르게 확인할 수 있다.
 
