@@ -51,7 +51,16 @@
 - 런타임 호환성 리스크가 있는 관리자 회원 엑셀 내보내기 경로와 PHP 8.4 대응 상태를 먼저 정리한 뒤, 그다음에 신규 도메인 도입 여부를 판단합니다.
 - 현재 작업계획과 남은 리스크는 `docs/current-work-plan-2026-04-26.md`를 기준으로 관리합니다.
 
-## 6. 제약 사항
+## 6. 유지보수 문서 안내
+
+레거시 G5/PHP 개발자가 현재 구조를 파악하거나 작업을 넘겨받을 때는 `docs/legacy-maintainer-guide.md`를 먼저 봅니다.
+
+- 작업별 controller와 실제 구현 파일 지도는 `docs/legacy-maintainer-guide.md`에 둡니다.
+- 현재 남은 일과 보류 판단은 `docs/current-work-plan-2026-04-26.md`를 기준으로 합니다.
+- 유지/제외 범위는 `docs/member-only-scope.md`를 기준으로 합니다.
+- controller 작성 규칙은 `docs/architecture/*` 문서를 기준으로 합니다.
+
+## 7. 제약 사항
 
 - **아키텍처 현대화의 범위 제한 (Scope Limitation on Modernization)**: 본 프로젝트는 코드 분리 및 정리에 집중하며, Composer 기반의 오토로딩(Autoloading) 도입과 같은 근본적인 PHP 레거시 구조의 현대화는 수행하지 않습니다.
 - **개발 주체 및 면책 조항 (Project Leadership & Disclaimer)**: 본 프로젝트는 기획자 및 디자이너 직군 출신인 지운아빠가 주도하여 진행되므로, 전문 엔지니어링 관점의 코드 정합성(Consistency)이나 기술적 유효성(Validity)을 보장하지 않습니다.

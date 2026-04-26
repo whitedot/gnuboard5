@@ -44,7 +44,8 @@ lib/domain/{domain}/
 <?php
 include_once('./_common.php');
 
-$request = domain_read_list_request($_GET, $page);
+$member_request_context = member_get_runtime_request_context();
+$request = domain_read_list_request($member_request_context['query_state'], $page);
 domain_validate_list_request($request, $member, $is_admin);
 
 $page_view = domain_build_list_page_view($request, $member);
@@ -63,11 +64,11 @@ DomainPageController::render($page_view['title'], 'list.skin.php', $page_view['d
 <?php
 require_once './_common.php';
 
-$request = admin_read_list_request($_GET);
+$request = admin_read_list_request(g5_get_runtime_get_input());
 $page_view = admin_build_list_page_view($request, $member, $is_admin, $config);
-extract($page_view, EXTR_SKIP);
 
-$g5['title'] = $title;
+$g5['title'] = $page_view['title'];
+$admin_container_class = isset($page_view['admin_container_class']) ? $page_view['admin_container_class'] : '';
 require_once './admin.head.php';
 // render...
 require_once './admin.tail.php';
@@ -81,7 +82,8 @@ require_once './admin.tail.php';
 <?php
 include_once('./_common.php');
 
-$request = domain_read_write_request($_POST, $_SESSION);
+$member_request_context = member_get_runtime_request_context();
+$request = domain_read_write_request($member_request_context['post'], $member_request_context['session']);
 domain_complete_write_request($request, $member, $config);
 ```
 
@@ -96,7 +98,7 @@ domain_complete_write_request($request, $member, $config);
 <?php
 require_once './_common.php';
 
-$request = admin_read_write_request($_POST);
+$request = admin_read_write_request(g5_get_runtime_post_input());
 admin_complete_write_request($request, $member, $auth, $sub_menu, $qstr);
 ```
 
@@ -108,7 +110,8 @@ admin_complete_write_request($request, $member, $auth, $sub_menu, $qstr);
 <?php
 include_once('./_common.php');
 
-$request = domain_read_ajax_request($_POST);
+$member_request_context = member_get_runtime_request_context();
+$request = domain_read_ajax_request($member_request_context['post']);
 domain_process_ajax_duplicate_check($request);
 ```
 
@@ -123,7 +126,7 @@ domain_process_ajax_duplicate_check($request);
 <?php
 require_once './_common.php';
 
-$request = admin_read_ajax_request($_POST);
+$request = admin_read_ajax_request(g5_get_runtime_post_input());
 admin_complete_ajax_request($request);
 ```
 
@@ -135,8 +138,8 @@ SSE, 대용량 다운로드, 긴 작업 진행률 응답처럼 스트림을 여�
 <?php
 require_once './_common.php';
 
-$stream = admin_complete_member_export_stream_request($_GET, $auth, $sub_menu);
-domain_run_export_stream($stream['params']);
+$page_request = admin_build_member_export_stream_page_request(g5_get_runtime_get_input(), $g5, isset($member) && is_array($member) ? $member : array());
+admin_complete_member_export_stream_page($page_request, $auth, $sub_menu);
 ```
 
 규칙:
@@ -148,7 +151,7 @@ domain_run_export_stream($stream['params']);
 
 ### request
 
-- `$_GET`, `$_POST`, `$_SESSION` 정규화
+- runtime request context와 session 정규화
 - 기본값 설정
 - 형식 변환
 

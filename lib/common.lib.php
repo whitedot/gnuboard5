@@ -1,7 +1,7 @@
 <?php
 if (!defined('_GNUBOARD_')) exit;
 
-// 공용 라이브러리 로더
+// Legacy common loader. Keep include order stable; add new shared implementation to lib/support or lib/bootstrap first.
 
 // Utility functions (basic helpers, microtime, etc)
 include_once(G5_LIB_PATH.'/common.util.lib.php');

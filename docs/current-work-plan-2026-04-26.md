@@ -8,6 +8,8 @@
 
 아키텍처 규칙은 `docs/architecture/*` 문서에 남기고, 과거 QA 결과는 `docs/project-evaluation-report-2026-04-22.md`에 보존한다. 새 작업 순서와 보류 판단은 이 문서를 우선 기준으로 삼는다.
 
+레거시 G5/PHP 개발자에게 현재 구조를 설명하거나 작업을 넘길 때는 `docs/legacy-maintainer-guide.md`를 입구 문서로 사용한다.
+
 ## 통합한 문서
 
 - `docs/current-project-status-2026-04-26.md`
@@ -189,6 +191,7 @@ GitHub Actions check는 존재한다. 운영 저장소 정책에서 필요하면
 ## 문서 운영 규칙
 
 - 현재 작업계획, 남은 일, 보류 판단은 이 문서에만 추가한다.
+- 레거시 개발자용 작업별 파일 지도와 인수인계 안내는 `docs/legacy-maintainer-guide.md`에 남긴다.
 - 구조 규칙은 `docs/architecture/*`에 남긴다.
 - 과거 QA 증적은 `docs/project-evaluation-report-2026-04-22.md`처럼 날짜가 붙은 보고서에 보존한다.
 - 새 계획 문서를 만들기보다 이 문서를 갱신한다.

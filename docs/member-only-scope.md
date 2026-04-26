@@ -29,13 +29,14 @@
 
 ## 현재 기준 파일
 
-- `common.php`
-- `config.php`
-- `member/`
-- `adm/member_*`
-- `lib/common.*.lib.php`
-- `lib/uri.lib.php`
-- `lib/URI/uri.class.php`
+- 공통 진입점: `common.php`, `config.php`
+- 회원 controller: `member/`
+- 관리자 controller: `adm/index.php`, `adm/config_*`, `adm/member_*`
+- 회원 구현 원천: `lib/domain/member/`
+- 관리자 구현 원천: `lib/domain/admin/`
+- 공용 구현 원천: `lib/support/`, `lib/bootstrap/`
+- 호환 로더: `lib/common.*.lib.php`, `lib/member.*.lib.php`
+- URI 호환 유틸리티: `lib/uri.lib.php`, `lib/URI/uri.class.php`
 
 ## 운영 원칙
 
