@@ -435,11 +435,12 @@ function admin_complete_config_form_update_request(array $request, array $ori_co
 {
     auth_check_menu($auth, $sub_menu, 'w');
     admin_require_super_admin($is_admin);
+    $server_input = g5_get_runtime_server_input();
 
     admin_validate_config_admin($request['cf_admin']);
     check_admin_token();
 
-    admin_validate_config_intercept_ip($request['cf_intercept_ip'], $_SERVER['REMOTE_ADDR']);
+    admin_validate_config_intercept_ip($request['cf_intercept_ip'], isset($server_input['REMOTE_ADDR']) ? $server_input['REMOTE_ADDR'] : '');
     $request = admin_normalize_config_cert_settings($request);
     admin_check_config_captcha(admin_should_check_config_captcha($request, $ori_config));
 
