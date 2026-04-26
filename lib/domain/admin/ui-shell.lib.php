@@ -169,6 +169,12 @@ function admin_build_head_view(array $member, array $config, array $cookies, $ad
 
 function admin_build_tail_view($is_admin)
 {
+    $admin_core_js_path = G5_ADMIN_PATH . '/admin-core.js';
+    $admin_config_form_js_path = G5_ADMIN_PATH . '/admin-config-form.js';
+    $admin_member_export_js_path = G5_ADMIN_PATH . '/admin-member-export.js';
+    $admin_member_form_js_path = G5_ADMIN_PATH . '/admin-member-form.js';
+    $admin_member_list_js_path = G5_ADMIN_PATH . '/admin-member-list.js';
+    $admin_shell_js_path = G5_ADMIN_PATH . '/admin-shell.js';
     $admin_js_path = G5_ADMIN_PATH . '/admin.js';
     $server_input = function_exists('g5_get_runtime_server_input') ? g5_get_runtime_server_input() : array();
     $host = isset($server_input['HTTP_HOST']) ? get_text((string) $server_input['HTTP_HOST']) : '';
@@ -176,6 +182,12 @@ function admin_build_tail_view($is_admin)
     return array(
         'copyright_host' => $host,
         'print_version' => ($is_admin == 'super') ? 'Version ' . G5_GNUBOARD_VER : '',
+        'admin_core_js_src' => G5_ADMIN_URL . '/admin-core.js?ver=' . (is_file($admin_core_js_path) ? filemtime($admin_core_js_path) : G5_JS_VER),
+        'admin_config_form_js_src' => G5_ADMIN_URL . '/admin-config-form.js?ver=' . (is_file($admin_config_form_js_path) ? filemtime($admin_config_form_js_path) : G5_JS_VER),
+        'admin_member_export_js_src' => G5_ADMIN_URL . '/admin-member-export.js?ver=' . (is_file($admin_member_export_js_path) ? filemtime($admin_member_export_js_path) : G5_JS_VER),
+        'admin_member_form_js_src' => G5_ADMIN_URL . '/admin-member-form.js?ver=' . (is_file($admin_member_form_js_path) ? filemtime($admin_member_form_js_path) : G5_JS_VER),
+        'admin_member_list_js_src' => G5_ADMIN_URL . '/admin-member-list.js?ver=' . (is_file($admin_member_list_js_path) ? filemtime($admin_member_list_js_path) : G5_JS_VER),
+        'admin_shell_js_src' => G5_ADMIN_URL . '/admin-shell.js?ver=' . (is_file($admin_shell_js_path) ? filemtime($admin_shell_js_path) : G5_JS_VER),
         'admin_js_src' => G5_ADMIN_URL . '/admin.js?ver=' . (is_file($admin_js_path) ? filemtime($admin_js_path) : G5_JS_VER),
     );
 }

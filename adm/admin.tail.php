@@ -6,6 +6,12 @@ if (!defined('_GNUBOARD_')) {
 $admin_tail_view = admin_build_tail_view($is_admin);
 $copyright_host = $admin_tail_view['copyright_host'];
 $print_version = $admin_tail_view['print_version'];
+$admin_core_js_src = $admin_tail_view['admin_core_js_src'];
+$admin_config_form_js_src = $admin_tail_view['admin_config_form_js_src'];
+$admin_member_export_js_src = $admin_tail_view['admin_member_export_js_src'];
+$admin_member_form_js_src = $admin_tail_view['admin_member_form_js_src'];
+$admin_member_list_js_src = $admin_tail_view['admin_member_list_js_src'];
+$admin_shell_js_src = $admin_tail_view['admin_shell_js_src'];
 $admin_js_src = $admin_tail_view['admin_js_src'];
 ?>
 
@@ -39,6 +45,12 @@ $admin_js_src = $admin_tail_view['admin_js_src'];
     </div>
 </div>
 
+<script src="<?php echo $admin_core_js_src; ?>"></script>
+<script src="<?php echo $admin_config_form_js_src; ?>"></script>
+<script src="<?php echo $admin_member_export_js_src; ?>"></script>
+<script src="<?php echo $admin_member_form_js_src; ?>"></script>
+<script src="<?php echo $admin_member_list_js_src; ?>"></script>
+<script src="<?php echo $admin_shell_js_src; ?>"></script>
 <script src="<?php echo $admin_js_src; ?>"></script>
 
 <?php

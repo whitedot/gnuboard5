@@ -1,99 +1,11 @@
-const { spawnSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
-
-const projectRoot = path.resolve(__dirname, '..');
-const phpCommand = process.platform === 'win32' ? 'php.exe' : 'php';
-
-function rel(filePath) {
-  return path.relative(projectRoot, filePath).split(path.sep).join('/');
-}
-
-function file(...parts) {
-  return path.join(projectRoot, ...parts);
-}
-
-function listFiles(dir, options = {}) {
-  const { recursive = false, filter = () => true } = options;
-  if (!fs.existsSync(dir)) {
-    return [];
-  }
-
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
-  const files = [];
-  for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name);
-    if (entry.isDirectory()) {
-      if (recursive) {
-        files.push(...listFiles(fullPath, options));
-      }
-      continue;
-    }
-    if (entry.isFile() && filter(fullPath)) {
-      files.push(fullPath);
-    }
-  }
-  return files;
-}
-
-function phpFiles(dir, recursive = false) {
-  return listFiles(dir, { recursive, filter: filePath => filePath.endsWith('.php') });
-}
-
-function commandExists(command) {
-  const result = spawnSync(command, ['-v'], { stdio: 'ignore' });
-  return !result.error && result.status === 0;
-}
-
-function runPhpLint(files) {
-  if (!commandExists(phpCommand)) {
-    const message = 'PHP executable was not found; member request PHP lint skipped.';
-    if (process.env.CI) {
-      console.error(message);
-      process.exit(1);
-    }
-    console.warn(message);
-    return;
-  }
-
-  for (const target of files) {
-    const result = spawnSync(phpCommand, ['-l', target], { stdio: 'pipe', encoding: 'utf8' });
-    if (result.status !== 0) {
-      process.stderr.write(result.stderr || result.stdout || '');
-      console.error(`PHP lint failed: ${rel(target)}`);
-      process.exit(1);
-    }
-  }
-}
-
-function matchFiles(files, pattern) {
-  const matches = [];
-  for (const target of files) {
-    const text = fs.readFileSync(target, 'utf8');
-    text.split(/\r?\n/).forEach((line, index) => {
-      if (pattern.test(line)) {
-        matches.push(`${rel(target)}:${index + 1}: ${line.trim()}`);
-      }
-    });
-  }
-  return matches;
-}
-
-function assertNoMatches(name, files, pattern) {
-  const matches = matchFiles(files, pattern);
-  if (matches.length) {
-    console.error(`${name} found:\n${matches.join('\n')}`);
-    process.exit(1);
-  }
-}
-
-function assertContains(filePath, pattern, message) {
-  const text = fs.readFileSync(filePath, 'utf8');
-  if (!pattern.test(text)) {
-    console.error(`${message}:\n${rel(filePath)}`);
-    process.exit(1);
-  }
-}
+const {
+  rel,
+  file,
+  phpFiles,
+  runPhpLint,
+  assertNoMatches,
+  assertContains,
+} = require('./lib/refactor-check-utils');
 
 const targetFiles = [
   file('lib/domain/member/request.lib.php'),
@@ -138,7 +50,7 @@ const targetFiles = [
   file('member/views/basic/member_confirm.skin.php'),
 ];
 
-runPhpLint(targetFiles);
+runPhpLint(targetFiles, 'PHP executable was not found; member request PHP lint skipped.');
 
 assertNoMatches(
   'legacy member table globals',

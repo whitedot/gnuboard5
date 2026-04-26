@@ -10,7 +10,17 @@
 
 레거시 G5/PHP 개발자에게 현재 구조를 설명하거나 작업을 넘길 때는 `docs/legacy-maintainer-guide.md`를 입구 문서로 사용한다.
 
-## 통합한 문서
+## 현재 기준 문서
+
+- `README.md`: 프로젝트 목적과 현재 운영 범위
+- `docs/legacy-maintainer-guide.md`: 레거시 G5/PHP 개발자용 작업 입구
+- `docs/member-only-scope.md`: 유지/제외 범위
+- `docs/architecture/*`: controller, include, export 작성 규칙
+- `docs/project-evaluation-report-2026-04-22.md`: 보존된 수동 QA 결과
+
+## 통합된 과거 문서
+
+아래 문서들은 이 파일로 통합한 뒤 저장소에서 제거했다. 새 작업자는 아래 경로를 찾아가지 말고, 위의 현재 기준 문서와 이 문서를 기준으로 판단한다.
 
 - `docs/current-project-status-2026-04-26.md`
 - `docs/refactoring-priority-roadmap-2026-04-24.md`

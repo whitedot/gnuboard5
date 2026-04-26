@@ -48,7 +48,7 @@
 | 관리자 설정 | `adm/config_form.php`, `adm/config_form_update.php` | `lib/domain/admin/config.lib.php`, `adm/config_form_parts/*` |
 | 관리자 회원 export 화면 | `adm/member_list_exel.php` | `lib/domain/admin/export-view.lib.php`, `export-config.lib.php` |
 | 관리자 회원 export 다운로드 | `adm/member_list_exel_export.php` | `lib/domain/admin/export-stream.lib.php`, `export-file.lib.php`, `xlsx.lib.php` |
-| 관리자 shell/menu | `adm/admin.head.php`, `adm/admin.tail.php`, `adm/head.sub.admin.php` | `lib/domain/admin/ui.lib.php`, `lib/domain/admin/bootstrap.lib.php`, `adm/admin.js` |
+| 관리자 shell/menu | `adm/admin.head.php`, `adm/admin.tail.php`, `adm/head.sub.admin.php` | `lib/domain/admin/ui.lib.php`, `lib/domain/admin/bootstrap.lib.php`, `adm/admin-core.js`, `adm/admin-config-form.js`, `adm/admin-member-export.js`, `adm/admin-member-form.js`, `adm/admin-member-list.js`, `adm/admin-shell.js`, `adm/admin.js` |
 
 ## 어디에 코드를 추가할까
 

@@ -1,108 +1,12 @@
-const { spawnSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
-
-const projectRoot = path.resolve(__dirname, '..');
-const phpCommand = process.platform === 'win32' ? 'php.exe' : 'php';
-
-function toPosix(filePath) {
-  return filePath.split(path.sep).join('/');
-}
-
-function rel(filePath) {
-  return toPosix(path.relative(projectRoot, filePath));
-}
-
-function listFiles(dir, options = {}) {
-  const { recursive = false, filter = () => true } = options;
-  if (!fs.existsSync(dir)) {
-    return [];
-  }
-
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
-  const files = [];
-  for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name);
-    if (entry.isDirectory()) {
-      if (recursive) {
-        files.push(...listFiles(fullPath, options));
-      }
-      continue;
-    }
-
-    if (entry.isFile() && filter(fullPath)) {
-      files.push(fullPath);
-    }
-  }
-
-  return files;
-}
-
-function phpFiles(dir, recursive = false) {
-  return listFiles(dir, {
-    recursive,
-    filter: filePath => filePath.endsWith('.php'),
-  });
-}
-
-function matchFiles(files, pattern) {
-  const matches = [];
-  for (const file of files) {
-    const text = fs.readFileSync(file, 'utf8');
-    text.split(/\r?\n/).forEach((line, index) => {
-      if (pattern.test(line)) {
-        matches.push(`${rel(file)}:${index + 1}: ${line.trim()}`);
-      }
-    });
-  }
-  return matches;
-}
-
-function fail(name, matches) {
-  console.error(`${name} found:\n${matches.join('\n')}`);
-  process.exit(1);
-}
-
-function assertNoMatches(name, files, pattern) {
-  const matches = matchFiles(files, pattern);
-  if (matches.length) {
-    fail(name, matches);
-  }
-}
-
-function assertFileMissing(filePath, message) {
-  if (fs.existsSync(filePath)) {
-    console.error(`${message}:\n${rel(filePath)}`);
-    process.exit(1);
-  }
-}
-
-function commandExists(command) {
-  const result = spawnSync(command, ['-v'], { stdio: 'ignore' });
-  return !result.error && result.status === 0;
-}
-
-function runPhpLint(files) {
-  if (!commandExists(phpCommand)) {
-    const message = 'PHP executable was not found; admin PHP lint skipped.';
-    if (process.env.CI) {
-      console.error(message);
-      process.exit(1);
-    }
-
-    console.warn(message);
-    return;
-  }
-
-  for (const file of files) {
-    const result = spawnSync(phpCommand, ['-l', file], { stdio: 'pipe', encoding: 'utf8' });
-    if (result.status !== 0) {
-      process.stderr.write(result.stderr || result.stdout || '');
-      console.error(`PHP lint failed: ${rel(file)}`);
-      process.exit(1);
-    }
-  }
-}
+const {
+  path,
+  projectRoot,
+  listFiles,
+  phpFiles,
+  runPhpLint,
+  assertNoMatches,
+  assertFileMissing,
+} = require('./lib/refactor-check-utils');
 
 const admDir = path.join(projectRoot, 'adm');
 const adminDomainDir = path.join(projectRoot, 'lib/domain/admin');
@@ -111,7 +15,7 @@ const lintFiles = [
   ...phpFiles(admDir, false),
   ...phpFiles(adminDomainDir, false),
 ];
-runPhpLint(lintFiles);
+runPhpLint(lintFiles, 'PHP executable was not found; admin PHP lint skipped.');
 
 const forbiddenChecks = [
   {
