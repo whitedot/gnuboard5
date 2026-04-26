@@ -40,13 +40,24 @@ function build_notice_post_fields(array $post)
     return $fields;
 }
 
-function build_alert_page_view($msg, $url, $error, $post, $header = '')
+function get_notice_runtime_post_input()
+{
+    return function_exists('g5_get_runtime_post_input') ? g5_get_runtime_post_input() : array();
+}
+
+function get_notice_runtime_server_input()
+{
+    return function_exists('g5_get_runtime_server_input') ? g5_get_runtime_server_input() : array();
+}
+
+function build_alert_page_view($msg, $url, $error, $post, $header = '', array $post_input = array(), array $server_input = array())
 {
     $sanitized_message = $msg ? strip_tags($msg) : '';
     $sanitized_url = build_notice_sanitized_url($url, $sanitized_message);
+    $server_input = $server_input ? $server_input : get_notice_runtime_server_input();
 
     if (!$sanitized_url) {
-        $sanitized_url = isset($_SERVER['HTTP_REFERER']) ? build_notice_sanitized_url($_SERVER['HTTP_REFERER'], $sanitized_message) : '';
+        $sanitized_url = isset($server_input['HTTP_REFERER']) ? build_notice_sanitized_url($server_input['HTTP_REFERER'], $sanitized_message) : '';
     }
 
     return array(
@@ -57,7 +68,7 @@ function build_alert_page_view($msg, $url, $error, $post, $header = '')
         'redirect_url' => $sanitized_url,
         'redirect_url_js' => str_replace('&amp;', '&', $sanitized_url),
         'show_post_form' => !empty($post),
-        'post_fields' => !empty($post) ? build_notice_post_fields($_POST) : array(),
+        'post_fields' => !empty($post) ? build_notice_post_fields($post_input) : array(),
     );
 }
 
@@ -120,7 +131,7 @@ function alert($msg = '', $url = '', $error = true, $post = false)
     if (isset($g5['title'])) {
         $header = $g5['title'];
     }
-    $alert_view = build_alert_page_view($msg, $url, $error, $post, $header);
+    $alert_view = build_alert_page_view($msg, $url, $error, $post, $header, get_notice_runtime_post_input(), get_notice_runtime_server_input());
     include_once(G5_PATH.'/alert.php');
     exit;
 }
@@ -165,7 +176,8 @@ function confirm($msg, $url1 = '', $url2 = '', $url3 = '')
     }
 
     if (!$url3) {
-        $url3 = clean_xss_tags($_SERVER['HTTP_REFERER']);
+        $server_input = get_notice_runtime_server_input();
+        $url3 = isset($server_input['HTTP_REFERER']) ? clean_xss_tags($server_input['HTTP_REFERER']) : '';
     }
 
     $msg = str_replace("\\n", "<br>", $msg);

@@ -3,14 +3,34 @@ if (!defined('_GNUBOARD_')) {
     exit;
 }
 
+function g5_get_support_security_get_input()
+{
+    return function_exists('g5_get_runtime_get_input') ? g5_get_runtime_get_input() : array();
+}
+
+function g5_get_support_security_post_input()
+{
+    return function_exists('g5_get_runtime_post_input') ? g5_get_runtime_post_input() : array();
+}
+
+function g5_get_support_security_cookie_input()
+{
+    return function_exists('g5_get_runtime_cookie_input') ? g5_get_runtime_cookie_input() : array();
+}
+
+function g5_get_support_security_server_input()
+{
+    return function_exists('g5_get_runtime_server_input') ? g5_get_runtime_server_input() : array();
+}
+
 function check_input_vars()
 {
     $max_input_vars = ini_get('max_input_vars');
 
     if ($max_input_vars) {
-        $post_vars = count($_POST, COUNT_RECURSIVE);
-        $get_vars = count($_GET, COUNT_RECURSIVE);
-        $cookie_vars = count($_COOKIE, COUNT_RECURSIVE);
+        $post_vars = count(g5_get_support_security_post_input(), COUNT_RECURSIVE);
+        $get_vars = count(g5_get_support_security_get_input(), COUNT_RECURSIVE);
+        $cookie_vars = count(g5_get_support_security_cookie_input(), COUNT_RECURSIVE);
 
         $input_vars = $post_vars + $get_vars + $cookie_vars;
 
@@ -46,7 +66,10 @@ function check_vaild_callback($callback)
 
 function get_real_client_ip()
 {
-    return run_replace('get_real_client_ip', $_SERVER['REMOTE_ADDR']);
+    $server_input = g5_get_support_security_server_input();
+    $remote_addr = isset($server_input['REMOTE_ADDR']) ? $server_input['REMOTE_ADDR'] : '';
+
+    return run_replace('get_real_client_ip', $remote_addr);
 }
 
 function check_mail_bot($ip = '')
@@ -62,7 +85,8 @@ function check_mail_bot($ip = '')
         }
     }
 
-    $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+    $server_input = g5_get_support_security_server_input();
+    $user_agent = isset($server_input['HTTP_USER_AGENT']) ? $server_input['HTTP_USER_AGENT'] : '';
     if ($user_agent === 'Carbon' || strpos($user_agent, 'BingPreview') !== false || strpos($user_agent, 'Slackbot') !== false) {
         die($bot_message);
     }
@@ -81,14 +105,16 @@ function is_include_path_check($path = '', $is_input = '')
             }
 
             $replace_path = str_replace('\\', '/', $path);
-            $slash_count = substr_count(str_replace('\\', '/', $_SERVER['SCRIPT_NAME']), '/');
+            $server_input = g5_get_support_security_server_input();
+            $script_name = isset($server_input['SCRIPT_NAME']) ? $server_input['SCRIPT_NAME'] : '';
+            $slash_count = substr_count(str_replace('\\', '/', $script_name), '/');
             $peer_count = substr_count($replace_path, '../');
 
             if ($peer_count && $peer_count > $slash_count) {
                 return false;
             }
 
-            $dirname_doc_root = !empty($_SERVER['DOCUMENT_ROOT']) ? dirname($_SERVER['DOCUMENT_ROOT']) : dirname(dirname(dirname(__DIR__)));
+            $dirname_doc_root = !empty($server_input['DOCUMENT_ROOT']) ? dirname($server_input['DOCUMENT_ROOT']) : dirname(dirname(dirname(__DIR__)));
 
             if ($dirname_doc_root && file_exists($path) && strpos(realpath($path), realpath($dirname_doc_root)) !== 0) {
                 return false;
