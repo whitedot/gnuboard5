@@ -3,6 +3,8 @@ if (!defined('_GNUBOARD_')) {
     exit;
 }
 
+// Executing this file initializes the admin request context.
+// Include pure helper/security loaders before this file.
 require_once __DIR__ . '/access-bootstrap.lib.php';
 require_once __DIR__ . '/menu-bootstrap.lib.php';
 require_once __DIR__ . '/request-bootstrap.lib.php';

@@ -15,7 +15,8 @@
 3. `docs/member-only-scope.md`
 4. `docs/architecture/member-controller-pattern.md`
 5. `docs/architecture/admin-controller-pattern.md`
-6. `docs/architecture/admin-export-pattern.md`
+6. `docs/architecture/admin-include-map.md`
+7. `docs/architecture/admin-export-pattern.md`
 
 ## 큰 구조
 
@@ -65,6 +66,7 @@
 - controller에 SQL, 큰 분기, 화면 배열 조립을 다시 쌓지 않는다.
 - controller에서 `extract()`로 숨은 변수를 만들지 않는다.
 - 관리자 entry와 domain helper에서 `$_GET`, `$_POST`, `$_REQUEST`, `$_SERVER`를 직접 읽지 않는다. `g5_get_runtime_*_input()` 또는 도메인 request context를 사용한다.
+- aggregate loader에 업무 로직을 넣지 않는다. include 흐름은 `docs/architecture/admin-include-map.md` 기준으로 유지한다.
 - `lib/PHPExcel` 또는 `lib/PHPExcel.php`를 복구하지 않는다.
 - Tailwind 생성 CSS를 직접 고치지 않는다. 스타일 변경은 `tailwind4/` 원천 파일을 고친 뒤 빌드한다.
 

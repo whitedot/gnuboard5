@@ -192,6 +192,7 @@ GitHub Actions check는 존재한다. 운영 저장소 정책에서 필요하면
 
 - 현재 작업계획, 남은 일, 보류 판단은 이 문서에만 추가한다.
 - 레거시 개발자용 작업별 파일 지도와 인수인계 안내는 `docs/legacy-maintainer-guide.md`에 남긴다.
+- 관리자 include 흐름과 aggregate loader 규칙은 `docs/architecture/admin-include-map.md`에 남긴다.
 - 구조 규칙은 `docs/architecture/*`에 남긴다.
 - 과거 QA 증적은 `docs/project-evaluation-report-2026-04-22.md`처럼 날짜가 붙은 보고서에 보존한다.
 - 새 계획 문서를 만들기보다 이 문서를 갱신한다.
