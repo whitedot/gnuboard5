@@ -62,7 +62,7 @@
 ### 2단계. 최소 회귀 가드 추가
 
 - 구조 정리 이후 되돌아오는 회귀를 얇게 감지할 수 있는 체크를 추가한다.
-- 후보는 관리자 관련 `PHP lint`, 금지 패턴 grep(`extract(`, legacy helper 호출), 필요시 엑셀 export smoke check 다.
+- 후보는 관리자 관련 `PHP lint`, 금지 패턴 grep(`extract(`, legacy helper 호출)이다.
 - 완료 기준:
   - 구조 회귀를 CI 또는 로컬 스크립트로 빠르게 확인할 수 있다.
 

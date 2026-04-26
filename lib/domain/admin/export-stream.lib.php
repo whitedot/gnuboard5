@@ -89,7 +89,7 @@ function admin_complete_member_export_stream_page(array $page_request, $auth, $s
     try {
         admin_run_member_export($params, $runtime);
     } catch (Exception $e) {
-        error_log('[Member Export Error] ' . $e->getMessage());
+        error_log('[Admin Member Export Error] ' . $e->getMessage());
         admin_send_member_export_progress('error', $e->getMessage());
         admin_write_member_export_log($params, array(
             'success' => false,
@@ -103,25 +103,25 @@ function admin_run_member_export(array $params, array $runtime)
     $total = admin_count_member_export_members($params, $runtime['member_table']);
     $pages = 1;
 
-    if ($total > MEMBER_EXPORT_MAX_SIZE) {
-        throw new Exception('엑셀 다운로드 가능 범위(최대 ' . number_format(MEMBER_EXPORT_MAX_SIZE) . '건)를 초과했습니다.<br>조건을 추가로 설정하신 후 다시 시도해 주세요.');
+    if ($total > ADMIN_MEMBER_EXPORT_MAX_SIZE) {
+        throw new Exception('엑셀 다운로드 가능 범위(최대 ' . number_format(ADMIN_MEMBER_EXPORT_MAX_SIZE) . '건)를 초과했습니다.<br>조건을 추가로 설정하신 후 다시 시도해 주세요.');
     }
 
     if ($total <= 0) {
         throw new Exception('조회된 데이터가 없어 엑셀 파일을 생성할 수 없습니다.<br>조건을 추가로 설정하신 후 다시 시도해 주세요.');
     }
 
-    $file_name = 'member_' . MEMBER_BASE_DATE;
+    $file_name = 'member_' . ADMIN_MEMBER_EXPORT_BASE_DATE;
     $file_list = array();
     $zip_file_name = '';
 
-    if ($total > MEMBER_EXPORT_PAGE_SIZE) {
-        $pages = (int) ceil($total / MEMBER_EXPORT_PAGE_SIZE);
+    if ($total > ADMIN_MEMBER_EXPORT_PAGE_SIZE) {
+        $pages = (int) ceil($total / ADMIN_MEMBER_EXPORT_PAGE_SIZE);
         admin_send_member_export_progress('progress', '', 2, $total, 0, $pages, 0);
 
         for ($i = 1; $i <= $pages; $i++) {
             $params['page'] = $i;
-            admin_send_member_export_progress('progress', '', 2, $total, ($pages == $i ? $total : $i * MEMBER_EXPORT_PAGE_SIZE), $pages, $i);
+            admin_send_member_export_progress('progress', '', 2, $total, ($pages == $i ? $total : $i * ADMIN_MEMBER_EXPORT_PAGE_SIZE), $pages, $i);
 
             try {
                 $file_list[] = admin_create_member_export_xlsx($params, $file_name, $i, $runtime['member_table']);
@@ -176,7 +176,7 @@ function admin_send_member_export_progress($status, $message = '', $downloadType
         'currentChunk' => $currentChunk,
         'files' => $files,
         'zipFile' => $zipFile,
-        'filePath' => G5_DATA_URL . '/' . MEMBER_BASE_DIR . '/' . MEMBER_BASE_DATE,
+        'filePath' => G5_DATA_URL . '/' . ADMIN_MEMBER_EXPORT_BASE_DIR . '/' . ADMIN_MEMBER_EXPORT_BASE_DATE,
     );
 
     echo 'data: ' . json_encode($data, JSON_UNESCAPED_UNICODE) . "\n\n";

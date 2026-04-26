@@ -170,7 +170,7 @@ function admin_build_member_export_page_view(array $query, array $config, array 
         'environment_error' => isset($runtime['environment_error']) ? $runtime['environment_error'] : '',
         'intro_items' => array(
             array(
-                'html' => '<strong>회원수 ' . number_format(MEMBER_EXPORT_PAGE_SIZE) . '건 초과 시</strong> ' . number_format(MEMBER_EXPORT_PAGE_SIZE) . '건 단위로 분리 저장되며, <strong>엑셀 생성 최대 건수는 ' . number_format(MEMBER_EXPORT_MAX_SIZE) . '건</strong>입니다. 초과 시 조건 추가 설정 후 재시도하시기 바랍니다.',
+                'html' => '<strong>회원수 ' . number_format(ADMIN_MEMBER_EXPORT_PAGE_SIZE) . '건 초과 시</strong> ' . number_format(ADMIN_MEMBER_EXPORT_PAGE_SIZE) . '건 단위로 분리 저장되며, <strong>엑셀 생성 최대 건수는 ' . number_format(ADMIN_MEMBER_EXPORT_MAX_SIZE) . '건</strong>입니다. 초과 시 조건 추가 설정 후 재시도하시기 바랍니다.',
             ),
             array(
                 'html' => '<strong>수신동의 확인 대상은 만료일까지 1달 미만인 회원</strong>을 기준으로 필터링됩니다.',

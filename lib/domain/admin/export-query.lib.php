@@ -46,8 +46,8 @@ function admin_open_member_export_statement($params, $member_table, &$fields = a
     }
 
     $query_params = $where_data['params'];
-    $query_params['offset'] = (int) (($page - 1) * MEMBER_EXPORT_PAGE_SIZE);
-    $query_params['page_size'] = (int) MEMBER_EXPORT_PAGE_SIZE;
+    $query_params['offset'] = (int) (($page - 1) * ADMIN_MEMBER_EXPORT_PAGE_SIZE);
+    $query_params['page_size'] = (int) ADMIN_MEMBER_EXPORT_PAGE_SIZE;
 
     $sql = "SELECT {$field_list} FROM {$member_table} {$where_data['clause']} ORDER BY mb_no DESC LIMIT :offset, :page_size";
     $statement = sql_statement_prepared($sql, $query_params, false);

@@ -3,23 +3,23 @@ if (!defined('_GNUBOARD_')) {
     exit;
 }
 
-if (!defined('MEMBER_EXPORT_PAGE_SIZE')) {
-    define('MEMBER_EXPORT_PAGE_SIZE', 10000);
+if (!defined('ADMIN_MEMBER_EXPORT_PAGE_SIZE')) {
+    define('ADMIN_MEMBER_EXPORT_PAGE_SIZE', 10000);
 }
-if (!defined('MEMBER_EXPORT_MAX_SIZE')) {
-    define('MEMBER_EXPORT_MAX_SIZE', 300000);
+if (!defined('ADMIN_MEMBER_EXPORT_MAX_SIZE')) {
+    define('ADMIN_MEMBER_EXPORT_MAX_SIZE', 300000);
 }
-if (!defined('MEMBER_BASE_DIR')) {
-    define('MEMBER_BASE_DIR', 'member_list');
+if (!defined('ADMIN_MEMBER_EXPORT_BASE_DIR')) {
+    define('ADMIN_MEMBER_EXPORT_BASE_DIR', 'member_list');
 }
-if (!defined('MEMBER_BASE_DATE')) {
-    define('MEMBER_BASE_DATE', date('YmdHis'));
+if (!defined('ADMIN_MEMBER_EXPORT_BASE_DATE')) {
+    define('ADMIN_MEMBER_EXPORT_BASE_DATE', date('YmdHis'));
 }
-if (!defined('MEMBER_EXPORT_DIR')) {
-    define('MEMBER_EXPORT_DIR', G5_DATA_PATH . '/' . MEMBER_BASE_DIR . '/' . MEMBER_BASE_DATE);
+if (!defined('ADMIN_MEMBER_EXPORT_DIR')) {
+    define('ADMIN_MEMBER_EXPORT_DIR', G5_DATA_PATH . '/' . ADMIN_MEMBER_EXPORT_BASE_DIR . '/' . ADMIN_MEMBER_EXPORT_BASE_DATE);
 }
-if (!defined('MEMBER_LOG_DIR')) {
-    define('MEMBER_LOG_DIR', G5_DATA_PATH . '/' . MEMBER_BASE_DIR . '/log');
+if (!defined('ADMIN_MEMBER_EXPORT_LOG_DIR')) {
+    define('ADMIN_MEMBER_EXPORT_LOG_DIR', G5_DATA_PATH . '/' . ADMIN_MEMBER_EXPORT_BASE_DIR . '/log');
 }
 
 function admin_get_member_export_config($type = null)

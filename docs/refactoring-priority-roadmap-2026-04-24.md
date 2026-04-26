@@ -74,7 +74,7 @@
 - Removal conditions:
   - no application entry point depends on implicit globals such as `$w`, `$url`, `$sfl`, `$stx`, `$sst`, `$sod`, `$page`, `$sca`
   - no plugin or skin integration requires legacy request-global extraction for compatibility
-  - smoke verification passes without legacy extract fallback
+  - manual verification passes without legacy extract fallback
 - Removal sequence:
   - keep request parsing centered on `request_context`
   - document any legacy compatibility exception before adding a new hook
@@ -96,7 +96,7 @@
 - Add quick local checks for:
   - PHP lint
   - forbidden patterns such as `extract(` and new `$GLOBALS[...]` usage
-  - core admin smoke paths
+  - core admin regression paths
 
 ## 4. Started On 2026-04-24
 

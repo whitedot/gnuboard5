@@ -38,13 +38,11 @@
 
 ### 검증/가드
 
-- `scripts/check-admin-refactor.ps1`
+- `scripts/check-admin-refactor.js`
+  - `scripts/check-admin-refactor.ps1` 는 Node.js 체크를 호출하는 호환 shim
   - member list/form/export entry shell 회귀 가드 추가
   - `adm/member_list_exel.lib.php` 재생성 금지
   - export legacy naming 재유입 금지
-- `scripts/check-admin-export-smoke.php`
-- `scripts/check-admin-export-smoke.ps1`
-  - CLI `ZipArchive` 부재 시 .NET ZIP fallback으로 XLSX 구조 검증
 
 ## 2. 현재 코드에서 기대하는 구조
 
@@ -76,56 +74,36 @@
 
 ## 3. 지금 바로 이어서 할 다음 작업
 
-### P1. export 런타임 naming 마무리
+### 완료. export 런타임 naming 마무리
 
-- 아직 남아 있는 상수명은 legacy 형태다
-  - `MEMBER_EXPORT_PAGE_SIZE`
-  - `MEMBER_EXPORT_MAX_SIZE`
-  - `MEMBER_BASE_DIR`
-  - `MEMBER_BASE_DATE`
-  - `MEMBER_EXPORT_DIR`
-  - `MEMBER_LOG_DIR`
-- 다음 단계에서는 이것도 `ADMIN_MEMBER_EXPORT_*` 로 바꾸고 호출부를 같이 이동하는 편이 좋다
+- export 런타임 상수는 `ADMIN_MEMBER_EXPORT_*` 형태로 정리했다.
+- `scripts/check-admin-refactor.js` 에 legacy export 상수명 재유입 방지 가드를 추가했다.
 
 ### P1. export file/runtime API 일관성 점검
 
 - 지금은 주요 함수명이 정리됐지만 파일명은 `export-file.lib.php`, `export-stream.lib.php`, `export-query.lib.php` 로 유지된다
-- 기능적으로는 충분하지만, 필요하면 아래를 검토
-  - `member_export_*` 문자열이 로그 메시지나 테스트 fixture에 남아 있는지 점검
-  - `admin_*` naming과 파일명 구성이 팀 기준에 충분히 읽기 쉬운지 점검
+- `docs/architecture/admin-export-pattern.md` 에 파일 책임과 naming 규칙을 문서화했다
+- 로그 prefix는 `Admin Member Export` 기준으로 정리했다
+- `member_export_*` legacy 함수명과 legacy 상수명은 `scripts/check-admin-refactor.js` 에서 재유입을 막는다
 
-### P2. member/admin 공통 패턴 문서화 보강
+### 완료. member/admin 공통 패턴 문서화 보강
 
-- 현재 리팩토링은 코드로는 정리됐지만 문서가 아직 요약형이다
-- 다음 문서 보강 후보
-  - `docs/architecture/admin-controller-pattern.md`
-  - 새 `docs/architecture/admin-export-pattern.md`
-
-### P2. 브라우저 실검증 확대
-
-- 현재 smoke는 구조와 최소 runtime 유효성 보장까지는 됨
-- 다음 확대 대상
-  - export 진행 팝업 완료 흐름
-  - 분할 다운로드 후 ZIP 완료 흐름
-  - member list sideview 위치 회귀
+- `docs/architecture/admin-controller-pattern.md` 의 완료된 export stream 항목을 현재 구조에 맞게 갱신했다
+- `docs/architecture/admin-export-pattern.md` 를 추가했다
 
 ## 4. 검증 명령
 
 리팩토링 이어서 작업할 때 최소한 아래 두 개는 유지:
 
-```powershell
+```bash
 npm run check:admin-refactor
 npm run check:refactor
-```
-
-추가로 export 쪽만 볼 때:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File ./scripts/check-admin-export-smoke.ps1
 ```
 
 ## 5. 주의사항
 
 - `adm/admin.js` 는 이번 턴에서 역할이 커졌다. 새 페이지 동작을 추가할 때는 또다시 inline script로 되돌리지 말고 여기 공용 모듈 패턴을 따른다.
-- `scripts/check-admin-refactor.ps1` 는 현재 구조를 강하게 고정하고 있다. 새 구조를 넣을 때 체크가 먼저 깨지는 게 정상일 수 있으니, 코드와 체크를 같이 바꿔야 한다.
+- `scripts/check-admin-refactor.js` 는 현재 구조를 강하게 고정하고 있다. 새 구조를 넣을 때 체크가 먼저 깨지는 게 정상일 수 있으니, 코드와 체크를 같이 바꿔야 한다.
+- `check:*` refactor npm scripts 는 Node.js 기반으로 실행되며, PHP가 설치된 환경에서는 PHP lint까지 수행한다. CI에서는 PHP가 없으면 실패한다.
+- 기존 PowerShell check 파일들은 Node.js 체크를 호출하는 호환 shim으로 유지한다.
 - npm의 `msvs_version` 경고는 현재 검증 실패 원인이 아니다.

@@ -11,15 +11,13 @@
     "build:theme": "tailwindcss -i ./tailwind4/common.css -o ./css/common.css --minify",
     "build:theme:site": "tailwindcss -i ./tailwind4/theme.css -o ./css/theme.css --minify",
     "build:admin": "tailwindcss -i ./tailwind4/admin.css -o ./adm/css/admin.css --minify",
-    "check:admin-refactor": "powershell -ExecutionPolicy Bypass -File ./scripts/check-admin-refactor.ps1",
-    "check:admin-browser-smoke": "powershell -ExecutionPolicy Bypass -File ./scripts/check-admin-browser-smoke.ps1",
-    "check:admin-export-smoke": "powershell -ExecutionPolicy Bypass -File ./scripts/check-admin-export-smoke.ps1",
-    "check:common-query-refactor": "powershell -ExecutionPolicy Bypass -File ./scripts/check-common-query-refactor.ps1",
-    "check:legacy-phpexcel-retirement": "powershell -ExecutionPolicy Bypass -File ./scripts/check-legacy-phpexcel-retirement.ps1",
-    "check:legacy-request-extract-retirement": "powershell -ExecutionPolicy Bypass -File ./scripts/check-legacy-request-extract-retirement.ps1",
-    "check:member-request-refactor": "powershell -ExecutionPolicy Bypass -File ./scripts/check-member-request-refactor.ps1",
-    "check:support-html-refactor": "powershell -ExecutionPolicy Bypass -File ./scripts/check-support-html-refactor.ps1",
-    "check:refactor": "npm run check:admin-refactor && npm run check:admin-export-smoke && npm run check:member-request-refactor && npm run check:common-query-refactor && npm run check:legacy-phpexcel-retirement && npm run check:legacy-request-extract-retirement && npm run check:support-html-refactor"
+    "check:admin-refactor": "node ./scripts/check-admin-refactor.js",
+    "check:common-query-refactor": "node ./scripts/check-common-query-refactor.js",
+    "check:legacy-phpexcel-retirement": "node ./scripts/check-legacy-phpexcel-retirement.js",
+    "check:legacy-request-extract-retirement": "node ./scripts/check-legacy-request-extract-retirement.js",
+    "check:member-request-refactor": "node ./scripts/check-member-request-refactor.js",
+    "check:support-html-refactor": "node ./scripts/check-support-html-refactor.js",
+    "check:refactor": "npm run check:admin-refactor && npm run check:member-request-refactor && npm run check:common-query-refactor && npm run check:legacy-phpexcel-retirement && npm run check:legacy-request-extract-retirement && npm run check:support-html-refactor"
   },
   "repository": {
     "type": "git",
@@ -37,8 +35,5 @@
     "@tailwindcss/cli": "^4.1.18",
     "@tailwindcss/typography": "^0.5.19",
     "tailwindcss": "^4.1.18"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.59.1"
   }
 }

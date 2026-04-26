@@ -14,11 +14,11 @@ function admin_create_member_export_xlsx($params, $file_name, $index = 0, $membe
             admin_fetch_member_export_sheet_rows($params, $fields, $member_table)
         );
 
-        admin_ensure_member_export_directory(MEMBER_EXPORT_DIR);
+        admin_ensure_member_export_directory(ADMIN_MEMBER_EXPORT_DIR);
 
         $sub_name = $index == 0 ? 'all' : sprintf('%02d', $index);
         $filename = $file_name . '_' . $sub_name . '.xlsx';
-        $file_path = MEMBER_EXPORT_DIR . '/' . $filename;
+        $file_path = ADMIN_MEMBER_EXPORT_DIR . '/' . $filename;
 
         admin_xlsx_write_file($file_path, $rows, $config['widths'], '회원관리파일', 2);
     } catch (Exception $e) {
@@ -31,15 +31,15 @@ function admin_create_member_export_xlsx($params, $file_name, $index = 0, $membe
 function admin_create_member_export_zip($files, $zip_file_name)
 {
     if (!admin_archive_supports_zip()) {
-        error_log('[Member Export Error]  ZIP archive 지원을 사용할 수 없습니다.');
+        error_log('[Admin Member Export Error] ZIP archive 지원을 사용할 수 없습니다.');
         return array('error' => '파일을 압축하는 중 문제가 발생했습니다. 개별 파일로 제공됩니다.<br>: ZipArchive 또는 PharData 지원을 사용할 수 없습니다.');
     }
 
-    admin_ensure_member_export_directory(MEMBER_EXPORT_DIR);
-    $destination_zip_path = rtrim(MEMBER_EXPORT_DIR, '/') . '/' . $zip_file_name . '.zip';
+    admin_ensure_member_export_directory(ADMIN_MEMBER_EXPORT_DIR);
+    $destination_zip_path = rtrim(ADMIN_MEMBER_EXPORT_DIR, '/') . '/' . $zip_file_name . '.zip';
     $archive_files = array();
     foreach ($files as $file) {
-        $file_path = MEMBER_EXPORT_DIR . '/' . $file;
+        $file_path = ADMIN_MEMBER_EXPORT_DIR . '/' . $file;
         if (file_exists($file_path)) {
             $archive_files[$file_path] = basename($file_path);
         }
@@ -80,7 +80,7 @@ function admin_delete_member_export_files($file_list = array())
 
     if (!empty($file_list)) {
         foreach ($file_list as $file) {
-            $file_path = rtrim(MEMBER_EXPORT_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $file;
+            $file_path = rtrim(ADMIN_MEMBER_EXPORT_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $file;
             if (file_exists($file_path) && is_file($file_path) && @unlink($file_path)) {
                 $count++;
             }
@@ -89,7 +89,7 @@ function admin_delete_member_export_files($file_list = array())
         return $count;
     }
 
-    $files = glob(rtrim(G5_DATA_PATH . '/' . MEMBER_BASE_DIR, '/') . '/*');
+    $files = glob(rtrim(G5_DATA_PATH . '/' . ADMIN_MEMBER_EXPORT_BASE_DIR, '/') . '/*');
     if (!is_array($files)) {
         $files = array();
     }
@@ -139,12 +139,12 @@ function admin_write_member_export_log($params, $result = array(), $actor_id = '
     $username = $actor_id !== '' ? $actor_id : 'guest';
     $datetime = date('Y-m-d H:i:s');
 
-    if (!is_dir(MEMBER_LOG_DIR)) {
-        @mkdir(MEMBER_LOG_DIR, G5_DIR_PERMISSION, true);
-        @chmod(MEMBER_LOG_DIR, G5_DIR_PERMISSION);
+    if (!is_dir(ADMIN_MEMBER_EXPORT_LOG_DIR)) {
+        @mkdir(ADMIN_MEMBER_EXPORT_LOG_DIR, G5_DIR_PERMISSION, true);
+        @chmod(ADMIN_MEMBER_EXPORT_LOG_DIR, G5_DIR_PERMISSION);
     }
 
-    $log_files = glob(MEMBER_LOG_DIR . '/export_log_*.log');
+    $log_files = glob(ADMIN_MEMBER_EXPORT_LOG_DIR . '/export_log_*.log');
     if (!is_array($log_files)) {
         $log_files = array();
     }
@@ -155,7 +155,7 @@ function admin_write_member_export_log($params, $result = array(), $actor_id = '
 
     $latest_log_file = isset($log_files[0]) ? $log_files[0] : null;
     if (!$latest_log_file || filesize($latest_log_file) >= $max_size) {
-        $latest_log_file = MEMBER_LOG_DIR . '/export_log_' . date('YmdHi') . '.log';
+        $latest_log_file = ADMIN_MEMBER_EXPORT_LOG_DIR . '/export_log_' . date('YmdHi') . '.log';
         file_put_contents($latest_log_file, '');
         array_unshift($log_files, $latest_log_file);
     }
@@ -233,6 +233,6 @@ function admin_write_member_export_log($params, $result = array(), $actor_id = '
     $log_entry .= PHP_EOL;
 
     if (@file_put_contents($latest_log_file, $log_entry, FILE_APPEND | LOCK_EX) === false) {
-        error_log('[Member Export Error] 로그 파일 기록 실패: ' . $latest_log_file);
+        error_log('[Admin Member Export Error] 로그 파일 기록 실패: ' . $latest_log_file);
     }
 }
