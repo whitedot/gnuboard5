@@ -4,7 +4,7 @@
 
 이 문서는 현재 프로젝트를 커뮤니티, 쇼핑몰, 예약 같은 추가 비즈니스까지 수용하는 절차형 모듈 플랫폼으로 확장할 때 참고하는 기준 문서다.
 
-- `docs/platform-structure-roadmap.md`는 단계별 실행 로드맵이다.
+- `docs/current-work-plan-2026-04-26.md`는 현재 단계의 실행 로드맵이다.
 - 이 문서는 장기적으로 유지할 목표 구조와 개발 규칙을 보관하는 기준 문서다.
 - `docs/architecture/procedural-domain-starter.md`는 신규 도메인 착수용 템플릿 문서다.
 

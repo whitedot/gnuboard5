@@ -18,6 +18,7 @@ SIRsoft000/
 config.php
 pma/
 .claude/
+.tools/
 
 # Node.js / npm
 node_modules/

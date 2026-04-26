@@ -123,7 +123,7 @@ function admin_member_export_runtime_error_message()
         return '';
     }
 
-    return 'ZIP archive 지원을 사용할 수 없어 회원 엑셀 내보내기를 실행할 수 없습니다. 서버 PHP 설정에서 zip 또는 phar 지원 상태를 확인한 뒤 다시 시도해 주세요.';
+    return '압축 파일 생성 환경이 준비되지 않아 회원 엑셀 내보내기를 실행할 수 없습니다. 서버 PHP 설정과 파일 쓰기 권한을 확인한 뒤 다시 시도해 주세요.';
 }
 
 function admin_build_member_export_client_config(array $links)

@@ -7,7 +7,8 @@
 - 브랜치: `codex/legacy-comment-cleanup-2026-04-22`
 - 커밋 해시: `259183b48d1bb0d7edc527b2a98d34aeef1603bb`
 - 평가 기준 문서:
-  - `docs/project-evaluation-plan.md`
+  - 당시 기준 평가 계획 문서
+  - 현재 작업계획은 `docs/current-work-plan-2026-04-26.md`
 
 ## 2. 평가 결론 요약
 
