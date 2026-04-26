@@ -81,7 +81,7 @@
 
 - 기본 PATH에는 `php`가 없을 수 있다. 이 저장소에서는 로컬 점검 시 `.tools/php`를 PATH에 추가하면 PHP lint까지 수행된다.
 - `.tools/`는 로컬 실행 도구이므로 저장소 추적 대상에서 제외한다.
-- Tailwind 의존성은 현재 lockfile 없이 `^4.1.18`로 열려 있다. CSS 빌드 재현성을 더 강하게 관리하려면 lockfile 추적 또는 버전 고정을 별도 결정한다.
+- Tailwind 의존성은 exact version과 추적 대상 `package-lock.json`으로 고정한다. CI는 `npm ci`를 사용한다.
 
 ## 남은 P1
 
@@ -117,15 +117,15 @@
 - 삭제 완료 상태를 유지한다.
 - export 운영 검증 중 문제가 나오더라도 먼저 자체 XLSX writer를 보정하고, PHPExcel 복구는 보류한다.
 
-### 3. 빌드 재현성 정책 결정
+### 3. 빌드 재현성 정책 유지
 
-현재 `package-lock.json`은 `.gitignore` 대상이고, `npm install` 시 Tailwind minor 버전이 달라질 수 있다.
+현재 `package-lock.json`을 추적하고 Tailwind 계열 의존성을 exact version으로 고정했다.
 
-선택지:
+유지 조건:
 
-- lockfile을 추적해 CI와 로컬 빌드 버전을 고정한다.
-- `package.json`의 Tailwind 버전을 exact version으로 고정한다.
-- 현재처럼 refactor check만 CI에서 실행하고 CSS 빌드는 수동 검증으로 둔다.
+- CI 의존성 설치는 `npm ci`를 사용한다.
+- Tailwind 버전 변경 시 `npm run build`를 실행하고 생성 CSS 변경을 함께 검토한다.
+- lockfile은 수동 삭제하지 않는다.
 
 ## 남은 P2
 
@@ -179,9 +179,9 @@ GitHub Actions check는 존재한다. 운영 저장소 정책에서 필요하면
    - export 검증 중 문제가 나오면 자체 XLSX writer를 우선 보정
    - legacy PHPExcel 복구가 필요하다고 판단되면 별도 근거를 문서화
 
-4. 빌드 재현성 결정
-   - lockfile 추적 또는 Tailwind exact version 고정 중 선택
-   - CI에 build check를 넣을지 결정
+4. 빌드 재현성 유지
+   - Tailwind 버전 변경 시 lockfile과 생성 CSS를 함께 갱신
+   - CI에 build check를 넣을지 별도 결정
 
 5. 다음 플랫폼화 검토
    - admin/export 운영 리스크가 닫힌 뒤 신규 도메인 도입 여부 재평가
