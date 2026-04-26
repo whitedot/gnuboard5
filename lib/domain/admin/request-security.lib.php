@@ -5,7 +5,8 @@ if (!defined('_GNUBOARD_')) {
 
 function admin_referer_check($return = false)
 {
-    $referer = isset($_SERVER['HTTP_REFERER']) ? trim($_SERVER['HTTP_REFERER']) : '';
+    $server_input = g5_get_runtime_server_input();
+    $referer = isset($server_input['HTTP_REFERER']) ? trim($server_input['HTTP_REFERER']) : '';
     if (!$referer) {
         $msg = '정보가 올바르지 않습니다.';
 
@@ -17,14 +18,14 @@ function admin_referer_check($return = false)
     }
 
     $p = @parse_url($referer);
-    $host = preg_replace('/:[0-9]+$/', '', $_SERVER['HTTP_HOST']);
+    $host = isset($server_input['HTTP_HOST']) ? preg_replace('/:[0-9]+$/', '', $server_input['HTTP_HOST']) : '';
     $msg = '';
 
-    if ($host != $p['host']) {
+    if (!isset($p['host']) || $host != $p['host']) {
         $msg = '올바른 방법으로 이용해 주십시오.';
     }
 
-    if ($p['path'] && !preg_match('/\/' . preg_quote(G5_ADMIN_DIR) . '\//i', $p['path'])) {
+    if (isset($p['path']) && $p['path'] && !preg_match('/\/' . preg_quote(G5_ADMIN_DIR) . '\//i', $p['path'])) {
         $msg = '올바른 방법으로 이용해 주십시오';
     }
 

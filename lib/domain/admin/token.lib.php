@@ -70,9 +70,13 @@ function admin_csrf_token_key($is_must = 0)
     global $member;
 
     $key = '';
+    $server_input = g5_get_runtime_server_input();
+    $is_ajax = isset($server_input['HTTP_X_REQUESTED_WITH']) && strtolower($server_input['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 
-    if ($is_must || !((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'))) {
-        $key = md5((isset($_SERVER['SERVER_SOFTWARE']) ? $_SERVER['SERVER_SOFTWARE'] : '') . (defined('G5_TOKEN_ENCRYPTION_KEY') ? G5_TOKEN_ENCRYPTION_KEY : '') . $member['mb_id'] . $_SERVER['DOCUMENT_ROOT']);
+    if ($is_must || !$is_ajax) {
+        $server_software = isset($server_input['SERVER_SOFTWARE']) ? $server_input['SERVER_SOFTWARE'] : '';
+        $document_root = isset($server_input['DOCUMENT_ROOT']) ? $server_input['DOCUMENT_ROOT'] : '';
+        $key = md5($server_software . (defined('G5_TOKEN_ENCRYPTION_KEY') ? G5_TOKEN_ENCRYPTION_KEY : '') . $member['mb_id'] . $document_root);
     }
 
     return run_replace('admin_csrf_token_key', $key, $is_must);
